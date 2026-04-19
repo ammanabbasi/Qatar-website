@@ -17,7 +17,7 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
     // Consumers (Google Knowledge Graph, Meta, WhatsApp) fetch it — relative path fine because
     // structured-data fetchers resolve against @id.
     image: `${SITE.url}/en/opengraph-image`,
-    logo: `${SITE.url}/logo.svg`,
+    logo: `${SITE.url}/logo.webp`,
     description:
       locale === "ar"
         ? "الموزع والبائع للمنتجات الفاخرة للعناية بالسيارات في قطر — أفلام حماية الطلاء، الطلاءات السيراميكية، شامبو السيارات، التلميع والمزيد."

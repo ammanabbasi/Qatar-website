@@ -17,7 +17,7 @@ export function Footer({ audience }: { audience: Audience }) {
           {/* Brand */}
           <div className="flex flex-col gap-4">
             <Link href={audiencePrefix} className="flex items-center gap-3">
-              <Image src="/logo-mark.svg" alt="ABK" width={40} height={40} />
+              <Image src="/logo-mark.webp" alt="ABK" width={40} height={40} className="rounded-lg" />
               <span className="font-display text-base tracking-wide">
                 ABK <span className="text-(--color-gold)">Trading</span>
               </span>

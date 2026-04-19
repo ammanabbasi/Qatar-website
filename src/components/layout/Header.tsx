@@ -32,11 +32,12 @@ export function Header({ audience }: { audience: Audience }) {
         <div className="flex items-center justify-between gap-6 h-16 md:h-20">
           <Link href={audiencePrefix} className="flex items-center gap-3 shrink-0">
             <Image
-              src="/logo-mark.svg"
+              src="/logo-mark.webp"
               alt="ABK"
               width={40}
               height={40}
               priority
+              className="rounded-lg"
             />
             <span className="hidden sm:flex flex-col leading-tight">
               <span className="font-display text-base tracking-wide">

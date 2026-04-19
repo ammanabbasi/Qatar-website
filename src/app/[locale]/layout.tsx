@@ -33,7 +33,7 @@ export async function generateMetadata({
   //
   // OG image auto-wires from `opengraph-image.tsx` — no `images` field here.
   //
-  // Icons auto-wire from `app/icon.svg` + `app/apple-icon.tsx` conventions.
+  // Icons auto-wire from `app/icon.png` + `app/apple-icon.png` conventions.
   return {
     metadataBase: new URL(SITE.url),
     title: {
