@@ -54,7 +54,7 @@ export function WhatsAppButton({
         >
           {emailFallbackLabel}{" "}
           <span className="text-(--color-text) ltr-nums">
-            ceo.abktrading@gmail.com
+            sales@abktradingservice.com
           </span>
         </a>
       )}

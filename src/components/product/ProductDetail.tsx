@@ -30,8 +30,10 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
   const productLd = productJsonLd({
     name,
     description: shortDesc,
-    brand: product.brand,
-    image: `${SITE.url}${product.images[0]}`,
+    brand: t(`Brands.${product.brand}`),
+    category: categoryLabel,
+    sku: product.slug,
+    images: product.images.map((src) => `${SITE.url}${src}`),
     url: productUrl,
   });
   const bcLd = breadcrumbJsonLd([

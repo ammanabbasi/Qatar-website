@@ -8,6 +8,7 @@ import { Shell } from "@/components/layout/Shell";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ButtonLink } from "@/components/ui/Button";
+import { Link } from "@/i18n/navigation";
 import { LazyMapEmbed } from "@/components/contact/LazyMapEmbed";
 import { SITE } from "@/lib/constants";
 import { localBusinessJsonLd } from "@/lib/jsonld";
@@ -20,10 +21,10 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
-  const t = await getTranslations({ locale, namespace: "Contact" });
+  const meta = await getTranslations({ locale, namespace: "Meta" });
   return {
-    title: t("title"),
-    description: t("subtitle"),
+    title: meta("contactTitle"),
+    description: meta("contactDescription"),
     ...pageMeta(locale as Locale, "/contact"),
   };
 }
@@ -129,6 +130,44 @@ export default async function ContactPage({
               />
             </div>
           </div>
+          {/* Internal cross-links from Contact — common SEO weakness is that
+              Contact is a leaf page with no outbound links. Keyword-rich
+              anchors give Google a topical map without disrupting the page's
+              "get in touch" intent. */}
+          <nav
+            aria-label={t("Contact.exploreTitle")}
+            className="mt-14 sm:mt-16 pt-8 border-t border-(--color-border) flex flex-col gap-3"
+          >
+            <h3 className="font-display text-xl">
+              {t("Contact.exploreTitle")}
+            </h3>
+            <ul className="flex flex-col gap-2 text-base">
+              <li>
+                <Link
+                  href="/b2c/services"
+                  className="text-(--color-gold) hover:underline underline-offset-4"
+                >
+                  {t("Contact.exploreServicesLabel")} →
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`/${audience}/products`}
+                  className="text-(--color-gold) hover:underline underline-offset-4"
+                >
+                  {t("Contact.exploreProductsLabel")} →
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/b2b/become-a-dealer"
+                  className="text-(--color-gold) hover:underline underline-offset-4"
+                >
+                  {t("Contact.exploreDealerLabel")} →
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </Container>
       </section>
     </Shell>

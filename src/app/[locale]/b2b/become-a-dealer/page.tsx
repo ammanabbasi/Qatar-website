@@ -16,10 +16,10 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
-  const t = await getTranslations({ locale, namespace: "Home" });
+  const meta = await getTranslations({ locale, namespace: "Meta" });
   return {
-    title: t("dealerTitle"),
-    description: t("dealerSubtitle"),
+    title: meta("becomeDealerTitle"),
+    description: meta("becomeDealerDescription"),
     ...pageMeta(locale as Locale, "/b2b/become-a-dealer"),
   };
 }

@@ -34,12 +34,12 @@
     "becomeDealer": "Become a Dealer"
   },
   "Home": {
-    "heroEyebrowB2c": "Premium Car Care in Qatar",
+    "heroEyebrowB2c": "Premium Car Care · Doha, Qatar",
     "heroTitleB2c": "Protect. Restore. Shine.",
-    "heroSubtitleB2c": "Official distributor of Vertek PPF, Autotriz, Briller and more — trusted by car enthusiasts and pros across Qatar.",
-    "heroEyebrowB2b": "Wholesale & Distribution",
-    "heroTitleB2b": "Stock the brands Qatar trusts.",
-    "heroSubtitleB2b": "Competitive wholesale pricing on Vertek PPF, Autotriz, Briller, Insta Finish and more. Supplying detailing shops, car washes and body shops across Qatar and the GCC.",
+    "heroSubtitleB2c": "Authorised distributor of Vertek paint protection film, Autotriz, Briller and Insta Finish — trusted by car enthusiasts, detailers and body shops across Qatar.",
+    "heroEyebrowB2b": "Wholesale Car Care · Qatar & GCC",
+    "heroTitleB2b": "Stock the wholesale brands Qatar trusts.",
+    "heroSubtitleB2b": "Competitive wholesale pricing on Vertek PPF, Autotriz, Briller, Insta Finish, Getsun and more. Supplying detailing shops, car washes and body shops across Qatar and the GCC.",
     "starProductsTitle": "Star Products",
     "starProductsSubtitle": "The best-sellers keeping Qatar's cars looking flawless.",
     "brandsTitle": "Brands We Carry",
@@ -135,11 +135,19 @@
     "value2Title": "Qatar-wide supply",
     "value2Desc": "From retail walk-ins to island-wide wholesale distribution.",
     "value3Title": "Expert service",
-    "value3Desc": "Installation by trained technicians, advice by people who actually use the products."
+    "value3Desc": "Installation by trained technicians, advice by people who actually use the products.",
+    "exploreTitle": "Continue exploring",
+    "exploreProductsLabel": "Browse our PPF, ceramic coatings & detailing products",
+    "exploreServicesLabel": "View our PPF & ceramic coating installation services in Doha",
+    "exploreDealerLabel": "Become a wholesale dealer in Qatar or the GCC"
   },
   "Contact": {
     "title": "Contact Us",
     "subtitle": "Visit our store, or reach us on WhatsApp. We reply fast.",
+    "exploreTitle": "Before you reach out",
+    "exploreServicesLabel": "Browse PPF, tinting and ceramic coating services in Doha",
+    "exploreProductsLabel": "Shop the full retail catalogue",
+    "exploreDealerLabel": "See wholesale options for Qatar and the GCC",
     "address": "Address",
     "addressValue": "Shop 2 & 3, Building 1306, Street 70, Zone 56, Mesaimeer, Doha, Qatar",
     "hours": "Opening Hours",
@@ -168,8 +176,22 @@
   "Meta": {
     "defaultTitle": "ABK Trading & Service — Premium Car Care & PPF in Qatar",
     "defaultDescription": "Qatar's one-stop supplier for Vertek Paint Protection Film, Autotriz, Briller Car Care, Insta Finish and more. Retail, wholesale and professional installation from our Mesaimeer store.",
-    "productsTitle": "Products — ABK Trading & Service Qatar",
-    "productsDescription": "Browse our full range of PPF, ceramic coatings, car shampoos, polishes and detailing products. WhatsApp inquiry, Qatar-wide supply."
+    "homeB2cTitle": "Paint Protection Film & Premium Car Care — ABK Doha, Qatar",
+    "homeB2cDescription": "Vertek PPF, ceramic coatings, window tints and detailing supplies — sold and installed at our Mesaimeer workshop in Doha. Authorised distributor in Qatar.",
+    "homeB2bTitle": "Wholesale Car Care, PPF & Detailing Supplies — Qatar & GCC",
+    "homeB2bDescription": "Wholesale Vertek PPF, Autotriz, Briller, Insta Finish and Getsun for detailing shops, body shops and car-wash businesses across Qatar and the GCC. Volume pricing on request.",
+    "b2cProductsTitle": "Car Care & PPF Products in Qatar",
+    "b2cProductsDescription": "Vertek paint protection film, ceramic coatings, car shampoos, polishes, tyre care and detailing products — available retail in Doha. Inquire on WhatsApp.",
+    "b2bProductsTitle": "Wholesale Car Care Catalogue — Qatar & GCC",
+    "b2bProductsDescription": "Full wholesale catalogue: Vertek PPF, Autotriz, Briller, Insta Finish, Getsun. Volume pricing for detailing shops and resellers across Qatar and the GCC.",
+    "servicesTitle": "PPF, Window Tinting & Ceramic Coating in Doha, Qatar",
+    "servicesDescription": "Professional Vertek PPF installation, window tinting and ceramic coating at our Mesaimeer workshop in Doha. Trained technicians, authentic films, lifetime-feel finish.",
+    "aboutTitle": "About ABK Trading & Service — Doha, Qatar",
+    "aboutDescription": "Mesaimeer-based distributor and retailer of premium automotive care in Qatar. Vertek PPF, Autotriz, Briller, Insta Finish — retail, wholesale and installation under one roof.",
+    "becomeDealerTitle": "Become a Wholesale Dealer — Qatar Car Care Brands",
+    "becomeDealerDescription": "Resell Vertek PPF, Autotriz, Briller and Insta Finish in Qatar and the GCC. Competitive wholesale pricing, marketing support, reliable supply from Doha.",
+    "contactTitle": "Contact ABK — Mesaimeer, Doha, Qatar",
+    "contactDescription": "Visit our Mesaimeer store in Doha, or message us on WhatsApp at +974 30838355. Open Sat–Thu, 10:00–13:00 and 16:00–22:00. Closed Friday."
   },
   "Eyebrows": {
     "ourStory": "Our Story",
@@ -182,7 +204,25 @@
     "premium": "Premium",
     "wholesale": "Wholesale",
     "trust": "Trusted Partners",
-    "customers": "Customers"
+    "customers": "Customers",
+    "faq": "Frequently Asked",
+    "whyQatar": "Built for Qatar"
+  },
+  "WhyQatar": {
+    "title": "Car care made for Qatar's climate",
+    "subtitle": "Doha summers reach 45°C+. Sand, salt-laden coastal air and dust storms wear factory paint faster than European clearcoats are designed to handle. Every product we stock is chosen for Gulf conditions.",
+    "point1Title": "Sand & dust abrasion",
+    "point1Body": "Vertek paint protection film absorbs the micro-scratches that desert dust polishes into clearcoat over time. Without it, a daily-driven car in Doha shows visible swirl patterns within 12 months.",
+    "point2Title": "Sustained UV & heat",
+    "point2Body": "Premium PPF and 9H ceramic coatings resist UV-driven yellowing and oxidation. Cheap films turn cloudy in two summers; ours carry manufacturer warranties for 7–10 years.",
+    "point3Title": "Hard water spotting",
+    "point3Body": "Doha tap water leaves white mineral spots when it dries on dark paint. Hydrophobic ceramic coatings shed water droplets before they can etch — drastically less wash frequency required.",
+    "point4Title": "Salt-laden coastal air",
+    "point4Body": "Cars driven near Lusail, Wakra and the Corniche pick up airborne salt that accelerates rust on bare metal. Our protection products seal against moisture ingress at the panel edges."
+  },
+  "Faq": {
+    "title": "Common questions about car care in Qatar",
+    "subtitle": "Quick answers about PPF, ceramic coating, tinting and wholesale supply. Don't see your question? Message us on WhatsApp."
   },
   "Home404": {
     "title": "Page not found",
@@ -197,17 +237,17 @@
     "section1Title": "What we collect on this website",
     "section1Body": "We operate a marketing and catalogue website. We do not run an e-commerce checkout, do not ask you to create an account, and do not store credit card or identity data on our servers. The only data we receive from your visit falls into three categories: (a) aggregated, cookieless analytics from Plausible (page views, referrer, device category) that contain no IP address and cannot be tied back to you individually; (b) a single functional cookie named abk_audience that remembers whether you chose to browse the retail (B2C) or wholesale (B2B) view — this is not tracking, and it expires after 180 days; (c) standard web server logs kept by our hosting provider (Vercel), which may include your IP address and user agent for security and operational purposes. We do not see or use these logs for marketing.",
     "section2Title": "When you contact us",
-    "section2Body": "Our primary contact channel is WhatsApp. When you tap any \"Inquire on WhatsApp\" button, your browser opens WhatsApp with a pre-filled message you can edit or discard. From that point onward, the conversation takes place on Meta's WhatsApp platform and is governed by Meta's Privacy Policy. We keep the messages you send us in WhatsApp Business history for as long as reasonably needed to serve you as a customer. You may also email us at ceo.abktrading@gmail.com; we keep those messages in Gmail under Google's privacy terms.",
+    "section2Body": "Our primary contact channel is WhatsApp. When you tap any \"Inquire on WhatsApp\" button, your browser opens WhatsApp with a pre-filled message you can edit or discard. From that point onward, the conversation takes place on Meta's WhatsApp platform and is governed by Meta's Privacy Policy. We keep the messages you send us in WhatsApp Business history for as long as reasonably needed to serve you as a customer. You may also email us at sales@abktradingservice.com; we keep those messages in Gmail under Google's privacy terms.",
     "section3Title": "What we do with your information",
     "section3Body": "We use the information you provide to reply to product inquiries, quote wholesale pricing, schedule installation appointments, and follow up on outstanding orders. We do not sell, rent, trade, or share your personal data with third parties for marketing purposes. We do not run remarketing advertising campaigns based on your visits.",
     "section4Title": "Your rights under Qatar PDPPL",
-    "section4Body": "Subject to applicable law, you have the right to request access to the personal data we hold about you, correction of inaccurate data, deletion of data we no longer need, and withdrawal of consent where processing depends on consent. To exercise these rights, email ceo.abktrading@gmail.com with a clear description of your request. We will respond within a reasonable time.",
+    "section4Body": "Subject to applicable law, you have the right to request access to the personal data we hold about you, correction of inaccurate data, deletion of data we no longer need, and withdrawal of consent where processing depends on consent. To exercise these rights, email sales@abktradingservice.com with a clear description of your request. We will respond within a reasonable time.",
     "section5Title": "Children's privacy",
     "section5Body": "Our products are intended for adult customers and licensed automotive businesses. We do not knowingly collect personal information from children under 18.",
     "section6Title": "Changes to this policy",
     "section6Body": "We may update this policy from time to time. Material changes will be reflected by updating the \"Last updated\" date above. Continued use of the site after an update indicates acceptance of the revised policy.",
     "section7Title": "Contact",
-    "section7Body": "Questions about this policy or your personal data: WhatsApp +974 30838355 · Email ceo.abktrading@gmail.com · Visit Shop 2 & 3, Building 1306, Street 70, Zone 56, Mesaimeer, Doha, Qatar."
+    "section7Body": "Questions about this policy or your personal data: WhatsApp +974 30838355 · Email sales@abktradingservice.com · Visit Shop 2 & 3, Building 1306, Street 70, Zone 56, Mesaimeer, Doha, Qatar."
   },
   "Terms": {
     "title": "Terms of Use",
@@ -229,6 +269,6 @@
     "section7Title": "Governing law",
     "section7Body": "These terms are governed by the laws of the State of Qatar. Any dispute arising from your use of the website shall be subject to the exclusive jurisdiction of the courts of Qatar.",
     "section8Title": "Contact",
-    "section8Body": "Questions about these terms: WhatsApp +974 30838355 · Email ceo.abktrading@gmail.com."
+    "section8Body": "Questions about these terms: WhatsApp +974 30838355 · Email sales@abktradingservice.com."
   }
 }

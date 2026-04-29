@@ -14,6 +14,13 @@ export function StarProducts({
   locale: "en" | "ar";
 }) {
   const t = useTranslations();
+  // Audience scope: a featured product flagged for the OTHER audience must
+  // not surface here, otherwise its card link 404s under the current
+  // audience's URL prefix (the product detail page sets dynamicParams=false
+  // and only generates audience-applicable slugs).
+  const featured = FEATURED_PRODUCTS.filter(
+    (p) => p.audience === "both" || p.audience === audience,
+  ).slice(0, 4);
   return (
     <section className="py-20 sm:py-28">
       <Container>
@@ -31,7 +38,7 @@ export function StarProducts({
           </Link>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5 sm:gap-7">
-          {FEATURED_PRODUCTS.slice(0, 4).map((p, i) => (
+          {featured.map((p, i) => (
             <ProductCard
               key={p.slug}
               product={p}

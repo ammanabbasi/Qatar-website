@@ -25,11 +25,16 @@ export function ProductGrid({ audience, locale }: Props) {
 
   const filtered = useMemo(() => {
     return PRODUCTS.filter((p: Product) => {
+      // Audience scope — products tagged b2c-only or b2b-only must not leak
+      // into the other audience's listing. `both` shows everywhere. The
+      // sitemap + ItemList JSON-LD apply the same rule, so UI and crawler
+      // surfaces stay consistent.
+      if (p.audience !== "both" && p.audience !== audience) return false;
       if (brand !== "all" && p.brand !== brand) return false;
       if (category !== "all" && p.category !== category) return false;
       return true;
     });
-  }, [brand, category]);
+  }, [audience, brand, category]);
 
   return (
     <div className="flex flex-col gap-8">

@@ -9,7 +9,7 @@ export const SITE = {
   phone: "+974 30838355",
   phoneE164: "+97430838355",
   whatsapp: "97430838355",
-  email: "ceo.abktrading@gmail.com",
+  email: "sales@abktradingservice.com",
   address: {
     line1: "Shop 2 & 3, Building 1306",
     line2: "Street 70, Zone 56, Mesaimeer",

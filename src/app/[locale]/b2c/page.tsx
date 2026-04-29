@@ -10,6 +10,7 @@ import { BrandStrip } from "@/components/home/BrandStrip";
 import { ServicesTeaser } from "@/components/home/ServicesTeaser";
 import { TestimonialsPlaceholder } from "@/components/home/TestimonialsPlaceholder";
 import { TrustBadges } from "@/components/home/TrustBadges";
+import { WhyQatar } from "@/components/home/WhyQatar";
 import { localBusinessJsonLd } from "@/lib/jsonld";
 import { pageMeta } from "@/lib/seo";
 
@@ -22,8 +23,8 @@ export async function generateMetadata({
   if (!hasLocale(routing.locales, locale)) return {};
   const t = await getTranslations({ locale, namespace: "Meta" });
   return {
-    title: { absolute: t("defaultTitle") },
-    description: t("defaultDescription"),
+    title: { absolute: t("homeB2cTitle") },
+    description: t("homeB2cDescription"),
     ...pageMeta(locale as Locale, "/b2c"),
   };
 }
@@ -49,6 +50,7 @@ export default async function B2CHome({
       <Hero audience="b2c" locale={l} />
       <StarProducts audience="b2c" locale={l} />
       <BrandStrip />
+      <WhyQatar />
       <ServicesTeaser />
       <TestimonialsPlaceholder />
       <TrustBadges />

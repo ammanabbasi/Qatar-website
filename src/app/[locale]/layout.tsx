@@ -11,6 +11,7 @@ import {
   fontArabicDisplay,
 } from "@/lib/fonts";
 import { SITE } from "@/lib/constants";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonld";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -83,6 +84,13 @@ export default async function LocaleLayout({
   const skipLabel =
     locale === "ar" ? "تخطَّ إلى المحتوى" : "Skip to content";
 
+  // Site-wide brand identity schema. Emitted ONCE at the layout (not per page)
+  // because the Organization + WebSite entities are global. Google merges
+  // multiple JSON-LD blocks across pages by @id, so duplicating these on
+  // every page would not strengthen them — only bloat the HTML.
+  const orgLd = organizationJsonLd();
+  const siteLd = websiteJsonLd(locale as "en" | "ar");
+
   return (
     <html
       lang={locale}
@@ -99,6 +107,16 @@ export default async function LocaleLayout({
         >
           {skipLabel}
         </a>
+        <Script
+          id="ld-organization"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
+        />
+        <Script
+          id="ld-website"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteLd) }}
+        />
         {plausibleDomain && (
           <Script
             defer

@@ -4,7 +4,7 @@
  */
 
 export const WHATSAPP_PHONE = "97430838355"; // no + or spaces per wa.me spec
-export const CONTACT_EMAIL = "ceo.abktrading@gmail.com";
+export const CONTACT_EMAIL = "sales@abktradingservice.com";
 
 export type Audience = "b2c" | "b2b";
 export type WALocale = "en" | "ar";

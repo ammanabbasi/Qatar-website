@@ -50,7 +50,16 @@ export type Product = {
   audience: AudienceScope;
   featured?: boolean; // star products
   highlight?: "briller-color" | "vertek-premium"; // special visual treatment hints
+  // ISO date (YYYY-MM-DD). Bump when product copy/images change so the sitemap
+  // signals a real update to crawlers. Sites that lie with `lastmod=now` on
+  // every URL get demoted by Google's freshness heuristic.
+  updatedAt?: string;
 };
+
+// Initial product data publication date. Used as the fallback `updatedAt`
+// when individual products don't set one. Bump per-product as catalogue
+// entries are revised.
+export const PRODUCT_DEFAULT_UPDATED_AT = "2026-04-22";
 
 export const PRODUCTS: Product[] = [
   // ───── Vertek — Paint Protection Film (STAR)
@@ -353,7 +362,7 @@ export const PRODUCTS: Product[] = [
       ar: "Autotriz 3D Matrix Ultra طلاء سيراميك احترافي يُطبّق بواسطة فنيين مدربين لحماية وتعميق طلاء السيارة. يُركّب في ورشتنا بمسيمير. عبوة 50 مل. المواصفات الكاملة متاحة عند الطلب.",
     },
     images: [
-      "/products/autotriz/autotriz-3d-matrix-range.webp",
+      "/products/autotriz/autotriz-3d-matrix-ultra.webp",
     ],
     specs: [
       { label: { en: "Size", ar: "الحجم" }, value: { en: "50 ml / 1.7 oz", ar: "٥٠ مل" } },
@@ -378,7 +387,7 @@ export const PRODUCTS: Product[] = [
       ar: "Autotriz 3D Matrix Hybrid طلاء سيراميك احترافي يُطبّق بواسطة فنيين مدربين لحماية وتعميق طلاء السيارة. يُركّب في ورشتنا بمسيمير. عبوة 50 مل. المواصفات الكاملة متاحة عند الطلب.",
     },
     images: [
-      "/products/autotriz/autotriz-3d-matrix-range.webp",
+      "/products/autotriz/autotriz-3d-matrix-hybrid.webp",
     ],
     specs: [
       { label: { en: "Size", ar: "الحجم" }, value: { en: "50 ml / 1.7 oz", ar: "٥٠ مل" } },
@@ -403,11 +412,132 @@ export const PRODUCTS: Product[] = [
       ar: "Autotriz Fabric & Textile حماية أقمشة بتقنية النانو تساعد على الحفاظ على مظهر المفروشات الداخلية والسجاد والأسقف القماشية. بخاخ 300 مل. المواصفات الكاملة متاحة عند الطلب.",
     },
     images: [
-      "/products/autotriz/autotriz-3d-matrix-range.webp",
+      "/products/autotriz/autotriz-fabric-and-textile.webp",
     ],
     specs: [
       { label: { en: "Size", ar: "الحجم" }, value: { en: "300 ml / 10.1 oz", ar: "٣٠٠ مل" } },
       { label: { en: "Technology", ar: "التقنية" }, value: { en: "Nano-technology fabric protector", ar: "حماية نانو للأقمشة" } },
+    ],
+    audience: "both",
+  },
+  {
+    slug: "autotriz-ppf-gel",
+    brand: "Autotriz",
+    category: "ppf",
+    name: {
+      en: "Autotriz PPF Gel — Installation Aid (4L)",
+      ar: "Autotriz PPF Gel — مساعد تركيب فيلم الحماية (٤ لتر)",
+    },
+    shortDesc: {
+      en: "Premixed paint protection film installation aid. Thick, viscous gel — no dripping, easy residue cleanup.",
+      ar: "جل جاهز لتركيب فيلم حماية الطلاء. كثيف ولزج — لا يقطر، وسهل التنظيف بعد الجفاف.",
+    },
+    longDesc: {
+      en: "AUTOTRIZ PPF Gel is a premixed Paint Protection installation aid designed to support the application of paint protection film. The gel facilitates the ease of application keeping the substrate well moisturized providing the right tack and positioning of the film during installation. This thick and viscous Gel allows the product to be sprayed on the car without dripping off or evaporating quickly. The Gel residues can be easily cleaned after application, even when fully dried.",
+      ar: "جل AUTOTRIZ PPF مساعد تركيب مُجهّز مسبقاً لدعم تطبيق فيلم حماية الطلاء. يُسهّل التطبيق بالحفاظ على رطوبة السطح ويوفر الالتصاق والوضعية الصحيحة للفيلم أثناء التركيب. هذا الجل الكثيف واللزج يُرشّ على السيارة دون تقطير أو تبخر سريع. يمكن تنظيف بقاياه بسهولة حتى بعد الجفاف الكامل.",
+    },
+    images: ["/products/autotriz/autotriz-ppf-gel-4l.webp"],
+    specs: [
+      { label: { en: "Size", ar: "الحجم" }, value: { en: "4 L", ar: "٤ لتر" } },
+      { label: { en: "Type", ar: "النوع" }, value: { en: "Premixed installation gel", ar: "جل تركيب جاهز" } },
+      { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
+    ],
+    audience: "both",
+  },
+  {
+    slug: "autotriz-one-step-finish",
+    brand: "Autotriz",
+    category: "polish",
+    name: {
+      en: "Autotriz One Step Finish (4L)",
+      ar: "Autotriz One Step Finish — ملمّع خطوة واحدة (٤ لتر)",
+    },
+    shortDesc: {
+      en: "All-in-one polish — removes swirls and scratches while delivering a deep, glossy finish in a single step.",
+      ar: "ملمّع شامل — يزيل الدوامات والخدوش ويمنح لمعاناً عميقاً ولامعاً في خطوة واحدة.",
+    },
+    longDesc: {
+      en: "Autotriz One Step Finish removes light to moderate swirls, scratches, and surface defects. Delivers a deep, glossy finish in a single step. Combines cutting power with fine polishing for flawless results. Easy to apply and remove, suitable for all paint finishes. Works effectively by hand or with a machine polisher.",
+      ar: "Autotriz One Step Finish يزيل الدوامات والخدوش الخفيفة إلى المتوسطة وعيوب السطح. يمنح لمعاناً عميقاً ولامعاً في خطوة واحدة. يجمع بين قوة القطع والتلميع الدقيق لنتائج خالية من العيوب. سهل التطبيق والإزالة، ومناسب لجميع أنواع الطلاء. يعمل بفعالية يدوياً أو بالمكينة.",
+    },
+    images: ["/products/autotriz/autotriz-one-step-finish-4l.webp"],
+    specs: [
+      { label: { en: "Size", ar: "الحجم" }, value: { en: "4 L", ar: "٤ لتر" } },
+      { label: { en: "Step", ar: "الخطوة" }, value: { en: "Second step (one-step finish)", ar: "الخطوة الثانية (تلميع بخطوة واحدة)" } },
+      { label: { en: "Compatibility", ar: "التوافق" }, value: { en: "Rotary · DA · Hand", ar: "روتاري · DA · يدوي" } },
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 280 (Box rate: QAR 250 each)", ar: "٢٨٠ ر.ق (سعر الكرتون: ٢٥٠ ر.ق للواحدة)" } },
+    ],
+    audience: "both",
+  },
+  {
+    slug: "autotriz-revo-ceramic-coating",
+    brand: "Autotriz",
+    category: "ceramic",
+    name: {
+      en: "Autotriz REVO +15 — Ceramic Coating",
+      ar: "Autotriz REVO +15 — طلاء سيراميك",
+    },
+    shortDesc: {
+      en: "Cutting-edge nano ceramic coating with next-level durability and stability. Made in Germany.",
+      ar: "طلاء سيراميك نانو متطور بمتانة واستقرار من المستوى التالي. صُنع في ألمانيا.",
+    },
+    longDesc: {
+      en: "AUTOTRIZ REVO is a cutting-edge nano ceramic coating that amplifies the latest improvement in nano technology. Proven to stand out against the typical elements that deal harm to paintwork. It fills nanopores and establishes great molecular bonds to achieve next-level durability and stability. Professional application recommended.",
+      ar: "AUTOTRIZ REVO طلاء سيراميك نانو متطور يستخدم أحدث التطورات في تقنية النانو. أثبت تفوقه في مواجهة العوامل النموذجية التي تضر بالطلاء. يملأ المسام النانوية ويُنشئ روابط جزيئية قوية لتحقيق متانة واستقرار من المستوى التالي. يُوصى بالتطبيق الاحترافي.",
+    },
+    images: ["/products/autotriz/autotriz-revo-ceramic-coating.webp"],
+    specs: [
+      { label: { en: "Size", ar: "الحجم" }, value: { en: "50 ml / 1.7 oz", ar: "٥٠ مل" } },
+      { label: { en: "Technology", ar: "التقنية" }, value: { en: "Nano ceramic coating", ar: "سيراميك نانو" } },
+      { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
+    ],
+    audience: "both",
+  },
+  {
+    slug: "autotriz-leather-and-vinyl",
+    brand: "Autotriz",
+    category: "ceramic",
+    name: {
+      en: "Autotriz Leather & Vinyl — Ceramic Coating",
+      ar: "Autotriz Leather & Vinyl — طلاء سيراميك للجلد والفينيل",
+    },
+    shortDesc: {
+      en: "Ceramic coating for leather, synthetic leather, vinyl and plastic. Long-lasting barrier, non-oily finish.",
+      ar: "طلاء سيراميك للجلد والجلد الصناعي والفينيل والبلاستيك. حاجز طويل الأمد، ملمس غير دهني.",
+    },
+    longDesc: {
+      en: "Auto-triz Leather & Vinyl is suitable for all types of leather, synthetic leather/vinyl and plastic parts. It leaves a long-lasting barrier to protect the surface against permanent stains from dye of blue jeans, pen or marker. Unlike oil based or water-based leather dressings on the market that only leave a temporary dressing, Autotriz Leather & Vinyl preserves the natural feel of leather with its non-oily and non-slippery finish.",
+      ar: "Autotriz Leather & Vinyl مناسب لجميع أنواع الجلد والجلد الصناعي والفينيل والأجزاء البلاستيكية. يترك حاجزاً طويل الأمد لحماية السطح من البقع الدائمة من صبغ الجينز والأقلام والماركر. على عكس ملمعات الجلد الزيتية أو المائية التي تترك طبقة مؤقتة فقط، يحافظ على الملمس الطبيعي للجلد بلمسة غير دهنية وغير زلقة.",
+    },
+    images: ["/products/autotriz/autotriz-leather-and-vinyl.webp"],
+    specs: [
+      { label: { en: "Size", ar: "الحجم" }, value: { en: "50 ml / 1.7 oz", ar: "٥٠ مل" } },
+      { label: { en: "Surfaces", ar: "الأسطح" }, value: { en: "Leather · Synthetic leather · Vinyl · Plastic", ar: "جلد · جلد صناعي · فينيل · بلاستيك" } },
+      { label: { en: "Technology", ar: "التقنية" }, value: { en: "Ceramic coating", ar: "طلاء سيراميك" } },
+    ],
+    audience: "both",
+  },
+  {
+    slug: "autotriz-ion-plus-ceramic-coating",
+    brand: "Autotriz",
+    category: "ceramic",
+    name: {
+      en: "Autotriz ION+ +15 — Ceramic Coating",
+      ar: "Autotriz ION+ +15 — طلاء سيراميك",
+    },
+    shortDesc: {
+      en: "Advanced nano ceramic coating with surface ionized technology. Supreme smoothness and slickness.",
+      ar: "طلاء سيراميك نانو متقدم بتقنية التأين السطحي. نعومة وانزلاق فائقين.",
+    },
+    longDesc: {
+      en: "AUTOTRIZ ION+ is a scientifically advanced nano ceramic coating with surface ionized technology that brings a high level of smoothness and slickness. Its surface ionized technology enkindles nano particles that are determined to bond perfectly on any surface such as paint, lacquer, and base coat. Professional application recommended.",
+      ar: "AUTOTRIZ ION+ طلاء سيراميك نانو متقدم علمياً بتقنية التأين السطحي يمنح مستوى عالياً من النعومة والانزلاق. تقنية التأين السطحي تُنشّط جزيئات النانو التي ترتبط بإتقان على أي سطح مثل الطلاء والورنيش والطبقة الأساسية. يُوصى بالتطبيق الاحترافي.",
+    },
+    images: ["/products/autotriz/autotriz-ion-plus-ceramic-coating.webp"],
+    specs: [
+      { label: { en: "Size", ar: "الحجم" }, value: { en: "50 ml / 1.7 oz", ar: "٥٠ مل" } },
+      { label: { en: "Technology", ar: "التقنية" }, value: { en: "Surface ionized nano ceramic", ar: "سيراميك نانو بتأين سطحي" } },
+      { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
     audience: "both",
   },
@@ -806,11 +936,16 @@ export function getProductBySlug(slug: string): Product | undefined {
 
 export function getRelatedProducts(
   product: Product,
+  audience: AudienceScope,
   limit = 4,
 ): Product[] {
+  // Match by brand or category, but never recommend a product the current
+  // audience can't browse — clicking the related card would 404 once the
+  // product detail page filters its own static params by audience.
   return PRODUCTS.filter(
     (p) =>
       p.slug !== product.slug &&
+      (p.audience === "both" || p.audience === audience) &&
       (p.brand === product.brand || p.category === product.category),
   ).slice(0, limit);
 }

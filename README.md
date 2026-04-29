@@ -115,7 +115,7 @@ Mark a product as a "star" (shown on homepage) by setting `featured: true`.  For
 - **Address:** Shop 2 & 3, Building 1306, Street 70, Zone 56, Mesaimeer, Doha, Qatar
 - **Hours:** Sat – Thu 10:00–13:00 and 16:00–22:00 · Fri closed
 - **Phone / WhatsApp:** +974 30838355
-- **Email:** ceo.abktrading@gmail.com
+- **Email:** sales@abktradingservice.com
 - **Facebook:** https://www.facebook.com/share/1L9drK6k4n/
 - **Instagram:** https://www.instagram.com/abk.trading
 - **TikTok:** https://www.tiktok.com/@abk.trading

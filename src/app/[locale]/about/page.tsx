@@ -6,6 +6,7 @@ import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Link } from "@/i18n/navigation";
 import { pageMeta } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -15,12 +16,12 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
-  const t = await getTranslations({ locale, namespace: "About" });
+  const meta = await getTranslations({ locale, namespace: "Meta" });
   // `title.absolute` bypasses the `%s · ABK` template suffix so we don't
-  // produce "About ABK · ABK". The title is already brand-inclusive.
+  // produce "About ABK Trading & Service · ABK". The title is already brand-inclusive.
   return {
-    title: { absolute: t("title") },
-    description: t("subtitle"),
+    title: { absolute: meta("aboutTitle") },
+    description: meta("aboutDescription"),
     ...pageMeta(locale as Locale, "/about"),
   };
 }
@@ -71,6 +72,41 @@ export default async function AboutPage({
               ))}
             </aside>
           </div>
+          {/* Internal cross-links — keyword-rich anchors so Google sees About
+              as a linking hub for products + services + dealer pages, not a
+              link-equity dead end. */}
+          <nav
+            aria-label={t("exploreTitle")}
+            className="mt-16 sm:mt-20 pt-10 border-t border-(--color-border) flex flex-col gap-4"
+          >
+            <h3 className="font-display text-xl">{t("exploreTitle")}</h3>
+            <ul className="flex flex-col gap-3 text-base">
+              <li>
+                <Link
+                  href={`/${audience}/products`}
+                  className="text-(--color-gold) hover:underline underline-offset-4"
+                >
+                  {t("exploreProductsLabel")} →
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/b2c/services"
+                  className="text-(--color-gold) hover:underline underline-offset-4"
+                >
+                  {t("exploreServicesLabel")} →
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/b2b/become-a-dealer"
+                  className="text-(--color-gold) hover:underline underline-offset-4"
+                >
+                  {t("exploreDealerLabel")} →
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </Container>
       </section>
     </Shell>

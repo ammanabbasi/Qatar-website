@@ -1,13 +1,18 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { FaqSection } from "@/components/home/FaqSection";
 import { WhatsAppButton } from "@/components/cta/WhatsAppButton";
 import Image from "next/image";
 import { pageMeta } from "@/lib/seo";
+import { SITE } from "@/lib/constants";
+import { serviceJsonLd, faqJsonLd } from "@/lib/jsonld";
+import { FAQ } from "@/data/faq";
 
 export async function generateMetadata({
   params,
@@ -16,19 +21,35 @@ export async function generateMetadata({
 }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
-  const t = await getTranslations({ locale, namespace: "Services" });
+  const meta = await getTranslations({ locale, namespace: "Meta" });
   return {
-    title: t("title"),
-    description: t("subtitle"),
+    title: meta("servicesTitle"),
+    description: meta("servicesDescription"),
     ...pageMeta(locale as Locale, "/b2c/services"),
   };
 }
 
 const SERVICES = [
-  { key: "ppf", image: "/products/vertek/vertek-landcruiser-installation.webp" },
-  { key: "tint", image: "/products/vertek/vertek-ppf-premium-protection.webp" },
-  { key: "ceramic", image: "/products/autotriz/autotriz-ultimate-polish-302.webp" },
-  { key: "detailing", image: "/products/briller/briller-wash-and-wax.webp" },
+  {
+    key: "ppf",
+    image: "/products/vertek/vertek-landcruiser-installation.webp",
+    serviceType: "Paint Protection Film Installation",
+  },
+  {
+    key: "tint",
+    image: "/products/vertek/vertek-ppf-premium-protection.webp",
+    serviceType: "Window Tinting",
+  },
+  {
+    key: "ceramic",
+    image: "/products/autotriz/autotriz-ultimate-polish-302.webp",
+    serviceType: "Ceramic Coating Application",
+  },
+  {
+    key: "detailing",
+    image: "/products/briller/briller-wash-and-wax.webp",
+    serviceType: "Auto Detailing",
+  },
 ] as const;
 
 export default async function ServicesPage({
@@ -42,8 +63,39 @@ export default async function ServicesPage({
   const l = locale as "en" | "ar";
   const t = await getTranslations({ locale });
 
+  // One Service JSON-LD per service. `provider: { @id }` points back to the
+  // AutomotiveBusiness emitted on the home + contact pages — Google reconciles
+  // them across the entity graph. Service JSON-LD is the strongest signal we
+  // can give for "PPF installation Doha" / "ceramic coating Qatar" intents.
+  const servicesUrl = `${SITE.url}/${l}/b2c/services`;
+  const servicesLd = SERVICES.map((s) =>
+    serviceJsonLd({
+      name: t(`Services.${s.key}Title`),
+      description: t(`Services.${s.key}Desc`),
+      url: servicesUrl,
+      serviceType: s.serviceType,
+      image: `${SITE.url}${s.image}`,
+    }),
+  );
+  const faqLd = faqJsonLd(
+    FAQ.map((f) => ({ question: f.q[l], answer: f.a[l] })),
+  );
+
   return (
     <Shell audience="b2c" locale={l}>
+      {servicesLd.map((ld, i) => (
+        <Script
+          key={i}
+          id={`ld-service-${i}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
+        />
+      ))}
+      <Script
+        id="ld-faq"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
+      />
       <section className="py-16 sm:py-24">
         <Container>
           <SectionHeading
@@ -88,6 +140,12 @@ export default async function ServicesPage({
           </div>
         </Container>
       </section>
+      <FaqSection
+        locale={l}
+        eyebrow={t("Eyebrows.faq")}
+        title={t("Faq.title")}
+        subtitle={t("Faq.subtitle")}
+      />
     </Shell>
   );
 }

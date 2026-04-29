@@ -21,8 +21,8 @@ export async function generateMetadata({
   if (!hasLocale(routing.locales, locale)) return {};
   const t = await getTranslations({ locale, namespace: "Meta" });
   return {
-    title: { absolute: t("defaultTitle") },
-    description: t("defaultDescription"),
+    title: { absolute: t("homeB2bTitle") },
+    description: t("homeB2bDescription"),
     ...pageMeta(locale as Locale, "/b2b"),
   };
 }

@@ -35,7 +35,8 @@ sign off before launch.
 
 ### 4. Photography (optional but recommended)
 
-- [ ] Vertek Tints distinct from Vertek PPF (currently sharing imagery)
+- [x] Vertek Tints distinct from Vertek PPF — fixed, now uses
+      `vertek-window-tint.webp` (was reusing the PPF image)
 - [ ] Briller products — better studio lighting
 - [ ] Apply shop interior + installation workshop imagery
 
@@ -144,7 +145,107 @@ it should download as a PNG.
 - [ ] Upgrade `Strict-Transport-Security` to include `preload` once the domain
       has been stable on HTTPS for 30+ days, and submit to
       https://hstspreload.org/
-- [ ] Replace the generated OG PNG with a studio-designed JPG — delete
+- [x] Replace the generated OG PNG with a studio-designed JPG — delete
       `src/app/[locale]/opengraph-image.tsx` and add a static
       `src/app/[locale]/opengraph-image.jpg` (max 8MB). Next.js picks up
       whichever file exists
+
+---
+
+## SEO — ranked by ROI for "show up first in Qatar"
+
+### Reality check
+On-page schema and metadata get you eligible to rank. They do not, by themselves,
+make you outrank competitors with mature Google Business Profiles, dozens of
+real reviews, and Qatar directory citations. The list below is ordered by what
+actually moves rankings in Qatar. Skipping items 1–3 will leave the technical
+work below them with very little to amplify.
+
+### 1. Google Business Profile (highest single-factor weight)
+- [ ] Claim / create the GBP listing at the Mesaimeer address
+- [ ] Set primary category: **"Auto detailing service"** (most specific match
+      for ABK's mix). Add secondary categories: **"Car accessories store"**,
+      **"Auto repair shop"**, **"Window tinting service"**
+- [ ] Upload 20+ photos within the first month: storefront, interior shelves,
+      install workshop, before/after, branded products. Continue uploading
+      ~weekly — photo recency is a ranking signal
+- [ ] Place the map pin **precisely** on the shop entrance. Wrong coordinates
+      actively harm Maps ranking
+- [ ] Once the pin is placed, capture the lat/long and re-enable the `geo`
+      block in `src/lib/jsonld.ts` (currently intentionally omitted)
+- [ ] Set the same opening hours as `src/lib/constants.ts` and update GBP
+      every time hours change in code
+
+### 2. Reviews — the single highest-impact ongoing action
+- [ ] Add a "Review us on Google" link on the contact page once GBP is live
+- [ ] Have every WhatsApp customer who closes a sale receive a follow-up
+      message with the GBP review link 24–48 hours after delivery / install
+- [ ] Aim for 30+ reviews in the first 90 days; respond to every one within
+      a week (responses are a ranking signal)
+- [ ] When you cross 5+ reviews with photos, open a follow-up PR adding
+      `aggregateRating` to `productJsonLd` and `serviceJsonLd`
+
+### 3. Citations / NAP consistency on Qatar directories
+NAP = Name, Address, Phone. Listing the **identical** NAP on these increases
+local pack confidence:
+- [ ] qatarliving.com — Business Directory
+- [ ] qatardirectory.qa
+- [ ] yellowpages.qa
+- [ ] qatarbiz.com
+- [ ] Brand "find a dealer / installer" pages: vertek.com, autotriz.com,
+      brillercarcare.com — request an authorised-dealer listing
+
+### 4. Backlinks (slow-burn)
+- [ ] Vertek / Autotriz / Briller official websites — request a Qatar-installer
+      backlink. These are the highest-trust links you can earn
+- [ ] Sponsor a Qatar car-enthusiast forum or local detailing meetup; ask
+      for a sponsor backlink
+- [ ] Submit a brand-launch press note to gulf-times.com, dohanews.co — even
+      a passing mention is a links source
+
+### 5. Content depth (the long game)
+The site currently ranks for product names because the product pages exist.
+For broad commercial intents like "PPF Qatar" or "best ceramic coating Doha",
+competitors with 1,500–2,500-word buyer's guides will outrank thin landing
+pages every time. Code-already-done:
+- [x] FAQ section + `FAQPage` schema on `/services` (12 entries, EN + AR)
+- [x] "Why Qatar" content block on the B2C home page
+- [x] Service / Product / ItemList JSON-LD across the site
+
+Owner content work to compound the above:
+- [ ] Refine `src/data/faq.ts` with the actual top WhatsApp questions
+- [ ] Author one buyer's guide article per quarter (`Paint Protection Film
+      Buyer's Guide for Qatar Drivers`, `Ceramic Coating vs PPF: Which Suits
+      Doha's Climate?`). Each ~1,500 words. Most of the long-tail SEO uplift
+      lives here. Scaffolding this would require a `/guides` route — open a
+      follow-up PR if/when you commit to publishing them
+- [ ] Encourage WhatsApp customers to send post-install photos; turn them
+      into a `/before-after` gallery page with the customer's car model and
+      install date in the alt text
+
+### 6. Search Console — measurement infrastructure
+You can't optimise what you don't measure. Sub-tasks of #6 in the Google
+Search Console section above:
+- [ ] Submit `https://abktradingservice.com/sitemap.xml` after launch
+- [ ] Set up email alerts for indexing errors and Core Web Vitals regressions
+- [ ] After 30 days, review the **Performance** report's top queries — the
+      queries Google sees you for are not always the queries you wrote copy
+      for. Adjust titles/H1s based on actual impressions
+
+### 7. Bing Webmaster Tools (micro)
+- [ ] Add the site to bing.com/webmasters and submit the same sitemap. Bing
+      runs Yahoo and DuckDuckGo, and powers ChatGPT's web search
+
+### Already done in code (reference)
+- [x] Per-page canonical + hreflang (en, ar, x-default)
+- [x] Differentiated B2C/B2B titles + descriptions per locale
+- [x] `Organization` + `WebSite` JSON-LD (locale layout)
+- [x] `AutomotiveBusiness` JSON-LD on home + contact
+- [x] `Service` JSON-LD per workshop service (PPF, tint, ceramic, detailing)
+- [x] `FAQPage` JSON-LD with 12 bilingual entries
+- [x] `Product` + `BreadcrumbList` JSON-LD on every product page
+- [x] `ItemList` JSON-LD on /products listings
+- [x] Per-product `lastmod` in sitemap (uses `Product.updatedAt`)
+- [x] Robots allow-list for Googlebot/Bingbot/AI bots
+- [x] Internal cross-links from About + Contact with keyword-rich anchors
+- [x] Qatar-climate content block on B2C home (sand, heat, salt, hard water)
