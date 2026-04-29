@@ -8,6 +8,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { CatalogueDownloads } from "@/components/product/CatalogueDownloads";
+import { WhyQatar } from "@/components/home/WhyQatar";
 import { pageMeta } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
 import { itemListJsonLd } from "@/lib/jsonld";
@@ -80,6 +81,12 @@ export default async function B2CProducts({
           </div>
         </Container>
       </section>
+      {/* Topical context block — gives Google + AI shopping engines the
+          Qatar-climate signals (heat, sand, hard water, salt air) needed to
+          rank this catalog page for unbranded queries like "car care
+          products Qatar". Placed after the grid so users scan inventory
+          first; depth content reinforces below. */}
+      <WhyQatar />
     </Shell>
   );
 }

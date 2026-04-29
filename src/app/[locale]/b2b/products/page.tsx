@@ -8,6 +8,7 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { CatalogueDownloads } from "@/components/product/CatalogueDownloads";
+import { DealerPitch } from "@/components/home/DealerPitch";
 import { pageMeta } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
 import { itemListJsonLd } from "@/lib/jsonld";
@@ -76,6 +77,11 @@ export default async function B2BProducts({
           </div>
         </Container>
       </section>
+      {/* Wholesale-buyer conversion CTA at the bottom of the catalogue —
+          repeats DealerPitch from the b2b home so a buyer who jumps
+          straight to /b2b/products still hits the volume-pricing inquiry
+          flow without having to backtrack. */}
+      <DealerPitch locale={l} />
     </Shell>
   );
 }
