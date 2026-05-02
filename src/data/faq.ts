@@ -140,4 +140,59 @@ export const FAQ: FaqEntry[] = [
       ar: "نعم — صُمّمت أفلام PPF عالية الجودة مثل Vertek لتُزال بشكل نظيف على يد فنّي مدرب باستخدام حرارة محسوبة. يبقى الطلاء الأصلي تحتها محفوظاً، وغالباً بحالة أفضل من الطلاء غير المحمي بنفس العمر.",
     },
   },
+
+  // ───── SEO-targeted FAQ entries ─────
+  // These target common unbranded search queries customers use when looking
+  // for car care in Qatar. They surface as FAQPage rich results in Google
+  // and are quoted by AI answer engines (ChatGPT, Perplexity, Gemini).
+  {
+    q: {
+      en: "Where can I buy car care products in Qatar?",
+      ar: "أين يمكنني شراء منتجات العناية بالسيارات في قطر؟",
+    },
+    a: {
+      en: "ABK Trading and Service in Mesaimeer, Doha stocks a full range of car care products — car shampoos, polishing compounds, ceramic coatings, tyre shine, glass cleaners, paint protection film and more. Walk in Saturday to Thursday or order via WhatsApp at +974 30838355.",
+      ar: "يوفر متجر ABK للتجارة والخدمات في مسيمير، الدوحة مجموعة كاملة من منتجات العناية بالسيارات — شامبوهات السيارات، مركبات التلميع، الطلاءات السيراميكية، ملمعات الإطارات، منظفات الزجاج، أفلام حماية الطلاء والمزيد. زرنا من السبت إلى الخميس أو اطلب عبر واتساب 30838355 974+.",
+    },
+  },
+  {
+    q: {
+      en: "What is the best car shampoo for hot climates like Qatar?",
+      ar: "ما أفضل شامبو سيارات للمناخ الحار مثل قطر؟",
+    },
+    a: {
+      en: "pH-balanced car shampoos that do not strip wax or coatings perform best in Gulf heat. Autotriz Rich Foam Shampoo and Briller Wash and Wax are formulated to clean safely without spotting even in direct sunlight. Both are available at ABK Trading in Doha.",
+      ar: "شامبوهات السيارات المتوازنة الحموضة التي لا تزيل الشمع أو الطلاءات تؤدي أفضل أداء في حرارة الخليج. شامبو Autotriz Rich Foam وBriller Wash and Wax صُمما للتنظيف الآمن دون ترك بقع حتى تحت الشمس المباشرة. كلاهما متوفر لدى ABK في الدوحة.",
+    },
+  },
+  {
+    q: {
+      en: "How often should I wash my car in Doha?",
+      ar: "كم مرة يجب أن أغسل سيارتي في الدوحة؟",
+    },
+    a: {
+      en: "In Doha's dusty, humid climate most detailers recommend washing every 7 to 10 days. Cars with ceramic coating or PPF need less frequent washing because dust and water bead off the surface. Using a quality car shampoo prevents hard water spots common with Doha tap water.",
+      ar: "في مناخ الدوحة المترب والرطب، ينصح معظم خبراء التلميع بالغسيل كل 7 إلى 10 أيام. السيارات المحمية بطلاء سيراميكي أو أفلام PPF تحتاج غسيلاً أقل لأن الغبار والماء ينزلقان عن السطح. استخدام شامبو سيارات عالي الجودة يمنع بقع الماء العسر الشائعة في الدوحة.",
+    },
+  },
+  {
+    q: {
+      en: "What car detailing products do professionals use in Doha?",
+      ar: "ما منتجات تلميع السيارات التي يستخدمها المحترفون في الدوحة؟",
+    },
+    a: {
+      en: "Professional detailers in Doha typically use Autotriz cutting compounds and polishes for paint correction, Briller car shampoos for pre-wash, and Autotriz or Briller ceramic coatings for long-term protection. ABK Trading supplies these brands to workshops and individual detailers across Qatar.",
+      ar: "يستخدم محترفو التلميع في الدوحة عادةً مركبات Autotriz للقطع والتلميع لتصحيح الطلاء، وشامبوهات Briller للغسيل الأولي، وطلاءات Autotriz أو Briller السيراميكية للحماية طويلة الأمد. توفر ABK هذه العلامات التجارية لورش التلميع والأفراد في جميع أنحاء قطر.",
+    },
+  },
+  {
+    q: {
+      en: "Can car polish remove scratches from my car?",
+      ar: "هل يمكن لملمّع السيارات إزالة الخدوش من سيارتي؟",
+    },
+    a: {
+      en: "Yes — polishing compounds like Autotriz Heavy Cut 901 remove sanding marks and deep swirls, while finishing polishes like Autotriz Ultimate Polish 302 restore a high-gloss, hologram-free finish. For best results, professional machine polishing is recommended. ABK sells these compounds and offers detailing services at our Mesaimeer workshop.",
+      ar: "نعم — مركبات التلميع مثل Autotriz Heavy Cut 901 تزيل علامات السنفرة والدوائر العميقة، بينما الملمعات النهائية مثل Autotriz Ultimate Polish 302 تعيد لمعاناً عالياً خالياً من الهالات. للحصول على أفضل النتائج، يُنصح بالتلميع الاحترافي بالمكينة. توفر ABK هذه المركبات وتقدم خدمات التلميع في ورشتنا بمسيمير.",
+    },
+  },
 ];

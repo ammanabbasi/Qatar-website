@@ -11,6 +11,7 @@ import { ServicesTeaser } from "@/components/home/ServicesTeaser";
 import { TestimonialsPlaceholder } from "@/components/home/TestimonialsPlaceholder";
 import { TrustBadges } from "@/components/home/TrustBadges";
 import { WhyQatar } from "@/components/home/WhyQatar";
+import { AboutSnippet } from "@/components/home/AboutSnippet";
 import { localBusinessJsonLd } from "@/lib/jsonld";
 import { pageMeta } from "@/lib/seo";
 
@@ -49,6 +50,7 @@ export default async function B2CHome({
       />
       <Hero audience="b2c" locale={l} />
       <StarProducts audience="b2c" locale={l} />
+      <AboutSnippet />
       <BrandStrip />
       <WhyQatar />
       <ServicesTeaser />

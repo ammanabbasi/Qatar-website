@@ -73,6 +73,7 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
   return {
     "@context": "https://schema.org",
     "@type": "AutomotiveBusiness",
+    additionalType: "https://schema.org/Store",
     "@id": IDS.business,
     name: SITE.name,
     alternateName: "ABK",
@@ -126,6 +127,30 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
     areaServed: { "@type": "Country", name: "Qatar" },
     parentOrganization: { "@id": IDS.organization },
     sameAs: [SITE.social.facebook, SITE.social.instagram, SITE.social.tiktok],
+    // Offer catalogue link — tells Google this business sells products,
+    // improving eligibility for "car care products Qatar" type queries.
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name:
+        locale === "ar"
+          ? "منتجات العناية بالسيارات"
+          : "Car Care Products Catalogue",
+      url: `${SITE.url}/${locale}/b2c/products`,
+    },
+    // Topic expertise signals — helps Google/AI understand what ABK knows about.
+    knowsAbout: [
+      "Paint Protection Film",
+      "Ceramic Coating",
+      "Car Detailing",
+      "Window Tinting",
+      "Car Care Products",
+      "Auto Detailing Supplies",
+      "PPF Installation",
+      "Car Shampoo",
+      "Car Polish",
+    ],
+    // Price range indicator for Google Knowledge Panel
+    priceRange: "$$",
   };
 }
 

@@ -42,6 +42,33 @@ export async function generateMetadata({
       template: `%s · ${SITE.shortName}`,
     },
     description: t("defaultDescription"),
+    // Secondary keyword signal — deprecated by Google but still consumed by
+    // Bing, Yandex, DuckDuckGo and AI answer engines. Zero downside.
+    keywords:
+      locale === "ar"
+        ? [
+            "العناية بالسيارات قطر",
+            "أفلام حماية الطلاء الدوحة",
+            "سيراميك سيارات",
+            "تلميع سيارات قطر",
+            "شامبو سيارات",
+            "تظليل نوافذ قطر",
+            "PPF قطر",
+            "ABK",
+          ]
+        : [
+            "car care Qatar",
+            "car care products Doha",
+            "paint protection film Qatar",
+            "PPF Doha",
+            "ceramic coating Qatar",
+            "car detailing Doha",
+            "car shampoo Qatar",
+            "car polish",
+            "window tinting Qatar",
+            "auto detailing products",
+            "ABK Trading",
+          ],
     // NOTE: `openGraph.title` / `openGraph.description` / `openGraph.url`
     // intentionally OMITTED — Next.js auto-maps the page-level `title` and
     // `description` fields to og:title / og:description / twitter:title /
@@ -58,6 +85,12 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
     },
+    // Google Search Console and Bing Webmaster verification tags.
+    // Uncomment and fill after registering with each service:
+    // verification: {
+    //   google: "YOUR_GOOGLE_VERIFICATION_CODE",
+    //   yandex: "YOUR_YANDEX_VERIFICATION_CODE",
+    // },
   };
 }
 
