@@ -20,7 +20,10 @@ export function Header({ audience }: { audience: Audience }) {
     { href: audiencePrefix, label: t("home") },
     { href: `${audiencePrefix}/products`, label: t("products") },
     ...(audience === "b2c"
-      ? [{ href: "/b2c/services", label: t("services") }]
+      ? [
+          { href: "/b2c/services", label: t("services") },
+          { href: "/b2c/blog", label: t("blog") },
+        ]
       : [{ href: "/b2b/become-a-dealer", label: t("becomeDealer") }]),
     { href: "/about", label: t("about") },
     { href: "/contact", label: t("contact") },

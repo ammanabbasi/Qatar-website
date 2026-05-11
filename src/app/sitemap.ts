@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { PRODUCTS, PRODUCT_DEFAULT_UPDATED_AT } from "@/data/products";
+import { ARTICLES } from "@/data/articles";
 import { SITE } from "@/lib/constants";
 import { routing } from "@/i18n/routing";
 
@@ -14,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/b2c",
     "/b2c/products",
     "/b2c/services",
+    "/b2c/blog",
     "/b2b",
     "/b2b/products",
     "/b2b/become-a-dealer",
@@ -75,6 +77,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
           },
         });
       }
+    }
+    // Blog articles
+    for (const article of ARTICLES) {
+      entries.push({
+        url: `${base}/${locale}/b2c/blog/${article.slug}`,
+        lastModified: new Date(article.date),
+        changeFrequency: "monthly",
+        priority: 0.7,
+        alternates: {
+          languages: Object.fromEntries(
+            routing.locales.map((l) => [
+              l,
+              `${base}/${l}/b2c/blog/${article.slug}`,
+            ]),
+          ),
+        },
+      });
     }
   }
 

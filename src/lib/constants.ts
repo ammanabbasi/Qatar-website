@@ -3,8 +3,9 @@ export const SITE = {
   shortName: "ABK",
   domain: "abktradingservice.com",
   url:
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
-    "https://abktradingservice.com",
+    (process.env.NEXT_PUBLIC_SITE_URL ?? "https://abktradingservice.com")
+      .trim()
+      .replace(/\/$/, ""),
   tagline: "Your One-Stop Supplier for Premium Car Care & PPF Solutions",
   phone: "+974 30838355",
   phoneE164: "+97430838355",

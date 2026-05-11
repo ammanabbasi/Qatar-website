@@ -18,7 +18,8 @@
     "menu": "Menu",
     "close": "Close",
     "switchToEnglish": "English",
-    "switchToArabic": "العربية"
+    "switchToArabic": "العربية",
+    "blog": "Blog"
   },
   "Cta": {
     "inquireWhatsApp": "Inquire on WhatsApp",
@@ -230,6 +231,15 @@
   "Faq": {
     "title": "Common questions about car care in Qatar",
     "subtitle": "Quick answers about PPF, ceramic coating, tinting and wholesale supply. Don't see your question? Message us on WhatsApp."
+  },
+  "Blog": {
+    "eyebrow": "Car Care Tips",
+    "title": "Car Care Guide",
+    "subtitle": "Expert tips on protecting, detailing and maintaining your car in Qatar's climate.",
+    "metaTitle": "Car Care Tips & Guides for Qatar | ABK Trading",
+    "metaDescription": "Expert car care guides for Qatar — how to protect your car from extreme heat, PPF vs ceramic coating, the best car care products in Doha, and more.",
+    "relatedProducts": "Products mentioned in this article",
+    "backToBlog": "Back to all articles"
   },
   "Home404": {
     "title": "Page not found",

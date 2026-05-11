@@ -35,7 +35,10 @@ export function Footer({ audience }: { audience: Audience }) {
             <ul className="flex flex-col gap-2 text-sm">
               <li><Link className="hover:text-(--color-gold) transition-colors" href={`${audiencePrefix}/products`}>{t("Nav.products")}</Link></li>
               {audience === "b2c" ? (
+                <>
                 <li><Link className="hover:text-(--color-gold) transition-colors" href="/b2c/services">{t("Nav.services")}</Link></li>
+                <li><Link className="hover:text-(--color-gold) transition-colors" href="/b2c/blog">{t("Nav.blog")}</Link></li>
+                </>
               ) : (
                 <li><Link className="hover:text-(--color-gold) transition-colors" href="/b2b/become-a-dealer">{t("Nav.becomeDealer")}</Link></li>
               )}

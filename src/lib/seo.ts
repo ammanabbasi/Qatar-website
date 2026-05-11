@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { Locale } from "@/i18n/routing";
+import { SITE } from "@/lib/constants";
 
 /**
  * Per-page canonical + hreflang alternates.
@@ -7,6 +8,11 @@ import type { Locale } from "@/i18n/routing";
  * `pathWithoutLocale` is the route path *after* the locale segment —
  * e.g. `/b2c/products`, `/about`, `/b2b/products/vertek-ppf-weather-armor`.
  * Leading slash required, no trailing slash.
+ *
+ * URLs are ABSOLUTE (prefixed with SITE.url) because:
+ *   - Google strongly prefers absolute canonicals over relative.
+ *   - Relative hreflang can mis-resolve under certain CDN/proxy setups.
+ *   - metadataBase handles OG images but does NOT apply to alternates.languages.
  *
  * Scope note on og:url:
  *   An earlier version of this helper also returned `openGraph: { url }` so
@@ -22,13 +28,14 @@ export function pageMeta(
   locale: Locale,
   pathWithoutLocale: string,
 ): Pick<Metadata, "alternates"> {
+  const base = SITE.url;
   return {
     alternates: {
-      canonical: `/${locale}${pathWithoutLocale}`,
+      canonical: `${base}/${locale}${pathWithoutLocale}`,
       languages: {
-        en: `/en${pathWithoutLocale}`,
-        ar: `/ar${pathWithoutLocale}`,
-        "x-default": `/en${pathWithoutLocale}`,
+        en: `${base}/en${pathWithoutLocale}`,
+        ar: `${base}/ar${pathWithoutLocale}`,
+        "x-default": `${base}/en${pathWithoutLocale}`,
       },
     },
   };

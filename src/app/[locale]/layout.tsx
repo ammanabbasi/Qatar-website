@@ -85,12 +85,23 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
     },
-    // Google Search Console and Bing Webmaster verification tags.
-    // Uncomment and fill after registering with each service:
-    // verification: {
-    //   google: "YOUR_GOOGLE_VERIFICATION_CODE",
-    //   yandex: "YOUR_YANDEX_VERIFICATION_CODE",
-    // },
+    // Search engine verification — set via Vercel env vars, no code change needed.
+    // NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION → Google Search Console
+    // NEXT_PUBLIC_BING_SITE_VERIFICATION  → Bing Webmaster Tools
+    // ⚠ Paste ONLY the content value (e.g. "abc123"), NOT the full <meta> tag.
+    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+    process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? {
+          verification: {
+            ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+              ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+              : {}),
+            ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+              ? { other: { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION } }
+              : {}),
+          },
+        }
+      : {}),
   };
 }
 
