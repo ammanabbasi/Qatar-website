@@ -142,6 +142,21 @@ export default async function LocaleLayout({
       className={`${fontSans.variable} ${fontDisplay.variable} ${fontArabic.variable} ${fontArabicDisplay.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        {/* Google tag (gtag.js) — Google Ads conversion tracking */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18200382552"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-18200382552');
+          `}
+        </Script>
+      </head>
       <body className="min-h-dvh bg-(--color-bg) text-(--color-text) antialiased">
         {/* Keyboard-first users land here — `sr-only` hides until focus,
             then `focus:not-sr-only` reveals the link as a visible gold pill. */}
