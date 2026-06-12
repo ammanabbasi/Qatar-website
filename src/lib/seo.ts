@@ -7,7 +7,8 @@ import { SITE } from "@/lib/constants";
  *
  * `pathWithoutLocale` is the route path *after* the locale segment —
  * e.g. `/b2c/products`, `/about`, `/b2b/products/vertek-ppf-weather-armor`.
- * Leading slash required, no trailing slash.
+ * Leading slash required, no trailing slash. Pass `""` for the locale root
+ * (the homepage) — canonical resolves to e.g. `https://…/en`.
  *
  * URLs are ABSOLUTE (prefixed with SITE.url) because:
  *   - Google strongly prefers absolute canonicals over relative.

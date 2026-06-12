@@ -15,9 +15,11 @@ export function Header({ audience }: { audience: Audience }) {
   const [open, setOpen] = useState(false);
 
   const audiencePrefix = `/${audience}`;
+  // B2C home lives at the locale root; deeper b2c routes keep the /b2c prefix.
+  const homeHref = audience === "b2c" ? "/" : audiencePrefix;
 
   const links = [
-    { href: audiencePrefix, label: t("home") },
+    { href: homeHref, label: t("home") },
     { href: `${audiencePrefix}/products`, label: t("products") },
     ...(audience === "b2c"
       ? [
@@ -33,7 +35,7 @@ export function Header({ audience }: { audience: Audience }) {
     <header className="sticky top-0 z-40 backdrop-blur-md bg-(--color-bg)/85 border-b border-(--color-border)">
       <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between gap-6 h-16 md:h-20">
-          <Link href={audiencePrefix} className="flex items-center gap-3 shrink-0">
+          <Link href={homeHref} className="flex items-center gap-3 shrink-0">
             <Image
               src="/logo-mark.webp"
               alt="ABK"
@@ -57,7 +59,7 @@ export function Header({ audience }: { audience: Audience }) {
             {links.map((link) => {
               const active =
                 pathname === link.href ||
-                (link.href !== audiencePrefix && pathname.startsWith(link.href));
+                (link.href !== homeHref && pathname.startsWith(link.href));
               return (
                 <Link
                   key={link.href}

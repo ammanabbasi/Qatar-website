@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import Script from "next/script";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
 import { Container } from "@/components/ui/Container";
@@ -57,11 +57,7 @@ export default async function B2BProducts({
 
   return (
     <Shell audience="b2b" locale={l}>
-      <Script
-        id="ld-itemlist-b2b-products"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListLd) }}
-      />
+      <JsonLd id="ld-itemlist-b2b-products" data={itemListLd} />
       <section className="py-16 sm:py-24">
         <Container>
           <SectionHeading

@@ -23,6 +23,233 @@ export type Article = {
 
 export const ARTICLES: Article[] = [
   {
+    slug: "window-tinting-rules-qatar-guide",
+    title: {
+      en: "Window Tinting in Qatar: Rules, Permits and Choosing the Right Film (2026 Guide)",
+      ar: "تظليل النوافذ في قطر: القوانين والتصاريح واختيار الفيلم المناسب (دليل 2026)",
+    },
+    description: {
+      en: "What tint percentage is legal in Qatar? A practical 2026 guide to MOI tint rules, Metrash permits, fines, and choosing a heat-rejecting film for Doha's climate.",
+      ar: "ما نسبة التظليل القانونية في قطر؟ دليل عملي 2026 لقوانين وزارة الداخلية وتصاريح مطراش والغرامات واختيار فيلم عازل للحرارة.",
+    },
+    date: "2026-06-12",
+    readingTime: 6,
+    category: "guide",
+    keywords: {
+      en: ["window tinting Qatar", "car tint law Qatar", "tint percentage Qatar", "tint permit Metrash", "window tint Doha"],
+      ar: ["تظليل النوافذ قطر", "قانون تظليل السيارات قطر", "نسبة التظليل المسموحة قطر", "تظليل سيارات الدوحة"],
+    },
+    sections: [
+      {
+        heading: {
+          en: "Why Window Tint is Essential in Qatar",
+          ar: "لماذا يعد تظليل النوافذ ضرورياً في قطر",
+        },
+        body: {
+          en: "In a country where summer cabin temperatures can exceed 70°C in direct sun, window tint is not cosmetic — it is functional protection. A quality film rejects a large share of solar heat before it enters the cabin, which means cooler seats and steering wheel, less strain on your air conditioning, lower fuel consumption, and slower fading of leather and dashboard plastics. Tint also blocks more than 99% of UV radiation, protecting both your skin on long commutes and your car's interior trim. The difference between a cheap dyed film and a quality ceramic or carbon film is dramatic in Qatar: cheap films fade to purple, bubble in the heat, and reject far less infrared energy.",
+          ar: "في بلد تتجاوز فيه حرارة مقصورة السيارة 70 درجة مئوية تحت الشمس المباشرة صيفاً، ليس تظليل النوافذ أمراً تجميلياً — بل حماية وظيفية. يحجب الفيلم عالي الجودة نسبة كبيرة من الحرارة الشمسية قبل دخولها المقصورة، ما يعني مقاعد ومقود أبرد، وضغطاً أقل على المكيف، واستهلاكاً أقل للوقود، وبهتاناً أبطأ للجلد والبلاستيك الداخلي. كما يحجب التظليل أكثر من 99% من الأشعة فوق البنفسجية، فيحمي بشرتك في الرحلات الطويلة والتجهيزات الداخلية لسيارتك. الفرق بين الفيلم المصبوغ الرخيص والفيلم السيراميكي أو الكربوني عالي الجودة هائل في قطر: الأفلام الرخيصة يتحول لونها إلى البنفسجي وتتكون فيها فقاعات بفعل الحرارة وتعزل حرارة أقل بكثير.",
+        },
+      },
+      {
+        heading: {
+          en: "What Tint Levels Does Qatar Allow?",
+          ar: "ما درجات التظليل المسموحة في قطر؟",
+        },
+        body: {
+          en: "Qatar's Ministry of Interior regulates how dark vehicle glass may be. Under the rules as published in 2026, private vehicles are generally permitted around 20% tint darkness on the front side windows, only a light band on the windshield, and significantly darker film on rear side windows and the rear screen. Sports and two-door cars face stricter limits. Because the MOI updates these rules and enforcement details from time to time, always confirm the current limits through Metrash or the MOI website before installing — a reputable installer will know the in-force limits and refuse work that would put your registration at risk. At ABK we install Vertek films in VLT grades that comply with the current Qatar regulations, and we advise every customer on what is legal for their specific vehicle type.",
+          ar: "تنظم وزارة الداخلية القطرية درجة قتامة زجاج المركبات. وفق القواعد المنشورة في 2026، يُسمح للمركبات الخاصة عموماً بحوالي 20% قتامة على النوافذ الجانبية الأمامية، وشريط خفيف فقط على الزجاج الأمامي، وفيلم أغمق بكثير على النوافذ الجانبية الخلفية والزجاج الخلفي. وتخضع السيارات الرياضية وذات البابين لقيود أشد. ولأن وزارة الداخلية تحدّث هذه القواعد وتفاصيل تطبيقها من وقت لآخر، تأكد دائماً من الحدود السارية عبر مطراش أو موقع الوزارة قبل التركيب — المركّب الموثوق يعرف الحدود المعمول بها ويرفض أي عمل يعرّض تسجيل سيارتك للخطر. في ABK نركّب أفلام Vertek بدرجات نفاذية ضوء متوافقة مع اللوائح القطرية الحالية، وننصح كل عميل بما هو قانوني لنوع سيارته تحديداً.",
+        },
+      },
+      {
+        heading: {
+          en: "Permits, Fines and Inspections",
+          ar: "التصاريح والغرامات والفحص",
+        },
+        body: {
+          en: "Drivers who need darker tint than the standard limit — for example for documented medical reasons such as skin or eye conditions — can apply for a tint permit through Metrash with a supporting medical report. Driving with non-compliant tint without a permit risks a fine of around QR 1,000 and possible vehicle impoundment, and over-dark tint can also cause a vehicle to fail its annual Fahes inspection. The practical advice is simple: install compliant film from the start. Modern ceramic films achieve excellent heat rejection even at legal VLT levels, so you genuinely do not need illegal darkness to keep your cabin cool.",
+          ar: "يمكن للسائقين الذين يحتاجون تظليلاً أغمق من الحد القياسي — مثلاً لأسباب طبية موثقة كأمراض الجلد أو العيون — التقدم بطلب تصريح تظليل عبر مطراش مع تقرير طبي داعم. القيادة بتظليل مخالف دون تصريح تعرّضك لغرامة نحو 1,000 ريال قطري واحتمال حجز المركبة، كما قد يتسبب التظليل الزائد في رسوب السيارة في فحص فاحص السنوي. النصيحة العملية بسيطة: ركّب فيلماً متوافقاً من البداية. تحقق الأفلام السيراميكية الحديثة عزلاً حرارياً ممتازاً حتى عند درجات النفاذية القانونية، فلا تحتاج فعلياً إلى قتامة مخالفة لإبقاء مقصورتك باردة.",
+        },
+      },
+      {
+        heading: {
+          en: "VLT, IR Rejection and Other Numbers Explained",
+          ar: "شرح نفاذية الضوء وعزل الأشعة تحت الحمراء وبقية الأرقام",
+        },
+        body: {
+          en: "Tint shopping comes with jargon. VLT (visible light transmission) is the percentage of visible light that passes through — a 70% VLT film is nearly clear, a 5% film is limousine-dark. Heat rejection numbers split into TSER (total solar energy rejected) and IR rejection (the infrared portion you feel as heat). A premium film can be light in appearance yet reject most infrared heat — this is why a legal-VLT ceramic film outperforms an illegal dark dyed film. UV rejection should be 99% or higher on any serious product. Vertek window tints, which ABK distributes in Qatar, publish these figures per grade so you can choose a film by performance rather than darkness alone.",
+          ar: "يأتي شراء التظليل مصحوباً بمصطلحات تقنية. نفاذية الضوء المرئي (VLT) هي نسبة الضوء المرئي الذي يمر عبر الفيلم — فيلم بنفاذية 70% يكاد يكون شفافاً، وفيلم 5% غامق كزجاج الليموزين. أما أرقام العزل الحراري فتنقسم إلى إجمالي الطاقة الشمسية المرفوضة (TSER) وعزل الأشعة تحت الحمراء (الجزء الذي تشعر به حرارةً). يمكن لفيلم فاخر أن يبدو فاتحاً ومع ذلك يعزل معظم حرارة الأشعة تحت الحمراء — ولهذا يتفوق فيلم سيراميكي بنفاذية قانونية على فيلم مصبوغ غامق مخالف. ويجب ألا يقل حجب الأشعة فوق البنفسجية عن 99% في أي منتج جاد. أفلام تظليل Vertek التي توزعها ABK في قطر تنشر هذه الأرقام لكل درجة، لتختار الفيلم حسب الأداء لا القتامة وحدها.",
+        },
+      },
+      {
+        heading: {
+          en: "Professional Installation in Mesaimeer, Doha",
+          ar: "تركيب احترافي في مسيمير، الدوحة",
+        },
+        body: {
+          en: "A film is only as good as its installation. Dust trapped under the film, stretched edges, and bubbling are the marks of rushed work — and in Qatar's heat, poor installations fail fast. At ABK Trading and Service in Mesaimeer we install Vertek window tints in a controlled environment with precision cutting, full edge sealing, and a workmanship guarantee. We will recommend the right VLT grade for each window of your vehicle so the result is both compliant and as cool as legally possible. Message us on WhatsApp at +974 30838355 for film options and pricing for your car model.",
+          ar: "جودة الفيلم من جودة تركيبه. الغبار المحتجز تحت الفيلم والحواف المشدودة والفقاعات علامات على عمل متسرّع — وفي حرارة قطر تفشل التركيبات الرديئة سريعاً. في ABK للتجارة والخدمات بمسيمير نركّب أفلام تظليل Vertek في بيئة محكومة بقصّ دقيق وإحكام كامل للحواف وضمان على جودة التنفيذ. وسنوصيك بدرجة النفاذية المناسبة لكل نافذة في سيارتك ليأتي التظليل متوافقاً مع القانون وبأقصى برودة ممكنة قانونياً. راسلنا على واتساب +974 30838355 لمعرفة خيارات الأفلام والأسعار لطراز سيارتك.",
+        },
+      },
+    ],
+    relatedProducts: [
+      "vertek-window-tints",
+      "vertek-ppf-weather-armor",
+      "briller-glass-cleaner",
+    ],
+  },
+  {
+    slug: "ceramic-coating-cost-qatar",
+    title: {
+      en: "How Much Does Ceramic Coating Cost in Qatar? (2026 Price Guide)",
+      ar: "كم تكلفة الطلاء السيراميكي في قطر؟ (دليل الأسعار 2026)",
+    },
+    description: {
+      en: "Ceramic coating prices in Qatar explained — what drives the cost, typical Doha market ranges, professional vs DIY, and how to judge whether a quote is fair.",
+      ar: "شرح أسعار الطلاء السيراميكي في قطر — ما الذي يحدد التكلفة، ونطاقات الأسعار في الدوحة، والفرق بين التطبيق الاحترافي والمنزلي.",
+    },
+    date: "2026-06-11",
+    readingTime: 6,
+    category: "buying-guide",
+    keywords: {
+      en: ["ceramic coating price Qatar", "ceramic coating cost Doha", "car ceramic Qatar", "nano ceramic Doha price"],
+      ar: ["سعر السيراميك للسيارات قطر", "تكلفة طلاء سيراميك الدوحة", "نانو سيراميك قطر"],
+    },
+    sections: [
+      {
+        heading: {
+          en: "What Actually Determines the Price",
+          ar: "ما الذي يحدد السعر فعلياً",
+        },
+        body: {
+          en: "Ceramic coating quotes in Doha vary widely because the work behind them varies widely. The main cost drivers are: vehicle size (a Land Cruiser takes far more product and labour than a Yaris), paint condition (a new car may need only a light polish, while a sun-damaged daily driver needs multi-stage paint correction before any coating can be applied), the coating product itself (true 9H professional ceramics with multi-year durability cost more than consumer sprays), the number of layers, and what is included — many packages add wheel faces, glass, and interior surfaces. When two quotes differ sharply, the difference is almost always in the paint-correction stage, not the bottle.",
+          ar: "تتفاوت عروض أسعار السيراميك في الدوحة بشدة لأن العمل وراءها يتفاوت بشدة. أبرز محددات التكلفة: حجم المركبة (لاند كروزر يستهلك منتجاً وجهداً أكبر بكثير من يارس)، وحالة الطلاء (سيارة جديدة قد تكتفي بتلميع خفيف، بينما تحتاج سيارة متضررة من الشمس إلى تصحيح طلاء متعدد المراحل قبل أي طلاء)، وجودة منتج السيراميك نفسه (السيراميك الاحترافي الحقيقي بصلابة 9H ومتانة لسنوات أغلى من البخاخات الاستهلاكية)، وعدد الطبقات، وما يشمله العرض — كثير من الباقات تضيف وجوه الجنوط والزجاج والأسطح الداخلية. وعندما يختلف عرضان اختلافاً حاداً، فالفرق غالباً في مرحلة تصحيح الطلاء لا في العبوة.",
+        },
+      },
+      {
+        heading: {
+          en: "Typical Market Ranges in Doha",
+          ar: "نطاقات الأسعار المعتادة في الدوحة",
+        },
+        body: {
+          en: "As a general orientation — not a quote — professional ceramic coating packages in the Doha market typically start from several hundred riyals for an entry package on a small car with healthy paint, and run into the low thousands of riyals for a full package on a large SUV including multi-stage paint correction and multiple coating layers. Packages bundling ceramic on top of new PPF sit higher still. Be cautious at both extremes: a suspiciously cheap 'ceramic' offer is usually a silica spray sealant marketed as ceramic and will not survive a Qatari summer, while the most expensive quote is not automatically the best work. Ask any installer three questions: which product line and grade, how many correction stages are included, and what written durability warranty you receive.",
+          ar: "كتوجيه عام — وليس عرض سعر — تبدأ باقات السيراميك الاحترافية في سوق الدوحة عادةً من بضع مئات من الريالات لباقة أساسية على سيارة صغيرة بطلاء سليم، وتصل إلى آلاف قليلة من الريالات لباقة كاملة على دفع رباعي كبير تشمل تصحيح طلاء متعدد المراحل وطبقات متعددة. وتأتي الباقات التي تجمع السيراميك فوق PPF جديد أعلى من ذلك. احذر من الطرفين: العرض «السيراميكي» الرخيص بشكل مريب يكون عادةً مانع تسرب سيليكا يُسوَّق كسيراميك ولن يصمد أمام صيف قطر، في حين أن أغلى عرض ليس تلقائياً أفضل عمل. اسأل أي مركّب ثلاثة أسئلة: ما خط المنتج ودرجته، كم مرحلة تصحيح تشملها الباقة، وما الضمان المكتوب للمتانة.",
+        },
+      },
+      {
+        heading: {
+          en: "Professional Application vs DIY Kits",
+          ar: "التطبيق الاحترافي مقابل العدد المنزلية",
+        },
+        body: {
+          en: "Consumer ceramic kits exist, and for an enthusiast with a garage, patience, and a dual-action polisher they can deliver respectable results. But ceramic coating is unforgiving: it locks in whatever is underneath. If swirl marks and water-spot etching are not corrected first, you have sealed them under a glass-hard layer for years. Professional application buys you proper paint correction, dust-controlled curing conditions, and even coverage with no high spots. Products like Autotriz REVO and Autotriz Ion Plus that ABK supplies are professional-grade ceramics designed for trained application — and we both sell the products to detailers across Qatar and apply them in our own Mesaimeer workshop.",
+          ar: "توجد عدد سيراميك استهلاكية، ويمكنها أن تعطي نتائج محترمة لهاوٍ يملك مرآباً وصبراً وآلة تلميع مزدوجة الحركة. لكن السيراميك لا يرحم: فهو يثبّت ما تحته كما هو. إن لم تُصحَّح علامات الدوائر وحفر بقع الماء أولاً، فقد ختمتها تحت طبقة بصلابة الزجاج لسنوات. التطبيق الاحترافي يشتري لك تصحيح طلاء سليماً وظروف معالجة محكومة الغبار وتغطية متساوية بلا بقع سميكة. منتجات مثل Autotriz REVO وAutotriz Ion Plus التي توفرها ABK سيراميك بدرجة احترافية مصمم لتطبيق مدرّب — ونحن نبيع المنتجات لمراكز التلميع في أنحاء قطر ونطبقها أيضاً في ورشتنا بمسيمير.",
+        },
+      },
+      {
+        heading: {
+          en: "Is Ceramic Coating Worth It in Qatar?",
+          ar: "هل يستحق السيراميك تكلفته في قطر؟",
+        },
+        body: {
+          en: "Run the numbers over three years. An unprotected daily driver in Doha needs frequent washing to fight dust, suffers hard-water etching from every careless rinse, and loses gloss to UV oxidation — costs that show up at resale time. A ceramic-coated car sheds dust and water, cuts washing time and frequency roughly in half, resists water-spot etching, and keeps showroom gloss years longer. For most owners keeping a car more than two years in Qatar's climate, the coating pays for itself in reduced maintenance and preserved resale value — and that is before counting the time saved every single wash.",
+          ar: "احسبها على ثلاث سنوات. السيارة اليومية غير المحمية في الدوحة تحتاج غسيلاً متكرراً لمقاومة الغبار، وتعاني حفر الماء العسر بعد كل شطف مهمل، وتفقد لمعانها بأكسدة الأشعة فوق البنفسجية — وكلها تكاليف تظهر عند إعادة البيع. أما السيارة المطلية بالسيراميك فتطرد الغبار والماء، وتختصر وقت الغسيل وتكراره إلى النصف تقريباً، وتقاوم حفر بقع الماء، وتحافظ على لمعان المعرض سنوات أطول. لمعظم الملاك الذين يحتفظون بسياراتهم أكثر من سنتين في مناخ قطر، يسترد السيراميك تكلفته من الصيانة الأقل وقيمة إعادة البيع المحفوظة — قبل حتى حساب الوقت الموفَّر في كل غسلة.",
+        },
+      },
+      {
+        heading: {
+          en: "Get an Exact Price for Your Car",
+          ar: "احصل على سعر دقيق لسيارتك",
+        },
+        body: {
+          en: "Because paint condition drives the price, an honest quote needs to see your car — or at least clear photos. Message ABK on WhatsApp at +974 30838355 with your vehicle model, year, and a few photos in daylight, and we will recommend a package and give you a firm price for coating, correction, or a PPF-plus-ceramic combination. Visit us in Mesaimeer, Doha — Saturday to Thursday, 10:00–13:00 and 16:00–22:00.",
+          ar: "لأن حالة الطلاء هي ما يحدد السعر، يحتاج العرض الصادق إلى رؤية سيارتك — أو صور واضحة على الأقل. راسل ABK على واتساب +974 30838355 بطراز سيارتك وسنتها وبضع صور في ضوء النهار، وسنوصيك بالباقة المناسبة ونعطيك سعراً نهائياً للطلاء أو التصحيح أو باقة PPF مع سيراميك. وتفضل بزيارتنا في مسيمير، الدوحة — من السبت إلى الخميس، 10:00–13:00 و16:00–22:00.",
+        },
+      },
+    ],
+    relatedProducts: [
+      "autotriz-revo-ceramic-coating",
+      "autotriz-ion-plus-ceramic-coating",
+      "autotriz-3d-matrix-ultra",
+      "autotriz-3d-matrix-hybrid",
+    ],
+  },
+  {
+    slug: "remove-hard-water-spots-car-qatar",
+    title: {
+      en: "Hard Water Spots on Your Car in Qatar: How to Remove and Prevent Them",
+      ar: "بقع الماء العسر على سيارتك في قطر: كيف تزيلها وتمنعها",
+    },
+    description: {
+      en: "Why Doha's water leaves white spots on car paint and glass, how to remove fresh and etched water spots safely, and how to stop them coming back.",
+      ar: "لماذا يترك ماء الدوحة بقعاً بيضاء على طلاء السيارة وزجاجها، وكيف تزيل البقع الجديدة والمحفورة بأمان، وكيف تمنع عودتها.",
+    },
+    date: "2026-06-10",
+    readingTime: 5,
+    category: "car-care",
+    keywords: {
+      en: ["water spots car Qatar", "remove water spots car paint", "hard water marks Doha", "water spot remover Qatar"],
+      ar: ["بقع الماء على السيارة", "إزالة بقع الماء من طلاء السيارة", "علامات الماء العسر الدوحة"],
+    },
+    sections: [
+      {
+        heading: {
+          en: "Why Qatar's Water Spots Your Paint",
+          ar: "لماذا يبقّع ماء قطر طلاء سيارتك",
+        },
+        body: {
+          en: "Most of Qatar's municipal water comes from desalinated seawater and carries dissolved minerals. When a wet car dries in the sun — which in Doha can happen in minutes — the water evaporates but the minerals stay behind as white rings. Caught early, these deposits sit on top of the paint and wipe away with the right product. Left baking in 45°C sun through repeated wet-dry cycles, the minerals etch into the clear coat itself, leaving craters that no shampoo can remove. Sprinkler overspray and careless hose rinses that are left to air-dry are the most common causes we see in the workshop.",
+          ar: "يأتي معظم ماء قطر البلدي من تحلية مياه البحر ويحمل أملاحاً ومعادن ذائبة. عندما تجف سيارة مبتلة تحت الشمس — وهو ما قد يحدث في الدوحة خلال دقائق — يتبخر الماء وتبقى المعادن على شكل حلقات بيضاء. إذا عولجت مبكراً، تكون هذه الرواسب فوق الطلاء وتُمسح بالمنتج المناسب. أما إن تُركت تُخبز تحت شمس 45 درجة عبر دورات بلل وجفاف متكررة، فإن المعادن تحفر في طبقة الكلير نفسها تاركةً فوهات لا يزيلها أي شامبو. رذاذ مرشات الري والشطف المهمل بالخرطوم المتروك ليجف بالهواء هما أكثر سببين نراهما في الورشة.",
+        },
+      },
+      {
+        heading: {
+          en: "Removing Fresh Water Spots",
+          ar: "إزالة بقع الماء الحديثة",
+        },
+        body: {
+          en: "For spots that appeared in the last days or weeks, start gentle. Wash the car in shade with a pH-balanced shampoo such as Autotriz Rich Foam Shampoo, using plenty of foam to lubricate the surface. Dry immediately with a clean microfibre towel — never let the car air-dry. If white rings survive the wash, a dedicated detailing spray or a wash-and-wax product like Briller Wash and Wax applied with light pressure will dissolve mineral deposits that have not yet bonded. On glass, Briller Glass Cleaner cuts mineral film and restores clarity — important for night driving, where water-spotted windshields scatter oncoming headlights.",
+          ar: "للبقع التي ظهرت خلال الأيام أو الأسابيع الأخيرة، ابدأ بلطف. اغسل السيارة في الظل بشامبو متوازن الحموضة مثل Autotriz Rich Foam مع رغوة وفيرة لتزليق السطح. وجفف فوراً بمنشفة مايكروفايبر نظيفة — لا تدع السيارة تجف بالهواء أبداً. إن بقيت الحلقات البيضاء بعد الغسيل، فإن بخاخ تلميع مخصصاً أو منتج غسيل وتشميع مثل Briller Wash and Wax مع ضغط خفيف سيذيب الرواسب المعدنية التي لم ترتبط بعد. وعلى الزجاج، يزيل Briller Glass Cleaner الطبقة المعدنية ويعيد الوضوح — وهو أمر مهم للقيادة الليلية حيث يشتت الزجاج المبقّع أضواء السيارات المقابلة.",
+        },
+      },
+      {
+        heading: {
+          en: "Removing Etched Spots: When You Need Polish",
+          ar: "إزالة البقع المحفورة: متى تحتاج إلى التلميع",
+        },
+        body: {
+          en: "If a spot remains after chemical cleaning, the mineral has etched a physical crater into the clear coat, and the only fix is mechanical: polishing levels the surrounding clear coat down to the depth of the etching. Light etching responds to a finishing polish like Autotriz Ultimate Polish 302 on a dual-action machine. Deeper damage needs a cutting compound such as Autotriz Power Cut 701 followed by a finishing pass. This is precision work — every polish removes a little clear coat, so it should be done as few times as possible and ideally by a trained hand. ABK's Mesaimeer workshop performs single-panel spot correction up to full-vehicle paint correction.",
+          ar: "إذا بقيت البقعة بعد التنظيف الكيميائي، فقد حفرت المعادن فوهة فعلية في طبقة الكلير، والحل الوحيد ميكانيكي: التلميع الذي يسوّي الكلير المحيط حتى عمق الحفر. الحفر الخفيف يستجيب لملمع تشطيب مثل Autotriz Ultimate Polish 302 على آلة مزدوجة الحركة. أما الضرر الأعمق فيحتاج مركب قطع مثل Autotriz Power Cut 701 تتبعه مرحلة تشطيب. هذا عمل دقيق — كل تلميع يزيل قليلاً من الكلير، لذا يجب أن يُجرى بأقل عدد ممكن من المرات وبيد مدربة. ورشة ABK في مسيمير تنفذ تصحيحاً موضعياً للوحة واحدة وحتى تصحيح طلاء كامل للسيارة.",
+        },
+      },
+      {
+        heading: {
+          en: "Prevention: Stop the Spots Coming Back",
+          ar: "الوقاية: امنع عودة البقع",
+        },
+        body: {
+          en: "Three habits eliminate most water spotting in Qatar. First, never let water dry on the car — towel-dry after every wash and avoid parking near irrigation sprinklers. Second, wash in the early morning or evening, in shade, so water does not flash-evaporate mid-wash. Third — and most effective — give the paint a sacrificial hydrophobic layer. A ceramic coating such as Autotriz REVO makes water bead and roll off before it can evaporate in place, and the slick surface releases any deposits that do form with a gentle wash. Owners who combine a ceramic coating with proper drying habits almost never see etched spots again.",
+          ar: "ثلاث عادات تقضي على معظم بقع الماء في قطر. أولاً، لا تدع الماء يجف على السيارة أبداً — جففها بالمنشفة بعد كل غسيل وتجنب الوقوف قرب مرشات الري. ثانياً، اغسل في الصباح الباكر أو المساء وفي الظل، حتى لا يتبخر الماء فوراً أثناء الغسيل. ثالثاً — وهو الأكثر فاعلية — امنح الطلاء طبقة حماية طاردة للماء. الطلاء السيراميكي مثل Autotriz REVO يجعل الماء يتكوّر وينزلق قبل أن يتبخر مكانه، والسطح الأملس يتخلى عن أي رواسب تتكون بغسلة لطيفة. الملاك الذين يجمعون بين السيراميك وعادات التجفيف الصحيحة لا يرون البقع المحفورة مجدداً تقريباً.",
+        },
+      },
+      {
+        heading: {
+          en: "Everything You Need, In One Place in Doha",
+          ar: "كل ما تحتاجه في مكان واحد في الدوحة",
+        },
+        body: {
+          en: "ABK Trading and Service in Mesaimeer stocks the full chain of water-spot solutions: pH-balanced shampoos, glass cleaners, finishing polishes, cutting compounds, and professional ceramic coatings — and our workshop applies them if you would rather leave it to trained hands. Message us on WhatsApp at +974 30838355 with a photo of your paint and we will tell you honestly whether you need a product off the shelf or a correction session.",
+          ar: "يوفر ABK للتجارة والخدمات في مسيمير سلسلة الحلول الكاملة لبقع الماء: شامبوهات متوازنة الحموضة، ومنظفات زجاج، وملمعات تشطيب، ومركبات قطع، وطلاءات سيراميكية احترافية — وورشتنا تطبقها إن فضّلت تركها لأيدٍ مدربة. راسلنا على واتساب +974 30838355 مع صورة لطلاء سيارتك وسنخبرك بصدق إن كنت تحتاج منتجاً من الرف أم جلسة تصحيح.",
+        },
+      },
+    ],
+    relatedProducts: [
+      "autotriz-rich-foam-shampoo",
+      "briller-glass-cleaner",
+      "autotriz-ultimate-polish-302",
+      "autotriz-revo-ceramic-coating",
+    ],
+  },
+  {
     slug: "how-to-protect-car-from-qatar-heat",
     title: {
       en: "How to Protect Your Car from Qatar's Extreme Heat",

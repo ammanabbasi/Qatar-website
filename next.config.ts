@@ -39,6 +39,20 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      // The B2C home moved from /{locale}/b2c to the locale root. 308
+      // (permanent) so Google transfers any signals the old URL collected.
+      // Config redirects run BEFORE the next-intl middleware, so this fires
+      // even though the /b2c page route no longer exists. Deeper /b2c/*
+      // routes (products, services, blog) still exist and are NOT redirected.
+      {
+        source: "/:locale(en|ar)/b2c",
+        destination: "/:locale",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");

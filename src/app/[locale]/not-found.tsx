@@ -8,7 +8,7 @@ export default async function NotFound() {
       <h1 className="font-display text-4xl sm:text-5xl">{t("title")}</h1>
       <p className="text-(--color-text-muted) max-w-md">{t("message")}</p>
       <Link
-        href="/b2c"
+        href="/"
         className="mt-3 inline-flex items-center gap-2 rounded-full bg-(--color-gold) text-(--color-bg) px-6 h-11 text-sm font-medium"
       >
         {t("cta")} →

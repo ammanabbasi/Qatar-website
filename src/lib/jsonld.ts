@@ -76,12 +76,17 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
     additionalType: "https://schema.org/Store",
     "@id": IDS.business,
     name: SITE.name,
-    alternateName: "ABK",
+    // Second alternateName matches the Google Business Profile listing name
+    // verbatim — helps Google reconcile this site entity with the GBP entity
+    // (4.9★ profile titled "ABK Trading and Service — Vertek & Autotriz").
+    alternateName: ["ABK", "ABK Trading and Service — Vertek & Autotriz"],
     url: SITE.url,
-    // Satori-rendered opengraph-image.tsx produces the actual PNG at /{locale}/opengraph-image.
-    // Consumers (Google Knowledge Graph, Meta, WhatsApp) fetch it — relative path fine because
-    // structured-data fetchers resolve against @id.
-    image: `${SITE.url}/en/opengraph-image`,
+    hasMap: SITE.mapsQuery,
+    // Static OG image at the app root (`app/opengraph-image.jpg` →
+    // `/opengraph-image.jpg`). The old `/{locale}/opengraph-image` route was
+    // removed when the Satori generator was replaced with a static JPG —
+    // pointing schema consumers at it would 404.
+    image: `${SITE.url}/opengraph-image.jpg`,
     logo: `${SITE.url}/logo.webp`,
     description:
       locale === "ar"

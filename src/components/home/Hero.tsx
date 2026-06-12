@@ -38,16 +38,21 @@ export function Hero({ audience, locale }: Props) {
 
       <Container className="relative z-10 pt-28 pb-24 sm:pt-36 sm:pb-32 lg:pt-48 lg:pb-44">
         <div className="hero-stagger max-w-2xl flex flex-col gap-6">
-          <span className="inline-flex items-center gap-3 text-[0.68rem] uppercase tracking-[0.32em] text-(--color-gold)/90 font-medium">
-            {/* Double-hairline eyebrow — gold dash + red accent spark.
-                Surfaces the accent-red that was defined but previously unused. */}
-            <span className="inline-block w-8 h-px bg-(--color-gold)" />
-            <span className="inline-block w-1 h-1 rounded-full bg-(--color-accent-red)" />
-            <span>
-              {audience === "b2c" ? t("Home.heroEyebrowB2c") : t("Home.heroEyebrowB2b")}
-            </span>
-          </span>
+          {/* The keyword-bearing eyebrow ("Premium Car Care — Doha, Qatar")
+              lives INSIDE the h1 so the page's primary heading carries the
+              primary search terms, not just the brand line. Same rendered
+              output — the eyebrow keeps its own type styles; mb-6 reproduces
+              the flex gap it had as a sibling. */}
           <h1 className="font-display text-[clamp(2.5rem,6.5vw,5.5rem)] leading-[0.98] tracking-[-0.025em] font-medium">
+            <span className="flex items-center gap-3 mb-6 font-sans text-[0.68rem] uppercase tracking-[0.32em] text-(--color-gold)/90 font-medium">
+              {/* Double-hairline eyebrow — gold dash + red accent spark.
+                  Surfaces the accent-red that was defined but previously unused. */}
+              <span className="inline-block w-8 h-px bg-(--color-gold)" />
+              <span className="inline-block w-1 h-1 rounded-full bg-(--color-accent-red)" />
+              <span>
+                {audience === "b2c" ? t("Home.heroEyebrowB2c") : t("Home.heroEyebrowB2b")}
+              </span>
+            </span>
             <span className="gold-gradient">
               {audience === "b2c" ? t("Home.heroTitleB2c") : t("Home.heroTitleB2b")}
             </span>

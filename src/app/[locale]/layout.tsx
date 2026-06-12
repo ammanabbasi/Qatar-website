@@ -12,6 +12,7 @@ import {
 } from "@/lib/fonts";
 import { SITE } from "@/lib/constants";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonld";
+import { JsonLd } from "@/components/seo/JsonLd";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -166,16 +167,8 @@ export default async function LocaleLayout({
         >
           {skipLabel}
         </a>
-        <Script
-          id="ld-organization"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
-        />
-        <Script
-          id="ld-website"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteLd) }}
-        />
+        <JsonLd id="ld-organization" data={orgLd} />
+        <JsonLd id="ld-website" data={siteLd} />
         {plausibleDomain && (
           <Script
             defer

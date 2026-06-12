@@ -9,6 +9,8 @@ export function Footer({ audience }: { audience: Audience }) {
   const t = useTranslations();
   const year = new Date().getFullYear();
   const audiencePrefix = `/${audience}`;
+  // B2C home lives at the locale root; deeper b2c routes keep the /b2c prefix.
+  const homeHref = audience === "b2c" ? "/" : audiencePrefix;
 
   return (
     <footer className="mt-24 border-t border-(--color-border) bg-(--color-surface)">
@@ -16,7 +18,7 @@ export function Footer({ audience }: { audience: Audience }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="flex flex-col gap-4">
-            <Link href={audiencePrefix} className="flex items-center gap-3">
+            <Link href={homeHref} className="flex items-center gap-3">
               <Image src="/logo-mark.webp" alt="ABK" width={40} height={40} className="rounded-lg" />
               <span className="font-display text-base tracking-wide">
                 ABK <span className="text-(--color-gold)">Trading</span>

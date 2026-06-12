@@ -4,15 +4,20 @@ import { ARTICLES } from "@/data/articles";
 import { SITE } from "@/lib/constants";
 import { routing } from "@/i18n/routing";
 
+// Bump when static-page content meaningfully changes. Pinned (not `new Date()`)
+// because sitemaps claiming lastmod=now on every URL at every build get their
+// lastmod signals ignored by Google — same principle as product lastmods below.
+// 2026-06-12: homepage moved from /{locale}/b2c to the locale root.
+const STATIC_PAGES_UPDATED_AT = "2026-06-12";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE.url;
-  const now = new Date();
+  const staticLastMod = new Date(STATIC_PAGES_UPDATED_AT);
 
-  // NOTE: `""` (bare locale root like `/en`) intentionally excluded —
-  // it's a redirect target, not a canonical page. Listing redirects in
-  // sitemap confuses Google's canonical consolidation.
+  // `""` is the locale root (`/en`, `/ar`) — the B2C homepage renders there
+  // directly (it previously lived at `/b2c`, which now 308s to the root).
   const staticPaths = [
-    "/b2c",
+    "",
     "/b2c/products",
     "/b2c/services",
     "/b2c/blog",
@@ -31,10 +36,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const path of staticPaths) {
       entries.push({
         url: `${base}/${locale}${path}`,
-        lastModified: now,
+        lastModified: staticLastMod,
         changeFrequency: "weekly",
         priority:
-          path === "/b2c"
+          path === ""
             ? 1.0
             : path === "/privacy" || path === "/terms"
               ? 0.3
@@ -53,14 +58,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const productLastMod = new Date(
         p.updatedAt ?? PRODUCT_DEFAULT_UPDATED_AT,
       );
-      // Audience scope — only emit a URL for an audience if the product is
-      // visible to that audience. Listing UI + ItemList JSON-LD apply the
-      // same rule. Without this filter Google sees URLs that have no
-      // inbound link from any listing page, which dilutes crawl budget.
+      // Canonical-only URLs. Products visible to BOTH audiences render at
+      // /b2c/... and /b2b/... with near-identical content; the b2b copy
+      // canonicalises to the b2c URL (see b2b/products/[slug]/page.tsx), so
+      // only the b2c URL belongs in the sitemap — listing non-canonical URLs
+      // makes Google flag "Duplicate, submitted URL not selected as canonical".
       const audiences =
-        p.audience === "both"
-          ? (["b2c", "b2b"] as const)
-          : ([p.audience] as const);
+        p.audience === "both" ? (["b2c"] as const) : ([p.audience] as const);
       for (const aud of audiences) {
         entries.push({
           url: `${base}/${locale}/${aud}/products/${p.slug}`,

@@ -1,7 +1,7 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import Script from "next/script";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
 import { Container } from "@/components/ui/Container";
@@ -84,18 +84,9 @@ export default async function ServicesPage({
   return (
     <Shell audience="b2c" locale={l}>
       {servicesLd.map((ld, i) => (
-        <Script
-          key={i}
-          id={`ld-service-${i}`}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }}
-        />
+        <JsonLd key={i} id={`ld-service-${i}`} data={ld} />
       ))}
-      <Script
-        id="ld-faq"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }}
-      />
+      <JsonLd id="ld-faq" data={faqLd} />
       <section className="py-16 sm:py-24">
         <Container>
           <SectionHeading

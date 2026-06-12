@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Script from "next/script";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 import { WhatsAppButton } from "@/components/cta/WhatsAppButton";
@@ -36,30 +36,27 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
     images: product.images.map((src) => `${SITE.url}${src}`),
     url: productUrl,
   });
+  // B2C home lives at the locale root; B2B home keeps its /b2b prefix.
+  const homeHref = audience === "b2c" ? "/" : `/${audience}`;
   const bcLd = breadcrumbJsonLd([
-    { name: t("Brand.name"), url: `${SITE.url}/${locale}/${audience}` },
+    {
+      name: t("Brand.name"),
+      url: audience === "b2c" ? `${SITE.url}/${locale}` : `${SITE.url}/${locale}/${audience}`,
+    },
     { name: t("Products.title"), url: `${SITE.url}/${locale}/${audience}/products` },
     { name, url: productUrl },
   ]);
 
   return (
     <>
-      <Script
-        id="ld-product"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }}
-      />
-      <Script
-        id="ld-breadcrumb"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(bcLd) }}
-      />
+      <JsonLd id="ld-product" data={productLd} />
+      <JsonLd id="ld-breadcrumb" data={bcLd} />
 
       <section className="py-12 sm:py-16">
         <Container>
           {/* Breadcrumbs */}
           <nav className="text-xs text-(--color-text-muted) mb-6 flex items-center gap-1.5 flex-wrap">
-            <Link href={`/${audience}`} className="hover:text-(--color-gold)">
+            <Link href={homeHref} className="hover:text-(--color-gold)">
               {t("Nav.home")}
             </Link>
             <span>/</span>

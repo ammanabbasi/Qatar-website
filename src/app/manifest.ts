@@ -3,13 +3,14 @@ import { SITE } from "@/lib/constants";
 
 // Typed PWA manifest. `icons` references Next.js file-convention routes
 // (icon.svg, apple-icon) — the framework resolves the fingerprinted URLs at
-// build time. Start URL is `/en/b2c` because that's the canonical home.
+// build time. Start URL is `/en` — the canonical home (B2C) renders at the
+// locale root; the old `/en/b2c` route was removed and only 308-redirects.
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: SITE.name,
     short_name: SITE.shortName,
     description: SITE.tagline,
-    start_url: "/en/b2c",
+    start_url: "/en",
     scope: "/",
     display: "standalone",
     orientation: "portrait",

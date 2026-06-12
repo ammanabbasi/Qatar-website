@@ -28,10 +28,11 @@ export function AudienceSwitch({ current }: { current: Audience }) {
   const switchTo = (next: Audience) => {
     if (next === current) return;
     // Map equivalent path in the other audience where possible.
-    // If the current path starts with /b2c or /b2b, swap; otherwise go to the other audience home.
-    let target = `/${next}`;
-    if (pathname.startsWith(`/${current}`)) {
-      target = pathname.replace(`/${current}`, `/${next}`);
+    // Deep paths swap prefixes (/b2c/products <-> /b2b/products); otherwise
+    // go to the other audience's home. B2C home lives at the locale root.
+    let target = next === "b2c" ? "/" : `/${next}`;
+    if (pathname.startsWith(`/${current}/`)) {
+      target = pathname.replace(`/${current}/`, `/${next}/`);
     }
     writeAudienceCookie(next);
     trackAudienceSwitch(next);

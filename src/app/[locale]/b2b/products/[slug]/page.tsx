@@ -45,7 +45,17 @@ export async function generateMetadata({
         ? ["جملة العناية بالسيارات قطر", "الدوحة"]
         : ["wholesale car care Qatar", "Doha"]),
     ],
-    ...pageMeta(locale as Locale, `/b2b/products/${product.slug}`),
+    // Products sold to BOTH audiences render near-identical pages at
+    // /b2c/products/X and /b2b/products/X (same title, same ProductDetail
+    // body). Two self-canonical duplicates split ranking signals and let
+    // Google pick the winner arbitrarily — so the b2b copy canonicalises to
+    // the b2c URL. b2b-ONLY products have no b2c twin and stay self-canonical.
+    ...pageMeta(
+      locale as Locale,
+      product.audience === "both"
+        ? `/b2c/products/${product.slug}`
+        : `/b2b/products/${product.slug}`,
+    ),
   };
 }
 
