@@ -1,16 +1,17 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { useTranslations } from "next-intl";
-import { ProductCard } from "./ProductCard";
+import { useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import {
   PRODUCTS,
   BRANDS,
   CATEGORIES,
-  type Product,
+  getBrandsFor,
+  getCategoriesFor,
   type BrandKey,
   type CategoryKey,
 } from "@/data/products";
+import { ProductGridView } from "./ProductGridView";
 import type { Audience } from "@/lib/whatsapp";
 
 type Props = {
@@ -18,107 +19,68 @@ type Props = {
   locale: "en" | "ar";
 };
 
-export function ProductGrid({ audience, locale }: Props) {
-  const t = useTranslations();
-  const [brand, setBrand] = useState<BrandKey | "all">("all");
-  const [category, setCategory] = useState<CategoryKey | "all">("all");
-
-  const filtered = useMemo(() => {
-    return PRODUCTS.filter((p: Product) => {
-      // Audience scope — products tagged b2c-only or b2b-only must not leak
-      // into the other audience's listing. `both` shows everywhere. The
-      // sitemap + ItemList JSON-LD apply the same rule, so UI and crawler
-      // surfaces stay consistent.
-      if (p.audience !== "both" && p.audience !== audience) return false;
-      if (brand !== "all" && p.brand !== brand) return false;
-      if (category !== "all" && p.category !== category) return false;
-      return true;
-    });
-  }, [audience, brand, category]);
-
-  return (
-    <div className="flex flex-col gap-8">
-      {/* Filter bar */}
-      <div className="flex flex-col gap-4 sm:gap-6">
-        <div className="flex flex-col sm:flex-row gap-4">
-          <Chips
-            label={t("Products.filterBrand")}
-            value={brand}
-            onChange={(v) => setBrand(v as BrandKey | "all")}
-            options={[
-              { value: "all", label: t("Products.filterAll") },
-              ...BRANDS.map((b) => ({ value: b, label: t(`Brands.${b}`) })),
-            ]}
-          />
-        </div>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <Chips
-            label={t("Products.filterCategory")}
-            value={category}
-            onChange={(v) => setCategory(v as CategoryKey | "all")}
-            options={[
-              { value: "all", label: t("Products.filterAll") },
-              ...CATEGORIES.map((c) => ({ value: c, label: t(`Categories.${c}`) })),
-            ]}
-          />
-        </div>
-      </div>
-
-      {filtered.length === 0 ? (
-        <p className="text-center text-(--color-text-muted) py-16">
-          {t("Products.noResults")}
-        </p>
-      ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 sm:gap-7">
-          {filtered.map((p) => (
-            <ProductCard
-              key={p.slug}
-              product={p}
-              locale={locale}
-              audience={audience}
-            />
-          ))}
-        </div>
-      )}
-    </div>
-  );
+function asBrand(v: string | null): BrandKey | "all" {
+  return v && (BRANDS as string[]).includes(v) ? (v as BrandKey) : "all";
+}
+function asCategory(v: string | null): CategoryKey | "all" {
+  return v && (CATEGORIES as string[]).includes(v) ? (v as CategoryKey) : "all";
 }
 
-function Chips({
-  label,
-  value,
-  onChange,
-  options,
-}: {
-  label: string;
-  value: string;
-  onChange: (v: string) => void;
-  options: Array<{ value: string; label: string }>;
-}) {
+/**
+ * Interactive catalogue. The URL is the single source of truth for the
+ * filters (`?brand=Vertek&category=ppf`) so category links from the home
+ * page and footer deep-link straight into a filtered grid, and chip clicks
+ * update the address bar via `history.replaceState` — which Next.js folds
+ * into `useSearchParams` without a server round-trip.
+ */
+export function ProductGrid({ audience, locale }: Props) {
+  const params = useSearchParams();
+  const brand = asBrand(params.get("brand"));
+  const category = asCategory(params.get("category"));
+
+  const brands = useMemo(() => getBrandsFor(audience), [audience]);
+  const categories = useMemo(() => getCategoriesFor(audience), [audience]);
+
+  const products = useMemo(
+    () =>
+      PRODUCTS.filter((p) => {
+        // Audience scope — products tagged b2c-only or b2b-only must not leak
+        // into the other audience's listing. `both` shows everywhere. The
+        // sitemap + ItemList JSON-LD apply the same rule, so UI and crawler
+        // surfaces stay consistent.
+        if (p.audience !== "both" && p.audience !== audience) return false;
+        if (brand !== "all" && p.brand !== brand) return false;
+        if (category !== "all" && p.category !== category) return false;
+        return true;
+      }),
+    [audience, brand, category],
+  );
+
+  const setParam = (key: "brand" | "category", value: string) => {
+    const next = new URLSearchParams(params.toString());
+    if (value === "all") next.delete(key);
+    else next.set(key, value);
+    const qs = next.toString();
+    window.history.replaceState(
+      null,
+      "",
+      `${window.location.pathname}${qs ? `?${qs}` : ""}`,
+    );
+  };
+
   return (
-    <div className="flex flex-col gap-2">
-      <span className="text-[10px] uppercase tracking-[0.22em] text-(--color-text-muted)">
-        {label}
-      </span>
-      <div className="flex flex-wrap gap-2">
-        {options.map((o) => {
-          const active = o.value === value;
-          return (
-            <button
-              key={o.value}
-              type="button"
-              onClick={() => onChange(o.value)}
-              className={`px-3.5 h-8 rounded-full border text-xs transition-all ${
-                active
-                  ? "border-(--color-gold) bg-(--color-gold)/10 text-(--color-gold)"
-                  : "border-(--color-border) text-(--color-text-muted) hover:text-(--color-text) hover:border-(--color-text-muted)"
-              }`}
-            >
-              {o.label}
-            </button>
-          );
-        })}
-      </div>
-    </div>
+    <ProductGridView
+      audience={audience}
+      locale={locale}
+      products={products}
+      brands={brands}
+      categories={categories}
+      filters={{ brand, category }}
+      onBrand={(b) => setParam("brand", b)}
+      onCategory={(c) => setParam("category", c)}
+      onClear={() =>
+        window.history.replaceState(null, "", window.location.pathname)
+      }
+    />
   );
 }

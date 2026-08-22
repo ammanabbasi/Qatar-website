@@ -1,4 +1,5 @@
 import { Link } from "@/i18n/navigation";
+import { ChevronIcon } from "@/components/ui/Icons";
 import type { Article } from "@/data/articles";
 
 type Props = {
@@ -6,38 +7,39 @@ type Props = {
   locale: "en" | "ar";
 };
 
+/**
+ * Blog listing card — a white tile, same rhythm as the product grid.
+ * Copy carries the card; there is no article photography yet.
+ */
 export function ArticleCard({ article, locale }: Props) {
   return (
     <Link
       href={`/b2c/blog/${article.slug}`}
-      className="group flex flex-col rounded-2xl border border-(--color-border) bg-(--color-surface) card-gold-hover overflow-hidden"
+      className="tile group flex flex-col p-6 transition-shadow duration-300 ease-soft hover:shadow-tile-hover"
     >
-      {/* Gradient header instead of image */}
-      <div className="h-36 bg-mesh-gold relative">
-        <div className="absolute inset-0 flex items-end p-5">
-          <span className="text-[0.65rem] uppercase tracking-[0.28em] text-(--color-gold) font-medium bg-(--color-bg)/70 backdrop-blur-sm px-3 py-1 rounded-full">
-            {article.readingTime} {locale === "ar" ? "دقائق" : "min read"}
-          </span>
-        </div>
-      </div>
-      <div className="flex-1 flex flex-col p-5 gap-3">
-        <h3 className="font-display text-lg font-medium leading-snug group-hover:text-(--color-gold) transition-colors line-clamp-2">
-          {article.title[locale]}
-        </h3>
-        <p className="text-sm text-(--color-text-muted) leading-relaxed line-clamp-3">
-          {article.description[locale]}
-        </p>
-        <div className="mt-auto pt-3 flex items-center justify-between text-xs text-(--color-text-muted)">
-          <time dateTime={article.date}>
-            {new Date(article.date).toLocaleDateString(
-              locale === "ar" ? "ar-QA" : "en-QA",
-              { year: "numeric", month: "short", day: "numeric" },
-            )}
-          </time>
-          <span className="text-(--color-gold) group-hover:underline underline-offset-4">
-            {locale === "ar" ? "اقرأ المزيد →" : "Read more →"}
-          </span>
-        </div>
+      <p className="text-caption font-semibold uppercase tracking-[0.04em] text-(--color-text-muted)">
+        {article.readingTime} {locale === "ar" ? "دقائق" : "min read"}
+      </p>
+      <h3 className="mt-3 line-clamp-2 text-title-sm font-semibold text-balance text-(--color-text)">
+        {article.title[locale]}
+      </h3>
+      <p className="mt-2 line-clamp-3 text-footnote text-(--color-text-muted)">
+        {article.description[locale]}
+      </p>
+      <div className="mt-auto flex items-center justify-between gap-3 pt-4">
+        <time
+          dateTime={article.date}
+          className="text-caption text-(--color-text-muted)"
+        >
+          {new Date(article.date).toLocaleDateString(
+            locale === "ar" ? "ar-QA" : "en-QA",
+            { year: "numeric", month: "short", day: "numeric" },
+          )}
+        </time>
+        <span className="text-link text-footnote font-medium">
+          {locale === "ar" ? "اقرأ المزيد" : "Read more"}
+          <ChevronIcon className="h-[0.6em] w-[0.6em] rtl:-scale-x-100" />
+        </span>
       </div>
     </Link>
   );

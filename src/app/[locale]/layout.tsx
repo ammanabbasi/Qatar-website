@@ -4,12 +4,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Script from "next/script";
 import { routing, type Locale } from "@/i18n/routing";
-import {
-  fontSans,
-  fontDisplay,
-  fontArabic,
-  fontArabicDisplay,
-} from "@/lib/fonts";
+import { fontSans, fontArabic } from "@/lib/fonts";
 import { SITE } from "@/lib/constants";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonld";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -140,7 +135,7 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       dir={dir}
-      className={`${fontSans.variable} ${fontDisplay.variable} ${fontArabic.variable} ${fontArabicDisplay.variable}`}
+      className={`${fontSans.variable} ${fontArabic.variable}`}
       suppressHydrationWarning
     >
       <head>
@@ -158,12 +153,12 @@ export default async function LocaleLayout({
           `}
         </Script>
       </head>
-      <body className="min-h-dvh bg-(--color-bg) text-(--color-text) antialiased">
+      <body className="flex min-h-dvh flex-col bg-(--color-bg) text-(--color-text) antialiased">
         {/* Keyboard-first users land here — `sr-only` hides until focus,
-            then `focus:not-sr-only` reveals the link as a visible gold pill. */}
+            then `focus:not-sr-only` reveals the link as a visible blue pill. */}
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:start-3 focus:z-50 focus:px-4 focus:py-2 focus:rounded-full focus:bg-(--color-gold) focus:text-(--color-bg) focus:font-medium focus:shadow-lg"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:start-3 focus:z-50 focus:rounded-pill focus:bg-(--color-accent) focus:px-4 focus:py-2 focus:text-footnote focus:font-medium focus:text-white focus:shadow-tile"
         >
           {skipLabel}
         </a>

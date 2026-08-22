@@ -9,9 +9,10 @@ type Props = {
   productUrl?: string;
   label: string;
   emailFallbackLabel: string;
-  size?: "md" | "lg";
-  variant?: "primary" | "outline" | "ghost";
+  size?: "sm" | "md" | "lg";
+  variant?: "primary" | "secondary" | "dark" | "light" | "outline";
   showEmailFallback?: boolean;
+  className?: string;
 };
 
 export function WhatsAppButton({
@@ -24,6 +25,7 @@ export function WhatsAppButton({
   size = "md",
   variant = "primary",
   showEmailFallback = true,
+  className = "",
 }: Props) {
   const href = buildWhatsAppUrl({ audience, locale, productName, productUrl });
   const subject = productName
@@ -31,31 +33,32 @@ export function WhatsAppButton({
     : audience === "b2b"
       ? "Wholesale inquiry"
       : "Product inquiry";
+  // Plausible tagged events are class-based: `plausible-event-name=goal`
+  // plus `plausible-event-<prop>=<value>` ("+" stands in for spaces).
+  const plausible = `plausible-event-name=whatsapp_click plausible-event-audience=${audience}${
+    productName ? ` plausible-event-product=${productName.replace(/\s+/g, "+")}` : ""
+  }`;
 
   return (
-    <div className="flex flex-col gap-2 items-start rtl:items-end">
+    <div className="flex flex-col items-start gap-2.5">
       <ButtonLink
         href={href}
         target="_blank"
         rel="noopener noreferrer"
         size={size}
         variant={variant}
-        data-plausible-event="whatsapp_click"
-        data-plausible-event-audience={audience}
-        data-plausible-event-product={productName ?? ""}
+        className={`${plausible} ${className}`}
       >
-        <WhatsAppIcon className="w-5 h-5" />
+        <WhatsAppIcon className="h-5 w-5" />
         <span>{label}</span>
       </ButtonLink>
       {showEmailFallback && (
         <a
           href={buildMailto(subject)}
-          className="text-xs text-(--color-text-muted) hover:text-(--color-gold) transition-colors"
+          className="text-caption text-(--color-text-muted) transition-colors hover:text-(--color-text)"
         >
           {emailFallbackLabel}{" "}
-          <span className="text-(--color-text) ltr-nums">
-            sales@abktradingservice.com
-          </span>
+          <span className="ltr-nums underline underline-offset-2">sales@abktradingservice.com</span>
         </a>
       )}
     </div>

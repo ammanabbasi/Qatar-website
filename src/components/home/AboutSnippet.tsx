@@ -1,37 +1,35 @@
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Link } from "@/i18n/navigation";
+import { TextLink } from "@/components/ui/TextLink";
 
 /**
- * Brief "about" content block rendered on the B2C homepage between Star Products
- * and BrandStrip. Purpose is purely SEO: gives Google a keyword-rich text block
- * on the most-crawled page for queries like "car care Doha", "auto detailing
- * products Qatar", "car shampoo Qatar" etc.
- *
- * Content mirrors the About page but is much shorter — ~120 words, enough for
- * 3 paragraphs of topical text without diluting the page's commercial intent.
- * The "Learn more" link passes equity to the full About page.
+ * Brief "about" block on the B2C homepage. Purpose is partly SEO: gives
+ * Google a keyword-rich text block on the most-crawled page for queries like
+ * "car care Doha", "auto detailing products Qatar", "car shampoo Qatar".
+ * Presented as a wide white promo tile.
  */
 export function AboutSnippet() {
   const t = useTranslations("HomeAbout");
 
   return (
-    <section className="py-14 sm:py-20 border-t border-(--color-border)">
+    <section className="py-6 lg:py-8">
       <Container>
-        <SectionHeading
-          eyebrow={`⸻ ${t("eyebrow")}`}
-          title={t("title")}
-        />
-        <div className="mt-8 max-w-3xl flex flex-col gap-4 text-base text-(--color-text-muted) leading-relaxed">
-          <p>{t("paragraph1")}</p>
-          <p>{t("paragraph2")}</p>
-          <Link
-            href="/about"
-            className="text-(--color-gold) hover:underline underline-offset-4 w-fit"
-          >
-            {t("learnMore")} →
-          </Link>
+        <div className="tile grid gap-8 rounded-hero p-8 sm:p-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14 lg:p-14">
+          <div>
+            <p className="text-caption font-semibold uppercase tracking-[0.04em] text-(--color-text-muted)">
+              {t("eyebrow")}
+            </p>
+            <h2 className="mt-2 text-title font-semibold text-balance lg:text-headline">
+              {t("title")}
+            </h2>
+          </div>
+          <div className="flex flex-col gap-4 text-body text-(--color-text-muted)">
+            <p>{t("paragraph1")}</p>
+            <p>{t("paragraph2")}</p>
+            <TextLink href="/about" className="mt-1 w-fit font-medium">
+              {t("learnMore")}
+            </TextLink>
+          </div>
         </div>
       </Container>
     </section>

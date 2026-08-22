@@ -36,25 +36,25 @@ export default async function TermsPage({
   const store = await cookies();
   const audience = store.get("abk_audience")?.value === "b2b" ? "b2b" : "b2c";
   const t = await getTranslations({ locale, namespace: "Terms" });
-  const e = await getTranslations({ locale, namespace: "Eyebrows" });
 
   const sections = [1, 2, 3, 4, 5, 6, 7, 8] as const;
 
   return (
     <Shell audience={audience} locale={l}>
-      <section className="py-16 sm:py-24">
+      <section className="pb-16 pt-10 sm:pt-14 lg:pt-20">
         <Container>
           <SectionHeading
-            eyebrow={`⸻ ${e("legal")}`}
+            as="h1"
+            size="display"
             title={t("title")}
             subtitle={t("subtitle")}
           />
-          <p className="mt-4 text-xs uppercase tracking-[0.22em] text-(--color-text-muted)">
+          <p className="mt-3 text-caption text-(--color-text-muted)">
             {t("lastUpdated")}
           </p>
 
-          <article className="mt-10 max-w-3xl text-(--color-text-muted) leading-relaxed space-y-10">
-            <p className="text-base">{t("intro")}</p>
+          <article className="mt-10 flex max-w-3xl flex-col gap-8">
+            <p className="text-body text-(--color-text-muted)">{t("intro")}</p>
             {sections.map((i) => (
               <LegalSection
                 key={i}

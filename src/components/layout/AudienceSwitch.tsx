@@ -20,6 +20,7 @@ function trackAudienceSwitch(next: Audience) {
   plausible?.("audience_switch", { props: { to: next } });
 }
 
+/** Retail / Wholesale segmented control. */
 export function AudienceSwitch({ current }: { current: Audience }) {
   const t = useTranslations("Nav");
   const pathname = usePathname();
@@ -42,8 +43,8 @@ export function AudienceSwitch({ current }: { current: Audience }) {
   return (
     <div
       role="tablist"
-      aria-label="Audience"
-      className="inline-flex items-center rounded-full border border-(--color-border) bg-(--color-surface) p-1 text-xs font-medium"
+      aria-label={t("audience")}
+      className="inline-flex h-8 items-center rounded-pill bg-(--color-fill) p-0.5 text-caption font-medium"
     >
       {(["b2c", "b2b"] as Audience[]).map((a) => {
         const active = a === current;
@@ -54,21 +55,13 @@ export function AudienceSwitch({ current }: { current: Audience }) {
             role="tab"
             aria-selected={active}
             onClick={() => switchTo(a)}
-            className={`relative px-4 h-8 rounded-full uppercase tracking-wider transition-all ${
+            className={`h-7 rounded-pill px-3.5 transition-colors duration-200 ease-soft ${
               active
-                ? "bg-(--color-gold) text-(--color-bg)"
-                : "text-(--color-text-muted) hover:text-(--color-text)"
+                ? "bg-white text-(--color-text) shadow-[0_1px_3px_rgba(0,0,0,0.12)]"
+                : "text-(--color-text)/75 hover:text-(--color-text)"
             }`}
           >
             {a === "b2c" ? t("b2c") : t("b2b")}
-            {/* Red spark under the active tab — the brass+red tension that
-                differentiates from generic luxury. */}
-            {active && (
-              <span
-                aria-hidden
-                className="absolute left-1/2 -translate-x-1/2 bottom-[-6px] w-6 h-[2px] rounded-full bg-(--color-accent-red)"
-              />
-            )}
           </button>
         );
       })}

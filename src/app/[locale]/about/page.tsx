@@ -6,7 +6,8 @@ import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Link } from "@/i18n/navigation";
+import { TextLink } from "@/components/ui/TextLink";
+import { BadgeIcon, TruckIcon, SparkleIcon } from "@/components/ui/Icons";
 import { pageMeta } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -26,6 +27,12 @@ export async function generateMetadata({
   };
 }
 
+const VALUES = [
+  { i: 1, Icon: BadgeIcon },
+  { i: 2, Icon: TruckIcon },
+  { i: 3, Icon: SparkleIcon },
+] as const;
+
 export default async function AboutPage({
   params,
 }: {
@@ -38,72 +45,64 @@ export default async function AboutPage({
   const store = await cookies();
   const audience = store.get("abk_audience")?.value === "b2b" ? "b2b" : "b2c";
   const t = await getTranslations({ locale, namespace: "About" });
-  const e = await getTranslations({ locale, namespace: "Eyebrows" });
 
   return (
     <Shell audience={audience} locale={l}>
-      <section className="py-16 sm:py-24">
+      <section className="pb-8 pt-10 sm:pt-14 lg:pt-20">
         <Container>
           <SectionHeading
-            eyebrow={`⸻ ${e("ourStory")}`}
-            title={t("title")}
+            as="h1"
+            size="display"
+            title={t("heading")}
             subtitle={t("subtitle")}
           />
-          <div className="mt-12 grid lg:grid-cols-3 gap-10">
-            <div className="lg:col-span-2 flex flex-col gap-6 text-lg text-(--color-text-muted) leading-relaxed">
-              <p>{t("paragraph1")}</p>
-              <p>{t("paragraph2")}</p>
-              <p>{t("paragraph3")}</p>
+          <div className="mt-10 grid gap-10 sm:mt-12 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
+            <div className="flex flex-col gap-5">
+              <p className="text-body-lg text-(--color-text-muted)">{t("paragraph1")}</p>
+              <p className="text-body-lg text-(--color-text-muted)">{t("paragraph2")}</p>
+              <p className="text-body-lg text-(--color-text-muted)">{t("paragraph3")}</p>
             </div>
-            <aside className="flex flex-col gap-5">
-              <h3 className="font-display text-xl">{t("valuesTitle")}</h3>
-              {[1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="p-5 rounded-2xl border border-(--color-border) bg-(--color-surface)"
-                >
-                  <h4 className="font-medium mb-1">
-                    {t(`value${i}Title`)}
-                  </h4>
-                  <p className="text-sm text-(--color-text-muted)">
-                    {t(`value${i}Desc`)}
-                  </p>
+            <aside className="flex flex-col gap-4">
+              <h2 className="text-title-sm font-semibold">{t("valuesTitle")}</h2>
+              {VALUES.map(({ i, Icon }) => (
+                <div key={i} className="tile flex gap-4 p-5">
+                  <span
+                    aria-hidden
+                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-(--color-fill) text-(--color-text)"
+                  >
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="text-body font-semibold">{t(`value${i}Title`)}</h3>
+                    <p className="mt-1 text-footnote text-(--color-text-muted)">
+                      {t(`value${i}Desc`)}
+                    </p>
+                  </div>
                 </div>
               ))}
             </aside>
           </div>
-          {/* Internal cross-links — keyword-rich anchors so Google sees About
-              as a linking hub for products + services + dealer pages, not a
-              link-equity dead end. */}
-          <nav
-            aria-label={t("exploreTitle")}
-            className="mt-16 sm:mt-20 pt-10 border-t border-(--color-border) flex flex-col gap-4"
-          >
-            <h3 className="font-display text-xl">{t("exploreTitle")}</h3>
-            <ul className="flex flex-col gap-3 text-base">
+        </Container>
+      </section>
+
+      {/* Internal cross-links — keyword-rich anchors so Google sees About
+          as a linking hub for products + services + dealer pages, not a
+          link-equity dead end. */}
+      <section className="py-6 lg:py-8">
+        <Container>
+          <nav aria-label={t("exploreTitle")} className="tile p-6">
+            <h2 className="text-title-sm font-semibold">{t("exploreTitle")}</h2>
+            <ul className="mt-4 flex flex-col gap-3">
               <li>
-                <Link
-                  href={`/${audience}/products`}
-                  className="text-(--color-gold) hover:underline underline-offset-4"
-                >
-                  {t("exploreProductsLabel")} →
-                </Link>
+                <TextLink href={`/${audience}/products`}>
+                  {t("exploreProductsLabel")}
+                </TextLink>
               </li>
               <li>
-                <Link
-                  href="/b2c/services"
-                  className="text-(--color-gold) hover:underline underline-offset-4"
-                >
-                  {t("exploreServicesLabel")} →
-                </Link>
+                <TextLink href="/b2c/services">{t("exploreServicesLabel")}</TextLink>
               </li>
               <li>
-                <Link
-                  href="/b2b/become-a-dealer"
-                  className="text-(--color-gold) hover:underline underline-offset-4"
-                >
-                  {t("exploreDealerLabel")} →
-                </Link>
+                <TextLink href="/b2b/become-a-dealer">{t("exploreDealerLabel")}</TextLink>
               </li>
             </ul>
           </nav>

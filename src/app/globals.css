@@ -1,296 +1,242 @@
 @import "tailwindcss";
 
-@theme {
-  /* Warmer black with a hint of bitumen. Not #000 — never #000. */
-  --color-bg: #0b0908;
-  --color-surface: #141210;
-  --color-surface-2: #1c1a17;
-  /* Burnished brass gold — warmer than the typical #D4AF37 discount-gold. */
-  --color-gold: #c8a24a;
-  --color-gold-soft: #e8cf7a;
-  --color-gold-dim: #8f6d1f;
-  /* Chrome with a mercurial blue undertone. */
-  --color-chrome: #b9bfc7;
-  --color-text: #f3efe6;
-  --color-text-muted: #958e84;
-  --color-border: #2a2622;
-  --color-accent-red: #d13a2c;
+/* ============================================================
+   ABK design system — modeled on the Apple Store.
 
-  --font-display: var(--font-display), "Bodoni Moda", Georgia, serif;
-  --font-sans: var(--font-sans), "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-arabic: var(--font-arabic), "IBM Plex Sans Arabic", sans-serif;
-  --font-arabic-display: var(--font-arabic-display), "Noto Kufi Arabic", sans-serif;
+   Light ground, one typeface, one accent colour, generous
+   whitespace, product photography doing the talking. Every
+   colour / size / radius / shadow lives here as a token and
+   components consume them through Tailwind utilities — no raw
+   hex in markup.
+   ============================================================ */
+@theme {
+  /* Ground + surfaces */
+  --color-bg: #f5f5f7;
+  --color-surface: #ffffff;
+  --color-fill: #e8e8ed;
+  --color-fill-hover: #dedee3;
+  --color-ink: #1d1d1f;
+  /* Dark product tiles. Tuned to the shadow tone of the studio photography
+     so the photo edge dissolves into the tile instead of showing a seam. */
+  --color-tile-dark: #121517;
+
+  /* Text */
+  --color-text: #1d1d1f;
+  --color-text-muted: #6e6e73;
+  --color-text-subtle: #86868b;
+
+  /* Lines */
+  --color-border: #d2d2d7;
+  --color-border-soft: #e8e8ed;
+
+  /* Accent — the single saturated colour in the UI (links, primary pills). */
+  --color-link: #0066cc;
+  --color-accent: #0071e3;
+  --color-accent-hover: #0077e6;
+
+  /* Brand gold from the ABK logo swoosh. Reserved for eyebrow labels. */
+  --color-brand: #f5a623;
+  --color-brand-deep: #a85d00;
+
+  --color-danger: #e30000;
+
+  --radius-tile: 18px;
+  --radius-hero: 28px;
+  --radius-pill: 980px;
+
+  --shadow-tile: 2px 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-tile-hover: 2px 4px 16px rgba(0, 0, 0, 0.16);
+  --shadow-paddle: 0 1px 4px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  /* Type scale — size / line-height / tracking triplets. Tracking follows
+     Inter's dynamic-metrics curve (tighter as size grows). */
+  --text-caption: 12px;
+  --text-caption--line-height: 1.3333;
+  --text-caption--letter-spacing: 0em;
+  --text-footnote: 14px;
+  --text-footnote--line-height: 1.4286;
+  --text-footnote--letter-spacing: -0.006em;
+  --text-body: 17px;
+  --text-body--line-height: 1.4706;
+  --text-body--letter-spacing: -0.013em;
+  --text-body-lg: 19px;
+  --text-body-lg--line-height: 1.4211;
+  --text-body-lg--letter-spacing: -0.015em;
+  --text-title-sm: 21px;
+  --text-title-sm--line-height: 1.1905;
+  --text-title-sm--letter-spacing: -0.017em;
+  --text-title: 28px;
+  --text-title--line-height: 1.1429;
+  --text-title--letter-spacing: -0.021em;
+  --text-headline: 40px;
+  --text-headline--line-height: 1.1;
+  --text-headline--letter-spacing: -0.022em;
+  --text-display: 48px;
+  --text-display--line-height: 1.0834;
+  --text-display--letter-spacing: -0.022em;
+  --text-display-lg: 56px;
+  --text-display-lg--line-height: 1.0714;
+  --text-display-lg--letter-spacing: -0.022em;
+
+  --font-sans:
+    var(--font-inter), -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-arabic:
+    var(--font-plex-arabic), "IBM Plex Sans Arabic", "Segoe UI", Tahoma,
+    sans-serif;
+
+  --ease-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 html {
   background: var(--color-bg);
   color: var(--color-text);
-  color-scheme: dark;
-}
-
-html[dir="rtl"] {
-  font-family: var(--font-arabic);
+  color-scheme: light;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
-  font-feature-settings: "ss01", "ss02", "cv11";
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  letter-spacing: var(--text-body--letter-spacing);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  position: relative;
+  text-rendering: optimizeLegibility;
   overflow-x: hidden;
 }
 
+/* Arabic: one family for everything, and never tracked. */
 html[dir="rtl"] body {
   font-family: var(--font-arabic);
 }
-
-/* Bodoni Moda display — tight tracking, use display-only for h1/h2.
-   Arabic headings use Noto Kufi via the RTL override below. */
-.font-display,
-h1, h2 {
-  font-family: var(--font-display);
-  letter-spacing: -0.018em;
-  font-weight: 500;
-}
-
-html[dir="rtl"] .font-display,
-html[dir="rtl"] h1,
-html[dir="rtl"] h2 {
-  font-family: var(--font-arabic-display);
+html[dir="rtl"] body * {
   letter-spacing: 0;
 }
 
-/* Grain overlay — committed opacity so the texture is genuinely felt, not faked. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.08;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.7 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+/* In @layer base so per-element `focus-visible:*` utilities can still
+   override the ring (unlayered rules would beat every utility). */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: #b4d5fe;
+    color: var(--color-text);
+  }
 }
 
-/* Layered light leak — a single warm vignette top-left for atmosphere */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    radial-gradient(40rem 32rem at 12% -6%, rgba(200, 162, 74, 0.09), transparent 60%),
-    radial-gradient(36rem 32rem at 110% 110%, rgba(209, 58, 44, 0.05), transparent 55%);
-}
+@layer components {
+  /* Translucent nav bar */
+  .nav-glass {
+    background: rgba(250, 250, 252, 0.82);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+  }
 
-/* Selection */
-::selection {
-  background: var(--color-gold);
-  color: var(--color-bg);
-}
+  /* "The latest. Take a look at what's new." — first span ink, rest muted. */
+  .two-tone > span + span {
+    color: var(--color-text-muted);
+  }
 
-/* Thin brass scrollbar */
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: var(--color-bg); }
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--color-gold-dim), var(--color-surface-2));
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover { background: var(--color-gold); }
+  /* Cards */
+  .tile {
+    background: var(--color-surface);
+    border-radius: var(--radius-tile);
+    box-shadow: var(--shadow-tile);
+  }
+  .tile-dark {
+    background: var(--color-tile-dark);
+    color: #fff;
+    border-radius: var(--radius-tile);
+    box-shadow: var(--shadow-tile);
+  }
+  /* Dissolves the top edge of a product photo into a dark tile so overlaid
+     text sits on a clean ground. */
+  .tile-fade-top::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      rgba(18, 21, 23, 1) 0%,
+      rgba(18, 21, 23, 0.75) 16%,
+      rgba(18, 21, 23, 0) 44%
+    );
+  }
 
-:focus-visible {
-  outline: 2px solid var(--color-gold);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
+  /* Horizontal shelf. The inset equals the Container's content edge so the
+     first tile lines up with the section heading and the last tile bleeds
+     to the viewport edge. Percentages (not vw) so a visible scrollbar on
+     Windows doesn't throw the alignment off. */
+  .shelf {
+    --shelf-inset: max(1.5rem, calc((100% - 80rem) / 2 + 1.5rem));
+  }
+  @media (min-width: 64rem) {
+    .shelf {
+      --shelf-inset: max(3rem, calc((100% - 80rem) / 2 + 3rem));
+    }
+  }
+  .shelf-scroller {
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-inline: var(--shelf-inset);
+    scroll-padding-inline: var(--shelf-inset);
+    padding-block: 0.25rem 1.5rem;
+    scrollbar-width: none;
+  }
+  .shelf-scroller::-webkit-scrollbar {
+    display: none;
+  }
+  .shelf-scroller > * {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+  }
 
-/* ============================================
-   HEXAGONAL HONEYCOMB — Vertek's native visual
-   language, pulled into the site as a subtle
-   contextual background motif.
-   ============================================ */
-.hex-motif {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.22;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='112' height='96' viewBox='0 0 112 96'><g fill='none' stroke='%23c8a24a' stroke-width='0.6' opacity='0.55'><path d='M28 0 L56 16 L56 48 L28 64 L0 48 L0 16 Z'/><path d='M84 0 L112 16 L112 48 L84 64 L56 48 L56 16 Z'/><path d='M28 64 L56 80 L56 96 M84 64 L56 80'/></g></svg>");
-  background-size: 112px 96px;
-  mask-image: radial-gradient(55% 75% at 50% 40%, black 0%, transparent 85%);
-  -webkit-mask-image: radial-gradient(55% 75% at 50% 40%, black 0%, transparent 85%);
-}
+  /* Blue "Learn more ›" link */
+  .text-link {
+    color: var(--color-link);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+  }
+  .text-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
 
-/* Chrome pinstripe — non-hex accent so the visual language isn't
-   100% Vertek-coded. Thin rule with red spark pulled from the
-   --color-accent-red palette slot that was defined but unused. */
-.pinstripe {
-  position: relative;
-}
-.pinstripe::after {
-  content: "";
-  position: absolute;
-  inset-inline-start: 0;
-  inset-inline-end: 0;
-  bottom: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(185, 191, 199, 0.35) 18%,
-    rgba(209, 58, 44, 0.9) 50%,
-    rgba(185, 191, 199, 0.35) 82%,
-    transparent 100%
-  );
-}
+  .hide-scrollbar {
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 
-/* Warm gold gradient headline — two stops, tight */
-.gold-gradient {
-  background: linear-gradient(120deg, #f0d895 0%, #c8a24a 45%, #8f6d1f 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  /* Phone numbers and times inside RTL copy */
+  .ltr-nums {
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
 }
-
-/* Brass hairline divider, subtle */
-.hairline {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(200, 162, 74, 0.55), transparent);
-}
-
-/* Card hover — brass glow + slight lift */
-.card-gold-hover {
-  transition: transform 260ms cubic-bezier(0.22, 0.61, 0.36, 1),
-    border-color 260ms ease,
-    box-shadow 260ms ease,
-    background-color 260ms ease;
-}
-.card-gold-hover:hover {
-  transform: translateY(-3px);
-  border-color: rgba(200, 162, 74, 0.45);
-  box-shadow: 0 12px 44px -14px rgba(200, 162, 74, 0.38);
-}
-
-/* "Jewelry on velvet" treatment for Briller colored products.
-   A deep vignette with an inner radial bloom so the product color pops. */
-.briller-frame {
-  background:
-    radial-gradient(120% 80% at 50% 0%, rgba(255, 255, 255, 0.05), transparent 55%),
-    linear-gradient(180deg, #141210 0%, #0b0908 100%);
-  position: relative;
-}
-.briller-frame::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: radial-gradient(80% 60% at 50% 25%, rgba(200, 162, 74, 0.08), transparent 60%);
-}
-
-/* Eyebrow — with a brass dash */
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-.eyebrow::before {
-  content: "";
-  display: inline-block;
-  width: 28px;
-  height: 1px;
-  background: var(--color-gold);
-}
-
-/* LTR numbers inside RTL flow */
-.ltr-nums {
-  direction: ltr;
-  unicode-bidi: embed;
-}
-
-/* ============================================
-   HERO ENTRANCE — staggered on page load.
-   Respects prefers-reduced-motion.
-   ============================================ */
-@keyframes riseIn {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Tighter choreography — final element lands at 800ms instead of 1.4s,
-   which keeps LCP respectable while preserving the editorial entrance. */
-.hero-stagger > * {
-  animation: riseIn 500ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
-}
-.hero-stagger > *:nth-child(1) { animation-delay: 40ms; }
-.hero-stagger > *:nth-child(2) { animation-delay: 120ms; }
-.hero-stagger > *:nth-child(3) { animation-delay: 200ms; }
-.hero-stagger > *:nth-child(4) { animation-delay: 280ms; }
-.hero-stagger > *:nth-child(5) { animation-delay: 360ms; }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-stagger > * { animation: none; }
-  body::before, body::after { display: none; }
+  .shelf-scroller {
+    scroll-behavior: auto;
+  }
+  *,
+  ::before,
+  ::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
-
-/* ============================================
-   MARQUEE — brand strip infinite scroll.
-   ============================================ */
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-@keyframes marquee-rtl {
-  from { transform: translateX(0); }
-  to   { transform: translateX(50%); }
-}
-
-.marquee-track {
-  display: flex;
-  gap: 3.5rem;
-  width: max-content;
-  animation: marquee 42s linear infinite;
-}
-html[dir="rtl"] .marquee-track {
-  animation-name: marquee-rtl;
-}
-.marquee-track:hover {
-  animation-play-state: paused;
-}
-
-/* ============================================
-   Product card — gold corner accent on hover
-   ============================================ */
-.product-card-corner {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 44px;
-  height: 44px;
-  pointer-events: none;
-  opacity: 0;
-  transform: translate(6px, -6px);
-  transition: opacity 300ms ease, transform 400ms cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-.card-gold-hover:hover .product-card-corner {
-  opacity: 1;
-  transform: translate(0, 0);
-}
-
-/* Background mesh utility — for sectional atmosphere */
-.bg-mesh-gold {
-  background-image:
-    radial-gradient(ellipse 60% 40% at 10% 20%, rgba(200, 162, 74, 0.08), transparent 60%),
-    radial-gradient(ellipse 50% 50% at 90% 80%, rgba(209, 58, 44, 0.05), transparent 60%);
-}
-
-/* Section wrapper with hex motif */
-.section-with-hex {
-  position: relative;
-  isolation: isolate;
-}
-
-/* Make header sit above the global grain overlay */
-header, main, footer { position: relative; z-index: 2; }

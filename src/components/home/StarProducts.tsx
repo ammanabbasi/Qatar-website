@@ -1,11 +1,14 @@
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ProductCard } from "@/components/product/ProductCard";
-import { FEATURED_PRODUCTS } from "@/data/products";
+import { Shelf } from "@/components/ui/Shelf";
+import { ChevronIcon } from "@/components/ui/Icons";
+import { ProductTile } from "@/components/product/ProductTile";
+import { getStoreShelfProducts } from "@/data/products";
 import { Link } from "@/i18n/navigation";
 import type { Audience } from "@/lib/whatsapp";
 
+/** "The latest." — a shelf of dark product tiles, best-sellers first. */
 export function StarProducts({
   audience,
   locale,
@@ -14,41 +17,36 @@ export function StarProducts({
   locale: "en" | "ar";
 }) {
   const t = useTranslations();
-  // Audience scope: a featured product flagged for the OTHER audience must
-  // not surface here, otherwise its card link 404s under the current
-  // audience's URL prefix (the product detail page sets dynamicParams=false
-  // and only generates audience-applicable slugs).
-  const featured = FEATURED_PRODUCTS.filter(
-    (p) => p.audience === "both" || p.audience === audience,
-  ).slice(0, 4);
+  const products = getStoreShelfProducts(audience, 8);
+
   return (
-    <section className="py-20 sm:py-28">
-      <Container>
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
-          <SectionHeading
-            eyebrow={`⸻ ${t("Eyebrows.premium")}`}
-            title={t("Home.starProductsTitle")}
-            subtitle={t("Home.starProductsSubtitle")}
-          />
-          <Link
-            href={`/${audience}/products`}
-            className="text-sm text-(--color-gold) hover:underline underline-offset-4 shrink-0"
-          >
-            {t("Cta.viewAll")} →
-          </Link>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 sm:gap-7">
-          {featured.map((p, i) => (
-            <ProductCard
-              key={p.slug}
-              product={p}
-              locale={locale}
-              audience={audience}
-              priority={i < 2}
-            />
-          ))}
-        </div>
+    <section className="py-6 lg:py-8">
+      <Container className="mb-4">
+        <SectionHeading
+          title={t("Home.starProductsTitle")}
+          subtitle={t("Home.starProductsSubtitle")}
+        />
       </Container>
+      <Shelf ariaLabel={t("Home.starProductsTitle")}>
+        {products.map((p, i) => (
+          <ProductTile
+            key={p.slug}
+            product={p}
+            locale={locale}
+            audience={audience}
+            eager={i < 3}
+          />
+        ))}
+        <Link
+          href={`/${audience}/products`}
+          className="tile flex w-[200px] flex-col items-center justify-center gap-4 p-6 text-center transition-shadow duration-300 ease-soft hover:shadow-tile-hover lg:w-[240px]"
+        >
+          <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-(--color-fill) text-(--color-text)">
+            <ChevronIcon className="h-5 w-5 rtl:-scale-x-100" />
+          </span>
+          <span className="text-body font-semibold">{t("Cta.viewAll")}</span>
+        </Link>
+      </Shelf>
     </section>
   );
 }

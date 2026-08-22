@@ -1,12 +1,15 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 
 export function LocaleSwitch({ current }: { current: "en" | "ar" }) {
+  const t = useTranslations("Nav");
   const pathname = usePathname();
   const router = useRouter();
 
   const next: "en" | "ar" = current === "en" ? "ar" : "en";
+  const nextName = t(next === "ar" ? "switchToArabic" : "switchToEnglish");
 
   const swap = () => {
     if (typeof window !== "undefined" && (window as unknown as { plausible?: (e: string, o?: Record<string, unknown>) => void }).plausible) {
@@ -17,14 +20,17 @@ export function LocaleSwitch({ current }: { current: "en" | "ar" }) {
     router.replace(pathname, { locale: next });
   };
 
+  // Label is written in the TARGET language so the reader who needs it can
+  // find it — an Arabic speaker on the English site sees "العربية".
   return (
     <button
       type="button"
       onClick={swap}
-      aria-label={`Switch language to ${next === "ar" ? "العربية" : "English"}`}
-      className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-(--color-border) text-xs font-semibold tracking-wider hover:border-(--color-gold) hover:text-(--color-gold) transition-colors"
+      lang={next}
+      aria-label={t("switchLanguage", { lang: nextName })}
+      className="inline-flex h-8 items-center rounded-pill px-3 text-caption font-medium text-(--color-text) transition-colors duration-200 ease-soft hover:bg-(--color-fill)"
     >
-      {next === "ar" ? "ع" : "EN"}
+      {nextName}
     </button>
   );
 }

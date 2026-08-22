@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ChevronIcon, PinIcon } from "@/components/ui/Icons";
 import { SITE } from "@/lib/constants";
 
 type Props = {
@@ -34,12 +35,12 @@ export function LazyMapEmbed({ label, iframeTitle, ctaLabel, hintLabel, locale }
   )}&output=embed`;
 
   return (
-    <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-(--color-border) bg-(--color-surface)">
+    <div className="relative aspect-[4/3] overflow-hidden rounded-tile bg-(--color-surface) shadow-tile">
       {loaded ? (
         <iframe
           src={mapEmbed}
           title={iframeTitle}
-          className="absolute inset-0 w-full h-full border-0"
+          className="absolute inset-0 h-full w-full border-0"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           allowFullScreen
@@ -49,54 +50,25 @@ export function LazyMapEmbed({ label, iframeTitle, ctaLabel, hintLabel, locale }
           type="button"
           onClick={() => setLoaded(true)}
           aria-label={label}
-          className="group absolute inset-0 w-full h-full flex flex-col items-center justify-center gap-4 text-center hover:cursor-pointer"
-          data-plausible-event-name="map_load"
+          className="plausible-event-name=map_load group absolute inset-0 flex h-full w-full cursor-pointer flex-col items-center justify-center gap-4 text-center"
+          
         >
-          {/* Subtle topographic background — evokes a map without loading one. */}
+          {/* Faint street grid — reads as a map without loading one. */}
           <span
             aria-hidden
-            className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_30%_20%,rgba(200,162,74,0.15),transparent_40%),radial-gradient(circle_at_70%_70%,rgba(200,162,74,0.1),transparent_45%)]"
+            className="absolute inset-0 bg-[linear-gradient(var(--color-border-soft)_1px,transparent_1px),linear-gradient(90deg,var(--color-border-soft)_1px,transparent_1px)] bg-[size:48px_48px] opacity-70"
           />
           <span
             aria-hidden
-            className="absolute inset-0 opacity-[0.07] bg-[linear-gradient(0deg,transparent_24%,rgba(200,162,74,0.5)_25%,rgba(200,162,74,0.5)_26%,transparent_27%,transparent_74%,rgba(200,162,74,0.5)_75%,rgba(200,162,74,0.5)_76%,transparent_77%),linear-gradient(90deg,transparent_24%,rgba(200,162,74,0.5)_25%,rgba(200,162,74,0.5)_26%,transparent_27%,transparent_74%,rgba(200,162,74,0.5)_75%,rgba(200,162,74,0.5)_76%,transparent_77%)] bg-[size:72px_72px]"
-          />
-          {/* Pin icon */}
-          <span
-            aria-hidden
-            className="relative flex items-center justify-center w-14 h-14 rounded-full border border-(--color-gold)/40 bg-(--color-bg)/60 backdrop-blur-sm"
+            className="relative inline-flex h-14 w-14 items-center justify-center rounded-full bg-(--color-surface) text-(--color-text) shadow-tile transition-shadow duration-300 ease-soft group-hover:shadow-tile-hover"
           >
-            <svg
-              viewBox="0 0 24 24"
-              className="w-6 h-6 text-(--color-gold)"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 22s-7-6.2-7-12a7 7 0 1 1 14 0c0 5.8-7 12-7 12Z"
-              />
-              <circle cx="12" cy="10" r="2.5" />
-            </svg>
+            <PinIcon className="h-6 w-6" />
           </span>
-          <span className="relative inline-flex items-center gap-2 text-sm font-medium tracking-wide text-(--color-text) group-hover:text-(--color-gold) transition-colors">
+          <span className="text-link relative text-body font-medium">
             {ctaLabel}
-            <svg
-              viewBox="0 0 24 24"
-              className="w-4 h-4 rtl:rotate-180"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-            >
-              <path strokeLinecap="round" d="M5 12h14m-5-5 5 5-5 5" />
-            </svg>
+            <ChevronIcon className="h-[0.62em] w-[0.62em] shrink-0 rtl:-scale-x-100" />
           </span>
-          <span
-            className="relative text-[10px] uppercase tracking-[0.26em] text-(--color-text-muted)"
-            lang={locale}
-          >
+          <span className="relative text-caption text-(--color-text-muted)" lang={locale}>
             {hintLabel}
           </span>
         </button>

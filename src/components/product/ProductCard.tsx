@@ -1,84 +1,64 @@
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { ChevronIcon } from "@/components/ui/Icons";
 import type { Product } from "@/data/products";
 import type { Audience } from "@/lib/whatsapp";
 
+type Props = {
+  product: Product;
+  locale: "en" | "ar";
+  audience: Audience;
+  /** Load immediately at high priority — for the first above-the-fold cards (LCP). */
+  eager?: boolean;
+  /** Heading level: h2 directly under a page h1 (catalogue), h3 inside an h2 section (shelves). */
+  as?: "h2" | "h3";
+  className?: string;
+};
+
+/**
+ * Catalogue card — photo tile above, copy below, the Apple accessories grid.
+ */
 export function ProductCard({
   product,
   locale,
   audience,
-  priority = false,
-}: {
-  product: Product;
-  locale: "en" | "ar";
-  audience: Audience;
-  /** Mark first-few-above-the-fold cards so Next.js preloads the image for a faster LCP. */
-  priority?: boolean;
-}) {
+  eager = false,
+  as: Heading = "h3",
+  className = "",
+}: Props) {
   const t = useTranslations();
   const name = product.name[locale];
-  const shortDesc = product.shortDesc[locale];
-  const isBriller = product.highlight === "briller-color";
-  const brandLabel = t(`Brands.${product.brand}`);
-  const categoryLabel = t(`Categories.${product.category}`);
 
   return (
     <Link
       href={`/${audience}/products/${product.slug}`}
-      className={`group relative flex flex-col rounded-2xl overflow-hidden border border-(--color-border) card-gold-hover ${
-        isBriller ? "briller-frame" : "bg-(--color-surface)"
-      }`}
+      className={`group flex flex-col ${className}`}
     >
-      {/* Hover-only hexagon corner accent — reveals the Vertek brand motif on hover */}
-      <svg
-        className="product-card-corner"
-        viewBox="0 0 44 44"
-        fill="none"
-        aria-hidden
-      >
-        <path
-          d="M0 8 L22 0 L44 8 L44 22 L22 30 L0 22 Z"
-          stroke="rgba(200,162,74,0.7)"
-          strokeWidth="0.8"
-        />
-      </svg>
-
-      <div className="aspect-[4/5] relative overflow-hidden bg-black">
+      <div className="relative aspect-square overflow-hidden rounded-tile bg-(--color-tile-dark) shadow-tile transition-shadow duration-300 ease-soft group-hover:shadow-tile-hover">
         <Image
           src={product.images[0]}
           alt={name}
           fill
-          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-          priority={priority}
-          className="object-cover transition-all duration-[900ms] ease-[cubic-bezier(0.22,0.61,0.36,1)] group-hover:scale-[1.04]"
+          sizes="(max-width: 767px) 50vw, (max-width: 1023px) 33vw, 300px"
+          loading={eager ? "eager" : undefined}
+          fetchPriority={eager ? "high" : undefined}
+          className="object-cover transition-transform duration-700 ease-soft group-hover:scale-[1.03]"
         />
-        {/* bottom gradient for text-free legibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-        {/* brand chip — top start */}
-        <span className="absolute top-3 start-3 text-[9px] uppercase tracking-[0.24em] bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 text-(--color-gold)">
-          {brandLabel}
-        </span>
       </div>
-      <div className="flex flex-col gap-2 p-5">
-        <span className="text-[9.5px] uppercase tracking-[0.28em] text-(--color-text-muted)">
-          {categoryLabel}
-        </span>
-        {/* Product titles use the sans font — keeps editorial serif
-            reserved for hero + section headings, and gives Briller's
-            retail energy a more approachable feel. */}
-        <h3 className="text-lg sm:text-xl leading-[1.2] tracking-[-0.005em] font-semibold text-(--color-text) group-hover:text-(--color-gold-soft) transition-colors duration-300">
-          {name}
-        </h3>
-        <p className="text-sm text-(--color-text-muted) line-clamp-2 leading-relaxed">
-          {shortDesc}
+      <div className="flex flex-col gap-1 px-1 pt-4">
+        <p className="text-caption font-medium text-(--color-text-muted)">
+          {t(`Brands.${product.brand}`)} · {t(`Categories.${product.category}`)}
         </p>
-        {/* micro-affordance — arrow slides on hover */}
-        <span className="mt-2 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-(--color-gold)/90">
-          <span>{t("Cta.inquireWhatsApp")}</span>
-          <span className="inline-block transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1">
-            →
-          </span>
+        <Heading className="text-body font-semibold text-(--color-text) sm:text-title-sm">
+          {name}
+        </Heading>
+        <p className="line-clamp-2 text-footnote text-(--color-text-muted)">
+          {product.shortDesc[locale]}
+        </p>
+        <span className="text-link mt-1 text-footnote font-medium">
+          {t("Cta.inquire")}
+          <ChevronIcon className="h-[0.6em] w-[0.6em] rtl:-scale-x-100" />
         </span>
       </div>
     </Link>

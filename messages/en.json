@@ -19,7 +19,10 @@
     "close": "Close",
     "switchToEnglish": "English",
     "switchToArabic": "العربية",
-    "blog": "Blog"
+    "blog": "Blog",
+    "audience": "Audience",
+    "switchLanguage": "Switch language to {lang}",
+    "breadcrumb": "Breadcrumb"
   },
   "Cta": {
     "inquireWhatsApp": "Inquire on WhatsApp",
@@ -27,25 +30,20 @@
     "wholesaleInquiry": "Wholesale Inquiry",
     "preferEmail": "Prefer email?",
     "getQuote": "Get a Quote",
-    "viewAll": "View All Products",
+    "viewAll": "Explore all products",
     "downloadCatalogue": "Download Catalogue",
-    "exploreProducts": "Explore Products",
     "openMap": "Open in Google Maps",
     "callNow": "Call Now",
-    "becomeDealer": "Become a Dealer"
+    "becomeDealer": "Become a Dealer",
+    "inquire": "Inquire",
+    "explore": "Explore",
+    "learnMore": "Learn more"
   },
   "Home": {
-    "heroEyebrowB2c": "Premium Car Care · Doha, Qatar",
-    "heroTitleB2c": "Protect. Restore. Shine.",
-    "heroSubtitleB2c": "Authorised distributor of Vertek paint protection film, Autotriz, Briller and Insta Finish — trusted by car enthusiasts, detailers and body shops across Qatar.",
-    "heroEyebrowB2b": "Wholesale Car Care · Qatar & GCC",
-    "heroTitleB2b": "Stock the wholesale brands Qatar trusts.",
-    "heroSubtitleB2b": "Competitive wholesale pricing on Vertek PPF, Autotriz, Briller, Insta Finish, Getsun and more. Supplying detailing shops, car washes and body shops across Qatar and the GCC.",
-    "starProductsTitle": "Star Products",
-    "starProductsSubtitle": "The best-sellers keeping Qatar's cars looking flawless.",
-    "brandsTitle": "Brands We Carry",
+    "starProductsTitle": "Star products.",
+    "starProductsSubtitle": "The best-sellers keeping Qatar’s cars flawless.",
+    "brandsTitle": "Brands we carry.",
     "brandsSubtitle": "Global names, supplied locally from our Mesaimeer store.",
-    "brandsStripline": "Official Distributor · Since 2018 · Qatar",
     "brandTagVertek": "Paint Protection Film",
     "brandTagAutotriz": "Detailing Chemicals",
     "brandTagBriller": "Car Care",
@@ -54,42 +52,63 @@
     "brandTagSitrett": "Made in Turkey",
     "brandTagSmartCar": "Tyre Care",
     "brandTagABK": "Mesaimeer, Doha",
-    "servicesTeaserTitle": "Professional Installation",
+    "servicesTeaserTitle": "Professional installation.",
     "servicesTeaserSubtitle": "PPF, window tints and ceramic coatings applied by trained technicians at our Mesaimeer workshop.",
-    "testimonialsTitle": "What our customers say",
-    "testimonialsComingSoon": "Customer stories — coming soon.",
     "trustTitle": "Trusted partners",
     "dealerTitle": "Stock the shelves that sell themselves.",
     "dealerSubtitle": "Join ABK's growing network of wholesale partners across Qatar and the GCC. Competitive margins, reliable supply, recognisable brands.",
     "dealerBullet1": "Direct access to Vertek PPF, Autotriz, Briller and Insta Finish",
     "dealerBullet2": "Bulk pricing with responsive re-order",
     "dealerBullet3": "Marketing & catalogue support in English and Arabic",
-    "dealerBullet4": "Serving detailing shops, car washes, body shops and auto accessories retailers"
+    "dealerBullet4": "Serving detailing shops, car washes, body shops and auto accessories retailers",
+    "storeTitleB2c": "Car care.",
+    "storeTaglineB2c": "Everything to protect, restore and shine — paint protection film, ceramic coatings and detailing products, in one Doha store.",
+    "storeTitleB2b": "Wholesale.",
+    "storeTaglineB2b": "Stock the car-care brands Qatar trusts. Volume pricing on Vertek PPF, Autotriz, Briller, Insta Finish and more — supplied from Doha.",
+    "helpChoosing": "Need help choosing?",
+    "chatSpecialist": "Chat with a specialist",
+    "visitStore": "Visit our Mesaimeer store",
+    "categoriesTitle": "Shop by category",
+    "bestSeller": "Best-seller",
+    "bookOnWhatsApp": "Book on WhatsApp",
+    "exploreServices": "Explore installation services",
+    "becomeDealerHeading": "Become a dealer.",
+    "becomeDealerTagline": "Resell the car-care brands Qatar trusts, with volume pricing and support from Doha.",
+    "relationDistributor": "Authorized Distributor",
+    "relationRetailer": "Authorized Retailer"
   },
   "HomeAbout": {
     "eyebrow": "About Us",
-    "title": "Qatar's One-Stop Car Care Shop",
+    "title": "Qatar’s one-stop car care shop.",
     "paragraph1": "ABK Trading & Service is a car care supplier and installation workshop in Mesaimeer, Doha. We stock everything from car shampoos and polishing compounds to paint protection film and ceramic coatings — all from authorised global brands like Vertek, Autotriz, Briller, Insta Finish, Getsun and Sitrett.",
     "paragraph2": "Whether you're a car enthusiast looking for the best car care products in Qatar, a professional detailer restocking your workshop, or a wholesale buyer across the GCC — we supply retail, wholesale and professional installation under one roof.",
     "learnMore": "Learn more about ABK"
   },
   "Products": {
     "title": "Products",
-    "subtitleB2c": "Browse our full product range. Tap any item to inquire on WhatsApp.",
-    "subtitleB2b": "Full wholesale catalogue. Inquire for volume pricing.",
+    "subtitleB2c": "The full range, in stock in Doha.",
+    "subtitleB2b": "The full wholesale catalogue, supplied from Doha.",
     "filterBrand": "Brand",
     "filterCategory": "Category",
     "filterAll": "All",
-    "noResults": "No products match the selected filters.",
+    "noResults": "Try another brand or category, or clear the filters to see the full range.",
     "detailAskFor": "Interested in this product?",
     "detailAskForB2c": "Send us a WhatsApp message — we'll confirm availability and walk you through options.",
     "detailAskForB2b": "Send us a WhatsApp message with your company name and quantity. We'll reply with wholesale pricing.",
     "detailSpecs": "Specifications",
-    "detailRelated": "You may also like",
+    "detailRelated": "You may also like.",
     "catalogueVertekTitle": "Vertek PPF Catalogue",
     "catalogueVertekDesc": "Full product range, specifications and installation details.",
     "catalogueAutotrizTitle": "Autotriz Catalogue",
-    "catalogueAutotrizDesc": "Innovative surface creation — detailing compounds, polishes and coatings."
+    "catalogueAutotrizDesc": "Innovative surface creation — detailing compounds, polishes and coatings.",
+    "heading": "Products.",
+    "count": "{count, plural, =0 {No products} one {# product} other {# products}}",
+    "clearFilters": "Clear filters",
+    "noResultsTitle": "Nothing matches those filters.",
+    "availableAt": "Available at our Mesaimeer store, Doha",
+    "retailWholesale": "Retail and wholesale supply",
+    "detailGallery": "Product photos",
+    "thumbnailLabel": "Show photo {n}"
   },
   "Categories": {
     "ppf": "Paint Protection Film",
@@ -129,7 +148,11 @@
     "ceramicDesc": "Long-lasting hydrophobic protection applied over paint or PPF for effortless maintenance and mirror-gloss finish.",
     "detailingTitle": "Premium Detailing",
     "detailingDesc": "Full interior and exterior detailing using our in-house Autotriz and Briller product lines.",
-    "cta": "Inquire about pricing"
+    "cta": "Inquire about pricing",
+    "heading": "Installation services.",
+    "book": "Book on WhatsApp",
+    "closingTitle": "Ready to protect your car?",
+    "closingBody": "Message us with your car model and we’ll quote PPF, tint or ceramic coating within the hour."
   },
   "About": {
     "title": "About ABK",
@@ -147,7 +170,8 @@
     "exploreTitle": "Continue exploring",
     "exploreProductsLabel": "Browse our PPF, ceramic coatings & detailing products",
     "exploreServicesLabel": "View our PPF & ceramic coating installation services in Doha",
-    "exploreDealerLabel": "Become a wholesale dealer in Qatar or the GCC"
+    "exploreDealerLabel": "Become a wholesale dealer in Qatar or the GCC",
+    "heading": "About ABK."
   },
   "Contact": {
     "title": "Contact Us",
@@ -166,20 +190,21 @@
     "hoursClosed": "Closed",
     "phone": "Phone / WhatsApp",
     "email": "Email",
-    "social": "Follow us",
     "directionsLabel": "Get directions",
     "mapLoadCta": "View map",
     "mapLoadHint": "Tap to load Google Maps",
-    "mapLoadAria": "Load interactive Google Maps embed"
+    "mapLoadAria": "Load interactive Google Maps embed",
+    "heading": "Contact us."
   },
   "Footer": {
     "tagline": "Premium car care & PPF solutions — made for Qatar.",
-    "quickLinks": "Quick Links",
     "visitUs": "Visit Us",
     "copyright": "© {year} ABK Trading & Service. All rights reserved.",
     "builtBy": "Built in Doha.",
     "privacy": "Privacy",
-    "terms": "Terms"
+    "terms": "Terms",
+    "shop": "Shop",
+    "company": "Company"
   },
   "Meta": {
     "defaultTitle": "ABK Trading & Service — Car Care, PPF & Detailing Products in Qatar",
@@ -202,22 +227,12 @@
     "contactDescription": "Visit ABK car care store in Mesaimeer, Doha. WhatsApp +974 30838355 for car care products, PPF installation, ceramic coating and detailing. Open Sat–Thu, 10:00–13:00 and 16:00–22:00."
   },
   "Eyebrows": {
-    "ourStory": "Our Story",
     "visitUs": "Visit Us",
     "workshop": "Workshop",
-    "partnership": "Partnership",
-    "catalogue": "Catalogue",
-    "wholesaleCatalogue": "Wholesale Catalogue",
-    "legal": "Legal",
-    "premium": "Premium",
-    "wholesale": "Wholesale",
-    "trust": "Trusted Partners",
-    "customers": "Customers",
-    "faq": "Frequently Asked",
-    "whyQatar": "Built for Qatar"
+    "wholesale": "Wholesale"
   },
   "WhyQatar": {
-    "title": "Car care made for Qatar's climate",
+    "title": "Built for Qatar’s climate.",
     "subtitle": "Doha summers reach 45°C+. Sand, salt-laden coastal air and dust storms wear factory paint faster than European clearcoats are designed to handle. Every product we stock is chosen for Gulf conditions.",
     "point1Title": "Sand & dust abrasion",
     "point1Body": "Vertek paint protection film absorbs the micro-scratches that desert dust polishes into clearcoat over time. Without it, a daily-driven car in Doha shows visible swirl patterns within 12 months.",
@@ -229,7 +244,7 @@
     "point4Body": "Cars driven near Lusail, Wakra and the Corniche pick up airborne salt that accelerates rust on bare metal. Our protection products seal against moisture ingress at the panel edges."
   },
   "Faq": {
-    "title": "Common questions about car care in Qatar",
+    "title": "Questions, answered.",
     "subtitle": "Quick answers about PPF, ceramic coating, tinting and wholesale supply. Don't see your question? Message us on WhatsApp."
   },
   "Blog": {
@@ -239,7 +254,8 @@
     "metaTitle": "Car Care Tips & Guides for Qatar | ABK Trading",
     "metaDescription": "Expert car care guides for Qatar — how to protect your car from extreme heat, PPF vs ceramic coating, the best car care products in Doha, and more.",
     "relatedProducts": "Products mentioned in this article",
-    "backToBlog": "Back to all articles"
+    "backToBlog": "Back to all articles",
+    "heading": "Car care guide."
   },
   "Home404": {
     "title": "Page not found",
@@ -287,5 +303,9 @@
     "section7Body": "These terms are governed by the laws of the State of Qatar. Any dispute arising from your use of the website shall be subject to the exclusive jurisdiction of the courts of Qatar.",
     "section8Title": "Contact",
     "section8Body": "Questions about these terms: WhatsApp +974 30838355 · Email sales@abktradingservice.com."
+  },
+  "Shelf": {
+    "prev": "Scroll back",
+    "next": "Scroll forward"
   }
 }

@@ -1,5 +1,7 @@
 import type { HTMLAttributes } from "react";
 
+// Content column. The Shelf component mirrors these gutters (1.5rem / 3rem
+// at lg) in its `--shelf-inset` so scrolling tiles line up with headings.
 export function Container({
   className = "",
   ...props
@@ -7,7 +9,7 @@ export function Container({
   return (
     <div
       {...props}
-      className={`mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12 ${className}`}
+      className={`mx-auto w-full max-w-7xl px-6 lg:px-12 ${className}`}
     />
   );
 }

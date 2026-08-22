@@ -37,12 +37,12 @@ const SERVICES = [
   },
   {
     key: "tint",
-    image: "/products/vertek/vertek-ppf-premium-protection.webp",
+    image: "/products/vertek/vertek-window-tint.webp",
     serviceType: "Window Tinting",
   },
   {
     key: "ceramic",
-    image: "/products/autotriz/autotriz-ultimate-polish-302.webp",
+    image: "/products/autotriz/autotriz-ion-plus-ceramic-coating.webp",
     serviceType: "Ceramic Coating Application",
   },
   {
@@ -87,56 +87,90 @@ export default async function ServicesPage({
         <JsonLd key={i} id={`ld-service-${i}`} data={ld} />
       ))}
       <JsonLd id="ld-faq" data={faqLd} />
-      <section className="py-16 sm:py-24">
+
+      <section className="pb-8 pt-10 sm:pt-14 lg:pt-20">
         <Container>
           <SectionHeading
-            eyebrow={`⸻ ${t("Eyebrows.workshop")}`}
-            title={t("Services.title")}
+            as="h1"
+            size="display"
+            title={t("Services.heading")}
             subtitle={t("Services.subtitle")}
           />
-          <div className="mt-14 grid gap-6 sm:gap-8 md:grid-cols-2">
-            {SERVICES.map((s) => (
-              <article
-                key={s.key}
-                className="rounded-3xl overflow-hidden border border-(--color-border) bg-(--color-surface) card-gold-hover"
-              >
-                <div className="relative aspect-[5/3]">
-                  <Image
-                    src={s.image}
-                    alt={t(`Services.${s.key}Title`)}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                </div>
-                <div className="p-6 sm:p-8 flex flex-col gap-4">
-                  <h3 className="font-display text-2xl">
-                    {t(`Services.${s.key}Title`)}
-                  </h3>
-                  <p className="text-sm text-(--color-text-muted) leading-relaxed">
-                    {t(`Services.${s.key}Desc`)}
-                  </p>
-                  <WhatsAppButton
-                    audience="b2c"
-                    locale={l}
-                    productName={t(`Services.${s.key}Title`)}
-                    label={t("Services.cta")}
-                    emailFallbackLabel={t("Cta.preferEmail")}
-                    showEmailFallback={false}
-                  />
-                </div>
-              </article>
-            ))}
+          {/* The footer deep-links to #ppf / #tint / #ceramic / #detailing —
+              the ids and the scroll offset below the sticky header must stay. */}
+          <div className="mt-10 grid gap-5 sm:mt-12 md:grid-cols-2">
+            {SERVICES.map((s, i) => {
+              const title = t(`Services.${s.key}Title`);
+              return (
+                <article
+                  key={s.key}
+                  id={s.key}
+                  className="tile flex scroll-mt-20 flex-col overflow-hidden"
+                >
+                  <div className="relative m-4 mb-0 aspect-[16/10] overflow-hidden rounded-[12px] bg-(--color-tile-dark)">
+                    <Image
+                      src={s.image}
+                      alt={title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      loading={i < 2 ? "eager" : undefined}
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <p className="text-caption font-semibold uppercase tracking-[0.04em] text-(--color-text-muted)">
+                      {t("Eyebrows.workshop")}
+                    </p>
+                    <h2 className="mt-1.5 text-title font-semibold text-balance">
+                      {title}
+                    </h2>
+                    <p className="mt-2 text-footnote text-(--color-text-muted)">
+                      {t(`Services.${s.key}Desc`)}
+                    </p>
+                    <div className="mt-auto pt-5">
+                      <WhatsAppButton
+                        audience="b2c"
+                        locale={l}
+                        productName={title}
+                        label={t("Services.book")}
+                        emailFallbackLabel={t("Cta.preferEmail")}
+                        showEmailFallback={false}
+                        size="md"
+                      />
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </Container>
       </section>
-      <FaqSection
-        locale={l}
-        eyebrow={t("Eyebrows.faq")}
-        title={t("Faq.title")}
-        subtitle={t("Faq.subtitle")}
-      />
+
+      <section className="py-6 lg:py-8">
+        <Container>
+          <div className="rounded-hero bg-(--color-ink) p-8 text-white shadow-tile sm:p-10 lg:p-14">
+            <h2 className="text-title font-semibold text-balance lg:text-headline">
+              {t("Services.closingTitle")}
+            </h2>
+            <p className="mt-4 max-w-2xl text-body text-white/70">
+              {t("Services.closingBody")}
+            </p>
+            <div className="mt-6">
+              <WhatsAppButton
+                audience="b2c"
+                locale={l}
+                label={t("Cta.inquireWhatsApp")}
+                emailFallbackLabel={t("Cta.preferEmail")}
+                showEmailFallback={false}
+                size="lg"
+                variant="light"
+              />
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <FaqSection locale={l} title={t("Faq.title")} subtitle={t("Faq.subtitle")} />
     </Shell>
   );
 }

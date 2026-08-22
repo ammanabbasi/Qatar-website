@@ -9,8 +9,18 @@ High-end bilingual (EN/AR) B2B + B2C website for **ABK Trading & Service** at **
 - **Styling:** Tailwind CSS 4 (CSS variables theme)
 - **i18n:** `next-intl` v4 — English + Arabic with RTL, locale-prefixed routes (`/en`, `/ar`)
 - **Images:** `next/image` with WebP/AVIF optimization
-- **Fonts:** Inter (sans), Playfair Display (display), IBM Plex Sans Arabic (Arabic) via `next/font`
+- **Fonts:** Inter (sans), IBM Plex Sans Arabic (Arabic) via `next/font`
 - **Analytics:** Plausible (privacy-first, no cookie banner needed) with `data-plausible-event` attributes
+
+## Design system
+
+The UI is modeled on the Apple Store: light ground, one typeface, one accent colour, product photography in dark tiles, and horizontally scrolling "shelves".
+
+- **Tokens** live in `src/app/globals.css` (`@theme`): colours (`--color-bg` #f5f5f7 ground, `--color-surface` white, `--color-text` / `-muted` / `-subtle`, `--color-link` + `--color-accent` blue, `--color-brand` logo gold for eyebrow labels only, `--color-tile-dark` behind product photos), radii (`rounded-tile` 18px, `rounded-hero` 28px, `rounded-pill`), shadows (`shadow-tile`, `shadow-tile-hover`) and the type scale (`text-caption` 12px … `text-display-lg` 56px, each with line-height and tracking baked in). Reference tokens as `bg-(--color-surface)`; never hard-code hex in components.
+- **Primitives** in `src/components/ui/`: `Container`, `SectionHeading` (two-tone "Title. Subtitle in grey." — `size="display"` for page titles), `Button` / `ButtonLink` (primary · secondary · dark · light · outline), `TextLink` (blue "Learn more ›", flips in RTL), `Chip`, `Shelf` (snap-scrolling row with paddles; give tiles fixed widths), `Icons`.
+- **Product surfaces** in `src/components/product/`: `ProductTile` (dark shelf tile — copy on top, photo dissolving in below), `ProductCard` (catalogue grid), `ProductGallery` (client, thumbnails), `ProductGrid` (filters live in the URL, e.g. `?brand=Vertek&category=ppf`; pages wrap it in `<Suspense>` with `ProductGridView` as the static fallback so the full catalogue is prerendered). Shelf/thumbnail imagery per brand and category is configured in `src/data/products.ts` (`BRAND_IMAGES`, `CATEGORY_THUMBS`).
+- **RTL:** logical properties only (`ps-` / `pe-` / `start-` / `end-`), chevrons get `rtl:-scale-x-100`, and Arabic is never letter-spaced (global rule in `globals.css`).
+- **Images:** Next 16 deprecates `priority`; above-the-fold images use `loading="eager"` (plus `fetchPriority="high"` for LCP candidates) and the product-page hero uses `preload`.
 
 ## Run locally
 
@@ -101,7 +111,7 @@ All product data lives in `src/data/products.ts`. The schema mirrors a CMS docum
 2. Append a new entry to `PRODUCTS` in `src/data/products.ts` following the existing shape.
 3. `npm run build` — the sitemap picks it up automatically.
 
-Mark a product as a "star" (shown on homepage) by setting `featured: true`.  For the Briller "jewelry on velvet" dark-frame treatment, set `highlight: "briller-color"`.
+Mark a product as a "star" (shown on homepage) by setting `featured: true`.
 
 ## Editing copy
 

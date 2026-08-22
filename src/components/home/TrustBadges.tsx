@@ -3,37 +3,31 @@ import { Container } from "@/components/ui/Container";
 
 // NOTE: Distributor status wording ("Authorized Distributor") is a trust claim.
 // If ABK is not officially authorized by one or more of these brands, change
-// the label via the `relation` prop per brand or remove from the list.
-const PARTNERS: Array<{ name: string; relation: string }> = [
-  { name: "Vertek PPF", relation: "Authorized Distributor" },
-  { name: "Autotriz", relation: "Authorized Distributor" },
-  { name: "Briller Car Care", relation: "Authorized Distributor" },
-  { name: "Insta Finish", relation: "Authorized Retailer" },
+// the relation per brand or remove it from the list. Labels live in
+// messages/*.json (Home.relationDistributor / Home.relationRetailer).
+const PARTNERS: Array<{ name: string; relation: "relationDistributor" | "relationRetailer" }> = [
+  { name: "Vertek PPF", relation: "relationDistributor" },
+  { name: "Autotriz", relation: "relationDistributor" },
+  { name: "Briller Car Care", relation: "relationDistributor" },
+  { name: "Insta Finish", relation: "relationRetailer" },
 ];
 
+/** Quiet one-line trust strip beneath the brand shelf. */
 export function TrustBadges() {
   const t = useTranslations("Home");
   return (
-    <section className="py-14 border-t border-(--color-border)">
+    <section className="py-4">
       <Container>
-        <div className="flex flex-col items-center gap-8">
-          <span className="text-[0.65rem] uppercase tracking-[0.3em] text-(--color-gold)">
-            ⸻ {t("trustTitle")}
-          </span>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 w-full">
-            {PARTNERS.map((p) => (
-              <div
-                key={p.name}
-                className="rounded-2xl border border-(--color-border) bg-(--color-surface)/40 p-5 flex flex-col gap-1 items-center text-center"
-              >
-                <span className="font-display text-base">{p.name}</span>
-                <span className="text-[10px] uppercase tracking-[0.18em] text-(--color-text-muted)">
-                  {p.relation}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
+        <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-caption text-(--color-text-muted)">
+          <li className="font-semibold text-(--color-text)">{t("trustTitle")}</li>
+          {PARTNERS.map((p) => (
+            <li key={p.name}>
+              <span className="text-(--color-text)">{p.name}</span>
+              <span aria-hidden> · </span>
+              {t(p.relation)}
+            </li>
+          ))}
+        </ul>
       </Container>
     </section>
   );

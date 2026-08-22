@@ -3,13 +3,13 @@ import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
-import { Hero } from "@/components/home/Hero";
+import { StoreHeader } from "@/components/home/StoreHeader";
+import { CategoryShelf } from "@/components/home/CategoryShelf";
 import { StarProducts } from "@/components/home/StarProducts";
-import { BrandStrip } from "@/components/home/BrandStrip";
 import { ServicesTeaser } from "@/components/home/ServicesTeaser";
-import { TestimonialsPlaceholder } from "@/components/home/TestimonialsPlaceholder";
-import { TrustBadges } from "@/components/home/TrustBadges";
 import { WhyQatar } from "@/components/home/WhyQatar";
+import { BrandStrip } from "@/components/home/BrandStrip";
+import { TrustBadges } from "@/components/home/TrustBadges";
 import { AboutSnippet } from "@/components/home/AboutSnippet";
 import { localBusinessJsonLd } from "@/lib/jsonld";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -53,14 +53,14 @@ export default async function Home({
   return (
     <Shell audience="b2c" locale={l}>
       <JsonLd id="ld-localbusiness-b2c" data={jsonLd} />
-      <Hero audience="b2c" locale={l} />
+      <StoreHeader audience="b2c" locale={l} />
+      <CategoryShelf audience="b2c" />
       <StarProducts audience="b2c" locale={l} />
-      <AboutSnippet />
-      <BrandStrip />
+      <ServicesTeaser locale={l} />
       <WhyQatar />
-      <ServicesTeaser />
-      <TestimonialsPlaceholder />
+      <BrandStrip audience="b2c" />
       <TrustBadges />
+      <AboutSnippet />
     </Shell>
   );
 }

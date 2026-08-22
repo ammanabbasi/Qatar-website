@@ -1,6 +1,15 @@
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Shelf } from "@/components/ui/Shelf";
+import { WindIcon, SunIcon, DropIcon, WavesIcon } from "@/components/ui/Icons";
+
+const POINTS = [
+  { i: 1, Icon: WindIcon },
+  { i: 2, Icon: SunIcon },
+  { i: 3, Icon: DropIcon },
+  { i: 4, Icon: WavesIcon },
+] as const;
 
 /**
  * Topical-depth content block: addresses Qatar-specific car care concerns
@@ -9,39 +18,35 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
  *   2. Surfaces high-intent long-tail keywords ("paint protection from
  *      Doha sand", "ceramic coating Qatar heat") naturally in body copy.
  *
- * Without this, the home page reads as generic e-commerce — Google has
- * no signal that this site is the authoritative source for Qatar car
- * care. Competitors with 1,500-word buyer's guides outrank thin
- * landing pages for almost every commercial query.
+ * Rendered as "The Apple difference" — a shelf of white tiles with an icon.
  */
 export function WhyQatar() {
-  const t = useTranslations();
-  const points = [1, 2, 3, 4] as const;
+  const t = useTranslations("WhyQatar");
 
   return (
-    <section className="py-16 sm:py-24 border-t border-(--color-border)">
-      <Container>
-        <SectionHeading
-          eyebrow={`⸻ ${t("Eyebrows.whyQatar")}`}
-          title={t("WhyQatar.title")}
-          subtitle={t("WhyQatar.subtitle")}
-        />
-        <div className="mt-12 grid sm:grid-cols-2 gap-6">
-          {points.map((i) => (
-            <article
-              key={i}
-              className="p-6 sm:p-7 rounded-2xl border border-(--color-border) bg-(--color-surface)"
-            >
-              <h3 className="font-display text-xl mb-2 text-(--color-gold)">
-                {t(`WhyQatar.point${i}Title`)}
-              </h3>
-              <p className="text-base text-(--color-text-muted) leading-relaxed">
-                {t(`WhyQatar.point${i}Body`)}
-              </p>
-            </article>
-          ))}
-        </div>
+    <section className="py-6 lg:py-8">
+      <Container className="mb-4">
+        <SectionHeading title={t("title")} />
+        {/* The climate paragraph is the SEO payload — kept as body copy so the
+            two-tone heading stays one line. */}
+        <p className="mt-3 max-w-3xl text-body text-(--color-text-muted)">{t("subtitle")}</p>
       </Container>
+      <Shelf ariaLabel={t("title")}>
+        {POINTS.map(({ i, Icon }) => (
+          <article
+            key={i}
+            className="tile flex w-[300px] flex-col p-6 sm:w-[340px] lg:w-[405px] lg:p-7"
+          >
+            <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-(--color-fill) text-(--color-text)">
+              <Icon className="h-[22px] w-[22px]" />
+            </span>
+            <h3 className="mt-5 text-title-sm font-semibold text-balance">
+              {t(`point${i}Title`)}
+            </h3>
+            <p className="mt-2 text-footnote text-(--color-text-muted)">{t(`point${i}Body`)}</p>
+          </article>
+        ))}
+      </Shelf>
     </section>
   );
 }

@@ -33,16 +33,17 @@ export default async function BecomeDealer({
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
   const l = locale as "en" | "ar";
-  const t = await getTranslations({ locale, namespace: "Nav" });
-  const e = await getTranslations({ locale, namespace: "Eyebrows" });
+  const home = await getTranslations({ locale, namespace: "Home" });
 
   return (
     <Shell audience="b2b" locale={l}>
-      <section className="pt-16 sm:pt-20">
+      <section className="pb-8 pt-10 sm:pt-14 lg:pt-20">
         <Container>
           <SectionHeading
-            eyebrow={`⸻ ${e("partnership")}`}
-            title={t("becomeDealer")}
+            as="h1"
+            size="display"
+            title={home("becomeDealerHeading")}
+            subtitle={home("becomeDealerTagline")}
           />
         </Container>
       </section>

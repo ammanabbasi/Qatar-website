@@ -1,57 +1,68 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Shelf } from "@/components/ui/Shelf";
+import { ChevronIcon } from "@/components/ui/Icons";
+import { Link } from "@/i18n/navigation";
+import { BRAND_IMAGES, getBrandsFor, type BrandKey } from "@/data/products";
+import type { Audience } from "@/lib/whatsapp";
 
-const BRANDS = [
-  { name: "Vertek", tagKey: "brandTagVertek" },
-  { name: "Autotriz", tagKey: "brandTagAutotriz" },
-  { name: "Briller", tagKey: "brandTagBriller" },
-  { name: "Insta Finish", tagKey: "brandTagInstaFinish" },
-  { name: "Getsun", tagKey: "brandTagGetsun" },
-  { name: "Sitrett", tagKey: "brandTagSitrett" },
-  { name: "Smart Car", tagKey: "brandTagSmartCar" },
-  { name: "ABK", tagKey: "brandTagABK" },
-] as const;
+const TAG_KEYS: Partial<Record<BrandKey, string>> = {
+  Vertek: "brandTagVertek",
+  Autotriz: "brandTagAutotriz",
+  Briller: "brandTagBriller",
+  InstaFinish: "brandTagInstaFinish",
+  Getsun: "brandTagGetsun",
+  Sitrett: "brandTagSitrett",
+  SmartCar: "brandTagSmartCar",
+  ABK: "brandTagABK",
+};
 
-export function BrandStrip() {
-  const t = useTranslations("Home");
-  // Duplicate so the marquee can loop seamlessly via translateX(-50%).
-  const track = [...BRANDS, ...BRANDS];
+/** "Brands we carry." — compact white tiles linking into a brand-filtered catalogue. */
+export function BrandStrip({ audience }: { audience: Audience }) {
+  const t = useTranslations();
+  const brands = getBrandsFor(audience).filter((b) => b !== "Other");
 
   return (
-    <section className="py-14 border-y border-(--color-border) bg-(--color-surface)/40 overflow-hidden">
-      <Container>
-        <div className="flex flex-col items-center gap-2">
-          <span className="text-[0.65rem] uppercase tracking-[0.34em] text-(--color-text-muted)">
-            {t("brandsTitle")}
-          </span>
-          <span className="text-[0.6rem] uppercase tracking-[0.22em] text-(--color-gold)/60">
-            {t("brandsStripline")}
-          </span>
-        </div>
+    <section className="py-6 lg:py-8">
+      <Container className="mb-4">
+        <SectionHeading title={t("Home.brandsTitle")} subtitle={t("Home.brandsSubtitle")} />
       </Container>
-      <div className="mt-8 relative">
-        {/* Edge fades so brands ease in/out instead of hard-cutting */}
-        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-(--color-surface) to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-(--color-surface) to-transparent z-10" />
-        <div className="marquee-track">
-          {track.map((b, i) => (
-            <div
-              key={`${b.name}-${i}`}
-              className="flex items-baseline gap-4 whitespace-nowrap"
+      <Shelf ariaLabel={t("Home.brandsTitle")}>
+        {brands.map((b) => {
+          const tagKey = TAG_KEYS[b];
+          return (
+            <Link
+              key={b}
+              href={`/${audience}/products?brand=${b}`}
+              className="tile group flex w-[240px] flex-col gap-4 p-5 transition-shadow duration-300 ease-soft hover:shadow-tile-hover lg:w-[270px]"
             >
-              <span className="font-display text-2xl sm:text-3xl text-(--color-chrome)/85 tracking-tight font-medium">
-                {b.name}
+              <span className="relative block h-14 w-14 overflow-hidden rounded-[12px] bg-(--color-tile-dark)">
+                <Image
+                  src={BRAND_IMAGES[b]}
+                  alt=""
+                  fill
+                  sizes="56px"
+                  className="object-cover transition-transform duration-500 ease-soft group-hover:scale-105"
+                />
               </span>
-              <span className="text-[10px] uppercase tracking-[0.28em] text-(--color-text-muted)/70">
-                {t(b.tagKey)}
+              <span className="flex flex-col gap-0.5">
+                <span className="text-title-sm font-semibold">{t(`Brands.${b}`)}</span>
+                {tagKey && (
+                  <span className="text-footnote text-(--color-text-muted)">
+                    {t(`Home.${tagKey}`)}
+                  </span>
+                )}
               </span>
-              <span className="text-(--color-accent-red)/80 text-xs ms-10" aria-hidden>
-                ◆
+              <span className="text-link mt-auto text-footnote font-medium">
+                {t("Cta.explore")}
+                <ChevronIcon className="h-[0.6em] w-[0.6em] rtl:-scale-x-100" />
               </span>
-            </div>
-          ))}
-        </div>
-      </div>
+            </Link>
+          );
+        })}
+      </Shelf>
     </section>
   );
 }

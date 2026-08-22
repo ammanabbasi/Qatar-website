@@ -56,20 +56,17 @@ export default async function BlogListingPage({
     <Shell audience="b2c" locale={l}>
       <JsonLd id="ld-blog-list" data={listLd} />
       <JsonLd id="ld-blog-crumb" data={crumbLd} />
-      <section className="py-16 sm:py-24">
+      <section className="pb-8 pt-10 sm:pt-14 lg:pt-20">
         <Container>
           <SectionHeading
-            eyebrow={`⸻ ${t("eyebrow")}`}
-            title={t("title")}
+            as="h1"
+            size="display"
+            title={t("heading")}
             subtitle={t("subtitle")}
           />
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 sm:mt-12 lg:grid-cols-3">
             {ARTICLES.map((article) => (
-              <ArticleCard
-                key={article.slug}
-                article={article}
-                locale={l}
-              />
+              <ArticleCard key={article.slug} article={article} locale={l} />
             ))}
           </div>
         </Container>

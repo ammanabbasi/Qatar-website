@@ -1,9 +1,9 @@
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { WhatsAppButton } from "@/components/cta/WhatsAppButton";
 import type { WALocale } from "@/lib/whatsapp";
 
+/** Wholesale pitch — a wide black promo tile. */
 export function DealerPitch({ locale }: { locale: WALocale }) {
   const t = useTranslations();
   const bullets = [
@@ -12,39 +12,53 @@ export function DealerPitch({ locale }: { locale: WALocale }) {
     t("Home.dealerBullet3"),
     t("Home.dealerBullet4"),
   ];
+
   return (
-    <section className="py-20 sm:py-28">
+    <section className="py-6 lg:py-8">
       <Container>
-        <div className="relative rounded-3xl border border-(--color-border) bg-gradient-to-br from-(--color-surface) via-(--color-bg) to-(--color-surface-2) p-8 sm:p-12 overflow-hidden">
-          <div className="absolute -top-24 -end-24 w-72 h-72 rounded-full bg-(--color-gold)/10 blur-3xl" />
-          <div className="relative grid lg:grid-cols-2 gap-10 items-center">
-            <div>
-              <SectionHeading
-                eyebrow={`⸻ ${t("Eyebrows.wholesale")}`}
-                title={t("Home.dealerTitle")}
-                subtitle={t("Home.dealerSubtitle")}
+        <div className="grid gap-10 rounded-hero bg-(--color-ink) p-8 text-white shadow-tile sm:p-10 lg:grid-cols-2 lg:items-center lg:gap-14 lg:p-14">
+          <div>
+            <p className="text-caption font-semibold uppercase tracking-[0.04em] text-(--color-brand)">
+              {t("Eyebrows.wholesale")}
+            </p>
+            <h2 className="mt-2 text-title font-semibold text-balance lg:text-headline">
+              {t("Home.dealerTitle")}
+            </h2>
+            <p className="mt-4 max-w-lg text-body text-white/70">{t("Home.dealerSubtitle")}</p>
+            <div className="mt-6">
+              <WhatsAppButton
+                audience="b2b"
+                locale={locale}
+                label={t("Cta.wholesaleInquiry")}
+                emailFallbackLabel={t("Cta.preferEmail")}
+                size="lg"
+                variant="light"
+                showEmailFallback={false}
               />
             </div>
-            <ul className="flex flex-col gap-3">
-              {bullets.map((b) => (
-                <li key={b} className="flex items-start gap-3 text-sm sm:text-base">
-                  <span className="mt-1 w-4 h-4 rounded-full bg-(--color-gold)/20 inline-flex items-center justify-center shrink-0">
-                    <span className="w-1.5 h-1.5 rounded-full bg-(--color-gold)" />
-                  </span>
-                  <span className="text-(--color-text)">{b}</span>
-                </li>
-              ))}
-              <div className="mt-4">
-                <WhatsAppButton
-                  audience="b2b"
-                  locale={locale}
-                  label={t("Cta.wholesaleInquiry")}
-                  emailFallbackLabel={t("Cta.preferEmail")}
-                  size="lg"
-                />
-              </div>
-            </ul>
           </div>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {bullets.map((b) => (
+              <li
+                key={b}
+                className="flex items-start gap-3 rounded-[14px] bg-white/8 p-4 text-footnote text-white/90"
+              >
+                <svg
+                  viewBox="0 0 16 16"
+                  aria-hidden
+                  className="mt-0.5 h-4 w-4 shrink-0 text-(--color-brand)"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M3 8.5l3 3 7-7" />
+                </svg>
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </Container>
     </section>

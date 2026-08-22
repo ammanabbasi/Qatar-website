@@ -950,3 +950,80 @@ export function getRelatedProducts(
   ).slice(0, limit);
 }
 
+
+// ───── Storefront helpers ─────────────────────────────────────────────────
+
+/** Representative photo per category — drives the "Shop by category" shelf. */
+export const CATEGORY_THUMBS: Record<CategoryKey, string> = {
+  ppf: "/products/vertek/vertek-weather-armor-boxes.webp",
+  tint: "/products/vertek/vertek-window-tint.webp",
+  ceramic: "/products/autotriz/autotriz-ion-plus-ceramic-coating.webp",
+  shampoo: "/products/autotriz/autotriz-rich-foam-shampoo-20l.webp",
+  polish: "/products/autotriz/autotriz-ultimate-polish-302.webp",
+  tyre: "/products/getsun/getsun-tire-shine.webp",
+  glass: "/products/briller/briller-glass-cleaner.webp",
+  dressing: "/products/briller/briller-quick-dressing.webp",
+  wax: "/products/instafinish/insta-finish-spray-wax.webp",
+  interior: "/products/autotriz/autotriz-leather-and-vinyl.webp",
+  degreaser: "/products/getsun/getsun-foam-out-engine-degreaser.webp",
+  "heavy-duty": "/products/sitrett/sitrett-mx5-heavy-duty-cleaner.webp",
+  fragrance: "/products/abk/abk-fragrance-pair.webp",
+  accessories: "/products/misc/fast-masking-tape.webp",
+};
+
+/** Representative photo per brand — drives the "Brands we carry" shelf. */
+export const BRAND_IMAGES: Record<BrandKey, string> = {
+  Vertek: "/products/vertek/vertek-weather-armor-boxes.webp",
+  Autotriz: "/products/autotriz/autotriz-3d-matrix-range.webp",
+  Briller: "/products/briller/briller-wash-and-wax-20l-wide.webp",
+  InstaFinish: "/products/instafinish/insta-finish-spray-wax.webp",
+  Getsun: "/products/getsun/getsun-foam-out-close.webp",
+  Sitrett: "/products/sitrett/sitrett-mx5-turkish.webp",
+  ABK: "/products/abk/abk-fragrance-pair.webp",
+  SmartCar: "/products/misc/smart-car-tyre-foam.webp",
+  Other: "/products/misc/protectguard-wf-premium.webp",
+};
+
+function visibleTo(audience: AudienceScope) {
+  return (p: Product) => p.audience === "both" || p.audience === audience;
+}
+
+/** Categories that actually contain products for this audience, in display order. */
+export function getCategoriesFor(audience: AudienceScope): CategoryKey[] {
+  return CATEGORIES.filter((c) =>
+    PRODUCTS.some((p) => p.category === c && visibleTo(audience)(p)),
+  );
+}
+
+/** Brands that actually have products for this audience, in display order. */
+export function getBrandsFor(audience: AudienceScope): BrandKey[] {
+  return BRANDS.filter((b) =>
+    PRODUCTS.some((p) => p.brand === b && visibleTo(audience)(p)),
+  );
+}
+
+/**
+ * Products for the home-page shelf: featured first, then one product from
+ * each brand not yet represented so the shelf reads as a tour of the range,
+ * topped up in catalogue order. Audience-scoped so no tile links to a page
+ * the product detail route refuses to generate.
+ */
+export function getStoreShelfProducts(
+  audience: AudienceScope,
+  limit = 8,
+): Product[] {
+  const visible = PRODUCTS.filter(visibleTo(audience));
+  const picked: Product[] = visible.filter((p) => p.featured);
+  const seenBrands = new Set(picked.map((p) => p.brand));
+  for (const p of visible) {
+    if (picked.length >= limit) break;
+    if (picked.includes(p) || seenBrands.has(p.brand)) continue;
+    picked.push(p);
+    seenBrands.add(p.brand);
+  }
+  for (const p of visible) {
+    if (picked.length >= limit) break;
+    if (!picked.includes(p)) picked.push(p);
+  }
+  return picked.slice(0, limit);
+}

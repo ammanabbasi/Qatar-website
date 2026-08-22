@@ -15,13 +15,17 @@ export function Shell({ audience, locale, children }: Props) {
   return (
     <>
       <Header audience={audience} />
-      <main id="main" className="flex-1">{children}</main>
+      <main id="main" className="flex-1">
+        {children}
+        {/* Inside <main> so every piece of page content sits in a landmark;
+            it is position: fixed, so DOM order doesn't change where it shows. */}
+        <FloatingWhatsApp
+          audience={audience}
+          locale={locale}
+          label={t("whatsAppUs")}
+        />
+      </main>
       <Footer audience={audience} />
-      <FloatingWhatsApp
-        audience={audience}
-        locale={locale}
-        label={t("whatsAppUs")}
-      />
     </>
   );
 }

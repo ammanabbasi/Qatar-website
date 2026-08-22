@@ -44,22 +44,15 @@ export default function LocaleError({
   }, [error]);
 
   return (
-    <main className="min-h-[70vh] flex items-center py-20">
+    <main className="flex min-h-[70vh] items-center py-20">
       <div className="mx-auto w-full max-w-2xl px-6 text-center">
-        <p className="text-[10px] uppercase tracking-[0.32em] text-(--color-gold) mb-6">
-          ⸻ Error
-        </p>
-        <h1 className="font-display text-4xl sm:text-5xl tracking-tight mb-5">
-          {t.title}
-        </h1>
-        <p className="text-(--color-text-muted) text-base sm:text-lg leading-relaxed mb-10">
-          {t.subtitle}
-        </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+        <h1 className="text-headline font-semibold">{t.title}</h1>
+        <p className="mt-4 text-body text-(--color-text-muted)">{t.subtitle}</p>
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <button
             type="button"
             onClick={() => unstable_retry()}
-            className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-full bg-(--color-gold) text-(--color-bg) font-medium uppercase tracking-[0.18em] text-xs hover:brightness-110 transition"
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-pill bg-(--color-accent) px-[22px] text-body text-white transition-colors hover:bg-(--color-accent-hover)"
           >
             {t.retry}
           </button>
@@ -67,19 +60,16 @@ export default function LocaleError({
             href={`https://wa.me/${SITE.whatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 h-11 px-6 rounded-full border border-(--color-border) hover:border-(--color-gold) hover:text-(--color-gold) uppercase tracking-[0.18em] text-xs transition"
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-pill bg-(--color-fill) px-[22px] text-body text-(--color-text) transition-colors hover:bg-(--color-fill-hover)"
           >
             {t.whatsapp}
           </a>
-          <a
-            href={`/${locale}`}
-            className="inline-flex items-center justify-center gap-2 h-11 px-6 text-(--color-text-muted) hover:text-(--color-gold) uppercase tracking-[0.18em] text-xs transition"
-          >
+          <a href={`/${locale}`} className="text-link text-body">
             {t.home}
           </a>
         </div>
         {error.digest && (
-          <p className="mt-10 text-[10px] uppercase tracking-[0.24em] text-(--color-text-muted)/60">
+          <p className="mt-10 text-caption text-(--color-text-muted)">
             Ref: <span className="ltr-nums">{error.digest}</span>
           </p>
         )}

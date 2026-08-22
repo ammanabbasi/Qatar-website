@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
@@ -7,12 +8,13 @@ import { Shell } from "@/components/layout/Shell";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProductGrid } from "@/components/product/ProductGrid";
+import { ProductGridView } from "@/components/product/ProductGridView";
 import { CatalogueDownloads } from "@/components/product/CatalogueDownloads";
 import { WhyQatar } from "@/components/home/WhyQatar";
 import { pageMeta } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
 import { itemListJsonLd } from "@/lib/jsonld";
-import { PRODUCTS } from "@/data/products";
+import { PRODUCTS, getBrandsFor, getCategoriesFor } from "@/data/products";
 
 export async function generateMetadata({
   params,
@@ -39,7 +41,6 @@ export default async function B2CProducts({
   setRequestLocale(locale);
   const l = locale as "en" | "ar";
   const t = await getTranslations({ locale, namespace: "Products" });
-  const e = await getTranslations({ locale, namespace: "Eyebrows" });
   const meta = await getTranslations({ locale, namespace: "Meta" });
 
   // ItemList helps Google interpret this page as a catalogue rather than a
@@ -62,15 +63,33 @@ export default async function B2CProducts({
   return (
     <Shell audience="b2c" locale={l}>
       <JsonLd id="ld-itemlist-b2c-products" data={itemListLd} />
-      <section className="py-16 sm:py-24">
+      <section className="pb-8 pt-10 sm:pt-14 lg:pt-20">
         <Container>
           <SectionHeading
-            eyebrow={`⸻ ${e("catalogue")}`}
-            title={t("title")}
+            as="h1"
+            size="display"
+            title={t("heading")}
             subtitle={t("subtitleB2c")}
           />
-          <div className="mt-10 sm:mt-14">
-            <ProductGrid audience="b2c" locale={l} />
+          <div className="mt-10 sm:mt-12">
+            {/* The grid reads its filters from the URL (useSearchParams), which
+                on a static route renders client-side. The fallback is the same
+                grid, unfiltered and non-interactive, so the full catalogue is
+                in the prerendered HTML and nothing shifts on hydration. */}
+            <Suspense
+              fallback={
+                <ProductGridView
+                  audience="b2c"
+                  locale={l}
+                  products={audienceProducts}
+                  brands={getBrandsFor("b2c")}
+                  categories={getCategoriesFor("b2c")}
+                  filters={{ brand: "all", category: "all" }}
+                />
+              }
+            >
+              <ProductGrid audience="b2c" locale={l} />
+            </Suspense>
           </div>
           <div className="mt-16">
             <CatalogueDownloads />
