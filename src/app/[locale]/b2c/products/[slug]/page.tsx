@@ -5,7 +5,7 @@ import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
 import { ProductDetail } from "@/components/product/ProductDetail";
 import { getProductBySlug, getRelatedProducts, PRODUCTS } from "@/data/products";
-import { pageMeta } from "@/lib/seo";
+import { metaDescription, pageMeta, productSocialImage } from "@/lib/seo";
 
 // Reject any slug not produced by generateStaticParams — b2b-only products
 // hit 404 under /b2c instead of rendering an orphan page no listing links to.
@@ -30,13 +30,15 @@ export async function generateMetadata({
   const l = (locale === "ar" ? "ar" : "en") as "en" | "ar";
   const t = await getTranslations({ locale, namespace: "Categories" });
   const categoryLabel = t(product.category);
-  // Append location + availability to every product meta description.
-  // This ensures every product page can rank for local intent queries
-  // like "car shampoo Doha" or "ceramic coating Qatar".
-  const desc =
+  // Every product description ends with a local-intent tail ("car shampoo
+  // Doha", "ceramic coating Qatar"), clamped so the tail survives Google's
+  // ~155-character snippet cut.
+  const desc = metaDescription(
+    product.shortDesc[l],
     l === "ar"
-      ? `${product.shortDesc[l]} — متوفر لدى ABK في الدوحة، قطر. استفسر عبر واتساب.`
-      : `${product.shortDesc[l]} — Available at ABK in Doha, Qatar. Inquire on WhatsApp.`;
+      ? "متوفر لدى ABK في الدوحة، قطر. اطلب عبر واتساب."
+      : "In stock at ABK, Doha, Qatar. WhatsApp to order.",
+  );
   return {
     title: product.name[l],
     description: desc,
@@ -48,7 +50,9 @@ export async function generateMetadata({
         ? ["العناية بالسيارات قطر", "الدوحة"]
         : ["car care Qatar", "Doha"]),
     ],
-    ...pageMeta(locale as Locale, `/b2c/products/${product.slug}`),
+    ...pageMeta(locale as Locale, `/b2c/products/${product.slug}`, {
+      image: productSocialImage(product.slug, product.name[l]),
+    }),
   };
 }
 

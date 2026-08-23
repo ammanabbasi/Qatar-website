@@ -61,7 +61,7 @@ export function StoreHeader({ audience, locale }: Props) {
                 external
                 icon="external"
                 size="footnote"
-                href={SITE.mapsQuery}
+                href={SITE.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >

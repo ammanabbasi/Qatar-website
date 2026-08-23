@@ -6,7 +6,6 @@ import { Shell } from "@/components/layout/Shell";
 import { StoreHeader } from "@/components/home/StoreHeader";
 import { CategoryShelf } from "@/components/home/CategoryShelf";
 import { StarProducts } from "@/components/home/StarProducts";
-import { ServicesTeaser } from "@/components/home/ServicesTeaser";
 import { WhyQatar } from "@/components/home/WhyQatar";
 import { BrandStrip } from "@/components/home/BrandStrip";
 import { TrustBadges } from "@/components/home/TrustBadges";
@@ -56,7 +55,6 @@ export default async function Home({
       <StoreHeader audience="b2c" locale={l} />
       <CategoryShelf audience="b2c" />
       <StarProducts audience="b2c" locale={l} />
-      <ServicesTeaser locale={l} />
       <WhyQatar />
       <BrandStrip audience="b2c" />
       <TrustBadges />

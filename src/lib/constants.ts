@@ -19,9 +19,14 @@ export const SITE = {
     countryCode: "QA",
     full: "Shop 2 & 3, Building 1306, Street 70, Zone 56, Mesaimeer, Doha, Qatar",
   },
-  // Map search URL — opens Google Maps to the address query; user can pin location after launch.
-  mapsQuery:
-    "https://www.google.com/maps/search/?api=1&query=ABK+Trading+and+Service+Mesaimeer+Doha+Qatar",
+  // Google Business Profile: "ABK Trading and Service — Vertek & Autotriz"
+  // (car accessories store, 4.9★). Pin + CID captured from Google Maps on
+  // 2026-08-22. `mapsUrl` opens the listing itself (reviews, hours, Directions)
+  // on web and in the Maps app; `geo` feeds the LocalBusiness JSON-LD and the
+  // geo.* meta tags — keep both in sync with the GBP pin if the shop moves.
+  gbpName: "ABK Trading and Service — Vertek & Autotriz",
+  mapsUrl: "https://maps.google.com/?cid=9860894303806767987",
+  geo: { latitude: 25.2040478, longitude: 51.5029268 },
   social: {
     facebook: "https://www.facebook.com/share/1L9drK6k4n/",
     instagram: "https://www.instagram.com/abk.trading",

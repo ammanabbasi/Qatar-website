@@ -114,7 +114,7 @@ export default async function ContactPage({
                 />
                 <div className="flex flex-wrap gap-3 border-t border-(--color-border-soft) pt-5">
                   <ButtonLink
-                    href={SITE.mapsQuery}
+                    href={SITE.mapsUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     variant="primary"

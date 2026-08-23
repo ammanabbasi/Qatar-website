@@ -8,11 +8,20 @@ import { routing } from "@/i18n/routing";
 // because sitemaps claiming lastmod=now on every URL at every build get their
 // lastmod signals ignored by Google — same principle as product lastmods below.
 // 2026-06-12: homepage moved from /{locale}/b2c to the locale root.
-const STATIC_PAGES_UPDATED_AT = "2026-06-12";
+// 2026-08-22: storefront redesign rewrote every static page's copy + layout.
+const STATIC_PAGES_UPDATED_AT = "2026-08-22";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE.url;
   const staticLastMod = new Date(STATIC_PAGES_UPDATED_AT);
+  // hreflang cluster for one path: both locales plus x-default → English,
+  // mirroring `pageMeta()` so the sitemap and the page <head> never disagree.
+  const languages = (path: string) => ({
+    ...Object.fromEntries(
+      routing.locales.map((l) => [l, `${base}/${l}${path}`]),
+    ),
+    "x-default": `${base}/${routing.defaultLocale}${path}`,
+  });
 
   // `""` is the locale root (`/en`, `/ar`) — the B2C homepage renders there
   // directly (it previously lived at `/b2c`, which now 308s to the root).
@@ -44,11 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
             : path === "/privacy" || path === "/terms"
               ? 0.3
               : 0.7,
-        alternates: {
-          languages: Object.fromEntries(
-            routing.locales.map((l) => [l, `${base}/${l}${path}`]),
-          ),
-        },
+        alternates: { languages: languages(path) },
       });
     }
     for (const p of PRODUCTS) {
@@ -71,14 +76,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
           lastModified: productLastMod,
           changeFrequency: "monthly",
           priority: p.featured ? 0.8 : 0.6,
-          alternates: {
-            languages: Object.fromEntries(
-              routing.locales.map((l) => [
-                l,
-                `${base}/${l}/${aud}/products/${p.slug}`,
-              ]),
-            ),
-          },
+          // Image-sitemap entries: the product photos are what Google Images
+          // ranks for "vertek ppf", "autotriz v-9" and similar queries.
+          images: p.images.map((src) => `${base}${src}`),
+          alternates: { languages: languages(`/${aud}/products/${p.slug}`) },
         });
       }
     }
@@ -89,14 +90,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         lastModified: new Date(article.date),
         changeFrequency: "monthly",
         priority: 0.7,
-        alternates: {
-          languages: Object.fromEntries(
-            routing.locales.map((l) => [
-              l,
-              `${base}/${l}/b2c/blog/${article.slug}`,
-            ]),
-          ),
-        },
+        alternates: { languages: languages(`/b2c/blog/${article.slug}`) },
       });
     }
   }

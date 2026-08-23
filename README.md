@@ -109,7 +109,8 @@ All product data lives in `src/data/products.ts`. The schema mirrors a CMS docum
 
 1. Drop the image(s) into the matching `public/products/<brand>/` folder.
 2. Append a new entry to `PRODUCTS` in `src/data/products.ts` following the existing shape.
-3. `npm run build` — the sitemap picks it up automatically.
+3. `npm run og:products` — renders its social card (`public/og/products/<slug>.jpg`, the image WhatsApp/Facebook show when the product link is shared). Commit it.
+4. `npm run build` — the sitemap picks it up automatically.
 
 Mark a product as a "star" (shown on homepage) by setting `featured: true`.
 
@@ -140,18 +141,20 @@ Mark a product as a "star" (shown on homepage) by setting `featured: true`.
 
 ## SEO / GEO
 
-- **Canonical URLs + hreflang** set per-page via `buildAlternates()` in `src/lib/seo.ts`. Every page's `generateMetadata` calls the helper with its own path.
-- **LocalBusiness JSON-LD** emitted only on pages that display NAP (name/address/phone): `/[locale]/b2c`, `/[locale]/b2b`, `/[locale]/contact`. Product pages carry Product + BreadcrumbList. `geo` (lat/long) intentionally omitted — add real coordinates only after the Google Business Profile pin is placed.
-- **Sitemap** auto-generated at `/sitemap.xml` covering all static + product pages × 2 locales × 2 audiences. Bare locale roots (`/en`, `/ar`) excluded since they redirect.
-- **Robots.txt** at `/robots.txt` — explicit allow-list for Googlebot, Bingbot, DuckDuckBot, Applebot plus AI crawlers (GPTBot, ClaudeBot, Google-Extended, PerplexityBot, anthropic-ai) to surface in AI shopping answers.
-- **OG image** — Satori-rendered 1200×630 PNG at `/[locale]/opengraph-image`. Per-locale (EN/AR variants with direction-aware layout).
+- **Canonical URLs, hreflang and social tags** come from `pageMeta()` in `src/lib/seo.ts`. Every page's `generateMetadata` calls it with its own path; it returns the canonical, the `en`/`ar`/`x-default` alternates and the complete `openGraph`/`twitter` block (og:url = canonical, locale, image). `metaDescription()` clamps descriptions to ~158 characters while keeping the local-intent tail.
+- **Title template** `%s | ABK Trading` is applied in `[locale]/layout.tsx` — page titles in `messages/*.json` must not repeat the brand (Home/About pass `title: { absolute }` because their strings already carry it).
+- **Structured data** (`src/lib/jsonld.ts`, rendered by `components/seo/JsonLd.tsx`): Organization + WebSite on every page; `AutoPartsStore` (NAP, hours, `geo` from the Google Business Profile pin, `hasMap`, area served, stocked brands under `knowsAbout` — never `brand`, which would claim ABK owns them) on the B2C/B2B homes and Contact; Product + BreadcrumbList on product pages (deliberately **no Offer**: Google flags an Offer without a price as an error, so add one only with a real price); Service ×4 + FAQPage on Services; ItemList on listings; Article on blog posts.
+- **Google Business Profile** — "ABK Trading and Service — Vertek & Autotriz" (CID `9860894303806767987`, pin 25.2040478, 51.5029268). Listing name, CID and coordinates live in `src/lib/constants.ts` (`gbpName`, `mapsUrl`, `geo`) and feed the JSON-LD, the `geo.*` meta tags and every "Open in Maps" link — change them there if the shop moves.
+- **Sitemap** auto-generated at `/sitemap.xml`: static pages + canonical product URLs + blog posts × 2 locales, each with `en`/`ar`/`x-default` alternates, plus image entries for product photos. `lastmod` dates are pinned (`STATIC_PAGES_UPDATED_AT`, `Product.updatedAt`) — bump them only when content really changes.
+- **Robots.txt** at `/robots.txt` — allow-all plus an explicit allow-list for search and AI crawlers (Googlebot, Bingbot, GPTBot, OAI-SearchBot, ClaudeBot, Claude-SearchBot, PerplexityBot, Google-Extended, Applebot-Extended, meta-externalagent, …) so ABK is citable in AI answers. `public/llms.txt` gives those engines a plain-text summary of the business.
+- **Social cards** — `public/og/abk-og-{en,ar}.jpg` (site-wide; 1200×630 screenshots of `scripts/og/brand-card.html`, `?lang=ar` for Arabic), `public/og/abk-hero-1x1.jpg` (the square product render the card is built from; doubles as the 1:1 image in LocalBusiness/Article JSON-LD) and `public/og/products/<slug>.jpg` from `npm run og:products` (`scripts/generate-og.mjs`, sharp, Node 22.18+). Keep every card under 300 KB — WhatsApp's limit for showing the large preview. A file-convention `opengraph-image.jpg` is deliberately NOT used: it only binds to the segment it sits in.
 
 ### Target Qatar keywords (populated throughout copy)
 "paint protection film Qatar", "PPF Doha", "window tinting Qatar", "ceramic coating Mesaimeer", "car wash supplies Qatar wholesale", plus Arabic equivalents.
 
 ## Analytics
 
-Plausible script loads in `[locale]/layout.tsx` with `data-domain="abktradingservice.com"`. Custom events use `data-plausible-event` attributes (already wired on every WhatsApp CTA, audience switch, language switch, and catalogue download).
+Plausible script loads in `[locale]/layout.tsx` with `data-domain="abktradingservice.com"`. Custom events use Plausible's class-based tagged-events syntax (`plausible-event-name=whatsapp_click plausible-event-audience=b2c`; the script ignores `data-*` attributes), already wired on every WhatsApp CTA, audience switch, language switch, catalogue download and map load.
 
 To self-host Plausible and avoid the $9/mo fee, point the script `src` at your own instance.
 
@@ -170,17 +173,14 @@ Same Git-push flow, higher free-tier bandwidth cap. Set build command `npm run b
 
 - [ ] Verify HTTPS cert auto-issued.
 - [ ] **Arabic translation review** — the AR content in `messages/ar.json` and `products.ts` is AI-generated draft. Have a native Arabic speaker polish the copy before public launch. AI Arabic in Qatar reads as "off" to locals.
-- [ ] **Claim Google Business Profile** at the Mesaimeer address. Place the map pin precisely on the shop.
-- [ ] Copy the resulting lat/long from your Google Business dashboard and add to `src/lib/jsonld.ts` (re-enable `geo` object):
-  ```ts
-  geo: { latitude: 25.XXX, longitude: 51.XXX }
-  ```
-- [ ] **Google Search Console** — add the site, verify via DNS TXT, submit `sitemap.xml`. Consider adding separate en-QA and ar-QA properties.
+- [x] **Google Business Profile** claimed — pin + CID are wired into the site (see SEO / GEO).
+- [ ] **GBP website field** — change it from `http://abktradingservice.com/` to `https://abktradingservice.com/en` so the listing links straight to the secured English home.
+- [ ] **Google Search Console** — add the site, verify via DNS TXT (or set `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` on Vercel), submit `sitemap.xml`. Consider adding separate en-QA and ar-QA properties.
 - [ ] **Test WhatsApp deep-links** on a real iPhone + Android device — make sure pre-filled text renders correctly in Arabic on both.
 - [ ] **Check Plausible dashboard** — confirm events are firing for `whatsapp_click`, `whatsapp_floating_click`, `audience_switch`, `language_switch`, `catalogue_download`.
 - [ ] **Authorized Distributor labels** in `src/components/home/TrustBadges.tsx` — confirm wording matches ABK's actual legal relationship with each brand (Distributor / Retailer / Partner).
 - [ ] **Product image quality** — some source photos are raw WhatsApp captures. Consider a studio photography pass for the star products (Vertek PPF, Briller, ABK Mashmom/Secret).
-- [ ] **Social preview** — replace `/og-image.svg` placeholder with a proper 1200×630 branded image.
+- [x] **Social preview** — 1200×630 brand cards + per-product cards under `public/og/` (see SEO / GEO).
 
 ## Troubleshooting
 

@@ -1,4 +1,5 @@
 import { SITE } from "./constants";
+import { defaultSocialImage } from "./seo";
 
 /**
  * Single source of truth for the @id values used to link nodes together.
@@ -13,11 +14,22 @@ const IDS = {
   website: `${SITE.url}#website`,
 } as const;
 
+// Service area for the storefront + workshop nodes: Doha first, then Qatar's
+// other population centres. City nodes (not bare strings) let Google match
+// "PPF Al Wakrah" style intents to the Mesaimeer shop.
+const QATAR = { "@type": "Country", name: "Qatar" } as const;
+const QATAR_SERVICE_AREA = [
+  QATAR,
+  ...["Doha", "Al Rayyan", "Al Wakrah", "Al Wukair", "Lusail", "Umm Salal", "Al Khor"].map(
+    (name) => ({ "@type": "City", name, containedInPlace: QATAR }),
+  ),
+];
+
 /**
  * Top-level Organization for brand identity in the Knowledge Graph.
- * Distinct from `localBusinessJsonLd` (AutomotiveBusiness) — they live at
+ * Distinct from `localBusinessJsonLd` (AutoPartsStore) — they live at
  * different @id and serve different roles: Organization carries the brand,
- * AutomotiveBusiness carries the storefront's NAP. Both are emitted because
+ * AutoPartsStore carries the storefront's NAP. Both are emitted because
  * Google Search Console treats them as complementary, not duplicate.
  */
 export function organizationJsonLd() {
@@ -65,29 +77,33 @@ export function websiteJsonLd(locale: "en" | "ar" = "en") {
 }
 
 /**
- * LocalBusiness / AutomotiveBusiness structured data for Qatar GEO SEO.
- * Note: geo (lat/long) intentionally OMITTED until Google Business pin is captured.
- * Wrong coordinates actively harm Google Maps ranking — address alone is sufficient for now.
+ * Local-business node for Qatar GEO SEO. `AutoPartsStore` is the schema.org
+ * type closest to the Google Business Profile category ("Car accessories
+ * store") and is itself both a Store and an AutomotiveBusiness. `geo` and
+ * `hasMap` come from the GBP pin (src/lib/constants.ts) so Search, Maps and
+ * the website agree on one location.
  */
 export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
   return {
     "@context": "https://schema.org",
-    "@type": "AutomotiveBusiness",
-    additionalType: "https://schema.org/Store",
+    "@type": "AutoPartsStore",
     "@id": IDS.business,
     name: SITE.name,
     // Second alternateName matches the Google Business Profile listing name
-    // verbatim — helps Google reconcile this site entity with the GBP entity
-    // (4.9★ profile titled "ABK Trading and Service — Vertek & Autotriz").
-    alternateName: ["ABK", "ABK Trading and Service — Vertek & Autotriz"],
+    // verbatim — helps Google reconcile this site entity with the GBP entity.
+    alternateName: ["ABK", SITE.gbpName],
     url: SITE.url,
-    hasMap: SITE.mapsQuery,
-    // Static OG image at the app root (`app/opengraph-image.jpg` →
-    // `/opengraph-image.jpg`). The old `/{locale}/opengraph-image` route was
-    // removed when the Satori generator was replaced with a static JPG —
-    // pointing schema consumers at it would 404.
-    image: `${SITE.url}/opengraph-image.jpg`,
+    hasMap: SITE.mapsUrl,
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: SITE.geo.latitude,
+      longitude: SITE.geo.longitude,
+    },
+    // Google asks for LocalBusiness images in more than one aspect ratio:
+    // the 1.91:1 brand card plus the 1:1 product hero.
+    image: [defaultSocialImage(locale).url, `${SITE.url}/og/abk-hero-1x1.jpg`],
     logo: `${SITE.url}/logo.webp`,
+    slogan: SITE.tagline,
     description:
       locale === "ar"
         ? "الموزع والبائع للمنتجات الفاخرة للعناية بالسيارات في قطر — أفلام حماية الطلاء، الطلاءات السيراميكية، شامبو السيارات، التلميع والمزيد."
@@ -129,7 +145,8 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
         closes: "22:00",
       },
     ],
-    areaServed: { "@type": "Country", name: "Qatar" },
+    areaServed: QATAR_SERVICE_AREA,
+    currenciesAccepted: "QAR",
     parentOrganization: { "@id": IDS.organization },
     sameAs: [SITE.social.facebook, SITE.social.instagram, SITE.social.tiktok],
     // Offer catalogue link — tells Google this business sells products,
@@ -143,6 +160,8 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
       url: `${SITE.url}/${locale}/b2c/products`,
     },
     // Topic expertise signals — helps Google/AI understand what ABK knows about.
+    // Stocked brands belong HERE, not under `brand` (which would assert that
+    // ABK owns them). Same four names as the trust strip (TrustBadges.tsx).
     knowsAbout: [
       "Paint Protection Film",
       "Ceramic Coating",
@@ -153,6 +172,10 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
       "PPF Installation",
       "Car Shampoo",
       "Car Polish",
+      "Vertek PPF",
+      "Autotriz",
+      "Briller Car Care",
+      "Insta Finish",
     ],
     // Price range indicator for Google Knowledge Panel
     priceRange: "$$",
@@ -161,12 +184,12 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
 
 /**
  * Product schema. NOTE on offers: ABK quotes pricing per-WhatsApp inquiry,
- * so the Offer block is intentionally OMITTED. A bare `priceCurrency` without
- * `price` triggers Google Search Console warnings ("missing field price"),
- * and a placeholder price would be misleading. Without offers, the Product
- * remains valid for Knowledge Graph + AI shopping surfaces, just not for
- * "merchant listing" rich results — which require real public pricing
- * anyway. Re-add offers if/when public price catalogue ships.
+ * and Google treats an Offer WITHOUT `price` as a structured-data ERROR
+ * ("Missing field 'price'"), so no Offer is emitted at all. Lacking
+ * offers/review/aggregateRating only makes the page ineligible for the
+ * product-snippet rich result (Search Console shows a warning, not an error)
+ * while the Product node still feeds Knowledge Graph and AI shopping surfaces.
+ * Add an Offer with a real `price` if/when a public price catalogue ships.
  */
 export function productJsonLd(opts: {
   name: string;
@@ -187,17 +210,6 @@ export function productJsonLd(opts: {
     brand: { "@type": "Brand", name: opts.brand },
     image: opts.images,
     url: opts.url,
-    offers: {
-      "@type": "Offer",
-      availability: "https://schema.org/InStock",
-      url: opts.url,
-      seller: { "@id": IDS.business },
-      priceSpecification: {
-        "@type": "PriceSpecification",
-        priceCurrency: "QAR",
-        valueAddedTaxIncluded: false,
-      },
-    },
   };
 }
 
@@ -238,7 +250,7 @@ export function serviceJsonLd(opts: {
     url: opts.url,
     image: opts.image,
     provider: { "@id": IDS.business },
-    areaServed: { "@type": "Country", name: "Qatar" },
+    areaServed: QATAR_SERVICE_AREA,
     audience: { "@type": "Audience", audienceType: "Car owners in Qatar" },
   };
 }

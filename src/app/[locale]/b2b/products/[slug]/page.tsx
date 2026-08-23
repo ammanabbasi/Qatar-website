@@ -5,7 +5,7 @@ import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
 import { ProductDetail } from "@/components/product/ProductDetail";
 import { getProductBySlug, getRelatedProducts, PRODUCTS } from "@/data/products";
-import { pageMeta } from "@/lib/seo";
+import { metaDescription, pageMeta, productSocialImage } from "@/lib/seo";
 
 // Reject any slug not produced by generateStaticParams — b2c-only products
 // hit 404 under /b2b instead of rendering an orphan page no listing links to.
@@ -30,10 +30,12 @@ export async function generateMetadata({
   const l = (locale === "ar" ? "ar" : "en") as "en" | "ar";
   const t = await getTranslations({ locale, namespace: "Categories" });
   const categoryLabel = t(product.category);
-  const desc =
+  const desc = metaDescription(
+    product.shortDesc[l],
     l === "ar"
-      ? `${product.shortDesc[l]} — متوفر بالجملة لدى ABK في الدوحة، قطر. استفسر عبر واتساب.`
-      : `${product.shortDesc[l]} — Available wholesale at ABK in Doha, Qatar. Inquire on WhatsApp.`;
+      ? "بالجملة من ABK في الدوحة، قطر. استفسر عبر واتساب."
+      : "Wholesale from ABK, Doha, Qatar. WhatsApp for pricing.",
+  );
   return {
     title: product.name[l],
     description: desc,
@@ -55,6 +57,7 @@ export async function generateMetadata({
       product.audience === "both"
         ? `/b2c/products/${product.slug}`
         : `/b2b/products/${product.slug}`,
+      { image: productSocialImage(product.slug, product.name[l]) },
     ),
   };
 }

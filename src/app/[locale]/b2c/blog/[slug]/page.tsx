@@ -11,7 +11,7 @@ import { ChevronIcon } from "@/components/ui/Icons";
 import { Link } from "@/i18n/navigation";
 import { ARTICLES, getArticleBySlug } from "@/data/articles";
 import { getProductBySlug } from "@/data/products";
-import { pageMeta } from "@/lib/seo";
+import { defaultSocialImage, pageMeta } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
 import { SITE } from "@/lib/constants";
 
@@ -36,7 +36,9 @@ export async function generateMetadata({
     title: article.title[l],
     description: article.description[l],
     keywords: article.keywords[l],
-    ...pageMeta(locale as Locale, `/b2c/blog/${article.slug}`),
+    ...pageMeta(locale as Locale, `/b2c/blog/${article.slug}`, {
+      article: { publishedTime: article.date },
+    }),
   };
 }
 
@@ -59,9 +61,16 @@ export default async function ArticlePage({
     "@type": "Article",
     headline: article.title[l],
     description: article.description[l],
+    // `image` is recommended for Article rich results, ideally in several
+    // aspect ratios: the 1.91:1 brand card plus the 1:1 product hero stand in
+    // until posts get their own cover art.
+    image: [defaultSocialImage(l).url, `${SITE.url}/og/abk-hero-1x1.jpg`],
+    url: `${SITE.url}/${l}/b2c/blog/${article.slug}`,
+    keywords: article.keywords[l].join(", "),
+    articleSection: article.category,
     datePublished: article.date,
     dateModified: article.date,
-    author: { "@type": "Organization", name: SITE.name },
+    author: { "@type": "Organization", name: SITE.name, url: SITE.url },
     publisher: {
       "@type": "Organization",
       name: SITE.name,

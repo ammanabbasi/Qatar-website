@@ -74,8 +74,8 @@ shows any of them, something's wrong.
    - `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` = `abktradingservice.com` (Production only — do NOT set on Preview)
 5. **Deploy** — first build takes ~2 min. Confirm preview URL renders (use the `.vercel.app` URL)
 6. **Smoke-test the preview:**
-   - `/en/b2c` home loads with products
-   - `/ar/b2c` home renders RTL correctly
+   - `/en` home loads with products
+   - `/ar` home renders RTL correctly
    - `/en/contact` — click the map placeholder and confirm iframe loads
    - `/en/privacy` and `/en/terms` resolve
    - Click any "Inquire on WhatsApp" — verify the deep-link opens WhatsApp with a pre-filled message
@@ -112,10 +112,15 @@ shows any of them, something's wrong.
 
 ## Google Business Profile
 
-1. Claim/create the listing for "ABK Trading & Service" at the Mesaimeer address
-2. Once the pin is placed on the Google Maps side, capture the lat/long
-3. Open a follow-up PR updating `src/lib/jsonld.ts` to include a `geo`
-   object — Google uses this for Maps ranking signals
+The listing exists: "ABK Trading and Service — Vertek & Autotriz" (CID
+`9860894303806767987`, pin 25.2040478, 51.5029268). Both are wired into
+`src/lib/constants.ts` and from there into the `AutoPartsStore` JSON-LD, the
+`geo.*` meta tags and every "Open in Maps" link. Remaining owner actions:
+
+1. Change the listing's website field from `http://abktradingservice.com/`
+   to `https://abktradingservice.com/en`
+2. If the shop ever moves, update `geo` + `mapsUrl` in `src/lib/constants.ts`
+   in the same change as the GBP pin
 
 ---
 
@@ -127,13 +132,14 @@ Claude cannot test on real devices. You MUST verify on actual phones:
       opens the WA app (not the web), RTL layout correct on `/ar`
 - [ ] Android Chrome — same checks
 - [ ] WhatsApp preview when sharing a link — open WhatsApp, paste
-      `https://abktradingservice.com/en/b2c`, confirm the OG image renders
-      as a preview card
+      `https://abktradingservice.com/en` and a product URL, confirm the brand
+      card / product card renders as a large preview
 - [ ] Facebook/LinkedIn — paste the same URL in a draft post, confirm preview
 
-If the OG image doesn't render on any platform, check
-`https://abktradingservice.com/en/opengraph-image` directly in a browser —
-it should download as a PNG.
+If a preview doesn't render, open
+`https://abktradingservice.com/og/abk-og-en.jpg` (or
+`/og/products/<slug>.jpg`) directly — it must load as a JPEG under 300 KB —
+and check that the page's `og:image` tag points at it.
 
 ---
 
@@ -145,10 +151,11 @@ it should download as a PNG.
 - [ ] Upgrade `Strict-Transport-Security` to include `preload` once the domain
       has been stable on HTTPS for 30+ days, and submit to
       https://hstspreload.org/
-- [x] Replace the generated OG PNG with a studio-designed JPG — delete
-      `src/app/[locale]/opengraph-image.tsx` and add a static
-      `src/app/[locale]/opengraph-image.jpg` (max 8MB). Next.js picks up
-      whichever file exists
+- [x] Social cards are static JPEGs in `public/og/` (brand cards from
+      `scripts/og/brand-card.html`, product cards from `npm run og:products`),
+      wired explicitly through `pageMeta()`. The file-convention
+      `opengraph-image.jpg` was dropped: it only binds to the segment it sits
+      in, so at `src/app/` it never reached the `[locale]` pages
 
 ---
 
@@ -162,17 +169,20 @@ actually moves rankings in Qatar. Skipping items 1–3 will leave the technical
 work below them with very little to amplify.
 
 ### 1. Google Business Profile (highest single-factor weight)
-- [ ] Claim / create the GBP listing at the Mesaimeer address
-- [ ] Set primary category: **"Auto detailing service"** (most specific match
-      for ABK's mix). Add secondary categories: **"Car accessories store"**,
-      **"Auto repair shop"**, **"Window tinting service"**
+- [x] Claim / create the GBP listing at the Mesaimeer address — live as
+      "ABK Trading and Service — Vertek & Autotriz" (4.9★)
+- [ ] Primary category is currently **"Car accessories store"** (the JSON-LD
+      `@type` `AutoPartsStore` mirrors it). Consider **"Auto detailing
+      service"** as primary with **"Car accessories store"**, **"Auto repair
+      shop"**, **"Window tinting service"** as secondaries — and if the
+      primary changes, update the `@type` in `src/lib/jsonld.ts` to match
 - [ ] Upload 20+ photos within the first month: storefront, interior shelves,
       install workshop, before/after, branded products. Continue uploading
       ~weekly — photo recency is a ranking signal
 - [ ] Place the map pin **precisely** on the shop entrance. Wrong coordinates
       actively harm Maps ranking
-- [ ] Once the pin is placed, capture the lat/long and re-enable the `geo`
-      block in `src/lib/jsonld.ts` (currently intentionally omitted)
+- [x] Pin captured (25.2040478, 51.5029268) and wired into the `geo` block
+      (`src/lib/constants.ts` → `src/lib/jsonld.ts`)
 - [ ] Set the same opening hours as `src/lib/constants.ts` and update GBP
       every time hours change in code
 
@@ -240,7 +250,7 @@ Search Console section above:
 - [x] Per-page canonical + hreflang (en, ar, x-default)
 - [x] Differentiated B2C/B2B titles + descriptions per locale
 - [x] `Organization` + `WebSite` JSON-LD (locale layout)
-- [x] `AutomotiveBusiness` JSON-LD on home + contact
+- [x] `AutoPartsStore` (LocalBusiness) JSON-LD with `geo` + `hasMap` on home + contact
 - [x] `Service` JSON-LD per workshop service (PPF, tint, ceramic, detailing)
 - [x] `FAQPage` JSON-LD with 12 bilingual entries
 - [x] `Product` + `BreadcrumbList` JSON-LD on every product page

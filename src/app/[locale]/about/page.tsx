@@ -18,8 +18,9 @@ export async function generateMetadata({
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) return {};
   const meta = await getTranslations({ locale, namespace: "Meta" });
-  // `title.absolute` bypasses the `%s · ABK` template suffix so we don't
-  // produce "About ABK Trading & Service · ABK". The title is already brand-inclusive.
+  // `title.absolute` bypasses the `%s | ABK Trading` template suffix so we
+  // don't produce "About ABK Trading & Service … | ABK Trading". The string
+  // is already brand-inclusive.
   return {
     title: { absolute: meta("aboutTitle") },
     description: meta("aboutDescription"),

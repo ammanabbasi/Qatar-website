@@ -7,6 +7,7 @@ import { routing, type Locale } from "@/i18n/routing";
 import { fontSans, fontArabic } from "@/lib/fonts";
 import { SITE } from "@/lib/constants";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/jsonld";
+import { defaultSocialImage } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 import "../globals.css";
 
@@ -28,14 +29,19 @@ export async function generateMetadata({
   // alternates at the layout level canonicalised every page to the bare
   // `/${locale}` root, collapsing 95+ URLs in Google's index.
   //
-  // OG image auto-wires from `opengraph-image.tsx` — no `images` field here.
-  //
   // Icons auto-wire from `app/icon.png` + `app/apple-icon.png` conventions.
+  // Social images do NOT: a file-convention `opengraph-image.jpg` only binds
+  // to its own segment, so the card is wired explicitly — here as the
+  // fallback, and per page through `pageMeta()`.
+  const socialImage = defaultSocialImage(locale as Locale);
   return {
     metadataBase: new URL(SITE.url),
     title: {
       default: t("defaultTitle"),
-      template: `%s · ${SITE.shortName}`,
+      // Brand suffix on every page title. Page strings in messages/*.json must
+      // NOT repeat the brand — the template adds it once. Home/About pass
+      // `title: { absolute }` because their strings already carry the brand.
+      template: "%s | ABK Trading",
     },
     description: t("defaultDescription"),
     // Secondary keyword signal — deprecated by Google but still consumed by
@@ -65,21 +71,39 @@ export async function generateMetadata({
             "auto detailing products",
             "ABK Trading",
           ],
-    // NOTE: `openGraph.title` / `openGraph.description` / `openGraph.url`
-    // intentionally OMITTED — Next.js auto-maps the page-level `title` and
-    // `description` fields to og:title / og:description / twitter:title /
-    // twitter:description. Setting them at the layout means every page
-    // inherits the DEFAULT site title/description in social previews,
-    // collapsing per-product OG cards into a single generic preview.
-    // The fields set below (siteName, locale, type) DO make sense at the
-    // layout level because they don't vary per page.
+    // NOTE: `openGraph.title` / `openGraph.description` intentionally OMITTED —
+    // Next.js auto-maps the page-level `title` and `description` fields to
+    // og:title / og:description / twitter:title / twitter:description. Setting
+    // them at the layout would make every page inherit the DEFAULT site
+    // title/description in social previews. Pages replace this whole block
+    // via `pageMeta()`; it only covers routes that don't call it (not-found).
     openGraph: {
       type: "website",
       siteName: SITE.name,
       locale: locale === "ar" ? "ar_QA" : "en_QA",
+      images: [socialImage],
     },
     twitter: {
       card: "summary_large_image",
+      images: [socialImage],
+    },
+    // One `robots` meta for every crawler (Google and Bing both honour the
+    // max-* directives): full-size product photos in Search/Discover, and no
+    // cap on how much of a page may be quoted in snippets and AI Overviews.
+    robots: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+    // Legacy geo meta — Bing and older local crawlers still read these
+    // (Google relies on the LocalBusiness JSON-LD). QA-DA = ISO 3166-2 Doha.
+    other: {
+      "geo.region": "QA-DA",
+      "geo.placename": "Doha",
+      "geo.position": `${SITE.geo.latitude};${SITE.geo.longitude}`,
+      ICBM: `${SITE.geo.latitude}, ${SITE.geo.longitude}`,
     },
     // Search engine verification — set via Vercel env vars, no code change needed.
     // NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION → Google Search Console
