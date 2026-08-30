@@ -161,6 +161,8 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B505", ar: "B505" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
+      { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "1:50", ar: "١:٥٠" } },
+      { label: { en: "Features", ar: "المميزات" }, value: { en: "With wax", ar: "مع شمع" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
     audience: "both",
@@ -187,6 +189,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B502", ar: "B502" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
+      { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "1:50", ar: "١:٥٠" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
     audience: "both",
@@ -240,6 +243,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B508", ar: "B508" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
+      { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "1:50", ar: "١:٥٠" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
     audience: "both",
