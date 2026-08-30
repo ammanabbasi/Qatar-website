@@ -161,6 +161,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B505", ar: "B505" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
+      { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
     audience: "both",
     featured: true,
@@ -186,6 +187,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B502", ar: "B502" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
+      { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
     audience: "both",
     highlight: "briller-color",
@@ -210,6 +212,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B503", ar: "B503" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
+      { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
     audience: "both",
     highlight: "briller-color",
@@ -237,6 +240,7 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B508", ar: "B508" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
+      { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
     audience: "both",
     highlight: "briller-color",
@@ -755,6 +759,7 @@ export const PRODUCTS: Product[] = [
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B511", ar: "B511" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
       { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "1:1", ar: "١:١" } },
+      { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
     audience: "both",
     highlight: "briller-color",
