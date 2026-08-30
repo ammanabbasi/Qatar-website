@@ -175,7 +175,6 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
       "Vertek PPF",
       "Autotriz",
       "Briller Car Care",
-      "Insta Finish",
     ],
     // Price range indicator for Google Knowledge Panel
     priceRange: "$$",

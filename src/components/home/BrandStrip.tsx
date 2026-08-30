@@ -5,16 +5,18 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Shelf } from "@/components/ui/Shelf";
 import { ChevronIcon } from "@/components/ui/Icons";
 import { Link } from "@/i18n/navigation";
-import { BRAND_IMAGES, getBrandsFor, type BrandKey } from "@/data/products";
+import {
+  BRAND_IMAGES,
+  getBrandsFor,
+  UNPROMOTED_BRANDS,
+  type BrandKey,
+} from "@/data/products";
 import type { Audience } from "@/lib/whatsapp";
 
 const TAG_KEYS: Partial<Record<BrandKey, string>> = {
   Vertek: "brandTagVertek",
   Autotriz: "brandTagAutotriz",
   Briller: "brandTagBriller",
-  InstaFinish: "brandTagInstaFinish",
-  Getsun: "brandTagGetsun",
-  Sitrett: "brandTagSitrett",
   SmartCar: "brandTagSmartCar",
   ABK: "brandTagABK",
 };
@@ -22,7 +24,9 @@ const TAG_KEYS: Partial<Record<BrandKey, string>> = {
 /** "Brands we carry." — compact white tiles linking into a brand-filtered catalogue. */
 export function BrandStrip({ audience }: { audience: Audience }) {
   const t = useTranslations();
-  const brands = getBrandsFor(audience).filter((b) => b !== "Other");
+  const brands = getBrandsFor(audience).filter(
+    (b) => b !== "Other" && !UNPROMOTED_BRANDS.includes(b),
+  );
 
   return (
     <section className="py-6 lg:py-8">

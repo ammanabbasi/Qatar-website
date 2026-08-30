@@ -46,8 +46,8 @@ export const FAQ: FaqEntry[] = [
       ar: "هل تورّدون منتجات العناية بالسيارات بالجملة لمحلات أخرى في قطر؟",
     },
     a: {
-      en: "Yes. ABK supplies wholesale Vertek PPF, Autotriz, Briller, Insta Finish and Getsun products to detailing shops, body shops and car-wash businesses across Qatar and the GCC. Volume pricing is quoted per request on WhatsApp.",
-      ar: "نعم. تورّد ABK أفلام Vertek PPF ومنتجات Autotriz وBriller وInsta Finish وGetsun بالجملة لورش التلميع والكراجات ومحطات الغسيل في قطر والخليج. تُحدَّد الأسعار حسب الكمية عبر واتساب.",
+      en: "Yes. ABK supplies wholesale Vertek PPF, Autotriz and Briller products to detailing shops, body shops and car-wash businesses across Qatar and the GCC. Volume pricing is quoted per request on WhatsApp.",
+      ar: "نعم. تورّد ABK أفلام Vertek PPF ومنتجات Autotriz وBriller بالجملة لورش التلميع والكراجات ومحطات الغسيل في قطر والخليج. تُحدَّد الأسعار حسب الكمية عبر واتساب.",
     },
   },
   {

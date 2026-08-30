@@ -9,7 +9,6 @@ const PARTNERS: Array<{ name: string; relation: "relationDistributor" | "relatio
   { name: "Vertek PPF", relation: "relationDistributor" },
   { name: "Autotriz", relation: "relationDistributor" },
   { name: "Briller Car Care", relation: "relationDistributor" },
-  { name: "Insta Finish", relation: "relationRetailer" },
 ];
 
 /** Quiet one-line trust strip beneath the brand shelf. */

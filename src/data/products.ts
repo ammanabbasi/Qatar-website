@@ -986,6 +986,20 @@ export const BRAND_IMAGES: Record<BrandKey, string> = {
   Other: "/products/misc/protectguard-wf-premium.webp",
 };
 
+/**
+ * Brands still stocked, sellable and filterable, but no longer advertised on
+ * marketing surfaces (home BrandStrip, trust badges, B2B taglines, wholesale
+ * meta descriptions, knowsAbout schema). Owner decision 2026-08-30: stop
+ * promoting these while the remaining stock sells through. Deliberately NOT
+ * applied inside getBrandsFor() -- that also drives the catalogue filter
+ * chips, which must keep working for anyone browsing to these products.
+ */
+export const UNPROMOTED_BRANDS: readonly BrandKey[] = [
+  "InstaFinish",
+  "Getsun",
+  "Sitrett",
+];
+
 function visibleTo(audience: AudienceScope) {
   return (p: Product) => p.audience === "both" || p.audience === audience;
 }
@@ -1017,13 +1031,20 @@ export function getStoreShelfProducts(
   const visible = PRODUCTS.filter(visibleTo(audience));
   const picked: Product[] = visible.filter((p) => p.featured);
   const seenBrands = new Set(picked.map((p) => p.brand));
-  for (const p of visible) {
+  // Unpromoted brands are kept out of the brand tour and the top-up so the
+  // home shelf stops advertising them -- they remain fully browsable in the
+  // catalogue. An explicit `featured` flag still wins, so curation can
+  // always override the exclusion.
+  const promotable = visible.filter(
+    (p) => p.featured || !UNPROMOTED_BRANDS.includes(p.brand),
+  );
+  for (const p of promotable) {
     if (picked.length >= limit) break;
     if (picked.includes(p) || seenBrands.has(p.brand)) continue;
     picked.push(p);
     seenBrands.add(p.brand);
   }
-  for (const p of visible) {
+  for (const p of promotable) {
     if (picked.length >= limit) break;
     if (!picked.includes(p)) picked.push(p);
   }
