@@ -8,6 +8,10 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TextLink } from "@/components/ui/TextLink";
 import { BadgeIcon, TruckIcon, SparkleIcon } from "@/components/ui/Icons";
+import { FaqSection } from "@/components/home/FaqSection";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { FAQ } from "@/data/faq";
+import { faqJsonLd } from "@/lib/jsonld";
 import { pageMeta } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -46,9 +50,16 @@ export default async function AboutPage({
   const store = await cookies();
   const audience = store.get("abk_audience")?.value === "b2b" ? "b2b" : "b2c";
   const t = await getTranslations({ locale, namespace: "About" });
+  const tFaq = await getTranslations({ locale, namespace: "Faq" });
+  const faqLd = faqJsonLd(
+    FAQ.map((entry) => ({ question: entry.q[l], answer: entry.a[l] })),
+  );
 
   return (
     <Shell audience={audience} locale={l}>
+      {/* FAQPage schema must sit on the same page as the rendered Q/A or
+          Google treats the mismatch as cloaking - see FaqSection. */}
+      <JsonLd id="ld-faq" data={faqLd} />
       <section className="pb-8 pt-10 sm:pt-14 lg:pt-20">
         <Container>
           <SectionHeading
@@ -61,7 +72,6 @@ export default async function AboutPage({
             <div className="flex flex-col gap-5">
               <p className="text-body-lg text-(--color-text-muted)">{t("paragraph1")}</p>
               <p className="text-body-lg text-(--color-text-muted)">{t("paragraph2")}</p>
-              <p className="text-body-lg text-(--color-text-muted)">{t("paragraph3")}</p>
             </div>
             <aside className="flex flex-col gap-4">
               <h2 className="text-title-sm font-semibold">{t("valuesTitle")}</h2>
@@ -100,15 +110,13 @@ export default async function AboutPage({
                 </TextLink>
               </li>
               <li>
-                <TextLink href="/b2c/services">{t("exploreServicesLabel")}</TextLink>
-              </li>
-              <li>
                 <TextLink href="/b2b/become-a-dealer">{t("exploreDealerLabel")}</TextLink>
               </li>
             </ul>
           </nav>
         </Container>
       </section>
+      <FaqSection locale={l} title={tFaq("title")} subtitle={tFaq("subtitle")} />
     </Shell>
   );
 }

@@ -5,7 +5,6 @@ import { SITE } from "@/lib/constants";
 import type { Audience } from "@/lib/whatsapp";
 
 const SHOP_CATEGORIES = ["ppf", "ceramic", "shampoo", "polish", "tyre"] as const;
-const SERVICES = ["ppf", "tint", "ceramic", "detailing"] as const;
 
 export function Footer({ audience }: { audience: Audience }) {
   const t = useTranslations();
@@ -25,7 +24,7 @@ export function Footer({ audience }: { audience: Audience }) {
           {t("Footer.tagline")}
         </p>
 
-        <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-(--color-border) pt-6 md:grid-cols-4">
+        <div className="mt-6 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-(--color-border) pt-6 md:grid-cols-3">
           {/* Shop */}
           <div className="flex flex-col gap-2.5">
             <h3 className={headCls}>{t("Footer.shop")}</h3>
@@ -43,24 +42,14 @@ export function Footer({ audience }: { audience: Audience }) {
             ))}
           </div>
 
-          {/* Services */}
-          <div className="flex flex-col gap-2.5">
-            <h3 className={headCls}>{t("Nav.services")}</h3>
-            {SERVICES.map((s) => (
-              <Link key={s} className={linkCls} href={`/b2c/services#${s}`}>
-                {t(`Services.${s}Title`)}
-              </Link>
-            ))}
-            <Link className={linkCls} href="/b2c/blog">
-              {t("Nav.blog")}
-            </Link>
-          </div>
-
           {/* Company */}
           <div className="flex flex-col gap-2.5">
             <h3 className={headCls}>{t("Footer.company")}</h3>
             <Link className={linkCls} href={homeHref}>
               {t("Nav.home")}
+            </Link>
+            <Link className={linkCls} href="/b2c/blog">
+              {t("Nav.blog")}
             </Link>
             <Link className={linkCls} href="/about">
               {t("Nav.about")}

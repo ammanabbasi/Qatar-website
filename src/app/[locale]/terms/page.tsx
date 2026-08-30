@@ -37,7 +37,7 @@ export default async function TermsPage({
   const audience = store.get("abk_audience")?.value === "b2b" ? "b2b" : "b2c";
   const t = await getTranslations({ locale, namespace: "Terms" });
 
-  const sections = [1, 2, 3, 4, 5, 6, 7, 8] as const;
+  const sections = [1, 2, 3, 4, 5, 6, 7] as const;
 
   return (
     <Shell audience={audience} locale={l}>

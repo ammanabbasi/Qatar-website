@@ -169,7 +169,6 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
       "Window Tinting",
       "Car Care Products",
       "Auto Detailing Supplies",
-      "PPF Installation",
       "Car Shampoo",
       "Car Polish",
       "Vertek PPF",
@@ -224,33 +223,6 @@ export function breadcrumbJsonLd(
       name: it.name,
       item: it.url,
     })),
-  };
-}
-
-/**
- * Service node for one workshop service (PPF install, ceramic coating, etc.).
- * `provider` references the AutomotiveBusiness via @id so Google merges it
- * with the storefront's NAP — important for "PPF installation Doha" type
- * intents.
- */
-export function serviceJsonLd(opts: {
-  name: string;
-  description: string;
-  url: string;
-  serviceType: string;
-  image?: string;
-}) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: opts.name,
-    description: opts.description,
-    serviceType: opts.serviceType,
-    url: opts.url,
-    image: opts.image,
-    provider: { "@id": IDS.business },
-    areaServed: QATAR_SERVICE_AREA,
-    audience: { "@type": "Audience", audienceType: "Car owners in Qatar" },
   };
 }
 

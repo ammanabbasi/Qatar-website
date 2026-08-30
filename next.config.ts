@@ -45,10 +45,23 @@ const nextConfig: NextConfig = {
       // (permanent) so Google transfers any signals the old URL collected.
       // Config redirects run BEFORE the next-intl middleware, so this fires
       // even though the /b2c page route no longer exists. Deeper /b2c/*
-      // routes (products, services, blog) still exist and are NOT redirected.
+      // routes (products, blog) still exist and are NOT redirected.
       {
         source: "/:locale(en|ar)/b2c",
         destination: "/:locale",
+        permanent: true,
+      },
+      // /b2c/services was live and indexed before the services offering was
+      // withdrawn. 301 to the catalogue so its link equity carries over and
+      // shared links do not dead-end on a 404.
+      {
+        source: "/:locale(en|ar)/b2c/services",
+        destination: "/:locale/b2c/products",
+        permanent: true,
+      },
+      {
+        source: "/b2c/services",
+        destination: "/b2c/products",
         permanent: true,
       },
     ];

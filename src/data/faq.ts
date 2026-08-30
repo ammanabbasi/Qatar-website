@@ -22,16 +22,6 @@ export type FaqEntry = {
 export const FAQ: FaqEntry[] = [
   {
     q: {
-      en: "Where can I get Vertek PPF installed in Qatar?",
-      ar: "أين يمكنني تركيب أفلام Vertek لحماية الطلاء في قطر؟",
-    },
-    a: {
-      en: "Vertek paint protection film is installed at the ABK Trading & Service workshop in Mesaimeer, Doha. Trained technicians cut and apply the film for full body, front-end or custom panels. WhatsApp +974 30838355 to book.",
-      ar: "يُركّب فيلم حماية الطلاء Vertek في ورشة ABK للتجارة والخدمات بمسيمير، الدوحة. يقوم فنيون مدربون بقص وتركيب الفيلم للهيكل الكامل أو المقدمة أو الأجزاء المختارة. للحجز عبر واتساب: 30838355 974+.",
-    },
-  },
-  {
-    q: {
       en: "How long does paint protection film last?",
       ar: "ما مدة عمر فيلم حماية الطلاء PPF؟",
     },
@@ -52,12 +42,12 @@ export const FAQ: FaqEntry[] = [
   },
   {
     q: {
-      en: "Is window tinting at ABK compliant with Qatar regulations?",
-      ar: "هل تظليل النوافذ في ABK متوافق مع قوانين قطر؟",
+      en: "Do your window films meet Qatar tint regulations?",
+      ar: "هل أفلام التظليل لديكم متوافقة مع قوانين قطر؟",
     },
     a: {
-      en: "Yes. We install heat-rejecting window films in multiple VLT (visible light transmission) grades that meet Qatar's vehicle tint regulations. We confirm the right grade for your vehicle before installation.",
-      ar: "نعم. نركّب أفلام تظليل عازلة للحرارة بدرجات نفاذية ضوئية متعددة متوافقة مع قوانين قطر. نُحدّد الدرجة المناسبة لسيارتك قبل التركيب.",
+      en: "Yes. We stock heat-rejecting window films in multiple VLT (visible light transmission) grades that meet Qatar's vehicle tint regulations. Tell us your vehicle and we will confirm the right grade before you buy.",
+      ar: "نعم. نوفر أفلام تظليل عازلة للحرارة بدرجات نفاذية ضوئية متعددة متوافقة مع قوانين قطر. أخبرنا بموديل سيارتك ونُحدّد لك الدرجة المناسبة قبل الشراء.",
     },
   },
   {
@@ -86,8 +76,8 @@ export const FAQ: FaqEntry[] = [
       ar: "كم تبلغ تكلفة فيلم حماية الطلاء في قطر؟",
     },
     a: {
-      en: "PPF pricing depends on coverage area, vehicle size and finish (gloss or matte). Front-end packages start lower than full-body installs. Send a WhatsApp message with your car model and the coverage you want and we'll quote within hours.",
-      ar: "تتفاوت أسعار فيلم حماية الطلاء حسب مساحة التغطية وحجم السيارة ونوع التشطيب (لامع أو مطفي). تبدأ باقات المقدمة بأسعار أقل من تغطية الهيكل الكامل. أرسل لنا موديل سيارتك ونوع التغطية المطلوبة عبر واتساب وسنرد بعرض السعر خلال ساعات.",
+      en: "PPF pricing depends on roll size, coverage area and finish (gloss or matte). Send a WhatsApp message with your car model and the coverage you need and we'll quote within hours.",
+      ar: "تتفاوت أسعار فيلم حماية الطلاء حسب مساحة التغطية وحجم السيارة ونوع التشطيب (لامع أو مطفي). أرسل لنا موديل سيارتك ونوع التغطية المطلوبة عبر واتساب وسنرد بعرض السعر خلال ساعات.",
     },
   },
   {
@@ -126,8 +116,8 @@ export const FAQ: FaqEntry[] = [
       ar: "هل أفلام Vertek لحماية الطلاء مشمولة بضمان؟",
     },
     a: {
-      en: "Yes. Genuine Vertek PPF carries a manufacturer warranty against yellowing, cracking and delamination when installed by an authorised installer. ABK is the authorised Qatar installer; warranty terms are confirmed in writing at the time of install.",
-      ar: "نعم. تأتي أفلام Vertek PPF الأصلية بضمان مصنع ضد الاصفرار والتشقق والانفصال عند التركيب من قِبل مُركّب معتمد. ABK هو المُركّب المعتمد في قطر؛ تُؤكَّد شروط الضمان كتابياً عند التركيب.",
+      en: "Yes. Genuine Vertek PPF carries a manufacturer warranty against yellowing, cracking and delamination when fitted by an authorised installer following Vertek's procedures. ABK is the authorised Qatar distributor and supplies the film with its warranty documentation.",
+      ar: "نعم. تأتي أفلام Vertek PPF الأصلية بضمان مصنع ضد الاصفرار والتشقق والانفصال عند التركيب من قِبل مُركّب معتمد وفق إجراءات Vertek. ABK هو الموزع المعتمد في قطر ويورّد الفيلم مع مستندات الضمان الخاصة به.",
     },
   },
   {
@@ -191,8 +181,8 @@ export const FAQ: FaqEntry[] = [
       ar: "هل يمكن لملمّع السيارات إزالة الخدوش من سيارتي؟",
     },
     a: {
-      en: "Yes — polishing compounds like Autotriz Heavy Cut 901 remove sanding marks and deep swirls, while finishing polishes like Autotriz Ultimate Polish 302 restore a high-gloss, hologram-free finish. For best results, professional machine polishing is recommended. ABK sells these compounds and offers detailing services at our Mesaimeer workshop.",
-      ar: "نعم — مركبات التلميع مثل Autotriz Heavy Cut 901 تزيل علامات السنفرة والدوائر العميقة، بينما الملمعات النهائية مثل Autotriz Ultimate Polish 302 تعيد لمعاناً عالياً خالياً من الهالات. للحصول على أفضل النتائج، يُنصح بالتلميع الاحترافي بالمكينة. توفر ABK هذه المركبات وتقدم خدمات التلميع في ورشتنا بمسيمير.",
+      en: "Yes — polishing compounds like Autotriz Heavy Cut 901 remove sanding marks and deep swirls, while finishing polishes like Autotriz Ultimate Polish 302 restore a high-gloss, hologram-free finish. For best results, professional machine polishing is recommended. ABK stocks these compounds at our Mesaimeer store.",
+      ar: "نعم — مركبات التلميع مثل Autotriz Heavy Cut 901 تزيل علامات السنفرة والدوائر العميقة، بينما الملمعات النهائية مثل Autotriz Ultimate Polish 302 تعيد لمعاناً عالياً خالياً من الهالات. للحصول على أفضل النتائج، يُنصح بالتلميع الاحترافي بالمكينة. توفر ABK هذه المركبات في متجرنا بمسيمير.",
     },
   },
 ];

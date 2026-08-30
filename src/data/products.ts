@@ -76,8 +76,8 @@ export const PRODUCTS: Product[] = [
       ar: "فيلم حماية طلاء فاخر بتقنية النانو الذاتية الإصلاح. مقاوم للخدش والعوامل الجوية ولامع.",
     },
     longDesc: {
-      en: "Vertek Weather Armor PPF is a premium-grade paint protection film that shields your paint from rock chips, scratches, weather and chemicals. The self-healing top-coat erases minor scratches with heat, and the optical clarity keeps your paintwork invisible underneath — just brighter. Available in gloss and matte finishes, cut for full-body, front-end, or custom areas. Installed at our Mesaimeer workshop.",
-      ar: "فيلم حماية الطلاء Vertek Weather Armor يحمي طلاء سيارتك من الحصى والخدوش والعوامل الجوية والمواد الكيميائية. طبقة الإصلاح الذاتي تُزيل الخدوش الخفيفة بالحرارة، والشفافية البصرية تُظهر الطلاء الأصلي بلمعان أعلى. متوفر بتشطيبات لامعة ومطفية — للهيكل الكامل أو المقدمة أو الأجزاء المحددة. يُركّب في ورشتنا بمسيمير.",
+      en: "Vertek Weather Armor PPF is a premium-grade paint protection film that shields your paint from rock chips, scratches, weather and chemicals. The self-healing top-coat erases minor scratches with heat, and the optical clarity keeps your paintwork invisible underneath — just brighter. Available in gloss and matte finishes, cut for full-body, front-end, or custom areas. Available from our Mesaimeer store.",
+      ar: "فيلم حماية الطلاء Vertek Weather Armor يحمي طلاء سيارتك من الحصى والخدوش والعوامل الجوية والمواد الكيميائية. طبقة الإصلاح الذاتي تُزيل الخدوش الخفيفة بالحرارة، والشفافية البصرية تُظهر الطلاء الأصلي بلمعان أعلى. متوفر بتشطيبات لامعة ومطفية — للهيكل الكامل أو المقدمة أو الأجزاء المحددة. متوفر في متجرنا بمسيمير.",
     },
     images: [
       "/products/vertek/vertek-ppf-premium-protection.webp",
@@ -103,8 +103,8 @@ export const PRODUCTS: Product[] = [
       {
         label: { en: "Application", ar: "التطبيق" },
         value: {
-          en: "Installed at ABK Mesaimeer workshop",
-          ar: "يُركّب في ورشة ABK بمسيمير",
+          en: "Fitted by a trained installer",
+          ar: "يُركّب بواسطة مُركّب مدرّب",
         },
       },
     ],
@@ -127,8 +127,8 @@ export const PRODUCTS: Product[] = [
       ar: "أفلام نوافذ عازلة للحرارة بدرجات VLT متعددة، متوافقة مع قوانين قطر.",
     },
     longDesc: {
-      en: "Vertek window films cut heat, UV and glare without compromising visibility. Multiple VLT (Visible Light Transmission) grades available to match your preference and Qatar's regulations. Professionally installed at our Mesaimeer workshop with full cut and lifetime peel warranty.",
-      ar: "أفلام Vertek تعزل الحرارة والأشعة فوق البنفسجية والوهج دون التأثير على الرؤية. متوفرة بدرجات VLT متعددة حسب تفضيلك وقوانين قطر. تُركّب باحتراف في ورشتنا بمسيمير مع ضمان ضد التقشير.",
+      en: "Vertek window films cut heat, UV and glare without compromising visibility. Multiple VLT (Visible Light Transmission) grades available to match your preference and Qatar's regulations. Supplied cut to size, with a lifetime peel warranty on the film.",
+      ar: "أفلام Vertek تعزل الحرارة والأشعة فوق البنفسجية والوهج دون التأثير على الرؤية. متوفرة بدرجات VLT متعددة حسب تفضيلك وقوانين قطر. تُورّد مقصوصة حسب المقاس، مع ضمان ضد التقشير على الفيلم.",
     },
     images: ["/products/vertek/vertek-window-tint.webp"],
     audience: "both",
@@ -358,8 +358,8 @@ export const PRODUCTS: Product[] = [
       ar: "طلاء سيراميك احترافي بتقنية النانو. لمعان معزّز وحماية طويلة الأمد للطلاء.",
     },
     longDesc: {
-      en: "Autotriz 3D Matrix Ultra is a professional ceramic coating applied by trained detailers to protect and enhance automotive paint. Installed at our Mesaimeer workshop. 50 ml kit. Full specifications available on request.",
-      ar: "Autotriz 3D Matrix Ultra طلاء سيراميك احترافي يُطبّق بواسطة فنيين مدربين لحماية وتعميق طلاء السيارة. يُركّب في ورشتنا بمسيمير. عبوة 50 مل. المواصفات الكاملة متاحة عند الطلب.",
+      en: "Autotriz 3D Matrix Ultra is a professional ceramic coating applied by trained detailers to protect and enhance automotive paint. Available from our Mesaimeer store. 50 ml kit. Full specifications available on request.",
+      ar: "Autotriz 3D Matrix Ultra طلاء سيراميك احترافي يُطبّق بواسطة فنيين مدربين لحماية وتعميق طلاء السيارة. متوفر في متجرنا بمسيمير. عبوة 50 مل. المواصفات الكاملة متاحة عند الطلب.",
     },
     images: [
       "/products/autotriz/autotriz-3d-matrix-ultra.webp",
@@ -383,8 +383,8 @@ export const PRODUCTS: Product[] = [
       ar: "طلاء سيراميك احترافي بتقنية النانو. لمعان معزّز وحماية طويلة الأمد للطلاء.",
     },
     longDesc: {
-      en: "Autotriz 3D Matrix Hybrid is a professional ceramic coating applied by trained detailers to protect and enhance automotive paint. Installed at our Mesaimeer workshop. 50 ml kit. Full specifications available on request.",
-      ar: "Autotriz 3D Matrix Hybrid طلاء سيراميك احترافي يُطبّق بواسطة فنيين مدربين لحماية وتعميق طلاء السيارة. يُركّب في ورشتنا بمسيمير. عبوة 50 مل. المواصفات الكاملة متاحة عند الطلب.",
+      en: "Autotriz 3D Matrix Hybrid is a professional ceramic coating applied by trained detailers to protect and enhance automotive paint. Available from our Mesaimeer store. 50 ml kit. Full specifications available on request.",
+      ar: "Autotriz 3D Matrix Hybrid طلاء سيراميك احترافي يُطبّق بواسطة فنيين مدربين لحماية وتعميق طلاء السيارة. متوفر في متجرنا بمسيمير. عبوة 50 مل. المواصفات الكاملة متاحة عند الطلب.",
     },
     images: [
       "/products/autotriz/autotriz-3d-matrix-hybrid.webp",

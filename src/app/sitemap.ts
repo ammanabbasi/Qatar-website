@@ -28,7 +28,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
     "",
     "/b2c/products",
-    "/b2c/services",
     "/b2c/blog",
     "/b2b",
     "/b2b/products",

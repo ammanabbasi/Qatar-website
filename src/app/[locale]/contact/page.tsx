@@ -155,11 +155,6 @@ export default async function ContactPage({
             <h2 className="text-title-sm font-semibold">{t("Contact.exploreTitle")}</h2>
             <ul className="mt-4 flex flex-col gap-3">
               <li>
-                <TextLink href="/b2c/services">
-                  {t("Contact.exploreServicesLabel")}
-                </TextLink>
-              </li>
-              <li>
                 <TextLink href={`/${audience}/products`}>
                   {t("Contact.exploreProductsLabel")}
                 </TextLink>
