@@ -9,7 +9,6 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { ProductGridView } from "@/components/product/ProductGridView";
-import { CatalogueDownloads } from "@/components/product/CatalogueDownloads";
 import { WhyQatar } from "@/components/home/WhyQatar";
 import { pageMeta } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
@@ -90,9 +89,6 @@ export default async function B2CProducts({
             >
               <ProductGrid audience="b2c" locale={l} />
             </Suspense>
-          </div>
-          <div className="mt-16">
-            <CatalogueDownloads />
           </div>
         </Container>
       </section>

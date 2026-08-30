@@ -9,7 +9,6 @@ import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { ProductGridView } from "@/components/product/ProductGridView";
-import { CatalogueDownloads } from "@/components/product/CatalogueDownloads";
 import { DealerPitch } from "@/components/home/DealerPitch";
 import { pageMeta } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
@@ -84,9 +83,6 @@ export default async function B2BProducts({
             >
               <ProductGrid audience="b2b" locale={l} />
             </Suspense>
-          </div>
-          <div className="mt-16">
-            <CatalogueDownloads />
           </div>
         </Container>
       </section>

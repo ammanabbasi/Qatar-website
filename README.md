@@ -74,7 +74,7 @@ src/
 ├── components/
 │   ├── layout/    # Header, Footer, AudienceSwitch, LocaleSwitch, Shell
 │   ├── home/      # Hero, StarProducts, BrandStrip, ServicesTeaser, DealerPitch, TrustBadges, Testimonials
-│   ├── product/   # ProductCard, ProductGrid (w/ filters), ProductDetail, CatalogueDownloads
+│   ├── product/   # ProductCard, ProductGrid (w/ filters), ProductDetail
 │   ├── cta/       # WhatsAppButton, FloatingWhatsApp, WhatsAppIcon
 │   └── ui/        # Container, Button, SectionHeading
 ├── data/
