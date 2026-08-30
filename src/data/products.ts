@@ -425,8 +425,8 @@ export const PRODUCTS: Product[] = [
     brand: "Autotriz",
     category: "ppf",
     name: {
-      en: "Autotriz PPF Gel — Installation Aid (4L)",
-      ar: "Autotriz PPF Gel — مساعد تركيب فيلم الحماية (٤ لتر)",
+      en: "Autotriz PPF Gel — Installation Aid",
+      ar: "Autotriz PPF Gel — مساعد تركيب فيلم الحماية",
     },
     shortDesc: {
       en: "Premixed paint protection film installation aid. Thick, viscous gel — no dripping, easy residue cleanup.",
@@ -438,11 +438,13 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/autotriz/autotriz-ppf-gel-4l.webp"],
     specs: [
-      { label: { en: "Size", ar: "الحجم" }, value: { en: "4 L", ar: "٤ لتر" } },
-      { label: { en: "Type", ar: "النوع" }, value: { en: "Premixed installation gel", ar: "جل تركيب جاهز" } },
+      { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L · 4 L", ar: "٢٠ لتر · ٤ لتر" } },
+      { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "1:1", ar: "١:١" } },
+      { label: { en: "Use", ar: "الاستخدام" }, value: { en: "Window tints & PPF application", ar: "تركيب التظليل وأفلام الحماية" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
     audience: "both",
+    updatedAt: "2026-08-30",
   },
   {
     slug: "autotriz-one-step-finish",
