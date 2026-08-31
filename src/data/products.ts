@@ -168,6 +168,7 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "briller-color",
+    updatedAt: "2026-08-30",
   },
   {
     slug: "briller-multipurpose-cleaner",
@@ -220,6 +221,7 @@ export const PRODUCTS: Product[] = [
     ],
     audience: "both",
     highlight: "briller-color",
+    updatedAt: "2026-08-30",
   },
   {
     slug: "briller-glass-cleaner",
@@ -249,6 +251,7 @@ export const PRODUCTS: Product[] = [
     ],
     audience: "both",
     highlight: "briller-color",
+    updatedAt: "2026-08-30",
   },
 
   // ───── Autotriz — Detailing Chemicals
@@ -768,6 +771,7 @@ export const PRODUCTS: Product[] = [
     ],
     audience: "both",
     highlight: "briller-color",
+    updatedAt: "2026-08-30",
   },
 
   // ───── ABK — white-label fragrances (own brand)
