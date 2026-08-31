@@ -59,7 +59,6 @@ src/
 │       ├── not-found.tsx
 │       ├── b2c/
 │       │   ├── page.tsx
-│       │   ├── services/page.tsx
 │       │   └── products/
 │       │       ├── page.tsx
 │       │       └── [slug]/page.tsx
@@ -73,7 +72,7 @@ src/
 │       └── contact/page.tsx
 ├── components/
 │   ├── layout/    # Header, Footer, AudienceSwitch, LocaleSwitch, Shell
-│   ├── home/      # Hero, StarProducts, BrandStrip, ServicesTeaser, DealerPitch, TrustBadges, Testimonials
+│   ├── home/      # StoreHeader, StarProducts, BrandStrip, CategoryShelf, AboutSnippet, WhyQatar, FaqSection, TrustBadges, DealerPitch
 │   ├── product/   # ProductCard, ProductGrid (w/ filters), ProductDetail
 │   ├── cta/       # WhatsAppButton, FloatingWhatsApp, WhatsAppIcon
 │   └── ui/        # Container, Button, SectionHeading
@@ -143,7 +142,7 @@ Mark a product as a "star" (shown on homepage) by setting `featured: true`.
 
 - **Canonical URLs, hreflang and social tags** come from `pageMeta()` in `src/lib/seo.ts`. Every page's `generateMetadata` calls it with its own path; it returns the canonical, the `en`/`ar`/`x-default` alternates and the complete `openGraph`/`twitter` block (og:url = canonical, locale, image). `metaDescription()` clamps descriptions to ~158 characters while keeping the local-intent tail.
 - **Title template** `%s | ABK Trading` is applied in `[locale]/layout.tsx` — page titles in `messages/*.json` must not repeat the brand (Home/About pass `title: { absolute }` because their strings already carry it).
-- **Structured data** (`src/lib/jsonld.ts`, rendered by `components/seo/JsonLd.tsx`): Organization + WebSite on every page; `AutoPartsStore` (NAP, hours, `geo` from the Google Business Profile pin, `hasMap`, area served, stocked brands under `knowsAbout` — never `brand`, which would claim ABK owns them) on the B2C/B2B homes and Contact; Product + BreadcrumbList on product pages (deliberately **no Offer**: Google flags an Offer without a price as an error, so add one only with a real price); Service ×4 + FAQPage on Services; ItemList on listings; Article on blog posts.
+- **Structured data** (`src/lib/jsonld.ts`, rendered by `components/seo/JsonLd.tsx`): Organization + WebSite on every page; `AutoPartsStore` (NAP, hours, `geo` from the Google Business Profile pin, `hasMap`, area served, stocked brands under `knowsAbout` — never `brand`, which would claim ABK owns them) on the B2C/B2B homes and Contact; Product + BreadcrumbList on product pages (deliberately **no Offer**: Google flags an Offer without a price as an error, so add one only with a real price); FAQPage on About; ItemList on listings; Article on blog posts.
 - **Google Business Profile** — "ABK Trading and Service — Vertek & Autotriz" (CID `9860894303806767987`, pin 25.2040478, 51.5029268). Listing name, CID and coordinates live in `src/lib/constants.ts` (`gbpName`, `mapsUrl`, `geo`) and feed the JSON-LD, the `geo.*` meta tags and every "Open in Maps" link — change them there if the shop moves.
 - **Sitemap** auto-generated at `/sitemap.xml`: static pages + canonical product URLs + blog posts × 2 locales, each with `en`/`ar`/`x-default` alternates, plus image entries for product photos. `lastmod` dates are pinned (`STATIC_PAGES_UPDATED_AT`, `Product.updatedAt`) — bump them only when content really changes.
 - **Robots.txt** at `/robots.txt` — allow-all plus an explicit allow-list for search and AI crawlers (Googlebot, Bingbot, GPTBot, OAI-SearchBot, ClaudeBot, Claude-SearchBot, PerplexityBot, Google-Extended, Applebot-Extended, meta-externalagent, …) so ABK is citable in AI answers. `public/llms.txt` gives those engines a plain-text summary of the business.

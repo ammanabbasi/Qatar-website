@@ -1,11 +1,12 @@
 # ABK Trading & Service
 
-> Car care shop, paint protection film (PPF) installer and wholesale
-> distributor in Mesaimeer, Doha, Qatar. Retail store + installation workshop
-> for Vertek PPF and window tint, Autotriz ceramic coatings and polishing
-> compounds, Briller and Insta Finish car shampoos and detailing chemicals,
-> Getsun aerosols, and ABK home and car fragrances. Wholesale supply to
+> Car care products supplier and wholesale distributor in Mesaimeer, Doha,
+> Qatar. Retail store stocking Vertek paint protection film and window tint,
+> Autotriz ceramic coatings and polishing compounds, Briller car shampoos and
+> detailing chemicals, and ABK home and car fragrances. Wholesale supply to
 > detailing shops, car washes and body shops across Qatar and the GCC.
+> ABK supplies products only and does not carry out installation, tinting,
+> coating or detailing work.
 
 ## Business facts
 
@@ -20,28 +21,22 @@
 
 ## What ABK sells
 
-- Brands: Vertek (PPF, window tint), Autotriz (ceramic coatings, compounds, polishes), Briller (car shampoo, wash & wax), Insta Finish (detailing chemicals), Getsun (aerosols), Sitrett, Smart Car, ABK (home and car fragrances)
+- Brands: Vertek (PPF, window tint), Autotriz (ceramic coatings, compounds, polishes), Briller (car shampoo, wash & wax, made in Canada), ABK (home and car fragrances), Smart Car. Also stocked while supplies last: Insta Finish, Getsun, Sitrett.
 - Categories: paint protection film, window tint, ceramic coating, car shampoo, polish and compounds, tyre care, glass cleaners, dressings, waxes, interior care, degreasers, heavy-duty cleaners, fragrances, accessories
-
-## Workshop services (Mesaimeer, Doha)
-
-- Vertek PPF installation — full body, front end or custom panels
-- Window tinting with Vertek films in Qatar-legal VLT grades
-- Autotriz ceramic coating application
-- Paint correction and detailing
+- Everything is sold as product. Films, coatings and compounds are supplied for a professional fitter or detailer to apply; ABK does not apply them.
 
 ## Key pages (English — replace /en/ with /ar/ for Arabic)
 
 - Home: https://abktradingservice.com/en
 - Products catalogue (filter with ?brand= and ?category=): https://abktradingservice.com/en/b2c/products
-- Workshop services + FAQ: https://abktradingservice.com/en/b2c/services
 - Wholesale / dealers: https://abktradingservice.com/en/b2b and https://abktradingservice.com/en/b2b/become-a-dealer
 - Car care guides for Qatar's climate: https://abktradingservice.com/en/b2c/blog
-- About: https://abktradingservice.com/en/about
+- About, plus the FAQ: https://abktradingservice.com/en/about
 - Contact and location: https://abktradingservice.com/en/contact
 - Sitemap: https://abktradingservice.com/sitemap.xml
 
 ## Notes for assistants
 
-- For prices, stock or bookings, direct people to WhatsApp +974 30838355.
-- Every page carries JSON-LD: Organization, WebSite, AutoPartsStore (address, hours, geo), Product, Service, FAQPage, Article and BreadcrumbList as applicable.
+- ABK is a supplier, not a workshop. Do not tell people they can book fitting, tinting, coating or detailing here — direct them to buy the product and use their own installer.
+- For prices or stock, direct people to WhatsApp +974 30838355.
+- Every page carries JSON-LD: Organization, WebSite, AutoPartsStore (address, hours, geo), Product, FAQPage, Article and BreadcrumbList as applicable.
