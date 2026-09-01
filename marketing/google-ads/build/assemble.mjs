@@ -90,6 +90,25 @@ try {
 }
 
 const forbiddenBrands = /insta ?finish|getsun|sitrett|grizzly/i;
+
+/**
+ * Brand keys that exist in the type but carry no promotable product. Naming one
+ * in ad copy sends people to a brand they cannot buy.
+ *
+ * This exists because commit 21c382a renamed the film brand Vertek -> VTEK.
+ * "Vertek" stayed a valid BrandKey with zero products, and eight ad assets went
+ * on naming it. Deriving the list from the catalogue means the next rename is
+ * caught the same way, without anyone remembering to add a rule.
+ *
+ * Keywords are exempt: bidding on the retired spelling is deliberate while the
+ * old URLs still 308-redirect and people still search it.
+ */
+const emptyBrands = catalogue.brands.filter(
+  (b) => b !== "Other" && !(catalogue.byBrand[b] || []).length,
+);
+const emptyBrandRe = emptyBrands.length
+  ? new RegExp(`\\b(${emptyBrands.join("|")})\\b`, "i")
+  : null;
 const forbiddenSlugs = new Set(catalogue.excludedSlugs);
 const accountNegatives = new Set();
 
@@ -138,7 +157,9 @@ function checkDilutionClaims(where, url, texts) {
       const claimed = m[1].replace(/\s+/g, "");
       if (!actual) {
         fail(where, `states a dilution "${claimed}" but ${slug} has no dilution spec: "${raw}"`);
-      } else if (claimed !== actual.replace(/\s+/g, "")) {
+      } else if (!actual.replace(/\s+/g, "").includes(claimed)) {
+        // Substring, not equality: a spec can legitimately list more than one
+        // usage, e.g. "Direct / 1:1" — an ad saying "1:1" is then correct.
         fail(where, `states dilution "${claimed}" but ${slug} is "${actual}": "${raw}"`);
       }
     }
@@ -348,6 +369,9 @@ for (const { file, data } of themes) {
 
       for (const t of [...H, ...D]) {
         if (forbiddenBrands.test(t)) fail(gw, `ad text names an unpromoted brand: "${t}"`);
+        if (emptyBrandRe?.test(t)) {
+          fail(gw, `ad text names "${emptyBrandRe.exec(t)[1]}", a brand with no products in the deployed catalogue: "${t}"`);
+        }
         if (/!{2,}|\?{2,}/.test(t)) fail(gw, `repeated punctuation is disallowed: "${t}"`);
         if (/\b(click here|best price|cheapest|guaranteed|lowest price)\b/i.test(t)) fail(gw, `policy-risk phrase: "${t}"`);
         if (servicePromise.test(t)) fail(gw, `implies ABK performs the work (it supplies product only): "${t}"`);
@@ -639,8 +663,8 @@ if (demotedNegatives.length) {
 if (multiWordBroadNegatives) {
   console.log(
     `  note: ${multiWordBroadNegatives} multi-word negatives are Broad — they block when a query\n` +
-    "        contains all their words in any order. Verified not to block any of our own 806\n" +
-    "        keywords; review if the search terms report shows wanted traffic being suppressed.",
+    `        contains all their words in any order. Verified not to block any of our own\n` +
+    `        ${totalKeywords} keywords; review if the search terms report shows wanted traffic suppressed.`,
   );
 }
 if (warnings.length) {

@@ -24,40 +24,136 @@
           "finalUrl": "https://abktradingservice.com/en/b2b",
           "themeNote": "A trade buyer looking for a car-care supplier, distributor or wholesaler to stock a detailing shop, car wash or body shop. Mixed-basket intent, so it lands on the wholesale hub rather than a single SKU.",
           "keywords": [
-            { "text": "car care products supplier qatar", "matchType": "Phrase" },
-            { "text": "car care products distributor qatar", "matchType": "Phrase" },
-            { "text": "car care products wholesale qatar", "matchType": "Phrase" },
-            { "text": "detailing products wholesale qatar", "matchType": "Phrase" },
-            { "text": "detailing supplies supplier doha", "matchType": "Phrase" },
-            { "text": "car detailing chemicals supplier qatar", "matchType": "Phrase" },
-            { "text": "detailing chemicals distributor gcc", "matchType": "Phrase" },
-            { "text": "bulk detailing chemicals gcc", "matchType": "Phrase" },
-            { "text": "auto detailing supplies wholesale", "matchType": "Phrase" },
-            { "text": "car care products importer qatar", "matchType": "Phrase" },
-            { "text": "car care wholesale gcc", "matchType": "Phrase" },
-            { "text": "wholesale car care doha", "matchType": "Phrase" },
-            { "text": "trade account car care qatar", "matchType": "Phrase" },
-            { "text": "trade pricing detailing products", "matchType": "Phrase" },
-            { "text": "detailing shop supplies qatar", "matchType": "Phrase" },
-            { "text": "body shop supplies doha", "matchType": "Phrase" },
-            { "text": "car care products supplier uae", "matchType": "Phrase" },
-            { "text": "car care products supplier saudi arabia", "matchType": "Phrase" },
-            { "text": "car care supplier kuwait", "matchType": "Phrase" },
-            { "text": "car care supplier bahrain", "matchType": "Phrase" },
-            { "text": "car care supplier oman", "matchType": "Phrase" },
-            { "text": "car care products supplier qatar", "matchType": "Exact" },
-            { "text": "car care wholesale qatar", "matchType": "Exact" }
+            {
+              "text": "car care products supplier qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car care products distributor qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car care products wholesale qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "detailing products wholesale qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "detailing supplies supplier doha",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car detailing chemicals supplier qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "detailing chemicals distributor gcc",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "bulk detailing chemicals gcc",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "auto detailing supplies wholesale",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car care products importer qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car care wholesale gcc",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "wholesale car care doha",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "trade account car care qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "trade pricing detailing products",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "detailing shop supplies qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "body shop supplies doha",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car care products supplier uae",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car care products supplier saudi arabia",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car care supplier kuwait",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car care supplier bahrain",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car care supplier oman",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car care products supplier qatar",
+              "matchType": "Exact"
+            },
+            {
+              "text": "car care wholesale qatar",
+              "matchType": "Exact"
+            }
           ],
           "negativeKeywords": [
-            { "text": "near me", "matchType": "Broad" },
-            { "text": "become a dealer", "matchType": "Broad" },
-            { "text": "distributor opportunity", "matchType": "Broad" },
-            { "text": "distributorship", "matchType": "Broad" },
-            { "text": "franchise", "matchType": "Broad" },
-            { "text": "for sale", "matchType": "Broad" },
-            { "text": "car wash equipment", "matchType": "Broad" },
-            { "text": "pressure washer", "matchType": "Broad" },
-            { "text": "vending machine", "matchType": "Broad" }
+            {
+              "text": "near me",
+              "matchType": "Broad"
+            },
+            {
+              "text": "become a dealer",
+              "matchType": "Broad"
+            },
+            {
+              "text": "distributor opportunity",
+              "matchType": "Broad"
+            },
+            {
+              "text": "distributorship",
+              "matchType": "Broad"
+            },
+            {
+              "text": "franchise",
+              "matchType": "Broad"
+            },
+            {
+              "text": "for sale",
+              "matchType": "Broad"
+            },
+            {
+              "text": "car wash equipment",
+              "matchType": "Broad"
+            },
+            {
+              "text": "pressure washer",
+              "matchType": "Broad"
+            },
+            {
+              "text": "vending machine",
+              "matchType": "Broad"
+            }
           ],
           "ad": {
             "headlines": [
@@ -68,7 +164,7 @@
               "Stocked in Mesaimeer, Doha",
               "Supply for Detailing Shops",
               "For Car Washes & Body Shops",
-              "Autotriz & Vertek Stocked",
+              "Autotriz & VTEK Stocked",
               "Briller Chemicals in Bulk",
               "We Supply, You Apply",
               "Trade Price List on WhatsApp",
@@ -81,7 +177,7 @@
               "Wholesale car care from a Doha stockist. Films, coatings and chemicals for the trade.",
               "ABK supplies detailing shops, car washes and body shops across Qatar and the GCC.",
               "We supply the product only. Your own technicians apply it. Message us on WhatsApp.",
-              "Autotriz, Vertek and Briller stocked in Mesaimeer. Ask for the trade list on WhatsApp."
+              "Autotriz, VTEK and Briller stocked in Mesaimeer. Ask for the trade list on WhatsApp."
             ],
             "path1": "wholesale",
             "path2": "gcc"
@@ -89,41 +185,128 @@
         },
         {
           "name": "EN Become a Dealer - Distributor",
-          "maxCpcQAR": 5.0,
+          "maxCpcQAR": 5,
           "finalUrl": "https://abktradingservice.com/en/b2b/become-a-dealer",
           "themeNote": "Dealer-recruitment intent: someone who wants to resell or distribute a car-care line in their own market rather than buy a one-off order. Lowest volume, highest lifetime value.",
           "keywords": [
-            { "text": "become a dealer car care", "matchType": "Phrase" },
-            { "text": "become a distributor car care", "matchType": "Phrase" },
-            { "text": "car care distributor opportunity", "matchType": "Phrase" },
-            { "text": "car care distributorship gcc", "matchType": "Phrase" },
-            { "text": "reseller car care products qatar", "matchType": "Phrase" },
-            { "text": "detailing brand distributor qatar", "matchType": "Phrase" },
-            { "text": "open a trade account car care", "matchType": "Phrase" },
-            { "text": "ppf dealer program", "matchType": "Phrase" },
-            { "text": "ppf distributor gcc", "matchType": "Phrase" },
-            { "text": "paint protection film distributor qatar", "matchType": "Phrase" },
-            { "text": "ceramic coating distributor program", "matchType": "Phrase" },
-            { "text": "ceramic coating dealer middle east", "matchType": "Phrase" },
-            { "text": "window film distributor gcc", "matchType": "Phrase" },
-            { "text": "autotriz distributor", "matchType": "Phrase" },
-            { "text": "autotriz dealer middle east", "matchType": "Phrase" },
-            { "text": "vertek ppf distributor", "matchType": "Phrase" },
-            { "text": "vtek ppf distributor", "matchType": "Phrase" },
-            { "text": "car care brand looking for distributors", "matchType": "Phrase" },
-            { "text": "become a dealer car care qatar", "matchType": "Exact" },
-            { "text": "car care distributor qatar", "matchType": "Exact" }
+            {
+              "text": "become a dealer car care",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "become a distributor car care",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car care distributor opportunity",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car care distributorship gcc",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "reseller car care products qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "detailing brand distributor qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "open a trade account car care",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "ppf dealer program",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "ppf distributor gcc",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "paint protection film distributor qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "ceramic coating distributor program",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "ceramic coating dealer middle east",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "window film distributor gcc",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "autotriz distributor",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "autotriz dealer middle east",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "vertek ppf distributor",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "vtek ppf distributor",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car care brand looking for distributors",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "become a dealer car care qatar",
+              "matchType": "Exact"
+            },
+            {
+              "text": "car care distributor qatar",
+              "matchType": "Exact"
+            }
           ],
           "negativeKeywords": [
-            { "text": "car dealership", "matchType": "Broad" },
-            { "text": "used cars", "matchType": "Broad" },
-            { "text": "car showroom", "matchType": "Broad" },
-            { "text": "dealer license", "matchType": "Broad" },
-            { "text": "franchise fee", "matchType": "Broad" },
-            { "text": "spare parts dealer", "matchType": "Broad" },
-            { "text": "tyre dealer", "matchType": "Broad" },
-            { "text": "car dealer near me", "matchType": "Broad" },
-            { "text": "commercial registration", "matchType": "Broad" }
+            {
+              "text": "car dealership",
+              "matchType": "Broad"
+            },
+            {
+              "text": "used cars",
+              "matchType": "Broad"
+            },
+            {
+              "text": "car showroom",
+              "matchType": "Broad"
+            },
+            {
+              "text": "dealer license",
+              "matchType": "Broad"
+            },
+            {
+              "text": "franchise fee",
+              "matchType": "Broad"
+            },
+            {
+              "text": "spare parts dealer",
+              "matchType": "Broad"
+            },
+            {
+              "text": "tyre dealer",
+              "matchType": "Broad"
+            },
+            {
+              "text": "car dealer near me",
+              "matchType": "Broad"
+            },
+            {
+              "text": "commercial registration",
+              "matchType": "Broad"
+            }
           ],
           "ad": {
             "headlines": [
@@ -132,7 +315,7 @@
               "Stock ABK Brands, Doha",
               "Reseller Partners Wanted",
               "Open a Trade Account",
-              "Autotriz & Vertek Dealers",
+              "Autotriz & VTEK Dealers",
               "Car Care Distributorship",
               "Resell PPF, Tint & Ceramic",
               "Supply Your Own Customers",
@@ -144,7 +327,7 @@
               "Pro Brands for Resellers"
             ],
             "descriptions": [
-              "Sell Autotriz, Vertek and Briller in your market. Dealer enquiries from across the GCC.",
+              "Sell Autotriz, VTEK and Briller in your market. Dealer enquiries from across the GCC.",
               "ABK only supplies product. We do not work on cars, so we never compete with our dealers.",
               "Open a trade account and get the wholesale list on WhatsApp.",
               "Films, coatings and chemicals built for Gulf heat, sun and sand. Doha stock ready."
@@ -159,36 +342,120 @@
           "finalUrl": "https://abktradingservice.com/en/b2b/products/briller-wash-and-wax",
           "themeNote": "Car washes and detail shops buying wash chemistry by the drum or carton. Pack-size and concentrate modifiers are the unambiguous B2B signal; lands on the 20 L Briller concentrate page.",
           "keywords": [
-            { "text": "bulk car shampoo qatar", "matchType": "Phrase" },
-            { "text": "car shampoo 20 litre supplier", "matchType": "Phrase" },
-            { "text": "car shampoo 20l wholesale", "matchType": "Phrase" },
-            { "text": "car wash shampoo supplier qatar", "matchType": "Phrase" },
-            { "text": "car wash chemicals supplier qatar", "matchType": "Phrase" },
-            { "text": "car wash chemicals wholesale gcc", "matchType": "Phrase" },
-            { "text": "car wash soap wholesale qatar", "matchType": "Phrase" },
-            { "text": "snow foam shampoo bulk supplier", "matchType": "Phrase" },
-            { "text": "concentrated car shampoo supplier", "matchType": "Phrase" },
-            { "text": "wash and wax concentrate 20l", "matchType": "Phrase" },
-            { "text": "car shampoo drum supplier", "matchType": "Phrase" },
-            { "text": "supplies for car wash business", "matchType": "Phrase" },
-            { "text": "car wash startup supplies qatar", "matchType": "Phrase" },
-            { "text": "ph neutral car shampoo supplier", "matchType": "Phrase" },
-            { "text": "briller wash and wax", "matchType": "Phrase" },
-            { "text": "car shampoo supplier uae", "matchType": "Phrase" },
-            { "text": "car shampoo supplier saudi arabia", "matchType": "Phrase" },
-            { "text": "bulk car shampoo doha", "matchType": "Exact" },
-            { "text": "car wash chemicals supplier qatar", "matchType": "Exact" }
+            {
+              "text": "bulk car shampoo qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car shampoo 20 litre supplier",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car shampoo 20l wholesale",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car wash shampoo supplier qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car wash chemicals supplier qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car wash chemicals wholesale gcc",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car wash soap wholesale qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "snow foam shampoo bulk supplier",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "concentrated car shampoo supplier",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "wash and wax concentrate 20l",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car shampoo drum supplier",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "supplies for car wash business",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car wash startup supplies qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "ph neutral car shampoo supplier",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "briller wash and wax",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car shampoo supplier uae",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car shampoo supplier saudi arabia",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "bulk car shampoo doha",
+              "matchType": "Exact"
+            },
+            {
+              "text": "car wash chemicals supplier qatar",
+              "matchType": "Exact"
+            }
           ],
           "negativeKeywords": [
-            { "text": "hand car wash", "matchType": "Broad" },
-            { "text": "car wash machine", "matchType": "Broad" },
-            { "text": "car wash equipment", "matchType": "Broad" },
-            { "text": "pressure washer", "matchType": "Broad" },
-            { "text": "steam wash", "matchType": "Broad" },
-            { "text": "near me", "matchType": "Broad" },
-            { "text": "mobile car wash", "matchType": "Broad" },
-            { "text": "car wash for sale", "matchType": "Broad" },
-            { "text": "laundry", "matchType": "Broad" }
+            {
+              "text": "hand car wash",
+              "matchType": "Broad"
+            },
+            {
+              "text": "car wash machine",
+              "matchType": "Broad"
+            },
+            {
+              "text": "car wash equipment",
+              "matchType": "Broad"
+            },
+            {
+              "text": "pressure washer",
+              "matchType": "Broad"
+            },
+            {
+              "text": "steam wash",
+              "matchType": "Broad"
+            },
+            {
+              "text": "near me",
+              "matchType": "Broad"
+            },
+            {
+              "text": "mobile car wash",
+              "matchType": "Broad"
+            },
+            {
+              "text": "car wash for sale",
+              "matchType": "Broad"
+            },
+            {
+              "text": "laundry",
+              "matchType": "Broad"
+            }
           ],
           "ad": {
             "headlines": [
@@ -221,67 +488,178 @@
         {
           "name": "EN PPF Film Rolls - Trade",
           "maxCpcQAR": 5.5,
-          "finalUrl": "https://abktradingservice.com/en/b2b/products/vertek-ppf-weather-armor",
-          "themeNote": "Detailers and film installers sourcing paint protection film by the roll. Roll, supplier, wholesale and distributor modifiers separate this from consumer service-intent PPF searches. Copy is limited to what the live Vertek Weather Armor page states - self-healing nano-technology, scratch resistant, weather proof, high gloss, gloss/matte finish. No thickness, no warranty term, no percentage of any kind.",
+          "finalUrl": "https://abktradingservice.com/en/b2b/products/vtek-ppf-weather-armor-ultimate",
+          "themeNote": "Detailers and film installers sourcing paint protection film by the roll. Roll, supplier, wholesale and distributor modifiers separate this from consumer service-intent PPF searches. Retargeted at the newly shipped VTEK PPF Weather Armor ULTIMATE page, so the copy may now carry the shipped spec sheet: Advanced Polycarbonate TPU, 8.5 mil (215 um), Ultra-Gloss High Depth, Instant Heat Self-Healing and Hydrophobic Top-Coat, 10-Year Manufacturer Warranty, resistance to extreme UV, desert sand, road salts and chemicals. Nothing beyond that spec sheet is claimed - no film width, no roll length, no price. The PRO, MATTE and PRISM variants are live too but are deliberately not linked here: one ad group, one Final URL, and ULTIMATE is the flagship a trade buyer benchmarks against.",
           "keywords": [
-            { "text": "ppf roll supplier qatar", "matchType": "Phrase" },
-            { "text": "paint protection film supplier qatar", "matchType": "Phrase" },
-            { "text": "paint protection film wholesale", "matchType": "Phrase" },
-            { "text": "ppf film wholesale gcc", "matchType": "Phrase" },
-            { "text": "ppf film supplier for installers", "matchType": "Phrase" },
-            { "text": "ppf supplier for detailers", "matchType": "Phrase" },
-            { "text": "buy ppf roll qatar", "matchType": "Phrase" },
-            { "text": "buy ppf film roll", "matchType": "Phrase" },
-            { "text": "self healing ppf film supplier", "matchType": "Phrase" },
-            { "text": "matte ppf film supplier", "matchType": "Phrase" },
-            { "text": "gloss ppf film supplier", "matchType": "Phrase" },
-            { "text": "ppf film distributor uae", "matchType": "Phrase" },
-            { "text": "paint protection film supplier saudi", "matchType": "Phrase" },
-            { "text": "ppf film supplier kuwait", "matchType": "Phrase" },
-            { "text": "vertek ppf", "matchType": "Phrase" },
-            { "text": "vtek ppf", "matchType": "Phrase" },
-            { "text": "v-tek ppf", "matchType": "Phrase" },
-            { "text": "vertek weather armor", "matchType": "Phrase" },
-            { "text": "weather armor ppf", "matchType": "Phrase" },
-            { "text": "ppf supplier qatar", "matchType": "Exact" },
-            { "text": "paint protection film wholesale qatar", "matchType": "Exact" }
+            {
+              "text": "ppf roll supplier qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "paint protection film supplier qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "paint protection film wholesale",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "ppf film wholesale gcc",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "ppf film supplier for installers",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "ppf supplier for detailers",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "buy ppf roll qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "buy ppf film roll",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "self healing ppf film supplier",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "matte ppf film supplier",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "gloss ppf film supplier",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "tpu ppf film supplier",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "polycarbonate ppf film supplier",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "8.5 mil ppf supplier",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "10 year warranty ppf supplier",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "ppf film distributor uae",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "paint protection film supplier saudi",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "ppf film supplier kuwait",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "vertek ppf",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "vtek ppf",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "v-tek ppf",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "vertek weather armor",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "vtek weather armor ultimate",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "weather armor ppf",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "ppf supplier qatar",
+              "matchType": "Exact"
+            },
+            {
+              "text": "paint protection film wholesale qatar",
+              "matchType": "Exact"
+            }
           ],
           "negativeKeywords": [
-            { "text": "installation", "matchType": "Broad" },
-            { "text": "installation cost", "matchType": "Broad" },
-            { "text": "wrap my car", "matchType": "Broad" },
-            { "text": "near me", "matchType": "Broad" },
-            { "text": "how much to", "matchType": "Broad" },
-            { "text": "cost to wrap", "matchType": "Broad" },
-            { "text": "ppf calculator", "matchType": "Broad" },
-            { "text": "public provident fund", "matchType": "Broad" },
-            { "text": "full body ppf price", "matchType": "Broad" },
-            { "text": "ppf warranty", "matchType": "Broad" },
-            { "text": "ppf thickness", "matchType": "Broad" },
-            { "text": "mil ppf", "matchType": "Broad" }
+            {
+              "text": "installation",
+              "matchType": "Broad"
+            },
+            {
+              "text": "installation cost",
+              "matchType": "Broad"
+            },
+            {
+              "text": "wrap my car",
+              "matchType": "Broad"
+            },
+            {
+              "text": "near me",
+              "matchType": "Broad"
+            },
+            {
+              "text": "how much to",
+              "matchType": "Broad"
+            },
+            {
+              "text": "cost to wrap",
+              "matchType": "Broad"
+            },
+            {
+              "text": "ppf calculator",
+              "matchType": "Broad"
+            },
+            {
+              "text": "public provident fund",
+              "matchType": "Broad"
+            },
+            {
+              "text": "full body ppf price",
+              "matchType": "Broad"
+            },
+            {
+              "text": "ppf warranty claim",
+              "matchType": "Broad"
+            }
           ],
           "ad": {
             "headlines": [
               "PPF Film Rolls, Wholesale",
-              "Paint Protection Film Rolls",
+              "VTEK PPF Weather Armor",
+              "8.5 mil Polycarbonate TPU",
+              "10-Year Film Warranty",
+              "Instant Self-Healing PPF",
+              "Hydrophobic Top-Coat Film",
+              "Ultra-Gloss High Depth",
               "PPF Supplier in Doha",
-              "Vertek PPF Weather Armor",
-              "Self-Healing Nano Tech PPF",
-              "Supply for PPF Installers",
               "Trade Rolls for Detailers",
-              "Gloss and Matte Finishes",
-              "Scratch-Resistant Film",
-              "Weather-Proof, High Gloss",
+              "Supply for PPF Installers",
+              "Built for UV, Sand & Salt",
               "PPF Trade Supply, GCC",
               "Trade Price List on WhatsApp",
               "Stocked in Mesaimeer, Doha",
-              "We Supply, You Fit",
-              "Built for Sun and Sand"
+              "We Supply, You Fit"
             ],
             "descriptions": [
-              "Vertek PPF Weather Armor with self-healing nano-technology. Trade rolls stocked in Doha.",
+              "VTEK PPF Weather Armor ULTIMATE: 8.5 mil Polycarbonate TPU. Trade rolls in Doha.",
+              "Instant heat self-healing, hydrophobic top-coat and a 10-year manufacturer warranty.",
               "We supply the film. Your own installers fit it. Wholesale across Qatar and the GCC.",
-              "Scratch-resistant, weather-proof, high-gloss film in gloss and matte finishes.",
               "Trade rolls for detailing and film shops. Message us on WhatsApp for the list."
             ],
             "path1": "wholesale",
@@ -290,69 +668,184 @@
         },
         {
           "name": "EN Window Film Rolls - Trade",
-          "maxCpcQAR": 5.0,
-          "finalUrl": "https://abktradingservice.com/en/b2b/products/vertek-window-tints",
-          "themeNote": "Tint shops and film fitters sourcing window film by the roll. Every keyword carries a roll, supplier, wholesale or distributor modifier so consumer tinting-service intent is excluded. Copy sells heat and glare comfort and a range of shades only - no VLT number, no percentage, and deliberately no legality or 'street legal' claim, because Qatar's front-glass rule is disputed in public sources and this campaign also runs in five other countries.",
+          "maxCpcQAR": 5,
+          "finalUrl": "https://abktradingservice.com/en/b2b/products/vtek-window-tints",
+          "themeNote": "Tint shops and film fitters sourcing window film by the roll. Every keyword carries a roll, supplier, wholesale or distributor modifier so consumer tinting-service intent is excluded. Retargeted at the shipped VTEK Solar Armor page, so the copy may now carry its spec sheet: Iconic and Indulge series, up to 65% TSER, 90%+ IR rejection, 99% UV rejection, 10-year e-warranty, and Qatar Traffic Law and MOI compliant grades. The compliance line is used ONLY as 'MOI compliant grades' - no VLT percentage is stated anywhere and no ad implies every grade is legal on every window, because the front-glass rule differs by country and this campaign runs in six of them.",
           "keywords": [
-            { "text": "window film supplier qatar", "matchType": "Phrase" },
-            { "text": "tint film roll supplier", "matchType": "Phrase" },
-            { "text": "window tint film wholesale", "matchType": "Phrase" },
-            { "text": "tint film wholesale doha", "matchType": "Phrase" },
-            { "text": "car window film wholesale", "matchType": "Phrase" },
-            { "text": "heat rejection window film supplier", "matchType": "Phrase" },
-            { "text": "window film roll supplier gcc", "matchType": "Phrase" },
-            { "text": "car window film supplier gcc", "matchType": "Phrase" },
-            { "text": "buy tint film roll qatar", "matchType": "Phrase" },
-            { "text": "window film for tint shops", "matchType": "Phrase" },
-            { "text": "window film distributor uae", "matchType": "Phrase" },
-            { "text": "window film supplier saudi arabia", "matchType": "Phrase" },
-            { "text": "tint film supplier kuwait", "matchType": "Phrase" },
-            { "text": "window film wholesale bahrain", "matchType": "Phrase" },
-            { "text": "vertek window tints", "matchType": "Phrase" },
-            { "text": "vtek window tint", "matchType": "Phrase" },
-            { "text": "v-tek window film", "matchType": "Phrase" },
-            { "text": "window film supplier qatar", "matchType": "Exact" },
-            { "text": "tint film wholesale qatar", "matchType": "Exact" }
+            {
+              "text": "window film supplier qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "tint film roll supplier",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "window tint film wholesale",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "tint film wholesale doha",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car window film wholesale",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "heat rejection window film supplier",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "ir rejection window film supplier",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "nano ceramic window film supplier",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "ceramic tint film wholesale",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "window film roll supplier gcc",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "car window film supplier gcc",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "buy tint film roll qatar",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "window film for tint shops",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "window film distributor uae",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "window film supplier saudi arabia",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "tint film supplier kuwait",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "window film wholesale bahrain",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "vertek window tints",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "vtek window tint",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "vtek solar armor",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "v-tek window film",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "window film supplier qatar",
+              "matchType": "Exact"
+            },
+            {
+              "text": "tint film wholesale qatar",
+              "matchType": "Exact"
+            }
           ],
           "negativeKeywords": [
-            { "text": "tinting service", "matchType": "Broad" },
-            { "text": "tint my car", "matchType": "Broad" },
-            { "text": "car tinting near me", "matchType": "Broad" },
-            { "text": "mobile tinting", "matchType": "Broad" },
-            { "text": "tint permit", "matchType": "Broad" },
-            { "text": "tint law", "matchType": "Broad" },
-            { "text": "legal tint", "matchType": "Broad" },
-            { "text": "is tint legal", "matchType": "Broad" },
-            { "text": "tint limit", "matchType": "Broad" },
-            { "text": "vlt percentage", "matchType": "Broad" },
-            { "text": "limo tint", "matchType": "Broad" },
-            { "text": "reflective tint", "matchType": "Broad" },
-            { "text": "tint fine", "matchType": "Broad" },
-            { "text": "windshield replacement", "matchType": "Broad" }
+            {
+              "text": "tinting service",
+              "matchType": "Broad"
+            },
+            {
+              "text": "tint my car",
+              "matchType": "Broad"
+            },
+            {
+              "text": "car tinting near me",
+              "matchType": "Broad"
+            },
+            {
+              "text": "mobile tinting",
+              "matchType": "Broad"
+            },
+            {
+              "text": "tint permit",
+              "matchType": "Broad"
+            },
+            {
+              "text": "tint law",
+              "matchType": "Broad"
+            },
+            {
+              "text": "legal tint",
+              "matchType": "Broad"
+            },
+            {
+              "text": "is tint legal",
+              "matchType": "Broad"
+            },
+            {
+              "text": "tint limit",
+              "matchType": "Broad"
+            },
+            {
+              "text": "vlt percentage",
+              "matchType": "Broad"
+            },
+            {
+              "text": "limo tint",
+              "matchType": "Broad"
+            },
+            {
+              "text": "reflective tint",
+              "matchType": "Broad"
+            },
+            {
+              "text": "tint fine",
+              "matchType": "Broad"
+            },
+            {
+              "text": "windshield replacement",
+              "matchType": "Broad"
+            }
           ],
           "ad": {
             "headlines": [
               "Window Film Rolls, Trade",
+              "VTEK Solar Armor Tints",
+              "Iconic & Indulge Series",
+              "Heat Rejection to 65% TSER",
+              "90%+ IR Rejection Film",
+              "99% UV Rejection Film",
+              "MOI Compliant Grades",
+              "10-Year e-Warranty Film",
               "Tint Film Supplier Doha",
-              "Vertek Window Tints",
-              "Heat-Rejecting Film Rolls",
               "Wholesale Window Film",
               "For Tint Shops & Detailers",
-              "Window Film for Installers",
-              "A Range of Film Shades",
-              "Cut the Heat in the Cabin",
-              "Less Heat, Less Glare",
               "Film Rolls Stocked in Doha",
               "Trade Price List on WhatsApp",
-              "We Supply, You Fit",
               "Qatar and GCC Wholesale",
-              "Supply, Not Competition"
+              "We Supply, You Fit"
             ],
             "descriptions": [
-              "Vertek Window Tints: heat-rejecting film rolls in a range of shades. Doha stock.",
+              "VTEK Solar Armor window film: up to 65% TSER and 99% UV rejection. Doha stock.",
+              "Iconic and Indulge series rolls with a 10-year e-warranty. MOI compliant grades.",
               "Wholesale film rolls for tint shops and detailers in Qatar and across the GCC.",
-              "ABK supplies the film only. Your own team fits it. Message us on WhatsApp.",
-              "Trade rolls for tint shops, stocked in Mesaimeer, Doha. Ask for the list on WhatsApp."
+              "ABK supplies the film only. Your own team fits it. Ask for the list on WhatsApp."
             ],
             "path1": "wholesale",
             "path2": "window-film"
@@ -379,39 +872,120 @@
       "adGroups": [
         {
           "name": "AR Wholesale Car Care Supply",
-          "maxCpcQAR": 3.0,
+          "maxCpcQAR": 3,
           "finalUrl": "https://abktradingservice.com/ar/b2b",
           "themeNote": "Arabic-speaking trade buyer searching for a car-care supplier or distributor for a shop, car wash or resale business. Mixed-basket intent, so it lands on the Arabic wholesale hub.",
           "keywords": [
-            { "text": "منتجات العناية بالسيارات بالجملة", "matchType": "Phrase" },
-            { "text": "مواد تنظيف السيارات بالجملة", "matchType": "Phrase" },
-            { "text": "مواد غسيل سيارات بالجملة", "matchType": "Phrase" },
-            { "text": "مواد تلميع السيارات بالجملة", "matchType": "Phrase" },
-            { "text": "مورد منتجات العناية بالسيارات", "matchType": "Phrase" },
-            { "text": "موزع منتجات العناية بالسيارات", "matchType": "Phrase" },
-            { "text": "مورد مواد تنظيف السيارات", "matchType": "Phrase" },
-            { "text": "زينة سيارات بالجملة", "matchType": "Phrase" },
-            { "text": "مستلزمات مغاسل السيارات", "matchType": "Phrase" },
-            { "text": "مستلزمات محلات التلميع", "matchType": "Phrase" },
-            { "text": "مورد مواد العناية بالسيارات قطر", "matchType": "Phrase" },
-            { "text": "منتجات العناية بالسيارات جملة الدوحة", "matchType": "Phrase" },
-            { "text": "شركة توريد مواد تنظيف السيارات", "matchType": "Phrase" },
-            { "text": "تجارة الجملة لمواد السيارات", "matchType": "Phrase" },
-            { "text": "مواد تنظيف سيارات بالجمله", "matchType": "Phrase" },
-            { "text": "مستلزمات مغاسل السيارات الامارات", "matchType": "Phrase" },
-            { "text": "مواد تنظيف السيارات بالجملة السعودية", "matchType": "Phrase" },
-            { "text": "منتجات العناية بالسيارات بالجملة", "matchType": "Exact" },
-            { "text": "مواد تنظيف السيارات بالجملة", "matchType": "Exact" }
+            {
+              "text": "منتجات العناية بالسيارات بالجملة",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مواد تنظيف السيارات بالجملة",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مواد غسيل سيارات بالجملة",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مواد تلميع السيارات بالجملة",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مورد منتجات العناية بالسيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "موزع منتجات العناية بالسيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مورد مواد تنظيف السيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "زينة سيارات بالجملة",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مستلزمات مغاسل السيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مستلزمات محلات التلميع",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مورد مواد العناية بالسيارات قطر",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "منتجات العناية بالسيارات جملة الدوحة",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "شركة توريد مواد تنظيف السيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "تجارة الجملة لمواد السيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مواد تنظيف سيارات بالجمله",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مستلزمات مغاسل السيارات الامارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مواد تنظيف السيارات بالجملة السعودية",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "منتجات العناية بالسيارات بالجملة",
+              "matchType": "Exact"
+            },
+            {
+              "text": "مواد تنظيف السيارات بالجملة",
+              "matchType": "Exact"
+            }
           ],
           "negativeKeywords": [
-            { "text": "تركيب", "matchType": "Broad" },
-            { "text": "بالقرب مني", "matchType": "Broad" },
-            { "text": "افضل مركز", "matchType": "Broad" },
-            { "text": "ورشة تلميع", "matchType": "Broad" },
-            { "text": "مركز تلميع", "matchType": "Broad" },
-            { "text": "خدمة تلميع", "matchType": "Broad" },
-            { "text": "للبيع", "matchType": "Broad" },
-            { "text": "محل للتقبيل", "matchType": "Broad" }
+            {
+              "text": "تركيب",
+              "matchType": "Broad"
+            },
+            {
+              "text": "بالقرب مني",
+              "matchType": "Broad"
+            },
+            {
+              "text": "افضل مركز",
+              "matchType": "Broad"
+            },
+            {
+              "text": "ورشة تلميع",
+              "matchType": "Broad"
+            },
+            {
+              "text": "مركز تلميع",
+              "matchType": "Broad"
+            },
+            {
+              "text": "خدمة تلميع",
+              "matchType": "Broad"
+            },
+            {
+              "text": "للبيع",
+              "matchType": "Broad"
+            },
+            {
+              "text": "محل للتقبيل",
+              "matchType": "Broad"
+            }
           ],
           "ad": {
             "headlines": [
@@ -421,7 +995,7 @@
               "مخزون في مسيمير الدوحة",
               "توريد لدول الخليج",
               "للموزعين وأصحاب المغاسل",
-              "منتجات Autotriz و Vertek",
+              "منتجات Autotriz و VTEK",
               "مواد Briller الكندية",
               "أسعار الجملة على واتساب",
               "نورد المنتج فقط",
@@ -434,7 +1008,7 @@
             "descriptions": [
               "توريد مواد العناية بالسيارات بالجملة لورش التلميع والمغاسل في قطر ودول الخليج",
               "نورد المنتج فقط ولا ننفذ أي أعمال على السيارات لذلك لا ننافس عملاءنا من الورش",
-              "منتجات Autotriz و Vertek و Briller متوفرة في مسيمير بالدوحة للبيع بالجملة",
+              "منتجات Autotriz و VTEK و Briller متوفرة في مسيمير بالدوحة للبيع بالجملة",
               "اطلب قائمة أسعار الجملة على واتساب أو زر متجرنا في مسيمير بالدوحة خلال أوقات العمل"
             ],
             "path1": "ar",
@@ -447,35 +1021,116 @@
           "finalUrl": "https://abktradingservice.com/ar/b2b/become-a-dealer",
           "themeNote": "Arabic dealer-recruitment intent: someone looking to distribute or resell a car-care line in their own GCC market. Uses موزع and مورد, never وكيل, which in Gulf car context means a vehicle dealership agent.",
           "keywords": [
-            { "text": "موزع منتجات العناية بالسيارات", "matchType": "Phrase" },
-            { "text": "موزع معتمد منتجات العناية بالسيارات", "matchType": "Phrase" },
-            { "text": "فرصة توزيع منتجات العناية بالسيارات", "matchType": "Phrase" },
-            { "text": "توزيع منتجات العناية بالسيارات", "matchType": "Phrase" },
-            { "text": "مطلوب موزعين منتجات سيارات", "matchType": "Phrase" },
-            { "text": "شراكة توزيع منتجات سيارات", "matchType": "Phrase" },
-            { "text": "موزع فيلم حماية الطلاء", "matchType": "Phrase" },
-            { "text": "موزع افلام حماية السيارات", "matchType": "Phrase" },
-            { "text": "موزع طلاء سيراميك للسيارات", "matchType": "Phrase" },
-            { "text": "موزع افلام تظليل", "matchType": "Phrase" },
-            { "text": "حساب تجاري لمواد العناية بالسيارات", "matchType": "Phrase" },
-            { "text": "اسعار الجملة لمواد تنظيف السيارات", "matchType": "Phrase" },
-            { "text": "مورد لمحلات تلميع السيارات", "matchType": "Phrase" },
-            { "text": "موزع منتجات تنظيف السيارات قطر", "matchType": "Phrase" },
-            { "text": "موزع منتجات العناية بالسيارات الامارات", "matchType": "Phrase" },
-            { "text": "موزع منتجات العناية بالسيارات السعودية", "matchType": "Phrase" },
-            { "text": "موزع Autotriz", "matchType": "Phrase" },
-            { "text": "موزع منتجات العناية بالسيارات", "matchType": "Exact" },
-            { "text": "فرصة توزيع منتجات العناية بالسيارات", "matchType": "Exact" }
+            {
+              "text": "موزع منتجات العناية بالسيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "موزع معتمد منتجات العناية بالسيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "فرصة توزيع منتجات العناية بالسيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "توزيع منتجات العناية بالسيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مطلوب موزعين منتجات سيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "شراكة توزيع منتجات سيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "موزع فيلم حماية الطلاء",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "موزع افلام حماية السيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "موزع طلاء سيراميك للسيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "موزع افلام تظليل",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "حساب تجاري لمواد العناية بالسيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "اسعار الجملة لمواد تنظيف السيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مورد لمحلات تلميع السيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "موزع منتجات تنظيف السيارات قطر",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "موزع منتجات العناية بالسيارات الامارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "موزع منتجات العناية بالسيارات السعودية",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "موزع Autotriz",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "موزع منتجات العناية بالسيارات",
+              "matchType": "Exact"
+            },
+            {
+              "text": "فرصة توزيع منتجات العناية بالسيارات",
+              "matchType": "Exact"
+            }
           ],
           "negativeKeywords": [
-            { "text": "وكيل", "matchType": "Broad" },
-            { "text": "وكالات السيارات", "matchType": "Broad" },
-            { "text": "معرض سيارات", "matchType": "Broad" },
-            { "text": "وظائف", "matchType": "Broad" },
-            { "text": "راتب", "matchType": "Broad" },
-            { "text": "رخصة تجارية", "matchType": "Broad" },
-            { "text": "سجل تجاري", "matchType": "Broad" },
-            { "text": "قطع غيار", "matchType": "Broad" }
+            {
+              "text": "وكيل",
+              "matchType": "Broad"
+            },
+            {
+              "text": "وكالات السيارات",
+              "matchType": "Broad"
+            },
+            {
+              "text": "معرض سيارات",
+              "matchType": "Broad"
+            },
+            {
+              "text": "وظائف",
+              "matchType": "Broad"
+            },
+            {
+              "text": "راتب",
+              "matchType": "Broad"
+            },
+            {
+              "text": "رخصة تجارية",
+              "matchType": "Broad"
+            },
+            {
+              "text": "سجل تجاري",
+              "matchType": "Broad"
+            },
+            {
+              "text": "قطع غيار",
+              "matchType": "Broad"
+            }
           ],
           "ad": {
             "headlines": [
@@ -484,7 +1139,7 @@
               "توزيع منتجات عناية بالسيارات",
               "افتح حساب تجاري معنا",
               "بع منتجات Autotriz",
-              "وزع أفلام Vertek للحماية",
+              "وزع أفلام VTEK للحماية",
               "شراكة توزيع لمواد السيارات",
               "قطر والإمارات والسعودية",
               "مورد وليس منافس لك",
@@ -496,7 +1151,7 @@
               "منتجات لأجواء الخليج"
             ],
             "descriptions": [
-              "وزع منتجات Autotriz و Vertek و Briller في سوقك المحلي ضمن دول مجلس التعاون الخليجي",
+              "وزع منتجات Autotriz و VTEK و Briller في سوقك المحلي ضمن دول مجلس التعاون الخليجي",
               "نورد المنتج فقط ولا ننفذ أعمال على السيارات لذلك لا ننافس موزعينا ولا عملاءهم",
               "افتح حساب تجاري واطلب قائمة أسعار الجملة وشروط التوزيع عبر واتساب خلال أوقات العمل",
               "أفلام حماية وتظليل وطلاءات سيراميك ومواد تنظيف مصممة لحرارة الخليج والغبار"
@@ -511,35 +1166,116 @@
           "finalUrl": "https://abktradingservice.com/ar/b2b/products/briller-wash-and-wax",
           "themeNote": "Arabic car-wash and detailing operators buying shampoo by the 20 L drum or carton. Pack size and مركز (concentrate) are the B2B qualifiers; مركز is only ever used inside a full product phrase, never alone.",
           "keywords": [
-            { "text": "شامبو سيارات بالجملة", "matchType": "Phrase" },
-            { "text": "شامبو سيارات 20 لتر", "matchType": "Phrase" },
-            { "text": "شامبو سيارات جالون", "matchType": "Phrase" },
-            { "text": "شامبو غسيل السيارات بالجملة", "matchType": "Phrase" },
-            { "text": "مورد شامبو سيارات", "matchType": "Phrase" },
-            { "text": "شامبو سيارات مركز", "matchType": "Phrase" },
-            { "text": "شامبو فوم بالجملة", "matchType": "Phrase" },
-            { "text": "سنو فوم بالجملة", "matchType": "Phrase" },
-            { "text": "رغوة غسيل السيارات بالجملة", "matchType": "Phrase" },
-            { "text": "شامبو وشمع للسيارات", "matchType": "Phrase" },
-            { "text": "مواد غسيل السيارات للمغاسل", "matchType": "Phrase" },
-            { "text": "مستلزمات مغسلة سيارات", "matchType": "Phrase" },
-            { "text": "تجهيز مغسلة سيارات", "matchType": "Phrase" },
-            { "text": "شامبو سيارات كرتون", "matchType": "Phrase" },
-            { "text": "شامبو سيارات درام", "matchType": "Phrase" },
-            { "text": "مورد شامبو سيارات قطر", "matchType": "Phrase" },
-            { "text": "شامبو سيارات بالجمله", "matchType": "Phrase" },
-            { "text": "شامبو سيارات بالجملة", "matchType": "Exact" },
-            { "text": "مورد شامبو سيارات قطر", "matchType": "Exact" }
+            {
+              "text": "شامبو سيارات بالجملة",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "شامبو سيارات 20 لتر",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "شامبو سيارات جالون",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "شامبو غسيل السيارات بالجملة",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مورد شامبو سيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "شامبو سيارات مركز",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "شامبو فوم بالجملة",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "سنو فوم بالجملة",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "رغوة غسيل السيارات بالجملة",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "شامبو وشمع للسيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مواد غسيل السيارات للمغاسل",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مستلزمات مغسلة سيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "تجهيز مغسلة سيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "شامبو سيارات كرتون",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "شامبو سيارات درام",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مورد شامبو سيارات قطر",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "شامبو سيارات بالجمله",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "شامبو سيارات بالجملة",
+              "matchType": "Exact"
+            },
+            {
+              "text": "مورد شامبو سيارات قطر",
+              "matchType": "Exact"
+            }
           ],
           "negativeKeywords": [
-            { "text": "مغسلة سيارات بالقرب مني", "matchType": "Broad" },
-            { "text": "غسيل سيارات متنقل", "matchType": "Broad" },
-            { "text": "ماكينة غسيل", "matchType": "Broad" },
-            { "text": "كرشر", "matchType": "Broad" },
-            { "text": "تنظيف بالبخار", "matchType": "Broad" },
-            { "text": "شامبو شعر", "matchType": "Broad" },
-            { "text": "شامبو سجاد", "matchType": "Broad" },
-            { "text": "مغسلة للبيع", "matchType": "Broad" }
+            {
+              "text": "مغسلة سيارات بالقرب مني",
+              "matchType": "Broad"
+            },
+            {
+              "text": "غسيل سيارات متنقل",
+              "matchType": "Broad"
+            },
+            {
+              "text": "ماكينة غسيل",
+              "matchType": "Broad"
+            },
+            {
+              "text": "كرشر",
+              "matchType": "Broad"
+            },
+            {
+              "text": "تنظيف بالبخار",
+              "matchType": "Broad"
+            },
+            {
+              "text": "شامبو شعر",
+              "matchType": "Broad"
+            },
+            {
+              "text": "شامبو سجاد",
+              "matchType": "Broad"
+            },
+            {
+              "text": "مغسلة للبيع",
+              "matchType": "Broad"
+            }
           ],
           "ad": {
             "headlines": [
@@ -571,62 +1307,147 @@
         },
         {
           "name": "AR PPF Film Rolls - Trade",
-          "maxCpcQAR": 4.0,
-          "finalUrl": "https://abktradingservice.com/ar/b2b/products/vertek-ppf-weather-armor",
-          "themeNote": "Arabic trade buyers sourcing paint protection film by the roll. رول, مورد and بالجملة carry the product intent; every تركيب query is excluded because ABK does no fitting. Copy states only what the live Arabic page states - نانو ذاتية الإصلاح, مقاوم للخدش, مقاوم للعوامل الجوية, لامع أو مطفي. No سماكة, no مل, no ضمان, no نسبة.",
+          "maxCpcQAR": 4,
+          "finalUrl": "https://abktradingservice.com/ar/b2b/products/vtek-ppf-weather-armor-ultimate",
+          "themeNote": "Arabic trade buyers sourcing paint protection film by the roll. رول, مورد and بالجملة carry the product intent; every تركيب query is excluded because ABK does no fitting. Now points at the shipped VTEK Weather Armor ULTIMATE page, so the Arabic copy may carry its spec sheet: بولي كربونات TPU, سماكة 8.5 مل, لمعان فائق, إصلاح ذاتي فوري بالحرارة, طبقة علوية طاردة للماء, ضمان 10 سنوات من المصنع, ومقاومة للأشعة والرمال والأملاح. No تركيب token appears in any asset, not even assigned to the buyer.",
           "keywords": [
-            { "text": "رول فيلم حماية الطلاء", "matchType": "Phrase" },
-            { "text": "مورد فيلم حماية الطلاء", "matchType": "Phrase" },
-            { "text": "افلام حماية السيارات بالجملة", "matchType": "Phrase" },
-            { "text": "فيلم حماية الطلاء بالجملة", "matchType": "Phrase" },
-            { "text": "بيع رولات فيلم حماية", "matchType": "Phrase" },
-            { "text": "فيلم حماية طلاء للورش", "matchType": "Phrase" },
-            { "text": "رولات بي بي اف", "matchType": "Phrase" },
-            { "text": "مورد بي بي اف قطر", "matchType": "Phrase" },
-            { "text": "فيلم حماية طلاء مطفي بالجملة", "matchType": "Phrase" },
-            { "text": "افلام حمايه السيارات", "matchType": "Phrase" },
-            { "text": "تجارة افلام حماية السيارات", "matchType": "Phrase" },
-            { "text": "حماية طلاء ذاتية الاصلاح", "matchType": "Phrase" },
-            { "text": "مورد فيلم حماية الطلاء الامارات", "matchType": "Phrase" },
-            { "text": "مورد فيلم حماية الطلاء السعودية", "matchType": "Phrase" },
-            { "text": "فيلم حماية Vertek", "matchType": "Phrase" },
-            { "text": "فيلم حماية VTEK", "matchType": "Phrase" },
-            { "text": "رول فيلم حماية الطلاء", "matchType": "Exact" },
-            { "text": "مورد فيلم حماية الطلاء قطر", "matchType": "Exact" }
+            {
+              "text": "رول فيلم حماية الطلاء",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مورد فيلم حماية الطلاء",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "افلام حماية السيارات بالجملة",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "فيلم حماية الطلاء بالجملة",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "بيع رولات فيلم حماية",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "فيلم حماية طلاء للورش",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "رولات بي بي اف",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مورد بي بي اف قطر",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "فيلم حماية طلاء مطفي بالجملة",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "افلام حمايه السيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "تجارة افلام حماية السيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "حماية طلاء ذاتية الاصلاح",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "فيلم حماية طلاء TPU",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مورد فيلم حماية الطلاء الامارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مورد فيلم حماية الطلاء السعودية",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "فيلم حماية Vertek",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "فيلم حماية VTEK",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "فيلم حماية Weather Armor",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "رول فيلم حماية الطلاء",
+              "matchType": "Exact"
+            },
+            {
+              "text": "مورد فيلم حماية الطلاء قطر",
+              "matchType": "Exact"
+            }
           ],
           "negativeKeywords": [
-            { "text": "تركيب فيلم حماية", "matchType": "Broad" },
-            { "text": "تركيب بي بي اف", "matchType": "Broad" },
-            { "text": "اسعار تركيب", "matchType": "Broad" },
-            { "text": "تغليف سيارات", "matchType": "Broad" },
-            { "text": "بالقرب مني", "matchType": "Broad" },
-            { "text": "افضل ورشة", "matchType": "Broad" },
-            { "text": "كم سعر تركيب", "matchType": "Broad" },
-            { "text": "ضمان فيلم الحماية", "matchType": "Broad" },
-            { "text": "خدمة منزلية", "matchType": "Broad" }
+            {
+              "text": "تركيب فيلم حماية",
+              "matchType": "Broad"
+            },
+            {
+              "text": "تركيب بي بي اف",
+              "matchType": "Broad"
+            },
+            {
+              "text": "اسعار تركيب",
+              "matchType": "Broad"
+            },
+            {
+              "text": "تغليف سيارات",
+              "matchType": "Broad"
+            },
+            {
+              "text": "بالقرب مني",
+              "matchType": "Broad"
+            },
+            {
+              "text": "افضل ورشة",
+              "matchType": "Broad"
+            },
+            {
+              "text": "كم سعر تركيب",
+              "matchType": "Broad"
+            },
+            {
+              "text": "خدمة منزلية",
+              "matchType": "Broad"
+            }
           ],
           "ad": {
             "headlines": [
               "رولات فيلم حماية الطلاء",
               "مورد أفلام حماية السيارات",
               "أفلام حماية طلاء بالجملة",
-              "فيلم حماية الطلاء Vertek",
-              "إصلاح ذاتي بتقنية النانو",
-              "مقاوم للخدش والعوامل الجوية",
-              "توريد لورش الحماية",
+              "فيلم حماية الطلاء VTEK",
+              "سماكة 8.5 مل بولي كربونات",
+              "ضمان 10 سنوات من المصنع",
+              "إصلاح ذاتي فوري بالحرارة",
+              "طبقة علوية طاردة للماء",
+              "لمعان فائق وعمق عالي",
+              "مقاوم للأشعة والرمال",
               "رولات بالجملة للورش",
-              "تشطيب لامع أو مطفي",
-              "لمعان عالي وحماية قوية",
               "أسعار الجملة على واتساب",
-              "مخزون بالدوحة للتجار",
+              "مخزون في مسيمير الدوحة",
               "نورد الفيلم فقط",
-              "توريد لقطر ودول الخليج",
-              "مورد وليس منافس لك"
+              "توريد لقطر ودول الخليج"
             ],
             "descriptions": [
-              "فيلم حماية الطلاء Vertek بتقنية النانو ذاتية الإصلاح متوفر رولات في مخزننا بالدوحة",
+              "فيلم حماية الطلاء VTEK Weather Armor بسماكة 8.5 مل من بولي كربونات TPU ورولات بالدوحة",
+              "إصلاح ذاتي فوري بالحرارة وطبقة علوية طاردة للماء وضمان 10 سنوات من المصنع",
               "نورد الفيلم فقط وفنيو ورشتك هم من ينفذون العمل بيع بالجملة في قطر ودول الخليج",
-              "أفلام مقاومة للخدش والعوامل الجوية بتشطيب لامع أو مطفي ولمعان عالي للورش المحترفة",
               "رولات بالجملة لورش الحماية والتلميع في قطر والخليج اطلب قائمة الأسعار على واتساب"
             ],
             "path1": "ar",
@@ -636,65 +1457,163 @@
         {
           "name": "AR Window Film Rolls - Trade",
           "maxCpcQAR": 3.5,
-          "finalUrl": "https://abktradingservice.com/ar/b2b/products/vertek-window-tints",
-          "themeNote": "Arabic tint shops and film fitters buying window film by the roll. رول and مورد keep this on the product side of a category whose head terms are almost entirely service intent in Gulf SERPs. Copy sells حرارة أقل وإبهار أقل and تدرجات متعددة only - no VLT, no نسبة, and no legality claim, so every تصريح / نسبة مسموحة / مخالفة query is a negative.",
+          "finalUrl": "https://abktradingservice.com/ar/b2b/products/vtek-window-tints",
+          "themeNote": "Arabic tint shops and film fitters buying window film by the roll. رول and مورد keep this on the product side of a category whose head terms are almost entirely service intent in Gulf SERPs. Now points at the shipped VTEK Solar Armor page, so the copy may carry عزل حراري حتى 65% TSER, حجب 90% من الأشعة تحت الحمراء, حجب 99% للأشعة فوق البنفسجية, ضمان إلكتروني 10 سنوات, and درجات متوافقة مع أنظمة قطر. No VLT percentage anywhere, and no asset says a given grade is legal on a given window - every نسبة / تصريح / مخالفة query stays a negative.",
           "keywords": [
-            { "text": "رول تظليل سيارات", "matchType": "Phrase" },
-            { "text": "رولات تظليل سيارات", "matchType": "Phrase" },
-            { "text": "مورد افلام تظليل السيارات", "matchType": "Phrase" },
-            { "text": "افلام تظليل بالجملة", "matchType": "Phrase" },
-            { "text": "فيلم تظليل زجاج السيارات بالجملة", "matchType": "Phrase" },
-            { "text": "افلام العزل الحراري بالجملة", "matchType": "Phrase" },
-            { "text": "مورد فيلم عازل حراري للسيارات", "matchType": "Phrase" },
-            { "text": "مورد افلام تظليل قطر", "matchType": "Phrase" },
-            { "text": "بيع رولات تظليل", "matchType": "Phrase" },
-            { "text": "افلام تظليل لمحلات التظليل", "matchType": "Phrase" },
-            { "text": "تجارة افلام التظليل", "matchType": "Phrase" },
-            { "text": "توريد افلام تظليل للورش", "matchType": "Phrase" },
-            { "text": "مورد افلام تظليل الامارات", "matchType": "Phrase" },
-            { "text": "مورد افلام تظليل السعودية", "matchType": "Phrase" },
-            { "text": "افلام تظليل Vertek", "matchType": "Phrase" },
-            { "text": "افلام تظليل VTEK", "matchType": "Phrase" },
-            { "text": "رول تظليل سيارات", "matchType": "Exact" },
-            { "text": "مورد افلام تظليل السيارات", "matchType": "Exact" }
+            {
+              "text": "رول تظليل سيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "رولات تظليل سيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مورد افلام تظليل السيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "افلام تظليل بالجملة",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "فيلم تظليل زجاج السيارات بالجملة",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "افلام العزل الحراري بالجملة",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مورد فيلم عازل حراري للسيارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "افلام تظليل سيراميك بالجملة",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مورد افلام تظليل قطر",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "بيع رولات تظليل",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "افلام تظليل لمحلات التظليل",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "تجارة افلام التظليل",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "توريد افلام تظليل للورش",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مورد افلام تظليل الامارات",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "مورد افلام تظليل السعودية",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "افلام تظليل Vertek",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "افلام تظليل VTEK",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "افلام تظليل Solar Armor",
+              "matchType": "Phrase"
+            },
+            {
+              "text": "رول تظليل سيارات",
+              "matchType": "Exact"
+            },
+            {
+              "text": "مورد افلام تظليل السيارات",
+              "matchType": "Exact"
+            }
           ],
           "negativeKeywords": [
-            { "text": "تركيب تظليل", "matchType": "Broad" },
-            { "text": "تركيب مخفي", "matchType": "Broad" },
-            { "text": "تظليل متنقل", "matchType": "Broad" },
-            { "text": "محل تظليل", "matchType": "Broad" },
-            { "text": "تصريح تظليل", "matchType": "Broad" },
-            { "text": "نسبة التظليل", "matchType": "Broad" },
-            { "text": "التظليل المسموح", "matchType": "Broad" },
-            { "text": "مخالفة تظليل", "matchType": "Broad" },
-            { "text": "غرامة تظليل", "matchType": "Broad" },
-            { "text": "افضل تظليل", "matchType": "Broad" },
-            { "text": "تظليل بالقرب مني", "matchType": "Broad" },
-            { "text": "خدمة منزلية", "matchType": "Broad" }
+            {
+              "text": "تركيب تظليل",
+              "matchType": "Broad"
+            },
+            {
+              "text": "تركيب مخفي",
+              "matchType": "Broad"
+            },
+            {
+              "text": "تظليل متنقل",
+              "matchType": "Broad"
+            },
+            {
+              "text": "محل تظليل",
+              "matchType": "Broad"
+            },
+            {
+              "text": "تصريح تظليل",
+              "matchType": "Broad"
+            },
+            {
+              "text": "نسبة التظليل",
+              "matchType": "Broad"
+            },
+            {
+              "text": "التظليل المسموح",
+              "matchType": "Broad"
+            },
+            {
+              "text": "مخالفة تظليل",
+              "matchType": "Broad"
+            },
+            {
+              "text": "غرامة تظليل",
+              "matchType": "Broad"
+            },
+            {
+              "text": "افضل تظليل",
+              "matchType": "Broad"
+            },
+            {
+              "text": "تظليل بالقرب مني",
+              "matchType": "Broad"
+            },
+            {
+              "text": "خدمة منزلية",
+              "matchType": "Broad"
+            }
           ],
           "ad": {
             "headlines": [
               "رولات أفلام تظليل السيارات",
               "مورد أفلام التظليل",
-              "أفلام عزل حراري للسيارات",
-              "أفلام تظليل Vertek",
+              "أفلام تظليل VTEK",
+              "سلسلتا Iconic و Indulge",
+              "عزل حراري حتى 65% TSER",
+              "حجب 99% للأشعة فوق البنفسجية",
+              "حجب أشعة تحت الحمراء 90%",
+              "درجات متوافقة مع أنظمة قطر",
+              "ضمان إلكتروني 10 سنوات",
               "رولات بالجملة للمحلات",
               "توريد لمحلات التظليل",
               "تدرجات متعددة من الأفلام",
-              "حرارة أقل وإبهار أقل",
-              "راحة أكبر داخل السيارة",
-              "مخزون في مسيمير الدوحة",
               "أسعار الجملة على واتساب",
-              "نورد الفيلم ولا ننافسك",
-              "أفلام لحرارة الخليج",
-              "توريد لقطر ودول الخليج",
-              "رولات تظليل بالجملة"
+              "مخزون في مسيمير الدوحة",
+              "نورد الفيلم ولا ننافسك"
             ],
             "descriptions": [
-              "أفلام تظليل Vertek عازلة للحرارة بتدرجات متعددة متوفرة رولات في مخزننا بالدوحة",
+              "أفلام تظليل VTEK Solar Armor بعزل حراري حتى 65% وحجب 99% للأشعة فوق البنفسجية",
+              "رولات من سلسلتي Iconic و Indulge بضمان إلكتروني 10 سنوات ودرجات متوافقة مع أنظمة قطر",
               "رولات أفلام تظليل بالجملة لمحلات التظليل وورش التلميع في قطر ودول الخليج",
-              "نورد الفيلم فقط ولا ننفذ أي أعمال على السيارات اطلب قائمة أسعار الجملة على واتساب",
-              "حرارة أقل وإبهار أقل داخل السيارة مع تدرجات متعددة تناسب أساطيل الخليج وورش التظليل"
+              "نورد الفيلم فقط ولا ننفذ أي أعمال على السيارات اطلب قائمة أسعار الجملة على واتساب"
             ],
             "path1": "ar",
             "path2": "window-film"
@@ -740,9 +1659,6 @@
     "tint law",
     "tint limit",
     "vlt percentage",
-    "ppf warranty",
-    "ppf thickness",
-    "mil ppf",
     "تركيب فيلم حماية",
     "تركيب بي بي اف",
     "تركيب نانو سيراميك",
@@ -782,7 +1698,6 @@
     "تصريح تظليل",
     "مخالفة تظليل",
     "غرامة تظليل",
-    "ضمان فيلم الحماية",
     "وكيل",
     "وكالات السيارات",
     "وظائف",
@@ -907,5 +1822,5 @@
     "recipe",
     "free"
   ],
-  "notes": "WHAT CHANGED IN THIS REBUILD (read first). The previous version of this file was written against a stale catalogue. It advertised a five-SKU 'VTEK' PPF and tint range whose landing pages 404 today, and it stated specifications that appear nowhere on the live site: '8.5 mil Polycarbonate TPU', '10-Year Manufacturer Warranty', 'VTEK Solar Armor', 'Iconic and Indulge series', '65% TSER', '99% UV Rejection', '10-Year e-Warranty Film', and the Arabic 'multiple VLT grades' line. All of it is gone. The live film range is exactly TWO products - vertek-ppf-weather-armor and vertek-window-tints - and the PPF and window-film ad groups now point at those two URLs and say only what those two pages say. Do not re-add a number of any kind (mil, micron, TSER, IR, UV, VLT, warranty years) to these two ad groups without a live page that states it. The other three ad groups per language (wholesale hub, become-a-dealer, bulk shampoo) are carried over from the previous file with only the brand-token fix below.\n\nBRAND TOKEN. Ad TEXT says Vertek everywhere, matching the deployed product data and the Google Business Profile. The 'vtek' and 'v-tek' spellings survive only as KEYWORDS, in both languages, to catch buyers who met the other spelling in the market. If the site is ever changed to 'VTEK', the ad text has to change with it or the ad/LP mismatch becomes a misrepresentation flag.\n\nNO TINT LEGALITY CLAIM - DELIBERATE. The live tint page carries a Qatar-compliance line and the previous file leaned on it. It is not used here. Qatar restricts front-glass tint, public sources disagree on the current limit, and this campaign runs in six countries where the rules differ. An ad implying a film is street legal exposes a trade buyer's own customer to a fine. Both tint ad groups sell heat and glare comfort and 'a range of shades' instead, and every legality query (tint law, legal tint, tint limit, tint permit, تصريح تظليل, نسبة التظليل, التظليل المسموح, مخالفة/غرامة تظليل) is a negative in the ad group AND in the shared list. Do not reinstate the compliance line for a GCC-wide ad.\n\nSERVICE LANGUAGE. ABK sells product and performs no installation, tinting, coating, polishing or detailing. No ad promises fitting, booking or an appointment. Because this campaign's audience does its own application, the ads deliberately use 'We Supply, You Fit', 'Supply for PPF Installers', 'Trade Rolls for Detailers' and 'Window Film for Installers' - every one of those assigns the work to the BUYER. That framing is correct here and must NOT be copied into the B2C campaigns. The Arabic side avoids تركيب entirely, even buyer-assigned: 'نورد الفيلم فقط وفنيو ورشتك هم من ينفذون العمل' says the same thing without the token, so an Arabic reviewer scanning for تركيب finds nothing in ad text.\n\nNO PHONE NUMBER, NO PRICES. No ad text contains a phone number - the previous file broke this and Google disallows it. The number belongs in a Call asset at campaign level. The CTA everywhere is 'message us on WhatsApp'. No ad states a price, discount, 'best price' or 'sale'; the site publishes no prices and the offer is a wholesale list delivered over WhatsApp. 'Trade Price List on WhatsApp' / 'أسعار الجملة على واتساب' names the mechanism only and is the single asset family containing the word price - confirm it is acceptable.\n\nSCOPE AND GEO. This file is the B2B wholesale / dealer-recruitment theme only. Geo is six countries (Qatar, UAE, Saudi Arabia, Kuwait, Bahrain, Oman), so the Qatar-only geo-leakage negatives used by the B2C themes (dubai, riyadh, kuwait, bahrain, muscat, jeddah, dammam) MUST NOT be applied here - they would block this campaign's core markets. Set location options to 'Presence: people in your targeted locations', not 'presence or interest', or Indian and Pakistani research traffic leaks in.\n\nSHARED NEGATIVES - three deliberate omissions. (1) The bare words 'service' and 'services' are NOT in the shared list even though ABK performs none: the legal name is 'ABK Trading & Service', so an account-level 'service' negative would kill brand search if a brand campaign is ever added. Service intent is blocked by specific phrases instead. (2) The Arabic phrase 'تظليل سيارات' is NOT a shared negative - it is a substring of the AR window-film ad group's best keyword 'رول تظليل سيارات'. Only the service collocations (تركيب تظليل, محل تظليل, تظليل متنقل) are blocked. (3) The bare word 'مركز' is never used: Google Ads ignores Arabic diacritics, so مركز (centre) and مركّز (concentrate) collapse to one token and a bare negative would suppress 'شامبو سيارات مركز', a core B2B shampoo query. Only full phrases (مركز تلميع) are blocked. Likewise 'وكيل' is negative because in Gulf car context it means a vehicle dealership agent, not a distributor.\n\nMATCH TYPES. All positive keywords are Phrase or Exact - no broad, no legacy '+' modified broad. All negatives, ad-group and shared, are listed as Broad in this file; add them in Google Ads as PHRASE match. 'armor all' in particular must be phrase - as a broad negative it would block 'Vertek PPF Weather Armor'. 'noon' must be phrase for the same reason. Google does not apply close-variant matching to negatives, so 'installation' will not block the intentional positive 'ppf film supplier for installers'.\n\nJUDGEMENT CALLS A REVIEWER SHOULD DOUBLE-CHECK.\n1. 'We Supply, You Fit' (EN, both film ad groups) is the one place an English ad contains a fitting verb, assigned explicitly to the buyer. It is the strongest differentiator ABK has. If the reviewer wants zero tolerance, swap for 'We Supply, You Apply', already used in the EN wholesale ad group, with no loss of coverage.\n2. GCC supply is claimed because public/llms.txt states wholesale across the GCC. No asset promises shipping, lead times or delivery, because cross-border fulfilment is not verified in the repo. Confirm ABK actually ships cross-border before spending in the five non-Qatar markets; if it does not, cut locations to Qatar and drop the ...uae / ...saudi arabia / ...kuwait / ...bahrain keywords in every ad group.\n3. 'Made in Canada' appears only in the Briller wash-chemicals ad group, whose landing page is the Briller SKU. It must never drift onto an Autotriz (Germany) or Vertek asset.\n4. Friday is paused because the store is closed and the conversion is a human WhatsApp reply. This costs UAE and Saudi reach: the UAE business week is Mon-Fri and Saudi's weekend is Fri-Sat. If the owner will answer WhatsApp on Fridays, unpause Friday for this campaign only - it is the one campaign where the buyer is at work on a Friday.\n5. Bid strategy is 'Maximize conversions' for consistency with the sibling campaigns, but this campaign starts with zero conversion history and very low volume. Recommend Maximize clicks with the per-ad-group max CPC caps for the first 30 days, then switch once 15-30 WhatsApp conversions have accrued.\n6. 'Resell PPF, Tint & Ceramic' (EN dealer ad group) is accurate - Vertek covers PPF and tint, Autotriz covers ceramic - but it is the one headline spanning three categories against a hub landing page. Fine as written; do not narrow it to a SKU.\n7. Keyword-only exposure to terms the pages do not support: 'self healing ppf film supplier' IS supported (the page says self-healing nano-technology), but 'heat rejection window film supplier' leans on a page that says only heat-rejecting - fine - while nothing in either film ad group bids on tpu, mil, ceramic-tint or nano-ceramic terms any more. Those were removed on purpose. Resist adding them back for volume.\n\nPRE-LAUNCH. (a) Verify all four film landing URLs return 200 before import; the two vertek-* slugs replace five dead vtek-* slugs from the previous file, and a 404 Final URL is an instant disapproval. (b) Force a Google re-crawl of /en/b2b and /ar/b2b - the index still carries stale copy naming Insta Finish and Getsun, which the owner has pulled. An ad group whose landing page names a discontinued brand is an avoidable disapproval. (c) Final URLs must be an abktradingservice.com page carrying the WhatsApp button - a wa.me link cannot be a Final URL. Add a Call asset at campaign level for the phone number, plus a Location asset and Business Hours reflecting Sat-Thu 10:00-13:00 and 16:00-22:00, Friday closed. (d) Proof every Arabic asset in a real RTL preview, not a code editor: no headline starts with a Latin token or a digit, no terminal punctuation, no em-dash, no brackets around Latin tokens, Western digits only, tashkeel stripped. Pay particular attention to the five assets that embed a Latin brand token mid-string (منتجات Autotriz و Vertek, وزع أفلام Vertek للحماية, فيلم حماية الطلاء Vertek, أفلام تظليل Vertek, منتجات Briller الكندية). (e) Google Shopping and Merchant Center do not support Qatar but do support UAE, Saudi, Kuwait, Bahrain and Oman, so a feed play is possible on the B2B side only if cross-border fulfilment is confirmed (see call 2).\n\nNOT COVERED HERE. A detailer-grade compounds and ceramic trade ad group (Autotriz Heavy Cut 901, Power Cut 701, ION+, REVO, 3D Matrix) is the strongest expansion: Autotriz brand terms are cheap, high-intent and genuinely professional-audience. Left out to keep this campaign at five single-theme ad groups per language, and because those SKUs are already carried by the polish-compound and ceramic themes on the B2C side. A second candidate is Autotriz PPF Gel plus the masking tape - true installer consumables that this campaign's film audience buys on every job."
+  "notes": "WHAT CHANGED IN THIS EDIT (read first). Only the four film ad groups were touched - EN PPF Film Rolls, EN Window Film Rolls, AR PPF Film Rolls, AR Window Film Rolls. The other six ad groups (wholesale hub, become-a-dealer, bulk shampoo, in both languages) are carried over byte-identical: same keywords, same negatives, same ad copy, same paths, same bids. Do not diff-review them; they did not change.\n\nNEW FINAL URLS. The two dead vertek-* film slugs are replaced by the shipped VTEK SKUs. PPF ad groups now point at /b2b/products/vtek-ppf-weather-armor-ultimate and tint ad groups at /b2b/products/vtek-window-tints, in both /en/ and /ar/. Verify all four return 200 before import - a 404 Final URL is an instant disapproval.\n\nSPEC CLAIMS ARE BACK, AND THEY ARE SOURCED. A previous revision stripped every number from these ad groups because the products were not deployed. They are deployed now, so the ads state exactly what the shipped spec sheet states and nothing more. PPF ULTIMATE: Advanced Polycarbonate TPU, 8.5 mil (215 um), Ultra-Gloss High Depth, Instant Heat Self-Healing and Hydrophobic Top-Coat, 10-Year Manufacturer Warranty, resistance to extreme UV, desert sand, road salts and chemicals. Window film: Iconic and Indulge series, up to 65% TSER, 90%+ IR rejection, 99% UV rejection, 10-Year e-Warranty, Qatar Traffic Law and MOI Compliant Grades. No film width, no roll length, no price, no lead time - none of that is published. If the spec sheet in src/data/products.ts changes, these two ad groups change with it.\n\nBRAND TOKEN CONFLICT - OPERATOR MUST DECIDE. The deployed catalogue has zero products under brand 'Vertek'; all five film SKUs are brand 'VTEK'. The four film ad groups now say VTEK in ad text, with 'vertek' and 'v-tek' kept as KEYWORDS ONLY so buyers who met the old spelling still match (the old slugs 308-redirect). BUT the six untouched ad groups still say 'Vertek' in their ad copy - 'Autotriz & Vertek Stocked', 'Autotriz, Vertek and Briller stocked in Mesaimeer', 'Autotriz & Vertek Dealers', 'Sell Autotriz, Vertek and Briller in your market', 'منتجات Autotriz و Vertek', 'وزع أفلام Vertek للحماية', 'منتجات Autotriz و Vertek و Briller'. That was a deliberate instruction to leave those six byte-identical, so the account will ship with mixed VTEK/Vertek branding. This is inconsistent and should be resolved in a follow-up pass that rewrites those six assets to VTEK. Until then, expect a reviewer to ask why the wholesale-hub ad says Vertek while the PPF ad says VTEK.\n\nTINT LEGALITY - NARROW CLAIM ONLY. The live product page states 'Qatar Traffic Law & MOI Compliant Grades', so the ads now say 'MOI Compliant Grades' (EN) and 'درجات متوافقة مع أنظمة قطر' (AR). That is the whole claim: grades exist that suit the regulations. No ad states a VLT percentage, and no ad says or implies that any grade is legal on any particular window. The 65% TSER, 90%+ IR and 99% UV figures are performance numbers off the spec sheet, not legality numbers - do not let anyone 'simplify' them into a tint-darkness claim. Every legality query stays a negative in both the ad groups and the shared list (tint law, legal tint, tint limit, tint permit, vlt percentage, تصريح تظليل, نسبة التظليل, التظليل المسموح, مخالفة/غرامة تظليل), because this campaign runs in six countries with different rules and ABK cannot answer a regulation question for a buyer's customer.\n\nNEGATIVES REMOVED ON PURPOSE. 'ppf warranty', 'ppf thickness' and 'mil ppf' were shared negatives, and 'ضمان فيلم الحماية' was both a shared negative and an AR PPF ad-group negative. All four are GONE. They existed only because the old landing page stated no thickness and no warranty term; the new page states 8.5 mil and a 10-year manufacturer warranty, so a buyer searching those terms is now exactly the buyer this ad group wants. 'ppf warranty claim' is kept as an EN PPF ad-group negative to block existing-customer support traffic. If you ever roll the film ad groups back to a page without those specs, put all four negatives back first.\n\nSERVICE LANGUAGE. ABK sells product and performs no installation, tinting, coating, polishing or detailing. No ad promises fitting, booking or an appointment. Because this audience does its own application, the EN film ads use 'We Supply, You Fit' and 'Supply for PPF Installers' - both assign the work to the BUYER. Correct here; must NOT be copied into the B2C campaigns. The Arabic side avoids تركيب entirely, even buyer-assigned: 'نورد الفيلم فقط وفنيو ورشتك هم من ينفذون العمل' says the same thing without the token, so an Arabic reviewer scanning for تركيب finds nothing in ad text.\n\nNO PHONE NUMBER, NO PRICES. No ad text contains a phone number - Google disallows it; the number belongs in a campaign-level Call asset. No ad states a price, discount or 'best price'; the site publishes none for these SKUs and the offer is a wholesale list over WhatsApp. 'Trade Price List on WhatsApp' / 'أسعار الجملة على واتساب' names the mechanism only and is the single asset family containing the word price.\n\nWHY ULTIMATE AND NOT THE OTHER THREE PPF SKUS. PRO (7.5 mil, 8-year), MATTE (8 mil satin, 10-year) and PRISM (colour, 8.5 mil, 8-year) are all live, but one ad group takes one Final URL and ULTIMATE is the flagship a trade buyer benchmarks on. The 'matte ppf film supplier' and 'gloss ppf film supplier' keywords stay in the ULTIMATE ad group because the landing page carries the range navigation - but the strongest expansion available now is to split MATTE and PRISM into their own ad groups (colour PPF in particular has near-zero Gulf competition and six named colours to build headlines from). Do that before adding more keywords to this one.\n\nSCOPE AND GEO. B2B wholesale / dealer-recruitment theme only. Geo is six countries, so the Qatar-only geo-leakage negatives used by the B2C themes (dubai, riyadh, kuwait, bahrain, muscat, jeddah, dammam) MUST NOT be applied here - they would block this campaign's core markets. Set location options to 'Presence: people in your targeted locations', not 'presence or interest', or Indian and Pakistani research traffic leaks in.\n\nSHARED NEGATIVES - three deliberate omissions. (1) The bare words 'service' and 'services' are NOT in the shared list even though ABK performs none: the legal name is 'ABK Trading & Service', so an account-level 'service' negative would kill brand search if a brand campaign is ever added. (2) The Arabic phrase 'تظليل سيارات' is NOT a shared negative - it is a substring of the AR window-film ad group's best keyword 'رول تظليل سيارات'. Only service collocations (تركيب تظليل, محل تظليل, تظليل متنقل) are blocked. (3) The bare word 'مركز' is never used: Google Ads ignores Arabic diacritics, so مركز (centre) and مركّز (concentrate) collapse to one token and a bare negative would suppress 'شامبو سيارات مركز', a core B2B shampoo query. Likewise 'وكيل' is negative because in Gulf car context it means a vehicle dealership agent, not a distributor.\n\nMATCH TYPES. All positive keywords are Phrase or Exact - no broad, no legacy '+' modified broad. All negatives, ad-group and shared, are listed as Broad in this file; add them in Google Ads as PHRASE match. 'armor all' in particular must be phrase - as a broad negative it would block 'VTEK PPF Weather Armor' and 'VTEK Solar Armor'. 'noon' must be phrase for the same reason. Google does not apply close-variant matching to negatives, so 'installation' will not block the intentional positive 'ppf film supplier for installers'.\n\nJUDGEMENT CALLS A REVIEWER SHOULD DOUBLE-CHECK.\n1. 'We Supply, You Fit' (EN, both film ad groups) is the one place an English ad contains a fitting verb, assigned explicitly to the buyer. It is the strongest differentiator ABK has. For zero tolerance, swap for 'We Supply, You Apply', already used in the EN wholesale ad group.\n2. GCC supply is claimed because public/llms.txt states wholesale across the GCC. No asset promises shipping, lead times or delivery. Confirm ABK actually ships cross-border before spending in the five non-Qatar markets; if it does not, cut locations to Qatar and drop the ...uae / ...saudi arabia / ...kuwait / ...bahrain keywords in every ad group.\n3. 'Made in Canada' appears only in the Briller wash-chemicals ad group. It must never drift onto an Autotriz (Germany) or VTEK asset - VTEK origin is not published.\n4. Friday is paused because the store is closed and the conversion is a human WhatsApp reply. This costs UAE and Saudi reach: the UAE business week is Mon-Fri and Saudi's weekend is Fri-Sat. If the owner will answer WhatsApp on Fridays, unpause Friday for this campaign only - it is the one campaign where the buyer is at work on a Friday.\n5. Bid strategy is 'Maximize conversions' for consistency with the sibling campaigns, but this campaign has no conversion history. Recommend Maximize clicks with the per-ad-group max CPC caps for the first 30 days, then switch once 15-30 WhatsApp conversions have accrued.\n6. 'nano ceramic window film supplier' and 'ceramic tint film wholesale' are new keywords. They are supported by the product's own description ('nano-ceramic window films' in the shipped short description), not by the specs line. If a reviewer wants strict specs-only sourcing, cut those two - the TSER / IR / UV assets do not depend on them.\n7. The AR headline 'حجب 99% للأشعة فوق البنفسجية' is 28 characters and the AR description carrying Iconic and Indulge is 88 - both near the limit. Re-count before any wording tweak.\n\nPRE-LAUNCH. (a) Verify all four new film Final URLs return 200 in both languages. (b) Force a Google re-crawl of /en/b2b and /ar/b2b - the index may still carry stale copy naming Insta Finish and Getsun, which the owner has pulled. (c) Final URLs must be an abktradingservice.com page carrying the WhatsApp button - a wa.me link cannot be a Final URL. Add a campaign-level Call asset for the phone number, plus a Location asset and Business Hours reflecting Sat-Thu 10:00-13:00 and 16:00-22:00, Friday closed. (d) Proof every Arabic asset in a real RTL preview, not a code editor: no headline starts with a Latin token or a digit, no terminal punctuation, no em-dash, Western digits only, tashkeel stripped. Pay particular attention to the assets that embed a Latin token mid-string (فيلم حماية الطلاء VTEK, أفلام تظليل VTEK, سلسلتا Iconic و Indulge, عزل حراري حتى 65% TSER, VTEK Weather Armor, VTEK Solar Armor). (e) Google Shopping and Merchant Center do not support Qatar but do support UAE, Saudi, Kuwait, Bahrain and Oman, so a feed play is possible on the B2B side only if cross-border fulfilment is confirmed (see call 2)."
 }

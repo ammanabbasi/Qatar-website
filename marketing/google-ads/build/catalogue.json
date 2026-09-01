@@ -1,8 +1,8 @@
 {
   "site": "https://abktradingservice.com",
   "generatedFrom": "git show HEAD:src/data/products.ts (what is actually deployed)",
-  "totalProducts": 33,
-  "promotableProducts": 25,
+  "totalProducts": 36,
+  "promotableProducts": 28,
   "excludedBrands": [
     "InstaFinish",
     "Getsun",
@@ -19,9 +19,11 @@
     "sitrett-mx5-heavy-duty-cleaner"
   ],
   "brands": [
+    "VTEK",
     "Vertek",
     "Autotriz",
     "Briller",
+    "Grizzly",
     "InstaFinish",
     "Getsun",
     "Sitrett",
@@ -46,9 +48,12 @@
     "ceramic"
   ],
   "byBrand": {
-    "Vertek": [
-      "vertek-ppf-weather-armor",
-      "vertek-window-tints"
+    "VTEK": [
+      "vtek-ppf-weather-armor-ultimate",
+      "vtek-ppf-weather-armor-pro",
+      "vtek-ppf-weather-armor-matte",
+      "vtek-ppf-weather-armor-prism",
+      "vtek-window-tints"
     ],
     "Briller": [
       "briller-wash-and-wax",
@@ -86,11 +91,14 @@
   },
   "byCategory": {
     "ppf": [
-      "vertek-ppf-weather-armor",
+      "vtek-ppf-weather-armor-ultimate",
+      "vtek-ppf-weather-armor-pro",
+      "vtek-ppf-weather-armor-matte",
+      "vtek-ppf-weather-armor-prism",
       "autotriz-ppf-gel"
     ],
     "tint": [
-      "vertek-window-tints"
+      "vtek-window-tints"
     ],
     "shampoo": [
       "briller-wash-and-wax",
@@ -137,36 +145,84 @@
   },
   "products": [
     {
-      "slug": "vertek-ppf-weather-armor",
-      "brand": "Vertek",
+      "slug": "vtek-ppf-weather-armor-ultimate",
+      "brand": "VTEK",
       "category": "ppf",
       "audience": "both",
       "featured": true,
-      "name_en": "Vertek PPF — Weather Armor",
-      "name_ar": "Vertek — فيلم حماية الطلاء Weather Armor",
-      "short_en": "Premium paint protection film with self-healing nano-technology. Scratch-resistant, weather-proof, high-gloss.",
-      "short_ar": "فيلم حماية طلاء فاخر بتقنية النانو الذاتية الإصلاح. مقاوم للخدش والعوامل الجوية ولامع.",
-      "specs": "Features=Self-healing · Scratch resistant · Weather proof · High gloss | Technology=Advanced nano-technology | Finish=Gloss / Matte | Application=Fitted by a trained installer",
-      "url_b2c_en": "https://abktradingservice.com/en/b2c/products/vertek-ppf-weather-armor",
-      "url_b2b_en": "https://abktradingservice.com/en/b2b/products/vertek-ppf-weather-armor",
-      "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/vertek-ppf-weather-armor",
-      "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/vertek-ppf-weather-armor"
+      "name_en": "VTEK PPF — Weather Armor ULTIMATE",
+      "name_ar": "VTEK — فيلم حماية الطلاء Weather Armor ULTIMATE",
+      "short_en": "Flagship Polycarbonate TPU paint protection film with ultra-gloss clarity, instant self-healing and 10-year warranty.",
+      "short_ar": "فيلم حماية الطلاء الرائد من بولي كربونات TPU بلمعان فائق وإصلاح ذاتي فوري وضمان 10 سنوات.",
+      "specs": "Material=Advanced Polycarbonate TPU | Thickness=8.5 mil (215 µm) | Finish=Ultra-Gloss High Depth | Technology=Instant Heat Self-Healing & Hydrophobic Top-Coat | Warranty=10-Year Manufacturer Warranty | Resistance=Extreme UV, Desert Sand, Road Salts & Chemicals",
+      "url_b2c_en": "https://abktradingservice.com/en/b2c/products/vtek-ppf-weather-armor-ultimate",
+      "url_b2b_en": "https://abktradingservice.com/en/b2b/products/vtek-ppf-weather-armor-ultimate",
+      "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/vtek-ppf-weather-armor-ultimate",
+      "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/vtek-ppf-weather-armor-ultimate"
     },
     {
-      "slug": "vertek-window-tints",
-      "brand": "Vertek",
+      "slug": "vtek-ppf-weather-armor-pro",
+      "brand": "VTEK",
+      "category": "ppf",
+      "audience": "both",
+      "featured": true,
+      "name_en": "VTEK PPF — Weather Armor PRO",
+      "name_ar": "VTEK — فيلم حماية الطلاء Weather Armor PRO",
+      "short_en": "Proven performance paint protection film with robust scratch resistance, high optical gloss and 8-year warranty.",
+      "short_ar": "فيلم حماية طلاء عالي الأداء والموثوقية بمقاومة قوية للخدوش ولمعان بصري نقي وضمان 8 سنوات.",
+      "specs": "Material=High-Grade Aliphatic TPU | Thickness=7.5 mil (190 µm) | Finish=High Optical Clarity Gloss | Technology=Heat-Activated Self-Healing Nano-Coat | Warranty=8-Year Warranty | Handling=Smooth installation with balanced flexibility",
+      "url_b2c_en": "https://abktradingservice.com/en/b2c/products/vtek-ppf-weather-armor-pro",
+      "url_b2b_en": "https://abktradingservice.com/en/b2b/products/vtek-ppf-weather-armor-pro",
+      "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/vtek-ppf-weather-armor-pro",
+      "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/vtek-ppf-weather-armor-pro"
+    },
+    {
+      "slug": "vtek-ppf-weather-armor-matte",
+      "brand": "VTEK",
+      "category": "ppf",
+      "audience": "both",
+      "featured": true,
+      "name_en": "VTEK PPF — Weather Armor MATTE",
+      "name_ar": "VTEK — فيلم حماية الطلاء Weather Armor MATTE (مطفي)",
+      "short_en": "Stealth satin matte paint protection film for a bold non-reflective finish with 10-year durability.",
+      "short_ar": "فيلم حماية طلاء مطفي ساتان لمظهر جريء غير عاكس مع حماية فائقة وضمان 10 سنوات.",
+      "specs": "Finish=Satin Matte Non-Reflective | Material=Aliphatic Matte TPU | Thickness=8 mil (200 µm) | Technology=Self-Healing Satin Top-Coat & Grime Shield | Warranty=10-Year Warranty | Maintenance=Low maintenance, easy wash",
+      "url_b2c_en": "https://abktradingservice.com/en/b2c/products/vtek-ppf-weather-armor-matte",
+      "url_b2b_en": "https://abktradingservice.com/en/b2b/products/vtek-ppf-weather-armor-matte",
+      "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/vtek-ppf-weather-armor-matte",
+      "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/vtek-ppf-weather-armor-matte"
+    },
+    {
+      "slug": "vtek-ppf-weather-armor-prism",
+      "brand": "VTEK",
+      "category": "ppf",
+      "audience": "both",
+      "featured": true,
+      "name_en": "VTEK PPF — Weather Armor PRISM (Color PPF)",
+      "name_ar": "VTEK — فيلم حماية الطلاء الملون Weather Armor PRISM",
+      "short_en": "Premium colored paint protection film combining dynamic restyling with rock chip defense and color stability.",
+      "short_ar": "فيلم حماية طلاء ملون يجمع بين تغيير لون السيارة الرياضي وحماية الطلاء الأصلية من الصدمات وثبات اللون.",
+      "specs": "Material=Polycaprolactone-based Color TPU | Thickness=8.5 mil (215 µm) | Colors Available=Gloss Piano Black, Matte Black, Nardo Grey, Metallic Blue, Pearl White, Satin Metals | Adhesion=High-Stability Extreme Weather Adhesive | Warranty=8-Year Warranty",
+      "url_b2c_en": "https://abktradingservice.com/en/b2c/products/vtek-ppf-weather-armor-prism",
+      "url_b2b_en": "https://abktradingservice.com/en/b2b/products/vtek-ppf-weather-armor-prism",
+      "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/vtek-ppf-weather-armor-prism",
+      "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/vtek-ppf-weather-armor-prism"
+    },
+    {
+      "slug": "vtek-window-tints",
+      "brand": "VTEK",
       "category": "tint",
       "audience": "both",
       "featured": true,
-      "name_en": "Vertek Window Tints",
-      "name_ar": "Vertek — تظليل النوافذ",
-      "short_en": "Heat-rejecting window films in multiple VLT grades. Compliant with Qatar regulations.",
-      "short_ar": "أفلام نوافذ عازلة للحرارة بدرجات VLT متعددة، متوافقة مع قوانين قطر.",
-      "specs": "",
-      "url_b2c_en": "https://abktradingservice.com/en/b2c/products/vertek-window-tints",
-      "url_b2b_en": "https://abktradingservice.com/en/b2b/products/vertek-window-tints",
-      "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/vertek-window-tints",
-      "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/vertek-window-tints"
+      "name_en": "VTEK Solar Armor — Iconic & Indulge Series Window Tints",
+      "name_ar": "VTEK — أفلام تظليل النوافذ Solar Armor (سلسلة Iconic و Indulge)",
+      "short_en": "High-performance heat-rejecting nano-ceramic window films in Iconic & Indulge series with multiple VLT grades and 10-year e-warranty. Fully compliant with Qatar regulations.",
+      "short_ar": "أفلام تظليل سيراميكية عالية الأداء لعزل الحرارة في سلسلتي Iconic و Indulge بدرجات VLT متعددة وضمان إلكتروني 10 سنوات، متوافقة كلياً مع قوانين المرور في قطر.",
+      "specs": "Series=Iconic & Indulge Series | Heat Rejection=Up to 65% TSER / 90%+ IR Rejection | UV Protection=99% UV Rejection | Compliance=Qatar Traffic Law & MOI Compliant Grades | Warranty=10-Year e-Warranty",
+      "url_b2c_en": "https://abktradingservice.com/en/b2c/products/vtek-window-tints",
+      "url_b2b_en": "https://abktradingservice.com/en/b2b/products/vtek-window-tints",
+      "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/vtek-window-tints",
+      "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/vtek-window-tints"
     },
     {
       "slug": "briller-wash-and-wax",
@@ -226,7 +282,7 @@
       "name_ar": "Briller — منظف الزجاج",
       "short_en": "Streak-free glass cleaner with All-in-One CA Tech™.",
       "short_ar": "منظف زجاج بدون أثر شطب، بتقنية CA Tech™.",
-      "specs": "SKU=B508 | Size=20 L | Dilution=1:50 | Origin=Made in Canada",
+      "specs": "SKU=B508 | Size=20 L | Dilution=Direct / 1:1 | Origin=Made in Canada",
       "url_b2c_en": "https://abktradingservice.com/en/b2c/products/briller-glass-cleaner",
       "url_b2b_en": "https://abktradingservice.com/en/b2b/products/briller-glass-cleaner",
       "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/briller-glass-cleaner",

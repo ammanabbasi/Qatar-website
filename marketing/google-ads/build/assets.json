@@ -20,7 +20,7 @@
       {
         "text": "Shop All Products",
         "desc1": "28 car care products in stock",
-        "desc2": "Vertek, Autotriz, Briller",
+        "desc2": "VTEK, Autotriz, Briller",
         "url": "https://abktradingservice.com/en/b2c/products"
       },
       {
@@ -37,7 +37,7 @@
       },
       {
         "text": "Paint Protection Film",
-        "desc1": "Vertek PPF for the Qatar sun",
+        "desc1": "VTEK PPF for the Qatar sun",
         "desc2": "Gloss, matte and prism",
         "url": "https://abktradingservice.com/en/b2c/products?category=ppf"
       },
@@ -64,7 +64,7 @@
       {
         "text": "جميع المنتجات",
         "desc1": "منتجات العناية بالسيارات",
-        "desc2": "فيرتك وأوتوتريز وبريلر",
+        "desc2": "أوتوتريز، بريلر، VTEK",
         "url": "https://abktradingservice.com/ar/b2c/products"
       },
       {
@@ -81,7 +81,7 @@
       },
       {
         "text": "أفلام حماية الطلاء",
-        "desc1": "فيرتك لحماية طلاء سيارتك",
+        "desc1": "أفلام VTEK لحماية طلاء سيارتك",
         "desc2": "لامع ومطفي وبريزم",
         "url": "https://abktradingservice.com/ar/b2c/products?category=ppf"
       },
@@ -133,7 +133,7 @@
     "en": [
       {
         "header": "Brands",
-        "values": ["Vertek", "VTEK", "Autotriz", "Briller", "ABK", "Smart Car"]
+        "values": ["VTEK", "Autotriz", "Briller", "ABK", "Smart Car"]
       },
       {
         "header": "Types",
@@ -152,7 +152,7 @@
     "ar": [
       {
         "header": "Brands",
-        "values": ["فيرتك", "أوتوتريز", "بريلر", "ABK", "سمارت كار"]
+        "values": ["VTEK", "أوتوتريز", "بريلر", "ABK", "سمارت كار"]
       },
       {
         "header": "Types",

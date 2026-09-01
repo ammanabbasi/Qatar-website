@@ -1,1307 +1,1951 @@
 {
  "campaignKey": "ppf-tint",
  "campaigns": [
- {
- "name": "ABK | Search | EN | Vertek PPF & Window Tint",
- "language": "en",
- "dailyBudgetQAR": 45,
- "bidStrategy": "Maximize conversions",
- "locations": [
- "Qatar"
- ],
- "excludedLocations": [],
- "adSchedule": "Sat-Thu 09:30-13:30 and 15:30-22:30 (store hours 10:00-13:00 and 16:00-22:00, with a 30-minute buffer either side); Friday paused - store closed",
- "rationale": "English demand for the two highest-ticket products ABK stocks: Vertek Weather Armor paint protection film and Vertek window film. It is isolated from every other theme because this is where service intent is most poisonous - someone searching window tinting in Qatar wants a workshop, and ABK is not one - so it needs its own negative wall, product-qualifier-only keywords, and copy that says out loud that the customer's own fitter applies the film.",
- "adGroups": [
- {
- "name": "PPF Film - Buy & Supply",
- "maxCpcQAR": 4.5,
- "finalUrl": "https://abktradingservice.com/en/b2c/products/vertek-ppf-weather-armor",
- "themeNote": "Unbranded product-purchase intent for paint protection film: buy, supplier, roll, cut to size, gloss/matte. The bare head term 'paint protection film qatar' is deliberately NOT bid - in Qatar it is service intent by default. Every keyword carries a product qualifier.",
- "keywords": [
- {
- "text": "buy paint protection film qatar",
- "matchType": "Phrase"
- },
- {
- "text": "paint protection film supplier qatar",
- "matchType": "Phrase"
- },
- {
- "text": "paint protection film for sale qatar",
- "matchType": "Phrase"
- },
- {
- "text": "paint protection film roll",
- "matchType": "Phrase"
- },
- {
- "text": "car paint protection film supplier",
- "matchType": "Phrase"
- },
- {
- "text": "ppf film roll qatar",
- "matchType": "Phrase"
- },
- {
- "text": "ppf roll supplier doha",
- "matchType": "Phrase"
- },
- {
- "text": "ppf film supplier qatar",
- "matchType": "Phrase"
- },
- {
- "text": "buy ppf film doha",
- "matchType": "Phrase"
- },
- {
- "text": "self healing ppf film",
- "matchType": "Phrase"
- },
- {
- "text": "matte ppf film qatar",
- "matchType": "Phrase"
- },
- {
- "text": "gloss ppf film qatar",
- "matchType": "Phrase"
- },
- {
- "text": "ppf film cut to size",
- "matchType": "Phrase"
- },
- {
- "text": "where to buy ppf in qatar",
- "matchType": "Exact"
- },
- {
- "text": "ppf film shop doha",
- "matchType": "Exact"
- }
- ],
- "negativeKeywords": [
- {
- "text": "ppf installation",
- "matchType": "Phrase"
- },
- {
- "text": "ppf fitting",
- "matchType": "Phrase"
- },
- {
- "text": "ppf near me",
- "matchType": "Phrase"
- },
- {
- "text": "ppf cost",
- "matchType": "Phrase"
- },
- {
- "text": "ppf price qatar",
- "matchType": "Exact"
- },
- {
- "text": "full body ppf price",
- "matchType": "Phrase"
- },
- {
- "text": "ppf wrap my car",
- "matchType": "Phrase"
- },
- {
- "text": "window tint",
- "matchType": "Phrase"
- },
- {
- "text": "tint film",
- "matchType": "Phrase"
- },
- {
- "text": "ceramic coating",
- "matchType": "Phrase"
- }
- ],
- "ad": {
- "headlines": [
- "Paint Protection Film Qatar",
- "Buy PPF Film in Doha",
- "PPF Film Supplied by Roll",
- "Vertek Weather Armor PPF",
- "Self-Healing Nano Film",
- "Gloss and Matte Finishes",
- "Built for Qatar Sun & Sand",
- "Cut for Full Body or Front",
- "Stocked in Mesaimeer, Doha",
- "We Supply, Your Fitter Fits",
- "For Detailers & Body Shops",
- "Rock Chip & Scratch Shield",
- "Ask on WhatsApp for a Quote",
- "Trade & Retail Film Supply",
- "Doha PPF Film Supplier"
- ],
- "descriptions": [
- "Vertek Weather Armor paint protection film, gloss or matte, supplied from Doha.",
- "We supply the film only. A trained installer of your own choice fits it.",
- "Self-healing nano top-coat shields paint from rock chips, scratches and weather.",
- "Cut for full body, front end or custom areas. WhatsApp us for stock and a quote."
- ],
- "path1": "ppf",
- "path2": "film"
- }
- },
- {
- "name": "Vertek Weather Armor - Brand",
- "maxCpcQAR": 3.0,
- "finalUrl": "https://abktradingservice.com/en/b2c/products/vertek-ppf-weather-armor",
- "themeNote": "Brand and SKU searches for the one PPF line ABK stocks. Carries both live spellings - Vertek (the deployed site and the Google Business Profile) and VTEK (used in an earlier build of the product data) - so no branded query is missed. Cheapest, highest-intent traffic in the theme.",
- "keywords": [
- {
- "text": "vertek ppf",
- "matchType": "Phrase"
- },
- {
- "text": "vertek paint protection film",
- "matchType": "Phrase"
- },
- {
- "text": "vertek weather armor",
- "matchType": "Phrase"
- },
- {
- "text": "weather armor ppf",
- "matchType": "Phrase"
- },
- {
- "text": "weather armor paint protection film",
- "matchType": "Phrase"
- },
- {
- "text": "vertek film qatar",
- "matchType": "Phrase"
- },
- {
- "text": "vertek films",
- "matchType": "Phrase"
- },
- {
- "text": "vertek ppf supplier",
- "matchType": "Phrase"
- },
- {
- "text": "buy vertek ppf",
- "matchType": "Phrase"
- },
- {
- "text": "vtek ppf",
- "matchType": "Phrase"
- },
- {
- "text": "v-tek ppf",
- "matchType": "Phrase"
- },
- {
- "text": "vertek ppf qatar",
- "matchType": "Exact"
- },
- {
- "text": "vertek ppf doha",
- "matchType": "Exact"
- }
- ],
- "negativeKeywords": [
- {
- "text": "vertek installation",
- "matchType": "Phrase"
- },
- {
- "text": "vertek installer near me",
- "matchType": "Phrase"
- },
- {
- "text": "weather armor jacket",
- "matchType": "Phrase"
- },
- {
- "text": "weather armour roofing",
- "matchType": "Phrase"
- },
- {
- "text": "vertek software",
- "matchType": "Phrase"
- }
- ],
- "ad": {
- "headlines": [
- "Vertek Weather Armor PPF",
- "Vertek PPF Film in Qatar",
- "Weather Armor Film Rolls",
- "Buy Vertek Film in Doha",
- "Self-Healing Top-Coat",
- "Advanced Nano Technology",
- "Gloss or Matte Finish",
- "High Optical Clarity Film",
- "Scratch & Weather Proof",
- "Vertek Stocked in Doha",
- "Made for Qatar Heat & Sand",
- "Trade & Retail Film Supply",
- "WhatsApp Us for a Quote",
- "Your Own Fitter Applies It",
- "Shop in Mesaimeer, Doha"
- ],
- "descriptions": [
- "Vertek Weather Armor: premium paint protection film with self-healing nano tech.",
- "Scratch resistant, weather proof and high gloss. Also available in matte finish.",
- "We stock the film in Mesaimeer, Doha. A trained installer of yours fits it.",
- "Cut for full body, front end or custom areas. Ask on WhatsApp for a quote."
- ],
- "path1": "vertek",
- "path2": "weather-armor"
- }
- },
- {
- "name": "Window Tint Film - Rolls & Supply",
- "maxCpcQAR": 4.0,
- "finalUrl": "https://abktradingservice.com/en/b2c/products/vertek-window-tints",
- "themeNote": "The most dangerous intent in the account. Every keyword carries a product qualifier - film, roll, supplier, buy, cut to size - because a bare tinting query in Qatar is a person looking for a workshop, which ABK is not. Copy sells heat, UV and glare rejection, never darkness, VLT numbers or legality.",
- "keywords": [
- {
- "text": "buy window tint film qatar",
- "matchType": "Phrase"
- },
- {
- "text": "window tint film roll",
- "matchType": "Phrase"
- },
- {
- "text": "tint film roll supplier",
- "matchType": "Phrase"
- },
- {
- "text": "tint film supplier qatar",
- "matchType": "Phrase"
- },
- {
- "text": "window film supplier doha",
- "matchType": "Phrase"
- },
- {
- "text": "buy tint film doha",
- "matchType": "Phrase"
- },
- {
- "text": "car window film supplier qatar",
- "matchType": "Phrase"
- },
- {
- "text": "heat rejection window film qatar",
- "matchType": "Phrase"
- },
- {
- "text": "uv window film for cars qatar",
- "matchType": "Phrase"
- },
- {
- "text": "solar window film supplier qatar",
- "matchType": "Phrase"
- },
- {
- "text": "window tint film for sale qatar",
- "matchType": "Phrase"
- },
- {
- "text": "window film cut to size qatar",
- "matchType": "Phrase"
- },
- {
- "text": "vertek window tint",
- "matchType": "Phrase"
- },
- {
- "text": "vertek window film",
- "matchType": "Phrase"
- },
- {
- "text": "window tint film rolls qatar",
- "matchType": "Exact"
- }
- ],
- "negativeKeywords": [
- {
- "text": "car tinting",
- "matchType": "Exact"
- },
- {
- "text": "window tinting",
- "matchType": "Exact"
- },
- {
- "text": "window tinting doha",
- "matchType": "Exact"
- },
- {
- "text": "car tinting qatar",
- "matchType": "Exact"
- },
- {
- "text": "tinting",
- "matchType": "Exact"
- },
- {
- "text": "tinting service",
- "matchType": "Phrase"
- },
- {
- "text": "tinting shop",
- "matchType": "Phrase"
- },
- {
- "text": "tinting near me",
- "matchType": "Phrase"
- },
- {
- "text": "mobile tinting",
- "matchType": "Phrase"
- },
- {
- "text": "tint my car",
- "matchType": "Phrase"
- },
- {
- "text": "tinting price",
- "matchType": "Phrase"
- },
- {
- "text": "tint permit",
- "matchType": "Phrase"
- },
- {
- "text": "tint law",
- "matchType": "Phrase"
- },
- {
- "text": "tinting rules",
- "matchType": "Phrase"
- },
- {
- "text": "vlt",
- "matchType": "Broad"
- },
- {
- "text": "limo tint",
- "matchType": "Phrase"
- },
- {
- "text": "blackout tint",
- "matchType": "Phrase"
- },
- {
- "text": "darkest tint",
- "matchType": "Phrase"
- },
- {
- "text": "tint removal",
- "matchType": "Phrase"
- },
- {
- "text": "house window film",
- "matchType": "Phrase"
- },
- {
- "text": "home window film",
- "matchType": "Phrase"
- },
- {
- "text": "office window film",
- "matchType": "Phrase"
- },
- {
- "text": "building glass film",
- "matchType": "Phrase"
- }
- ],
- "ad": {
- "headlines": [
- "Window Tint Film in Qatar",
- "Buy Tint Film in Doha",
- "Vertek Window Film",
- "Heat, UV and Glare Cut",
- "Heat Rejection, Not Dark",
- "Supplied Cut to Size",
- "Made for Qatar Summers",
- "Multiple Film Grades",
- "Tint Film Roll Supplier",
- "Film Stocked in Mesaimeer",
- "Lifetime Peel Warranty",
- "For Tint Shops & Detailers",
- "Ask on WhatsApp for Stock",
- "Your Own Fitter Applies It",
- "Doha Window Film Supply"
- ],
- "descriptions": [
- "Vertek window film cuts heat, UV and glare without compromising visibility.",
- "We supply the film only. We do not tint cars - your own fitter applies it.",
- "Multiple grades, supplied cut to size, with a lifetime peel warranty on the film.",
- "Film stocked in Mesaimeer, Doha. WhatsApp us for grades, sizes and a quote."
- ],
- "path1": "window-tint",
- "path2": "film"
- }
- },
- {
- "name": "PPF & Tint Film Wholesale",
- "maxCpcQAR": 5.0,
- "finalUrl": "https://abktradingservice.com/en/b2b",
- "themeNote": "Trade buyers: detail shops, tint shops, body shops and would-be distributors sourcing film by the roll. Leads with the wedge no installing rival can copy - ABK supplies film and never fits it, so it never competes with the shops it sells to.",
- "keywords": [
- {
- "text": "ppf supplier qatar",
- "matchType": "Phrase"
- },
- {
- "text": "paint protection film distributor",
- "matchType": "Phrase"
- },
- {
- "text": "paint protection film wholesale",
- "matchType": "Phrase"
- },
- {
- "text": "window film distributor qatar",
- "matchType": "Phrase"
- },
- {
- "text": "tint film wholesale supplier",
- "matchType": "Phrase"
- },
- {
- "text": "ppf film wholesale qatar",
- "matchType": "Phrase"
- },
- {
- "text": "ppf roll wholesale",
- "matchType": "Phrase"
- },
- {
- "text": "window film wholesale gcc",
- "matchType": "Phrase"
- },
- {
- "text": "bulk ppf film supplier",
- "matchType": "Phrase"
- },
- {
- "text": "paint protection film supplier gcc",
- "matchType": "Phrase"
- },
- {
- "text": "ppf dealer program gcc",
- "matchType": "Phrase"
- },
- {
- "text": "vertek ppf distributor",
- "matchType": "Phrase"
- },
- {
- "text": "detailing shop film supplies qatar",
- "matchType": "Phrase"
- },
- {
- "text": "ppf supplier for installers",
- "matchType": "Exact"
- },
- {
- "text": "tint film supplier for shops",
- "matchType": "Exact"
- }
- ],
- "negativeKeywords": [
- {
- "text": "wholesale cars",
- "matchType": "Phrase"
- },
- {
- "text": "wholesale clothing",
- "matchType": "Phrase"
- },
- {
- "text": "packaging film",
- "matchType": "Phrase"
- },
- {
- "text": "stretch film",
- "matchType": "Phrase"
- },
- {
- "text": "plastic film supplier",
- "matchType": "Phrase"
- },
- {
- "text": "solar panel",
- "matchType": "Phrase"
- },
- {
- "text": "architectural film",
- "matchType": "Phrase"
- },
- {
- "text": "franchise",
- "matchType": "Phrase"
- }
- ],
- "ad": {
- "headlines": [
- "PPF & Tint Film Wholesale",
- "We Supply, We Don't Fit",
- "Film Supply for Installers",
- "Trade Film Supply in Doha",
- "Vertek Film Distributor",
- "Rolls for Detail Shops",
- "Film Stock Held in Qatar",
- "Wholesale PPF & Tint Film",
- "Dealer Enquiries Welcome",
- "No Import Wait, Doha Stock",
- "Supply for Body Shops",
- "Gloss, Matte and Tint Film",
- "WhatsApp for Trade Supply",
- "Film Built for Gulf Heat",
- "Become an ABK Dealer"
- ],
- "descriptions": [
- "Wholesale Vertek paint protection and window film for Qatar detailers and shops.",
- "We supply film only and never fit it, so we never compete with your workshop.",
- "Stock held in Mesaimeer, Doha - no cross-border wait before your next job.",
- "Trade and dealer enquiries on WhatsApp. Open Sat to Thu, closed on Friday."
- ],
- "path1": "wholesale",
- "path2": "ppf-tint"
- }
- }
- ]
- },
- {
- "name": "ABK | Search | AR | Vertek PPF & Window Tint",
- "language": "ar",
- "dailyBudgetQAR": 20,
- "bidStrategy": "Maximize conversions",
- "locations": [
- "Qatar"
- ],
- "excludedLocations": [],
- "adSchedule": "Sat-Thu 09:30-13:30 and 15:30-22:30 (store hours 10:00-13:00 and 16:00-22:00, with a 30-minute buffer either side); Friday paused - store closed",
- "rationale": "Arabic-script demand for the same two film lines, aimed at Qatari nationals and Arab expatriates. Competition is thinner and clicks are cheaper, so it runs on a smaller budget as a mirror rather than a translation: brand terms stay in Latin because nobody types Vertek in Arabic, and the tint negatives use different match types to survive Arabic phrase matching.",
- "adGroups": [
- {
- "name": "PPF - افلام حماية الطلاء",
- "maxCpcQAR": 3.0,
- "finalUrl": "https://abktradingservice.com/ar/b2c/products/vertek-ppf-weather-armor",
- "themeNote": "Arabic product-purchase intent for paint protection film, including the hamza-less spellings Gulf users actually type (افلام, حمايه). Service phrasings built on تركيب are excluded, not bid.",
- "keywords": [
- {
- "text": "فيلم حماية الطلاء",
- "matchType": "Phrase"
- },
- {
- "text": "افلام حماية السيارات",
- "matchType": "Phrase"
- },
- {
- "text": "افلام حمايه السيارات",
- "matchType": "Phrase"
- },
- {
- "text": "فيلم حماية شفاف للسيارة",
- "matchType": "Phrase"
- },
- {
- "text": "رول فيلم حماية الطلاء",
- "matchType": "Phrase"
- },
- {
- "text": "رولات فيلم حماية",
- "matchType": "Phrase"
- },
- {
- "text": "شراء فيلم حماية الطلاء",
- "matchType": "Phrase"
- },
- {
- "text": "مورد فيلم حماية الطلاء",
- "matchType": "Phrase"
- },
- {
- "text": "فيلم حماية الطلاء قطر",
- "matchType": "Phrase"
- },
- {
- "text": "فيلم حماية الطلاء الدوحة",
- "matchType": "Phrase"
- },
- {
- "text": "فيلم حماية مطفي",
- "matchType": "Phrase"
- },
- {
- "text": "افلام حماية ذاتية الاصلاح",
- "matchType": "Phrase"
- },
- {
- "text": "فيلم حماية للسيارات لامع",
- "matchType": "Phrase"
- },
- {
- "text": "بي بي اف",
- "matchType": "Exact"
- }
- ],
- "negativeKeywords": [
- {
- "text": "تركيب فيلم حماية",
- "matchType": "Phrase"
- },
- {
- "text": "تركيب بي بي اف",
- "matchType": "Phrase"
- },
- {
- "text": "اسعار تركيب",
- "matchType": "Phrase"
- },
- {
- "text": "ورشة",
- "matchType": "Phrase"
- },
- {
- "text": "كراج",
- "matchType": "Phrase"
- },
- {
- "text": "تظليل",
- "matchType": "Phrase"
- },
- {
- "text": "نانو سيراميك",
- "matchType": "Phrase"
- },
- {
- "text": "فيلم لاصق للجدران",
- "matchType": "Phrase"
- },
- {
- "text": "واقي شاشة",
- "matchType": "Phrase"
- }
- ],
- "ad": {
- "headlines": [
- "أفلام حماية الطلاء في قطر",
- "رولات فيلم حماية الطلاء",
- "توريد أفلام حماية الطلاء",
- "فيلم Vertek Weather Armor",
- "إصلاح ذاتي للخدوش الخفيفة",
- "تشطيب لامع أو مطفي",
- "مقاوم للشمس والرمال",
- "متوفر في مسيمير الدوحة",
- "نورد الفيلم لورش الفنيين",
- "حماية من الحصى والخدوش",
- "تقنية نانو متطورة",
- "اطلب عرض السعر على واتساب",
- "توريد بالجملة والمفرق",
- "مقصوص للهيكل أو المقدمة",
- "متجر أفلام الحماية بالدوحة"
- ],
- "descriptions": [
- "فيلم حماية الطلاء Vertek بتشطيب لامع أو مطفي متوفر في مسيمير بالدوحة",
- "نورد الفيلم فقط ولا ننفذ أي أعمال على السيارة، والتنفيذ يعود لفنيك المدرب",
- "طبقة ذاتية الإصلاح تحمي الطلاء من الحصى والخدوش والعوامل الجوية في قطر",
- "يقص للهيكل الكامل أو المقدمة أو أجزاء محددة، تواصل على واتساب لعرض السعر"
- ],
- "path1": "ar-ppf",
- "path2": "film"
- }
- },
- {
- "name": "Vertek Weather Armor - العلامة",
- "maxCpcQAR": 2.0,
- "finalUrl": "https://abktradingservice.com/ar/b2c/products/vertek-ppf-weather-armor",
- "themeNote": "Brand terms stay in Latin script inside the Arabic campaign, because Gulf buyers type brand names in Latin and no Arabic transliteration of Vertek is in circulation. Arabic ads serve against them.",
- "keywords": [
- {
- "text": "vertek ppf",
- "matchType": "Phrase"
- },
- {
- "text": "vertek paint protection film",
- "matchType": "Phrase"
- },
- {
- "text": "vertek weather armor",
- "matchType": "Phrase"
- },
- {
- "text": "weather armor ppf",
- "matchType": "Phrase"
- },
- {
- "text": "vertek films qatar",
- "matchType": "Phrase"
- },
- {
- "text": "vtek ppf",
- "matchType": "Phrase"
- },
- {
- "text": "v-tek ppf",
- "matchType": "Phrase"
- },
- {
- "text": "فيلم حماية Vertek",
- "matchType": "Phrase"
- },
- {
- "text": "أفلام Vertek",
- "matchType": "Phrase"
- },
- {
- "text": "فيلم Vertek للسيارات",
- "matchType": "Phrase"
- },
- {
- "text": "weather armor مطفي",
- "matchType": "Phrase"
- },
- {
- "text": "vertek ppf qatar",
- "matchType": "Exact"
- },
- {
- "text": "vertek ppf doha",
- "matchType": "Exact"
- }
- ],
- "negativeKeywords": [
- {
- "text": "تركيب",
- "matchType": "Phrase"
- },
- {
- "text": "ورشة",
- "matchType": "Phrase"
- },
- {
- "text": "وظائف",
- "matchType": "Phrase"
- },
- {
- "text": "weather armor jacket",
- "matchType": "Phrase"
- },
- {
- "text": "vertek software",
- "matchType": "Phrase"
- }
- ],
- "ad": {
- "headlines": [
- "فيلم حماية الطلاء Vertek",
- "أفلام Weather Armor الأصلية",
- "فيلم حماية بتقنية النانو",
- "إصلاح ذاتي بالحرارة",
- "مقاوم للخدش والعوامل الجوية",
- "شفافية بصرية عالية",
- "تشطيب لامع أو مطفي",
- "متوفر في مسيمير الدوحة",
- "نورد الفيلم لورش الفنيين",
- "أفلام لأجواء قطر القاسية",
- "توريد بالجملة والمفرق",
- "اطلب عرض السعر على واتساب",
- "مقصوص حسب المقاس",
- "متجر Vertek في الدوحة",
- "حماية من الحصى والخدوش"
- ],
- "descriptions": [
- "فيلم Vertek Weather Armor لحماية الطلاء بتقنية النانو الذاتية الإصلاح",
- "مقاوم للخدش والعوامل الجوية بلمعان عالي، ومتوفر أيضا بتشطيب مطفي",
- "متوفر في متجرنا بمسيمير الدوحة، ويورد الفيلم لفنيك المدرب الخاص",
- "يقص للهيكل الكامل أو المقدمة، اسأل على واتساب عن التوفر وعرض السعر"
- ],
- "path1": "ar-vertek",
- "path2": "weather-armor"
- }
- },
- {
- "name": "افلام التظليل والعزل الحراري",
- "maxCpcQAR": 3.0,
- "finalUrl": "https://abktradingservice.com/ar/b2c/products/vertek-window-tints",
- "themeNote": "The riskiest Arabic intent. Only roll, film and heat-insulation phrasings are bid. The bare service words تظليل سيارات and مخفي are blocked as EXACT negatives, never phrase, so they do not also block the product query رول تظليل سيارات. Copy sells heat, UV and glare rejection, never darkness, permits or legality.",
- "keywords": [
- {
- "text": "رول تظليل سيارات",
- "matchType": "Phrase"
- },
- {
- "text": "رولات أفلام التظليل",
- "matchType": "Phrase"
- },
- {
- "text": "فيلم عازل حراري للسيارات",
- "matchType": "Phrase"
- },
- {
- "text": "افلام العزل الحراري",
- "matchType": "Phrase"
- },
- {
- "text": "فيلم حراري للسيارات",
- "matchType": "Phrase"
- },
- {
- "text": "رول عازل حراري",
- "matchType": "Phrase"
- },
- {
- "text": "شراء فيلم تظليل",
- "matchType": "Phrase"
- },
- {
- "text": "فيلم تظليل زجاج السيارات",
- "matchType": "Phrase"
- },
- {
- "text": "أفلام عزل حراري للزجاج",
- "matchType": "Phrase"
- },
- {
- "text": "فيلم تظليل نانو سيراميك",
- "matchType": "Phrase"
- },
- {
- "text": "مورد أفلام تظليل السيارات",
- "matchType": "Phrase"
- },
- {
- "text": "فيلم تظليل مقصوص",
- "matchType": "Phrase"
- },
- {
- "text": "أفلام Vertek للنوافذ",
- "matchType": "Phrase"
- },
- {
- "text": "vertek window tint",
- "matchType": "Phrase"
- }
- ],
- "negativeKeywords": [
- {
- "text": "تظليل سيارات",
- "matchType": "Exact"
- },
- {
- "text": "تظليل",
- "matchType": "Exact"
- },
- {
- "text": "مخفي سيارات",
- "matchType": "Exact"
- },
- {
- "text": "مخفي",
- "matchType": "Exact"
- },
- {
- "text": "تركيب تظليل",
- "matchType": "Phrase"
- },
- {
- "text": "تركيب مخفي",
- "matchType": "Phrase"
- },
- {
- "text": "محل تظليل",
- "matchType": "Phrase"
- },
- {
- "text": "تظليل متنقل",
- "matchType": "Phrase"
- },
- {
- "text": "خدمة منزلية",
- "matchType": "Phrase"
- },
- {
- "text": "نسبة التظليل",
- "matchType": "Phrase"
- },
- {
- "text": "تصريح تظليل",
- "matchType": "Phrase"
- },
- {
- "text": "مخالفة تظليل",
- "matchType": "Phrase"
- },
- {
- "text": "غرامة تظليل",
- "matchType": "Phrase"
- },
- {
- "text": "قانون التظليل",
- "matchType": "Phrase"
- },
- {
- "text": "اسعار تظليل",
- "matchType": "Phrase"
- },
- {
- "text": "افضل تظليل",
- "matchType": "Phrase"
- },
- {
- "text": "تظليل المنازل",
- "matchType": "Phrase"
- },
- {
- "text": "تظليل زجاج المباني",
- "matchType": "Phrase"
- },
- {
- "text": "ازالة التظليل",
- "matchType": "Phrase"
- }
- ],
- "ad": {
- "headlines": [
- "أفلام تظليل للسيارات في قطر",
- "رولات أفلام عزل حراري",
- "أفلام Vertek للنوافذ",
- "عزل الحرارة والأشعة والوهج",
- "عزل الحرارة لا الإعتام",
- "تورد مقصوصة حسب المقاس",
- "مصممة لصيف قطر",
- "درجات متعددة للأفلام",
- "مورد رولات أفلام التظليل",
- "متوفرة في مسيمير الدوحة",
- "ضمان ضد التقشير",
- "توريد لمحلات ومغاسل",
- "اسأل عن التوفر على واتساب",
- "نورد الفيلم لفنيك الخاص",
- "أفلام زجاج بالجملة والمفرق"
- ],
- "descriptions": [
- "أفلام Vertek تعزل الحرارة والأشعة فوق البنفسجية والوهج دون التأثير على الرؤية",
- "نورد الفيلم فقط ولا ننفذ أي أعمال على زجاج السيارة داخل المحل",
- "درجات متعددة تورد مقصوصة حسب المقاس مع ضمان ضد التقشير على الفيلم",
- "متوفرة في مسيمير بالدوحة، تواصل على واتساب لمعرفة الدرجات والمقاسات"
- ],
- "path1": "ar-tint",
- "path2": "film"
- }
- },
- {
- "name": "الجملة والتوزيع",
- "maxCpcQAR": 3.5,
- "finalUrl": "https://abktradingservice.com/ar/b2b",
- "themeNote": "Arabic trade sourcing: workshops, car washes and distributors buying film by the roll. Uses موزع and مورد for distributor intent and deliberately avoids وكيل, which in Qatari auto Arabic means a car dealership agent.",
- "keywords": [
- {
- "text": "أفلام حماية بالجملة",
- "matchType": "Phrase"
- },
- {
- "text": "أفلام تظليل بالجملة",
- "matchType": "Phrase"
- },
- {
- "text": "موزع أفلام حماية الطلاء",
- "matchType": "Phrase"
- },
- {
- "text": "مورد أفلام التظليل",
- "matchType": "Phrase"
- },
- {
- "text": "مورد أفلام العزل الحراري",
- "matchType": "Phrase"
- },
- {
- "text": "توريد أفلام للورش",
- "matchType": "Phrase"
- },
- {
- "text": "مستلزمات مغاسل السيارات",
- "matchType": "Phrase"
- },
- {
- "text": "موزع معتمد أفلام حماية",
- "matchType": "Phrase"
- },
- {
- "text": "تجارة أفلام حماية السيارات",
- "matchType": "Phrase"
- },
- {
- "text": "مورد أفلام للسيارات بالجملة",
- "matchType": "Phrase"
- },
- {
- "text": "منتجات العناية بالسيارات بالجملة",
- "matchType": "Phrase"
- },
- {
- "text": "vertek distributor qatar",
- "matchType": "Phrase"
- },
- {
- "text": "vertek film distributor gcc",
- "matchType": "Phrase"
- }
- ],
- "negativeKeywords": [
- {
- "text": "وكيل سيارات",
- "matchType": "Phrase"
- },
- {
- "text": "وظائف",
- "matchType": "Phrase"
- },
- {
- "text": "راتب",
- "matchType": "Phrase"
- },
- {
- "text": "مستعمل",
- "matchType": "Phrase"
- },
- {
- "text": "قطع غيار",
- "matchType": "Phrase"
- },
- {
- "text": "فيلم تغليف بالجملة",
- "matchType": "Phrase"
- },
- {
- "text": "بلاستيك بالجملة",
- "matchType": "Phrase"
- }
- ],
- "ad": {
- "headlines": [
- "أفلام حماية وتظليل بالجملة",
- "توريد للورش والمغاسل",
- "نورد ولا ننافس ورشتك",
- "مخزون جاهز في الدوحة",
- "للموزعين وأصحاب المغاسل",
- "رولات أفلام Vertek",
- "بدون انتظار شحن خارجي",
- "أفلام لأجواء الخليج",
- "استفسارات الموزعين",
- "كن موزعا لدى ABK",
- "مواد حماية للمحترفين",
- "تواصل معنا على واتساب",
- "توريد تجاري من مسيمير",
- "أفلام لامعة ومطفية للسيارات",
- "توريد من متجر الدوحة"
- ],
- "descriptions": [
- "توريد أفلام حماية الطلاء والعزل الحراري بالجملة لورش ومغاسل قطر والخليج",
- "نورد المنتج فقط ولا ننفذ أي أعمال، فنحن لا ننافس ورشتك على عملائها",
- "مخزون جاهز في مسيمير بالدوحة بدون انتظار شحن من خارج البلاد",
- "استفسارات الموزعين والمحلات على واتساب، من السبت إلى الخميس والجمعة مغلق"
- ],
- "path1": "ar-wholesale",
- "path2": "ppf-tint"
- }
- }
- ]
- }
+  {
+   "name": "ABK | Search | EN | VTEK PPF & Window Film",
+   "language": "en",
+   "dailyBudgetQAR": 55,
+   "bidStrategy": "Maximize conversions",
+   "locations": [
+    "Qatar"
+   ],
+   "excludedLocations": [],
+   "adSchedule": "Sat-Thu 09:30-13:30 and 15:30-22:30 (store open 10:00-13:00 and 16:00-22:00, 30-minute buffer either side); Fri paused (store closed Friday)",
+   "rationale": "English demand for the highest-ticket range ABK stocks, rebuilt around the five live VTEK SKUs. The old single generic PPF ad group is gone: with four distinct film grades deployed, each gets its own ad group so the ad matches the landing page spec for spec, and PRISM colour PPF gets its own because recolouring a car is a different purchase from protecting one. The theme stays isolated from the rest of the account because service intent is most poisonous here - someone searching window tinting in Qatar wants a workshop, and ABK is not one - so it keeps its own negative wall, product-qualifier-only keywords, and copy that says out loud that the customer's own fitter applies the film.",
+   "adGroups": [
+    {
+     "name": "VTEK Weather Armor ULTIMATE",
+     "maxCpcQAR": 5.0,
+     "finalUrl": "https://abktradingservice.com/en/b2c/products/vtek-ppf-weather-armor-ultimate",
+     "themeNote": "Flagship gloss PPF. Takes the unbranded high-intent film-purchase terms plus the VTEK/Vertek brand queries, because the flagship is the page a brand searcher should land on. Spec-led copy (8.5 mil, Polycarbonate TPU, 10-year manufacturer warranty) is the differentiator no installer-competitor can match on a search ad. Bare head terms stay unbid: intent lives in the modifier.",
+     "keywords": [
+      {
+       "text": "vtek ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vtek weather armor",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "weather armor ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vertek ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vertek weather armor",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vertek paint protection film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "buy paint protection film qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "paint protection film supplier qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "paint protection film roll",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf film roll qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "self healing ppf film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "8.5 mil ppf film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "polycarbonate ppf film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "where to buy ppf in qatar",
+       "matchType": "Exact"
+      },
+      {
+       "text": "vtek ppf qatar",
+       "matchType": "Exact"
+      }
+     ],
+     "negativeKeywords": [
+      {
+       "text": "ppf installation",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf fitting",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf near me",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf cost",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "full body ppf price",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf wrap my car",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf price qatar",
+       "matchType": "Exact"
+      },
+      {
+       "text": "matte ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "color ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "colour ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "window tint",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ceramic coating",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "weather armor jacket",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vtek software",
+       "matchType": "Phrase"
+      }
+     ],
+     "ad": {
+      "headlines": [
+       "VTEK Weather Armor ULTIMATE",
+       "8.5 mil Polycarbonate PPF",
+       "Flagship Paint Protection",
+       "Ultra-Gloss High Depth Film",
+       "Instant Heat Self-Healing",
+       "Hydrophobic Top-Coat Film",
+       "10-Year Warranty on Film",
+       "Beats Desert Sand and UV",
+       "Buy VTEK PPF in Doha",
+       "PPF Film Sold by the Roll",
+       "We Supply, You Fit",
+       "Stocked in Mesaimeer Doha",
+       "Ask on WhatsApp for Stock",
+       "For Detailers & Body Shops",
+       "Top VTEK PPF Grade"
+      ],
+      "descriptions": [
+       "VTEK Weather Armor ULTIMATE: 8.5 mil Polycarbonate TPU paint protection film.",
+       "Instant heat self-healing and a hydrophobic top-coat. 10-year maker warranty.",
+       "Resists extreme UV, desert sand, road salts and chemicals. Ultra-gloss depth.",
+       "We supply the film only; your own trained fitter applies it. WhatsApp for a quote."
+      ],
+      "path1": "ppf",
+      "path2": "ultimate"
+     }
+    },
+    {
+     "name": "VTEK Weather Armor PRO",
+     "maxCpcQAR": 4.5,
+     "finalUrl": "https://abktradingservice.com/en/b2c/products/vtek-ppf-weather-armor-pro",
+     "themeNote": "Value gloss PPF. Absorbs the price-sensitive-but-not-price-searching buyer: generic buy/supplier/cut-to-size film terms without the flagship modifiers. ULTIMATE-specific terms (8.5 mil, polycarbonate) are negatives here so the two gloss groups do not bid against each other.",
+     "keywords": [
+      {
+       "text": "paint protection film for sale qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "car paint protection film supplier",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf film supplier qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "buy ppf film doha",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf roll supplier doha",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "gloss ppf film qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf film cut to size",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vtek ppf pro",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "weather armor pro",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "7.5 mil ppf film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "aliphatic tpu ppf film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "clear bra film qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf film shop doha",
+       "matchType": "Exact"
+      },
+      {
+       "text": "vertek ppf qatar",
+       "matchType": "Exact"
+      },
+      {
+       "text": "vertek ppf doha",
+       "matchType": "Exact"
+      }
+     ],
+     "negativeKeywords": [
+      {
+       "text": "ppf installation",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf fitting",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf near me",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf cost",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf price qatar",
+       "matchType": "Exact"
+      },
+      {
+       "text": "matte ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "color ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "colour ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "8.5 mil",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "polycarbonate",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "window tint",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ceramic coating",
+       "matchType": "Phrase"
+      }
+     ],
+     "ad": {
+      "headlines": [
+       "VTEK Weather Armor PRO",
+       "7.5 mil Aliphatic TPU PPF",
+       "High Optical Clarity Gloss",
+       "Heat-Activated Self-Heal",
+       "8-Year Warranty PPF Film",
+       "Value Gloss PPF by VTEK",
+       "Smooth, Flexible Film",
+       "Buy PPF Film in Doha",
+       "PPF Rolls, Cut to Size",
+       "Proven Everyday PPF",
+       "We Supply, You Fit",
+       "Trade & Retail PPF Supply",
+       "Stocked in Mesaimeer Doha",
+       "WhatsApp Us for a Quote",
+       "Gloss PPF Film Supplier"
+      ],
+      "descriptions": [
+       "VTEK Weather Armor PRO: 7.5 mil high-grade aliphatic TPU paint protection film.",
+       "High optical clarity gloss with a heat-activated self-healing nano-coat.",
+       "Balanced flexibility keeps it smooth to handle. Backed by an 8-year warranty.",
+       "We supply film only; your own fitter applies it. WhatsApp us for stock and a quote."
+      ],
+      "path1": "ppf",
+      "path2": "pro"
+     }
+    },
+    {
+     "name": "VTEK Weather Armor MATTE",
+     "maxCpcQAR": 4.5,
+     "finalUrl": "https://abktradingservice.com/en/b2c/products/vtek-ppf-weather-armor-matte",
+     "themeNote": "Satin matte PPF. A separate buyer from gloss: they want the look, and the paint protection is the bonus. Vinyl-wrap and paint-respray queries are negatives - this is film that protects, not a respray.",
+     "keywords": [
+      {
+       "text": "matte ppf film qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "matte paint protection film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "satin ppf film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "matte finish ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vtek matte ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "weather armor matte",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "buy matte ppf qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "satin matte car film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "matte ppf roll",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "matte protection film supplier",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "non reflective car film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vertek matte ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "matte ppf doha",
+       "matchType": "Exact"
+      },
+      {
+       "text": "matte ppf film supplier qatar",
+       "matchType": "Exact"
+      },
+      {
+       "text": "satin matte ppf qatar",
+       "matchType": "Exact"
+      }
+     ],
+     "negativeKeywords": [
+      {
+       "text": "ppf installation",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf near me",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf price qatar",
+       "matchType": "Exact"
+      },
+      {
+       "text": "matte vinyl wrap",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "matte spray paint",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "matte black paint",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "matte respray",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "matte nail",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "matte lipstick",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "window tint",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ceramic coating",
+       "matchType": "Phrase"
+      }
+     ],
+     "ad": {
+      "headlines": [
+       "VTEK Weather Armor MATTE",
+       "Satin Matte PPF Film",
+       "Non-Reflective Matte Look",
+       "8 mil Aliphatic Matte TPU",
+       "Self-Healing Satin Coat",
+       "Grime Shield Top-Coat",
+       "10-Year Warranty PPF",
+       "Matte Look, Paint Guarded",
+       "Low Upkeep, Easy Wash",
+       "Buy Matte PPF in Doha",
+       "Matte Film by the Roll",
+       "We Supply, You Fit",
+       "Stocked in Mesaimeer Doha",
+       "Ask on WhatsApp for Stock",
+       "Matte PPF Film Supplier"
+      ],
+      "descriptions": [
+       "VTEK Weather Armor MATTE: satin matte, non-reflective 8 mil aliphatic TPU film.",
+       "Self-healing satin top-coat with a grime shield. Low maintenance, easy to wash.",
+       "Take any paint colour to satin matte while the film guards it. 10-year warranty.",
+       "Film by the roll or cut to size; your own fitter applies it. WhatsApp us for stock."
+      ],
+      "path1": "ppf",
+      "path2": "matte"
+     }
+    },
+    {
+     "name": "VTEK Weather Armor PRISM - Colour PPF",
+     "maxCpcQAR": 5.5,
+     "finalUrl": "https://abktradingservice.com/en/b2c/products/vtek-ppf-weather-armor-prism",
+     "themeNote": "Genuinely different buyer: someone who wants to recolour a car, not protect it, and who is otherwise shopping vinyl wraps or a respray. Highest max CPC in the theme because the basket is large and the search volume is thin. Named colours from the spec are bid individually - they are the cheapest, most specific queries available.",
+     "keywords": [
+      {
+       "text": "color ppf film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "colour ppf film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "coloured paint protection film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "color changing ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "nardo grey ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "gloss black ppf film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "pearl white ppf film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "metallic blue ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "satin metal ppf film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vtek prism ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "weather armor prism",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "color ppf supplier qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "buy color ppf qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "color ppf roll qatar",
+       "matchType": "Exact"
+      },
+      {
+       "text": "colour change film qatar",
+       "matchType": "Exact"
+      }
+     ],
+     "negativeKeywords": [
+      {
+       "text": "wrap installation",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "wrap my car",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "wrap shop",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "car respray",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "spray paint",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "paint job",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "paint code",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "touch up paint",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf near me",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf price qatar",
+       "matchType": "Exact"
+      },
+      {
+       "text": "hair colour",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "nail",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "prism glass",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "prism software",
+       "matchType": "Phrase"
+      }
+     ],
+     "ad": {
+      "headlines": [
+       "VTEK Weather Armor PRISM",
+       "Colour PPF, Six Finishes",
+       "Recolour and Guard Paint",
+       "Nardo Grey Colour PPF",
+       "Gloss Piano Black Film",
+       "Pearl White & Matte Black",
+       "Metallic Blue Colour Film",
+       "Satin Metals Colour PPF",
+       "8.5 mil Colour TPU Film",
+       "New Colour, No Respray",
+       "8-Year Warranty on Film",
+       "Extreme Weather Adhesive",
+       "We Supply, You Fit",
+       "Buy Colour PPF in Doha",
+       "Ask on WhatsApp for Stock"
+      ],
+      "descriptions": [
+       "VTEK Weather Armor PRISM colour PPF: restyle the car and shield the paint under it.",
+       "Gloss piano black, matte black, Nardo grey, metallic blue, pearl white, satin.",
+       "8.5 mil colour TPU on a high-stability extreme weather adhesive. 8-year warranty.",
+       "Film only, supplied from Mesaimeer Doha; your fitter applies it. WhatsApp us."
+      ],
+      "path1": "ppf",
+      "path2": "colour"
+     }
+    },
+    {
+     "name": "VTEK Solar Armor Window Film",
+     "maxCpcQAR": 4.0,
+     "finalUrl": "https://abktradingservice.com/en/b2c/products/vtek-window-tints",
+     "themeNote": "The most dangerous intent in the account. Every keyword carries a product qualifier - film, roll, supplier, buy, cut to size - because a bare tinting query in Qatar means a workshop, which ABK is not. Copy sells heat, IR and UV rejection and says MOI compliant grades are available; it never states a VLT figure and never claims a given grade is legal on a given window.",
+     "keywords": [
+      {
+       "text": "buy window tint film qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "window tint film roll",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "tint film roll supplier",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "tint film supplier qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "window film supplier doha",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "buy tint film doha",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "car window film supplier qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "heat rejection window film qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "uv window film for cars qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "solar window film supplier qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "nano ceramic window film qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "window film cut to size qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vtek window tint",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vertek window tint",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "solar armor window film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "window tint film rolls qatar",
+       "matchType": "Exact"
+      }
+     ],
+     "negativeKeywords": [
+      {
+       "text": "tinting",
+       "matchType": "Exact"
+      },
+      {
+       "text": "car tinting",
+       "matchType": "Exact"
+      },
+      {
+       "text": "window tinting",
+       "matchType": "Exact"
+      },
+      {
+       "text": "window tinting doha",
+       "matchType": "Exact"
+      },
+      {
+       "text": "car tinting qatar",
+       "matchType": "Exact"
+      },
+      {
+       "text": "tinting service",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "tinting shop",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "tinting near me",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "mobile tinting",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "tint my car",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "tinting price",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "tint permit",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "tint law",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "tinting rules",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "legal tint",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vlt",
+       "matchType": "Broad"
+      },
+      {
+       "text": "limo tint",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "blackout tint",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "darkest tint",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "tint removal",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "house window film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "home window film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "office window film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "building glass film",
+       "matchType": "Phrase"
+      }
+     ],
+     "ad": {
+      "headlines": [
+       "VTEK Solar Armor Tints",
+       "Iconic & Indulge Series",
+       "Up to 65% TSER Heat Cut",
+       "90%+ IR Heat Rejection",
+       "99% UV Rejection Film",
+       "Nano Window Film Rolls",
+       "MOI Compliant Grades",
+       "Grades to Suit Qatar Law",
+       "10-Year e-Warranty",
+       "Buy Tint Film in Doha",
+       "Window Film by the Roll",
+       "Supplied Cut to Size",
+       "We Supply, You Fit",
+       "For Tint Shops & Traders",
+       "Ask on WhatsApp for Stock"
+      ],
+      "descriptions": [
+       "VTEK Solar Armor window film, Iconic and Indulge series, supplied from Doha.",
+       "Up to 65% TSER and 90%+ IR rejection, plus 99% UV rejection. 10-year e-warranty.",
+       "MOI compliant grades available. Ask us which grade suits your car and glass.",
+       "We supply the film only and do not tint cars. WhatsApp us for grades and a quote."
+      ],
+      "path1": "window-film",
+      "path2": "vtek"
+     }
+    },
+    {
+     "name": "PPF & Tint Film Wholesale - Trade",
+     "maxCpcQAR": 5.5,
+     "finalUrl": "https://abktradingservice.com/en/b2b",
+     "themeNote": "Trade buyers: detail shops, tint shops, body shops and would-be distributors sourcing film by the roll. Leads with the wedge no installing rival can copy - ABK supplies film and never fits it, so it never competes with the shops it sells to. 'installer' is a positive here, never a negative.",
+     "keywords": [
+      {
+       "text": "ppf supplier qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "paint protection film distributor",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "paint protection film wholesale",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "window film distributor qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "tint film wholesale supplier",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf film wholesale qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf roll wholesale",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "window film wholesale gcc",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "bulk ppf film supplier",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "paint protection film supplier gcc",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf dealer program gcc",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vtek ppf distributor",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vertek ppf distributor",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "detailing shop film supplies qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ppf supplier for installers",
+       "matchType": "Exact"
+      },
+      {
+       "text": "tint film supplier for shops",
+       "matchType": "Exact"
+      }
+     ],
+     "negativeKeywords": [
+      {
+       "text": "wholesale cars",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "wholesale clothing",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "packaging film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "stretch film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "plastic film supplier",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "solar panel",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "architectural film",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "franchise",
+       "matchType": "Phrase"
+      }
+     ],
+     "ad": {
+      "headlines": [
+       "VTEK PPF & Tint Wholesale",
+       "We Supply, We Don't Fit",
+       "Film Supply for Installers",
+       "Trade Film Rolls in Doha",
+       "VTEK Film Distributor",
+       "Rolls for Detail Shops",
+       "Four PPF Grades in Stock",
+       "Gloss, Matte and Colour",
+       "Solar Armor Tint Rolls",
+       "Stock Held in Qatar",
+       "No Import Wait for Rolls",
+       "Dealer Enquiries Welcome",
+       "Become a VTEK Stockist",
+       "WhatsApp for Trade Supply",
+       "Supply for Body Shops"
+      ],
+      "descriptions": [
+       "Wholesale VTEK paint protection and window film for Qatar shops and detailers.",
+       "We supply film only and never fit it, so we never compete with your workshop.",
+       "Four PPF grades plus Solar Armor tint, held in Mesaimeer Doha. No import wait.",
+       "Trade and dealer enquiries on WhatsApp. Open Sat to Thu, closed on Friday."
+      ],
+      "path1": "wholesale",
+      "path2": "ppf-tint"
+     }
+    }
+   ]
+  },
+  {
+   "name": "ABK | Search | AR | VTEK PPF & Window Film",
+   "language": "ar",
+   "dailyBudgetQAR": 25,
+   "bidStrategy": "Maximize conversions",
+   "locations": [
+    "Qatar"
+   ],
+   "excludedLocations": [],
+   "adSchedule": "Sat-Thu 09:30-13:30 and 15:30-22:30 (store open 10:00-13:00 and 16:00-22:00, 30-minute buffer either side); Fri paused (store closed Friday)",
+   "rationale": "Arabic-script demand for the same five SKUs, aimed at Qatari nationals and Arab expatriates. Competition is thinner and clicks are cheaper, so it runs on a smaller budget as a mirror rather than a translation: brand tokens stay in Latin because nobody types VTEK in Arabic, tint negatives use different match types to survive Arabic phrase matching, and each headline was written for RTL rather than translated from the English.",
+   "adGroups": [
+    {
+     "name": "VTEK Weather Armor ULTIMATE - AR",
+     "maxCpcQAR": 3.5,
+     "finalUrl": "https://abktradingservice.com/ar/b2c/products/vtek-ppf-weather-armor-ultimate",
+     "themeNote": "Arabic product-purchase intent for the flagship film, including the hamza-less spellings Gulf users actually type (افلام, حمايه). Latin brand tokens stay Latin - nobody types VTEK in Arabic script. Service phrasings built on تركيب are excluded, never bid.",
+     "keywords": [
+      {
+       "text": "vtek ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vtek weather armor",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vertek ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم حماية الطلاء",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "افلام حماية السيارات",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "افلام حمايه السيارات",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم حماية شفاف للسيارة",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "رول فيلم حماية الطلاء",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "رولات فيلم حماية",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "شراء فيلم حماية الطلاء",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "مورد فيلم حماية الطلاء",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم حماية الطلاء قطر",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم حماية الطلاء الدوحة",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "افلام حماية ذاتية الاصلاح",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "بي بي اف",
+       "matchType": "Exact"
+      }
+     ],
+     "negativeKeywords": [
+      {
+       "text": "تركيب فيلم حماية",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "تركيب بي بي اف",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "اسعار تركيب",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ورشة",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "كراج",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "تظليل",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "نانو سيراميك",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم لاصق للجدران",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "واقي شاشة",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "مطفي",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ملون",
+       "matchType": "Phrase"
+      }
+     ],
+     "ad": {
+      "headlines": [
+       "فيلم حماية الطلاء ULTIMATE",
+       "أفلام VTEK لحماية الطلاء",
+       "سماكة 8.5 مل بولي كربونات",
+       "لمعان فائق وعمق عالي",
+       "إصلاح ذاتي فوري بالحرارة",
+       "طبقة علوية طاردة للماء",
+       "ضمان 10 سنوات من المصنع",
+       "مقاوم لرمال الصحراء",
+       "مقاوم للأشعة والأملاح",
+       "رولات فيلم حماية الطلاء",
+       "نورد الفيلم وفنيك ينفذه",
+       "متوفر في مسيمير الدوحة",
+       "اطلب عرض السعر بواتساب",
+       "توريد للورش والمغاسل",
+       "أعلى فئة من أفلام VTEK"
+      ],
+      "descriptions": [
+       "فيلم VTEK Weather Armor ULTIMATE من بولي كربونات TPU بسماكة 8.5 مل",
+       "إصلاح ذاتي فوري بالحرارة وطبقة علوية طاردة للماء مع ضمان 10 سنوات من المصنع",
+       "يقاوم الأشعة فوق البنفسجية ورمال الصحراء والأملاح والمواد الكيميائية",
+       "نورد الفيلم فقط والتنفيذ يعود لفنيك المدرب، تواصل على واتساب لعرض السعر"
+      ],
+      "path1": "ar-ppf",
+      "path2": "ultimate"
+     }
+    },
+    {
+     "name": "VTEK Weather Armor PRO - AR",
+     "maxCpcQAR": 3.0,
+     "finalUrl": "https://abktradingservice.com/ar/b2c/products/vtek-ppf-weather-armor-pro",
+     "themeNote": "Arabic value-gloss demand: generic buy, supplier and cut-to-size film phrasings without the flagship modifiers. مطفي and ملون are negatives here so the Arabic gloss, matte and colour groups stay separated.",
+     "keywords": [
+      {
+       "text": "vtek ppf pro",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "weather armor pro",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم حماية للسيارات لامع",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم حماية الطلاء لامع",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "شراء فيلم حماية للسيارة",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "مورد أفلام حماية الطلاء",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم حماية مقصوص",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "افلام حماية للسيارات بالدوحة",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "رول فيلم حماية للسيارات",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم حماية الطلاء الأصلي",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "أفلام حماية ضد الخدوش",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم حماية ذاتي الإصلاح",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "محل أفلام حماية الدوحة",
+       "matchType": "Exact"
+      },
+      {
+       "text": "وين ألقى فيلم حماية بقطر",
+       "matchType": "Exact"
+      }
+     ],
+     "negativeKeywords": [
+      {
+       "text": "تركيب",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ورشة",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "كراج",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "تظليل",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "مطفي",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ملون",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "نانو سيراميك",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "واقي شاشة",
+       "matchType": "Phrase"
+      }
+     ],
+     "ad": {
+      "headlines": [
+       "فيلم حماية الطلاء PRO",
+       "سماكة 7.5 مل TPU أليفاتيك",
+       "لمعان بصري عالي النقاء",
+       "إصلاح ذاتي بتنشيط الحرارة",
+       "ضمان 8 سنوات على الفيلم",
+       "أفلام VTEK لحماية الطلاء",
+       "مرونة متوازنة وسهولة عمل",
+       "رولات فيلم حماية لامع",
+       "شراء فيلم حماية بالدوحة",
+       "يقص حسب المقاس المطلوب",
+       "نورد الفيلم وفنيك ينفذه",
+       "متوفر في مسيمير الدوحة",
+       "توريد بالجملة والمفرق",
+       "اطلب عرض السعر بواتساب",
+       "مورد أفلام الحماية بقطر"
+      ],
+      "descriptions": [
+       "فيلم VTEK Weather Armor PRO من TPU أليفاتيك عالي الجودة بسماكة 7.5 مل",
+       "لمعان بصري عالي النقاء مع طبقة نانو ذاتية الإصلاح تنشط بالحرارة",
+       "مرونة متوازنة تسهل التعامل مع الفيلم، مع ضمان ثماني سنوات على المنتج",
+       "نورد الفيلم فقط والتنفيذ يعود لفنيك الخاص، تواصل على واتساب لمعرفة التوفر"
+      ],
+      "path1": "ar-ppf",
+      "path2": "pro"
+     }
+    },
+    {
+     "name": "VTEK Weather Armor MATTE - AR",
+     "maxCpcQAR": 3.0,
+     "finalUrl": "https://abktradingservice.com/ar/b2c/products/vtek-ppf-weather-armor-matte",
+     "themeNote": "Arabic satin-matte demand. مطفي is the load-bearing modifier and is bid only in film contexts; صبغ مطفي and تغليف مطفي (respray and vinyl wrap) are negatives.",
+     "keywords": [
+      {
+       "text": "فيلم حماية مطفي",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "افلام حماية مطفية",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم مطفي للسيارات",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم حماية ساتان",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "رول فيلم مطفي",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "شراء فيلم مطفي للسيارة",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم حماية الطلاء مطفي",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "مظهر مطفي للسيارة",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vtek matte ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "weather armor matte",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم غير عاكس للسيارات",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "مورد أفلام مطفية",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم مطفي الدوحة",
+       "matchType": "Exact"
+      },
+      {
+       "text": "افلام حماية مطفية قطر",
+       "matchType": "Exact"
+      }
+     ],
+     "negativeKeywords": [
+      {
+       "text": "تركيب",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "صبغ مطفي",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "دهان مطفي",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "تغليف مطفي",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ورشة",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "تظليل",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "أحمر شفاه",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "مكياج",
+       "matchType": "Phrase"
+      }
+     ],
+     "ad": {
+      "headlines": [
+       "فيلم حماية مطفي MATTE",
+       "تشطيب ساتان مطفي غير عاكس",
+       "أفلام VTEK المطفية",
+       "سماكة 8 مل TPU أليفاتيك",
+       "طبقة ساتان ذاتية الإصلاح",
+       "درع يقاوم الأوساخ",
+       "ضمان 10 سنوات على الفيلم",
+       "مظهر مطفي وحماية للطلاء",
+       "صيانة أقل وغسيل أسهل",
+       "رولات فيلم حماية مطفي",
+       "شراء فيلم مطفي بالدوحة",
+       "نورد الفيلم وفنيك ينفذه",
+       "متوفر في مسيمير الدوحة",
+       "اطلب عرض السعر بواتساب",
+       "مورد الأفلام المطفية"
+      ],
+      "descriptions": [
+       "فيلم VTEK Weather Armor MATTE بتشطيب ساتان مطفي غير عاكس وسماكة 8 مل",
+       "طبقة ساتان ذاتية الإصلاح مع درع يقاوم الأوساخ، صيانة أقل وغسيل أسهل",
+       "يمنح السيارة مظهرا مطفيا مع حماية الطلاء الأصلي وضمان عشر سنوات",
+       "يورد بالرول أو مقصوصا حسب المقاس والتنفيذ يعود لفنيك، تواصل بواتساب"
+      ],
+      "path1": "ar-ppf",
+      "path2": "matte"
+     }
+    },
+    {
+     "name": "VTEK Weather Armor PRISM - AR",
+     "maxCpcQAR": 4.0,
+     "finalUrl": "https://abktradingservice.com/ar/b2c/products/vtek-ppf-weather-armor-prism",
+     "themeNote": "Arabic colour-change demand - a different buyer entirely, currently shopping تغليف (vinyl wrap) or a respray. Named colours from the spec are bid individually because they are cheap and unambiguous. صبغ سيارات and سمكرة are hard negatives.",
+     "keywords": [
+      {
+       "text": "فيلم حماية ملون",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "افلام حماية ملونة",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "تغيير لون السيارة بالفيلم",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم ملون للسيارات",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "رمادي ناردو فيلم",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "أسود بيانو لامع فيلم",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "أبيض لؤلؤي فيلم سيارات",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "أزرق معدني فيلم سيارات",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vtek prism ppf",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "weather armor prism",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "color ppf qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "مورد أفلام ملونة للسيارات",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم ملون الدوحة",
+       "matchType": "Exact"
+      },
+      {
+       "text": "افلام تغيير لون السيارة قطر",
+       "matchType": "Exact"
+      }
+     ],
+     "negativeKeywords": [
+      {
+       "text": "تركيب",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "صبغ سيارات",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "دهان سيارات",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "سمكرة",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ورشة",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "تغليف بالجملة",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "صبغ شعر",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "طلاء الجدران",
+       "matchType": "Phrase"
+      }
+     ],
+     "ad": {
+      "headlines": [
+       "فيلم حماية ملون PRISM",
+       "غير لون سيارتك بالفيلم",
+       "ألوان لامعة ومطفية",
+       "أسود بيانو لامع",
+       "رمادي ناردو للسيارات",
+       "أبيض لؤلؤي وأزرق معدني",
+       "أسود مطفي وساتان معدني",
+       "سماكة 8.5 مل TPU ملون",
+       "لون جديد وحماية للطلاء",
+       "لاصق يتحمل أقسى الأجواء",
+       "ضمان 8 سنوات على الفيلم",
+       "بدون صبغ أو دهان",
+       "نورد الفيلم وفنيك ينفذه",
+       "شراء فيلم ملون بالدوحة",
+       "اطلب عرض السعر بواتساب"
+      ],
+      "descriptions": [
+       "فيلم VTEK Weather Armor PRISM الملون يغير مظهر سيارتك ويحمي طلاءها الأصلي",
+       "أسود بيانو لامع وأسود مطفي ورمادي ناردو وأزرق معدني وأبيض لؤلؤي وساتان",
+       "سماكة 8.5 مل من TPU الملون بلاصق يتحمل أقسى الأجواء وضمان 8 سنوات",
+       "نورد الفيلم من مسيمير بالدوحة والتنفيذ يعود لفنيك، تواصل على واتساب"
+      ],
+      "path1": "ar-ppf",
+      "path2": "colour"
+     }
+    },
+    {
+     "name": "VTEK Solar Armor - أفلام التظليل",
+     "maxCpcQAR": 3.0,
+     "finalUrl": "https://abktradingservice.com/ar/b2c/products/vtek-window-tints",
+     "themeNote": "The riskiest Arabic intent. Only roll, film and heat-insulation phrasings are bid. تظليل سيارات and مخفي are blocked as EXACT negatives, never Phrase, so they do not also block the best product query رول تظليل سيارات which literally contains the service phrase. Copy may say grades suit Qatar regulations; it must never state a VLT figure.",
+     "keywords": [
+      {
+       "text": "رول تظليل سيارات",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "رولات أفلام التظليل",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم عازل حراري للسيارات",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "افلام العزل الحراري",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم حراري للسيارات",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "رول عازل حراري",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "شراء فيلم تظليل",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم تظليل زجاج السيارات",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "أفلام عزل حراري للزجاج",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم تظليل نانو سيراميك",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "مورد أفلام تظليل السيارات",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم تظليل مقصوص",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "أفلام VTEK للنوافذ",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vtek window tint",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "solar armor tint",
+       "matchType": "Phrase"
+      }
+     ],
+     "negativeKeywords": [
+      {
+       "text": "تظليل سيارات",
+       "matchType": "Exact"
+      },
+      {
+       "text": "تظليل",
+       "matchType": "Exact"
+      },
+      {
+       "text": "مخفي سيارات",
+       "matchType": "Exact"
+      },
+      {
+       "text": "مخفي",
+       "matchType": "Exact"
+      },
+      {
+       "text": "تركيب تظليل",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "تركيب مخفي",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "محل تظليل",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "تظليل متنقل",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "خدمة منزلية",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "نسبة التظليل",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "تصريح تظليل",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "مخالفة تظليل",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "غرامة تظليل",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "قانون التظليل",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "اسعار تظليل",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "افضل تظليل",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "تظليل المنازل",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "تظليل زجاج المباني",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "ازالة التظليل",
+       "matchType": "Phrase"
+      }
+     ],
+     "ad": {
+      "headlines": [
+       "أفلام تظليل VTEK للسيارات",
+       "سلسلة Iconic و Indulge",
+       "عزل حراري حتى 65% TSER",
+       "عزل 90% للأشعة الحمراء",
+       "حجب 99% من أشعة UV",
+       "رولات أفلام عزل حراري",
+       "درجات متوافقة مع أنظمة قطر",
+       "متوافقة مع تعليمات المرور",
+       "ضمان إلكتروني 10 سنوات",
+       "شراء فيلم تظليل بالدوحة",
+       "تورد مقصوصة حسب المقاس",
+       "نورد الفيلم وفنيك ينفذه",
+       "توريد لمحلات التظليل",
+       "متوفر في مسيمير الدوحة",
+       "اسأل عن الدرجات بواتساب"
+      ],
+      "descriptions": [
+       "أفلام VTEK Solar Armor من سلسلتي Iconic و Indulge تورد من متجرنا بالدوحة",
+       "عزل حراري يصل إلى 65% TSER وأكثر من 90% للأشعة تحت الحمراء و99% للبنفسجية",
+       "تتوفر درجات متوافقة مع قانون المرور القطري، اسألنا عن الدرجة المناسبة لسيارتك",
+       "نورد الفيلم فقط ولا ننفذ أي أعمال على السيارة، تواصل على واتساب للاستفسار"
+      ],
+      "path1": "ar-tint",
+      "path2": "vtek"
+     }
+    },
+    {
+     "name": "الجملة والتوزيع - أفلام",
+     "maxCpcQAR": 3.5,
+     "finalUrl": "https://abktradingservice.com/ar/b2b",
+     "themeNote": "Arabic trade sourcing: workshops, car washes and distributors buying film by the roll. Uses موزع and مورد for distributor intent and deliberately avoids وكيل, which in Qatari auto Arabic means a car dealership agent.",
+     "keywords": [
+      {
+       "text": "أفلام حماية بالجملة",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "أفلام تظليل بالجملة",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "موزع أفلام حماية الطلاء",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "مورد أفلام التظليل",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "مورد أفلام العزل الحراري",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "توريد أفلام للورش",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "مستلزمات مغاسل السيارات",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "موزع معتمد أفلام حماية",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "تجارة أفلام حماية السيارات",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "مورد أفلام للسيارات بالجملة",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "منتجات العناية بالسيارات بالجملة",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vtek distributor qatar",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vtek film distributor gcc",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "vertek distributor qatar",
+       "matchType": "Phrase"
+      }
+     ],
+     "negativeKeywords": [
+      {
+       "text": "وكيل سيارات",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "وظائف",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "راتب",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "مستعمل",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "قطع غيار",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "فيلم تغليف بالجملة",
+       "matchType": "Phrase"
+      },
+      {
+       "text": "بلاستيك بالجملة",
+       "matchType": "Phrase"
+      }
+     ],
+     "ad": {
+      "headlines": [
+       "أفلام حماية وتظليل بالجملة",
+       "نورد ولا ننافس ورشتك",
+       "توريد للورش والمغاسل",
+       "رولات أفلام VTEK",
+       "أربع درجات حماية بالمخزن",
+       "لامع ومطفي وملون",
+       "رولات أفلام عزل حراري",
+       "مخزون جاهز في الدوحة",
+       "بدون انتظار شحن خارجي",
+       "استفسارات الموزعين",
+       "كن موزعا لأفلام VTEK",
+       "توريد لمحلات التظليل",
+       "تواصل معنا على واتساب",
+       "توريد تجاري من مسيمير",
+       "توريد للمحترفين في قطر"
+      ],
+      "descriptions": [
+       "توريد أفلام VTEK لحماية الطلاء والتظليل بالجملة لورش ومغاسل قطر والخليج",
+       "نورد المنتج فقط ولا ننفذ أي أعمال، فنحن لا ننافس ورشتك على عملائها",
+       "أربع درجات لأفلام الحماية مع أفلام Solar Armor، مخزون جاهز في مسيمير",
+       "استفسارات الموزعين والمحلات على واتساب، من السبت إلى الخميس والجمعة مغلق"
+      ],
+      "path1": "ar-wholesale",
+      "path2": "ppf-tint"
+     }
+    }
+   ]
+  }
  ],
  "sharedNegatives": [
- "near me",
- "nearest",
- "installation",
- "install",
- "installer near me",
- "fitting service",
- "tinting service",
- "coating service",
- "detailing service",
- "polishing service",
- "wrapping service",
- "book now",
- "booking",
- "appointment",
- "workshop",
- "garage",
- "body shop near me",
- "auto centre",
- "how much to",
- "cost to install",
- "quote for installation",
- "mobile service",
- "doorstep",
- "at home",
- "tint my car",
- "wrap my car",
- "coat my car",
- "protect my car",
- "ppf my car",
- "detail my car",
- "car detailing doha",
- "car wash near me",
- "paint correction",
- "scratch removal",
- "dent repair",
- "public provident fund",
- "ppf calculator",
- "ppf interest rate",
- "ppf account",
- "ppf scheme",
- "sbi ppf",
- "ppf maturity",
- "ppf withdrawal",
- "ppf vs elss",
- "film festival",
- "film institute",
- "movie",
- "cinema",
- "netflix",
- "short film",
- "lip tint",
- "hair tint",
- "eyebrow tint",
- "tinted moisturizer",
- "tinted sunscreen",
- "nail polish",
- "shoe polish",
- "polish visa",
- "poland",
- "polish language",
- "windshield replacement",
- "glass repair",
- "window replacement",
- "compound villa",
- "compound for rent",
- "compound interest",
- "instafinish",
- "insta finish",
- "getsun",
- "sitrett",
- "grizzly",
- "3m",
- "xpel",
- "llumar",
- "suntek",
- "stek",
- "garware",
- "hexis",
- "avery dennison",
- "solar gard",
- "ceramic pro",
- "gyeon",
- "carpro",
- "meguiars",
- "chemical guys",
- "turtle wax",
- "armor all",
- "amazon",
- "noon",
- "carrefour",
- "ace hardware",
- "ubuy",
- "alibaba",
- "aliexpress",
- "ebay",
- "temu",
- "olx",
- "dubizzle",
- "qatar living",
- "mzad",
- "tuzzut",
- "jazp",
- "microless",
- "job",
- "jobs",
- "vacancy",
- "hiring",
- "salary",
- "career",
- "recruitment",
- "cv",
- "youtube",
- "tutorial",
- "pdf",
- "wikipedia",
- "meaning",
- "free download",
- "free sample",
- "dubai",
- "abu dhabi",
- "sharjah",
- "riyadh",
- "jeddah",
- "dammam",
- "kuwait city",
- "manama",
- "muscat",
- "india",
- "pakistan",
- "philippines",
- "تركيب فيلم",
- "تركيب بي بي اف",
- "تركيب نانو سيراميك",
- "تركيب مخفي",
- "تركيب تظليل",
- "خدمة تظليل",
- "خدمة تلميع",
- "تلميع سيارات",
- "غسيل سيارات متنقل",
- "تنظيف سيارات بالبيت",
- "ورشة سيارات",
- "ورش تلميع",
- "كراج",
- "كراجات",
- "مركز تلميع",
- "مركز خدمة",
- "مركز صيانة",
- "محل تظليل",
- "بالقرب مني",
- "اقرب",
- "أقرب",
- "افضل ورشة",
- "افضل مركز",
- "سمكرة",
- "صبغ سيارات",
- "دهان سيارات",
- "تصليح",
- "صيانة",
- "ميكانيك",
- "قطع غيار",
- "كم سعر",
- "اسعار تركيب",
- "عروض",
- "خصم",
- "ارخص",
- "مجاني",
- "مجانا",
- "تخفيضات",
- "قانون التظليل",
- "نسبة التظليل",
- "تصريح تظليل",
- "مخالفة تظليل",
- "غرامة تظليل",
- "وظائف",
- "وظيفة",
- "راتب",
- "مستعمل",
- "للايجار",
- "تاجير",
- "تحميل",
- "طلاء الجدران",
- "فيلم تغليف",
- "واقي شاشة"
+  "near me",
+  "nearest",
+  "installation",
+  "install",
+  "installer near me",
+  "fitting service",
+  "tinting service",
+  "coating service",
+  "detailing service",
+  "polishing service",
+  "wrapping service",
+  "book now",
+  "booking",
+  "appointment",
+  "workshop",
+  "garage",
+  "body shop near me",
+  "auto centre",
+  "how much to",
+  "cost to install",
+  "quote for installation",
+  "mobile service",
+  "doorstep",
+  "at home",
+  "tint my car",
+  "wrap my car",
+  "coat my car",
+  "protect my car",
+  "ppf my car",
+  "detail my car",
+  "car detailing doha",
+  "car wash near me",
+  "paint correction",
+  "scratch removal",
+  "dent repair",
+  "public provident fund",
+  "ppf calculator",
+  "ppf interest rate",
+  "ppf account",
+  "ppf scheme",
+  "sbi ppf",
+  "ppf maturity",
+  "ppf withdrawal",
+  "ppf vs elss",
+  "film festival",
+  "film institute",
+  "movie",
+  "cinema",
+  "netflix",
+  "short film",
+  "lip tint",
+  "hair tint",
+  "eyebrow tint",
+  "tinted moisturizer",
+  "tinted sunscreen",
+  "nail polish",
+  "shoe polish",
+  "polish visa",
+  "poland",
+  "polish language",
+  "windshield replacement",
+  "glass repair",
+  "window replacement",
+  "compound villa",
+  "compound for rent",
+  "compound interest",
+  "instafinish",
+  "insta finish",
+  "getsun",
+  "sitrett",
+  "grizzly",
+  "3m",
+  "xpel",
+  "llumar",
+  "suntek",
+  "stek",
+  "garware",
+  "hexis",
+  "avery dennison",
+  "solar gard",
+  "ceramic pro",
+  "gyeon",
+  "carpro",
+  "meguiars",
+  "chemical guys",
+  "turtle wax",
+  "armor all",
+  "amazon",
+  "noon",
+  "carrefour",
+  "ace hardware",
+  "ubuy",
+  "alibaba",
+  "aliexpress",
+  "ebay",
+  "temu",
+  "olx",
+  "dubizzle",
+  "qatar living",
+  "mzad",
+  "tuzzut",
+  "jazp",
+  "microless",
+  "job",
+  "jobs",
+  "vacancy",
+  "hiring",
+  "salary",
+  "career",
+  "recruitment",
+  "cv",
+  "youtube",
+  "tutorial",
+  "pdf",
+  "wikipedia",
+  "meaning",
+  "free download",
+  "free sample",
+  "dubai",
+  "abu dhabi",
+  "sharjah",
+  "riyadh",
+  "jeddah",
+  "dammam",
+  "kuwait city",
+  "manama",
+  "muscat",
+  "india",
+  "pakistan",
+  "philippines",
+  "تركيب فيلم",
+  "تركيب بي بي اف",
+  "تركيب نانو سيراميك",
+  "تركيب مخفي",
+  "تركيب تظليل",
+  "خدمة تظليل",
+  "خدمة تلميع",
+  "تلميع سيارات",
+  "غسيل سيارات متنقل",
+  "تنظيف سيارات بالبيت",
+  "ورشة سيارات",
+  "ورش تلميع",
+  "كراج",
+  "كراجات",
+  "مركز تلميع",
+  "مركز خدمة",
+  "مركز صيانة",
+  "محل تظليل",
+  "بالقرب مني",
+  "اقرب",
+  "أقرب",
+  "افضل ورشة",
+  "افضل مركز",
+  "سمكرة",
+  "صبغ سيارات",
+  "دهان سيارات",
+  "تصليح",
+  "صيانة",
+  "ميكانيك",
+  "قطع غيار",
+  "كم سعر",
+  "اسعار تركيب",
+  "عروض",
+  "خصم",
+  "ارخص",
+  "مجاني",
+  "مجانا",
+  "تخفيضات",
+  "قانون التظليل",
+  "نسبة التظليل",
+  "تصريح تظليل",
+  "مخالفة تظليل",
+  "غرامة تظليل",
+  "وظائف",
+  "وظيفة",
+  "راتب",
+  "مستعمل",
+  "للايجار",
+  "تاجير",
+  "تحميل",
+  "طلاء الجدران",
+  "فيلم تغليف",
+  "واقي شاشة"
  ],
- "notes": "PRE-IMPORT CHECKLIST - ppf-tint\n\n1. THE BRIEF I WAS GIVEN IS OUT OF DATE. READ THIS FIRST.\n My theme brief named five VTEK SKUs: Weather Armor ULTIMATE, PRO, MATTE, PRISM and Solar\n Armor tints. NONE of them exist in the deployed catalogue. catalogue.json is now generated\n from \"git show HEAD:src/data/products.ts (what is actually deployed)\" and the live PPF/tint\n range is exactly TWO products:\n - vertek-ppf-weather-armor (brand \"Vertek\", gloss / matte, one SKU)\n - vertek-window-tints (brand \"Vertek\", multiple VLT grades, one SKU)\n Everything the brief promised as copy fuel - 8.5 mil / 215 micron, Advanced Polycarbonate\n TPU, 10-year manufacturer warranty, hydrophobic top-coat, PRISM colours (Nardo Grey, piano\n black, pearl white), the Iconic & Indulge series, 65% TSER, 90%+ IR, 99% UV rejection -\n belongs to a product set that is NOT live. Every one of those claims has been removed. Four\n grade-specific URLs (…-ultimate, …-pro, …-matte, …-prism) and …/vtek-window-tints would all\n 404 today and are not used anywhere in this file. A separate \"Colour & Matte PPF\" ad group\n was designed and then deleted for the same reason: PRISM does not exist.\n => IF the 5-SKU VTEK range is later deployed, this file must be rebuilt, not patched.\n\n2. BRAND TOKEN RESOLVED: \"Vertek\". The open question in the research brief (VTEK vs Vertek) is\n settled by the deployed data - products.ts line 11 declares \"Vertek\", the product names read\n \"Vertek PPF - Weather Armor\", and llms.txt plus the Google Business Profile agree. All ad\n copy says Vertek, so ad and landing page match. \"vtek ppf\" and \"v-tek ppf\" are retained on\n the KEYWORD side only, to catch searchers who met the other spelling.\n\n3. EVERY CLAIM IN THIS FILE TRACES TO THE LIVE PAGE.\n PPF page: self-healing nano-technology, scratch resistant, weather proof, high gloss,\n gloss / matte finishes, \"cut for full-body, front-end, or custom areas\", \"Application =\n Fitted by a trained installer\", \"Available from our Mesaimeer store\".\n Tint page: \"cut heat, UV and glare without compromising visibility\", \"Multiple VLT grades\",\n \"Supplied cut to size\", \"lifetime peel warranty on the film\".\n No thickness, no micron figure, no year-count warranty, no IR/TSER/UV percentage appears\n anywhere, because none of those numbers are on the live pages.\n\n4. NO LEGALITY, VLT NUMBER OR PERMIT CLAIM IN ANY AD - DELIBERATE, AND IT NEEDS AN OWNER CALL.\n The live tint page does say \"Compliant with Qatar regulations\" and \"grades to match Qatar's\n regulations\". I did not repeat that in ad copy. Qatar restricts front glass, bans reflective\n film, and fines QAR 1,000 plus impound; public sources genuinely disagree on the current\n figure. A Google ad implying street-legality is both a policy risk and a real customer-harm\n risk. Tint copy sells heat, UV and glare rejection instead (\"Heat Rejection, Not Dark\").\n ACTION: have the owner confirm the current MOI limit in writing. If confirmed, a compliance\n headline can be added later; until then it stays out - and the LANDING PAGE claim should be\n reviewed too, since it is the stronger exposure.\n\n5. ARABIC NEGATIVE MATCH TYPES ARE LOAD-BEARING. DO NOT \"TIDY\" THEM TO PHRASE.\n The best Arabic tint keyword is رول تظليل سيارات (tint roll). A PHRASE negative on\n تظليل سيارات would block it, because the product query literally contains the service\n phrase. That is why تظليل سيارات, تظليل, مخفي and مخفي سيارات are EXACT negatives, with\n phrase negatives reserved for unambiguous service strings (تركيب تظليل, محل تظليل,\n تظليل متنقل). Identical logic in English: \"car tinting\", \"window tinting\" and \"tinting\" are\n EXACT; \"tinting service\", \"tinting shop\", \"tinting near me\" are PHRASE.\n\n6. WHY \"service\" AND \"خدمة\" ARE NOT BARE ACCOUNT NEGATIVES.\n The company is called ABK Trading & Service (للتجارة والخدمات). A bare negative on either\n word would suppress the brand's own searches account-wide. The shared list uses phrase forms\n (\"tinting service\", \"خدمة تظليل\") instead. Same reasoning for \"installer\": it is never a\n negative on its own, because \"ppf supplier for installers\" is a trade buyer and is bid as an\n EXACT positive. Only \"installation\" and \"installer near me\" are blocked.\n\n7. THE HEAD TERM IS NOT BID. \"paint protection film qatar\", \"ppf qatar\", \"window tint qatar\"\n and \"ceramic coating qatar\" are absent from every keyword list on purpose. In Qatar those\n SERPs are owned by installers (Topaz, Al Muftah, Shield Tint, Prestige Auto Clinic) and the\n intent behind them is a workshop, not a purchase. Intent lives in the modifier - buy,\n supplier, roll, cut to size, wholesale - so the modifier is what is bid. Expect low volume\n and high relevance; that is the trade being made. Review search terms weekly for the first\n month and promote any product-intent variant that surfaces.\n\n8. NO PRICE LANGUAGE, NO PHONE NUMBER IN AD TEXT. The site has no prices, so nothing here\n anchors one - no \"from QAR\", no cheapest, no discount, no sale. The phone number is\n deliberately absent from every description: Google disallows phone numbers in ad text. Add\n as a CALL ASSET. Final URLs must stay on abktradingservice.com - a wa.me link\n cannot be a Final URL because the display domain has to match - and each product page already\n carries the WhatsApp button that is the actual conversion.\n\n9. BID STRATEGY. \"Maximize conversions\" is stated for consistency with the rest of the account,\n but with zero conversion history it will overspend on a QAR 45/day budget. Recommendation:\n launch on Maximize Clicks using each ad group's maxCpcQAR as the CPC cap, define the WhatsApp\n click and the contact page as conversions, then switch to Maximize Conversions after roughly\n 30 recorded conversions.\n\n10. GEO NEGATIVES WOULD BLOCK A FUTURE GCC CAMPAIGN. The shared list includes dubai, riyadh,\n kuwait city, manama and muscat to stop Qatar-targeted spend leaking. If the owner confirms\n ABK actually fulfils cross-border wholesale and a GCC campaign is built from the wholesale\n ad groups, those five must be removed from the shared list first or that campaign will never\n serve. (Whether ABK ships cross-border is still an open question in the research brief.)\n\n11. SHOPPING IS NOT AVAILABLE IN QATAR. Merchant Center does not support Qatar, so there is no\n feed, no Shopping campaign and no feed-driven PMax for the B2C side. Search-only here is a\n constraint, not a preference.\n\n12. AD SCHEDULE MATTERS MORE THAN USUAL. The conversion is a human WhatsApp reply. The store is\n shut 13:00-16:00 and all day Friday. The schedule pauses Friday entirely and brackets the two\n open windows with a 30-minute buffer. Widen it only if the owner actually answers WhatsApp\n outside store hours.\n\n13. ARABIC WAS BUILT FOR RTL, NOT TRANSLATED FROM THE ENGLISH. No Arabic headline opens with a\n Latin token or a digit, none ends in punctuation, no em-dash or pipe appears in Arabic ad\n text, all tashkeel is stripped (each shadda would burn one of 30 characters), digits would be\n Western if used, and Latin brand tokens sit mid-string or terminal. Display paths are Latin\n only (ar-ppf, ar-tint, ar-wholesale). Still: paste every Arabic asset into Google's own ad\n preview before import - a monospace editor hides bidi reordering.\n\n14. NOTHING HERE PROMISES A SERVICE. Copy was written against the banned list: no install, book,\n appointment, fitting, service, and no تركيب / خدمة / احجز / موعد. The honest position is\n stated outright in both languages - \"We Supply, We Don't Fit\" and نورد ولا ننافس ورشتك -\n which doubles as the B2B wedge against installing rivals who compete with the very shops they\n would sell to. \"We do not tint cars\" appears verbatim in a tint description.\n\n15. ONE SKU DELIBERATELY LEFT OUT: autotriz-ppf-gel (PPF/tint slip gel, 20 L / 4 L, made in\n Germany) sits in the ppf category and is a genuine installer-supply product with a live page.\n It is not in this theme to avoid bidding against whichever campaign owns the Autotriz range.\n Whoever builds that theme should take it - \"ppf slip solution\", \"tint application gel\" and\n \"autotriz ppf gel\" are cheap, uncontested, and reach exactly the trade buyers this theme is\n also chasing."
+ "notes": "PRE-IMPORT CHECKLIST - ppf-tint (FULL REBUILD, not a patch)\n\n1. WHY THIS FILE WAS REBUILT.\n   The previous version targeted two SKUs - vertek-ppf-weather-armor and vertek-window-tints -\n   and stated in its own notes that if the 5-SKU VTEK range were ever deployed the file must be\n   rebuilt rather than patched. That has now happened. catalogue.json (generated from\n   \"git show HEAD:src/data/products.ts\") shows the live PPF/tint range is exactly five products,\n   all brand VTEK: weather-armor ULTIMATE, PRO, MATTE, PRISM and vtek-window-tints\n   (Solar Armor, Iconic & Indulge series). The two old slugs are gone from the deployed data;\n   their URLs 308-redirect. Nothing in this file points at them.\n\n2. BRAND TOKEN IS NOW VTEK, NOT VERTEK.\n   The deployed catalogue has ZERO products under brand \"Vertek\" - byBrand.Vertek is null and all\n   five film SKUs sit under byBrand.VTEK. Every word of AD TEXT in this file says VTEK so the ad\n   matches the landing page. \"vertek ppf\", \"vertek weather armor\", \"vertek paint protection film\",\n   \"vertek window tint\", \"vertek matte ppf\", \"vertek ppf distributor\", \"vertek distributor qatar\"\n   and the two Exact terms \"vertek ppf qatar\" / \"vertek ppf doha\" are retained on the KEYWORD side\n   ONLY, to catch the searchers who met the old spelling while it was live and indexed. Review\n   those in the search terms report after roughly 90 days and drop them once impressions dry up.\n\n3. STRUCTURE CHANGE: ONE AD GROUP PER SKU.\n   Old file: PPF (generic) / Brand / Tint / Wholesale = 4 groups per language.\n   New file: ULTIMATE / PRO / MATTE / PRISM / Solar Armor tint / Trade = 6 groups per language.\n   The separate brand ad group is deleted - brand queries (vtek ppf, weather armor ppf) now sit\n   inside ULTIMATE, because the flagship is where a brand searcher should land. Cross-group\n   negatives keep the four PPF groups from bidding against each other: ULTIMATE and PRO both\n   negative \"matte ppf\" / \"color ppf\" / \"colour ppf\"; PRO also negatives \"8.5 mil\" and\n   \"polycarbonate\" so it cannot steal a flagship query. Arabic mirrors this with مطفي and ملون.\n\n4. PRISM IS A DIFFERENT BUYER, PRICED ACCORDINGLY.\n   Colour PPF is bought by someone who wants to recolour a car and is otherwise shopping vinyl\n   wrap or a respray - not by someone shopping paint protection. It carries the highest max CPC\n   in the theme (QAR 5.50) because the basket is large and the volume is thin, and it bids the\n   spec's named colours individually (Nardo grey, gloss piano black, pearl white, metallic blue,\n   satin metals) because those queries are cheap and unambiguous. Respray, wrap-shop and\n   touch-up-paint queries are hard negatives in both languages (صبغ سيارات, سمكرة, دهان سيارات).\n\n5. EVERY CLAIM TRACES TO THE DEPLOYED specs STRING. NOTHING IS INVENTED.\n   ULTIMATE: Advanced Polycarbonate TPU, 8.5 mil (215 um), ultra-gloss high depth, instant heat\n   self-healing, hydrophobic top-coat, 10-year manufacturer warranty, resists extreme UV, desert\n   sand, road salts and chemicals.\n   PRO: high-grade aliphatic TPU, 7.5 mil (190 um), high optical clarity gloss, heat-activated\n   self-healing nano-coat, 8-year warranty, balanced flexibility.\n   MATTE: satin matte non-reflective, aliphatic matte TPU, 8 mil (200 um), self-healing satin\n   top-coat and grime shield, 10-year warranty, low maintenance / easy wash.\n   PRISM: polycaprolactone-based colour TPU, 8.5 mil (215 um), six named colours, high-stability\n   extreme weather adhesive, 8-year warranty.\n   Solar Armor: Iconic & Indulge series, up to 65% TSER, 90%+ IR rejection, 99% UV rejection,\n   Qatar Traffic Law & MOI compliant grades, 10-year e-warranty.\n   The micron figures are omitted from ad text only because \"8.5 mil\" reads better inside 30\n   characters, not because they are unsupported.\n\n6. TINT LEGALITY - THE ONE CLAIM WITH A HARD BOUNDARY. READ BEFORE EDITING TINT COPY.\n   The live product page now states \"Qatar Traffic Law & MOI Compliant Grades\", so the ads may say\n   compliant GRADES ARE AVAILABLE. They do, in exactly two English headlines (\"MOI Compliant\n   Grades\", \"Grades to Suit Qatar Law\"), one English description (\"MOI compliant grades available.\n   Ask us which grade suits your car and glass\") and the Arabic equivalents\n   (درجات متوافقة مع أنظمة قطر / متوافقة مع تعليمات المرور).\n   WHAT IS BANNED AND MUST STAY BANNED: no VLT percentage anywhere, and no wording that implies\n   every grade is legal on every window. Qatar restricts front glass and bans reflective film; an\n   ad implying blanket street-legality is both a Google policy risk and a real customer-harm risk.\n   \"vlt\" is a BROAD negative in the EN tint group, and نسبة التظليل / تصريح / مخالفة / غرامة /\n   قانون التظليل are negatives on both sides, so legality researchers never see these ads.\n   The 65% TSER / 90%+ IR / 99% UV figures ARE used - they are heat and UV numbers, not darkness\n   numbers, and they come verbatim from the deployed spec.\n\n7. ARABIC NEGATIVE MATCH TYPES ARE LOAD-BEARING. DO NOT \"TIDY\" THEM TO PHRASE.\n   The best Arabic tint keyword is رول تظليل سيارات (tint roll). A PHRASE negative on تظليل سيارات\n   would block it, because the product query literally contains the service phrase. That is why\n   تظليل سيارات, تظليل, مخفي and مخفي سيارات are EXACT negatives, with Phrase reserved for\n   unambiguous service strings (تركيب تظليل, محل تظليل, تظليل متنقل). Identical logic in English:\n   \"tinting\", \"car tinting\", \"window tinting\" are EXACT; \"tinting service\", \"tinting shop\",\n   \"tinting near me\" are PHRASE. Carried over unchanged from the previous build.\n\n8. WHY \"service\" AND \"خدمة\" ARE NOT BARE ACCOUNT NEGATIVES.\n   The company is ABK Trading & Service (للتجارة والخدمات). A bare negative on either word would\n   suppress the brand's own searches account-wide. The shared list uses phrase forms\n   (\"tinting service\", \"خدمة تظليل\") instead. Same reasoning for \"installer\": it is never a bare\n   negative, because \"ppf supplier for installers\" is a trade buyer and is bid as an EXACT\n   positive in the trade group. Only \"installation\" and \"installer near me\" are blocked.\n\n9. THE HEAD TERM IS STILL NOT BID. \"paint protection film qatar\", \"ppf qatar\", \"window tint qatar\"\n   and \"ceramic coating qatar\" are absent from every keyword list on purpose. In Qatar those SERPs\n   are owned by installers and the intent behind them is a workshop, not a purchase. Intent lives\n   in the modifier - buy, supplier, roll, cut to size, wholesale - so the modifier is what is bid.\n   Expect low volume and high relevance. Review search terms weekly for the first month and\n   promote any product-intent variant that surfaces.\n\n10. NOTHING HERE PROMISES A SERVICE. ABK SELLS PRODUCTS ONLY.\n    Copy was written against the banned list: no \"we install\", \"installation\", \"we fit\",\n    \"book now\", \"appointment\", \"we apply\", and no تركيب / خدمة التركيب / نركب / احجز موعد.\n    Note the PRO spec string itself contains the word \"installation\" (\"Smooth installation with\n    balanced flexibility\") - it is deliberately NOT quoted; the ad says \"Smooth, Flexible Film\"\n    and \"Balanced flexibility keeps it smooth to handle\" instead. The honest position is stated\n    outright in both languages: \"We Supply, You Fit\", \"We Supply, We Don't Fit\",\n    نورد الفيلم وفنيك ينفذه and نورد ولا ننافس ورشتك - which doubles as the B2B wedge against\n    installing rivals who compete with the very shops they sell to. \"We supply the film only and\n    do not tint cars\" appears verbatim in an English tint description.\n\n11. NO PRICE LANGUAGE, NO PHONE NUMBER IN AD TEXT. The site publishes no prices for these\n    products, so nothing here anchors one - no \"from QAR\", no cheapest, no discount, no sale. The\n    offer is a WhatsApp quote. The phone number is deliberately absent from every headline and\n    description: Google disallows phone numbers in ad text. Add it as a CALL ASSET. Final URLs\n    must stay on abktradingservice.com - a wa.me link cannot be a Final URL because the display\n    domain has to match - and each product page already carries the WhatsApp button that is the\n    actual conversion.\n\n12. STALE URLS ELSEWHERE IN THIS BUILD - ACTION REQUIRED OUTSIDE THIS FILE.\n    campaigns/b2b-wholesale.json still points two ad groups per language at\n    /b2b/products/vertek-ppf-weather-armor and /b2b/products/vertek-window-tints. Those slugs no\n    longer exist in products.ts. They redirect today, but a Final URL that 308s is a\n    quality-score and disapproval risk, and the correct destinations now differ per grade.\n    Repoint them (or send them to /b2b) before importing that file. Also de-conflict: if\n    b2b-wholesale keeps trade film keywords, drop the trade ad group here, or the two campaigns\n    will bid against each other on \"ppf supplier qatar\".\n\n13. BID STRATEGY. \"Maximize conversions\" is stated for consistency with the rest of the account,\n    but with zero conversion history it will overspend on a QAR 55/day budget. Recommendation:\n    launch on Maximize Clicks using each ad group's maxCpcQAR as the CPC cap, define the WhatsApp\n    click and the contact page as conversions, then switch to Maximize Conversions after roughly\n    30 recorded conversions. Budget rose from 45 to 55 (EN) and 20 to 25 (AR) only because the\n    group count went from 4 to 6; per-group spend is unchanged.\n\n14. GEO NEGATIVES WOULD BLOCK A FUTURE GCC CAMPAIGN. The shared list includes dubai, riyadh,\n    kuwait city, manama and muscat to stop Qatar-targeted spend leaking. If the owner confirms ABK\n    fulfils cross-border wholesale and a GCC campaign is built from the trade ad groups, those\n    five must be removed from the shared list first or that campaign will never serve.\n\n15. SHOPPING IS NOT AVAILABLE IN QATAR. Merchant Center does not support Qatar, so there is no\n    feed, no Shopping campaign and no feed-driven PMax for the B2C side. Search-only here is a\n    constraint, not a preference.\n\n16. AD SCHEDULE MATTERS MORE THAN USUAL. The conversion is a human WhatsApp reply. The store is\n    shut 13:00-16:00 and all day Friday. The schedule pauses Friday entirely and brackets the two\n    open windows with a 30-minute buffer. Widen it only if the owner actually answers WhatsApp\n    outside store hours.\n\n17. ARABIC WAS BUILT FOR RTL, NOT TRANSLATED. No Arabic headline opens with a Latin token or a\n    digit, none ends in punctuation, no em-dash or pipe appears in Arabic ad text, all tashkeel is\n    stripped (each shadda would burn one of 30 characters), digits are Western, and Latin brand\n    tokens sit mid-string or terminal. Display paths are Latin only (ar-ppf, ar-tint,\n    ar-wholesale). Still: paste every Arabic asset into Google's own ad preview before import - a\n    monospace editor hides bidi reordering.\n\n18. ONE SKU DELIBERATELY LEFT OUT: autotriz-ppf-gel (PPF and tint slip gel, 20 L / 4 L, 1:1\n    dilution, made in Germany) sits in the ppf category with a live page and is a genuine\n    installer-supply product. It is excluded here to avoid bidding against whichever campaign owns\n    the Autotriz range. Whoever builds that theme should take it - \"ppf slip solution\", \"tint\n    application gel\" and \"autotriz ppf gel\" are cheap, uncontested, and reach exactly the trade\n    buyers this theme is also chasing.\n"
 }

@@ -10,14 +10,14 @@ was missing.
 | | |
 |---|---|
 | Campaigns | **12** — 6 themes x English + Arabic |
-| Ad groups | **58** |
-| Keywords | **806** — de-duplicated so each lives in exactly one ad group |
-| Negative keywords | **686** at ad-group/campaign level, plus a **347**-term shared list |
-| Responsive search ads | **58** — 870 headlines, 232 descriptions |
+| Ad groups | **62** — one per PPF grade, plus tint |
+| Keywords | **885** — de-duplicated so each lives in exactly one ad group |
+| Negative keywords | **741** at ad-group/campaign level, plus a **343**-term shared list |
+| Responsive search ads | **62** — 930 headlines, 248 descriptions |
 | Extensions | 14 sitelinks, 16 callouts, 4 structured snippet sets |
-| Landing pages | **128/128 verified 200** against live production |
+| Landing pages | **140/140 verified 200** against live production |
 | Bid strategy at launch | **Manual CPC**, using each ad group's own max CPC |
-| Budget if every campaign were enabled | **295 QAR/day** ≈ 8,850 QAR/month — don't; enable one at a time |
+| Budget if every campaign were enabled | **310 QAR/day** ≈ 9,300 QAR/month — don't; enable one at a time |
 
 Themes: b2b-wholesale, ceramic, interior-fragrance, polish-compound, ppf-tint, wash-care.
 
@@ -49,7 +49,7 @@ in `Paused` status by design.** Nothing can spend until you deliberately enable 
 4. Paste the shared negative list and apply it to all campaigns.
 5. Review the ads in the Google Ads UI.
 6. Enable **one** campaign. Not all of them — all twelve at their listed budgets
-   is 295 QAR/day.
+   is 310 QAR/day.
 
 ## Importing
 
@@ -121,12 +121,12 @@ bidding war — but it splits performance data across ad groups and takes away
 control of which ad and landing page a query gets. The winner is the ad group
 with the most *specific* landing page (product page beats filtered catalogue
 beats bare hub), with ties going to the campaign matching the keyword's intent.
-Spot-checked: `vertek ppf` stayed in the brand ad group, `paint protection film
+Spot-checked: `vtek ppf` stayed in the PPF flagship ad group, `paint protection film
 supplier qatar` went to the trade one.
 
 **10 negatives demoted out of the shared list.** The account-wide list is the
 union of what all six themes contributed independently, and a term safe for one
-theme is lethal to another. Tested against all 806 keywords, it would have
+theme is lethal to another. Tested against every keyword, it would have
 suppressed 19 of them — `kuwait` and `bahrain` killing the B2B GCC terms in the
 one campaign that targets those countries, `install` killing "ppf supplier for
 installers", and `تظليل سيارات` killing `رول تظليل سيارات` (a tint *roll*).
@@ -140,7 +140,7 @@ negatives to `Phrase`, justified by the claim that a competitor negative like
 "armor all" could suppress our own "Weather Armor" queries. That is impossible:
 a negative broad keyword only blocks when the query contains **all** its words,
 and "vertek weather armor" does not contain "all". Testing every multi-word
-Broad negative against all 806 positive keywords found **zero** cases where any
+Broad negative against every positive keyword found **zero** cases where any
 negative would block one of our own terms — so the rewrite fixed nothing, while
 making 88 negatives leak junk traffic, since broad blocks a superset of phrase.
 Reverted. The build now prints the count as a note instead, for review against
@@ -155,26 +155,32 @@ the search terms report.
 
 The validator rejects any keyword, ad text or landing page referencing these.
 
-## ⚠ The PPF range: ads point at the currently-live URLs
+## The PPF range, after the VTEK rename
 
-Your working tree contains an unshipped VTEK PPF range — five products
-(`vtek-ppf-weather-armor-ultimate/pro/matte/prism`, `vtek-window-tints`)
-replacing the two live ones. **That work is not committed and not deployed**, so
-those pages currently 404 in production.
+Commit `21c382a` shipped the five-SKU VTEK range, replacing the two Vertek
+products. The campaign has been rebuilt for it, and each grade now gets its own
+ad group and its own landing page instead of sharing one generic page:
 
-The PPF campaign therefore targets the URLs that are live today:
+| Ad group | Lands on | Sells on |
+|---|---|---|
+| Weather Armor ULTIMATE | `vtek-ppf-weather-armor-ultimate` | 8.5 mil polycarbonate TPU, 10-year warranty |
+| Weather Armor PRO | `vtek-ppf-weather-armor-pro` | 7.5 mil aliphatic TPU, optical clarity |
+| Weather Armor MATTE | `vtek-ppf-weather-armor-matte` | satin non-reflective finish |
+| Weather Armor PRISM | `vtek-ppf-weather-armor-prism` | six named colours — a different buyer entirely |
+| Solar Armor tint | `vtek-window-tints` | 65% TSER, 99% UV, MOI-compliant grades |
 
-- `/b2c/products/vertek-ppf-weather-armor`
-- `/b2c/products/vertek-window-tints`
+Every claim comes from the shipped spec sheet in `src/data/products.ts`; the
+build fails on any that doesn't.
 
-This is safe in both directions: `next.config.ts` already defines 308 redirects
-from the `vertek-*` slugs to the new `vtek-*` ones, so these ads keep working
-after you ship that range. Once it is live, re-point the ad groups at the four
-specific PPF products for better message match — four dedicated ad groups will
-outperform one generic one.
+**Ad text says VTEK. Keywords still bid on "vertek".** The site itself frames the
+change as "VTEK (formerly Vertek)", and the old URLs 308-redirect, so people will
+keep searching the old spelling for a while. 16 keywords retain it deliberately;
+the exporter now *fails the build* if any ad text names a brand with no products
+in the deployed catalogue — which is how the eight stale "Vertek" assets left in
+the B2B ad groups were caught.
 
-Every landing URL in the account was checked with a real HTTP request against
-production: **128/128 returned 200.**
+Every landing URL was checked with a real HTTP request against production:
+**140/140 returned 200**, including all four new PPF pages.
 
 ## Three things on the site that need your decision
 
