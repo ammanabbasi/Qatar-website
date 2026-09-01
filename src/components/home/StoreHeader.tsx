@@ -17,7 +17,7 @@ const DISTRIBUTOR_BRANDS = [
     key: "Grizzly",
     name: "GRIZZLY",
     country: { en: "USA", ar: "أمريكا" },
-    logo: "/brands/grizzly.svg",
+    logo: "/brands/grizzly.webp",
   },
   {
     key: "VTEK",
@@ -29,7 +29,7 @@ const DISTRIBUTOR_BRANDS = [
     key: "Autotriz",
     name: "AUTOTRIZ",
     country: { en: "GERMANY", ar: "ألمانيا" },
-    logo: "/brands/autotriz.svg",
+    logo: "/brands/autotriz.webp",
   },
   {
     key: "Briller",
