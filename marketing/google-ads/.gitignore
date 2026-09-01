@@ -1,0 +1,3 @@
+# Generated snapshot of the deployed catalogue. Recreate with:
+#   git show HEAD:src/data/products.ts > marketing/google-ads/build/products.live.ts
+build/products.live.ts

@@ -1,0 +1,198 @@
+{
+  "_comment": [
+    "Account-level ad extensions (Google calls them 'assets'). Hand-authored, not",
+    "agent-generated: these are formulaic and every fact in them is checked against",
+    "public/llms.txt and src/data/products.ts.",
+    "",
+    "SCOPE MATTERS. 'Made in Canada' is true of Briller ONLY, so it is scoped to the",
+    "Briller campaign rather than sitting at account level where it would attach to",
+    "Autotriz and Vertek ads and become a false claim.",
+    "",
+    "Limits enforced by assemble.mjs: sitelink text <=25, sitelink description <=35,",
+    "callout <=25, structured snippet value <=25.",
+    "",
+    "ARABIC IS UNREVIEWED. Written as MSA by Claude; the repo README already flags",
+    "all site Arabic as needing a native-speaker pass before launch. Same applies here."
+  ],
+
+  "sitelinks": {
+    "en": [
+      {
+        "text": "Shop All Products",
+        "desc1": "28 car care products in stock",
+        "desc2": "Vertek, Autotriz, Briller",
+        "url": "https://abktradingservice.com/en/b2c/products"
+      },
+      {
+        "text": "Wholesale Pricing",
+        "desc1": "Trade rates for workshops",
+        "desc2": "Ask for the price list",
+        "url": "https://abktradingservice.com/en/b2b"
+      },
+      {
+        "text": "Become a Dealer",
+        "desc1": "Distribute across the GCC",
+        "desc2": "Apply in one message",
+        "url": "https://abktradingservice.com/en/b2b/become-a-dealer"
+      },
+      {
+        "text": "Paint Protection Film",
+        "desc1": "Vertek PPF for the Qatar sun",
+        "desc2": "Gloss, matte and prism",
+        "url": "https://abktradingservice.com/en/b2c/products?category=ppf"
+      },
+      {
+        "text": "Ceramic Coatings",
+        "desc1": "Autotriz 3D Matrix and Ion",
+        "desc2": "For detailers and owners",
+        "url": "https://abktradingservice.com/en/b2c/products?category=ceramic"
+      },
+      {
+        "text": "Visit the Doha Store",
+        "desc1": "Mesaimeer, Zone 56",
+        "desc2": "Sat-Thu, closed Friday",
+        "url": "https://abktradingservice.com/en/contact"
+      },
+      {
+        "text": "Car Care Guides",
+        "desc1": "Written for Qatar's climate",
+        "desc2": "Dust, sun and sand advice",
+        "url": "https://abktradingservice.com/en/b2c/blog"
+      }
+    ],
+    "ar": [
+      {
+        "text": "جميع المنتجات",
+        "desc1": "منتجات العناية بالسيارات",
+        "desc2": "فيرتك وأوتوتريز وبريلر",
+        "url": "https://abktradingservice.com/ar/b2c/products"
+      },
+      {
+        "text": "أسعار الجملة",
+        "desc1": "أسعار خاصة للورش والمحلات",
+        "desc2": "اطلب قائمة الأسعار",
+        "url": "https://abktradingservice.com/ar/b2b"
+      },
+      {
+        "text": "كن موزعاً معنا",
+        "desc1": "التوزيع في قطر والخليج",
+        "desc2": "قدّم طلبك برسالة واحدة",
+        "url": "https://abktradingservice.com/ar/b2b/become-a-dealer"
+      },
+      {
+        "text": "أفلام حماية الطلاء",
+        "desc1": "فيرتك لحماية طلاء سيارتك",
+        "desc2": "لامع ومطفي وبريزم",
+        "url": "https://abktradingservice.com/ar/b2c/products?category=ppf"
+      },
+      {
+        "text": "طلاء السيراميك",
+        "desc1": "أوتوتريز ثري دي ماتريكس",
+        "desc2": "للمحترفين وهواة العناية",
+        "url": "https://abktradingservice.com/ar/b2c/products?category=ceramic"
+      },
+      {
+        "text": "زوروا معرضنا في الدوحة",
+        "desc1": "مسيمير، منطقة ٥٦، الدوحة",
+        "desc2": "السبت-الخميس، الجمعة مغلق",
+        "url": "https://abktradingservice.com/ar/contact"
+      },
+      {
+        "text": "دليل العناية بالسيارة",
+        "desc1": "نصائح تناسب مناخ قطر",
+        "desc2": "الغبار والشمس والرمال",
+        "url": "https://abktradingservice.com/ar/b2c/blog"
+      }
+    ]
+  },
+
+  "callouts": {
+    "en": [
+      "Wholesale & Retail",
+      "Doha Showroom",
+      "WhatsApp for a Quote",
+      "Trade Accounts Welcome",
+      "Genuine Brand Stock",
+      "Open Six Days a Week",
+      "Bulk 20L Sizes",
+      "Delivery Across Qatar"
+    ],
+    "ar": [
+      "بيع بالجملة والتجزئة",
+      "معرض في الدوحة",
+      "اطلب السعر عبر واتساب",
+      "حسابات تجارية",
+      "منتجات أصلية",
+      "مفتوح ٦ أيام أسبوعياً",
+      "عبوات ٢٠ لتر",
+      "توصيل داخل قطر"
+    ]
+  },
+
+  "structuredSnippets": {
+    "en": [
+      {
+        "header": "Brands",
+        "values": ["Vertek", "VTEK", "Autotriz", "Briller", "ABK", "Smart Car"]
+      },
+      {
+        "header": "Types",
+        "values": [
+          "Paint Protection Film",
+          "Window Tint Film",
+          "Ceramic Coatings",
+          "Polishing Compounds",
+          "Car Shampoos",
+          "Tyre Care",
+          "Glass Cleaners",
+          "Interior Care"
+        ]
+      }
+    ],
+    "ar": [
+      {
+        "header": "Brands",
+        "values": ["فيرتك", "أوتوتريز", "بريلر", "ABK", "سمارت كار"]
+      },
+      {
+        "header": "Types",
+        "values": [
+          "أفلام حماية الطلاء",
+          "تظليل زجاج السيارات",
+          "طلاء سيراميك",
+          "معاجين التلميع",
+          "شامبو السيارات",
+          "العناية بالإطارات",
+          "منظفات الزجاج",
+          "العناية بالمقصورة"
+        ]
+      }
+    ]
+  },
+
+  "scopedCallouts": [
+    {
+      "campaignMatch": "wash-care",
+      "note": "Briller only — Made in Canada is verified in products.ts specs for all five Briller SKUs and is NOT true of the other brands.",
+      "en": ["Made in Canada"],
+      "ar": ["صُنع في كندا"]
+    }
+  ],
+
+  "callAsset": {
+    "phone": "+974 30838355",
+    "country": "QA",
+    "note": "Report a conversion on call clicks; pairs with the phone_enquiry event already firing on tel: links."
+  },
+
+  "locationAsset": {
+    "source": "Google Business Profile",
+    "profile": "ABK Trading and Service — Vertek & Autotriz",
+    "address": "Shop 2 & 3, Building 1306, Street 70, Zone 56, Mesaimeer, Doha, Qatar",
+    "mapsCid": "https://maps.google.com/?cid=9860894303806767987",
+    "note": "Link the Business Profile in Google Ads > Tools > Linked accounts before adding the location asset."
+  },
+
+  "businessName": "ABK Trading & Service",
+  "businessLogo": "public/logo-mark.webp"
+}
