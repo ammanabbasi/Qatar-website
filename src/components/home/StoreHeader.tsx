@@ -22,31 +22,31 @@ const DISTRIBUTOR_BRANDS = [
     key: "Grizzly",
     name: "GRIZZLY",
     country: { en: "USA", ar: "أمريكا" },
-    logo: "/brands/grizzly-card.webp",
-    bg: "#0c0b2e",
+    logo: "/brands/grizzly-card-v2.webp",
+    bg: "#0d0c2c",
     dark: true,
   },
   {
     key: "VTEK",
     name: "VTEK",
     country: { en: "USA", ar: "أمريكا" },
-    logo: "/brands/vtek-card.webp",
-    bg: "#1e2226",
+    logo: "/brands/vtek-card-v2.webp",
+    bg: "#231f20",
     dark: true,
   },
   {
     key: "Autotriz",
     name: "AUTOTRIZ",
     country: { en: "GERMANY", ar: "ألمانيا" },
-    logo: "/brands/autotriz-card.webp",
-    bg: "#2d2923",
+    logo: "/brands/autotriz-card-v2.webp",
+    bg: "#2f2b25",
     dark: true,
   },
   {
     key: "Briller",
     name: "BRILLER",
     country: { en: "CANADA", ar: "كندا" },
-    logo: "/brands/briller-card.webp",
+    logo: "/brands/briller-card-v2.webp",
     bg: "#9b9b9b",
     dark: false,
   },
@@ -125,14 +125,15 @@ export function StoreHeader({ audience, locale }: Props) {
               key={brand.key}
               href={`/${audience}/products?brand=${brand.key}`}
               style={{ backgroundColor: brand.bg }}
-              className="tile group flex items-center justify-between rounded-[16px] border border-white/10 p-3.5 transition-all duration-300 ease-soft hover:border-white/25 hover:shadow-tile-hover sm:p-4"
+              className="tile group flex flex-col items-center gap-2 rounded-[16px] border border-white/10 p-3 pb-2.5 transition-all duration-300 ease-soft hover:border-white/25 hover:shadow-tile-hover sm:gap-2.5 sm:p-4 sm:pb-3"
             >
-              <div className="relative h-12 w-36 sm:h-14 sm:w-40 flex items-center">
+              <div className="relative h-20 w-full sm:h-24 lg:h-28">
                 <Image
                   src={brand.logo}
                   alt={`${brand.name} logo`}
                   fill
-                  className="object-contain object-left rtl:object-right transition-transform duration-300 ease-soft group-hover:scale-105"
+                  sizes="(max-width: 640px) 45vw, 24vw"
+                  className="object-contain transition-transform duration-300 ease-soft group-hover:scale-[1.04]"
                 />
               </div>
               <span
