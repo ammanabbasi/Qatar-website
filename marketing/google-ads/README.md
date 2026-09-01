@@ -248,12 +248,24 @@ same strings also appear in the English campaigns. That is deliberate, not a
 duplicate that escaped de-duplication.
 
 Gulf buyers routinely type Latin brand names regardless of interface language.
-Google separates the two campaigns by the user's interface language, so an
-Arabic-interface user searching `vertek ppf` gets the Arabic ad and the `/ar/`
-landing page, while an English-interface user gets the English one. Removing them
-from the Arabic side would hand Arabic-speaking searchers an English page. Only
-one ad per account enters any auction, so there is no double-spend — the cost is
-slightly murkier attribution, which is the right trade.
+Keeping the terms on both sides means an Arabic speaker searching `vtek ppf` can
+still be served the Arabic ad and the `/ar/` page. Only one ad per account enters
+any auction, so there is no double-spend — the cost is slightly murkier
+attribution on these 23 terms, which is the right trade.
+
+### Why every campaign targets both languages
+
+Google's language targeting keys off the user's **interface language**, not the
+language of the query — and in Qatar, an Arabic-interface phone typing an English
+query is everyday behaviour. If the English campaigns targeted only "English",
+that user would match **no campaign at all**: a silent coverage hole over a large
+slice of the market.
+
+So all twelve campaigns target English **and** Arabic, and the keywords do the
+routing instead — an Arabic keyword can only ever match an Arabic query. The one
+side effect: the 23 shared Latin brand terms above now route by Ad Rank rather
+than interface language, which is acceptable because either language's ad is a
+fair answer to `vtek ppf`.
 
 ## Suggested launch sequence
 
@@ -287,6 +299,25 @@ forgotten.
   the single highest-value hour you will spend on the account.
 - Any ad group with a **Below average** ad relevance or landing page experience.
 - Whether service-intent queries are leaking through despite the negatives.
+
+## ⚠ After the first import, the live account is the source of truth
+
+This is a one-way pipeline. The repo generates the account; nothing flows back.
+The moment you import and start optimising — pausing keywords, adjusting bids,
+adding negatives from the search terms report — the live account diverges from
+these files, and **a wholesale re-import would propose reverting every one of
+those optimisations**.
+
+So after go-live:
+
+- Use rebuilds for **additions** (a new product, a new theme): import only the
+  new campaign or ad group, not the whole set. Editor shows you exactly what a
+  file would change before you Post — read that diff.
+- For **edits to live campaigns**, make them in Google Ads directly. Optionally
+  mirror them into the JSON so the repo stays a readable record, but never
+  re-import an edited old campaign over a live one without reviewing the diff.
+- The repo files remain valuable as the audited baseline and for rebuilding a
+  campaign from scratch if one is ever mangled.
 
 ## Rebuilding after an edit
 

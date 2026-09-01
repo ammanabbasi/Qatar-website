@@ -266,12 +266,21 @@ for (const { file, data } of themes) {
     rows.campaigns.push({
       Campaign: c.name,
       "Campaign Type": "Search",
-      "Campaign Subtype": "All features",
       // ALWAYS paused on import. Enabling spend is a human decision, never a
       // side effect of running a build script.
       Status: "Paused",
       Budget: c.dailyBudgetQAR,
       "Budget Type": "Daily",
+      // Both languages on every campaign, deliberately. Google's language
+      // targeting keys off the user's INTERFACE language, not the query — and
+      // in Qatar an Arabic-interface phone typing an English query is
+      // everyday behaviour. With EN campaigns targeting only "English", that
+      // user matched no campaign at all: a silent coverage hole. Keywords
+      // already gate which campaign a query can enter (Arabic keywords only
+      // match Arabic queries), so language targeting adds nothing here except
+      // the hole. Cost: the ~23 Latin brand keywords shared by both campaigns
+      // now route by Ad Rank instead of interface language — acceptable, since
+      // either ad is a fair answer to "vtek ppf".
       // Launch on Manual CPC, not the themes' declared "Maximize conversions".
       //
       // Smart Bidding cannot work without conversion history, and this account
@@ -282,7 +291,7 @@ for (const { file, data } of themes) {
       // to once ~30 conversions in 30 days have accumulated.
       "Bid Strategy Type": "Manual CPC",
       Networks: "Google search",
-      Languages: c.language === "ar" ? "Arabic" : "English",
+      Languages: "English; Arabic",
     });
     campaignNames.push(c.name);
 
@@ -542,6 +551,14 @@ if (assets) {
       if (len(s.text) > ASSET_LIMITS.sitelinkText) fail(w, `text is ${len(s.text)} chars (max 25)`);
       for (const d of ["desc1", "desc2"]) {
         if (s[d] && len(s[d]) > ASSET_LIMITS.sitelinkDesc) fail(w, `${d} is ${len(s[d])} chars (max 35): "${s[d]}"`);
+        // A stated product count must match the deployed catalogue. The "28
+        // car care products" sitelink was silently false for two days when the
+        // deployed count was 25 — a number in ad copy is a claim, so it gets
+        // the same treatment as a dilution ratio: checked, not trusted.
+        const countClaim = /(\d+)\s+car care products/i.exec(s[d] || "");
+        if (countClaim && Number(countClaim[1]) !== catalogue.promotableProducts) {
+          fail(w, `claims ${countClaim[1]} products but the deployed catalogue has ${catalogue.promotableProducts} promotable`);
+        }
       }
       checkUrl(w, s.url);
       if (s.url && !s.url.includes(`/${lang}/`)) fail(w, `${lang} sitelink points at ${s.url}`);
