@@ -8,9 +8,11 @@
  */
 
 export type BrandKey =
+  | "VTEK"
   | "Vertek"
   | "Autotriz"
   | "Briller"
+  | "Grizzly"
   | "InstaFinish"
   | "Getsun"
   | "Sitrett"
@@ -62,78 +64,280 @@ export type Product = {
 export const PRODUCT_DEFAULT_UPDATED_AT = "2026-04-22";
 
 export const PRODUCTS: Product[] = [
-  // ───── Vertek — Paint Protection Film (STAR)
+  // ───── VTEK (formerly Vertek) — Paint Protection Film (STAR)
   {
-    slug: "vertek-ppf-weather-armor",
-    brand: "Vertek",
+    slug: "vtek-ppf-weather-armor-ultimate",
+    brand: "VTEK",
     category: "ppf",
     name: {
-      en: "Vertek PPF — Weather Armor",
-      ar: "Vertek — فيلم حماية الطلاء Weather Armor",
+      en: "VTEK PPF — Weather Armor ULTIMATE",
+      ar: "VTEK — فيلم حماية الطلاء Weather Armor ULTIMATE",
     },
     shortDesc: {
-      en: "Premium paint protection film with self-healing nano-technology. Scratch-resistant, weather-proof, high-gloss.",
-      ar: "فيلم حماية طلاء فاخر بتقنية النانو الذاتية الإصلاح. مقاوم للخدش والعوامل الجوية ولامع.",
+      en: "Flagship Polycarbonate TPU paint protection film with ultra-gloss clarity, instant self-healing and 10-year warranty.",
+      ar: "فيلم حماية الطلاء الرائد من بولي كربونات TPU بلمعان فائق وإصلاح ذاتي فوري وضمان 10 سنوات.",
     },
     longDesc: {
-      en: "Vertek Weather Armor PPF is a premium-grade paint protection film that shields your paint from rock chips, scratches, weather and chemicals. The self-healing top-coat erases minor scratches with heat, and the optical clarity keeps your paintwork invisible underneath — just brighter. Available in gloss and matte finishes, cut for full-body, front-end, or custom areas. Available from our Mesaimeer store.",
-      ar: "فيلم حماية الطلاء Vertek Weather Armor يحمي طلاء سيارتك من الحصى والخدوش والعوامل الجوية والمواد الكيميائية. طبقة الإصلاح الذاتي تُزيل الخدوش الخفيفة بالحرارة، والشفافية البصرية تُظهر الطلاء الأصلي بلمعان أعلى. متوفر بتشطيبات لامعة ومطفية — للهيكل الكامل أو المقدمة أو الأجزاء المحددة. متوفر في متجرنا بمسيمير.",
+      en: "VTEK® Weather Armor™ ULTIMATE represents the pinnacle of paint protection film technology. Engineered with Polycarbonate TPU, it delivers exceptional optical clarity, superior stretchability, and extreme resistance against yellowing, chemical stains, desert sand abrasion, and rock chip impact. Designed for long-term durability under harsh Middle Eastern climate conditions, Ultimate offers a self-healing, ultra-gloss finish that enhances the true depth and color of automotive paint. Backed by a 10-year manufacturer warranty.",
+      ar: "يمثل فيلم VTEK® Weather Armor™ ULTIMATE قمة تكنولوجيا أفلام حماية الطلاء. صُمم من بولي كربونات TPU المتطورة ليمنح نقاءً بصرياً استثنائياً ومرونة فائقة ومقاومة قصوى للاصفرار والبقع الكيميائية وتآكل الرمال الصحراوية وأضرار الحصى. صُمم لتحمل أقسى الظروف المناخية في قطر، مع طبقة ذاتية الالتئام الفوري ولمعان فائق يبرز عمق ولون طلاء السيارة الأصلي، مع ضمان شامل لمدة 10 سنوات.",
     },
     images: [
-      "/products/vertek/vertek-ppf-premium-protection.webp",
-      "/products/vertek/vertek-weather-armor-boxes.webp",
-      "/products/vertek/vertek-landcruiser-installation.webp",
+      "/products/vtek/vtek-weather-armor-ultimate.webp",
+      "/products/vtek/vtek-ultimate-installation.webp",
+      "/products/vtek/vtek-weather-armor-series-hero.webp",
     ],
     specs: [
       {
-        label: { en: "Features", ar: "المميزات" },
-        value: {
-          en: "Self-healing · Scratch resistant · Weather proof · High gloss",
-          ar: "إصلاح ذاتي · مقاوم للخدش · مقاوم للعوامل الجوية · لمعان عالي",
-        },
+        label: { en: "Material", ar: "المادة" },
+        value: { en: "Advanced Polycarbonate TPU", ar: "بولي كربونات TPU متطور" },
       },
       {
-        label: { en: "Technology", ar: "التقنية" },
-        value: { en: "Advanced nano-technology", ar: "تقنية النانو المتقدمة" },
+        label: { en: "Thickness", ar: "السماكة" },
+        value: { en: "8.5 mil (215 µm)", ar: "٨.٥ مل (٢١٥ ميكرون)" },
       },
       {
         label: { en: "Finish", ar: "التشطيب" },
-        value: { en: "Gloss / Matte", ar: "لامع / مطفي" },
+        value: { en: "Ultra-Gloss High Depth", ar: "لمعان فائق عالي العمق" },
       },
       {
-        label: { en: "Application", ar: "التطبيق" },
+        label: { en: "Technology", ar: "التقنية" },
         value: {
-          en: "Fitted by a trained installer",
-          ar: "يُركّب بواسطة مُركّب مدرّب",
+          en: "Instant Heat Self-Healing & Hydrophobic Top-Coat",
+          ar: "إصلاح ذاتي فوري بالحرارة وطارد فائق للسوائل",
+        },
+      },
+      {
+        label: { en: "Warranty", ar: "الضمان" },
+        value: { en: "10-Year Manufacturer Warranty", ar: "ضمان المصنع لمدة ١٠ سنوات" },
+      },
+      {
+        label: { en: "Resistance", ar: "المقاومة" },
+        value: {
+          en: "Extreme UV, Desert Sand, Road Salts & Chemicals",
+          ar: "مقاومة قصوى للأشعة فوق البنفسجية والرمال والأملاح والمواد الكيميائية",
         },
       },
     ],
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
+    updatedAt: "2026-08-31",
   },
-
-  // ───── Vertek — Window Tints (STAR)
   {
-    slug: "vertek-window-tints",
-    brand: "Vertek",
-    category: "tint",
+    slug: "vtek-ppf-weather-armor-pro",
+    brand: "VTEK",
+    category: "ppf",
     name: {
-      en: "Vertek Window Tints",
-      ar: "Vertek — تظليل النوافذ",
+      en: "VTEK PPF — Weather Armor PRO",
+      ar: "VTEK — فيلم حماية الطلاء Weather Armor PRO",
     },
     shortDesc: {
-      en: "Heat-rejecting window films in multiple VLT grades. Compliant with Qatar regulations.",
-      ar: "أفلام نوافذ عازلة للحرارة بدرجات VLT متعددة، متوافقة مع قوانين قطر.",
+      en: "Proven performance paint protection film with robust scratch resistance, high optical gloss and 8-year warranty.",
+      ar: "فيلم حماية طلاء عالي الأداء والموثوقية بمقاومة قوية للخدوش ولمعان بصري نقي وضمان 8 سنوات.",
     },
     longDesc: {
-      en: "Vertek window films cut heat, UV and glare without compromising visibility. Multiple VLT (Visible Light Transmission) grades available to match your preference and Qatar's regulations. Supplied cut to size, with a lifetime peel warranty on the film.",
-      ar: "أفلام Vertek تعزل الحرارة والأشعة فوق البنفسجية والوهج دون التأثير على الرؤية. متوفرة بدرجات VLT متعددة حسب تفضيلك وقوانين قطر. تُورّد مقصوصة حسب المقاس، مع ضمان ضد التقشير على الفيلم.",
+      en: "VTEK® Weather Armor™ PRO offers an excellent balance of protection, gloss, and flexibility. It provides robust resistance to scratches, stains, and weathering while maintaining outstanding optical transparency. Designed for professional installers seeking reliability and easy handling, PRO ensures long-lasting protection for both daily drivers and premium vehicles across Qatar. Backed by an 8-year warranty.",
+      ar: "يوفر فيلم VTEK® Weather Armor™ PRO توازناً ممتازاً بين الحماية واللمعان والمرونة العالية. يمنح مقاومة قوية للخدوش والبقع والعوامل الجوية مع الحفاظ على شفافية بصرية نقية. صُمم لتسهيل عملية التركيب الاحترافي وضمان حماية موثوقة طويلة الأمد للسيارات اليومية والفاخرة في قطر، مع ضمان لمدة 8 سنوات.",
     },
-    images: ["/products/vertek/vertek-window-tint.webp"],
+    images: [
+      "/products/vtek/vtek-weather-armor-pro.webp",
+      "/products/vtek/vtek-weather-armor-series-hero.webp",
+    ],
+    specs: [
+      {
+        label: { en: "Material", ar: "المادة" },
+        value: { en: "High-Grade Aliphatic TPU", ar: "مادة TPU أليفاتية عالية الجودة" },
+      },
+      {
+        label: { en: "Thickness", ar: "السماكة" },
+        value: { en: "7.5 mil (190 µm)", ar: "٧.٥ مل (١٩٠ ميكرون)" },
+      },
+      {
+        label: { en: "Finish", ar: "التشطيب" },
+        value: { en: "High Optical Clarity Gloss", ar: "لمعان عالي الشفافية والنقاء" },
+      },
+      {
+        label: { en: "Technology", ar: "التقنية" },
+        value: {
+          en: "Heat-Activated Self-Healing Nano-Coat",
+          ar: "طلاء نانو ذاتي الإصلاح بالحرارة",
+        },
+      },
+      {
+        label: { en: "Warranty", ar: "الضمان" },
+        value: { en: "8-Year Warranty", ar: "ضمان ٨ سنوات" },
+      },
+      {
+        label: { en: "Handling", ar: "التركيب" },
+        value: {
+          en: "Smooth installation with balanced flexibility",
+          ar: "تركيب سلس بمرونة متوازنة ومطواعية عالية",
+        },
+      },
+    ],
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
+    updatedAt: "2026-08-31",
+  },
+  {
+    slug: "vtek-ppf-weather-armor-matte",
+    brand: "VTEK",
+    category: "ppf",
+    name: {
+      en: "VTEK PPF — Weather Armor MATTE",
+      ar: "VTEK — فيلم حماية الطلاء Weather Armor MATTE (مطفي)",
+    },
+    shortDesc: {
+      en: "Stealth satin matte paint protection film for a bold non-reflective finish with 10-year durability.",
+      ar: "فيلم حماية طلاء مطفي ساتان لمظهر جريء غير عاكس مع حماية فائقة وضمان 10 سنوات.",
+    },
+    longDesc: {
+      en: "For a bold, non-reflective look, VTEK® Weather Armor™ MATTE provides stealthy protection without sacrificing durability. Its satin matte finish resists UV rays, desert sand abrasion, road salt, and environmental grime, keeping your vehicle looking pristine with minimal upkeep. MATTE transforms factory gloss finishes into a sleek satin surface while defending against rock chips and scratches. Backed by a 10-year warranty.",
+      ar: "لإطلالة رياضية جريئة وغير عاكسة، يمنح فيلم VTEK® Weather Armor™ MATTE حماية خفية فائقة دون المساس بالمتانة. يقاوم تشطيبه المطفي الساتاني الأشعة فوق البنفسجية وتآكل الرمال الصحراوية والأملاح والأوساخ، مما يحافظ على مظهر سيارتك المتجدد بأقل قدر من العناية. يحول الطلاء اللامع إلى مظهر ساتان مطفي فاخر مع حماية تامة وضمان 10 سنوات.",
+    },
+    images: [
+      "/products/vtek/vtek-weather-armor-matte.webp",
+      "/products/vtek/vtek-matte-showcase.webp",
+      "/products/vtek/vtek-weather-armor-series-hero.webp",
+    ],
+    specs: [
+      {
+        label: { en: "Finish", ar: "التشطيب" },
+        value: { en: "Satin Matte Non-Reflective", ar: "ساتان مطفي غير عاكس" },
+      },
+      {
+        label: { en: "Material", ar: "المادة" },
+        value: { en: "Aliphatic Matte TPU", ar: "مادة TPU أليفاتية مطفية" },
+      },
+      {
+        label: { en: "Thickness", ar: "السماكة" },
+        value: { en: "8 mil (200 µm)", ar: "٨ مل (٢٠٠ ميكرون)" },
+      },
+      {
+        label: { en: "Technology", ar: "التقنية" },
+        value: {
+          en: "Self-Healing Satin Top-Coat & Grime Shield",
+          ar: "طبقة ساتان ذاتية الالتئام وطاردة للأوساخ",
+        },
+      },
+      {
+        label: { en: "Warranty", ar: "الضمان" },
+        value: { en: "10-Year Warranty", ar: "ضمان ١٠ سنوات" },
+      },
+      {
+        label: { en: "Maintenance", ar: "العناية" },
+        value: { en: "Low maintenance, easy wash", ar: "صيانة سهلة وغسيل يسير" },
+      },
+    ],
+    audience: "both",
+    featured: true,
+    highlight: "vertek-premium",
+    updatedAt: "2026-08-31",
+  },
+  {
+    slug: "vtek-ppf-weather-armor-prism",
+    brand: "VTEK",
+    category: "ppf",
+    name: {
+      en: "VTEK PPF — Weather Armor PRISM (Color PPF)",
+      ar: "VTEK — فيلم حماية الطلاء الملون Weather Armor PRISM",
+    },
+    shortDesc: {
+      en: "Premium colored paint protection film combining dynamic restyling with rock chip defense and color stability.",
+      ar: "فيلم حماية طلاء ملون يجمع بين تغيير لون السيارة الرياضي وحماية الطلاء الأصلية من الصدمات وثبات اللون.",
+    },
+    longDesc: {
+      en: "VTEK® Weather Armor™ PRISM is a premium-grade colored paint protection film that offers top-notch defense against scratches, chips, and stains while adding dynamic color to your vehicle. Engineered with advanced Polycaprolactone Color TPU and high-performance adhesives, PRISM stays securely bonded without edge lifting even in extreme Middle Eastern heat. Choose from gloss and satin colors to customize your vehicle while preserving factory paint underneath. Backed by an 8-year warranty.",
+      ar: "يعد فيلم VTEK® Weather Armor™ PRISM فيلماً ملوناً فائق الجودة لحماية الطلاء، يمنح حماية متكاملة ضد الخدوش وضربات الحصى والبقع مع إمكانية تغيير لون سيارتك بأسلوب عصري. صُمم بتقنية Polycaprolactone Color TPU ومواد لاصقة فائقة الثبات تمنع رفع الحواف حتى في حرارة الصيف ورطوبة الخليج، مع الحفاظ على طلاء المصنع وضمان 8 سنوات.",
+    },
+    images: [
+      "/products/vtek/vtek-weather-armor-prism.webp",
+      "/products/vtek/vtek-prism-colors-showcase.webp",
+      "/products/vtek/vtek-weather-armor-series-hero.webp",
+    ],
+    specs: [
+      {
+        label: { en: "Material", ar: "المادة" },
+        value: {
+          en: "Polycaprolactone-based Color TPU",
+          ar: "مادة TPU ملونة مبنية على البوليكابرولاكتون",
+        },
+      },
+      {
+        label: { en: "Thickness", ar: "السماكة" },
+        value: { en: "8.5 mil (215 µm)", ar: "٨.٥ مل (٢١٥ ميكرون)" },
+      },
+      {
+        label: { en: "Colors Available", ar: "الألوان المتوفرة" },
+        value: {
+          en: "Gloss Piano Black, Matte Black, Nardo Grey, Metallic Blue, Pearl White, Satin Metals",
+          ar: "أسود بيانو لامع، أسود مطفي، رمادي ناردو، أزرق ميتاليك، أبيض لؤلؤي، معادن ساتان",
+        },
+      },
+      {
+        label: { en: "Adhesion", ar: "الالتصاق" },
+        value: {
+          en: "High-Stability Extreme Weather Adhesive",
+          ar: "مادة لاصقة فائقة الثبات للظروف المناخية القاسية",
+        },
+      },
+      {
+        label: { en: "Warranty", ar: "الضمان" },
+        value: { en: "8-Year Warranty", ar: "ضمان ٨ سنوات" },
+      },
+    ],
+    audience: "both",
+    featured: true,
+    highlight: "vertek-premium",
+    updatedAt: "2026-08-31",
+  },
+  // ───── VTEK (formerly Vertek) — Solar Armor Window Tints (STAR)
+  {
+    slug: "vtek-window-tints",
+    brand: "VTEK",
+    category: "tint",
+    name: {
+      en: "VTEK Solar Armor — Iconic & Indulge Series Window Tints",
+      ar: "VTEK — أفلام تظليل النوافذ Solar Armor (سلسلة Iconic و Indulge)",
+    },
+    shortDesc: {
+      en: "High-performance heat-rejecting nano-ceramic window films in Iconic & Indulge series with multiple VLT grades and 10-year e-warranty. Fully compliant with Qatar regulations.",
+      ar: "أفلام تظليل سيراميكية عالية الأداء لعزل الحرارة في سلسلتي Iconic و Indulge بدرجات VLT متعددة وضمان إلكتروني 10 سنوات، متوافقة كلياً مع قوانين المرور في قطر.",
+    },
+    longDesc: {
+      en: "VTEK® Solar Armor™ window films — featuring the premium Iconic and Indulge Series — cut intense solar heat, block 99% of harmful UV rays, and reduce harsh road glare without compromising optical visibility. Engineered with advanced GRX® nano-ceramic technology, they provide superior infrared (IR) heat shielding and cabin temperature control tailored for extreme Middle Eastern heat. Multiple VLT (Visible Light Transmission) grades are available to match your style and Qatar's Ministry of Interior traffic regulations. Backed by a 10-year official manufacturer e-warranty.",
+      ar: "تعزل أفلام VTEK® Solar Armor™ لتظليل النوافذ — بسلسلتيها الفاخرتين Iconic و Indulge — حرارة الشمس الشديدة بنسبة عالية، وتحجب 99% من الأشعة فوق البنفسجية الضارة، وتقلل الوهج دون التأثير على وضوح الرؤية. صُممت بتقنية النانو سيراميك GRX® المتطورة لتوفير أقصى عزل للأشعة تحت الحمراء وخفض حرارة المقصورة في طقس قطر الصيفي. متوفرة بدرجات نفاذية ضوء (VLT) متعددة تتوافق مع لوائح المرور القطرية، مع ضمان إلكتروني رسمي لمدة 10 سنوات.",
+    },
+    images: [
+      "/products/vtek/vtek-solar-armor-window-tint.webp",
+    ],
+    specs: [
+      {
+        label: { en: "Series", ar: "السلسلة" },
+        value: { en: "Iconic & Indulge Series", ar: "سلسلة Iconic و Indulge" },
+      },
+      {
+        label: { en: "Heat Rejection", ar: "عزل الحرارة" },
+        value: { en: "Up to 65% TSER / 90%+ IR Rejection", ar: "حتى ٦٥٪ عزل طاقة شمسية / ٩٠٪+ عزل أشعة تحت حمراء" },
+      },
+      {
+        label: { en: "UV Protection", ar: "حماية الأشعة فوق البنفسجية" },
+        value: { en: "99% UV Rejection", ar: "٩٩٪ حجب للأشعة فوق البنفسجية" },
+      },
+      {
+        label: { en: "Compliance", ar: "المطابقة" },
+        value: { en: "Qatar Traffic Law & MOI Compliant Grades", ar: "درجات مطابقة لقانون المرور ووزارة الداخلية في قطر" },
+      },
+      {
+        label: { en: "Warranty", ar: "الضمان" },
+        value: { en: "10-Year e-Warranty", ar: "ضمان إلكتروني لمدة ١٠ سنوات" },
+      },
+    ],
+    audience: "both",
+    featured: true,
+    highlight: "vertek-premium",
+    updatedAt: "2026-08-31",
   },
 
   // ───── Briller Car Care (STAR — line of colored car-wash products)
@@ -153,11 +357,7 @@ export const PRODUCTS: Product[] = [
       en: "Briller's All-in-One CA Tech™ formula cleans and waxes in a single wash. Produces thick, safe suds that lift dirt without scratching, then leaves a durable hydrophobic layer for a water-beading high-gloss finish. Available in 20L bulk — ideal for car washes and detailing shops.",
       ar: "تركيبة Briller CA Tech™ تنظف وتشمع في غسلة واحدة. رغوة كثيفة وآمنة ترفع الأوساخ دون خدش، وتترك طبقة طاردة للماء تعطي لمعاناً عالياً. متوفر في عبوات 20 لتر — مثالي لمحطات الغسيل وورش التلميع.",
     },
-    images: [
-      "/products/briller/briller-wash-and-wax.webp",
-      "/products/briller/briller-wash-and-wax-20l-wide.webp",
-      "/products/briller/briller-wash-and-wax-close.webp",
-    ],
+    images: ["/products/briller/briller-wash-and-wax.webp"],
     specs: [
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B505", ar: "B505" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
@@ -239,19 +439,16 @@ export const PRODUCTS: Product[] = [
       en: "Professional streak-free glass cleaner. Lifts film, road grime and bug residue from windshields and side glass.",
       ar: "منظف زجاج احترافي بدون شطب. يُزيل الأفلام والأوساخ من الزجاج الأمامي والجانبي.",
     },
-    images: [
-      "/products/briller/briller-glass-cleaner.webp",
-      "/products/briller/briller-glass-cleaner-20l.webp",
-    ],
+    images: ["/products/briller/briller-glass-cleaner.webp"],
     specs: [
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B508", ar: "B508" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
-      { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "1:50", ar: "١:٥٠" } },
+      { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "Direct / 1:1", ar: "مباشر / ١:١" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
     audience: "both",
     highlight: "briller-color",
-    updatedAt: "2026-08-30",
+    updatedAt: "2026-08-31",
   },
 
   // ───── Autotriz — Detailing Chemicals
@@ -268,13 +465,10 @@ export const PRODUCTS: Product[] = [
       ar: "شامبو رغوي كثيف متوازن الحموضة مع محسّنات لمعان. صُنع في ألمانيا.",
     },
     longDesc: {
-      en: "Autotriz Rich Foam Shampoo uses proprietary gloss enhancers to maximise shine and optical clarity while maintaining waxes, sealants and coatings. Produces thick suds and foam that carry dirt away without rubbing or scrubbing. Blended with special emulsifiers and pH-balanced, it won't spot or stain even in direct sunlight. Available as 20L drum — supplied to ABK Trading & Service in Qatar.",
-      ar: "شامبو Autotriz يستخدم محسّنات لمعان متميزة لتعظيم اللمعان والشفافية البصرية مع الحفاظ على الشموع والطلاءات. رغوة كثيفة تحمل الأوساخ دون فرك. تركيبة متوازنة الحموضة لا تترك بقعاً حتى تحت الشمس المباشرة. متوفر في عبوة 20 لتر — موزع ABK في قطر.",
+      en: "Autotriz Rich Foam Shampoo uses proprietary gloss enhancers to maximise shine and optical clarity while maintaining waxes, sealants and coatings. Produces thick suds and foam that carry dirt away without rubbing or scrubbing. Blended with special emulsifiers and pH-balanced, it won't spot or stain even in direct sunlight.",
+      ar: "شامبو Autotriz يستخدم محسّنات لمعان متميزة لتعظيم اللمعان والشفافية البصرية مع الحفاظ على الشموع والطلاءات. رغوة كثيفة تحمل الأوساخ دون فرك. تركيبة متوازنة الحموضة لا تترك بقعاً حتى تحت الشمس المباشرة.",
     },
-    images: [
-      "/products/autotriz/autotriz-rich-foam-shampoo-20l.webp",
-      "/products/autotriz/autotriz-rich-foam-shampoo-abk-label.webp",
-    ],
+    images: ["/products/autotriz/autotriz-rich-foam-shampoo-20l.webp"],
     specs: [
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "AT-CC-RFS-20", ar: "AT-CC-RFS-20" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
@@ -298,11 +492,7 @@ export const PRODUCTS: Product[] = [
       en: "Recommended for use on finish paint. Effectively removes P1500 sanding marks. Restores a high gloss finish. Hologram-free — delivers a clean cut without compensation passes.",
       ar: "يُستخدم على الطلاء النهائي. يُزيل علامات السنفرة P1500 بفعالية. يعيد اللمعان العالي. خالٍ من الهالات.",
     },
-    images: [
-      "/products/autotriz/autotriz-heavy-cut-901.webp",
-      "/products/autotriz/autotriz-heavy-cut-901-close.webp",
-      "/products/autotriz/autotriz-heavy-cut-901-shelf.webp",
-    ],
+    images: ["/products/autotriz/autotriz-heavy-cut-901.webp"],
     specs: [
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "901", ar: "901" } },
     ],
@@ -324,10 +514,7 @@ export const PRODUCTS: Product[] = [
       en: "Made from finest polishing oils. Adds a deep, rich, wet look to paint. Excellent for dark-coloured cars. Incredible gloss, hologram-free finish. Body-shop safe.",
       ar: "مصنوع من أفضل زيوت التلميع. يضيف مظهراً رطباً غنياً للطلاء. ممتاز للسيارات الداكنة. لمعان مذهل، خالٍ من الهالات. آمن لورش السمكرة.",
     },
-    images: [
-      "/products/autotriz/autotriz-ultimate-polish-302.webp",
-      "/products/autotriz/autotriz-ultimate-polish-302-close.webp",
-    ],
+    images: ["/products/autotriz/autotriz-ultimate-polish-302.webp"],
     specs: [
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "302", ar: "302" } },
     ],
@@ -573,10 +760,7 @@ export const PRODUCTS: Product[] = [
       en: "Produces a durable high gloss shine. Performance liquid concentrate that washes away heavy dirt and road film. New-millennium technology produces a water-beading shine. Los Angeles, USA.",
       ar: "يُنتج لمعاناً متيناً وعالي الجودة. تركيبة سائلة مركزة عالية الأداء تُزيل الأوساخ الثقيلة. تقنية حديثة تعطي طرداً للماء. صُنع في لوس أنجلوس، الولايات المتحدة.",
     },
-    images: [
-      "/products/instafinish/insta-finish-wash-and-wax.webp",
-      "/products/instafinish/insta-finish-wash-and-wax-shelf.webp",
-    ],
+    images: ["/products/instafinish/insta-finish-wash-and-wax.webp"],
     specs: [
       { label: { en: "Size", ar: "الحجم" }, value: { en: "16 fl oz (473 ml)", ar: "٤٧٣ مل" } },
     ],
@@ -620,10 +804,7 @@ export const PRODUCTS: Product[] = [
       en: "Premium interior/exterior silicone dressing that protects and beautifies leather, plastic, vinyl, rubber and wood. Long-lasting oil-based silicone formula. Produces a durable deep shine.",
       ar: "ملمّع سيليكون فاخر للداخل والخارج، يحمي ويجمّل الأسطح كافة. تركيبة سيليكون زيتي طويلة الأمد.",
     },
-    images: [
-      "/products/instafinish/insta-finish-premium-blue-guard.webp",
-      "/products/instafinish/insta-finish-premium-blue-guard-shelf.webp",
-    ],
+    images: ["/products/instafinish/insta-finish-premium-blue-guard.webp"],
     audience: "both",
   },
   {
@@ -663,10 +844,7 @@ export const PRODUCTS: Product[] = [
       en: "Foam Out is a powerful engine-bay degreaser. Spray, let it foam, rinse — lifts grease and grime in minutes without damaging components.",
       ar: "Foam Out منظّف قوي لمقصورة المحرك. رش، اترك الرغوة، اشطف — يرفع الشحوم والأوساخ دون الإضرار بالمكونات.",
     },
-    images: [
-      "/products/getsun/getsun-foam-out-engine-degreaser.webp",
-      "/products/getsun/getsun-foam-out-close.webp",
-    ],
+    images: ["/products/getsun/getsun-foam-out-engine-degreaser.webp"],
     specs: [
       { label: { en: "Size", ar: "الحجم" }, value: { en: "500 ml", ar: "٥٠٠ مل" } },
     ],
@@ -736,10 +914,7 @@ export const PRODUCTS: Product[] = [
       en: "Sitrett MX5 is a professional heavy-duty cleaner designed for demanding jobs. Dissolves heavy grease, oil and stubborn stains on engines, wheels, concrete and workshop surfaces.",
       ar: "Sitrett MX5 منظّف احترافي ثقيل لمهام صعبة. يُذيب الشحوم والزيوت الثقيلة والبقع العنيدة من المحركات والعجلات والأسطح.",
     },
-    images: [
-      "/products/sitrett/sitrett-mx5-heavy-duty-cleaner.webp",
-      "/products/sitrett/sitrett-mx5-turkish.webp",
-    ],
+    images: ["/products/sitrett/sitrett-mx5-heavy-duty-cleaner.webp"],
     specs: [
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Turkey", ar: "صُنع في تركيا" } },
     ],
@@ -838,10 +1013,7 @@ export const PRODUCTS: Product[] = [
       en: "Spray and walk away — Smart Car Tyre Foam cleans, shines and protects in one step. 650 ml aerosol.",
       ar: "Smart Car Tyre Foam — رُش واتركه. يُنظّف، يُلمّع، يحمي في خطوة واحدة. علبة 650 مل.",
     },
-    images: [
-      "/products/misc/smart-car-tyre-foam.webp",
-      "/products/misc/smart-car-tyre-foam-shelf.webp",
-    ],
+    images: ["/products/misc/smart-car-tyre-foam.webp"],
     specs: [
       { label: { en: "Size", ar: "الحجم" }, value: { en: "650 ml", ar: "٦٥٠ مل" } },
     ],
@@ -918,9 +1090,11 @@ export const PRODUCTS: Product[] = [
 export const FEATURED_PRODUCTS = PRODUCTS.filter((p) => p.featured);
 
 export const BRANDS: BrandKey[] = [
+  "VTEK",
   "Vertek",
   "Autotriz",
   "Briller",
+  "Grizzly",
   "InstaFinish",
   "Getsun",
   "Sitrett",
@@ -971,8 +1145,8 @@ export function getRelatedProducts(
 
 /** Representative photo per category — drives the "Shop by category" shelf. */
 export const CATEGORY_THUMBS: Record<CategoryKey, string> = {
-  ppf: "/products/vertek/vertek-weather-armor-boxes.webp",
-  tint: "/products/vertek/vertek-window-tint.webp",
+  ppf: "/products/vtek/vtek-weather-armor-series-hero.webp",
+  tint: "/products/vtek/vtek-solar-armor-window-tint.webp",
   ceramic: "/products/autotriz/autotriz-ion-plus-ceramic-coating.webp",
   shampoo: "/products/autotriz/autotriz-rich-foam-shampoo-20l.webp",
   polish: "/products/autotriz/autotriz-ultimate-polish-302.webp",
@@ -989,12 +1163,14 @@ export const CATEGORY_THUMBS: Record<CategoryKey, string> = {
 
 /** Representative photo per brand — drives the "Brands we carry" shelf. */
 export const BRAND_IMAGES: Record<BrandKey, string> = {
-  Vertek: "/products/vertek/vertek-weather-armor-boxes.webp",
-  Autotriz: "/products/autotriz/autotriz-3d-matrix-range.webp",
-  Briller: "/products/briller/briller-wash-and-wax-20l-wide.webp",
+  VTEK: "/products/vtek/vtek-weather-armor-series-hero.webp",
+  Vertek: "/products/vtek/vtek-weather-armor-series-hero.webp",
+  Autotriz: "/products/autotriz/autotriz-3d-matrix-ultra.webp",
+  Briller: "/products/briller/briller-wash-and-wax.webp",
+  Grizzly: "/products/grizzly/grizzly-glossy-ppf-premium-plus.webp",
   InstaFinish: "/products/instafinish/insta-finish-spray-wax.webp",
-  Getsun: "/products/getsun/getsun-foam-out-close.webp",
-  Sitrett: "/products/sitrett/sitrett-mx5-turkish.webp",
+  Getsun: "/products/getsun/getsun-foam-out-engine-degreaser.webp",
+  Sitrett: "/products/sitrett/sitrett-mx5-heavy-duty-cleaner.webp",
   ABK: "/products/abk/abk-fragrance-pair.webp",
   SmartCar: "/products/misc/smart-car-tyre-foam.webp",
   Other: "/products/misc/protectguard-wf-premium.webp",

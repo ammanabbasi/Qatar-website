@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 48" fill="none">
+  <!-- Briller Brand Logo with Maple Leaf -->
+  <g>
+    <!-- Maple Leaf -->
+    <path d="M12 28l2-4 3 2-1-5 5 1-2-4 5-1-4-3 5-3-6 1 1-5-4 4-2-5-3 5-4-3 1 5-6-1 5 3-4 3 5 1-2 4 5-1-1 5 3-2 2 4z" fill="#E62B1E"/>
+    <path d="M11 28v6h2v-6h-2z" fill="#E62B1E"/>
+    <!-- Wordmark -->
+    <text x="32" y="32" fill="currentColor" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="20" letter-spacing="1">BRILLER</text>
+  </g>
+</svg>

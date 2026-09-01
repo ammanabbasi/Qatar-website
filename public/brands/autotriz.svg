@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
+  <!-- Autotriz Brand Logo -->
+  <g>
+    <!-- Emblem -->
+    <path d="M22 10L32 30H12L22 10z" fill="#E62B1E"/>
+    <path d="M16 28h12l-6-12-6 12z" fill="#FFFFFF"/>
+    <path d="M19 25h6l-3-6-3 6z" fill="#E62B1E"/>
+    <!-- Wordmark -->
+    <text x="40" y="32" fill="currentColor" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="20" letter-spacing="1">AUTOTRIZ</text>
+  </g>
+</svg>

@@ -22,6 +22,7 @@ type Props = {
 };
 
 const CATALOGUES: Partial<Record<Product["brand"], string>> = {
+  VTEK: "/catalogues/vertek-ppf-catalogue.pdf",
   Vertek: "/catalogues/vertek-ppf-catalogue.pdf",
   Autotriz: "/catalogues/autotriz-catalogue.pdf",
 };

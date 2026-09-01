@@ -56,8 +56,8 @@ export const ARTICLES: Article[] = [
           ar: "ما درجات التظليل المسموحة في قطر؟",
         },
         body: {
-          en: "Qatar's Ministry of Interior regulates how dark vehicle glass may be. Under the rules as published in 2026, private vehicles are generally permitted around 20% tint darkness on the front side windows, only a light band on the windshield, and significantly darker film on rear side windows and the rear screen. Sports and two-door cars face stricter limits. Because the MOI updates these rules and enforcement details from time to time, always confirm the current limits through Metrash or the MOI website before installing — a reputable installer will know the in-force limits and refuse work that would put your registration at risk. At ABK we stock Vertek films in VLT grades that comply with the current Qatar regulations, and we advise every customer on what is legal for their specific vehicle type.",
-          ar: "تنظم وزارة الداخلية القطرية درجة قتامة زجاج المركبات. وفق القواعد المنشورة في 2026، يُسمح للمركبات الخاصة عموماً بحوالي 20% قتامة على النوافذ الجانبية الأمامية، وشريط خفيف فقط على الزجاج الأمامي، وفيلم أغمق بكثير على النوافذ الجانبية الخلفية والزجاج الخلفي. وتخضع السيارات الرياضية وذات البابين لقيود أشد. ولأن وزارة الداخلية تحدّث هذه القواعد وتفاصيل تطبيقها من وقت لآخر، تأكد دائماً من الحدود السارية عبر مطراش أو موقع الوزارة قبل التركيب — المركّب الموثوق يعرف الحدود المعمول بها ويرفض أي عمل يعرّض تسجيل سيارتك للخطر. في ABK نوفر أفلام Vertek بدرجات نفاذية ضوء متوافقة مع اللوائح القطرية الحالية، وننصح كل عميل بما هو قانوني لنوع سيارته تحديداً.",
+          en: "Qatar's Ministry of Interior regulates how dark vehicle glass may be. Under the rules as published in 2026, private vehicles are generally permitted around 20% tint darkness on the front side windows, only a light band on the windshield, and significantly darker film on rear side windows and the rear screen. Sports and two-door cars face stricter limits. Because the MOI updates these rules and enforcement details from time to time, always confirm the current limits through Metrash or the MOI website before installing — a reputable installer will know the in-force limits and refuse work that would put your registration at risk. At ABK we stock VTEK Solar Armor films in VLT grades that comply with the current Qatar regulations, and we advise every customer on what is legal for their specific vehicle type.",
+          ar: "تنظم وزارة الداخلية القطرية درجة قتامة زجاج المركبات. وفق القواعد المنشورة في 2026، يُسمح للمركبات الخاصة عموماً بحوالي 20% قتامة على النوافذ الجانبية الأمامية، وشريط خفيف فقط على الزجاج الأمامي، وفيلم أغمق بكثير على النوافذ الجانبية الخلفية والزجاج الخلفي. وتخضع السيارات الرياضية وذات البابين لقيود أشد. ولأن وزارة الداخلية تحدّث هذه القواعد وتفاصيل تطبيقها من وقت لآخر، تأكد دائماً من الحدود السارية عبر مطراش أو موقع الوزارة قبل التركيب — المركّب الموثوق يعرف الحدود المعمول بها ويرفض أي عمل يعرّض تسجيل سيارتك للخطر. في ABK نوفر أفلام VTEK Solar Armor بدرجات نفاذية ضوء متوافقة مع اللوائح القطرية الحالية، وننصح كل عميل بما هو قانوني لنوع سيارته تحديداً.",
         },
       },
       {
@@ -76,8 +76,8 @@ export const ARTICLES: Article[] = [
           ar: "شرح نفاذية الضوء وعزل الأشعة تحت الحمراء وبقية الأرقام",
         },
         body: {
-          en: "Tint shopping comes with jargon. VLT (visible light transmission) is the percentage of visible light that passes through — a 70% VLT film is nearly clear, a 5% film is limousine-dark. Heat rejection numbers split into TSER (total solar energy rejected) and IR rejection (the infrared portion you feel as heat). A premium film can be light in appearance yet reject most infrared heat — this is why a legal-VLT ceramic film outperforms an illegal dark dyed film. UV rejection should be 99% or higher on any serious product. Vertek window tints, which ABK distributes in Qatar, publish these figures per grade so you can choose a film by performance rather than darkness alone.",
-          ar: "يأتي شراء التظليل مصحوباً بمصطلحات تقنية. نفاذية الضوء المرئي (VLT) هي نسبة الضوء المرئي الذي يمر عبر الفيلم — فيلم بنفاذية 70% يكاد يكون شفافاً، وفيلم 5% غامق كزجاج الليموزين. أما أرقام العزل الحراري فتنقسم إلى إجمالي الطاقة الشمسية المرفوضة (TSER) وعزل الأشعة تحت الحمراء (الجزء الذي تشعر به حرارةً). يمكن لفيلم فاخر أن يبدو فاتحاً ومع ذلك يعزل معظم حرارة الأشعة تحت الحمراء — ولهذا يتفوق فيلم سيراميكي بنفاذية قانونية على فيلم مصبوغ غامق مخالف. ويجب ألا يقل حجب الأشعة فوق البنفسجية عن 99% في أي منتج جاد. أفلام تظليل Vertek التي توزعها ABK في قطر تنشر هذه الأرقام لكل درجة، لتختار الفيلم حسب الأداء لا القتامة وحدها.",
+          en: "Tint shopping comes with jargon. VLT (visible light transmission) is the percentage of visible light that passes through — a 70% VLT film is nearly clear, a 5% film is limousine-dark. Heat rejection numbers split into TSER (total solar energy rejected) and IR rejection (the infrared portion you feel as heat). A premium film can be light in appearance yet reject most infrared heat — this is why a legal-VLT ceramic film outperforms an illegal dark dyed film. UV rejection should be 99% or higher on any serious product. VTEK window tints, which ABK distributes in Qatar, publish these figures per grade so you can choose a film by performance rather than darkness alone.",
+          ar: "يأتي شراء التظليل مصحوباً بمصطلحات تقنية. نفاذية الضوء المرئي (VLT) هي نسبة الضوء المرئي الذي يمر عبر الفيلم — فيلم بنفاذية 70% يكاد يكون شفافاً، وفيلم 5% غامق كزجاج الليموزين. أما أرقام العزل الحراري فتنقسم إلى إجمالي الطاقة الشمسية المرفوضة (TSER) وعزل الأشعة تحت الحمراء (الجزء الذي تشعر به حرارةً). يمكن لفيلم فاخر أن يبدو فاتحاً ومع ذلك يعزل معظم حرارة الأشعة تحت الحمراء — ولهذا يتفوق فيلم سيراميكي بنفاذية قانونية على فيلم مصبوغ غامق مخالف. ويجب ألا يقل حجب الأشعة فوق البنفسجية عن 99% في أي منتج جاد. أفلام تظليل VTEK التي توزعها ABK في قطر تنشر هذه الأرقام لكل درجة، لتختار الفيلم حسب الأداء لا القتامة وحدها.",
         },
       },
       {
@@ -86,14 +86,14 @@ export const ARTICLES: Article[] = [
           ar: "أفلام ومستلزمات تركيب في مسيمير، الدوحة",
         },
         body: {
-          en: "A film is only as good as its installation. Dust trapped under the film, stretched edges, and bubbling are the marks of rushed work — and in Qatar's heat, poor installations fail fast. At ABK Trading and Service in Mesaimeer we supply Vertek window tints along with the pre-cut sizes and application tools a professional fitter needs to get that result. We will recommend the right VLT grade for each window of your vehicle so the result is both compliant and as cool as legally possible. Message us on WhatsApp at +974 30838355 for film options and pricing for your car model.",
-          ar: "جودة الفيلم من جودة تركيبه. الغبار المحتجز تحت الفيلم والحواف المشدودة والفقاعات علامات على عمل متسرّع — وفي حرارة قطر تفشل التركيبات الرديئة سريعاً. في ABK للتجارة والخدمات بمسيمير نوفر أفلام تظليل Vertek مع المقاسات وأدوات التطبيق التي يحتاجها المُركّب المحترف لبلوغ هذه النتيجة. وسنوصيك بدرجة النفاذية المناسبة لكل نافذة في سيارتك ليأتي التظليل متوافقاً مع القانون وبأقصى برودة ممكنة قانونياً. راسلنا على واتساب +974 30838355 لمعرفة خيارات الأفلام والأسعار لطراز سيارتك.",
+          en: "A film is only as good as its installation. Dust trapped under the film, stretched edges, and bubbling are the marks of rushed work — and in Qatar's heat, poor installations fail fast. At ABK Trading and Service in Mesaimeer we supply VTEK window tints along with the pre-cut sizes and application tools a professional fitter needs to get that result. We will recommend the right VLT grade for each window of your vehicle so the result is both compliant and as cool as legally possible. Message us on WhatsApp at +974 30838355 for film options and pricing for your car model.",
+          ar: "جودة الفيلم من جودة تركيبه. الغبار المحتجز تحت الفيلم والحواف المشدودة والفقاعات علامات على عمل متسرّع — وفي حرارة قطر تفشل التركيبات الرديئة سريعاً. في ABK للتجارة والخدمات بمسيمير نوفر أفلام تظليل VTEK مع المقاسات وأدوات التطبيق التي يحتاجها المُركّب المحترف لبلوغ هذه النتيجة. وسنوصيك بدرجة النفاذية المناسبة لكل نافذة في سيارتك ليأتي التظليل متوافقاً مع القانون وبأقصى برودة ممكنة قانونياً. راسلنا على واتساب +974 30838355 لمعرفة خيارات الأفلام والأسعار لطراز سيارتك.",
         },
       },
     ],
     relatedProducts: [
-      "vertek-window-tints",
-      "vertek-ppf-weather-armor",
+      "vtek-window-tints",
+      "vtek-ppf-weather-armor-ultimate",
       "briller-glass-cleaner",
     ],
   },
@@ -283,8 +283,8 @@ export const ARTICLES: Article[] = [
           ar: "فيلم حماية الطلاء (PPF): خط الدفاع الأول",
         },
         body: {
-          en: "Paint protection film is a transparent urethane layer applied over your car's factory paint. Premium films like Vertek PPF Weather Armor feature self-healing technology — light scratches from sand and dust disappear with heat from the sun. Unlike wax or sealant, PPF physically blocks rock chips, key scratches, and abrasion from desert sand. A full-body PPF installation protects the entire vehicle, while front-end packages cover the hood, bumper, fenders and mirrors — the areas most exposed to road debris on Qatar's highways. Quality PPF lasts 7 to 10 years with proper care, making it one of the most cost-effective long-term investments for car owners in Doha.",
-          ar: "فيلم حماية الطلاء هو طبقة يوريثان شفافة تُطبق فوق طلاء المصنع. تتميز الأفلام الفاخرة مثل Vertek PPF Weather Armor بتقنية الإصلاح الذاتي — تختفي الخدوش الخفيفة من الرمل والغبار بحرارة الشمس. على عكس الشمع أو مانع التسرب، يحجب PPF فعلياً رقائق الحصى وخدوش المفاتيح وتآكل الرمل الصحراوي. تركيب PPF الكامل يحمي السيارة بالكامل، بينما تغطي باقات المقدمة غطاء المحرك والمصد والرفارف والمرايا — وهي المناطق الأكثر تعرضاً لحطام الطريق على طرق قطر السريعة. يدوم PPF عالي الجودة من 7 إلى 10 سنوات مع العناية المناسبة، مما يجعله من أكثر الاستثمارات فعالية لأصحاب السيارات في الدوحة.",
+          en: "Paint protection film is a transparent urethane layer applied over your car's factory paint. Premium films like VTEK PPF Weather Armor feature self-healing technology — light scratches from sand and dust disappear with heat from the sun. Unlike wax or sealant, PPF physically blocks rock chips, key scratches, and abrasion from desert sand. A full-body PPF installation protects the entire vehicle, while front-end packages cover the hood, bumper, fenders and mirrors — the areas most exposed to road debris on Qatar's highways. Quality PPF lasts 8 to 10 years with proper care, making it one of the most cost-effective long-term investments for car owners in Doha.",
+          ar: "فيلم حماية الطلاء هو طبقة يوريثان شفافة تُطبق فوق طلاء المصنع. تتميز الأفلام الفاخرة مثل VTEK PPF Weather Armor بتقنية الإصلاح الذاتي — تختفي الخدوش الخفيفة من الرمل والغبار بحرارة الشمس. على عكس الشمع أو مانع التسرب، يحجب PPF فعلياً رقائق الحصى وخدوش المفاتيح وتآكل الرمل الصحراوي. تركيب PPF الكامل يحمي السيارة بالكامل، بينما تغطي باقات المقدمة غطاء المحرك والمصد والرفارف والمرايا — وهي المناطق الأكثر تعرضاً لحطام الطريق على طرق قطر السريعة. يدوم PPF عالي الجودة من 8 إلى 10 سنوات مع العناية المناسبة، مما يجعله من أكثر الاستثمارات فعالية لأصحاب السيارات في الدوحة.",
         },
       },
       {
@@ -303,8 +303,8 @@ export const ARTICLES: Article[] = [
           ar: "تظليل النوافذ: رفض الحرارة وحجب الأشعة فوق البنفسجية",
         },
         body: {
-          en: "Quality window tint films reject up to 60% of solar heat, keeping your car's interior significantly cooler and reducing air conditioning load. In Qatar, this means your leather seats and dashboard last longer, and your fuel consumption decreases. Vertek window tints are available in multiple VLT (visible light transmission) grades that comply with Qatar's vehicle regulations. Fitted well by a professional, a quality film gives a bubble-free, precision-cut finish that lasts the life of the vehicle — ABK supplies the film and the tools to do it properly.",
-          ar: "ترفض أفلام تظليل النوافذ عالية الجودة ما يصل إلى 60% من الحرارة الشمسية، مما يبقي مقصورة سيارتك أبرد بكثير ويقلل حمل التكييف. في قطر، هذا يعني أن مقاعدك الجلدية ولوحة القيادة تدوم أطول واستهلاك الوقود ينخفض. تتوفر أفلام تظليل Vertek بدرجات متعددة من نفاذية الضوء المرئي (VLT) متوافقة مع قوانين المركبات في قطر. التركيب الاحترافي لفيلم عالي الجودة — من الأفلام التي تورّدها ABK — يضمن تطبيقاً دقيقاً بدون فقاعات يدوم طوال عمر السيارة.",
+          en: "Quality window tint films reject up to 60% of solar heat, keeping your car's interior significantly cooler and reducing air conditioning load. In Qatar, this means your leather seats and dashboard last longer, and your fuel consumption decreases. VTEK Solar Armor window tints are available in multiple VLT (visible light transmission) grades that comply with Qatar's vehicle regulations. Fitted well by a professional, a quality film gives a bubble-free, precision-cut finish that lasts the life of the vehicle — ABK supplies the film and the tools to do it properly.",
+          ar: "ترفض أفلام تظليل النوافذ عالية الجودة ما يصل إلى 60% من الحرارة الشمسية، مما يبقي مقصورة سيارتك أبرد بكثير ويقلل حمل التكييف. في قطر، هذا يعني أن مقاعدك الجلدية ولوحة القيادة تدوم أطول واستهلاك الوقود ينخفض. تتوفر أفلام تظليل VTEK Solar Armor بدرجات متعددة من نفاذية الضوء المرئي (VLT) متوافقة مع قوانين المركبات في قطر. التركيب الاحترافي لفيلم عالي الجودة — من الأفلام التي تورّدها ABK — يضمن تطبيقاً دقيقاً بدون فقاعات يدوم طوال عمر السيارة.",
         },
       },
       {
@@ -319,9 +319,9 @@ export const ARTICLES: Article[] = [
       },
     ],
     relatedProducts: [
-      "vertek-ppf-weather-armor",
+      "vtek-ppf-weather-armor-ultimate",
       "autotriz-3d-matrix-ultra",
-      "vertek-window-tints",
+      "vtek-window-tints",
       "briller-wash-and-wax",
     ],
   },
@@ -353,8 +353,8 @@ export const ARTICLES: Article[] = [
       {
         heading: { en: "PPF: Best for Physical Protection", ar: "PPF: الأفضل للحماية الفيزيائية" },
         body: {
-          en: "PPF excels at preventing physical damage that ceramic coating simply cannot stop. Rock chips from highway driving between Doha and Al Khor, door dings in tight parking lots, key scratches, and the constant micro-abrasion from sand particles — PPF handles all of these. Premium films like Vertek PPF Weather Armor feature self-healing top coats that repair light scratches when exposed to heat (which Qatar has in abundance). PPF typically lasts 7 to 10 years and can be removed cleanly without damaging the original paint. The downside is cost — full-body PPF installation is a significant investment, though front-end packages offer excellent protection at a lower price point.",
-          ar: "يتفوق PPF في منع الضرر الفيزيائي الذي لا يستطيع الطلاء السيراميكي إيقافه ببساطة. رقائق الحصى من القيادة على الطريق السريع بين الدوحة والخور، خدوش الأبواب في المواقف الضيقة، خدوش المفاتيح، والتآكل المستمر من جزيئات الرمل — PPF يتعامل مع كل هذا. أفلام فاخرة مثل Vertek PPF Weather Armor تتميز بطبقات علوية ذاتية الإصلاح تُرمم الخدوش الخفيفة عند تعرضها للحرارة (وهو ما تمتلكه قطر بوفرة). يدوم PPF عادةً من 7 إلى 10 سنوات ويمكن إزالته بنظافة دون إتلاف الطلاء الأصلي. الجانب السلبي هو التكلفة — تركيب PPF للهيكل الكامل استثمار كبير، لكن باقات المقدمة توفر حماية ممتازة بسعر أقل.",
+          en: "PPF excels at preventing physical damage that ceramic coating simply cannot stop. Rock chips from highway driving between Doha and Al Khor, door dings in tight parking lots, key scratches, and the constant micro-abrasion from sand particles — PPF handles all of these. Premium films like VTEK PPF Weather Armor feature self-healing top coats that repair light scratches when exposed to heat (which Qatar has in abundance). PPF typically lasts 8 to 10 years and can be removed cleanly without damaging the original paint. The downside is cost — full-body PPF installation is a significant investment, though front-end packages offer excellent protection at a lower price point.",
+          ar: "يتفوق PPF في منع الضرر الفيزيائي الذي لا يستطيع الطلاء السيراميكي إيقافه ببساطة. رقائق الحصى من القيادة على الطريق السريع بين الدوحة والخور، خدوش الأبواب في المواقف الضيقة، خدوش المفاتيح، والتآكل المستمر من جزيئات الرمل — PPF يتعامل مع كل هذا. أفلام فاخرة مثل VTEK PPF Weather Armor تتميز بطبقات علوية ذاتية الإصلاح تُرمم الخدوش الخفيفة عند تعرضها للحرارة (وهو ما تمتلكه قطر بوفرة). يدوم PPF عادةً من 8 إلى 10 سنوات ويمكن إزالته بنظافة دون إتلاف الطلاء الأصلي. الجانب السلبي هو التكلفة — تركيب PPF للهيكل الكامل استثمار كبير، لكن باقات المقدمة توفر حماية ممتازة بسعر أقل.",
         },
       },
       {
@@ -373,7 +373,7 @@ export const ARTICLES: Article[] = [
       },
     ],
     relatedProducts: [
-      "vertek-ppf-weather-armor",
+      "vtek-ppf-weather-armor-ultimate",
       "autotriz-3d-matrix-ultra",
       "autotriz-3d-matrix-hybrid",
       "autotriz-ion-plus-ceramic-coating",
@@ -421,8 +421,8 @@ export const ARTICLES: Article[] = [
       {
         heading: { en: "Where to Buy Car Care Products in Doha", ar: "أين تشتري منتجات العناية بالسيارات في الدوحة" },
         body: {
-          en: "ABK Trading and Service in Mesaimeer, Doha is a one-stop shop for car care products in Qatar. We are the authorised distributor for Vertek PPF, Autotriz detailing chemicals, Briller car care, and Insta Finish products. We stock everything from car shampoos and polishing compounds to ceramic coatings and paint protection film. Both retail customers and wholesale buyers (detailing shops, car washes, body shops) are welcome. Visit us Saturday to Thursday, 10:00 to 13:00 and 16:00 to 22:00, or reach us on WhatsApp at +974 30838355 for product availability and pricing.",
-          ar: "ABK للتجارة والخدمات في مسيمير، الدوحة هو متجرك الشامل لمنتجات العناية بالسيارات في قطر. نحن الموزع المعتمد لأفلام Vertek PPF وكيماويات Autotriz ومنتجات Briller وInsta Finish. نوفر كل شيء من شامبوهات السيارات إلى الطلاءات السيراميكية. زرنا أو تواصل عبر واتساب 30838355 974+.",
+          en: "ABK Trading and Service in Mesaimeer, Doha is a one-stop shop for car care products in Qatar. We are the authorised distributor for VTEK (formerly Vertek) PPF, Autotriz detailing chemicals, Briller car care, and Insta Finish products. We stock everything from car shampoos and polishing compounds to ceramic coatings and paint protection film. Both retail customers and wholesale buyers (detailing shops, car washes, body shops) are welcome. Visit us Saturday to Thursday, 10:00 to 13:00 and 16:00 to 22:00, or reach us on WhatsApp at +974 30838355 for product availability and pricing.",
+          ar: "ABK للتجارة والخدمات في مسيمير، الدوحة هو متجرك الشامل لمنتجات العناية بالسيارات في قطر. نحن الموزع المعتمد لأفلام VTEK (المعروفة سابقاً بـ Vertek) وكيماويات Autotriz ومنتجات Briller وInsta Finish. نوفر كل شيء من شامبوهات السيارات إلى الطلاءات السيراميكية. زرنا أو تواصل عبر واتساب 30838355 974+.",
         },
       },
     ],

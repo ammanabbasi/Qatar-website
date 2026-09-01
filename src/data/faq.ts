@@ -26,8 +26,8 @@ export const FAQ: FaqEntry[] = [
       ar: "ما مدة عمر فيلم حماية الطلاء PPF؟",
     },
     a: {
-      en: "Premium paint protection films like Vertek typically last 7–10 years under normal use, depending on climate exposure and care. The self-healing top-coat regenerates light scratches with heat from the sun or warm water.",
-      ar: "تدوم أفلام حماية الطلاء الفاخرة مثل Vertek عادةً من 7 إلى 10 سنوات في الاستخدام الطبيعي، حسب التعرض للعوامل الجوية والعناية. تعيد طبقة الإصلاح الذاتي ترميم الخدوش الخفيفة بحرارة الشمس أو الماء الدافئ.",
+      en: "Premium paint protection films like VTEK Weather Armor typically last 8–10 years under normal use, depending on climate exposure and care. The self-healing top-coat regenerates light scratches with heat from the sun or warm water.",
+      ar: "تدوم أفلام حماية الطلاء الفاخرة مثل VTEK Weather Armor عادةً من 8 إلى 10 سنوات في الاستخدام الطبيعي، حسب التعرض للعوامل الجوية والعناية. تعيد طبقة الإصلاح الذاتي ترميم الخدوش الخفيفة بحرارة الشمس أو الماء الدافئ.",
     },
   },
   {
@@ -36,8 +36,8 @@ export const FAQ: FaqEntry[] = [
       ar: "هل تورّدون منتجات العناية بالسيارات بالجملة لمحلات أخرى في قطر؟",
     },
     a: {
-      en: "Yes. ABK supplies wholesale Vertek PPF, Autotriz and Briller products to detailing shops, body shops and car-wash businesses across Qatar and the GCC. Volume pricing is quoted per request on WhatsApp.",
-      ar: "نعم. تورّد ABK أفلام Vertek PPF ومنتجات Autotriz وBriller بالجملة لورش التلميع والكراجات ومحطات الغسيل في قطر والخليج. تُحدَّد الأسعار حسب الكمية عبر واتساب.",
+      en: "Yes. ABK supplies wholesale VTEK PPF, Autotriz and Briller products to detailing shops, body shops and car-wash businesses across Qatar and the GCC. Volume pricing is quoted per request on WhatsApp.",
+      ar: "نعم. تورّد ABK أفلام VTEK PPF ومنتجات Autotriz وBriller بالجملة لورش التلميع والكراجات ومحطات الغسيل في قطر والخليج. تُحدَّد الأسعار حسب الكمية عبر واتساب.",
     },
   },
   {
@@ -106,18 +106,18 @@ export const FAQ: FaqEntry[] = [
       ar: "ما الحد الأدنى للطلب من منتجات العناية بالسيارات بالجملة؟",
     },
     a: {
-      en: "Minimum order quantities vary by brand. Autotriz and Briller can be ordered by the case. Vertek PPF rolls are sold per roll. Detailing accessories are flexible. WhatsApp the brands and SKUs you want and we'll send the wholesale price sheet.",
-      ar: "يختلف الحد الأدنى للطلب حسب العلامة التجارية. تُطلب منتجات Autotriz وBriller بالكرتون. تُباع أفلام Vertek PPF بالرول. أما إكسسوارات التلميع فمرنة. أرسل لنا العلامات التجارية والأصناف المطلوبة عبر واتساب لنرسل لك قائمة أسعار الجملة.",
+      en: "Minimum order quantities vary by brand. Autotriz and Briller can be ordered by the case. VTEK PPF rolls are sold per roll. Detailing accessories are flexible. WhatsApp the brands and SKUs you want and we'll send the wholesale price sheet.",
+      ar: "يختلف الحد الأدنى للطلب حسب العلامة التجارية. تُطلب منتجات Autotriz وBriller بالكرتون. تُباع أفلام VTEK PPF بالرول. أما إكسسوارات التلميع فمرنة. أرسل لنا العلامات التجارية والأصناف المطلوبة عبر واتساب لنرسل لك قائمة أسعار الجملة.",
     },
   },
   {
     q: {
-      en: "Is Vertek PPF covered by warranty?",
-      ar: "هل أفلام Vertek لحماية الطلاء مشمولة بضمان؟",
+      en: "Is VTEK PPF covered by warranty?",
+      ar: "هل أفلام VTEK لحماية الطلاء مشمولة بضمان؟",
     },
     a: {
-      en: "Yes. Genuine Vertek PPF carries a manufacturer warranty against yellowing, cracking and delamination when fitted by an authorised installer following Vertek's procedures. ABK is the authorised Qatar distributor and supplies the film with its warranty documentation.",
-      ar: "نعم. تأتي أفلام Vertek PPF الأصلية بضمان مصنع ضد الاصفرار والتشقق والانفصال عند التركيب من قِبل مُركّب معتمد وفق إجراءات Vertek. ABK هو الموزع المعتمد في قطر ويورّد الفيلم مع مستندات الضمان الخاصة به.",
+      en: "Yes. Genuine VTEK (formerly Vertek) PPF carries an 8 to 10-year manufacturer warranty against yellowing, cracking and delamination when fitted by an authorised installer following VTEK's procedures. ABK is the authorised Qatar distributor and supplies the film with official warranty documentation.",
+      ar: "نعم. تأتي أفلام VTEK (المعروفة سابقاً بـ Vertek) الأصلية بضمان مصنع لمدة 8 إلى 10 سنوات ضد الاصفرار والتشقق والانفصال عند التركيب من قِبل مُركّب معتمد وفق إجراءات VTEK. ABK هو الموزع المعتمد في قطر ويورّد الفيلم مع مستندات الضمان الرسمية.",
     },
   },
   {
@@ -126,8 +126,8 @@ export const FAQ: FaqEntry[] = [
       ar: "هل يمكن إزالة فيلم PPF دون الإضرار بالطلاء؟",
     },
     a: {
-      en: "Yes — quality PPF like Vertek is designed for clean removal by a trained technician using controlled heat. The original paint underneath is preserved, often in better condition than unprotected paint of the same age.",
-      ar: "نعم — صُمّمت أفلام PPF عالية الجودة مثل Vertek لتُزال بشكل نظيف على يد فنّي مدرب باستخدام حرارة محسوبة. يبقى الطلاء الأصلي تحتها محفوظاً، وغالباً بحالة أفضل من الطلاء غير المحمي بنفس العمر.",
+      en: "Yes — quality PPF like VTEK Weather Armor is designed for clean removal by a trained technician using controlled heat. The original paint underneath is preserved, often in better condition than unprotected paint of the same age.",
+      ar: "نعم — صُمّمت أفلام PPF عالية الجودة مثل VTEK Weather Armor لتُزال بشكل نظيف على يد فنّي مدرب باستخدام حرارة محسوبة. يبقى الطلاء الأصلي تحتها محفوظاً، وغالباً بحالة أفضل من الطلاء غير المحمي بنفس العمر.",
     },
   },
 

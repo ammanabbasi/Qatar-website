@@ -14,9 +14,11 @@ import {
 import type { Audience } from "@/lib/whatsapp";
 
 const TAG_KEYS: Partial<Record<BrandKey, string>> = {
+  VTEK: "brandTagVTEK",
   Vertek: "brandTagVertek",
   Autotriz: "brandTagAutotriz",
   Briller: "brandTagBriller",
+  Grizzly: "brandTagGrizzly",
   SmartCar: "brandTagSmartCar",
   ABK: "brandTagABK",
 };

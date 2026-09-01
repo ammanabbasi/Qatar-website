@@ -171,9 +171,13 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
       "Auto Detailing Supplies",
       "Car Shampoo",
       "Car Polish",
+      "VTEK PPF",
+      "VTEK Weather Armor",
       "Vertek PPF",
       "Autotriz",
       "Briller Car Care",
+      "Grizzly",
+      "Grizzly PPF",
     ],
     // Price range indicator for Google Knowledge Panel
     priceRange: "$$",

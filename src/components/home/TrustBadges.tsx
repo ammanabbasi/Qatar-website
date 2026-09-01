@@ -6,9 +6,10 @@ import { Container } from "@/components/ui/Container";
 // the relation per brand or remove it from the list. Labels live in
 // messages/*.json (Home.relationDistributor / Home.relationRetailer).
 const PARTNERS: Array<{ name: string; relation: "relationDistributor" | "relationRetailer" }> = [
-  { name: "Vertek PPF", relation: "relationDistributor" },
+  { name: "VTEK PPF", relation: "relationDistributor" },
   { name: "Autotriz", relation: "relationDistributor" },
   { name: "Briller Car Care", relation: "relationDistributor" },
+  { name: "Grizzly PPF", relation: "relationDistributor" },
 ];
 
 /** Quiet one-line trust strip beneath the brand shelf. */

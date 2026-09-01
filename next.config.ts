@@ -64,6 +64,27 @@ const nextConfig: NextConfig = {
         destination: "/b2c/products",
         permanent: true,
       },
+      // Legacy Vertek PPF & Window Tint redirects to new VTEK product routes
+      {
+        source: "/:locale(en|ar)/:audience(b2c|b2b)/products/vertek-ppf-weather-armor",
+        destination: "/:locale/:audience/products/vtek-ppf-weather-armor-ultimate",
+        permanent: true,
+      },
+      {
+        source: "/:audience(b2c|b2b)/products/vertek-ppf-weather-armor",
+        destination: "/:audience/products/vtek-ppf-weather-armor-ultimate",
+        permanent: true,
+      },
+      {
+        source: "/:locale(en|ar)/:audience(b2c|b2b)/products/vertek-window-tints",
+        destination: "/:locale/:audience/products/vtek-window-tints",
+        permanent: true,
+      },
+      {
+        source: "/:audience(b2c|b2b)/products/vertek-window-tints",
+        destination: "/:audience/products/vtek-window-tints",
+        permanent: true,
+      },
     ];
   },
 };
