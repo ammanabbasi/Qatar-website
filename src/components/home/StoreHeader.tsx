@@ -12,30 +12,43 @@ type Props = {
   locale: WALocale;
 };
 
+// Official raster logos carry their own baked-in backgrounds, so each card
+// paints its tile that exact color (sampled from the artwork) and the logo
+// files are edge-feathered to transparent — the logo reads as printed on the
+// card instead of pasted over it. `dark` picks chip styling with enough
+// contrast against the card color.
 const DISTRIBUTOR_BRANDS = [
   {
     key: "Grizzly",
     name: "GRIZZLY",
     country: { en: "USA", ar: "أمريكا" },
-    logo: "/brands/grizzly.webp",
+    logo: "/brands/grizzly-card.webp",
+    bg: "#0c0b2e",
+    dark: true,
   },
   {
     key: "VTEK",
     name: "VTEK",
     country: { en: "USA", ar: "أمريكا" },
-    logo: "/brands/vtek.webp",
+    logo: "/brands/vtek-card.webp",
+    bg: "#1e2226",
+    dark: true,
   },
   {
     key: "Autotriz",
     name: "AUTOTRIZ",
     country: { en: "GERMANY", ar: "ألمانيا" },
-    logo: "/brands/autotriz.webp",
+    logo: "/brands/autotriz-card.webp",
+    bg: "#2d2923",
+    dark: true,
   },
   {
     key: "Briller",
     name: "BRILLER",
     country: { en: "CANADA", ar: "كندا" },
-    logo: "/brands/briller.webp",
+    logo: "/brands/briller-card.webp",
+    bg: "#9b9b9b",
+    dark: false,
   },
 ];
 
@@ -111,9 +124,10 @@ export function StoreHeader({ audience, locale }: Props) {
             <Link
               key={brand.key}
               href={`/${audience}/products?brand=${brand.key}`}
-              className="tile group flex items-center justify-between rounded-[16px] border border-(--color-border) bg-(--color-tile) p-3.5 transition-all duration-300 ease-soft hover:border-(--color-text) hover:shadow-tile-hover sm:p-4"
+              style={{ backgroundColor: brand.bg }}
+              className="tile group flex items-center justify-between rounded-[16px] border border-white/10 p-3.5 transition-all duration-300 ease-soft hover:border-white/25 hover:shadow-tile-hover sm:p-4"
             >
-              <div className="relative h-7 w-24 sm:h-8 sm:w-28 flex items-center">
+              <div className="relative h-12 w-36 sm:h-14 sm:w-40 flex items-center">
                 <Image
                   src={brand.logo}
                   alt={`${brand.name} logo`}
@@ -121,7 +135,13 @@ export function StoreHeader({ audience, locale }: Props) {
                   className="object-contain object-left rtl:object-right transition-transform duration-300 ease-soft group-hover:scale-105"
                 />
               </div>
-              <span className="rounded-full bg-(--color-fill) px-2 py-0.5 text-[11px] font-bold tracking-wider text-(--color-text-muted) group-hover:text-(--color-text)">
+              <span
+                className={`rounded-full px-2 py-0.5 text-[11px] font-bold tracking-wider transition-colors duration-300 ${
+                  brand.dark
+                    ? "bg-white/10 text-white/90 group-hover:bg-white/20"
+                    : "bg-black/30 text-white group-hover:bg-black/40"
+                }`}
+              >
                 {isAr ? brand.country.ar : brand.country.en}
               </span>
             </Link>
