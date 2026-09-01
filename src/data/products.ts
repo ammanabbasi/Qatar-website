@@ -289,22 +289,22 @@ export const PRODUCTS: Product[] = [
     highlight: "vertek-premium",
     updatedAt: "2026-09-01",
   },
-  // ───── VTEK (formerly Vertek) — Solar Armor Window Tints (STAR)
+  // ───── VTEK — Solar Armor VUE Window Tint (STAR)
   {
     slug: "vtek-window-tints",
     brand: "VTEK",
     category: "tint",
     name: {
-      en: "VTEK Solar Armor — Iconic & Indulge Series Window Tints",
-      ar: "VTEK — أفلام تظليل النوافذ Solar Armor (سلسلة Iconic و Indulge)",
+      en: "VTEK Solar Armor VUE — Nano-Ceramic Window Tint",
+      ar: "VTEK Solar Armor VUE — فيلم تظليل النوافذ نانو سيراميك",
     },
     shortDesc: {
-      en: "High-performance heat-rejecting nano-ceramic window films in Iconic & Indulge series with multiple VLT grades and 10-year e-warranty. Fully compliant with Qatar regulations.",
-      ar: "أفلام تظليل سيراميكية عالية الأداء لعزل الحرارة في سلسلتي Iconic و Indulge بدرجات VLT متعددة وضمان إلكتروني 10 سنوات، متوافقة كلياً مع قوانين المرور في قطر.",
+      en: "High-definition clarity and thermal shielding with denser GRX®-infused nano-ceramic particles. Cuts burning solar heat while maintaining razor-sharp optical visibility. 10-year e-warranty.",
+      ar: "توازن مثالي بين وضوح الرؤية عالي الدقة والعزل الحراري بجزيئات GRX® النانو سيراميكية الكثيفة. يقلل حرارة الشمس الشديدة مع رؤية نقية تماماً وضمان إلكتروني 10 سنوات.",
     },
     longDesc: {
-      en: "VTEK® Solar Armor™ window films — featuring the premium Iconic and Indulge Series — cut intense solar heat, block 99% of harmful UV rays, and reduce harsh road glare without compromising optical visibility. Engineered with advanced GRX® nano-ceramic technology, they provide superior infrared (IR) heat shielding and cabin temperature control tailored for extreme Middle Eastern heat. Multiple VLT (Visible Light Transmission) grades are available to match your style and Qatar's Ministry of Interior traffic regulations. Backed by a 10-year official manufacturer e-warranty.",
-      ar: "تعزل أفلام VTEK® Solar Armor™ لتظليل النوافذ — بسلسلتيها الفاخرتين Iconic و Indulge — حرارة الشمس الشديدة بنسبة عالية، وتحجب 99% من الأشعة فوق البنفسجية الضارة، وتقلل الوهج دون التأثير على وضوح الرؤية. صُممت بتقنية النانو سيراميك GRX® المتطورة لتوفير أقصى عزل للأشعة تحت الحمراء وخفض حرارة المقصورة في طقس قطر الصيفي. متوفرة بدرجات نفاذية ضوء (VLT) متعددة تتوافق مع لوائح المرور القطرية، مع ضمان إلكتروني رسمي لمدة 10 سنوات.",
+      en: "The perfect balance of high-definition clarity and thermal shielding. Engineered with a higher density of GRX®-infused nano-ceramic particles, VUE targets the intense wavelengths of solar heat. It dramatically cuts down the burning sensation on your skin while maintaining a pristine, razor-sharp view from the inside looking out.\n\nKey Features:\n• Advanced GRX® Layer: Denser nano-particles for a major step up in heat relief.\n• Pristine Optical View: Eliminates the \"milky\" haze common in lower-tier tints.\n• Blinding Glare Defense: Drastically cuts down harsh sunlight and oncoming headlights.\n• Premium Style: Adds a sleek, factory-tinted aesthetic with enhanced cabin privacy.",
+      ar: "التوازن المثالي بين الوضوح فائق الدقة والعزل الحراري الفائق. صُمم فيلم VUE بكثافة أعلى من جزيئات النانو سيراميك المشبعة بتقنية GRX® لاستهداف أطوال موجات الحرارة الشمسية الشديدة، مما يقلل الإحساس بحرارة الشمس على البشرة مع الحفاظ على رؤية نقية وحادة من الداخل.\n\nالمميزات الرئيسية:\n• طبقة GRX® المتقدمة: جزيئات نانوية أكثر كثافة لتخفيف حراري مضاعف.\n• رؤية بصرية نقية: تقضي على الغباش والضبابية الشائعة في أفلام التظليل العادية.\n• مقاومة الوهج الشديد: تقلل بشكل كبير من سطوع أشعة الشمس وأضواء السيارات المقابلة.\n• مظهر فاخر وأنيق: تمنح السيارة مظهراً أنيقاً يشبه تظليل المصنع مع تعزيز الخصوصية داخل المقصورة.",
     },
     images: [
       "/products/vtek/vtek-solar-armor-window-tint.webp",
@@ -312,15 +312,15 @@ export const PRODUCTS: Product[] = [
     specs: [
       {
         label: { en: "Series", ar: "السلسلة" },
-        value: { en: "Iconic & Indulge Series", ar: "سلسلة Iconic و Indulge" },
+        value: { en: "VUE Series (Solar Armor)", ar: "سلسلة VUE (Solar Armor)" },
       },
       {
-        label: { en: "Heat Rejection", ar: "عزل الحرارة" },
-        value: { en: "Up to 65% TSER / 90%+ IR Rejection", ar: "حتى ٦٥٪ عزل طاقة شمسية / ٩٠٪+ عزل أشعة تحت حمراء" },
+        label: { en: "Technology", ar: "التقنية" },
+        value: { en: "Advanced GRX® Nano-Ceramic", ar: "تقنية النانو سيراميك GRX® المتقدمة" },
       },
       {
-        label: { en: "UV Protection", ar: "حماية الأشعة فوق البنفسجية" },
-        value: { en: "99% UV Rejection", ar: "٩٩٪ حجب للأشعة فوق البنفسجية" },
+        label: { en: "Optical Clarity", ar: "الوضوح البصري" },
+        value: { en: "High-Definition Clarity & Anti-Glare", ar: "وضوح فائق الدقة ومقاومة الوهج" },
       },
       {
         label: { en: "Compliance", ar: "المطابقة" },
@@ -334,7 +334,7 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-08-31",
+    updatedAt: "2026-09-01",
   },
 
   // ───── Briller Car Care (STAR — line of colored car-wash products)
