@@ -83,7 +83,6 @@ export const PRODUCTS: Product[] = [
     },
     images: [
       "/products/vtek/vtek-weather-armor-ultimate.webp",
-      "/products/vtek/vtek-ultimate-installation.webp",
       "/products/vtek/vtek-weather-armor-lineup.webp",
     ],
     specs: [
@@ -198,7 +197,6 @@ export const PRODUCTS: Product[] = [
     },
     images: [
       "/products/vtek/vtek-weather-armor-matte.webp",
-      "/products/vtek/vtek-matte-showcase.webp",
       "/products/vtek/vtek-weather-armor-lineup.webp",
     ],
     specs: [
@@ -253,7 +251,6 @@ export const PRODUCTS: Product[] = [
     },
     images: [
       "/products/vtek/vtek-weather-armor-prism.webp",
-      "/products/vtek/vtek-prism-colors-showcase.webp",
       "/products/vtek/vtek-weather-armor-lineup.webp",
     ],
     specs: [
