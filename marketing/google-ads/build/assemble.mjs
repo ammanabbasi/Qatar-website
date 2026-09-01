@@ -335,7 +335,53 @@ for (const { file, data } of themes) {
 // A shared negative keyword list is the right tool: one list, applied to every
 // campaign, edited in one place. Editor cannot create shared lists from CSV, so
 // these go to a paste-ready text file instead.
-const sharedNegativeList = [...accountNegatives].sort((a, b) => a.localeCompare(b));
+//
+// BUT a term that is safe for one theme can be lethal to another. Each theme
+// contributed its own sharedNegatives independently, and the union blocked 19
+// of this account's own keywords: "kuwait" and "bahrain" killed the B2B GCC
+// terms, "install" killed "ppf supplier for installers", and "تظليل سيارات"
+// (car tinting) killed "رول تظليل سيارات" — a tint ROLL, a product query that
+// happens to contain the service phrase.
+//
+// So the list is split. A term that blocks nothing anywhere stays account-wide.
+// A term that blocks one of our keywords in some campaign is demoted to a
+// campaign-level negative on only the campaigns where it is harmless — keeping
+// the protection where it works instead of dropping it everywhere.
+const kwByCampaign = new Map();
+for (const r of rows.keywords) {
+  const list = kwByCampaign.get(r.Campaign) || kwByCampaign.set(r.Campaign, []).get(r.Campaign);
+  list.push(r.Keyword.toLowerCase());
+}
+
+/** True if this negative would suppress `kw` under phrase OR broad matching. */
+function negativeBlocks(neg, kw) {
+  const n = neg.toLowerCase();
+  if (kw.includes(n)) return true; // phrase
+  const words = n.split(/\s+/);
+  const present = new Set(kw.split(/\s+/));
+  return words.every((w) => present.has(w)); // broad
+}
+
+const sharedNegativeList = [];
+const demotedNegatives = [];
+for (const term of [...accountNegatives].sort((a, b) => a.localeCompare(b))) {
+  const safeCampaigns = [];
+  let collides = false;
+  for (const name of campaignNames) {
+    const hit = (kwByCampaign.get(name) || []).some((kw) => negativeBlocks(term, kw));
+    if (hit) collides = true;
+    else safeCampaigns.push(name);
+  }
+  if (!collides) { sharedNegativeList.push(term); continue; }
+  demotedNegatives.push({ term, safeCampaigns });
+  for (const name of safeCampaigns) {
+    rows.negatives.push({
+      Campaign: name, "Ad Group": "",
+      Keyword: term, "Match Type": "Phrase", "Criterion Type": "Campaign negative",
+    });
+    totalNegatives++;
+  }
+}
 
 // ── keyword de-duplication ──────────────────────────────────────────────────
 /**
@@ -509,6 +555,15 @@ console.log(`  campaigns=${rows.campaigns.length} adGroups=${rows.adGroups.lengt
 console.log("  wrote: " + written.join(", "));
 if (dedupedKeywords) {
   console.log(`  de-duplicated ${dedupedKeywords} keyword(s) that appeared in more than one ad group`);
+}
+if (demotedNegatives.length) {
+  console.log(
+    `  ${demotedNegatives.length} negative(s) would have blocked our own keywords account-wide —\n` +
+    "  demoted from the shared list to campaign-level where they are safe:",
+  );
+  for (const d of demotedNegatives) {
+    console.log(`    "${d.term}" → ${d.safeCampaigns.length}/${campaignNames.length} campaigns`);
+  }
 }
 if (multiWordBroadNegatives) {
   console.log(
