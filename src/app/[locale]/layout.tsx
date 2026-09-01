@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Script from "next/script";
+import { ADS_CONVERSION_ID, ADS_TAG_ENABLED } from "@/lib/ads-conversions";
 import { routing, type Locale } from "@/i18n/routing";
 import { fontSans, fontArabic } from "@/lib/fonts";
 import { SITE } from "@/lib/constants";
@@ -163,19 +164,27 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <head>
-        {/* Google tag (gtag.js) — Google Ads conversion tracking */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=AW-18200382552"
-          strategy="afterInteractive"
-        />
-        <Script id="gtag-init" strategy="afterInteractive">
-          {`
+        {/* Google tag (gtag.js) — Google Ads conversion tracking.
+            Gated like the Plausible tag below: preview deployments and
+            localhost must not report into the live Ads account, because that
+            data drives Smart Bidding on the live campaigns.
+            Conversion events themselves live in src/instrumentation-client.ts. */}
+        {ADS_TAG_ENABLED && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${ADS_CONVERSION_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="gtag-init" strategy="afterInteractive">
+              {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'AW-18200382552');
+            gtag('config', '${ADS_CONVERSION_ID}');
           `}
-        </Script>
+            </Script>
+          </>
+        )}
       </head>
       <body className="flex min-h-dvh flex-col bg-(--color-bg) text-(--color-text) antialiased">
         {/* Keyboard-first users land here — `sr-only` hides until focus,
