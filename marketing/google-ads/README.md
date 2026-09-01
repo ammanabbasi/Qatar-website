@@ -11,7 +11,7 @@ was missing.
 |---|---|
 | Campaigns | **12** — 6 themes x English + Arabic |
 | Ad groups | **58** |
-| Keywords | **883** |
+| Keywords | **806** — de-duplicated so each lives in exactly one ad group |
 | Negative keywords | **580** at ad-group/campaign level, plus a **357**-term shared list |
 | Responsive search ads | **58** — 870 headlines, 232 descriptions |
 | Extensions | 14 sitelinks, 16 callouts, 4 structured snippet sets |
@@ -105,6 +105,24 @@ matter). If it flags a column, pick the right one from the dropdown or set it to
 This is enforced mechanically, not just by review: `build/assemble.mjs` fails the
 build if any ad text matches a service-promise or price-claim pattern.
 
+## Two things the exporter fixes for you
+
+Both were found by review agents and are applied automatically on every rebuild:
+
+- **77 duplicate keywords removed.** The six themes were written independently, so
+  trade terms like "bulk car shampoo qatar" landed in three ad groups at once.
+  Google only enters one ad per account into an auction, so this was never a
+  bidding war — but it splits performance data and takes away control of which ad
+  and landing page a query gets. The winner is the ad group with the most
+  *specific* landing page (product page beats filtered catalogue beats bare hub),
+  with ties going to the campaign matching the keyword's intent.
+- **88 multi-word negatives moved from Broad to Phrase.** A negative *broad*
+  keyword blocks whenever the query contains all its words in any order, which
+  over-blocks unpredictably — a competitor negative like "armor all" can suppress
+  your own "Weather Armor" searches. Explicit `Exact` declarations are left alone;
+  the PPF theme relies on them so that a product query ("رول تظليل سيارات", a tint
+  *roll*) is not blocked by the service phrase it happens to contain.
+
 ## Brands deliberately excluded
 
 | Brand | Why |
@@ -134,6 +152,52 @@ outperform one generic one.
 
 Every landing URL in the account was checked with a real HTTP request against
 production: **128/128 returned 200.**
+
+## Three things on the site that need your decision
+
+These are site content questions, not ad questions — but the ads inherit them,
+so they need answering before spend.
+
+### 1. One product publishes a price
+
+`autotriz-one-step-finish` carries `Price=QAR 280 (Box rate: QAR 250 each)` in
+its specs, and it renders on **both** live pages:
+
+- `/en/b2c/products/autotriz-one-step-finish` → "QAR 280 (Box rate: QAR 250 each)"
+- `/ar/b2c/products/autotriz-one-step-finish` → "٢٨٠ ر.ق (سعر الكرتون: ٢٥٠ ر.ق للواحدة)"
+
+That contradicts `public/llms.txt:20`, which tells crawlers and AI assistants
+"product pages carry no public prices". **Four ad groups** land on that page
+(the EN and AR One Step Finish groups in both the ceramic and polish campaigns),
+each running "ask on WhatsApp for a quote" copy against a page that shows a price.
+
+Either the price is intentional — in which case `llms.txt` is wrong and should
+be corrected — or it is a leftover and should come out. I have not changed it:
+that is a pricing decision, not a copy fix.
+
+### 2. "Supplied cut to size" — is that a service?
+
+The live tint page says the film is **"supplied cut to size"**, and the PPF page
+says it is **"cut for full-body, front-end, or custom areas"**. The ads repeat
+that language, so ad and landing page agree.
+
+But if ABK actually plotter-cuts film to a customer's vehicle, that *is* work
+performed — which sits awkwardly beside "we supply, we don't fit". If the film
+is simply sold in pre-cut standard sizes, the wording is fine. Worth confirming,
+because if it is wrong it is wrong on the website too, which is the bigger
+exposure.
+
+### 3. "Lifetime peel warranty" needs a backer
+
+The live tint page carries a **lifetime peel warranty on the film**. The ads do
+not lead on it, but it is on the page. A film warranty is normally the
+manufacturer's and is typically void without professional installation — which
+ABK does not do. Confirm who honours it before it becomes a dispute.
+
+Related: the tint page also states **"compliant with Qatar regulations"** and
+names VLT grades. No ad repeats that claim, deliberately — Qatar restricts
+front-glass tint and public sources disagree on the current limit. The page
+claim is the larger exposure and deserves the same check.
 
 ## Arabic needs a native review
 

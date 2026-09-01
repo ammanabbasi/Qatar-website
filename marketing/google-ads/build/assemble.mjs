@@ -252,6 +252,7 @@ for (const { file, data } of themes) {
         rows.keywords.push({
           Campaign: c.name, "Ad Group": g.name,
           Keyword: k.text, "Match Type": k.matchType || "Phrase", Status: "Enabled",
+          _lang: c.language, _url: url, _file: file,
         });
         totalKeywords++;
       }
@@ -328,6 +329,59 @@ for (const { file, data } of themes) {
 // campaign, edited in one place. Editor cannot create shared lists from CSV, so
 // these go to a paste-ready text file instead.
 const sharedNegativeList = [...accountNegatives].sort((a, b) => a.localeCompare(b));
+
+// ── keyword de-duplication ──────────────────────────────────────────────────
+/**
+ * A keyword belongs to exactly ONE ad group.
+ *
+ * The six themes were written independently, so trade terms like
+ * "bulk car shampoo qatar" ended up in three ad groups at once. Google only ever
+ * enters one ad per account into an auction, so this is not a bidding war — but
+ * it splits performance data across ad groups and takes away control of which
+ * ad and landing page the query actually gets.
+ *
+ * The winner is the ad group whose landing page is most SPECIFIC, because that
+ * is the page most likely to answer the query: a product page beats a filtered
+ * catalogue, which beats a bare hub. Ties go to the campaign matching the
+ * keyword's intent — trade language to the wholesale campaign, everything else
+ * away from it.
+ */
+const TRADE = /\b(wholesale|bulk|supplier|distributor|dealer|trade)\b|بالجملة|موزع|مورد|جملة/i;
+function specificity(row) {
+  const u = row._url || "";
+  if (u.includes("/products/")) return 3;
+  if (u.includes("?")) return 2;
+  return 1;
+}
+function intentFit(row) {
+  const isB2bCampaign = row._file === "b2b-wholesale.json";
+  return TRADE.test(row.Keyword) === isB2bCampaign ? 1 : 0;
+}
+
+const kwBest = new Map();
+for (const r of rows.keywords) {
+  const key = `${r._lang}|${r.Keyword.trim().toLowerCase()}|${r["Match Type"]}`;
+  const cur = kwBest.get(key);
+  if (!cur) { kwBest.set(key, r); continue; }
+  const better =
+    specificity(r) !== specificity(cur) ? specificity(r) > specificity(cur)
+      : intentFit(r) !== intentFit(cur) ? intentFit(r) > intentFit(cur)
+        : false;
+  if (better) kwBest.set(key, r);
+}
+const dedupedKeywords = rows.keywords.length - kwBest.size;
+rows.keywords = [...kwBest.values()].map(({ _lang, _url, _file, ...keep }) => keep);
+totalKeywords = rows.keywords.length;
+
+// A keyword-less ad group would import but never serve. Catch it here.
+{
+  const withKw = new Set(rows.keywords.map((r) => `${r.Campaign}||${r["Ad Group"]}`));
+  for (const g of rows.adGroups) {
+    if (!withKw.has(`${g.Campaign}||${g["Ad Group"]}`)) {
+      fail(`${g.Campaign} > ${g["Ad Group"]}`, "every keyword was de-duplicated away — ad group would never serve");
+    }
+  }
+}
 
 // ── assets (sitelinks, callouts, structured snippets) ───────────────────────
 // Account-level in Google Ads, so they are validated and emitted separately
@@ -446,6 +500,9 @@ if (sharedNegativeList.length) {
 console.log("✓ VALIDATION PASSED");
 console.log(`  campaigns=${rows.campaigns.length} adGroups=${rows.adGroups.length} keywords=${totalKeywords} negatives=${totalNegatives} ads=${totalAds}`);
 console.log("  wrote: " + written.join(", "));
+if (dedupedKeywords) {
+  console.log(`  de-duplicated ${dedupedKeywords} keyword(s) that appeared in more than one ad group`);
+}
 if (normalisedNegatives) {
   console.log(`  normalised ${normalisedNegatives} multi-word Broad negatives to Phrase (over-blocking guard)`);
 }
