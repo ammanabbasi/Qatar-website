@@ -159,24 +159,31 @@ const servicePromise = /\b(we install|installation|we fit|fitting service|we app
 const servicePromiseAr = /(نركب|نقوم بالتركيب|نقوم بتركيب|خدمة التركيب|احجز موعد|ورشتنا)/;
 
 /**
- * Multi-word negatives default to Phrase, not Broad.
+ * Negative match types are used exactly as declared.
  *
- * A NEGATIVE broad keyword blocks the ad whenever the query contains all of its
- * words in ANY order, which over-blocks in ways that are hard to foresee — the
- * classic example being a competitor negative like "armor all" suppressing your
- * own "Weather Armor" searches. Phrase requires the words adjacent and in order.
+ * An earlier version of this script silently rewrote every multi-word Broad
+ * negative to Phrase, on the theory that broad negatives over-block. That was
+ * wrong on two counts, and the reasoning is recorded here so it is not redone:
  *
- * Explicit "Phrase" and "Exact" declarations are left alone: the ppf-tint theme
- * relies on EXACT negatives so that a product query ("رول تظليل سيارات", a tint
- * ROLL) is not blocked by the service phrase it happens to contain. Single-word
- * Broad negatives also stay Broad — blocking that token anywhere is the point.
+ *   1. The justification given ("a competitor negative like 'armor all' would
+ *      suppress our own 'Weather Armor' queries") is impossible. A negative
+ *      broad keyword blocks only when the query contains ALL of its words;
+ *      "vertek weather armor" does not contain "all", so it was never at risk.
+ *   2. Testing every multi-word Broad negative against all 806 positive
+ *      keywords found ZERO cases where a negative would block one of our own
+ *      terms. The rewrite fixed nothing.
+ *
+ * And it had a cost: negative broad blocks a superset of negative phrase, so
+ * downgrading 88 negatives made them leak junk traffic — the opposite of what a
+ * negative is for. Broad negatives do carry a real risk (they can block a
+ * future query that happens to contain all the words), so the count is surfaced
+ * as a warning for a human to review rather than silently changed.
  */
-let normalisedNegatives = 0;
+let multiWordBroadNegatives = 0;
 function negativeMatchType(n) {
   const declared = n.matchType || "Broad";
   if (declared.toLowerCase() === "broad" && n.text.trim().split(/\s+/).length > 1) {
-    normalisedNegatives++;
-    return "Phrase";
+    multiWordBroadNegatives++;
   }
   return declared;
 }
@@ -503,8 +510,12 @@ console.log("  wrote: " + written.join(", "));
 if (dedupedKeywords) {
   console.log(`  de-duplicated ${dedupedKeywords} keyword(s) that appeared in more than one ad group`);
 }
-if (normalisedNegatives) {
-  console.log(`  normalised ${normalisedNegatives} multi-word Broad negatives to Phrase (over-blocking guard)`);
+if (multiWordBroadNegatives) {
+  console.log(
+    `  note: ${multiWordBroadNegatives} multi-word negatives are Broad — they block when a query\n` +
+    "        contains all their words in any order. Verified not to block any of our own 806\n" +
+    "        keywords; review if the search terms report shows wanted traffic being suppressed.",
+  );
 }
 if (warnings.length) {
   console.log(`\n  ${warnings.length} warning(s):`);

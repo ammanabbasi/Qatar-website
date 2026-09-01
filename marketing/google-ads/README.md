@@ -105,23 +105,29 @@ matter). If it flags a column, pick the right one from the dropdown or set it to
 This is enforced mechanically, not just by review: `build/assemble.mjs` fails the
 build if any ad text matches a service-promise or price-claim pattern.
 
-## Two things the exporter fixes for you
+## What the exporter changes, and what it deliberately doesn't
 
-Both were found by review agents and are applied automatically on every rebuild:
+**77 duplicate keywords removed.** The six themes were written independently, so
+trade terms like "bulk car shampoo qatar" landed in three ad groups at once.
+Google only enters one ad per account into an auction, so this was never a
+bidding war — but it splits performance data across ad groups and takes away
+control of which ad and landing page a query gets. The winner is the ad group
+with the most *specific* landing page (product page beats filtered catalogue
+beats bare hub), with ties going to the campaign matching the keyword's intent.
+Spot-checked: `vertek ppf` stayed in the brand ad group, `paint protection film
+supplier qatar` went to the trade one.
 
-- **77 duplicate keywords removed.** The six themes were written independently, so
-  trade terms like "bulk car shampoo qatar" landed in three ad groups at once.
-  Google only enters one ad per account into an auction, so this was never a
-  bidding war — but it splits performance data and takes away control of which ad
-  and landing page a query gets. The winner is the ad group with the most
-  *specific* landing page (product page beats filtered catalogue beats bare hub),
-  with ties going to the campaign matching the keyword's intent.
-- **88 multi-word negatives moved from Broad to Phrase.** A negative *broad*
-  keyword blocks whenever the query contains all its words in any order, which
-  over-blocks unpredictably — a competitor negative like "armor all" can suppress
-  your own "Weather Armor" searches. Explicit `Exact` declarations are left alone;
-  the PPF theme relies on them so that a product query ("رول تظليل سيارات", a tint
-  *roll*) is not blocked by the service phrase it happens to contain.
+**Negative match types are left exactly as written — this was a corrected
+mistake.** An earlier version of this script rewrote all 88 multi-word `Broad`
+negatives to `Phrase`, justified by the claim that a competitor negative like
+"armor all" could suppress our own "Weather Armor" queries. That is impossible:
+a negative broad keyword only blocks when the query contains **all** its words,
+and "vertek weather armor" does not contain "all". Testing every multi-word
+Broad negative against all 806 positive keywords found **zero** cases where any
+negative would block one of our own terms — so the rewrite fixed nothing, while
+making 88 negatives leak junk traffic, since broad blocks a superset of phrase.
+Reverted. The build now prints the count as a note instead, for review against
+the search terms report.
 
 ## Brands deliberately excluded
 

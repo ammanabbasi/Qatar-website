@@ -33,37 +33,51 @@ type WindowWithGtag = Window & {
 };
 
 /**
- * Ensure a gtag queue exists before gtag.js has executed.
+ * Buffer events until gtag.js has bootstrapped, then replay them in order.
  *
- * The layout loads gtag.js with strategy="afterInteractive", but the floating
- * WhatsApp bubble is visible and clickable before that resolves. Defining the
- * standard shim here means an early click is queued on `dataLayer` and replayed
- * once gtag.js loads, instead of being dropped. The layout's own snippet uses
- * `window.dataLayer = window.dataLayer || []`, so it adopts this queue rather
- * than clearing it.
+ * This file runs before the app's frontend code, but the layout loads gtag.js
+ * with strategy="afterInteractive" — and the floating WhatsApp bubble is
+ * server-rendered, so it is visible and clickable during that gap.
+ *
+ * An earlier version defined its own `dataLayer` shim so early clicks were
+ * queued. That was subtly wrong: gtag.js processes `dataLayer` strictly in
+ * order, so an `event` pushed ahead of the `config` command for its target is
+ * processed when no config exists for that ID and is dropped. Buffering locally
+ * and flushing only once `window.gtag` is real guarantees every conversion
+ * lands after `config`, which is the only ordering gtag accepts.
  */
-function ensureGtag(w: WindowWithGtag) {
-  if (typeof w.gtag === "function") return w.gtag;
-  w.dataLayer = w.dataLayer || [];
-  w.gtag = function gtag() {
-    // gtag.js expects the `arguments` object itself, which is why this is a
-    // function expression and not a rest-parameter arrow.
-    // eslint-disable-next-line prefer-rest-params
-    w.dataLayer!.push(arguments);
-  };
-  return w.gtag;
+const pending: unknown[][] = [];
+let flushTimer: ReturnType<typeof setInterval> | undefined;
+
+function flush(): boolean {
+  const w = window as WindowWithGtag;
+  if (typeof w.gtag !== "function") return false;
+  while (pending.length) w.gtag(...pending.shift()!);
+  if (flushTimer) { clearInterval(flushTimer); flushTimer = undefined; }
+  return true;
+}
+
+function send(...args: unknown[]) {
+  pending.push(args);
+  if (flush() || flushTimer) return;
+  // gtag.js is still loading. Poll briefly, then give up rather than leak a
+  // timer — if the tag never arrives, the events were never going anywhere.
+  let tries = 0;
+  flushTimer = setInterval(() => {
+    if (flush() || ++tries > 40) {
+      clearInterval(flushTimer);
+      flushTimer = undefined;
+    }
+  }, 250);
 }
 
 function track(key: ConversionKey, params: Record<string, string>) {
-  const w = window as WindowWithGtag;
-  const gtag = ensureGtag(w);
-
   // Always emit the named event, so the interaction is measurable even before
   // the conversion labels have been issued in the Google Ads UI.
-  gtag("event", CONVERSION_EVENT_NAMES[key], params);
+  send("event", CONVERSION_EVENT_NAMES[key], params);
 
   const target = sendTo(key);
-  if (target) gtag("event", "conversion", { send_to: target, ...params });
+  if (target) send("event", "conversion", { send_to: target, ...params });
 }
 
 /**
