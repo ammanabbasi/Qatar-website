@@ -35,7 +35,7 @@ export function ProductCard({
       href={`/${audience}/products/${product.slug}`}
       className={`group flex flex-col ${className}`}
     >
-      <div className="relative aspect-square overflow-hidden rounded-tile bg-(--color-tile-dark) shadow-tile transition-shadow duration-300 ease-soft group-hover:shadow-tile-hover">
+      <div className="relative aspect-square overflow-hidden rounded-tile bg-(--color-surface) shadow-tile transition-shadow duration-300 ease-soft group-hover:shadow-tile-hover">
         <Image
           src={product.images[0]}
           alt={name}

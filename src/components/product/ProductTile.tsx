@@ -14,9 +14,9 @@ type Props = {
 };
 
 /**
- * Large dark shelf tile — the Apple "iPhone 17 Pro" tile. Copy sits at the
- * top on a clean ground; the studio photo fills the lower four-fifths and
- * dissolves upward into the tile so there is no visible photo edge.
+ * Large shelf tile — the Apple "iPhone 17 Pro" tile on a light ground. Copy
+ * sits at the top; the white-background packshot fills the lower four-fifths
+ * and merges into the white tile, so there is no visible photo edge.
  */
 export function ProductTile({ product, locale, audience, eager = false }: Props) {
   const t = useTranslations();
@@ -25,7 +25,7 @@ export function ProductTile({ product, locale, audience, eager = false }: Props)
   return (
     <Link
       href={`/${audience}/products/${product.slug}`}
-      className="tile-dark group relative block aspect-[4/5] w-[300px] overflow-hidden transition-shadow duration-300 ease-soft hover:shadow-tile-hover sm:w-[340px] lg:w-[405px]"
+      className="tile group relative block aspect-[4/5] w-[300px] overflow-hidden transition-shadow duration-300 ease-soft hover:shadow-tile-hover sm:w-[340px] lg:w-[405px]"
     >
       <div className="tile-fade-top absolute inset-x-0 bottom-0 aspect-square overflow-hidden">
         <Image
@@ -41,18 +41,18 @@ export function ProductTile({ product, locale, audience, eager = false }: Props)
       <div className="relative flex flex-col p-6 lg:p-7">
         <p
           className={`text-caption font-semibold uppercase tracking-[0.04em] ${
-            product.featured ? "text-(--color-brand)" : "text-white/60"
+            product.featured ? "text-(--color-brand-deep)" : "text-(--color-text-muted)"
           }`}
         >
           {product.featured ? t("Home.bestSeller") : t(`Brands.${product.brand}`)}
         </p>
-        <h3 className="mt-1.5 text-title-sm font-semibold text-balance text-white lg:text-title">
+        <h3 className="mt-1.5 text-title-sm font-semibold text-balance text-(--color-text) lg:text-title">
           {name}
         </h3>
-        <p className="mt-2 line-clamp-2 text-footnote text-white/75">
+        <p className="mt-2 line-clamp-2 text-footnote text-(--color-text-muted)">
           {product.shortDesc[locale]}
         </p>
-        <span className="mt-3 inline-flex items-center gap-1 text-footnote font-medium text-white">
+        <span className="mt-3 inline-flex items-center gap-1 text-footnote font-medium text-(--color-text)">
           {t("Cta.inquire")}
           <ChevronIcon className="h-[0.6em] w-[0.6em] rtl:-scale-x-100" />
         </span>

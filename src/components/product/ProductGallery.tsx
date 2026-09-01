@@ -17,7 +17,7 @@ export function ProductGallery({ images, alt }: Props) {
 
   return (
     <div className="flex flex-col gap-3" role="group" aria-label={t("detailGallery")}>
-      <div className="relative aspect-square overflow-hidden rounded-tile bg-(--color-tile-dark) shadow-tile">
+      <div className="relative aspect-square overflow-hidden rounded-tile bg-(--color-surface) shadow-tile">
         <Image
           key={current}
           src={current}
@@ -40,7 +40,7 @@ export function ProductGallery({ images, alt }: Props) {
                 aria-label={t("thumbnailLabel", { n: i + 1 })}
                 aria-pressed={active}
                 onClick={() => setIndex(i)}
-                className={`relative h-16 w-16 overflow-hidden rounded-[12px] bg-(--color-tile-dark) transition-shadow duration-200 ease-soft ${
+                className={`relative h-16 w-16 overflow-hidden rounded-[12px] bg-(--color-surface) transition-shadow duration-200 ease-soft ${
                   active
                     ? "shadow-[0_0_0_2px_var(--color-accent)]"
                     : "shadow-[0_0_0_1px_var(--color-border)] hover:shadow-[0_0_0_2px_var(--color-border)]"

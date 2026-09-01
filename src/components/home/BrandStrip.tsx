@@ -44,7 +44,7 @@ export function BrandStrip({ audience }: { audience: Audience }) {
               href={`/${audience}/products?brand=${b}`}
               className="tile group flex w-[240px] flex-col gap-4 p-5 transition-shadow duration-300 ease-soft hover:shadow-tile-hover lg:w-[270px]"
             >
-              <span className="relative block h-14 w-14 overflow-hidden rounded-[12px] bg-(--color-tile-dark)">
+              <span className="relative block h-14 w-14 overflow-hidden rounded-[12px] bg-(--color-bg)">
                 <Image
                   src={BRAND_IMAGES[b]}
                   alt=""

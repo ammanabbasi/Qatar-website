@@ -22,7 +22,7 @@ export function CategoryShelf({ audience }: { audience: Audience }) {
             href={`/${audience}/products?category=${c}`}
             className="group flex w-[104px] flex-col items-center gap-3 text-center lg:w-[120px]"
           >
-            <span className="relative block h-[104px] w-[104px] overflow-hidden rounded-tile bg-(--color-tile-dark) lg:h-[120px] lg:w-[120px]">
+            <span className="relative block h-[104px] w-[104px] overflow-hidden rounded-tile bg-(--color-surface) shadow-tile lg:h-[120px] lg:w-[120px]">
               <Image
                 src={CATEGORY_THUMBS[c]}
                 alt=""

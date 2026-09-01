@@ -179,7 +179,7 @@ export default async function ArticlePage({
                           href={`/b2c/products/${p.slug}`}
                           className="tile flex items-center gap-4 p-3 transition-shadow duration-300 ease-soft hover:shadow-tile-hover"
                         >
-                          <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-[12px] bg-(--color-tile-dark)">
+                          <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-[12px] bg-(--color-bg)">
                             <Image
                               src={p.images[0]}
                               alt={p.name[l]}
