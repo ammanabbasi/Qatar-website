@@ -82,8 +82,8 @@ export const PRODUCTS: Product[] = [
       ar: "يمثل فيلم VTEK® Weather Armor™ ULTIMATE قمة تكنولوجيا أفلام حماية الطلاء. صُمم من بولي كربونات TPU المتطورة ليمنح نقاءً بصرياً استثنائياً ومرونة فائقة ومقاومة قصوى للاصفرار والبقع الكيميائية وتآكل الرمال الصحراوية وأضرار الحصى. صُمم لتحمل أقسى الظروف المناخية في قطر، مع طبقة ذاتية الالتئام الفوري ولمعان فائق يبرز عمق ولون طلاء السيارة الأصلي، مع ضمان شامل لمدة 15 سنة.",
     },
     images: [
-      "/products/vtek/vtek-weather-armor-ultimate.webp",
-      "/products/vtek/vtek-weather-armor-lineup.webp",
+      "/products/vtek/vtek-weather-armor-ultimate-v2.webp",
+      "/products/vtek/vtek-weather-armor-lineup-v2.webp",
     ],
     specs: [
       {
@@ -140,7 +140,7 @@ export const PRODUCTS: Product[] = [
     },
     images: [
       "/products/vtek/vtek-weather-armor-pro.webp",
-      "/products/vtek/vtek-weather-armor-lineup.webp",
+      "/products/vtek/vtek-weather-armor-lineup-v2.webp",
     ],
     specs: [
       {
@@ -197,7 +197,7 @@ export const PRODUCTS: Product[] = [
     },
     images: [
       "/products/vtek/vtek-weather-armor-matte.webp",
-      "/products/vtek/vtek-weather-armor-lineup.webp",
+      "/products/vtek/vtek-weather-armor-lineup-v2.webp",
     ],
     specs: [
       {
@@ -251,7 +251,7 @@ export const PRODUCTS: Product[] = [
     },
     images: [
       "/products/vtek/vtek-weather-armor-prism.webp",
-      "/products/vtek/vtek-weather-armor-lineup.webp",
+      "/products/vtek/vtek-weather-armor-lineup-v2.webp",
     ],
     specs: [
       {
@@ -1142,7 +1142,7 @@ export function getRelatedProducts(
 
 /** Representative photo per category — drives the "Shop by category" shelf. */
 export const CATEGORY_THUMBS: Record<CategoryKey, string> = {
-  ppf: "/products/vtek/vtek-weather-armor-lineup.webp",
+  ppf: "/products/vtek/vtek-weather-armor-lineup-v2.webp",
   tint: "/products/vtek/vtek-solar-armor-window-tint.webp",
   ceramic: "/products/autotriz/autotriz-ion-plus-ceramic-coating.webp",
   shampoo: "/products/autotriz/autotriz-rich-foam-shampoo-20l.webp",
@@ -1160,8 +1160,8 @@ export const CATEGORY_THUMBS: Record<CategoryKey, string> = {
 
 /** Representative photo per brand — drives the "Brands we carry" shelf. */
 export const BRAND_IMAGES: Record<BrandKey, string> = {
-  VTEK: "/products/vtek/vtek-weather-armor-lineup.webp",
-  Vertek: "/products/vtek/vtek-weather-armor-lineup.webp",
+  VTEK: "/products/vtek/vtek-weather-armor-lineup-v2.webp",
+  Vertek: "/products/vtek/vtek-weather-armor-lineup-v2.webp",
   Autotriz: "/products/autotriz/autotriz-3d-matrix-ultra.webp",
   Briller: "/products/briller/briller-wash-and-wax.webp",
   Grizzly: "/products/grizzly/grizzly-glossy-ppf-premium-plus.webp",
