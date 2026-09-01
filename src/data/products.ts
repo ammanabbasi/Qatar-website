@@ -84,7 +84,7 @@ export const PRODUCTS: Product[] = [
     images: [
       "/products/vtek/vtek-weather-armor-ultimate.webp",
       "/products/vtek/vtek-ultimate-installation.webp",
-      "/products/vtek/vtek-weather-armor-series-hero.webp",
+      "/products/vtek/vtek-weather-armor-lineup.webp",
     ],
     specs: [
       {
@@ -141,7 +141,7 @@ export const PRODUCTS: Product[] = [
     },
     images: [
       "/products/vtek/vtek-weather-armor-pro.webp",
-      "/products/vtek/vtek-weather-armor-series-hero.webp",
+      "/products/vtek/vtek-weather-armor-lineup.webp",
     ],
     specs: [
       {
@@ -199,7 +199,7 @@ export const PRODUCTS: Product[] = [
     images: [
       "/products/vtek/vtek-weather-armor-matte.webp",
       "/products/vtek/vtek-matte-showcase.webp",
-      "/products/vtek/vtek-weather-armor-series-hero.webp",
+      "/products/vtek/vtek-weather-armor-lineup.webp",
     ],
     specs: [
       {
@@ -254,7 +254,7 @@ export const PRODUCTS: Product[] = [
     images: [
       "/products/vtek/vtek-weather-armor-prism.webp",
       "/products/vtek/vtek-prism-colors-showcase.webp",
-      "/products/vtek/vtek-weather-armor-series-hero.webp",
+      "/products/vtek/vtek-weather-armor-lineup.webp",
     ],
     specs: [
       {
@@ -1145,7 +1145,7 @@ export function getRelatedProducts(
 
 /** Representative photo per category — drives the "Shop by category" shelf. */
 export const CATEGORY_THUMBS: Record<CategoryKey, string> = {
-  ppf: "/products/vtek/vtek-weather-armor-series-hero.webp",
+  ppf: "/products/vtek/vtek-weather-armor-lineup.webp",
   tint: "/products/vtek/vtek-solar-armor-window-tint.webp",
   ceramic: "/products/autotriz/autotriz-ion-plus-ceramic-coating.webp",
   shampoo: "/products/autotriz/autotriz-rich-foam-shampoo-20l.webp",
@@ -1163,8 +1163,8 @@ export const CATEGORY_THUMBS: Record<CategoryKey, string> = {
 
 /** Representative photo per brand — drives the "Brands we carry" shelf. */
 export const BRAND_IMAGES: Record<BrandKey, string> = {
-  VTEK: "/products/vtek/vtek-weather-armor-series-hero.webp",
-  Vertek: "/products/vtek/vtek-weather-armor-series-hero.webp",
+  VTEK: "/products/vtek/vtek-weather-armor-lineup.webp",
+  Vertek: "/products/vtek/vtek-weather-armor-lineup.webp",
   Autotriz: "/products/autotriz/autotriz-3d-matrix-ultra.webp",
   Briller: "/products/briller/briller-wash-and-wax.webp",
   Grizzly: "/products/grizzly/grizzly-glossy-ppf-premium-plus.webp",
