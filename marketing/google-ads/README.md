@@ -12,10 +12,12 @@ was missing.
 | Campaigns | **12** — 6 themes x English + Arabic |
 | Ad groups | **58** |
 | Keywords | **806** — de-duplicated so each lives in exactly one ad group |
-| Negative keywords | **580** at ad-group/campaign level, plus a **357**-term shared list |
+| Negative keywords | **686** at ad-group/campaign level, plus a **347**-term shared list |
 | Responsive search ads | **58** — 870 headlines, 232 descriptions |
 | Extensions | 14 sitelinks, 16 callouts, 4 structured snippet sets |
 | Landing pages | **128/128 verified 200** against live production |
+| Bid strategy at launch | **Manual CPC**, using each ad group's own max CPC |
+| Budget if every campaign were enabled | **295 QAR/day** ≈ 8,850 QAR/month — don't; enable one at a time |
 
 Themes: b2b-wholesale, ceramic, interior-fragrance, polish-compound, ppf-tint, wash-care.
 
@@ -38,15 +40,16 @@ in `Paused` status by design.** Nothing can spend until you deliberately enable 
 ## Order of operations
 
 1. **[Set up conversion tracking](./CONVERSION-TRACKING.md) — do this first.**
-   Every campaign uses *Maximize conversions*. Smart Bidding with no conversion
-   data is just expensive guessing. The code is already live; you need to create
-   four conversion actions and paste their labels.
-2. Import the CSVs (below).
-3. Set locations, ad schedule and budgets (they are not importable — see
-   `import/06-campaign-settings-REFERENCE-ONLY.csv`).
-4. Add the extensions (`07`–`09`).
+   The code is already live; you need to create four conversion actions and
+   paste their labels. Nothing else works properly without it: you cannot judge
+   a campaign, and you cannot later switch to Smart Bidding, without conversions.
+2. Import the CSVs (below), in filename order.
+3. Set locations, ad schedule and budgets by hand — these are not importable.
+   Values are in `campaign-settings.csv`.
+4. Paste the shared negative list and apply it to all campaigns.
 5. Review the ads in the Google Ads UI.
-6. Enable **one** campaign. Not all of them.
+6. Enable **one** campaign. Not all of them — all twelve at their listed budgets
+   is 295 QAR/day.
 
 ## Importing
 
@@ -58,22 +61,26 @@ bulk CSV import for this shape of data.
 3. Import the files **in numerical order**. Order matters: a keyword cannot be
    created before its ad group exists.
 
+Everything in `import/` is meant to be imported, in filename order. Nothing else
+lives there — the settings sheet you apply by hand sits outside it, so there is
+no file in that folder you have to remember *not* to import.
+
 | File | What it creates |
 |---|---|
-| `import/01-campaigns.csv` | Campaigns (all Paused) |
-| `import/02-ad-groups.csv` | Ad groups + default max CPC |
+| `import/01-campaigns.csv` | Campaigns (all Paused, Manual CPC) |
+| `import/02-ad-groups.csv` | Ad groups + their max CPC |
 | `import/03-keywords.csv` | Positive keywords with match types |
 | `import/04-negative-keywords.csv` | Negatives, ad-group and campaign level |
 | `import/05-responsive-search-ads.csv` | The ads themselves |
-| `import/06-campaign-settings-REFERENCE-ONLY.csv` | **Do not import.** Reference for the settings you apply by hand. |
-| `import/07-sitelinks.csv` | Sitelink assets |
-| `import/08-callouts.csv` | Callout assets |
-| `import/09-structured-snippets.csv` | Structured snippet assets |
-| `import/10-shared-negative-list.txt` | **Not a CSV import.** Paste into a shared negative keyword list. |
+| `import/06-sitelinks.csv` | Sitelink assets |
+| `import/07-callouts.csv` | Callout assets |
+| `import/08-structured-snippets.csv` | Structured snippet assets |
+| `import/09-shared-negative-list.txt` | **Not a CSV import.** Paste into a shared negative keyword list. |
+| `campaign-settings.csv` *(outside `import/`)* | Reference only. Locations, schedule, budget and bid-strategy target, applied by hand. |
 
 ### The shared negative list
 
-`10-shared-negative-list.txt` holds the account-wide negatives — service-intent
+`09-shared-negative-list.txt` holds the account-wide negatives — service-intent
 terms, job seekers, free/DIY searches, competitor brands and other traffic that
 can only cost you money. Rather than duplicating them onto every campaign
 (thousands of rows, and a nightmare to edit later), create one shared list:
@@ -116,6 +123,16 @@ with the most *specific* landing page (product page beats filtered catalogue
 beats bare hub), with ties going to the campaign matching the keyword's intent.
 Spot-checked: `vertek ppf` stayed in the brand ad group, `paint protection film
 supplier qatar` went to the trade one.
+
+**10 negatives demoted out of the shared list.** The account-wide list is the
+union of what all six themes contributed independently, and a term safe for one
+theme is lethal to another. Tested against all 806 keywords, it would have
+suppressed 19 of them — `kuwait` and `bahrain` killing the B2B GCC terms in the
+one campaign that targets those countries, `install` killing "ppf supplier for
+installers", and `تظليل سيارات` killing `رول تظليل سيارات` (a tint *roll*).
+Offenders are demoted to campaign-level negatives on only the campaigns where
+they block nothing, so the protection survives where it works. Both scopes
+verify at zero self-blocks on every build.
 
 **Negative match types are left exactly as written — this was a corrected
 mistake.** An earlier version of this script rewrote all 88 multi-word `Broad`
@@ -217,6 +234,21 @@ Arabic headline costs money on every impression.
 before enabling the `| AR |` campaigns.** The English campaigns can run
 immediately.
 
+### Why 23 Arabic keywords are in Latin script
+
+6% of the Arabic campaigns' keywords are Latin brand and SKU names —
+`vertek ppf`, `autotriz heavy cut 901`, `briller multipurpose cleaner` — and the
+same strings also appear in the English campaigns. That is deliberate, not a
+duplicate that escaped de-duplication.
+
+Gulf buyers routinely type Latin brand names regardless of interface language.
+Google separates the two campaigns by the user's interface language, so an
+Arabic-interface user searching `vertek ppf` gets the Arabic ad and the `/ar/`
+landing page, while an English-interface user gets the English one. Removing them
+from the Arabic side would hand Arabic-speaking searchers an English page. Only
+one ad per account enters any auction, so there is no double-spend — the cost is
+slightly murkier attribution, which is the right trade.
+
 ## Suggested launch sequence
 
 Do not enable everything at once. You will learn nothing and spend fast.
@@ -228,10 +260,19 @@ Do not enable everything at once. You will learn nothing and spend fast.
 | 3 | Add the B2B / wholesale campaign | Different audience, different economics |
 | 4 | Add Arabic, after the native review | Mirror the English budgets |
 
-**Switch bid strategy deliberately.** *Maximize conversions* needs conversion
-history to work. For the first ~2 weeks, if volume is thin, consider *Manual CPC*
-or *Maximize clicks* with a bid cap, then switch once you have 30+ conversions
-in 30 days.
+**Bid strategy: launch on Manual CPC, switch later.** Every campaign imports as
+*Manual CPC*, using the max CPC set on each ad group (1.75–5.50 QAR depending on
+how competitive the theme is).
+
+The themes were authored specifying *Maximize conversions*, and that is the right
+destination — but not the right starting point. Smart Bidding has no conversion
+history to learn from in a new account, so it bids blind and spends the full
+daily budget gathering data. It would also make every ad group's hand-set max CPC
+inert. Manual CPC keeps spend predictable and those bids meaningful.
+
+**Switch to Maximize conversions once you have ~30 conversions in 30 days.** The
+target strategy is recorded per campaign in `campaign-settings.csv` so it isn't
+forgotten.
 
 ### What to check after week 1
 

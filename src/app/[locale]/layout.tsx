@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import Script from "next/script";
-import { ADS_CONVERSION_ID, ADS_TAG_ENABLED } from "@/lib/ads-conversions";
 import { routing, type Locale } from "@/i18n/routing";
 import { fontSans, fontArabic } from "@/lib/fonts";
 import { SITE } from "@/lib/constants";
@@ -163,29 +162,10 @@ export default async function LocaleLayout({
       className={`${fontSans.variable} ${fontArabic.variable}`}
       suppressHydrationWarning
     >
-      <head>
-        {/* Google tag (gtag.js) — Google Ads conversion tracking.
-            Gated like the Plausible tag below: preview deployments and
-            localhost must not report into the live Ads account, because that
-            data drives Smart Bidding on the live campaigns.
-            Conversion events themselves live in src/instrumentation-client.ts. */}
-        {ADS_TAG_ENABLED && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${ADS_CONVERSION_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="gtag-init" strategy="afterInteractive">
-              {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${ADS_CONVERSION_ID}');
-          `}
-            </Script>
-          </>
-        )}
-      </head>
+      {/* The Google Ads tag is NOT here. It loads from
+          src/instrumentation-client.ts, which gates it on the real hostname so
+          preview deployments and localhost cannot report into the live account.
+          A hand-written <head> is also discouraged by the Next docs. */}
       <body className="flex min-h-dvh flex-col bg-(--color-bg) text-(--color-text) antialiased">
         {/* Keyboard-first users land here — `sr-only` hides until focus,
             then `focus:not-sr-only` reveals the link as a visible blue pill. */}

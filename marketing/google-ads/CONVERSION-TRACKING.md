@@ -36,22 +36,30 @@ doesn't pollute production stats". That meant every Vercel preview deployment
 and every local dev session reported into the live Ads account. Conversion data
 drives Smart Bidding, so polluting it degrades the campaigns directly.
 
-Two independent gates now exist:
+**The tag now loads from `src/instrumentation-client.ts`, not from the layout**,
+gated on `isProductionHost(window.location.hostname)`. Nothing Google-related is
+requested at all unless the page is being served from `abktradingservice.com`.
 
-1. **The tag** (`ADS_TAG_ENABLED` in `src/lib/ads-conversions.ts`) — loads
-   gtag.js only when `NEXT_PUBLIC_VERCEL_ENV === "production"`, falling back to
-   `NODE_ENV` when that variable is absent.
-2. **The conversion events** (`isProductionHost`) — a hostname check that cannot
-   be defeated by a mis-set variable. Events fire only on
-   `abktradingservice.com`.
+An earlier version gated the layout's `<Script>` tags on
+`NEXT_PUBLIC_VERCEL_ENV`. That was replaced because it could not be *proven* to
+work: the variable only exists when Vercel's "Enable access to System
+Environment Variables" setting is on, and from outside a preview deployment
+there was no way to tell whether the gate had fired or the `NODE_ENV` fallback
+had. `window.location.hostname` is always present, always correct, needs no
+Vercel setting, and can be tested locally — which it now is, in both directions:
 
-> **One thing to confirm:** gate 1 depends on Vercel exposing
-> `NEXT_PUBLIC_VERCEL_ENV`, which requires **Settings → Environment Variables →
-> "Enable access to System Environment Variables"** to be checked. It is on by
-> default. If it is off, the fallback keeps production tagging correctly and
-> previews will still send *page views* — but gate 2 still blocks all
-> *conversions*, so bidding data stays clean either way. The failure mode is
-> never "production silently stops tracking".
+| Build | Result |
+|---|---|
+| Production build served on `localhost` | No `gtag-js` script in the DOM, `window.gtag` undefined, `dataLayer` empty, **zero requests to googletagmanager** |
+| Same build with `NEXT_PUBLIC_ADS_FORCE_TRACKING=1` | Tag loads, `config` fires first, then the conversion event with its full parameters |
+
+Loading the tag here also removes a subtle bug. The layout loaded gtag.js with
+`strategy="afterInteractive"`, and the floating WhatsApp button is
+server-rendered — so it was clickable before gtag existed. gtag.js processes
+`dataLayer` strictly in order and discards an event that arrives ahead of its
+target's `config`, so an early click was silently lost. `js` and `config` are now
+queued synchronously before the click listener is even attached, which makes the
+ordering structural rather than something to defend against.
 
 To exercise tracking locally, build with `NEXT_PUBLIC_ADS_FORCE_TRACKING=1`.
 

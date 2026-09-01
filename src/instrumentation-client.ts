@@ -1,5 +1,5 @@
 /**
- * Client instrumentation — Google Ads conversion tracking.
+ * Client instrumentation — Google Ads tag + conversion tracking.
  *
  * Next 16 runs this file before any of the app's frontend code. Per
  * node_modules/next/dist/docs/01-app/02-guides/analytics.md: "Next.js provides a
@@ -7,6 +7,15 @@
  * frontend code starts executing. This is ideal for setting up global
  * analytics." With a `src/` directory Next resolves `src/instrumentation-client`
  * first (see next/dist/build/create-compiler-aliases.js).
+ *
+ * WHY THE TAG LOADS HERE RATHER THAN FROM THE LAYOUT:
+ * the tag must not report from preview deployments or localhost — that data
+ * drives Smart Bidding on live campaigns. Gating it in the layout meant reading
+ * NEXT_PUBLIC_VERCEL_ENV, which only exists when "Enable access to System
+ * Environment Variables" is on, and whose effect could not be verified from
+ * outside a preview deploy. `window.location.hostname` is always present and
+ * always correct, needs no Vercel setting, and makes the gate testable locally.
+ * One file now owns every Google Ads decision.
  *
  * WHY A DELEGATED LISTENER RATHER THAN onClick HANDLERS:
  * every CTA in this repo is a Server Component — WhatsAppButton, FloatingWhatsApp,
@@ -20,6 +29,7 @@
  */
 
 import {
+  ADS_CONVERSION_ID,
   CONVERSION_EVENT_NAMES,
   isProductionHost,
   sendTo,
@@ -32,52 +42,47 @@ type WindowWithGtag = Window & {
   gtag?: (...args: unknown[]) => void;
 };
 
-/**
- * Buffer events until gtag.js has bootstrapped, then replay them in order.
- *
- * This file runs before the app's frontend code, but the layout loads gtag.js
- * with strategy="afterInteractive" — and the floating WhatsApp bubble is
- * server-rendered, so it is visible and clickable during that gap.
- *
- * An earlier version defined its own `dataLayer` shim so early clicks were
- * queued. That was subtly wrong: gtag.js processes `dataLayer` strictly in
- * order, so an `event` pushed ahead of the `config` command for its target is
- * processed when no config exists for that ID and is dropped. Buffering locally
- * and flushing only once `window.gtag` is real guarantees every conversion
- * lands after `config`, which is the only ordering gtag accepts.
- */
-const pending: unknown[][] = [];
-let flushTimer: ReturnType<typeof setInterval> | undefined;
+const TAG_SCRIPT_ID = "gtag-js";
 
-function flush(): boolean {
+/**
+ * Google's canonical bootstrap, run synchronously before the click listener is
+ * attached. Because `js` and `config` are queued here first, any later event is
+ * guaranteed to sit behind them in `dataLayer` — and gtag.js processes that
+ * queue strictly in order, dropping events that arrive before their target's
+ * config. Ordering is therefore structural; no buffering is needed.
+ */
+function bootstrapGtag(): boolean {
   const w = window as WindowWithGtag;
-  if (typeof w.gtag !== "function") return false;
-  while (pending.length) w.gtag(...pending.shift()!);
-  if (flushTimer) { clearInterval(flushTimer); flushTimer = undefined; }
+  if (document.getElementById(TAG_SCRIPT_ID)) return true;
+
+  w.dataLayer = w.dataLayer || [];
+  w.gtag = function gtag() {
+    // gtag.js expects the `arguments` object itself, which is why this is a
+    // function expression and not a rest-parameter arrow.
+    // eslint-disable-next-line prefer-rest-params
+    w.dataLayer!.push(arguments);
+  };
+  w.gtag("js", new Date());
+  w.gtag("config", ADS_CONVERSION_ID);
+
+  const el = document.createElement("script");
+  el.id = TAG_SCRIPT_ID;
+  el.async = true;
+  el.src = `https://www.googletagmanager.com/gtag/js?id=${ADS_CONVERSION_ID}`;
+  document.head.appendChild(el);
   return true;
 }
 
-function send(...args: unknown[]) {
-  pending.push(args);
-  if (flush() || flushTimer) return;
-  // gtag.js is still loading. Poll briefly, then give up rather than leak a
-  // timer — if the tag never arrives, the events were never going anywhere.
-  let tries = 0;
-  flushTimer = setInterval(() => {
-    if (flush() || ++tries > 40) {
-      clearInterval(flushTimer);
-      flushTimer = undefined;
-    }
-  }, 250);
-}
-
 function track(key: ConversionKey, params: Record<string, string>) {
+  const gtag = (window as WindowWithGtag).gtag;
+  if (typeof gtag !== "function") return; // tag gated off; nothing to report to
+
   // Always emit the named event, so the interaction is measurable even before
   // the conversion labels have been issued in the Google Ads UI.
-  send("event", CONVERSION_EVENT_NAMES[key], params);
+  gtag("event", CONVERSION_EVENT_NAMES[key], params);
 
   const target = sendTo(key);
-  if (target) send("event", "conversion", { send_to: target, ...params });
+  if (target) gtag("event", "conversion", { send_to: target, ...params });
 }
 
 /**
@@ -101,44 +106,43 @@ function classify(href: string): ConversionKey | null {
   return null;
 }
 
+function onClick(event: MouseEvent) {
+  const anchor = (event.target as Element | null)?.closest?.("a");
+  if (!anchor) return;
+
+  // Read the literal attribute: anchor.href would resolve tel:/mailto:
+  // inconsistently across browsers.
+  const href = anchor.getAttribute("href") || "";
+  const key = classify(href);
+  if (!key) return;
+
+  const params: Record<string, string> = {
+    link_url: href.slice(0, 500),
+    page_path: window.location.pathname,
+  };
+
+  const audience = plausibleProp(anchor, "audience");
+  if (audience) params.audience = audience;
+  const product = plausibleProp(anchor, "product");
+  if (product) params.product = product;
+
+  // /en/… or /ar/… — worth splitting, since the two locales get separate
+  // campaigns and need separately readable conversion counts.
+  const locale = window.location.pathname.split("/")[1];
+  if (locale === "en" || locale === "ar") params.locale = locale;
+
+  // The floating bubble converts very differently from an in-page CTA on a
+  // product detail page; keep them distinguishable in reporting.
+  if (anchor.classList.contains("plausible-event-name=whatsapp_floating_click")) {
+    params.placement = "floating";
+  }
+
+  track(key, params);
+}
+
 if (typeof window !== "undefined" && isProductionHost(window.location.hostname)) {
-  document.addEventListener(
-    "click",
-    (event) => {
-      const anchor = (event.target as Element | null)?.closest?.("a");
-      if (!anchor) return;
-
-      // Read the literal attribute: anchor.href would resolve tel:/mailto:
-      // inconsistently across browsers.
-      const href = anchor.getAttribute("href") || "";
-      const key = classify(href);
-      if (!key) return;
-
-      const params: Record<string, string> = {
-        link_url: href.slice(0, 500),
-        page_path: window.location.pathname,
-      };
-
-      const audience = plausibleProp(anchor, "audience");
-      if (audience) params.audience = audience;
-      const product = plausibleProp(anchor, "product");
-      if (product) params.product = product;
-
-      // /en/… or /ar/… — worth splitting, since the two locales get separate
-      // campaigns and need separately readable conversion counts.
-      const locale = window.location.pathname.split("/")[1];
-      if (locale === "en" || locale === "ar") params.locale = locale;
-
-      // The floating bubble converts very differently from an in-page CTA on a
-      // product detail page; keep them distinguishable in reporting.
-      if (anchor.classList.contains("plausible-event-name=whatsapp_floating_click")) {
-        params.placement = "floating";
-      }
-
-      track(key, params);
-    },
-    // Capture phase: the event is observed even if a handler further down stops
-    // propagation. Passive: this listener never calls preventDefault.
-    { capture: true, passive: true },
-  );
+  bootstrapGtag();
+  // Capture phase: the event is observed even if a handler further down stops
+  // propagation. Passive: this listener never calls preventDefault.
+  document.addEventListener("click", onClick, { capture: true, passive: true });
 }

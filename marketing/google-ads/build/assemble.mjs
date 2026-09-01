@@ -61,6 +61,34 @@ for (const p of catalogue.products) {
 const HUBS = ["", "/b2c/products", "/b2b", "/b2b/products", "/b2b/become-a-dealer", "/about", "/contact", "/b2c/blog"];
 for (const loc of ["en", "ar"]) for (const path of HUBS) liveUrls.add(`${SITE}/${loc}${path}`);
 
+/**
+ * The catalogue is generated from the DEPLOYED commit, so ads can only ever
+ * target pages that exist. If the working tree has since renamed or added
+ * products, the ads are correct today but will drift the moment that work
+ * ships — an ad saying "Vertek" landing on a page headed "VTEK" is a
+ * destination mismatch. Warn loudly rather than let it be discovered in
+ * production.
+ */
+try {
+  const working = readFileSync(join(HERE, "..", "..", "..", "src", "data", "products.ts"), "utf8");
+  const slugsOf = (src) => new Set([...src.matchAll(/slug: "([a-z0-9-]+)"/g)].map((m) => m[1]));
+  const live = new Set(catalogue.products.map((p) => p.slug));
+  const excluded = new Set(catalogue.excludedSlugs);
+  const wt = slugsOf(working);
+  const gone = [...live].filter((s) => !wt.has(s));
+  const added = [...wt].filter((s) => !live.has(s) && !excluded.has(s));
+  if (gone.length || added.length) {
+    warn(
+      "working tree",
+      `src/data/products.ts differs from the deployed catalogue — these ads are correct for what is live now, but MUST be rebuilt when that work ships.` +
+        (gone.length ? ` Targeted today but gone in the working tree: ${gone.join(", ")}.` : "") +
+        (added.length ? ` New in the working tree, not yet advertised: ${added.join(", ")}.` : ""),
+    );
+  }
+} catch {
+  // Not fatal — the check is a convenience, not a correctness requirement.
+}
+
 const forbiddenBrands = /insta ?finish|getsun|sitrett|grizzly/i;
 const forbiddenSlugs = new Set(catalogue.excludedSlugs);
 const accountNegatives = new Set();
@@ -82,6 +110,18 @@ for (const p of catalogue.products) {
   if (s) sizeBySlug.set(p.slug, s[1].trim());
   const o = /Origin=([^|]+)/.exec(p.specs || "");
   if (o) originBySlug.set(p.slug, o[1].trim());
+}
+
+/**
+ * Products whose page publishes a price, which every ad contradicts by saying
+ * "ask on WhatsApp for a quote" — and which public/llms.txt contradicts by
+ * telling crawlers that product pages carry no public prices. Surfaced as a
+ * warning, not an error: which of the two is wrong is a pricing decision.
+ */
+const pricedSlugs = new Map();
+for (const p of catalogue.products) {
+  const m = /Price=([^|]+)/.exec(p.specs || "");
+  if (m) pricedSlugs.set(p.slug, m[1].trim());
 }
 
 const AR_DIGITS = "٠١٢٣٤٥٦٧٨٩";
@@ -211,7 +251,15 @@ for (const { file, data } of themes) {
       Status: "Paused",
       Budget: c.dailyBudgetQAR,
       "Budget Type": "Daily",
-      "Bid Strategy Type": c.bidStrategy || "Maximize conversions",
+      // Launch on Manual CPC, not the themes' declared "Maximize conversions".
+      //
+      // Smart Bidding cannot work without conversion history, and this account
+      // has none: it would bid blind and spend the full daily budget gathering
+      // data. It would also make every ad group's hand-set maxCpcQAR inert.
+      // Manual CPC makes those bids live and spend predictable. The declared
+      // strategy is preserved in campaign-settings.csv as the target to switch
+      // to once ~30 conversions in 30 days have accumulated.
+      "Bid Strategy Type": "Manual CPC",
       Networks: "Google search",
       Languages: c.language === "ar" ? "Arabic" : "English",
     });
@@ -228,7 +276,8 @@ for (const { file, data } of themes) {
       "Excluded locations": (c.excludedLocations || []).join("; "),
       "Ad schedule": c.adSchedule || "",
       "Daily budget (QAR)": c.dailyBudgetQAR,
-      "Bid strategy": c.bidStrategy || "Maximize conversions",
+      "Bid strategy at launch": "Manual CPC (ad-group Max CPC applies)",
+      "Switch to once ~30 conversions/30 days": c.bidStrategy || "Maximize conversions",
       Rationale: c.rationale || "",
     });
 
@@ -309,6 +358,11 @@ for (const { file, data } of themes) {
       }
 
       checkDilutionClaims(gw, url, [...H, ...D]);
+
+      const pricedSlug = url.split("?")[0].split("/products/")[1];
+      if (pricedSlug && pricedSlugs.has(pricedSlug)) {
+        warn(gw, `lands on ${pricedSlug}, which publishes "${pricedSlugs.get(pricedSlug)}" — the ad offers a WhatsApp quote and llms.txt says pages carry no prices`);
+      }
 
       const adRow = {
         Campaign: c.name, "Ad Group": g.name,
@@ -423,7 +477,14 @@ for (const r of rows.keywords) {
   if (better) kwBest.set(key, r);
 }
 const dedupedKeywords = rows.keywords.length - kwBest.size;
-rows.keywords = [...kwBest.values()].map(({ _lang, _url, _file, ...keep }) => keep);
+rows.keywords = [...kwBest.values()].map((r) => {
+  // Strip the fields used only for de-duplication so they don't become columns.
+  const keep = { ...r };
+  delete keep._lang;
+  delete keep._url;
+  delete keep._file;
+  return keep;
+});
 totalKeywords = rows.keywords.length;
 
 // A keyword-less ad group would import but never serve. Catch it here.
@@ -529,25 +590,35 @@ if (errors.length) {
   process.exit(1);
 }
 
+// import/ contains ONLY files you actually import, numbered in the order they
+// must be imported. The settings sheet is reference material for settings that
+// are applied by hand, so it lives outside that folder — a file in import/ that
+// must not be imported is a footgun.
 const written = [
   csv("01-campaigns.csv", rows.campaigns),
   csv("02-ad-groups.csv", rows.adGroups),
   csv("03-keywords.csv", rows.keywords),
   csv("04-negative-keywords.csv", rows.negatives),
   csv("05-responsive-search-ads.csv", rows.ads),
-  csv("06-campaign-settings-REFERENCE-ONLY.csv", rows.settings),
-  csv("07-sitelinks.csv", assetRows.sitelinks),
-  csv("08-callouts.csv", assetRows.callouts),
-  csv("09-structured-snippets.csv", assetRows.snippets),
+  csv("06-sitelinks.csv", assetRows.sitelinks),
+  csv("07-callouts.csv", assetRows.callouts),
+  csv("08-structured-snippets.csv", assetRows.snippets),
 ].filter(Boolean);
 
 if (sharedNegativeList.length) {
   writeFileSync(
-    join(OUT, "10-shared-negative-list.txt"),
+    join(OUT, "09-shared-negative-list.txt"),
     "﻿" + sharedNegativeList.join("\r\n") + "\r\n",
     "utf8",
   );
-  written.push(`10-shared-negative-list.txt (${sharedNegativeList.length} terms)`);
+  written.push(`09-shared-negative-list.txt (${sharedNegativeList.length} terms)`);
+}
+
+if (rows.settings.length) {
+  const cols = [...new Set(rows.settings.flatMap(Object.keys))];
+  const body = [cols.join(","), ...rows.settings.map((r) => cols.map((c) => esc(r[c])).join(","))].join("\r\n");
+  writeFileSync(join(HERE, "..", "campaign-settings.csv"), "﻿" + body + "\r\n", "utf8");
+  written.push(`../campaign-settings.csv (${rows.settings.length} rows, NOT imported)`);
 }
 
 console.log("✓ VALIDATION PASSED");

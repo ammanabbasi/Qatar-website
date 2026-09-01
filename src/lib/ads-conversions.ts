@@ -17,27 +17,20 @@ import { SITE } from "@/lib/constants";
 export const ADS_CONVERSION_ID = "AW-18200382552";
 
 /**
+ * The single gate on all Google Ads tracking: the tag loads, and conversions
+ * fire, only on the real domain.
+ *
  * Localhost and Vercel preview deployments must never report into the live Ads
- * account. Preview traffic is developers and crawlers, and polluting conversion
- * data corrupts the Smart Bidding every campaign depends on.
+ * account — preview traffic is developers and crawlers, and polluting conversion
+ * data corrupts the Smart Bidding the campaigns depend on. The site's Plausible
+ * tag is gated for exactly this reason; the Ads tag was the one tracker without
+ * such a gate.
  *
- * This mirrors the existing Plausible gate in layout.tsx, which is env-gated for
- * exactly this reason ("so localhost traffic doesn't pollute production stats").
- * The Ads tag was the one tracker without such a gate.
- *
- * Vercel exposes NEXT_PUBLIC_VERCEL_ENV as "production" | "preview" |
- * "development". When it is absent (self-hosted, or a Vercel change), the
- * fallback is NODE_ENV — deliberately preserving today's behaviour rather than
- * risking tracking silently switching off in production.
- */
-const vercelEnv = process.env.NEXT_PUBLIC_VERCEL_ENV;
-export const ADS_TAG_ENABLED = vercelEnv
-  ? vercelEnv === "production"
-  : process.env.NODE_ENV === "production";
-
-/**
- * Second, independent gate on the conversion events themselves — a hostname
- * check cannot be fooled by a mis-set environment variable.
+ * An earlier version gated on NEXT_PUBLIC_VERCEL_ENV. That was dropped: it only
+ * exists when "Enable access to System Environment Variables" is on in Vercel,
+ * and its effect could not be verified from outside a preview deployment — so
+ * the protection was unprovable. A hostname check is always available, always
+ * correct, needs no Vercel setting, and can be tested locally.
  *
  * Set NEXT_PUBLIC_ADS_FORCE_TRACKING=1 to exercise tracking locally.
  */

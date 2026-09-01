@@ -1,13 +1,13 @@
 ﻿Campaign,Campaign Type,Campaign Subtype,Status,Budget,Budget Type,Bid Strategy Type,Networks,Languages
-ABK | Search | EN | B2B Wholesale & Dealers,Search,All features,Paused,35,Daily,Maximize conversions,Google search,English
-ABK | Search | AR | B2B Wholesale & Dealers,Search,All features,Paused,15,Daily,Maximize conversions,Google search,Arabic
-ABK | Search | EN | Autotriz Ceramic Coatings,Search,All features,Paused,30,Daily,Maximize conversions,Google search,English
-ABK | Search | AR | Autotriz Ceramic Coatings,Search,All features,Paused,20,Daily,Maximize conversions,Google search,Arabic
-ABK | Search | EN | Interior & Fragrance,Search,All features,Paused,25,Daily,Maximize conversions,Google search,English
-ABK | Search | AR | Interior & Fragrance,Search,All features,Paused,15,Daily,Maximize conversions,Google search,Arabic
-ABK | Search | EN | Autotriz Compounds & Shampoo,Search,All features,Paused,30,Daily,Maximize conversions,Google search,English
-ABK | Search | AR | Autotriz Compounds & Shampoo,Search,All features,Paused,15,Daily,Maximize conversions,Google search,Arabic
-ABK | Search | EN | Vertek PPF & Window Tint,Search,All features,Paused,45,Daily,Maximize conversions,Google search,English
-ABK | Search | AR | Vertek PPF & Window Tint,Search,All features,Paused,20,Daily,Maximize conversions,Google search,Arabic
-ABK | Search | EN | Briller Wash Care Chemicals,Search,All features,Paused,30,Daily,Maximize conversions,Google search,English
-ABK | Search | AR | Briller Wash Care Chemicals,Search,All features,Paused,15,Daily,Maximize conversions,Google search,Arabic
+ABK | Search | EN | B2B Wholesale & Dealers,Search,All features,Paused,35,Daily,Manual CPC,Google search,English
+ABK | Search | AR | B2B Wholesale & Dealers,Search,All features,Paused,15,Daily,Manual CPC,Google search,Arabic
+ABK | Search | EN | Autotriz Ceramic Coatings,Search,All features,Paused,30,Daily,Manual CPC,Google search,English
+ABK | Search | AR | Autotriz Ceramic Coatings,Search,All features,Paused,20,Daily,Manual CPC,Google search,Arabic
+ABK | Search | EN | Interior & Fragrance,Search,All features,Paused,25,Daily,Manual CPC,Google search,English
+ABK | Search | AR | Interior & Fragrance,Search,All features,Paused,15,Daily,Manual CPC,Google search,Arabic
+ABK | Search | EN | Autotriz Compounds & Shampoo,Search,All features,Paused,30,Daily,Manual CPC,Google search,English
+ABK | Search | AR | Autotriz Compounds & Shampoo,Search,All features,Paused,15,Daily,Manual CPC,Google search,Arabic
+ABK | Search | EN | Vertek PPF & Window Tint,Search,All features,Paused,45,Daily,Manual CPC,Google search,English
+ABK | Search | AR | Vertek PPF & Window Tint,Search,All features,Paused,20,Daily,Manual CPC,Google search,Arabic
+ABK | Search | EN | Briller Wash Care Chemicals,Search,All features,Paused,30,Daily,Manual CPC,Google search,English
+ABK | Search | AR | Briller Wash Care Chemicals,Search,All features,Paused,15,Daily,Manual CPC,Google search,Arabic
