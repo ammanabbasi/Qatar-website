@@ -23,7 +23,7 @@ const DISTRIBUTOR_BRANDS = [
     key: "VTEK",
     name: "VTEK",
     country: { en: "USA", ar: "أمريكا" },
-    logo: "/brands/vtek.svg",
+    logo: "/brands/vtek.webp",
   },
   {
     key: "Autotriz",
@@ -35,7 +35,7 @@ const DISTRIBUTOR_BRANDS = [
     key: "Briller",
     name: "BRILLER",
     country: { en: "CANADA", ar: "كندا" },
-    logo: "/brands/briller.svg",
+    logo: "/brands/briller.webp",
   },
 ];
 
