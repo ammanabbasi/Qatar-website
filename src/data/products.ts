@@ -74,12 +74,12 @@ export const PRODUCTS: Product[] = [
       ar: "VTEK — فيلم حماية الطلاء Weather Armor ULTIMATE",
     },
     shortDesc: {
-      en: "Flagship Polycarbonate TPU paint protection film with ultra-gloss clarity, instant self-healing and 10-year warranty.",
-      ar: "فيلم حماية الطلاء الرائد من بولي كربونات TPU بلمعان فائق وإصلاح ذاتي فوري وضمان 10 سنوات.",
+      en: "Flagship Polycarbonate TPU paint protection film with ultra-gloss clarity, instant self-healing and 15-year warranty.",
+      ar: "فيلم حماية الطلاء الرائد من بولي كربونات TPU بلمعان فائق وإصلاح ذاتي فوري وضمان 15 سنة.",
     },
     longDesc: {
-      en: "VTEK® Weather Armor™ ULTIMATE represents the pinnacle of paint protection film technology. Engineered with Polycarbonate TPU, it delivers exceptional optical clarity, superior stretchability, and extreme resistance against yellowing, chemical stains, desert sand abrasion, and rock chip impact. Designed for long-term durability under harsh Middle Eastern climate conditions, Ultimate offers a self-healing, ultra-gloss finish that enhances the true depth and color of automotive paint. Backed by a 10-year manufacturer warranty.",
-      ar: "يمثل فيلم VTEK® Weather Armor™ ULTIMATE قمة تكنولوجيا أفلام حماية الطلاء. صُمم من بولي كربونات TPU المتطورة ليمنح نقاءً بصرياً استثنائياً ومرونة فائقة ومقاومة قصوى للاصفرار والبقع الكيميائية وتآكل الرمال الصحراوية وأضرار الحصى. صُمم لتحمل أقسى الظروف المناخية في قطر، مع طبقة ذاتية الالتئام الفوري ولمعان فائق يبرز عمق ولون طلاء السيارة الأصلي، مع ضمان شامل لمدة 10 سنوات.",
+      en: "VTEK® Weather Armor™ ULTIMATE represents the pinnacle of paint protection film technology. Engineered with Polycarbonate TPU, it delivers exceptional optical clarity, superior stretchability, and extreme resistance against yellowing, chemical stains, desert sand abrasion, and rock chip impact. Designed for long-term durability under harsh Middle Eastern climate conditions, Ultimate offers a self-healing, ultra-gloss finish that enhances the true depth and color of automotive paint. Backed by a 15-year manufacturer warranty.",
+      ar: "يمثل فيلم VTEK® Weather Armor™ ULTIMATE قمة تكنولوجيا أفلام حماية الطلاء. صُمم من بولي كربونات TPU المتطورة ليمنح نقاءً بصرياً استثنائياً ومرونة فائقة ومقاومة قصوى للاصفرار والبقع الكيميائية وتآكل الرمال الصحراوية وأضرار الحصى. صُمم لتحمل أقسى الظروف المناخية في قطر، مع طبقة ذاتية الالتئام الفوري ولمعان فائق يبرز عمق ولون طلاء السيارة الأصلي، مع ضمان شامل لمدة 15 سنة.",
     },
     images: [
       "/products/vtek/vtek-weather-armor-ultimate.webp",
@@ -108,7 +108,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         label: { en: "Warranty", ar: "الضمان" },
-        value: { en: "10-Year Manufacturer Warranty", ar: "ضمان المصنع لمدة ١٠ سنوات" },
+        value: { en: "15-Year Manufacturer Warranty", ar: "ضمان المصنع لمدة ١٥ سنة" },
       },
       {
         label: { en: "Resistance", ar: "المقاومة" },
@@ -121,7 +121,7 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-08-31",
+    updatedAt: "2026-09-01",
   },
   {
     slug: "vtek-ppf-weather-armor-pro",
@@ -132,12 +132,12 @@ export const PRODUCTS: Product[] = [
       ar: "VTEK — فيلم حماية الطلاء Weather Armor PRO",
     },
     shortDesc: {
-      en: "Proven performance paint protection film with robust scratch resistance, high optical gloss and 8-year warranty.",
-      ar: "فيلم حماية طلاء عالي الأداء والموثوقية بمقاومة قوية للخدوش ولمعان بصري نقي وضمان 8 سنوات.",
+      en: "Proven performance paint protection film with robust scratch resistance, high optical gloss and 10-year warranty.",
+      ar: "فيلم حماية طلاء عالي الأداء والموثوقية بمقاومة قوية للخدوش ولمعان بصري نقي وضمان 10 سنوات.",
     },
     longDesc: {
-      en: "VTEK® Weather Armor™ PRO offers an excellent balance of protection, gloss, and flexibility. It provides robust resistance to scratches, stains, and weathering while maintaining outstanding optical transparency. Designed for professional installers seeking reliability and easy handling, PRO ensures long-lasting protection for both daily drivers and premium vehicles across Qatar. Backed by an 8-year warranty.",
-      ar: "يوفر فيلم VTEK® Weather Armor™ PRO توازناً ممتازاً بين الحماية واللمعان والمرونة العالية. يمنح مقاومة قوية للخدوش والبقع والعوامل الجوية مع الحفاظ على شفافية بصرية نقية. صُمم لتسهيل عملية التركيب الاحترافي وضمان حماية موثوقة طويلة الأمد للسيارات اليومية والفاخرة في قطر، مع ضمان لمدة 8 سنوات.",
+      en: "VTEK® Weather Armor™ PRO offers an excellent balance of protection, gloss, and flexibility. It provides robust resistance to scratches, stains, and weathering while maintaining outstanding optical transparency. Designed for professional installers seeking reliability and easy handling, PRO ensures long-lasting protection for both daily drivers and premium vehicles across Qatar. Backed by a 10-year warranty.",
+      ar: "يوفر فيلم VTEK® Weather Armor™ PRO توازناً ممتازاً بين الحماية واللمعان والمرونة العالية. يمنح مقاومة قوية للخدوش والبقع والعوامل الجوية مع الحفاظ على شفافية بصرية نقية. صُمم لتسهيل عملية التركيب الاحترافي وضمان حماية موثوقة طويلة الأمد للسيارات اليومية والفاخرة في قطر، مع ضمان لمدة 10 سنوات.",
     },
     images: [
       "/products/vtek/vtek-weather-armor-pro.webp",
@@ -165,7 +165,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         label: { en: "Warranty", ar: "الضمان" },
-        value: { en: "8-Year Warranty", ar: "ضمان ٨ سنوات" },
+        value: { en: "10-Year Warranty", ar: "ضمان ١٠ سنوات" },
       },
       {
         label: { en: "Handling", ar: "التركيب" },
@@ -178,7 +178,7 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-08-31",
+    updatedAt: "2026-09-01",
   },
   {
     slug: "vtek-ppf-weather-armor-matte",
@@ -189,12 +189,12 @@ export const PRODUCTS: Product[] = [
       ar: "VTEK — فيلم حماية الطلاء Weather Armor MATTE (مطفي)",
     },
     shortDesc: {
-      en: "Stealth satin matte paint protection film for a bold non-reflective finish with 10-year durability.",
-      ar: "فيلم حماية طلاء مطفي ساتان لمظهر جريء غير عاكس مع حماية فائقة وضمان 10 سنوات.",
+      en: "Stealth satin matte paint protection film for a bold non-reflective finish with a 5-year warranty.",
+      ar: "فيلم حماية طلاء مطفي ساتان لمظهر جريء غير عاكس مع حماية فائقة وضمان 5 سنوات.",
     },
     longDesc: {
-      en: "For a bold, non-reflective look, VTEK® Weather Armor™ MATTE provides stealthy protection without sacrificing durability. Its satin matte finish resists UV rays, desert sand abrasion, road salt, and environmental grime, keeping your vehicle looking pristine with minimal upkeep. MATTE transforms factory gloss finishes into a sleek satin surface while defending against rock chips and scratches. Backed by a 10-year warranty.",
-      ar: "لإطلالة رياضية جريئة وغير عاكسة، يمنح فيلم VTEK® Weather Armor™ MATTE حماية خفية فائقة دون المساس بالمتانة. يقاوم تشطيبه المطفي الساتاني الأشعة فوق البنفسجية وتآكل الرمال الصحراوية والأملاح والأوساخ، مما يحافظ على مظهر سيارتك المتجدد بأقل قدر من العناية. يحول الطلاء اللامع إلى مظهر ساتان مطفي فاخر مع حماية تامة وضمان 10 سنوات.",
+      en: "For a bold, non-reflective look, VTEK® Weather Armor™ MATTE provides stealthy protection without sacrificing durability. Its satin matte finish resists UV rays, desert sand abrasion, road salt, and environmental grime, keeping your vehicle looking pristine with minimal upkeep. MATTE transforms factory gloss finishes into a sleek satin surface while defending against rock chips and scratches. Backed by a 5-year warranty.",
+      ar: "لإطلالة رياضية جريئة وغير عاكسة، يمنح فيلم VTEK® Weather Armor™ MATTE حماية خفية فائقة دون المساس بالمتانة. يقاوم تشطيبه المطفي الساتاني الأشعة فوق البنفسجية وتآكل الرمال الصحراوية والأملاح والأوساخ، مما يحافظ على مظهر سيارتك المتجدد بأقل قدر من العناية. يحول الطلاء اللامع إلى مظهر ساتان مطفي فاخر مع حماية تامة وضمان 5 سنوات.",
     },
     images: [
       "/products/vtek/vtek-weather-armor-matte.webp",
@@ -223,7 +223,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         label: { en: "Warranty", ar: "الضمان" },
-        value: { en: "10-Year Warranty", ar: "ضمان ١٠ سنوات" },
+        value: { en: "5-Year Warranty", ar: "ضمان ٥ سنوات" },
       },
       {
         label: { en: "Maintenance", ar: "العناية" },
@@ -233,7 +233,7 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-08-31",
+    updatedAt: "2026-09-01",
   },
   {
     slug: "vtek-ppf-weather-armor-prism",
@@ -248,8 +248,8 @@ export const PRODUCTS: Product[] = [
       ar: "فيلم حماية طلاء ملون يجمع بين تغيير لون السيارة الرياضي وحماية الطلاء الأصلية من الصدمات وثبات اللون.",
     },
     longDesc: {
-      en: "VTEK® Weather Armor™ PRISM is a premium-grade colored paint protection film that offers top-notch defense against scratches, chips, and stains while adding dynamic color to your vehicle. Engineered with advanced Polycaprolactone Color TPU and high-performance adhesives, PRISM stays securely bonded without edge lifting even in extreme Middle Eastern heat. Choose from gloss and satin colors to customize your vehicle while preserving factory paint underneath. Backed by an 8-year warranty.",
-      ar: "يعد فيلم VTEK® Weather Armor™ PRISM فيلماً ملوناً فائق الجودة لحماية الطلاء، يمنح حماية متكاملة ضد الخدوش وضربات الحصى والبقع مع إمكانية تغيير لون سيارتك بأسلوب عصري. صُمم بتقنية Polycaprolactone Color TPU ومواد لاصقة فائقة الثبات تمنع رفع الحواف حتى في حرارة الصيف ورطوبة الخليج، مع الحفاظ على طلاء المصنع وضمان 8 سنوات.",
+      en: "VTEK® Weather Armor™ PRISM is a premium-grade colored paint protection film that offers top-notch defense against scratches, chips, and stains while adding dynamic color to your vehicle. Engineered with advanced Polycaprolactone Color TPU and high-performance adhesives, PRISM stays securely bonded without edge lifting even in extreme Middle Eastern heat. Choose from gloss and satin colors to customize your vehicle while preserving factory paint underneath. Backed by a 5-year warranty.",
+      ar: "يعد فيلم VTEK® Weather Armor™ PRISM فيلماً ملوناً فائق الجودة لحماية الطلاء، يمنح حماية متكاملة ضد الخدوش وضربات الحصى والبقع مع إمكانية تغيير لون سيارتك بأسلوب عصري. صُمم بتقنية Polycaprolactone Color TPU ومواد لاصقة فائقة الثبات تمنع رفع الحواف حتى في حرارة الصيف ورطوبة الخليج، مع الحفاظ على طلاء المصنع وضمان 5 سنوات.",
     },
     images: [
       "/products/vtek/vtek-weather-armor-prism.webp",
@@ -284,13 +284,13 @@ export const PRODUCTS: Product[] = [
       },
       {
         label: { en: "Warranty", ar: "الضمان" },
-        value: { en: "8-Year Warranty", ar: "ضمان ٨ سنوات" },
+        value: { en: "5-Year Warranty", ar: "ضمان ٥ سنوات" },
       },
     ],
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-08-31",
+    updatedAt: "2026-09-01",
   },
   // ───── VTEK (formerly Vertek) — Solar Armor Window Tints (STAR)
   {

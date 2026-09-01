@@ -26,8 +26,8 @@ export const FAQ: FaqEntry[] = [
       ar: "ما مدة عمر فيلم حماية الطلاء PPF؟",
     },
     a: {
-      en: "Premium paint protection films like VTEK Weather Armor typically last 8–10 years under normal use, depending on climate exposure and care. The self-healing top-coat regenerates light scratches with heat from the sun or warm water.",
-      ar: "تدوم أفلام حماية الطلاء الفاخرة مثل VTEK Weather Armor عادةً من 8 إلى 10 سنوات في الاستخدام الطبيعي، حسب التعرض للعوامل الجوية والعناية. تعيد طبقة الإصلاح الذاتي ترميم الخدوش الخفيفة بحرارة الشمس أو الماء الدافئ.",
+      en: "Premium paint protection films like VTEK Weather Armor typically last 5–15 years under normal use, depending on the film grade, climate exposure and care. The self-healing top-coat regenerates light scratches with heat from the sun or warm water.",
+      ar: "تدوم أفلام حماية الطلاء الفاخرة مثل VTEK Weather Armor عادةً من 5 إلى 15 سنة في الاستخدام الطبيعي، حسب فئة الفيلم والتعرض للعوامل الجوية والعناية. تعيد طبقة الإصلاح الذاتي ترميم الخدوش الخفيفة بحرارة الشمس أو الماء الدافئ.",
     },
   },
   {
@@ -116,8 +116,8 @@ export const FAQ: FaqEntry[] = [
       ar: "هل أفلام VTEK لحماية الطلاء مشمولة بضمان؟",
     },
     a: {
-      en: "Yes. Genuine VTEK (formerly Vertek) PPF carries an 8 to 10-year manufacturer warranty against yellowing, cracking and delamination when fitted by an authorised installer following VTEK's procedures. ABK is the authorised Qatar distributor and supplies the film with official warranty documentation.",
-      ar: "نعم. تأتي أفلام VTEK (المعروفة سابقاً بـ Vertek) الأصلية بضمان مصنع لمدة 8 إلى 10 سنوات ضد الاصفرار والتشقق والانفصال عند التركيب من قِبل مُركّب معتمد وفق إجراءات VTEK. ABK هو الموزع المعتمد في قطر ويورّد الفيلم مع مستندات الضمان الرسمية.",
+      en: "Yes. Genuine VTEK (formerly Vertek) PPF carries a 5 to 15-year manufacturer warranty, depending on the film, against yellowing, cracking and delamination when fitted by an authorised installer following VTEK's procedures. ABK is the authorised Qatar distributor and supplies the film with official warranty documentation.",
+      ar: "نعم. تأتي أفلام VTEK (المعروفة سابقاً بـ Vertek) الأصلية بضمان مصنع لمدة 5 إلى 15 سنة حسب نوع الفيلم ضد الاصفرار والتشقق والانفصال عند التركيب من قِبل مُركّب معتمد وفق إجراءات VTEK. ABK هو الموزع المعتمد في قطر ويورّد الفيلم مع مستندات الضمان الرسمية.",
     },
   },
   {
