@@ -452,8 +452,8 @@ export const PRODUCTS: Product[] = [
     brand: "Briller",
     category: "degreaser",
     name: {
-      en: "Briller Heavy Duty Degreaser",
-      ar: "Briller — مزيل الشحوم عالي الفعالية",
+      en: "Briller Heavy Duty Degreaser (20L)",
+      ar: "Briller — مزيل الشحوم عالي الفعالية (٢٠ لتر)",
     },
     shortDesc: {
       en: "Professional heavy-duty degreaser with All-in-One CA Tech™. Formulated for tough stains, heavy grease, engine oil and rust. 1:5 dilution ratio. Made in Canada.",
