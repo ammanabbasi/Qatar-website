@@ -748,7 +748,10 @@ export const PRODUCTS: Product[] = [
       en: "AUTOTRIZ REVO is a cutting-edge nano ceramic coating that amplifies the latest improvement in nano technology. Proven to stand out against the typical elements that deal harm to paintwork. It fills nanopores and establishes great molecular bonds to achieve next-level durability and stability. Professional application recommended.",
       ar: "AUTOTRIZ REVO طلاء سيراميك نانو متطور يستخدم أحدث التطورات في تقنية النانو. أثبت تفوقه في مواجهة العوامل النموذجية التي تضر بالطلاء. يملأ المسام النانوية ويُنشئ روابط جزيئية قوية لتحقيق متانة واستقرار من المستوى التالي. يُوصى بالتطبيق الاحترافي.",
     },
-    images: ["/products/autotriz/autotriz-revo-ceramic-coating.webp"],
+    images: [
+      "/products/autotriz/autotriz-revo-ceramic-coating.webp",
+      "/products/autotriz/autotriz-revo-ceramic-coating-box.webp",
+    ],
     specs: [
       { label: { en: "Size", ar: "الحجم" }, value: { en: "50 ml / 1.7 oz", ar: "٥٠ مل" } },
       { label: { en: "Technology", ar: "التقنية" }, value: { en: "Nano ceramic coating", ar: "سيراميك نانو" } },
