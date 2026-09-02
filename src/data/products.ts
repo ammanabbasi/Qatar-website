@@ -1173,6 +1173,36 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     updatedAt: "2026-09-01",
   },
+  {
+    slug: "premium-microfiber-towel-60x40",
+    brand: "Other",
+    category: "accessories",
+    name: {
+      en: "Premium Microfibre Towel (60×40 cm)",
+      ar: "منشفة مايكروفايبر فاخرة — ٦٠×٤٠ سم",
+    },
+    shortDesc: {
+      en: "Premium multi-purpose microfibre towel (60×40 cm). Specially crafted for car washing, crystal-clear glass, and interior detailing.",
+      ar: "منشفة مايكروفايبر فاخرة متعددة الاستخدامات (٦٠×٤٠ سم). مخصصة لغسيل السيارات وتنظيف الزجاج والعناية بالمقصورة الداخلية.",
+    },
+    longDesc: {
+      en: "Premium quality purple microfibre detailing towel (60×40 cm) with reinforced stitched edges for long-lasting durability. Ultra-soft and highly absorbent fibers safely capture dirt, dust, and moisture without scratching delicate paint or interior surfaces.\n\nKey Use Cases:\n• Car Washing & Exterior Detailing: Safely lifts road dirt with rich suds and protects against swirl marks.\n• Glass & Windshield Cleaning: Leaves a crystal-clear, streak-free, and lint-free finish.\n• Interior Leather & Trim Care: Perfect for wiping down dashboard, leather seats, vinyl, and console screens.\n\nKey Highlights:\n• Size: 60 × 40 cm\n• Premium stitched borders: Prevents fraying across hundreds of wash cycles\n• Multi-surface safe: Exterior, glass, and interior upholstery\n• Reusable & Machine Washable",
+      ar: "منشفة مايكروفايبر بنفسجية فاخرة للعناية بالسيارات (٦٠×٤٠ سم) بحواف مخيطة ومدعمة لمتانة تدوم طويلاً. ألياف ناعمة وفائقة الامتصاص تلتقط الأوساخ والغبار والرطوبة بأمان دون خدش الطلاء أو الأسطح الداخلية.\n\nالاستخدامات الرئيسية:\n• غسيل السيارات والتنظيف الخارجي: رفع الأوساخ بأمان مع الرغوة وحماية الطلاء من الدوامات.\n• تنظيف الزجاج والواجهات: يمنح الزجاج والزجاج الأمامي نظافة ولمعاناً فائقاً بدون خطوط أو وبر.\n• العناية بالمقصورة الداخلية: مثالية لتنظيف الطبلون والمقاعد الجلدية والفينيل وشاشات الكونسول.\n\nأبرز المواصفات:\n• المقاس: ٦٠ × ٤٠ سم\n• حواف مدعمة بالخياطة: مقاومة للتلف مع الاستخدام والغسيل المتكرر\n• آمنة على جميع الأسطح: الطلاء الخارجي، الزجاج، والفرش الداخلي\n• قابلة للغسيل وإعادة الاستخدام لمرات عديدة",
+    },
+    images: [
+      "/products/misc/premium-microfiber-towel-60x40.webp",
+      "/products/misc/premium-microfiber-towel-60x40-folded.webp",
+    ],
+    specs: [
+      { label: { en: "Size", ar: "المقاس" }, value: { en: "60 × 40 cm", ar: "٦٠ × ٤٠ سم" } },
+      { label: { en: "Color", ar: "اللون" }, value: { en: "Purple", ar: "بنفسجي" } },
+      { label: { en: "Applications", ar: "الاستخدامات" }, value: { en: "Car washing · Glass · Interior detailing", ar: "غسيل السيارات · الزجاج · العناية بالداخلية" } },
+      { label: { en: "Edge Type", ar: "نوع الحواف" }, value: { en: "Reinforced Stitched Border", ar: "حواف مخيطة ومدعمة" } },
+      { label: { en: "Features", ar: "المميزات" }, value: { en: "High absorption · Lint-free · Scratch-free", ar: "امتصاص عالي · خالية من الوبر · آمنة ضد الخدش" } },
+    ],
+    audience: "both",
+    updatedAt: "2026-09-01",
+  },
 ];
 
 export const FEATURED_PRODUCTS = PRODUCTS.filter((p) => p.featured);
