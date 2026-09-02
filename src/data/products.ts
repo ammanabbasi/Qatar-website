@@ -1314,6 +1314,36 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     updatedAt: "2026-09-01",
   },
+  {
+    slug: "car-washing-sponge-large",
+    brand: "Other",
+    category: "accessories",
+    name: {
+      en: "Car Washing Sponge (Large Size)",
+      ar: "إسفنجة غسيل سيارات كبيرة الحجم",
+    },
+    shortDesc: {
+      en: "Extra-large high-density honeycomb car washing sponge. Ergonomic grip bone design holds massive suds and traps dirt safely.",
+      ar: "إسفنجة غسيل سيارات كبيرة الحجم بكثافة عالية وتصميم خلايا النحل. مسكة مريحة تحتفظ برغوة وفيرة وتحمي الطلاء من الخدش.",
+    },
+    longDesc: {
+      en: "Extra-large premium honeycomb foam car washing sponge engineered for fast, efficient, and scratch-free vehicle washing. Designed with an ergonomic contoured waist for a secure, fatigue-free hand grip when wet.\n\nKey Highlights:\n• High Suds Retention: Open-cell honeycomb structure absorbs and holds maximum shampoo water and rich foam\n• Paint-Safe Dirt Trapping: Traps and pulls abrasive dirt and grit into deep internal pores away from paint surface\n• Large Coverage Area: Jumbo sizing covers large panels, roofs, and hoods quickly\n• Extra Durable: High-elastic polyurethane foam resists tearing and deformation across heavy daily car wash use\n• Reusable & Easy to Rinse: Rinses clean effortlessly in wash buckets",
+      ar: "إسفنجة غسيل سيارات كبيرة الحجم مصنعة من فوم عالي المرونة بخلايا مفتوحة لغسيل فائق السرعة وحماية كاملة لطلاء السيارة من الخدوش والدوامات. تتميز بتصميم مريح مع انحناءات جانبية لسهولة الإمساك بها والتحكم حتى مع الرغوة الكثيفة.\n\nأبرز المواصفات:\n• احتفاظ هائل بالرغوة: هيكل خلايا مسامية يمتص ويحتفظ بكمية وفيرة من شامبو الغسيل والرغوة\n• حماية الطلاء من الخدش: تسحب جزيئات الغبار والأوساخ إلى داخل المسام بعيداً عن احتكاك الطلاء\n• تغطية واسعة وسريعة: حجم كبير يغطي مساحات الأبواب والكبوت والأسطح بسرعة وسهولة\n• متانة عالية وعمر طويل: إسفنج بولي يوريثان عالي المرونة يقاوم التمزق والتآكل مع الاستخدام اليومي\n• سهلة الشطف وإعادة الاستخدام: تنظف بسرعة بمجرد شطفها بالماء",
+    },
+    images: [
+      "/products/misc/car-washing-sponge-large.webp",
+      "/products/misc/car-washing-sponge-large-side.webp",
+    ],
+    specs: [
+      { label: { en: "Size", ar: "المقاس" }, value: { en: "Extra Large Jumbo Size", ar: "حجم كبير جداً (جامبو)" } },
+      { label: { en: "Foam Structure", ar: "هيكل الإسفنج" }, value: { en: "High-Density Honeycomb Foam", ar: "فوم عالي الكثافة بخلايا مسامية" } },
+      { label: { en: "Shape", ar: "الشكل" }, value: { en: "Ergonomic Easy-Grip Bone Design", ar: "تصميم مريح مع انحناء جانبي للمسكة" } },
+      { label: { en: "Applications", ar: "الاستخدامات" }, value: { en: "Car washing · Trucks · SUVs · Commercial Fleets", ar: "غسيل السيارات · الشاحنات · مركبات الدفع الرباعي" } },
+      { label: { en: "Features", ar: "المميزات" }, value: { en: "High suds retention · Scratch-free · Tear resistant", ar: "احتفاظ عالي بالرغوة · آمن ضد الخدش · مقاوم للتمزق" } },
+    ],
+    audience: "both",
+    updatedAt: "2026-09-01",
+  },
 ];
 
 export const FEATURED_PRODUCTS = PRODUCTS.filter((p) => p.featured);
