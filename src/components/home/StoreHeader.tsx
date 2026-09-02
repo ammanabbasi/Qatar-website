@@ -21,7 +21,9 @@ const DISTRIBUTOR_BRANDS = [
     key: "Grizzly",
     name: "GRIZZLY",
     country: { en: "USA", ar: "أمريكا" },
-    logo: "/brands/grizzly-card-v2.webp",
+    // -v3: circular emblem only — the stacked lockup's microtext made the
+    // bear render at ~60% of the box height and was unreadable at tile size.
+    logo: "/brands/grizzly-card-v3.webp",
     bg: "#0d0c2c",
     dark: true,
   },
