@@ -1455,6 +1455,33 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     updatedAt: "2026-09-01",
   },
+  {
+    slug: "grunes-auto-pad-step2-rotary-6in",
+    brand: "Other",
+    category: "accessories",
+    name: {
+      en: "GrünesAuto 2nd Step Rotary Polishing Pad (6 Inch)",
+      ar: "GrünesAuto — وسادة تلميع الخطوة الثانية لأجهزة الروتاري (٦ إنش)",
+    },
+    shortDesc: {
+      en: "Professional 6-inch rotary medium cut and polishing foam pad. Engineered in Germany for high-speed swirl removal, paint leveling and brilliant gloss. Made in Germany.",
+      ar: "وسادة تلميع فوم احترافية ٦ إنش للخطوة الثانية لأجهزة التلميع الدائري (الروتاري). هندسة ألمانية لإزالة الدوامات وتنعيم الطلاء واللمعان العالي. صُنعت في ألمانيا.",
+    },
+    longDesc: {
+      en: "The GrünesAuto 2nd Step Rotary Polishing Pad (6 Inch) is a professional German-engineered medium-cut polishing foam pad purpose-built for direct-drive Rotary polishers. Designed for fast, efficient second-step paint correction to eliminate buffer trails, medium swirls, and light compounding marks while building deep, high-gloss surface reflection.\n\nKey Highlights:\n• Step 2 Rotary Polishing: Medium-cut yellow foam balances defect correction and high-gloss finishing under rotary torque\n• Solid Rotary Hook & Loop Backing: Continuous solid Velcro backing engineered for direct-drive rotary backing plates (no center hole needed)\n• Beveled Edge Design: Tapered foam edge protects adjacent body panels and emblems from backing plate contact\n• Thermal Resistance: Dense open-cell foam structure dissipates rotary friction heat rapidly\n• Origin: Made in Germany (GrünesAuto — True German Product)",
+      ar: "وسادة تلميع الخطوة الثانية لأجهزة الروتاري GrünesAuto 2nd Step Rotary Polishing Pad (٦ إنش) وسادة فوم ألمانية احترافية مخصصة لأجهزة التلميع الدائري المباشر (Rotary Polishers). صممت لتصحيح وتنعيم الطلاء في المرحلة الثانية بكفاءة عالية لإزالة آثار البولش الخشن والدوامات المتوسطة وإبراز اللمعان النقي.\n\nأبرز المواصفات:\n• تلميع وتصحيح المرحلة الثانية: فوم أصفر متوسط الصلابة يوازن بين إزالة العيوب وتوليد اللمعان تحت عزم الروتاري\n• ظهر فلكرو صلب مخصص للروتاري: قاعدة تثبيت كاملة مصممة لأطباق أجهزة الروتاري الدائرية (بدون فتحة مركزية)\n• حافة مائلة واقية: تصميم حواف مائلة يحمي أجزاء الهيكل والشعارات المجاورة من الاحتكاك المباشر\n• مقاومة عالية للحرارة: هيكل خلايا مفتوحة يشتت حرارة الاحتكاك الناتجة عن سرعة الروتاري العالية\n• بلد المنشأ: صُنع في ألمانيا (GrünesAuto — منتج ألماني أصلي)",
+    },
+    images: ["/products/misc/grunes-auto-pad-step2-rotary-6in.webp"],
+    specs: [
+      { label: { en: "Step / Grade", ar: "المرحلة / الدرجة" }, value: { en: "Step 2 — Medium Cut & Rotary Polishing", ar: "الخطوة ٢ — قص وتلميع روتاري متوسط" } },
+      { label: { en: "Size", ar: "المقاس" }, value: { en: "6 Inch (150 mm)", ar: "٦ إنش (١٥٠ مم)" } },
+      { label: { en: "Machine Type", ar: "نوع الجهاز" }, value: { en: "Direct-Drive Rotary Polishers", ar: "أجهزة التلميع الدائري (الروتاري)" } },
+      { label: { en: "Backing", ar: "قاعدة التثبيت" }, value: { en: "Solid Hook & Loop (Velcro)", ar: "فلكرو كامل بدون فتحة مركزية" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany (GrünesAuto)", ar: "صُنع في ألمانيا (GrünesAuto)" } },
+    ],
+    audience: "both",
+    updatedAt: "2026-09-01",
+  },
 ];
 
 export const FEATURED_PRODUCTS = PRODUCTS.filter((p) => p.featured);
