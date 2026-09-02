@@ -1428,6 +1428,33 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     updatedAt: "2026-09-01",
   },
+  {
+    slug: "grunes-auto-pad-step3-da-6in",
+    brand: "Other",
+    category: "accessories",
+    name: {
+      en: "GrünesAuto 3rd Step Dual Action Finishing Pad (6 Inch)",
+      ar: "GrünesAuto — وسادة التلميع النهائي والفينش الخطوة الثالثة لأجهزة DA (٦ إنش)",
+    },
+    shortDesc: {
+      en: "Ultra-soft 6-inch Dual Action finishing foam pad. Engineered in Germany for maximum gloss reflection, hologram elimination, and wax/sealant application. Made in Germany.",
+      ar: "وسادة فوم فائقة النعومة ٦ إنش للخطوة الثالثة والفينش النهائي لأجهزة التلميع المزدوج (DA). هندسة ألمانية للمعان المرآة وإزالة الهولوجرام وتطبيق الشمع والسيلانت. صُنعت في ألمانيا.",
+    },
+    longDesc: {
+      en: "The GrünesAuto 3rd Step Dual Action Finishing Pad (6 Inch) is an ultra-fine, open-cell German finishing foam pad engineered specifically for Dual Action (DA) orbital polishers. Designed as the ultimate final step in paint correction and gloss enhancement to eliminate micro-marring, ultrafine holograms, and buffer trails while leaving an ultra-deep, mirror-like wet reflection.\n\nKey Highlights:\n• Step 3 Ultra-Gloss Finishing: Ultra-soft black foam creates zero cut and maximum gloss depth across all paint types\n• Wax & Sealant Application: Ideal vehicle for machine application of synthetic sealants, liquid carnauba waxes, and glaze coats\n• 6-Inch Dual Action Fit: Sized for 5\" and 6\" DA backing plates with precision center cooling/alignment hole\n• Hook & Loop Backing: Heavy-duty Velcro backing with reinforced bonding to prevent delamination during high-speed finishing\n• Origin: Made in Germany (GrünesAuto — True German Product)",
+      ar: "وسادة التلميع النهائي والفينش الخطوة الثالثة GrünesAuto 3rd Step DA Finishing Pad (٦ إنش) وسادة فوم ألمانية فائقة النعومة ومصممة خصيصاً لأجهزة التلميع المزدوج (Dual Action Polishers). تمثل المرحلة النهائية الحاسمة في العناية بالطلاء لإبراز أقصى درجات اللمعان وعكس الضوء مثل المرآة، مع إزالة أدق آثار الهولوجرام والدوامات المجهرية.\n\nأبرز المواصفات:\n• لمعان وفينش فائق (الخطوة ٣): فوم أسود ناعم جداً بدون أي قوة كشط ليمنحك عمقاً زجاجياً رطباً في اللمعان\n• تطبيق الشمع والسيلانت: مثالية لتوزيع طبقات واكس الكارنوبا السائل والسيلانت ومثبتات اللمعان آلياً\n• مقاس ٦ إنش لأجهزة DA: متوافقة مع قواعد أجهزة التلميع مقاس ٥ و ٦ إنش مع فتحة تهوية ومحاذاة مركزية\n• ظهر فلكرو (Hook & Loop) متين: تثبيت عالي الجودة يتحمل السرعات العالية دون تفكك\n• بلد المنشأ: صُنع في ألمانيا (GrünesAuto — منتج ألماني أصلي)",
+    },
+    images: ["/products/misc/grunes-auto-pad-step3-da-6in.webp"],
+    specs: [
+      { label: { en: "Step / Grade", ar: "المرحلة / الدرجة" }, value: { en: "Step 3 — Ultra-Fine Finishing & Waxing", ar: "الخطوة ٣ — فينش نهائي فائق وتطبيق واكس" } },
+      { label: { en: "Size", ar: "المقاس" }, value: { en: "6 Inch (150 mm)", ar: "٦ إنش (١٥٠ مم)" } },
+      { label: { en: "Machine Type", ar: "نوع الجهاز" }, value: { en: "Dual Action (DA) & Orbital Polishers", ar: "أجهزة التلميع المزدوج (DA) والمدارية" } },
+      { label: { en: "Backing", ar: "قاعدة التثبيت" }, value: { en: "Hook & Loop with Center Cooling Hole", ar: "فلكرو مع فتحة تبريد ومحاذاة مركزية" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany (GrünesAuto)", ar: "صُنع في ألمانيا (GrünesAuto)" } },
+    ],
+    audience: "both",
+    updatedAt: "2026-09-01",
+  },
 ];
 
 export const FEATURED_PRODUCTS = PRODUCTS.filter((p) => p.featured);
