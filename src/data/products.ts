@@ -1401,6 +1401,33 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     updatedAt: "2026-09-01",
   },
+  {
+    slug: "grunes-auto-pad-step1-da-6in",
+    brand: "Other",
+    category: "accessories",
+    name: {
+      en: "GrünesAuto 1st Step Dual Action Cutting Pad (6 Inch)",
+      ar: "GrünesAuto — وسادة قص وتلميع خشن الخطوة الأولى لأجهزة DA (٦ إنش)",
+    },
+    shortDesc: {
+      en: "Heavy-cut 6-inch Dual Action foam polishing pad. Engineered in Germany for fast defect removal, deep scratch correction and oxidation leveling. Made in Germany.",
+      ar: "وسادة فوم احترافية ٦ إنش للقص وإزالة الخدوش العميقة (الخطوة الأولى) لأجهزة التلميع المزدوج (DA). هندسة ألمانية لإزالة العيوب والأكسدة بسرعة وأمان. صُنعت في ألمانيا.",
+    },
+    longDesc: {
+      en: "The GrünesAuto 1st Step Dual Action Cutting Pad (6 Inch) is a heavy-duty German-engineered cutting foam pad designed specifically for Dual Action (DA) orbital polishers. Engineered as the aggressive first step in multi-stage paint correction to rapidly level severe clear-coat defects, heavy swirls, sanding marks, water spots, and severe oxidation without scouring the paint.\n\nKey Highlights:\n• Step 1 Heavy Cut: High-density firm maroon foam provides powerful cutting power when paired with compounds\n• 6-Inch Dual Action Fit: Sized for 5\" and 6\" DA backing plates with precision center cooling/alignment hole\n• Hook & Loop Backing: Industrial-grade Velcro backing withstands high friction, heat, and lateral shear forces\n• Thermally Stable Open-Cell Foam: Retains firm cutting density across extended compounding passes without softening\n• Origin: Made in Germany (GrünesAuto — True German Product)",
+      ar: "وسادة القص والتلميع الخشن الخطوة الأولى GrünesAuto 1st Step DA Cutting Pad (٦ إنش) وسادة فوم ألمانية فائقة المتانة مخصصة لأجهزة التلميع المزدوج (Dual Action Polishers). مصممة للمرحلة الأولى الأساسية في تصحيح الطلاء لإزالة الخدوش العميقة والدوامات الشديدة وعلامات الصنفرة والأكسدة بسرعة ودقة دون الإضرار بطبقة اللقلق (Clear Coat).\n\nأبرز المواصفات:\n• قص وتصحيح مكثف (الخطوة ١): فوم مارون عالي الكثافة والصلابة يمنحك قوة قص هائلة عند دمجه مع مركبات التلميع الخشن\n• مقاس ٦ إنش لأجهزة DA: متوافقة مع قواعد أجهزة التلميع مقاس ٥ و ٦ إنش مع فتحة تهوية ومحاذاة مركزية\n• ظهر فلكرو (Hook & Loop) صناعي: مقاوم للحرارة العالية وقوى القص الجانبية أثناء العمل المتواصل\n• فوم ذو خلايا مفتوحة ومقاوم للحرارة: يحافظ على صلابته وكفاءته في القص دون أن يلين مع ارتفاع الحرارة\n• بلد المنشأ: صُنع في ألمانيا (GrünesAuto — منتج ألماني أصلي)",
+    },
+    images: ["/products/misc/grunes-auto-pad-step1-da-6in.webp"],
+    specs: [
+      { label: { en: "Step / Grade", ar: "المرحلة / الدرجة" }, value: { en: "Step 1 — Heavy Cut & Defect Removal", ar: "الخطوة ١ — قص خشن وإزالة العيوب" } },
+      { label: { en: "Size", ar: "المقاس" }, value: { en: "6 Inch (150 mm)", ar: "٦ إنش (١٥٠ مم)" } },
+      { label: { en: "Machine Type", ar: "نوع الجهاز" }, value: { en: "Dual Action (DA) & Orbital Polishers", ar: "أجهزة التلميع المزدوج (DA) والمدارية" } },
+      { label: { en: "Backing", ar: "قاعدة التثبيت" }, value: { en: "Hook & Loop with Center Cooling Hole", ar: "فلكرو مع فتحة تبريد ومحاذاة مركزية" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany (GrünesAuto)", ar: "صُنع في ألمانيا (GrünesAuto)" } },
+    ],
+    audience: "both",
+    updatedAt: "2026-09-01",
+  },
 ];
 
 export const FEATURED_PRODUCTS = PRODUCTS.filter((p) => p.featured);
