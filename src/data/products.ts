@@ -775,7 +775,10 @@ export const PRODUCTS: Product[] = [
       en: "Auto-triz Leather & Vinyl is suitable for all types of leather, synthetic leather/vinyl and plastic parts. It leaves a long-lasting barrier to protect the surface against permanent stains from dye of blue jeans, pen or marker. Unlike oil based or water-based leather dressings on the market that only leave a temporary dressing, Autotriz Leather & Vinyl preserves the natural feel of leather with its non-oily and non-slippery finish.",
       ar: "Autotriz Leather & Vinyl مناسب لجميع أنواع الجلد والجلد الصناعي والفينيل والأجزاء البلاستيكية. يترك حاجزاً طويل الأمد لحماية السطح من البقع الدائمة من صبغ الجينز والأقلام والماركر. على عكس ملمعات الجلد الزيتية أو المائية التي تترك طبقة مؤقتة فقط، يحافظ على الملمس الطبيعي للجلد بلمسة غير دهنية وغير زلقة.",
     },
-    images: ["/products/autotriz/autotriz-leather-and-vinyl.webp"],
+    images: [
+      "/products/autotriz/autotriz-leather-and-vinyl.webp",
+      "/products/autotriz/autotriz-leather-and-vinyl-box.webp",
+    ],
     specs: [
       { label: { en: "Size", ar: "الحجم" }, value: { en: "50 ml / 1.7 oz", ar: "٥٠ مل" } },
       { label: { en: "Surfaces", ar: "الأسطح" }, value: { en: "Leather · Synthetic leather · Vinyl · Plastic", ar: "جلد · جلد صناعي · فينيل · بلاستيك" } },
