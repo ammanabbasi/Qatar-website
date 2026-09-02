@@ -1374,6 +1374,33 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     updatedAt: "2026-09-01",
   },
+  {
+    slug: "grunes-auto-pad-step2-da-6in",
+    brand: "Other",
+    category: "accessories",
+    name: {
+      en: "GrünesAuto 2nd Step Dual Action Polishing Pad (6 Inch)",
+      ar: "GrünesAuto — وسادة تلميع الخطوة الثانية لأجهزة DA (٦ إنش)",
+    },
+    shortDesc: {
+      en: "Premium 6-inch Dual Action medium cut and polishing foam pad. True German engineering for swirl removal, paint leveling and high-gloss finishing. Made in Germany.",
+      ar: "وسادة تلميع فوم احترافية ٦ إنش للخطوة الثانية لأجهزة التلميع المزدوج (DA). هندسة ألمانية لإزالة الدوامات وتنعيم الطلاء وإبراز اللمعان الفائق. صُنعت في ألمانيا.",
+    },
+    longDesc: {
+      en: "The GrünesAuto 2nd Step Dual Action Polishing Pad (6 Inch) is a professional German-manufactured medium-cut and polishing foam pad engineered specifically for Dual Action (DA) orbital polishers. Ideal for the second step of paint correction to eliminate moderate swirl marks, compounding haze, and holograms while restoring deep optical clarity.\n\nKey Highlights:\n• Step 2 Correction & Polishing: Perfect balance of cutting and finishing capability to refine paint surfaces after heavy cutting\n• 6-Inch Dual Action Fit: Sized for 5\" and 6\" DA backing plates with precision center cooling/alignment hole\n• Hook & Loop Backing: Heavy-duty Velcro backing withstands high RPM and orbital heat without delaminating\n• Open-Cell Foam Technology: Disperses heat evenly and prevents compound clogging for extended pad life\n• Origin: Made in Germany (GrünesAuto — True German Product)",
+      ar: "وسادة تلميع الخطوة الثانية GrünesAuto 2nd Step DA Polishing Pad (٦ إنش) وسادة فوم ألمانية احترافية مخصصة لأجهزة التلميع المزدوج (Dual Action Polishers). مصممة خصيصاً للمرحلة الثانية من تصحيح الطلاء لإزالة الدوامات المتوسطة وآثار التلميع الخشن (Haze) والهولوجرام واستعادة نقاء ولمعان الطلاء العالي.\n\nأبرز المواصفات:\n• تصحيح وتلميع الخطوة الثانية: توازن مثالي بين القدرة على الإزالة وتنعيم السطح بعد مرحلة القص الأولي\n• مقاس ٦ إنش لأجهزة DA: متوافقة مع قواعد أجهزة التلميع مقاس ٥ و ٦ إنش مع فتحة تهوية ومحاذاة مركزية\n• ظهر فلكرو (Hook & Loop) قوي: تثبيت محكم يتحمل سرعات الدوران والحرارة العالية دون انفصال\n• تقنية الفوم ذو الخلايا المفتوحة: تشتيت فعال للحرارة ومنع تكتل المعجون لعمر افتراضي أطول\n• بلد المنشأ: صُنع في ألمانيا (GrünesAuto — منتج ألماني أصلي)",
+    },
+    images: ["/products/misc/grunes-auto-pad-step2-da-6in.webp"],
+    specs: [
+      { label: { en: "Step / Grade", ar: "المرحلة / الدرجة" }, value: { en: "Step 2 — Medium Cut & Polish", ar: "الخطوة ٢ — قص وتلميع متوسط" } },
+      { label: { en: "Size", ar: "المقاس" }, value: { en: "6 Inch (150 mm)", ar: "٦ إنش (١٥٠ مم)" } },
+      { label: { en: "Machine Type", ar: "نوع الجهاز" }, value: { en: "Dual Action (DA) & Orbital Polishers", ar: "أجهزة التلميع المزدوج (DA) والمدارية" } },
+      { label: { en: "Backing", ar: "قاعدة التثبيت" }, value: { en: "Hook & Loop with Center Cooling Hole", ar: "فلكرو مع فتحة تبريد ومحاذاة مركزية" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany (GrünesAuto)", ar: "صُنع في ألمانيا (GrünesAuto)" } },
+    ],
+    audience: "both",
+    updatedAt: "2026-09-01",
+  },
 ];
 
 export const FEATURED_PRODUCTS = PRODUCTS.filter((p) => p.featured);
