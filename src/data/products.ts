@@ -1344,6 +1344,36 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     updatedAt: "2026-09-01",
   },
+  {
+    slug: "tire-polish-sponge",
+    brand: "Other",
+    category: "tyre",
+    name: {
+      en: "Tire Polish & Dressing Applicator Sponge",
+      ar: "إسفنجة تلميع وتوزيع ملمع الإطارات",
+    },
+    shortDesc: {
+      en: "Ergonomic contoured foam sponge for even application of tyre shine, dressings and gels without mess or sling.",
+      ar: "إسفنجة فوم منحنية مصممة لتوزيع ملمعات وجل الإطارات بتساوٍ وبدون فوضى أو تلطيخ.",
+    },
+    longDesc: {
+      en: "Ergonomically contoured high-density foam applicator sponge designed specifically for applying tire shine, tire gels, and protective dressings along curved rubber tire sidewalls.\n\nKey Highlights:\n• Curved Sidewall Contour: Conforms naturally to the curve of automotive tires for complete edge-to-edge coverage\n• Ergonomic Hourglass Grip: Keeps hands and fingertips clean and clear of tire dressings\n• Dense Micro-Cell Foam: Spreads tire dressings smoothly and evenly without absorbing excess product\n• Eliminates Dressing Sling: Ensures a uniform, non-greasy coat that stays on the rubber\n• Reusable & Easy to Clean: Washable with degreaser and water for long-term use",
+      ar: "إسفنجة تطبيق فوم عالية الكثافة مصممة بانحناءات مخصصة لتوزيع وتطبيق ملمعات وجل وحماية الإطارات على جوانب الكفرات بسهولة ودقة.\n\nأبرز المواصفات:\n• انحناء متطابق مع جوانب الإطار: يتطابق مع منحنى الإطار ليضمن تغطية متساوية وكاملة من الحافة للحافة\n• مسكة مريحة بشكل ساعة رملية: تحافظ على نظافة اليدين والأصابع بعيداً عن مواد التلميع\n• فوم مسامي دقيق وعالي الكثافة: يوزع الملمع بنعومة دون امتصاص أو إهدار كميات زائدة\n• يمنع تطاير الملمع: يمنح الإطار طبقة متناسقة وغير زيتية تثبت على المطاط\n• قابلة للغسيل وإعادة الاستخدام: تنظف بسهولة بالماء ومزيل الشحوم للاستخدام المتكرر",
+    },
+    images: [
+      "/products/misc/tire-polish-sponge.webp",
+      "/products/misc/tire-polish-sponge-side.webp",
+    ],
+    specs: [
+      { label: { en: "Type", ar: "النوع" }, value: { en: "Contoured Tire Dressing Applicator", ar: "إسفنجة منحنية لتطبيق ملمع الإطارات" } },
+      { label: { en: "Shape", ar: "الشكل" }, value: { en: "Curved Sidewall Profile & Hourglass Grip", ar: "تصميم مقعر لجوانب الإطار مع مسكة ساعة رملية" } },
+      { label: { en: "Material", ar: "المادة" }, value: { en: "High-Density Micro-Cell Polyurethane Foam", ar: "فوم بولي يوريثان دقيق عالي الكثافة" } },
+      { label: { en: "Applications", ar: "الاستخدامات" }, value: { en: "Tire Shines · Rubber Dressings · Trim Conditioners", ar: "ملمع الإطارات · معالجة المطاط · مرطبات البلاستيك" } },
+      { label: { en: "Features", ar: "المميزات" }, value: { en: "Even coverage · Mess-free hand grip · Reusable", ar: "توزيع متساوٍ · مسكة نظيفة لليد · قابلة لإعادة الاستخدام" } },
+    ],
+    audience: "both",
+    updatedAt: "2026-09-01",
+  },
 ];
 
 export const FEATURED_PRODUCTS = PRODUCTS.filter((p) => p.featured);
