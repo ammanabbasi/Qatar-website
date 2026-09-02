@@ -1230,6 +1230,33 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     updatedAt: "2026-09-01",
   },
+  {
+    slug: "premium-chamois-leather-towel",
+    brand: "Other",
+    category: "accessories",
+    name: {
+      en: "Premium Chamois & Leather Towel (64×43 cm)",
+      ar: "منشفة شامواه وجلد فاخرة — ٦٤×٤٣ سم",
+    },
+    shortDesc: {
+      en: "High-tech synthetic chamois leather drying towel (64×43 cm). 3D concave-convex design for resistance-free gliding. Leaves zero watermarks or dust.",
+      ar: "منشفة تجفيف شامواه صناعية عالية التقنية (٦٤×٤٣ سم). تصميم ثلاثي الأبعاد مقعر ومحدب لانزلاق سلس وبدون مقاومة. لا تترك أي علامات مائية أو غبار.",
+    },
+    longDesc: {
+      en: "Premium 3D Chamois & Synthetic Leather Drying Towel (64×43 cm) engineered with advanced high-tech PVA material and a specialized concave-convex texture for effortless, resistance-free cleaning and rapid drying.\n\nKey Highlights:\n• 3D Concave-Convex Texture: Eliminates surface friction and drag during drying\n• Streak-Free & Lint-Free: Leaves zero watermarks, lint, or dust on paintwork and glass\n• Rapid Water Absorption: Instantly soaks up standing water with exceptional capillary action\n• Protective Storage Tube: Comes in a reusable cylindrical hard case to keep the chamois moist, soft, and ready to use\n• Multi-Surface Use: Ideal for automotive paint, windshields, mirrors, marine vessels, and household surfaces",
+      ar: "منشفة تجفيف شامواه وجلد صناعي ثلاثية الأبعاد فاخرة (٦٤×٤٣ سم) مصنعة من مواد PVA عالية التقنية مع سطح مقعر ومحدب يمنحك تجفيفاً فائق السرعة وانزلاقاً سلساً بدون مقاومة أو احتكاك.\n\nأبرز المواصفات:\n• تصميم ثلاثي الأبعاد مقعر ومحدب: يمنع الاحتكاك ومقاومة السحب أثناء تجفيف الأسطح\n• خالية تماماً من العلامات والوبر: لا تترك أي آثار ماء أو بقع أو وبر على الطلاء والزجاج\n• امتصاص فائق وسريع للمياه: قدرة عالية على سحب وتجفيف قطرات الماء والأسطح المبللة\n• أنبوب حفظ أسطواني واقٍ: تأتي في علبة أسطوانية مخصصة للحفاظ على ليونة ورطوبة الشامواه للاستخدام الفوري\n• متعددة الاستخدامات: مثالية لطلاء السيارات، الزجاج الأمامي، المرايا، القوارب، والأسطح المنزلية",
+    },
+    images: ["/products/misc/chamois-leather-towel-64x43.webp"],
+    specs: [
+      { label: { en: "Size", ar: "المقاس" }, value: { en: "64 × 43 cm", ar: "٦٤ × ٤٣ سم" } },
+      { label: { en: "Material", ar: "المادة" }, value: { en: "High-Tech Synthetic PVA Chamois", ar: "شامواه جلد صناعي PVA عالي التقنية" } },
+      { label: { en: "Design", ar: "التصميم" }, value: { en: "3D Concave-Convex Resistance-Free", ar: "تصميم ثلاثي الأبعاد مقعر ومحدب مانع للمقاومة" } },
+      { label: { en: "Packaging", ar: "التغليف" }, value: { en: "Reusable Storage Cylinder Tube", ar: "أنبوب أسطواني مخصص للحفظ" } },
+      { label: { en: "Features", ar: "المميزات" }, value: { en: "Zero watermarks · Super dust cleaning · Ultra-absorbent", ar: "بدون علامات مائية · إزالة فائقة للغبار · امتصاص فائق" } },
+    ],
+    audience: "both",
+    updatedAt: "2026-09-01",
+  },
 ];
 
 export const FEATURED_PRODUCTS = PRODUCTS.filter((p) => p.featured);
