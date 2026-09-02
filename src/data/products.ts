@@ -646,6 +646,35 @@ export const PRODUCTS: Product[] = [
     updatedAt: "2026-09-01",
   },
   {
+    slug: "autotriz-hyper-wheel-cleaner",
+    brand: "Autotriz",
+    category: "tyre",
+    name: {
+      en: "Autotriz Hyper Wheel Cleaner (20L)",
+      ar: "Autotriz Hyper Wheel Cleaner — منظف العجلات والجنوط (٢٠ لتر)",
+    },
+    shortDesc: {
+      en: "Professional heavy-duty wheel cleaner in 20L bulk drum. Safe for chrome, clear-coated, and factory painted wheels. 1:1 dilution ratio. Made in Germany.",
+      ar: "منظف عجلات احترافي عالي الفعالية ببرميل ٢٠ لتر. آمن على الكروم والجنوط المطلية والمحمية. نسبة تخفيف ١:١. صُنع في ألمانيا.",
+    },
+    longDesc: {
+      en: "AUTOTRIZ Hyper Wheel Cleaner is a professional-grade, German-engineered wheel cleaner formulated for detailing centers, workshops, and high-volume car washes. Available in a 20 L bulk drum.\n\nSafe and effective on clear-coated, factory painted, and chrome wheels. Quickly dissolves and lifts stubborn brake dust, road grime, and iron deposits with little to no scrubbing required. Features a non-caustic, body shop safe formula with built-in rust inhibitors. Concentrated formulation can be diluted 1:1 with water for economical daily use.\n\nKey Highlights:\n• Safe for Chrome, Clear-Coated & Painted Wheels\n• Dilution: 1:1 with water (Economical concentrate)\n• Volume: 20 L Bulk Drum (SKU: AT-CC-HWC-20)\n• Non-caustic, body shop safe formula with rust inhibitors\n• Origin: Made in Germany",
+      ar: "منظف العجلات AUTOTRIZ Hyper Wheel Cleaner تركيبة ألمانية احترافية مصممة لمراكز العناية بالسيارات والورش ومحطات الغسيل. متوفر ببرميل اقتصادي سعة ٢٠ لتر.\n\nآمن وفعال على الكروم والجنوط المطلية والمحمية بطبقة شفافة. يذيب غبار الفرامل العنيد والأوساخ ورواسب الطريق بسرعة وبأقل مجهود فرك. تركيبة غير كاوية وآمنة لورش الطلاء تحتوي على مانع للصدأ. يُخفف بنسبة ١:١ مع الماء للاستخدام الاقتصادي اليومي.\n\nأبرز المواصفات:\n• آمن تماماً على الكروم والجنوط المطلية\n• نسبة التخفيف: ١:١ مع الماء (مركز اقتصادي)\n• الحجم: برميل ٢٠ لتر (SKU: AT-CC-HWC-20)\n• تركيبة غير كاوية مع مانع للصدأ\n• بلد المنشأ: صُنع في ألمانيا",
+    },
+    images: [
+      "/products/autotriz/autotriz-hyper-wheel-cleaner-20l.webp",
+    ],
+    specs: [
+      { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L (Drum)", ar: "٢٠ لتر (برميل)" } },
+      { label: { en: "Compatibility", ar: "التوافق" }, value: { en: "Safe for Chrome, Painted & Clear-Coated Wheels", ar: "آمن على الكروم والجنوط المطلية والمحمية" } },
+      { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "1:1 with water", ar: "١:١ مع الماء" } },
+      { label: { en: "Formula", ar: "التركيبة" }, value: { en: "Non-caustic with rust inhibitors", ar: "غير كاوي مع مانع للصدأ" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
+    ],
+    audience: "both",
+    updatedAt: "2026-09-01",
+  },
+  {
     slug: "autotriz-one-step-finish",
     brand: "Autotriz",
     category: "polish",
