@@ -623,6 +623,7 @@ export const PRODUCTS: Product[] = [
     },
     images: [
       "/products/autotriz/autotriz-3d-matrix-hybrid.webp",
+      "/products/autotriz/autotriz-3d-matrix-hybrid-box.webp",
     ],
     specs: [
       { label: { en: "Size", ar: "الحجم" }, value: { en: "50 ml / 1.7 oz", ar: "٥٠ مل" } },
