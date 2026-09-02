@@ -884,6 +884,36 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     updatedAt: "2026-09-01",
   },
+  {
+    slug: "autotriz-ppf-refresh-1l",
+    brand: "Autotriz",
+    category: "ppf",
+    name: {
+      en: "Autotriz PPF Refresh (1L)",
+      ar: "Autotriz — ملمع ومجدد أفلام الحماية PPF (١ لتر)",
+    },
+    shortDesc: {
+      en: "Professional 1L PPF & vinyl film restoration polish. Refreshes top coat, eliminates minor scratches, fading, water spots and restores high-gloss clarity. Made in Germany.",
+      ar: "ملمع ومجدد احترافي لأفلام حماية الطلاء (PPF) وتغليف الفينيل (١ لتر). يجدد الطبقة العلوية ويزيل الخدوش الدقيقة والبهتان وبقع الماء ويعيد اللمعان العالي. صُنع في ألمانيا.",
+    },
+    longDesc: {
+      en: "Autotriz PPF Refresh (1L) is a specialized paint protection film polish and surface restorer engineered in Germany for all types of gloss PPF and vinyl wraps. Formulated with ultra-fine precision micro-abrasives and advanced polymer conditioners to safely revive, clarify, and protect transparent films in one easy step.\n\nKey Highlights:\n• PPF & Vinyl Safe: Specifically formulated for polyurethane (TPU) and vinyl wrap top coats without causing yellowing, cloudiness, or swelling\n• Restores Top Coat Clarity: Eliminates fine swirl marks, light scratches, oxidation, and weather fading\n• Removes Tough Contaminants: Dissolves stubborn water spots, mineral stains, bird droppings, and insect etchings\n• High-Gloss Finish: Leaves an ultra-slick, high-gloss protective barrier that enhances optical depth\n• Body Shop Safe: Silicon-free formulation suitable for professional detailing and wrap installation bays\n• Volume: 1 Liter (1000 ml) dispenser bottle\n• Origin: Made in Germany (Autotriz Worldwide, Saarbrücken, Germany)",
+      ar: "مجدد وملمع أفلام الحماية Autotriz PPF Refresh (١ لتر) تركيبة ألمانية متطورة مخصصة لجميع أنواع أفلام حماية الطلاء الشفافة (PPF) وتغليف الفينيل. معزز بجزيئات مجهرية دقيقة ومكثفات بوليمرية متطورة لتجديد الطبقة العلوية وإعادة النقاء واللمعان الفائق في خطوة واحدة سهلة.\n\nأبرز المواصفات:\n• آمن ١٠٠٪ على PPF والفينيل: مصمم خصيصاً لأفلام البولي يوريثان (TPU) دون التسبب في الاصفرار أو التعتيم\n• تجديد الطبقة العلوية: يزيل الدوامات الدقيقة والخدوش الخفيفة وآثار البهتان الناتجة عن الشمس والعوامل الجوية\n• إزالة البقع الصعبة: ينظف ويزيل بقع الماء والتكلسات الكلسية وفضلات الطيور\n• لمعان فائق ونعومة حريرية: يمنح الفيلم ملمساً ناعماً ولمعاناً زجاجياً فائق النقاء\n• آمن لورش ومراكز العناية (Body Shop Safe): تركيبة احترافية خالية من الملوثات الضارة\n• الحجم: ١ لتر (١٠٠٠ مل)\n• بلد المنشأ: صُنع في ألمانيا",
+    },
+    images: [
+      "/products/autotriz/autotriz-ppf-refresh-1l.webp",
+      "/products/autotriz/autotriz-ppf-refresh-1l-back.webp",
+    ],
+    specs: [
+      { label: { en: "Volume", ar: "الحجم" }, value: { en: "1 Liter (1000 ml)", ar: "١ لتر (١٠٠٠ مل)" } },
+      { label: { en: "Application", ar: "الاستخدام" }, value: { en: "Paint Protection Film (PPF) & Vinyl Wraps", ar: "أفلام حماية الطلاء (PPF) وتغليف الفينيل" } },
+      { label: { en: "Function", ar: "الوظيفة" }, value: { en: "Refreshes Top Coat · Removes Scratches & Fading", ar: "تجديد الطبقة العلوية · إزالة الخدوش والبهتان" } },
+      { label: { en: "Safety", ar: "الأمان" }, value: { en: "Body Shop Safe · Non-Yellowing", ar: "آمن للورش · غير مسبب للاصفرار" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
+    ],
+    audience: "both",
+    updatedAt: "2026-09-01",
+  },
 
   // ───── Insta Finish — USA
   {
