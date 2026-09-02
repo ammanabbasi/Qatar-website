@@ -65,10 +65,10 @@ export function HomeHero({ audience, locale }: Props) {
           <p className="mt-4 max-w-[46ch] text-body text-white/80 sm:mt-5 sm:text-body-lg">
             {b2c ? t("heroBodyB2c") : t("heroBodyB2b")}
           </p>
-          <div className="mt-7 flex flex-wrap items-center gap-3 sm:mt-9">
+          <div className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:items-center">
             <Link
               href={`/${audience}/products`}
-              className={buttonClasses("brand", "lg")}
+              className={`${buttonClasses("brand", "lg")} w-full sm:w-auto`}
             >
               {t("heroCtaProducts")}
               <ArrowRightIcon className="h-4 w-4 rtl:rotate-180" />
@@ -79,7 +79,7 @@ export function HomeHero({ audience, locale }: Props) {
               href={waHref}
               target="_blank"
               rel="noopener noreferrer"
-              className={`plausible-event-name=whatsapp_click plausible-event-audience=${audience}`}
+              className={`plausible-event-name=whatsapp_click plausible-event-audience=${audience} w-full sm:w-auto`}
             >
               {t("heroCtaQuote")}
               <ArrowRightIcon className="h-4 w-4 rtl:rotate-180" />

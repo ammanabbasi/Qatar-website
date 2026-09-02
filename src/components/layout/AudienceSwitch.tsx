@@ -21,7 +21,15 @@ function trackAudienceSwitch(next: Audience) {
 }
 
 /** Retail / Wholesale segmented control. */
-export function AudienceSwitch({ current }: { current: Audience }) {
+export function AudienceSwitch({
+  current,
+  tone = "light",
+}: {
+  current: Audience;
+  /** "dark" matches the dark hero header. */
+  tone?: "light" | "dark";
+}) {
+  const dark = tone === "dark";
   const t = useTranslations("Nav");
   const pathname = usePathname();
   const router = useRouter();
@@ -44,7 +52,9 @@ export function AudienceSwitch({ current }: { current: Audience }) {
     <div
       role="tablist"
       aria-label={t("audience")}
-      className="inline-flex h-8 items-center rounded-pill bg-(--color-fill) p-0.5 text-caption font-medium"
+      className={`inline-flex h-8 items-center rounded-pill p-0.5 text-caption font-medium ${
+        dark ? "bg-white/12" : "bg-(--color-fill)"
+      }`}
     >
       {(["b2c", "b2b"] as Audience[]).map((a) => {
         const active = a === current;
@@ -58,7 +68,9 @@ export function AudienceSwitch({ current }: { current: Audience }) {
             className={`h-7 rounded-pill px-3.5 transition-colors duration-200 ease-soft ${
               active
                 ? "bg-white text-(--color-text) shadow-[0_1px_3px_rgba(0,0,0,0.12)]"
-                : "text-(--color-text)/75 hover:text-(--color-text)"
+                : dark
+                  ? "text-white/75 hover:text-white"
+                  : "text-(--color-text)/75 hover:text-(--color-text)"
             }`}
           >
             {a === "b2c" ? t("b2c") : t("b2b")}

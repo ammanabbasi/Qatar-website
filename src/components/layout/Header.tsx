@@ -81,21 +81,34 @@ export function Header({
           className="flex shrink-0 items-center gap-2.5"
           aria-label={t("home")}
         >
-          <Image
-            src="/logo-mark.webp"
-            alt=""
-            width={28}
-            height={28}
-            loading="eager"
-            className="rounded-[7px]"
-          />
-          <span
-            className={`text-[15px] font-semibold tracking-[-0.01em] ${
-              dark ? "text-white" : "text-(--color-text)"
-            }`}
-          >
-            ABK
-          </span>
+          {dark ? (
+            // Transparent wordmark (white letters + gold swoosh keyed out of
+            // the studio logo) — the baked-background tile would show as a
+            // grey box on the dark glass, and its own "ABK" letters would
+            // duplicate the text label.
+            <Image
+              src="/logo-dark.webp"
+              alt=""
+              width={452}
+              height={305}
+              loading="eager"
+              className="h-7 w-auto"
+            />
+          ) : (
+            <>
+              <Image
+                src="/logo-mark.webp"
+                alt=""
+                width={28}
+                height={28}
+                loading="eager"
+                className="rounded-[7px]"
+              />
+              <span className="text-[15px] font-semibold tracking-[-0.01em] text-(--color-text)">
+                ABK
+              </span>
+            </>
+          )}
         </Link>
 
         {/* Desktop nav */}
@@ -125,7 +138,7 @@ export function Header({
 
         <div className="flex items-center gap-1.5">
           <div className="hidden sm:block">
-            <AudienceSwitch current={audience} />
+            <AudienceSwitch current={audience} tone={tone} />
           </div>
           <LocaleSwitch current={locale} tone={tone} />
           <a
@@ -163,7 +176,9 @@ export function Header({
       {open && (
         <div
           id="mobile-menu"
-          className="fixed inset-x-0 top-12 bottom-0 overflow-y-auto bg-white md:hidden"
+          className={`fixed inset-x-0 top-12 bottom-0 overflow-y-auto md:hidden ${
+            dark ? "bg-(--color-hero-dark)" : "bg-white"
+          }`}
         >
           <Container className="flex flex-col gap-1 py-4">
             <nav aria-label={t("menu")} className="flex flex-col">
@@ -172,19 +187,23 @@ export function Header({
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="border-b border-(--color-border-soft) py-3.5 text-title-sm font-semibold text-(--color-text) last:border-b-0"
+                  className={`py-3.5 text-title-sm font-semibold last:border-b-0 ${
+                    dark
+                      ? "border-b border-white/10 text-white"
+                      : "border-b border-(--color-border-soft) text-(--color-text)"
+                  }`}
                 >
                   {link.label}
                 </Link>
               ))}
             </nav>
             <div className="mt-6 flex flex-col gap-4 sm:hidden">
-              <AudienceSwitch current={audience} />
+              <AudienceSwitch current={audience} tone={tone} />
               <a
                 href={waHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`plausible-event-name=whatsapp_click plausible-event-audience=${audience} inline-flex h-11 w-fit items-center gap-2 whitespace-nowrap rounded-pill bg-(--color-accent) px-[22px] text-body text-white transition-colors hover:bg-(--color-accent-hover)`}
+                className={`plausible-event-name=whatsapp_click plausible-event-audience=${audience} inline-flex h-11 w-fit items-center gap-2 whitespace-nowrap rounded-pill bg-(--color-brand) px-[22px] text-body font-medium text-(--color-ink) transition-colors hover:bg-(--color-brand-hover)`}
               >
                 <WhatsAppIcon className="h-5 w-5" />
                 {c("whatsAppUs")}
