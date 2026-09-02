@@ -74,12 +74,12 @@ export const PRODUCTS: Product[] = [
       ar: "VTEK — فيلم حماية الطلاء Weather Armor ULTIMATE",
     },
     shortDesc: {
-      en: "Flagship Polycarbonate TPU paint protection film with ultra-gloss clarity, instant self-healing and 15-year warranty.",
-      ar: "فيلم حماية الطلاء الرائد من بولي كربونات TPU بلمعان فائق وإصلاح ذاتي فوري وضمان 15 سنة.",
+      en: "Flagship Polycarbonate TPU paint protection film with ultra-gloss clarity, instant self-healing, 7.5 mil thickness and 15-year warranty. Made in USA.",
+      ar: "فيلم حماية الطلاء الرائد من بولي كربونات TPU بسماكة 7.5 مل، لمعان فائق، إصلاح ذاتي فوري وضمان 15 سنة. صُنع في الولايات المتحدة الأمريكية (USA).",
     },
     longDesc: {
-      en: "VTEK® Weather Armor™ ULTIMATE represents the pinnacle of paint protection film technology. Engineered with Polycarbonate TPU, it delivers exceptional optical clarity, superior stretchability, and extreme resistance against yellowing, chemical stains, desert sand abrasion, and rock chip impact. Designed for long-term durability under harsh Middle Eastern climate conditions, Ultimate offers a self-healing, ultra-gloss finish that enhances the true depth and color of automotive paint. Backed by a 15-year manufacturer warranty.",
-      ar: "يمثل فيلم VTEK® Weather Armor™ ULTIMATE قمة تكنولوجيا أفلام حماية الطلاء. صُمم من بولي كربونات TPU المتطورة ليمنح نقاءً بصرياً استثنائياً ومرونة فائقة ومقاومة قصوى للاصفرار والبقع الكيميائية وتآكل الرمال الصحراوية وأضرار الحصى. صُمم لتحمل أقسى الظروف المناخية في قطر، مع طبقة ذاتية الالتئام الفوري ولمعان فائق يبرز عمق ولون طلاء السيارة الأصلي، مع ضمان شامل لمدة 15 سنة.",
+      en: "VTEK® Weather Armor™ ULTIMATE represents the pinnacle of paint protection film technology. Engineered in the USA with Advanced Polycarbonate TPU at 7.5 mil thickness, it delivers exceptional optical clarity, superior stretchability, and extreme resistance against yellowing, chemical stains, desert sand abrasion, and rock chip impact. Designed for long-term durability under harsh Middle Eastern climate conditions, Ultimate offers an instant self-healing, ultra-gloss finish backed by a 15-year manufacturer warranty. Made in USA.",
+      ar: "يمثل فيلم VTEK® Weather Armor™ ULTIMATE قمة تكنولوجيا أفلام حماية الطلاء. صُنع في الولايات المتحدة الأمريكية من بولي كربونات TPU المتطورة بسماكة 7.5 مل ليمنح نقاءً بصرياً استثنائياً ومرونة فائقة ومقاومة قصوى للاصفرار والبقع الكيميائية وتآكل الرمال الصحراوية وأضرار الحصى. صُمم لتحمل أقسى الظروف المناخية في قطر، مع طبقة ذاتية الالتئام الفوري ولمعان فائق يبرز عمق ولون طلاء السيارة الأصلي، مع ضمان شامل لمدة 15 سنة.",
     },
     images: [
       "/products/vtek/vtek-weather-armor-ultimate-v2.webp",
@@ -92,7 +92,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         label: { en: "Thickness", ar: "السماكة" },
-        value: { en: "8.5 mil (215 µm)", ar: "٨.٥ مل (٢١٥ ميكرون)" },
+        value: { en: "7.5 mil (190 µm)", ar: "٧.٥ مل (١٩٠ ميكرون)" },
       },
       {
         label: { en: "Finish", ar: "التشطيب" },
@@ -115,6 +115,10 @@ export const PRODUCTS: Product[] = [
           en: "Extreme UV, Desert Sand, Road Salts & Chemicals",
           ar: "مقاومة قصوى للأشعة فوق البنفسجية والرمال والأملاح والمواد الكيميائية",
         },
+      },
+      {
+        label: { en: "Origin", ar: "بلد المنشأ" },
+        value: { en: "Made in USA", ar: "صُنع في الولايات المتحدة الأمريكية (USA)" },
       },
     ],
     audience: "both",
