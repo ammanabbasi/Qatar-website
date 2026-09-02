@@ -3,7 +3,6 @@ import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Shelf } from "@/components/ui/Shelf";
-import { TextLink } from "@/components/ui/TextLink";
 import { ChevronIcon, PinIcon, BadgeIcon } from "@/components/ui/Icons";
 import { WhatsAppButton } from "@/components/cta/WhatsAppButton";
 import { ProductCard } from "./ProductCard";
@@ -21,12 +20,6 @@ type Props = {
   locale: WALocale;
 };
 
-const CATALOGUES: Partial<Record<Product["brand"], string>> = {
-  VTEK: "/catalogues/vertek-ppf-catalogue.pdf",
-  Vertek: "/catalogues/vertek-ppf-catalogue.pdf",
-  Autotriz: "/catalogues/autotriz-catalogue.pdf",
-};
-
 export function ProductDetail({ product, related, audience, locale }: Props) {
   const t = useTranslations();
   const name = product.name[locale];
@@ -35,7 +28,6 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
   const brandLabel = t(`Brands.${product.brand}`);
   const categoryLabel = t(`Categories.${product.category}`);
   const productUrl = `${SITE.url}/${locale}/${audience}/products/${product.slug}`;
-  const catalogue = CATALOGUES[product.brand];
 
   const productLd = productJsonLd({
     name,
@@ -138,20 +130,6 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
                     className="w-full"
                   />
                 </div>
-                {catalogue && (
-                  <div className="mt-5 border-t border-(--color-border-soft) pt-4">
-                    <TextLink
-                      external
-                      href={catalogue}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      size="footnote"
-                      className={`plausible-event-name=catalogue_download plausible-event-brand=${product.brand.toLowerCase()}`}
-                    >
-                      {t("Cta.downloadCatalogue")}
-                    </TextLink>
-                  </div>
-                )}
               </div>
 
               {/* Specs */}
