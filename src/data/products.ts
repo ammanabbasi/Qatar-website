@@ -827,6 +827,36 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     updatedAt: "2026-09-01",
   },
+  {
+    slug: "autotriz-foam-gun",
+    brand: "Autotriz",
+    category: "accessories",
+    name: {
+      en: "Autotriz High-Pressure Foam Gun",
+      ar: "Autotriz — مدفع رغوة عالي الضغط",
+    },
+    shortDesc: {
+      en: "Heavy-duty high-pressure foam cannon with all-around stainless steel body. Produces ultra-thick clinging snow foam. Made in Germany.",
+      ar: "مدفع رغوة احترافي عالي الضغط بهيكل صلب من الفولاذ المقاوم للصدأ بالكامل. يمنحك رغوة ثلجية كثيفة وملتصقة. صُنع في ألمانيا.",
+    },
+    longDesc: {
+      en: "The Autotriz High-Pressure Foam Gun is a professional-grade snow foam cannon engineered with a solid stainless steel internal body core and heavy-duty components for long-lasting commercial detailing performance.\n\nKey Highlights:\n• High-Pressure Compatibility: Handles extreme pressure washer psi for intense foaming\n• Ultra-Thick Clinging Snow Foam: Generates rich shaving-cream consistency foam that clings to paintwork to lift road grime before contact washing\n• Solid All-Steel Body: Heavy-duty stainless steel valve core resists chemical corrosion and wear\n• Precision Control: Top adjustable foam density dial and front fan spray nozzle angle adjustment\n• Wide-Base Anti-Tip Bottle: 1-liter bottle with molded wide rubber base prevents tipping on wet shop floors\n• Quick-Connect Fitting: Standard 1/4\" stainless steel quick-connect inlet for instant pressure washer attachment\n• Origin: Made in Germany",
+      ar: "مدفع الرغوة عالي الضغط Autotriz Foam Gun أداة احترافية فائقة الجودة مصممة بهيكل داخلي من الفولاذ المقاوم للصدأ (Stainless Steel) ومكونات متينة لتحمل الاستخدام التجاري المكثف في مراكز العناية بالسيارات ومحطات الغسيل.\n\nأبرز المواصفات:\n• توافق مع الضغط العالي: يتحمل ضغط أجهزة الغسيل القوية لتوليد رغوة فائقة الكثافة\n• رغوة ثلجية كثيفة وثابتة: رغوة ثقيلة تلتصق بالطلاء لإذابة ورفع الأوساخ قبل الغسيل اليدوي\n• هيكل صلب من الفولاذ بالكامل: صمام فولاذي مقاوم للتآكل والمواد الكيميائية\n• تحكم دقيق بالرغوة: قرص علوي لضبط كثافة الرغوة وفوهة أمامية لتعديل زاوية الرش\n• قاعدة عريضة مانعة للانقلاب: قارورة سعة ١ لتر بقاعدة مطاطية عريضة تمنع السقوط على الأرضيات المبللة\n• وصلة سريعة (Quick Connect): وصلة استانلس ستيل مقاس ١/٤ بوصة للتركيب المباشر\n• بلد المنشأ: صُنع في ألمانيا",
+    },
+    images: [
+      "/products/autotriz/autotriz-foam-gun.webp",
+      "/products/autotriz/autotriz-foam-gun-front.webp",
+    ],
+    specs: [
+      { label: { en: "Type", ar: "النوع" }, value: { en: "High-Pressure Snow Foam Cannon", ar: "مدفع رغوة ثلجية عالي الضغط" } },
+      { label: { en: "Body Core", ar: "الهيكل الداخلي" }, value: { en: "All-Around Solid Stainless Steel", ar: "فولاذ مقاوم للصدأ صلب بالكامل" } },
+      { label: { en: "Foam Density", ar: "كثافة الرغوة" }, value: { en: "Adjustable Ultra-Thick Clinging Foam", ar: "رغوة ثلجية كثيفة وملتصقة قابلة للتعديل" } },
+      { label: { en: "Connection", ar: "الموصل" }, value: { en: "1/4\" Quick-Connect Stainless Steel", ar: "وصلة سريعة ١/٤ بوصة استانلس ستيل" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
+    ],
+    audience: "both",
+    updatedAt: "2026-09-01",
+  },
 
   // ───── Insta Finish — USA
   {
