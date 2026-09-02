@@ -857,6 +857,33 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     updatedAt: "2026-09-01",
   },
+  {
+    slug: "autotriz-wax-and-polish-bottle",
+    brand: "Autotriz",
+    category: "accessories",
+    name: {
+      en: "Autotriz Wax & Polish Dispenser Bottle",
+      ar: "Autotriz — عبوة توزيع البولش والشمع",
+    },
+    shortDesc: {
+      en: "Professional detailing squeeze bottle for compounds, polishes and waxes. Precision pull-push dispensing spout with product identification checkboxes. Made in Germany.",
+      ar: "عبوة ضغط احترافية لتوزيع وتعبئة مركبات التلميع والبولش والشمع. فوهة توزيع دقيقة مع مربعات تحديد نوع المنتج. صُنع في ألمانيا.",
+    },
+    longDesc: {
+      en: "The Autotriz Wax & Polish Dispenser Bottle is a dedicated auto detailing squeeze bottle engineered for professional paint correction and finishing workflows. Made from flexible, durable chemical-resistant polyethylene that allows precise dosage control onto polishing pads without drips or waste.\n\nKey Highlights:\n• Precision Dispensing Spout: Controlled application directly onto foam, wool, or microfiber polishing pads\n• Content Identification Grid: Pre-printed checkboxes for [ ] CUT, [ ] POLISH, and [ ] WAX plus custom labeling area for product name and dilution date\n• Leak-Proof Screw Cap: Heavy-duty ribbed cap seals tightly to prevent drying or clogging\n• Ergonomic Squeeze Body: Comfortable in-hand grip for fast panel-by-panel correction\n• Origin: Made in Germany (AUTOTRIZ Innovative Surface Creation)",
+      ar: "عبوة توزيع البولش والشمع Autotriz Wax & Polish Dispenser Bottle عبوة ضغط مخصصة لمراكز التلميع والعناية بالطلاء المحترفة. مصنعة من بلاستيك مرن ومقاوم للمواد الكيميائية يتيح لك التحكم الدقيق بكمية المنتج على وسادات التلميع دون إهدار أو تقطير.\n\nأبرز المواصفات:\n• فوهة توزيع دقيقة: سكب دقيق ومتحكم به مباشرة على إسفنج ووسادات التلميع والصوف\n• خانات تحديد المحتوى: مربعات مطبوعة لاختيار نوع المحلول [ ] CUT و [ ] POLISH و [ ] WAX مع مساحة لكتابة اسم المنتج\n• غطاء لولبي محكم مانع للتسريب: غطاء مسنن متين يمنع جفاف أو انسداد فوهة المعجون\n• هيكل ضغط مريح: ملمس مرن ومريح أثناء تصحيح وتلميع ألواح السيارة\n• بلد المنشأ: صُنع في ألمانيا",
+    },
+    images: ["/products/autotriz/autotriz-wax-and-polish-bottle.webp"],
+    specs: [
+      { label: { en: "Type", ar: "النوع" }, value: { en: "Squeeze Dispenser Bottle", ar: "عبوة ضغط لتوزيع السوائل" } },
+      { label: { en: "Spout", ar: "الفوهة" }, value: { en: "Precision Pull-Push Dispensing Tip", ar: "فوهة سحب ودفع دقيقة" } },
+      { label: { en: "Checkboxes", ar: "خيارات التحديد" }, value: { en: "[ ] Cut · [ ] Polish · [ ] Wax", ar: "قطع · بولش وتلميع · شمع" } },
+      { label: { en: "Material", ar: "المادة" }, value: { en: "Chemical-Resistant Polyethylene", ar: "بولي إيثيلين مقاوم للمواد الكيميائية" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
+    ],
+    audience: "both",
+    updatedAt: "2026-09-01",
+  },
 
   // ───── Insta Finish — USA
   {
