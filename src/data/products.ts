@@ -1143,6 +1143,36 @@ export const PRODUCTS: Product[] = [
     images: ["/products/misc/fast-masking-tape.webp"],
     audience: "both",
   },
+  {
+    slug: "edgeless-microfiber-towel",
+    brand: "Other",
+    category: "accessories",
+    name: {
+      en: "Edgeless Microfibre Towel (40×40 cm)",
+      ar: "منشفة مايكروفايبر بدون حواف — ٤٠×٤٠ سم",
+    },
+    shortDesc: {
+      en: "Ultra-plush edgeless microfibre towel (40×40 cm). Leaves zero marks or swirl marks. Ideal for polishing, ceramic coatings, drying & glass. Made in Germany.",
+      ar: "منشفة مايكروفايبر فائقة النعومة بدون حواف (٤٠×٤٠ سم). لا تترك أي علامات أو دوامات. مثالية للتلميع وطلاء السيراميك والتجفيف وتنظيف الزجاج. صُنعت في ألمانيا.",
+    },
+    longDesc: {
+      en: "Professional German-engineered edgeless microfibre car cleaning towel (40×40 cm). Designed with an ultra-plush, borderless laser-cut construction that guarantees zero swirl marks, scratches, or lint residue on sensitive clear coats, ceramic coatings, and delicate glass surfaces.\n\nMulti-Purpose Applications:\n• Polishing & Compound Residue Removal: Buffs off paste, liquid waxes, and polish without marring paint.\n• Ceramic Coating Leveling: Essential tool for spreading and buffing ceramic, graphene, and sealant coatings.\n• High-Absorption Drying: Absorbs water quickly without streaks.\n• Crystal-Clear Glass Cleaning: Wipes glass and mirrors lint-free.\n\nKey Highlights:\n• Size: 40 × 40 cm\n• Edgeless Laser-Cut Design: 100% scratch-free & swirl-free\n• Origin: Made in Germany (GrünesAuto)\n• Reusable & Machine Washable",
+      ar: "منشفة تنظيف سيارات مايكروفايبر احترافية بدون حواف بصناعة ألمانية متطورة (٤٠×٤٠ سم). صُممت بحواف مقصوصة بالليزر بدون خياطة لتضمن حماية كاملة بنسبة ١٠٠٪ من الخدوش أو الدوامات أو بقايا الوبر على أسطح الطلاء الحساسة وطلاءات السيراميك والزجاج.\n\nاستخدامات متعددة:\n• إزالة بقايا التلميع والبولش: مسح الشموع والملمعات بنعومة فائقة.\n• مسح وتثبيت طلاء السيراميك: أداة أساسية لتوزيع ومسح طبقات السيراميك والجرافين.\n• تجفيف عالي الامتصاص: يمتص الماء بسرعة دون ترك خطوط.\n• تنظيف الزجاج: يمنح الزجاج والمرايا وضوحاً تاماً بدون وبر.\n\nأبرز المواصفات:\n• المقاس: ٤٠ × ٤٠ سم\n• تصميم بدون حواف (Edgeless): آمن ١٠٠٪ ضد الخدش والدوامات\n• بلد المنشأ: صُنع في ألمانيا (GrünesAuto)\n• قابلة للغسيل وإعادة الاستخدام لمرات عديدة",
+    },
+    images: [
+      "/products/misc/edgeless-microfiber-towel.webp",
+      "/products/misc/edgeless-microfiber-towel-folded.webp",
+    ],
+    specs: [
+      { label: { en: "Size", ar: "المقاس" }, value: { en: "40 × 40 cm", ar: "٤٠ × ٤٠ سم" } },
+      { label: { en: "Design", ar: "التصميم" }, value: { en: "Edgeless (Laser-Cut, Scratch-Free)", ar: "بدون حواف (قص ليزر آمن ضد الخدش)" } },
+      { label: { en: "Applications", ar: "الاستخدامات" }, value: { en: "Polishing · Ceramic coating · Drying · Glass", ar: "التلميع · طلاء السيراميك · التجفيف · الزجاج" } },
+      { label: { en: "Features", ar: "المميزات" }, value: { en: "Leaves no marks or swirls · Ultra-absorbent", ar: "لا يترك علامات أو دوامات · فائق الامتصاص" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
+    ],
+    audience: "both",
+    updatedAt: "2026-09-01",
+  },
 ];
 
 export const FEATURED_PRODUCTS = PRODUCTS.filter((p) => p.featured);
