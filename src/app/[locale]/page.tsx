@@ -3,6 +3,7 @@ import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
+import { HomeHero } from "@/components/home/HomeHero";
 import { StoreHeader } from "@/components/home/StoreHeader";
 import { CategoryShelf } from "@/components/home/CategoryShelf";
 import { StarProducts } from "@/components/home/StarProducts";
@@ -50,8 +51,9 @@ export default async function Home({
   const jsonLd = localBusinessJsonLd(l);
 
   return (
-    <Shell audience="b2c" locale={l}>
+    <Shell audience="b2c" locale={l} headerTone="dark">
       <JsonLd id="ld-localbusiness-b2c" data={jsonLd} />
+      <HomeHero audience="b2c" locale={l} />
       <StoreHeader audience="b2c" locale={l} />
       <CategoryShelf audience="b2c" />
       <StarProducts audience="b2c" locale={l} />

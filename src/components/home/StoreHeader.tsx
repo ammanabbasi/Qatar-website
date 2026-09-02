@@ -1,8 +1,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
-import { TextLink } from "@/components/ui/TextLink";
-import { ChatIcon, PinIcon } from "@/components/ui/Icons";
+import { ArrowRightIcon, ChatIcon, PinIcon } from "@/components/ui/Icons";
 import { Link } from "@/i18n/navigation";
 import { SITE } from "@/lib/constants";
 import { buildWhatsAppUrl, type Audience, type WALocale } from "@/lib/whatsapp";
@@ -53,73 +52,26 @@ const DISTRIBUTOR_BRANDS = [
 ];
 
 /**
- * Store header with primary title, official distributor badge,
- * brand logos showcase, and quick-contact links.
+ * Distributor strip — the exclusive-distributor claim, the four brand cards,
+ * and the two quick-contact cards. The homepage <h1> lives in HomeHero.
  */
 export function StoreHeader({ audience, locale }: Props) {
   const t = useTranslations("Home");
   const waHref = buildWhatsAppUrl({ audience, locale });
-  const b2c = audience === "b2c";
   const isAr = locale === "ar";
 
   return (
-    <section className="pb-4 pt-8 sm:pt-12 lg:pb-6 lg:pt-16">
-      <Container className="flex flex-col gap-6">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start">
-          <div>
-            {/* Primary Heading */}
-            <h1 className="text-display font-bold tracking-tight text-(--color-text) lg:text-display-lg">
-              {b2c ? t("storeTitleB2c") : t("storeTitleB2b")}
-            </h1>
-
-            {/* Exclusive & Official Distributor Subtitle */}
-            <p className="mt-3 text-footnote font-semibold uppercase tracking-wider text-(--color-text-muted) sm:text-callout sm:mt-4">
-              {b2c ? t("storeTaglineB2c") : t("storeTaglineB2b")}
-            </p>
-          </div>
-
-          <ul className="flex flex-col gap-3 lg:items-end lg:pt-2">
-            <li className="flex items-center gap-3">
-              <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-(--color-fill) text-(--color-text)">
-                <ChatIcon className="h-[18px] w-[18px]" />
-              </span>
-              <p className="text-footnote">
-                <span className="text-(--color-text-muted)">{t("helpChoosing")}</span>{" "}
-                <TextLink
-                  external
-                  icon="external"
-                  size="footnote"
-                  href={waHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`plausible-event-name=whatsapp_click plausible-event-audience=${audience}`}
-                >
-                  {t("chatSpecialist")}
-                </TextLink>
-              </p>
-            </li>
-            <li className="flex items-center gap-3">
-              <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-(--color-fill) text-(--color-text)">
-                <PinIcon className="h-[18px] w-[18px]" />
-              </span>
-              <p className="text-footnote">
-                <TextLink
-                  external
-                  icon="external"
-                  size="footnote"
-                  href={SITE.mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {t("visitStore")}
-                </TextLink>
-              </p>
-            </li>
-          </ul>
+    <section className="pt-10 pb-4 sm:pt-12 lg:pb-6">
+      <Container className="flex flex-col gap-5 sm:gap-6">
+        <div>
+          <h2 className="text-footnote font-bold uppercase tracking-[0.08em] text-(--color-brand-deep)">
+            {t("distributorTitle")}
+          </h2>
+          <div aria-hidden className="mt-2 h-[3px] w-10 rounded-full bg-(--color-brand)" />
         </div>
 
         {/* Brand Logos Showcase Strip */}
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4 pt-2">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
           {DISTRIBUTOR_BRANDS.map((brand) => (
             <Link
               key={brand.key}
@@ -147,6 +99,43 @@ export function StoreHeader({ audience, locale }: Props) {
               </span>
             </Link>
           ))}
+        </div>
+
+        {/* Quick-contact cards */}
+        <div className="grid gap-3 sm:grid-cols-2 sm:gap-4">
+          <a
+            href={waHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`plausible-event-name=whatsapp_click plausible-event-audience=${audience} tile group flex items-center gap-3.5 p-4 transition-shadow duration-300 ease-soft hover:shadow-tile-hover sm:p-5`}
+          >
+            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-(--color-brand)/12 text-(--color-brand-deep)">
+              <ChatIcon className="h-5 w-5" />
+            </span>
+            <span className="flex min-w-0 flex-col">
+              <span className="text-caption text-(--color-text-muted)">
+                {t("helpChoosing")}
+              </span>
+              <span className="text-footnote font-semibold text-(--color-text)">
+                {t("chatSpecialist")}
+              </span>
+            </span>
+            <ArrowRightIcon className="ms-auto h-4 w-4 shrink-0 text-(--color-text-muted) transition-transform duration-200 ease-soft group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
+          </a>
+          <a
+            href={SITE.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="tile group flex items-center gap-3.5 p-4 transition-shadow duration-300 ease-soft hover:shadow-tile-hover sm:p-5"
+          >
+            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-(--color-brand)/12 text-(--color-brand-deep)">
+              <PinIcon className="h-5 w-5" />
+            </span>
+            <span className="text-footnote font-semibold text-(--color-text)">
+              {t("visitStore")}
+            </span>
+            <ArrowRightIcon className="ms-auto h-4 w-4 shrink-0 text-(--color-text-muted) transition-transform duration-200 ease-soft group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" />
+          </a>
         </div>
       </Container>
     </section>

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
+import { HomeHero } from "@/components/home/HomeHero";
 import { StoreHeader } from "@/components/home/StoreHeader";
 import { CategoryShelf } from "@/components/home/CategoryShelf";
 import { StarProducts } from "@/components/home/StarProducts";
@@ -40,8 +41,9 @@ export default async function B2BHome({
   const jsonLd = localBusinessJsonLd(l);
 
   return (
-    <Shell audience="b2b" locale={l}>
+    <Shell audience="b2b" locale={l} headerTone="dark">
       <JsonLd id="ld-localbusiness-b2b" data={jsonLd} />
+      <HomeHero audience="b2b" locale={l} />
       <StoreHeader audience="b2b" locale={l} />
       <CategoryShelf audience="b2b" />
       <StarProducts audience="b2b" locale={l} />

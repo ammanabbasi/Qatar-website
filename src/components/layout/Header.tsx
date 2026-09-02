@@ -11,7 +11,15 @@ import { MenuIcon, CloseIcon } from "@/components/ui/Icons";
 import { WhatsAppIcon } from "@/components/cta/WhatsAppIcon";
 import { buildWhatsAppUrl, type Audience, type WALocale } from "@/lib/whatsapp";
 
-export function Header({ audience }: { audience: Audience }) {
+export function Header({
+  audience,
+  tone = "light",
+}: {
+  audience: Audience;
+  /** "dark" pairs the glass bar with the dark homepage hero. */
+  tone?: "light" | "dark";
+}) {
+  const dark = tone === "dark";
   const t = useTranslations("Nav");
   const c = useTranslations("Cta");
   const locale = useLocale() as WALocale;
@@ -60,7 +68,13 @@ export function Header({ audience }: { audience: Audience }) {
       {/* The blur lives on this inner bar, not on <header>: backdrop-filter
           turns an element into the containing block for fixed descendants,
           which would trap the mobile sheet inside the 48px bar. */}
-      <div className="nav-glass border-b border-black/8">
+      <div
+        className={
+          dark
+            ? "nav-glass-dark border-b border-white/10"
+            : "nav-glass border-b border-black/8"
+        }
+      >
       <Container className="flex h-12 items-center justify-between gap-4">
         <Link
           href={homeHref}
@@ -75,7 +89,11 @@ export function Header({ audience }: { audience: Audience }) {
             loading="eager"
             className="rounded-[7px]"
           />
-          <span className="text-[15px] font-semibold tracking-[-0.01em] text-(--color-text)">
+          <span
+            className={`text-[15px] font-semibold tracking-[-0.01em] ${
+              dark ? "text-white" : "text-(--color-text)"
+            }`}
+          >
             ABK
           </span>
         </Link>
@@ -93,8 +111,10 @@ export function Header({ audience }: { audience: Audience }) {
                 aria-current={active ? "page" : undefined}
                 className={`text-caption transition-colors duration-200 ease-soft rtl:text-[13px] ${
                   active
-                    ? "font-medium text-(--color-text)"
-                    : "text-(--color-text)/80 hover:text-(--color-text)"
+                    ? `font-medium ${dark ? "text-white" : "text-(--color-text)"}`
+                    : dark
+                      ? "text-white/75 hover:text-white"
+                      : "text-(--color-text)/80 hover:text-(--color-text)"
                 }`}
               >
                 {link.label}
@@ -107,13 +127,17 @@ export function Header({ audience }: { audience: Audience }) {
           <div className="hidden sm:block">
             <AudienceSwitch current={audience} />
           </div>
-          <LocaleSwitch current={locale} />
+          <LocaleSwitch current={locale} tone={tone} />
           <a
             href={waHref}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={c("whatsAppUs")}
-            className={`plausible-event-name=whatsapp_click plausible-event-audience=${audience} hidden h-8 w-8 items-center justify-center rounded-full text-(--color-text) transition-colors duration-200 ease-soft hover:bg-(--color-fill) md:inline-flex`}
+            className={`plausible-event-name=whatsapp_click plausible-event-audience=${audience} hidden h-8 w-8 items-center justify-center rounded-full transition-colors duration-200 ease-soft md:inline-flex ${
+              dark
+                ? "text-white hover:bg-white/10"
+                : "text-(--color-text) hover:bg-(--color-fill)"
+            }`}
           >
             <WhatsAppIcon className="h-[18px] w-[18px]" />
           </a>
@@ -123,7 +147,11 @@ export function Header({ audience }: { audience: Audience }) {
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setOpen(!open)}
-            className="inline-flex h-8 w-8 items-center justify-center rounded-full text-(--color-text) transition-colors duration-200 ease-soft hover:bg-(--color-fill) md:hidden"
+            className={`inline-flex h-8 w-8 items-center justify-center rounded-full transition-colors duration-200 ease-soft md:hidden ${
+              dark
+                ? "text-white hover:bg-white/10"
+                : "text-(--color-text) hover:bg-(--color-fill)"
+            }`}
           >
             {open ? <CloseIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
           </button>

@@ -274,6 +274,79 @@ export function TruckIcon({ className = "" }: IconProps) {
   );
 }
 
+export function ArrowRightIcon({ className = "" }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 16 16"
+      aria-hidden
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M2.5 8h11M9.5 3.5L14 8l-4.5 4.5" />
+    </svg>
+  );
+}
+
+export function ShieldCheckIcon({ className = "" }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 3l7 3.2v5.1c0 4.3-2.9 7.4-7 9.2-4.1-1.8-7-4.9-7-9.2V6.2z" />
+      <path d="M8.8 11.8l2.3 2.3 4.2-4.4" />
+    </svg>
+  );
+}
+
+export function BoxIcon({ className = "" }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 3l8 4.3v9.4L12 21l-8-4.3V7.3z" />
+      <path d="M4.3 7.5L12 11.7l7.7-4.2M12 11.7V21" />
+    </svg>
+  );
+}
+
+export function HeadsetIcon({ className = "" }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M4.5 14.5v-2a7.5 7.5 0 0 1 15 0v2" />
+      <rect x="3" y="13.5" width="4.2" height="6" rx="1.9" />
+      <rect x="16.8" y="13.5" width="4.2" height="6" rx="1.9" />
+      <path d="M19 19.5v.5a2 2 0 0 1-2 2h-4" />
+    </svg>
+  );
+}
+
 export function BadgeIcon({ className = "" }: IconProps) {
   return (
     <svg

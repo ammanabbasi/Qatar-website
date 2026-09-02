@@ -4,7 +4,14 @@ import type {
   ReactNode,
 } from "react";
 
-type Variant = "primary" | "secondary" | "dark" | "light" | "outline";
+type Variant =
+  | "primary"
+  | "secondary"
+  | "dark"
+  | "light"
+  | "outline"
+  | "brand"
+  | "brandOutline";
 type Size = "sm" | "md" | "lg";
 
 type BaseProps = {
@@ -32,7 +39,16 @@ const variants: Record<Variant, string> = {
   light: "bg-white text-(--color-text) hover:bg-(--color-fill)",
   outline:
     "bg-transparent text-(--color-link) border border-(--color-link) hover:bg-(--color-link) hover:text-white",
+  brand:
+    "bg-(--color-brand) font-medium text-(--color-ink) hover:bg-(--color-brand-hover)",
+  brandOutline:
+    "bg-transparent font-medium text-(--color-brand) border border-(--color-brand)/60 hover:border-(--color-brand) hover:bg-(--color-brand)/10",
 };
+
+/** Same pill styling for elements that can't be a ButtonLink (e.g. i18n <Link>). */
+export function buttonClasses(variant: Variant = "primary", size: Size = "md") {
+  return `${base} ${sizes[size]} ${variants[variant]}`;
+}
 
 function Spinner() {
   return (

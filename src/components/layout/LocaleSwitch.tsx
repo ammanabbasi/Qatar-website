@@ -3,7 +3,14 @@
 import { useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
 
-export function LocaleSwitch({ current }: { current: "en" | "ar" }) {
+export function LocaleSwitch({
+  current,
+  tone = "light",
+}: {
+  current: "en" | "ar";
+  /** "dark" matches the dark hero header. */
+  tone?: "light" | "dark";
+}) {
   const t = useTranslations("Nav");
   const pathname = usePathname();
   const router = useRouter();
@@ -28,7 +35,11 @@ export function LocaleSwitch({ current }: { current: "en" | "ar" }) {
       onClick={swap}
       lang={next}
       aria-label={t("switchLanguage", { lang: nextName })}
-      className="inline-flex h-8 items-center rounded-pill px-3 text-caption font-medium text-(--color-text) transition-colors duration-200 ease-soft hover:bg-(--color-fill)"
+      className={`inline-flex h-8 items-center rounded-pill px-3 text-caption font-medium transition-colors duration-200 ease-soft ${
+        tone === "dark"
+          ? "text-white/90 hover:bg-white/10"
+          : "text-(--color-text) hover:bg-(--color-fill)"
+      }`}
     >
       {nextName}
     </button>
