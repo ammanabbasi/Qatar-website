@@ -799,7 +799,10 @@ export const PRODUCTS: Product[] = [
       en: "AUTOTRIZ ION+ is a scientifically advanced nano ceramic coating with surface ionized technology that brings a high level of smoothness and slickness. Its surface ionized technology enkindles nano particles that are determined to bond perfectly on any surface such as paint, lacquer, and base coat. Professional application recommended.",
       ar: "AUTOTRIZ ION+ طلاء سيراميك نانو متقدم علمياً بتقنية التأين السطحي يمنح مستوى عالياً من النعومة والانزلاق. تقنية التأين السطحي تُنشّط جزيئات النانو التي ترتبط بإتقان على أي سطح مثل الطلاء والورنيش والطبقة الأساسية. يُوصى بالتطبيق الاحترافي.",
     },
-    images: ["/products/autotriz/autotriz-ion-plus-ceramic-coating.webp"],
+    images: [
+      "/products/autotriz/autotriz-ion-plus-ceramic-coating.webp",
+      "/products/autotriz/autotriz-ion-plus-ceramic-coating-box.webp",
+    ],
     specs: [
       { label: { en: "Size", ar: "الحجم" }, value: { en: "50 ml / 1.7 oz", ar: "٥٠ مل" } },
       { label: { en: "Technology", ar: "التقنية" }, value: { en: "Surface ionized nano ceramic", ar: "سيراميك نانو بتأين سطحي" } },
