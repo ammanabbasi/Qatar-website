@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { PageHero } from "@/components/ui/PageHero";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { ProductGridView } from "@/components/product/ProductGridView";
 import { WhyQatar } from "@/components/home/WhyQatar";
@@ -40,6 +40,7 @@ export default async function B2CProducts({
   setRequestLocale(locale);
   const l = locale as "en" | "ar";
   const t = await getTranslations({ locale, namespace: "Products" });
+  const eyebrows = await getTranslations({ locale, namespace: "Eyebrows" });
   const meta = await getTranslations({ locale, namespace: "Meta" });
 
   // ItemList helps Google interpret this page as a catalogue rather than a
@@ -62,15 +63,14 @@ export default async function B2CProducts({
   return (
     <Shell audience="b2c" locale={l}>
       <JsonLd id="ld-itemlist-b2c-products" data={itemListLd} />
-      <section className="pb-8 pt-10 sm:pt-14 lg:pt-20">
+      <PageHero
+        eyebrow={eyebrows("products")}
+        title={t("heading")}
+        subtitle={t("subtitleB2c")}
+      />
+      <section className="pb-8 pt-8 sm:pt-10">
         <Container>
-          <SectionHeading
-            as="h1"
-            size="display"
-            title={t("heading")}
-            subtitle={t("subtitleB2c")}
-          />
-          <div className="mt-10 sm:mt-12">
+          <div>
             {/* The grid reads its filters from the URL (useSearchParams), which
                 on a static route renders client-side. The fallback is the same
                 grid, unfiltered and non-interactive, so the full catalogue is

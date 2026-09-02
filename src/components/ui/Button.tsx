@@ -4,14 +4,7 @@ import type {
   ReactNode,
 } from "react";
 
-type Variant =
-  | "primary"
-  | "secondary"
-  | "dark"
-  | "light"
-  | "outline"
-  | "brand"
-  | "brandOutline";
+type Variant = "primary" | "secondary" | "dark" | "light" | "outline";
 type Size = "sm" | "md" | "lg";
 
 type BaseProps = {
@@ -33,15 +26,15 @@ const sizes: Record<Size, string> = {
 };
 
 const variants: Record<Variant, string> = {
-  primary: "bg-(--color-accent) text-white hover:bg-(--color-accent-hover)",
+  // Primary action = brand gold with ink text (gold fails contrast under
+  // white text, so the pair is fixed).
+  primary:
+    "bg-(--color-brand) font-medium text-(--color-ink) hover:bg-(--color-brand-hover)",
   secondary: "bg-(--color-fill) text-(--color-text) hover:bg-(--color-fill-hover)",
   dark: "bg-(--color-ink) text-white hover:bg-black",
   light: "bg-white text-(--color-text) hover:bg-(--color-fill)",
+  // Gold hairline pill — designed for dark grounds (hero, promo tiles).
   outline:
-    "bg-transparent text-(--color-link) border border-(--color-link) hover:bg-(--color-link) hover:text-white",
-  brand:
-    "bg-(--color-brand) font-medium text-(--color-ink) hover:bg-(--color-brand-hover)",
-  brandOutline:
     "bg-transparent font-medium text-(--color-brand) border border-(--color-brand)/60 hover:border-(--color-brand) hover:bg-(--color-brand)/10",
 };
 

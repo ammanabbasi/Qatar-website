@@ -52,7 +52,7 @@ export default function LocaleError({
           <button
             type="button"
             onClick={() => unstable_retry()}
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-pill bg-(--color-accent) px-[22px] text-body text-white transition-colors hover:bg-(--color-accent-hover)"
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-pill bg-(--color-brand) px-[22px] text-body font-medium text-(--color-ink) transition-colors hover:bg-(--color-brand-hover)"
           >
             {t.retry}
           </button>

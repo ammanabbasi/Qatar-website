@@ -15,7 +15,9 @@ export default function manifest(): MetadataRoute.Manifest {
     display: "standalone",
     orientation: "portrait",
     background_color: "#f5f5f7",
-    theme_color: "#f5f5f7",
+    // Matches --color-hero-dark: every page now opens with the dark band, so
+    // the installed-app status bar blends into the page top.
+    theme_color: "#0a0a0d",
     icons: [
       {
         src: "/icon.png",

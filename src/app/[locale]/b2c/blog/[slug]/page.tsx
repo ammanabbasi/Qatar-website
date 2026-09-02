@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
 import { Container } from "@/components/ui/Container";
+import { PageHero } from "@/components/ui/PageHero";
 import { TextLink } from "@/components/ui/TextLink";
 import { ChevronIcon } from "@/components/ui/Icons";
 import { Link } from "@/i18n/navigation";
@@ -91,17 +92,18 @@ export default async function ArticlePage({
     .map((s) => getProductBySlug(s))
     .filter(Boolean);
 
-  const crumb =
-    "text-caption text-(--color-text-muted) transition-colors hover:text-(--color-text)";
+  const crumb = "text-caption text-white/60 transition-colors hover:text-white";
 
   return (
     <Shell audience="b2c" locale={l}>
       <JsonLd id="ld-article" data={articleLd} />
       <JsonLd id="ld-article-crumb" data={crumbLd} />
-      <article className="pb-16 pt-10 sm:pt-14 lg:pt-20">
-        <Container>
-          {/* Breadcrumb */}
-          <nav aria-label={nav("breadcrumb")} className="mb-8">
+      <PageHero
+        eyebrow={t("eyebrow")}
+        title={article.title[l]}
+        subtitle={article.description[l]}
+        breadcrumb={
+          <nav aria-label={nav("breadcrumb")}>
             <ol className="flex flex-wrap items-center gap-1.5">
               <li>
                 <Link href="/" className={crumb}>
@@ -109,7 +111,7 @@ export default async function ArticlePage({
                 </Link>
               </li>
               <li aria-hidden>
-                <ChevronIcon className="h-2.5 w-2.5 text-(--color-text-subtle) rtl:-scale-x-100" />
+                <ChevronIcon className="h-2.5 w-2.5 text-white/40 rtl:-scale-x-100" />
               </li>
               <li>
                 <Link href="/b2c/blog" className={crumb}>
@@ -117,41 +119,30 @@ export default async function ArticlePage({
                 </Link>
               </li>
               <li aria-hidden>
-                <ChevronIcon className="h-2.5 w-2.5 text-(--color-text-subtle) rtl:-scale-x-100" />
+                <ChevronIcon className="h-2.5 w-2.5 text-white/40 rtl:-scale-x-100" />
               </li>
-              <li className="text-caption text-(--color-text)">
-                {article.title[l]}
-              </li>
+              <li className="text-caption text-white/90">{article.title[l]}</li>
             </ol>
           </nav>
-
-          {/* Header */}
-          <header className="max-w-3xl">
-            <p className="text-caption font-semibold uppercase tracking-[0.04em] text-(--color-text-muted)">
-              {t("eyebrow")}
-            </p>
-            <h1 className="mt-2 text-headline font-semibold text-balance lg:text-display">
-              {article.title[l]}
-            </h1>
-            <p className="mt-4 text-body-lg text-(--color-text-muted)">
-              {article.description[l]}
-            </p>
-            <div className="mt-4 flex flex-wrap items-center gap-2 text-caption text-(--color-text-muted)">
-              <time dateTime={article.date}>
-                {new Date(article.date).toLocaleDateString(
-                  l === "ar" ? "ar-QA" : "en-QA",
-                  { year: "numeric", month: "long", day: "numeric" },
-                )}
-              </time>
-              <span aria-hidden>·</span>
-              <span>
-                {article.readingTime} {l === "ar" ? "دقائق قراءة" : "min read"}
-              </span>
-            </div>
-          </header>
-
+        }
+      >
+        <div className="mt-4 flex flex-wrap items-center gap-2 text-caption text-white/50">
+          <time dateTime={article.date}>
+            {new Date(article.date).toLocaleDateString(
+              l === "ar" ? "ar-QA" : "en-QA",
+              { year: "numeric", month: "long", day: "numeric" },
+            )}
+          </time>
+          <span aria-hidden>·</span>
+          <span>
+            {article.readingTime} {l === "ar" ? "دقائق قراءة" : "min read"}
+          </span>
+        </div>
+      </PageHero>
+      <article className="pb-16 pt-10 sm:pt-12">
+        <Container>
           {/* Article body */}
-          <div className="mt-10 flex max-w-3xl flex-col gap-10">
+          <div className="flex max-w-3xl flex-col gap-10">
             {article.sections.map((section, i) => (
               <section key={i}>
                 <h2 className="mb-3 text-title-sm font-semibold lg:text-title">

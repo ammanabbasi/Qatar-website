@@ -41,7 +41,7 @@ export default async function B2BHome({
   const jsonLd = localBusinessJsonLd(l);
 
   return (
-    <Shell audience="b2b" locale={l} headerTone="dark">
+    <Shell audience="b2b" locale={l}>
       <JsonLd id="ld-localbusiness-b2b" data={jsonLd} />
       <HomeHero audience="b2b" locale={l} />
       <StoreHeader audience="b2b" locale={l} />

@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { PageHero } from "@/components/ui/PageHero";
 import { TextLink } from "@/components/ui/TextLink";
 import { BadgeIcon, TruckIcon, SparkleIcon } from "@/components/ui/Icons";
 import { FaqSection } from "@/components/home/FaqSection";
@@ -50,6 +50,7 @@ export default async function AboutPage({
   const store = await cookies();
   const audience = store.get("abk_audience")?.value === "b2b" ? "b2b" : "b2c";
   const t = await getTranslations({ locale, namespace: "About" });
+  const eyebrows = await getTranslations({ locale, namespace: "Eyebrows" });
   const tFaq = await getTranslations({ locale, namespace: "Faq" });
   const faqLd = faqJsonLd(
     FAQ.map((entry) => ({ question: entry.q[l], answer: entry.a[l] })),
@@ -60,15 +61,14 @@ export default async function AboutPage({
       {/* FAQPage schema must sit on the same page as the rendered Q/A or
           Google treats the mismatch as cloaking - see FaqSection. */}
       <JsonLd id="ld-faq" data={faqLd} />
-      <section className="pb-8 pt-10 sm:pt-14 lg:pt-20">
+      <PageHero
+        eyebrow={eyebrows("about")}
+        title={t("heading")}
+        subtitle={t("subtitle")}
+      />
+      <section className="pb-8 pt-10 sm:pt-12">
         <Container>
-          <SectionHeading
-            as="h1"
-            size="display"
-            title={t("heading")}
-            subtitle={t("subtitle")}
-          />
-          <div className="mt-10 grid gap-10 sm:mt-12 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
             <div className="flex flex-col gap-5">
               <p className="text-body-lg text-(--color-text-muted)">{t("paragraph1")}</p>
               <p className="text-body-lg text-(--color-text-muted)">{t("paragraph2")}</p>
@@ -79,7 +79,7 @@ export default async function AboutPage({
                 <div key={i} className="tile flex gap-4 p-5">
                   <span
                     aria-hidden
-                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-(--color-fill) text-(--color-text)"
+                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-(--color-brand)/12 text-(--color-brand-deep)"
                   >
                     <Icon className="h-5 w-5" />
                   </span>

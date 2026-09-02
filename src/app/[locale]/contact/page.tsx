@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { PageHero } from "@/components/ui/PageHero";
 import { ButtonLink } from "@/components/ui/Button";
 import { TextLink } from "@/components/ui/TextLink";
 import { PinIcon, ClockIcon, PhoneIcon, MailIcon } from "@/components/ui/Icons";
@@ -53,15 +53,14 @@ export default async function ContactPage({
     <Shell audience={audience} locale={l}>
       <JsonLd id="ld-localbusiness-contact" data={jsonLd} />
 
-      <section className="pb-8 pt-10 sm:pt-14 lg:pt-20">
+      <PageHero
+        eyebrow={t("Eyebrows.contact")}
+        title={t("Contact.heading")}
+        subtitle={t("Contact.subtitle")}
+      />
+      <section className="pb-8 pt-10 sm:pt-12">
         <Container>
-          <SectionHeading
-            as="h1"
-            size="display"
-            title={t("Contact.heading")}
-            subtitle={t("Contact.subtitle")}
-          />
-          <div className="mt-10 grid gap-10 sm:mt-12 lg:grid-cols-5">
+          <div className="grid gap-10 lg:grid-cols-5">
             <div className="lg:col-span-2">
               <div className="tile flex flex-col gap-5 p-6">
                 <InfoRow
@@ -185,7 +184,7 @@ function InfoRow({
     <div className="flex items-start gap-3.5">
       <span
         aria-hidden
-        className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-(--color-fill) text-(--color-text)"
+        className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-(--color-brand)/12 text-(--color-brand-deep)"
       >
         {icon}
       </span>

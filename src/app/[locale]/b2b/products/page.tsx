@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { PageHero } from "@/components/ui/PageHero";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { ProductGridView } from "@/components/product/ProductGridView";
 import { DealerPitch } from "@/components/home/DealerPitch";
@@ -40,6 +40,7 @@ export default async function B2BProducts({
   setRequestLocale(locale);
   const l = locale as "en" | "ar";
   const t = await getTranslations({ locale, namespace: "Products" });
+  const eyebrows = await getTranslations({ locale, namespace: "Eyebrows" });
   const meta = await getTranslations({ locale, namespace: "Meta" });
 
   const audienceProducts = PRODUCTS.filter(
@@ -58,15 +59,14 @@ export default async function B2BProducts({
   return (
     <Shell audience="b2b" locale={l}>
       <JsonLd id="ld-itemlist-b2b-products" data={itemListLd} />
-      <section className="pb-8 pt-10 sm:pt-14 lg:pt-20">
+      <PageHero
+        eyebrow={eyebrows("products")}
+        title={t("heading")}
+        subtitle={t("subtitleB2b")}
+      />
+      <section className="pb-8 pt-8 sm:pt-10">
         <Container>
-          <SectionHeading
-            as="h1"
-            size="display"
-            title={t("heading")}
-            subtitle={t("subtitleB2b")}
-          />
-          <div className="mt-10 sm:mt-12">
+          <div>
             {/* See the B2C products page for why the fallback is the full
                 static grid. */}
             <Suspense

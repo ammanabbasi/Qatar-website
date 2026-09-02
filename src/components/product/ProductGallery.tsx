@@ -42,7 +42,7 @@ export function ProductGallery({ images, alt }: Props) {
                 onClick={() => setIndex(i)}
                 className={`relative h-16 w-16 overflow-hidden rounded-[12px] bg-(--color-surface) transition-shadow duration-200 ease-soft ${
                   active
-                    ? "shadow-[0_0_0_2px_var(--color-accent)]"
+                    ? "shadow-[0_0_0_2px_var(--color-brand-deep)]"
                     : "shadow-[0_0_0_1px_var(--color-border)] hover:shadow-[0_0_0_2px_var(--color-border)]"
                 }`}
               >

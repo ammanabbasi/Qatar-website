@@ -168,10 +168,10 @@ export default async function LocaleLayout({
           A hand-written <head> is also discouraged by the Next docs. */}
       <body className="flex min-h-dvh flex-col bg-(--color-bg) text-(--color-text) antialiased">
         {/* Keyboard-first users land here — `sr-only` hides until focus,
-            then `focus:not-sr-only` reveals the link as a visible blue pill. */}
+            then `focus:not-sr-only` reveals the link as a visible gold pill. */}
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:start-3 focus:z-50 focus:rounded-pill focus:bg-(--color-accent) focus:px-4 focus:py-2 focus:text-footnote focus:font-medium focus:text-white focus:shadow-tile"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:start-3 focus:z-50 focus:rounded-pill focus:bg-(--color-brand) focus:px-4 focus:py-2 focus:text-footnote focus:font-medium focus:text-(--color-ink) focus:shadow-tile"
         >
           {skipLabel}
         </a>

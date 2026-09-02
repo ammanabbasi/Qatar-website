@@ -26,13 +26,13 @@ export function DealerPitch({ locale }: { locale: WALocale }) {
             </h2>
             <p className="mt-4 max-w-lg text-body text-white/70">{t("Home.dealerSubtitle")}</p>
             <div className="mt-6">
+              {/* Gold on the ink tile — same pairing as the hero CTAs. */}
               <WhatsAppButton
                 audience="b2b"
                 locale={locale}
                 label={t("Cta.wholesaleInquiry")}
                 emailFallbackLabel={t("Cta.preferEmail")}
                 size="lg"
-                variant="light"
                 showEmailFallback={false}
               />
             </div>

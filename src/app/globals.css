@@ -29,17 +29,14 @@
   --color-border: #d2d2d7;
   --color-border-soft: #e8e8ed;
 
-  /* Accent — the single saturated colour in the UI (links, primary pills). */
-  --color-link: #0066cc;
-  --color-accent: #0071e3;
-  --color-accent-hover: #0077e6;
-
-  /* Brand gold from the ABK logo swoosh. Eyebrow labels + hero CTAs. */
+  /* Brand gold from the ABK logo swoosh — the single accent colour in the
+     UI. Pills and icons use --color-brand (dark text on top); text links,
+     rings and focus outlines use the deep amber, which passes contrast on
+     both white and the dark hero ground. */
   --color-brand: #f5a623;
   --color-brand-hover: #e2940f;
-  /* Brand amber legible on white grounds (caption text on light tiles). */
-  --color-brand-deep: #b45309;
   --color-brand-deep: #a85d00;
+  --color-link: #a85d00;
 
   /* Homepage hero ground — matches the showroom photography's blacks. */
   --color-hero-dark: #0a0a0d;
@@ -126,12 +123,12 @@ html[dir="rtl"] body * {
    override the ring (unlayered rules would beat every utility). */
 @layer base {
   :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--color-brand-deep);
     outline-offset: 3px;
   }
 
   ::selection {
-    background: #b4d5fe;
+    background: #fbe3ba;
     color: var(--color-text);
   }
 }
@@ -143,9 +140,11 @@ html[dir="rtl"] body * {
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
   }
-  /* Dark twin for pages that open with the dark hero (Apple product-page nav). */
+  /* Dark twin for pages that open with the dark hero (Apple product-page
+     nav). 0.8 alpha keeps the white/75 links ≥4.5:1 once light page content
+     scrolls behind the bar. */
   .nav-glass-dark {
-    background: rgba(13, 13, 16, 0.72);
+    background: rgba(13, 13, 16, 0.8);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
     backdrop-filter: saturate(180%) blur(20px);
   }
@@ -208,7 +207,7 @@ html[dir="rtl"] body * {
     flex: 0 0 auto;
   }
 
-  /* Blue "Learn more ›" link */
+  /* Amber "Learn more ›" link */
   .text-link {
     color: var(--color-link);
     display: inline-flex;

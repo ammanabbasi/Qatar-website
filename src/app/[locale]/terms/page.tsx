@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { PageHero } from "@/components/ui/PageHero";
 import { LegalSection } from "@/components/legal/LegalSection";
 import { pageMeta } from "@/lib/seo";
 
@@ -36,24 +36,18 @@ export default async function TermsPage({
   const store = await cookies();
   const audience = store.get("abk_audience")?.value === "b2b" ? "b2b" : "b2c";
   const t = await getTranslations({ locale, namespace: "Terms" });
+  const eyebrows = await getTranslations({ locale, namespace: "Eyebrows" });
 
   const sections = [1, 2, 3, 4, 5, 6, 7] as const;
 
   return (
     <Shell audience={audience} locale={l}>
-      <section className="pb-16 pt-10 sm:pt-14 lg:pt-20">
+      <PageHero eyebrow={eyebrows("legal")} title={t("title")} subtitle={t("subtitle")}>
+        <p className="mt-4 text-caption text-white/50">{t("lastUpdated")}</p>
+      </PageHero>
+      <section className="pb-16 pt-10 sm:pt-12">
         <Container>
-          <SectionHeading
-            as="h1"
-            size="display"
-            title={t("title")}
-            subtitle={t("subtitle")}
-          />
-          <p className="mt-3 text-caption text-(--color-text-muted)">
-            {t("lastUpdated")}
-          </p>
-
-          <article className="mt-10 flex max-w-3xl flex-col gap-8">
+          <article className="flex max-w-3xl flex-col gap-8">
             <p className="text-body text-(--color-text-muted)">{t("intro")}</p>
             {sections.map((i) => (
               <LegalSection

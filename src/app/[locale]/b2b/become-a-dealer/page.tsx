@@ -3,8 +3,7 @@ import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
-import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { PageHero } from "@/components/ui/PageHero";
 import { DealerPitch } from "@/components/home/DealerPitch";
 import { TrustBadges } from "@/components/home/TrustBadges";
 import { pageMeta } from "@/lib/seo";
@@ -34,19 +33,17 @@ export default async function BecomeDealer({
   setRequestLocale(locale);
   const l = locale as "en" | "ar";
   const home = await getTranslations({ locale, namespace: "Home" });
+  const eyebrows = await getTranslations({ locale, namespace: "Eyebrows" });
 
   return (
     <Shell audience="b2b" locale={l}>
-      <section className="pb-8 pt-10 sm:pt-14 lg:pt-20">
-        <Container>
-          <SectionHeading
-            as="h1"
-            size="display"
-            title={home("becomeDealerHeading")}
-            subtitle={home("becomeDealerTagline")}
-          />
-        </Container>
-      </section>
+      {/* "partner", not "wholesale" — DealerPitch directly below carries its
+          own WHOLESALE eyebrow and the band shouldn't echo it. */}
+      <PageHero
+        eyebrow={eyebrows("partner")}
+        title={home("becomeDealerHeading")}
+        subtitle={home("becomeDealerTagline")}
+      />
       <DealerPitch locale={l} />
       <TrustBadges />
     </Shell>

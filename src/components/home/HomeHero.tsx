@@ -68,13 +68,13 @@ export function HomeHero({ audience, locale }: Props) {
           <div className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:items-center">
             <Link
               href={`/${audience}/products`}
-              className={`${buttonClasses("brand", "lg")} w-full sm:w-auto`}
+              className={`${buttonClasses("primary", "lg")} w-full sm:w-auto`}
             >
               {t("heroCtaProducts")}
               <ArrowRightIcon className="h-4 w-4 rtl:rotate-180" />
             </Link>
             <ButtonLink
-              variant="brandOutline"
+              variant="outline"
               size="lg"
               href={waHref}
               target="_blank"

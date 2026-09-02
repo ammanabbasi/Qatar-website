@@ -7,12 +7,13 @@ import type { Audience, WALocale } from "@/lib/whatsapp";
 type Props = {
   audience: Audience;
   locale: WALocale;
-  /** "dark" pairs the header with the dark homepage hero. */
+  /** Every page opens with a dark band (HomeHero or PageHero), so the
+      dark glass header is the default; "light" remains for one-offs. */
   headerTone?: "light" | "dark";
   children: React.ReactNode;
 };
 
-export function Shell({ audience, locale, headerTone, children }: Props) {
+export function Shell({ audience, locale, headerTone = "dark", children }: Props) {
   const t = useTranslations("Cta");
   return (
     <>

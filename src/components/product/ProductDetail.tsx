@@ -1,6 +1,7 @@
 import { JsonLd } from "@/components/seo/JsonLd";
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
+import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Shelf } from "@/components/ui/Shelf";
 import { ChevronIcon, PinIcon, BadgeIcon } from "@/components/ui/Icons";
@@ -49,17 +50,21 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
     { name, url: productUrl },
   ]);
 
-  const crumb = "text-caption text-(--color-text-muted) transition-colors hover:text-(--color-text)";
+  const crumb = "text-caption text-white/60 transition-colors hover:text-white";
 
   return (
     <>
       <JsonLd id="ld-product" data={productLd} />
       <JsonLd id="ld-breadcrumb" data={bcLd} />
 
-      <section className="py-8 sm:py-12">
-        <Container>
-          {/* Breadcrumbs */}
-          <nav aria-label={t("Nav.breadcrumb")} className="mb-8">
+      {/* The name + brand eyebrow open in the same dark band as every other
+          page; the gallery and buying column continue on the light ground. */}
+      <PageHero
+        eyebrow={`${brandLabel} · ${categoryLabel}`}
+        title={name}
+        subtitle={shortDesc}
+        breadcrumb={
+          <nav aria-label={t("Nav.breadcrumb")}>
             <ol className="flex flex-wrap items-center gap-1.5">
               <li>
                 <Link href={homeHref} className={crumb}>
@@ -67,7 +72,7 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
                 </Link>
               </li>
               <li aria-hidden>
-                <ChevronIcon className="h-2.5 w-2.5 text-(--color-text-subtle) rtl:-scale-x-100" />
+                <ChevronIcon className="h-2.5 w-2.5 text-white/40 rtl:-scale-x-100" />
               </li>
               <li>
                 <Link href={`/${audience}/products`} className={crumb}>
@@ -75,25 +80,21 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
                 </Link>
               </li>
               <li aria-hidden>
-                <ChevronIcon className="h-2.5 w-2.5 text-(--color-text-subtle) rtl:-scale-x-100" />
+                <ChevronIcon className="h-2.5 w-2.5 text-white/40 rtl:-scale-x-100" />
               </li>
-              <li className="text-caption text-(--color-text)">{name}</li>
+              <li className="text-caption text-white/90">{name}</li>
             </ol>
           </nav>
+        }
+      />
 
+      <section className="py-8 sm:py-10">
+        <Container>
           <div className="grid gap-10 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-16">
             <ProductGallery images={product.images} alt={name} />
 
             <div className="flex flex-col gap-6">
-              <div>
-                <p className="text-caption font-semibold uppercase tracking-[0.04em] text-(--color-text-muted)">
-                  {brandLabel} · {categoryLabel}
-                </p>
-                <h1 className="mt-2 text-headline font-semibold text-balance lg:text-display">
-                  {name}
-                </h1>
-                <p className="mt-4 text-body text-(--color-text-muted)">{longDesc}</p>
-              </div>
+              <p className="text-body text-(--color-text-muted)">{longDesc}</p>
 
               <ul className="flex flex-col gap-2 text-footnote text-(--color-text)">
                 <li className="flex items-center gap-2.5">

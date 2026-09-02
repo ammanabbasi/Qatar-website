@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { PageHero } from "@/components/ui/PageHero";
 import { ArticleCard } from "@/components/blog/ArticleCard";
 import { ARTICLES } from "@/data/articles";
 import { pageMeta } from "@/lib/seo";
@@ -56,15 +56,14 @@ export default async function BlogListingPage({
     <Shell audience="b2c" locale={l}>
       <JsonLd id="ld-blog-list" data={listLd} />
       <JsonLd id="ld-blog-crumb" data={crumbLd} />
-      <section className="pb-8 pt-10 sm:pt-14 lg:pt-20">
+      <PageHero
+        eyebrow={t("eyebrow")}
+        title={t("heading")}
+        subtitle={t("subtitle")}
+      />
+      <section className="pb-8 pt-8 sm:pt-10">
         <Container>
-          <SectionHeading
-            as="h1"
-            size="display"
-            title={t("heading")}
-            subtitle={t("subtitle")}
-          />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 sm:mt-12 lg:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {ARTICLES.map((article) => (
               <ArticleCard key={article.slug} article={article} locale={l} />
             ))}
