@@ -800,6 +800,33 @@ export const PRODUCTS: Product[] = [
     ],
     audience: "both",
   },
+  {
+    slug: "autotriz-spray-bottle",
+    brand: "Autotriz",
+    category: "accessories",
+    name: {
+      en: "Premium Autotriz Spray Bottle (Empty)",
+      ar: "Autotriz — بخاخ كيميائي احترافي (فارغ)",
+    },
+    shortDesc: {
+      en: "Professional-grade chemical-resistant empty spray bottle. Heavy-duty adjustable trigger sprayer, dilution markings. Made in Germany.",
+      ar: "بخاخ كيميائي احترافي فارغ مقاوم للمواد الكيميائية. رأس رشاش متين قابل للتعديل مع تدريج لتحديد نسب التخفيف. صُنع في ألمانيا.",
+    },
+    longDesc: {
+      en: "Premium German-engineered heavy-duty empty spray bottle designed specifically for automotive detailing chemicals, shampoos, wheel cleaners, degreasers, and surface preps. Features an industrial chemical-resistant adjustable trigger sprayer that transitions smoothly from a fine atomized mist to a powerful concentrated stream. High-density polyethylene (HDPE) bottle features printed dilution and volume fill guides with professional labeling space.\n\nKey Highlights:\n• Chemical-Resistant Construction: Safe for harsh detailing chemicals, wheel cleaners, and degreasers\n• Adjustable Spray Nozzle: Fine mist to concentrated stream\n• Dilution Markings: Accurate mixing ratios on bottle body\n• Ergonomic Trigger: Comfortable grip for extended detailing sessions\n• Origin: Made in Germany",
+      ar: "بخاخ احترافي عالي المتانة فارغ بصناعة ألمانية متطورة، مصمم خصيصاً لتحمل المواد الكيميائية ومحاليل التلميع والشامبو ومنظفات العجلات ومزيلات الشحوم. يتميز برأس رشاش كيميائي متين قابل للتعديل يمنحك رذاذاً ناعماً فائق الانتشار أو تياراً مركزاً قوياً. عبوة مصنوعة من بلاستيك HDPE عالي الكثافة مع تدريج دقيق لنسب التخفيف ومساحة مخصصة لكتابة اسم المحلول.\n\nأبرز المواصفات:\n• مقاوم للمواد الكيميائية: يتحمل المنظفات القوية ومزيلات الشحوم وغسيل الجنوط\n• فوهة رش قابلة للتعديل: من الرذاذ الناعم إلى التيار المباشر\n• تدريج نسب التخفيف: خلط دقيق للمحاليل المركزة\n• مقبض رشاش مريح: مصمم للاستخدام المستمر في مراكز التلميع\n• بلد المنشأ: صُنع في ألمانيا",
+    },
+    images: ["/products/autotriz/autotriz-spray-bottle.webp"],
+    specs: [
+      { label: { en: "Type", ar: "النوع" }, value: { en: "Chemical-Resistant Empty Spray Bottle", ar: "بخاخ فارغ مقاوم للمواد الكيميائية" } },
+      { label: { en: "Trigger", ar: "الرشاش" }, value: { en: "Adjustable Nozzle (Mist to Stream)", ar: "فوهة قابلة للتعديل (رذاذ إلى تيار مباشر)" } },
+      { label: { en: "Material", ar: "المادة" }, value: { en: "High-Density Polyethylene (HDPE)", ar: "بولي إيثيلين عالي الكثافة (HDPE)" } },
+      { label: { en: "Compatibility", ar: "التوافق" }, value: { en: "Suitable for all detailing chemicals", ar: "مناسب لجميع المواد والمحاليل الكيميائية" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
+    ],
+    audience: "both",
+    updatedAt: "2026-09-01",
+  },
 
   // ───── Insta Finish — USA
   {
