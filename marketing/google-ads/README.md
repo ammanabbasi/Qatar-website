@@ -10,12 +10,12 @@ was missing.
 | | |
 |---|---|
 | Campaigns | **12** — 6 themes x English + Arabic |
-| Ad groups | **62** — one per PPF grade, plus tint |
-| Keywords | **885** — de-duplicated so each lives in exactly one ad group |
-| Negative keywords | **741** at ad-group/campaign level, plus a **343**-term shared list |
-| Responsive search ads | **62** — 930 headlines, 248 descriptions |
+| Ad groups | **70** — one per PPF grade, plus tint and the new 20L chemicals |
+| Keywords | **1,008** — de-duplicated so each lives in exactly one ad group |
+| Negative keywords | **816** at ad-group/campaign level, plus a **343**-term shared list |
+| Responsive search ads | **70** — 1,050 headlines, 280 descriptions |
 | Extensions | 14 sitelinks, 16 callouts, 4 structured snippet sets |
-| Landing pages | **140/140 verified 200** against live production |
+| Landing pages | **200/200 verified 200** against live production |
 | Bid strategy at launch | **Manual CPC**, using each ad group's own max CPC |
 | Budget if every campaign were enabled | **310 QAR/day** ≈ 9,300 QAR/month — don't; enable one at a time |
 
@@ -40,7 +40,7 @@ in `Paused` status by design.** Nothing can spend until you deliberately enable 
 ## Order of operations
 
 1. **[Set up conversion tracking](./CONVERSION-TRACKING.md) — do this first.**
-   The code is already live; you need to create four conversion actions and
+   The code is already live; you need to create three conversion actions (a fourth, catalogue download, is dormant — see below) and
    paste their labels. Nothing else works properly without it: you cannot judge
    a campaign, and you cannot later switch to Smart Bidding, without conversions.
 2. Import the CSVs (below), in filename order.

@@ -1,8 +1,8 @@
 # Conversion tracking setup
 
-**Do this before enabling any campaign.** Every campaign in `import/` uses
-*Maximize conversions* bidding. Smart Bidding with zero conversion signal is
-just expensive random bidding — the campaigns will burn budget and learn nothing.
+**Do this before enabling any campaign.** The campaigns launch on Manual CPC,
+but you cannot judge a campaign — or ever switch to the target *Maximize
+conversions* strategy — without conversion data. No tracking means flying blind.
 
 ## What was wrong
 
@@ -70,7 +70,14 @@ To exercise tracking locally, build with `NEXT_PUBLIC_ADS_FORCE_TRACKING=1`.
 | `wa.me` link click (any WhatsApp CTA) | `whatsapp_enquiry` | `whatsapp` |
 | `tel:` link click | `phone_enquiry` | `phone` |
 | `mailto:` link click | `email_enquiry` | `email` |
-| `/catalogues/*.pdf` click | `catalogue_download` | `catalogue` |
+| `/catalogues/*.pdf` click | `catalogue_download` | `catalogue` — **currently dormant** |
+
+> **The catalogue conversion is dormant as of 2026-09-01:** commit `1599418`
+> removed the catalogue download link from product pages, and no page links the
+> PDFs any more (the files still exist under `public/catalogues/`). The listener
+> stays in place and reactivates by itself if a catalogue link ever returns —
+> but you only need to create **three** conversion actions (WhatsApp, phone,
+> email), and can skip `NEXT_PUBLIC_ADS_LABEL_CATALOGUE` for now.
 
 Each event carries `page_path`, `link_url`, `locale` (`en`/`ar`), and where the
 markup provides them, `audience` (`b2c`/`b2b`), `product`, and
@@ -99,7 +106,7 @@ a *label* that only Google can issue. This is deliberate: the site ships and
 keeps measuring regardless, and the Ads conversion switches on the moment you
 paste the labels.
 
-### 1. Create four conversion actions
+### 1. Create three conversion actions
 
 Google Ads → **Goals → Conversions → New conversion action → Website**.
 When it asks for the tracking method choose **"Use Google tag"** (already
@@ -110,7 +117,7 @@ installed), then set each up manually:
 | WhatsApp enquiry | Contact | assign a value, e.g. 40 QAR | One | **Primary** |
 | Phone click | Contact | 40 QAR | One | **Primary** |
 | Email click | Contact | 20 QAR | One | Secondary |
-| Catalogue download | Other | 15 QAR | One | Secondary |
+| Catalogue download | Other | 15 QAR | One | Secondary — **skip while dormant** (no page links the PDFs) |
 
 Set **Email** and **Catalogue** to *Secondary* so they are measured but do not
 drive bidding — they are far weaker buying signals than a WhatsApp message.

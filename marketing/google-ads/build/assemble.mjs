@@ -176,6 +176,46 @@ function checkDilutionClaims(where, url, texts) {
       }
     }
 
+    // Film thickness: "7.5 mil" in an ad must match the product's Thickness
+    // spec. Added after commit 82a666d changed ULTIMATE from 8.5 to 7.5 mil,
+    // silently falsifying a live headline.
+    // "مل" is the Arabic rendering of mil — an AR headline stating a stale
+    // thickness slipped past the Latin-only pattern.
+    const specText = (catalogue.products.find((p) => p.slug === slug) || {}).specs || "";
+    for (const m of toWestern(raw).matchAll(/(\d+(?:\.\d+)?)\s*(mil\b|µm|micron|مل)/gi)) {
+      if (!specText.includes(m[1])) {
+        fail(where, `states "${m[1]} ${m[2]}" but ${slug} spec says "${/Thickness=([^|]+)/.exec(specText)?.[1]?.trim() ?? "(no thickness)"}": "${raw}"`);
+      }
+    }
+
+    // Spelled-out Arabic durations ("ضمان ثماني سنوات") carry no digit for the
+    // warranty check to verify, so surface them for a human instead of letting
+    // them pass silently — one already hid a stale eight-year claim.
+    if (/(ثلاث|أربع|خمس|ست|سبع|ثماني|تسع|عشر)\s+سن(?:ة|وات|ين)/.test(raw)) {
+      warn(where, `spells out a duration in words — verify it against the spec by hand: "${raw}"`);
+    }
+
+    // Warranty duration: the official VTEK chart (2026-09-01) moved every
+    // grade — MATTE and PRISM went DOWN to 5 years, so a stale ad OVERSTATES
+    // a warranty, the worst kind of wrong. Matches "10-Year", "10 Year",
+    // Arabic "10 سنوات" etc.
+    for (const m of toWestern(raw).matchAll(/\b(\d{1,2})[- ]?(?:year|yr|سنة|سنوات|عام(?:اً)?)/gi)) {
+      const specYears = [...specText.matchAll(/(\d{1,2})-Year/gi)].map((x) => x[1]);
+      if (specYears.length && !specYears.includes(m[1])) {
+        fail(where, `states a ${m[1]}-year term but ${slug} warranty is ${specYears.join("/")}-year: "${raw}"`);
+      } else if (!specYears.length) {
+        fail(where, `states a ${m[1]}-year term but ${slug} spec carries no warranty: "${raw}"`);
+      }
+    }
+
+    // Performance percentages (TSER / UV / IR): only stateable if the number
+    // is in the spec. The VUE tint dropped the old 65%/90%/99% figures.
+    for (const m of toWestern(raw).matchAll(/\b(\d{1,3})\s*%/g)) {
+      if (!specText.includes(`${m[1]}%`)) {
+        fail(where, `states "${m[1]}%" but ${slug} spec does not carry that figure: "${raw}"`);
+      }
+    }
+
     // Same idea for pack size: an ad promising "20 L" must land on a 20 L product.
     const size = sizeBySlug.get(slug);
     if (size) {
@@ -251,6 +291,7 @@ function negativeMatchType(n) {
 
 const rows = { campaigns: [], adGroups: [], keywords: [], negatives: [], ads: [], settings: [] };
 const campaignNames = [];
+const adGroupMeta = [];
 let totalKeywords = 0, totalNegatives = 0, totalAds = 0;
 
 for (const { file, data } of themes) {
@@ -330,6 +371,7 @@ for (const { file, data } of themes) {
         "Max CPC": g.maxCpcQAR ?? "",
         "Ad Group Type": "Standard",
       });
+      adGroupMeta.push({ campaign: c.name, name: g.name, lang: c.language, slug: url.split("?")[0].split("/products/")[1] || null });
 
       for (const k of g.keywords ?? []) {
         if (!k?.text) { fail(gw, "keyword with no text"); continue; }
@@ -587,19 +629,47 @@ if (assets) {
   }
 
   // Brand-specific callouts must not leak onto other brands' ads.
+  //
+  // An origin callout ("Made in Canada") is scoped per AD GROUP, not per
+  // campaign: campaign scope broke the moment the wash-care campaign gained a
+  // Made-in-Germany product — a campaign-level callout would have served a
+  // false origin claim beside its ads. The eligible ad groups are DERIVED from
+  // each landing product's own Origin spec, so a future product addition
+  // re-scopes automatically instead of silently drifting.
   for (const sc of assets.scopedCallouts ?? []) {
+    const originClaim = /Made in (\w+)/.exec((sc.en ?? []).join(" "))?.[1] ?? null;
+    const matchedCampaigns = campaignNames.filter(
+      (n) => n.toLowerCase().includes(sc.campaignMatch.replace(/-/g, " ")) || n.toLowerCase().includes(sc.campaignMatch),
+    );
     for (const lang of ["en", "ar"]) {
       for (const c of sc[lang] ?? []) {
         const w = `assets.json > scopedCallouts(${sc.campaignMatch}).${lang} > "${c}"`;
         if (len(c) > ASSET_LIMITS.callout) fail(w, `callout is ${len(c)} chars (max 25)`);
-        const matched = campaignNames.filter((n) => n.toLowerCase().includes(sc.campaignMatch.replace(/-/g, " ")) ||
-          n.toLowerCase().includes(sc.campaignMatch));
-        if (!matched.length) warn(w, `campaignMatch "${sc.campaignMatch}" matched no campaign — callout will not attach`);
-        for (const n of matched.length ? matched : ["(unmatched)"]) {
-          assetRows.callouts.push({
-            Language: lang === "ar" ? "Arabic" : "English",
-            Scope: n, "Callout text": c,
-          });
+        if (!matchedCampaigns.length) {
+          warn(w, `campaignMatch "${sc.campaignMatch}" matched no campaign — callout will not attach`);
+          continue;
+        }
+        if (originClaim) {
+          const eligible = adGroupMeta.filter(
+            (g) => matchedCampaigns.includes(g.campaign) && g.lang === lang &&
+              g.slug && (originBySlug.get(g.slug) || "").includes(originClaim),
+          );
+          if (!eligible.length) {
+            warn(w, `no ad group in ${sc.campaignMatch} lands on a Made-in-${originClaim} product — callout not attached`);
+          }
+          for (const g of eligible) {
+            assetRows.callouts.push({
+              Language: lang === "ar" ? "Arabic" : "English",
+              Scope: `${g.campaign} > ${g.name}`, "Callout text": c,
+            });
+          }
+        } else {
+          for (const n of matchedCampaigns) {
+            assetRows.callouts.push({
+              Language: lang === "ar" ? "Arabic" : "English",
+              Scope: n, "Callout text": c,
+            });
+          }
         }
       }
     }

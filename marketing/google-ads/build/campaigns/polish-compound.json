@@ -74,7 +74,7 @@
  "name": "Polishing Compound - Power Cut 701",
  "maxCpcQAR": 3.5,
  "finalUrl": "https://abktradingservice.com/en/b2c/products/autotriz-power-cut-701",
- "themeNote": "The generic 'polishing compound' buyer. Autotriz's own copy calls 701 a polishing compound with high cut plus gloss, so the head term and the page agree word for word.",
+ "themeNote": "The generic 'polishing compound' buyer. 701 is catalogued as a 2-in-1 cut and polish compound in 4 L, rotary and dual action, made in Germany - so the head term and the page agree word for word, and the copy sells one tin doing two stages instead of a cut-only compound.",
  "keywords": [
  { "text": "autotriz power cut 701", "matchType": "Exact" },
  { "text": "power cut 701", "matchType": "Exact" },
@@ -106,25 +106,25 @@
  "ad": {
  "headlines": [
  "Autotriz Power Cut 701",
+ "2-in-1 Cut & Polish, 4 L",
  "Polishing Compound Qatar",
- "High Cut With Gloss Finish",
+ "Cut & Polish in One Pass",
+ "For Rotary & Dual Action",
+ "Made in Germany",
  "Buy Compound in Doha",
- "Body Shop Safe Compound",
- "4 Litre Pack Size",
+ "4 Litre Trade Jug",
  "Pro-Grade Car Compound",
  "For Detailers & Body Shops",
  "Compound Supplier in Doha",
  "Trade & Retail Supply",
  "WhatsApp for a Quote",
- "Autotriz Compounds Stocked",
  "Stocked in Mesaimeer, Doha",
- "Doha Car Care Supplier",
  "We Supply, You Polish"
  ],
  "descriptions": [
- "Autotriz Power Cut 701: high cut performance with a gloss finish. Body shop safe.",
- "4 litre packs of professional polishing compound, stocked in Mesaimeer, Doha.",
- "We supply the compound. Your own technician runs the machine and does the work.",
+ "Autotriz Power Cut 701: a 2-in-1 cut and polish compound, made in Germany.",
+ "Cut and finish in one pass. Use it on a rotary or a dual action machine.",
+ "4 litre jugs stocked in Mesaimeer, Doha. Your own technician does the work.",
  "Ask on WhatsApp for a quote and current stock. Trade and retail supply."
  ],
  "path1": "compounds",
@@ -250,7 +250,7 @@
  "name": "Rich Foam Shampoo - 20L Trade Pack",
  "maxCpcQAR": 3.0,
  "finalUrl": "https://abktradingservice.com/en/b2c/products/autotriz-rich-foam-shampoo",
- "themeNote": "Volume wash chemical for car washes and detail shops. The 20 L pack is the qualifier: bulk, foam cannon and pH-neutral modifiers all signal a trade buyer rather than a retail bottle shopper.",
+ "themeNote": "Volume wash chemical for car washes and detail shops. Two qualifiers now carry the group: the 20 L pack (bulk, foam cannon, trade rather than retail bottle) and the coating-safe angle - it is a nano coating and PPF top-coat renewer, so 'shampoo safe for ceramic coated cars' is a real query this SKU can honestly answer. 1:80 dilution is the economy hook for a buyer comparing drum prices.",
  "keywords": [
  { "text": "autotriz rich foam shampoo", "matchType": "Exact" },
  { "text": "rich foam shampoo qatar", "matchType": "Phrase" },
@@ -267,7 +267,12 @@
  { "text": "detailing shampoo supplier doha", "matchType": "Phrase" },
  { "text": "car shampoo for car wash business qatar", "matchType": "Phrase" },
  { "text": "autotriz shampoo qatar", "matchType": "Phrase" },
- { "text": "professional car shampoo qatar", "matchType": "Phrase" }
+ { "text": "professional car shampoo qatar", "matchType": "Phrase" },
+ { "text": "shampoo for ceramic coated cars", "matchType": "Phrase" },
+ { "text": "ceramic coating safe shampoo", "matchType": "Phrase" },
+ { "text": "ppf safe car shampoo", "matchType": "Phrase" },
+ { "text": "coating maintenance shampoo", "matchType": "Phrase" },
+ { "text": "nano car shampoo qatar", "matchType": "Phrase" }
  ],
  "negativeKeywords": [
  { "text": "compound", "matchType": "Broad" },
@@ -279,30 +284,91 @@
  ],
  "ad": {
  "headlines": [
- "Autotriz Rich Foam Shampoo",
+ "Autotriz Nano Foam Shampoo",
  "Snow Foam Shampoo Qatar",
+ "Safe for Coated Cars",
+ "Shampoo for PPF & Ceramic",
+ "Renews PPF Top Coat",
+ "Dilutes 1:80 With Water",
  "20 Litre Trade Pack",
- "pH-Balanced Car Shampoo",
- "Thick Foam, High Gloss",
  "Made in Germany",
+ "Thick, Rich Foam Shampoo",
  "Foam Cannon Shampoo Doha",
  "For Car Washes & Detailers",
  "Bulk Car Shampoo Supply",
  "Stocked in Mesaimeer, Doha",
- "Trade & Retail Supply",
  "WhatsApp for a Quote",
- "Buy Car Shampoo in Qatar",
- "Gloss-Enhancing Shampoo",
- "Doha Car Care Supplier"
+ "Buy Car Shampoo in Qatar"
  ],
  "descriptions": [
- "Autotriz Rich Foam Shampoo: pH balanced, thick foam, gloss enhancers, made in Germany.",
- "20 litre packs for car washes, detailers and body shops across Qatar.",
- "Stocked in Mesaimeer, Doha, so there is no cross-border import wait.",
- "Ask on WhatsApp for a quote on single packs or a bulk order. Open Sat to Thu."
+ "Autotriz Nano Rich Foam Shampoo: a nano coating shampoo that renews PPF top coat.",
+ "Best for PPF and ceramic coated cars. Dilutes 1:80 with water, so a drum lasts.",
+ "20 litre packs for car washes, detailers and body shops. Made in Germany.",
+ "Stocked in Mesaimeer, Doha. Ask on WhatsApp for a quote on single or bulk packs."
  ],
  "path1": "car-care",
  "path2": "shampoo"
+ }
+ },
+ {
+ "name": "Polishing Pads - GrunesAuto 6 Inch",
+ "maxCpcQAR": 2.8,
+ "finalUrl": "https://abktradingservice.com/en/b2c/products?category=accessories",
+ "themeNote": "The consumable that goes on the machine, sold to the same trade buyer this campaign already sells compound to. Four GrunesAuto SKUs split the range - step 1 DA cutting, step 2 DA polishing, step 2 rotary, step 3 DA finishing - so no single product page answers a generic pad query. It lands on the accessories catalogue filter instead, where all four sit together and the buyer picks the grade. 'Pad' is a brake-part homonym in Qatar, so brake pads are negatived at ad-group level.",
+ "keywords": [
+ { "text": "polishing pads qatar", "matchType": "Phrase" },
+ { "text": "polishing pads doha", "matchType": "Phrase" },
+ { "text": "buy polishing pads qatar", "matchType": "Phrase" },
+ { "text": "da polishing pads", "matchType": "Phrase" },
+ { "text": "dual action polishing pads", "matchType": "Phrase" },
+ { "text": "6 inch cutting pad", "matchType": "Phrase" },
+ { "text": "6 inch polishing pad", "matchType": "Phrase" },
+ { "text": "rotary foam pad", "matchType": "Phrase" },
+ { "text": "foam polishing pads qatar", "matchType": "Phrase" },
+ { "text": "cutting pad for car polishing", "matchType": "Phrase" },
+ { "text": "finishing pad qatar", "matchType": "Phrase" },
+ { "text": "hook and loop polishing pad", "matchType": "Phrase" },
+ { "text": "150mm polishing pad", "matchType": "Phrase" },
+ { "text": "polishing pad supplier qatar", "matchType": "Phrase" },
+ { "text": "buy foam pads doha", "matchType": "Exact" }
+ ],
+ "negativeKeywords": [
+ { "text": "brake pad", "matchType": "Phrase" },
+ { "text": "brake pads", "matchType": "Phrase" },
+ { "text": "sanding pad", "matchType": "Phrase" },
+ { "text": "floor polishing pad", "matchType": "Phrase" },
+ { "text": "mouse pad", "matchType": "Phrase" },
+ { "text": "wool pad", "matchType": "Phrase" },
+ { "text": "buy polisher", "matchType": "Phrase" },
+ { "text": "polishing machine price", "matchType": "Phrase" },
+ { "text": "polishing service", "matchType": "Phrase" }
+ ],
+ "ad": {
+ "headlines": [
+ "Polishing Pads in Qatar",
+ "6 Inch Foam Polishing Pads",
+ "GrünesAuto, Made in Germany",
+ "Step 1 DA Cutting Pad",
+ "Step 2 Polishing Pad",
+ "Step 3 Finishing Pad",
+ "Rotary & DA Foam Pads",
+ "Hook & Loop Backing",
+ "Cut, Polish, Finish Pads",
+ "Pads for Your Compounds",
+ "For Detailers & Body Shops",
+ "Stocked in Mesaimeer, Doha",
+ "Trade & Retail Supply",
+ "WhatsApp for a Quote",
+ "Buy Polishing Pads, Doha"
+ ],
+ "descriptions": [
+ "GrünesAuto 6 inch foam polishing pads, made in Germany. Cut, polish and finish.",
+ "Step 1 cutting, step 2 polishing, step 3 finishing. Hook and loop backing.",
+ "Rotary and dual action pads for detailers and body shops. Pair them with your compound.",
+ "Stocked in Mesaimeer, Doha. Ask on WhatsApp for stock and a quote. Sat to Thu."
+ ],
+ "path1": "polishing",
+ "path2": "pads"
  }
  }
  ]
@@ -377,7 +443,7 @@
  "name": "AR - Power Cut 701",
  "maxCpcQAR": 2.5,
  "finalUrl": "https://abktradingservice.com/ar/b2c/products/autotriz-power-cut-701",
- "themeNote": "The generic معجون/كمبوند تلميع buyer, plus the 4 L pack-size and workshop-supply modifiers that mark a trade purchase.",
+ "themeNote": "The generic معجون/كمبوند تلميع buyer, plus the 4 L pack-size and workshop-supply modifiers that mark a trade purchase. Copy now leads on the 2-in-1 cut-and-polish angle and rotary/dual-action compatibility, matching the renamed SKU.",
  "keywords": [
  { "text": "autotriz power cut 701", "matchType": "Exact" },
  { "text": "مركب تلميع سيارات", "matchType": "Phrase" },
@@ -402,25 +468,25 @@
  ],
  "ad": {
  "headlines": [
- "مركب تلميع قوي للسيارات",
- "قطع عالي مع لمعان نهائي",
+ "مركب تلميع 2 في 1 للسيارات",
+ "قطع ولمعان في عملية واحدة",
  "عبوة 4 لتر للمحترفين",
- "آمن لورش السمكرة",
+ "صنع في ألمانيا",
+ "للبوليشر الدوار والمزدوج",
  "مواد تلميع Autotriz",
  "معجون تلميع سيارات",
  "توريد للورش والمغاسل",
  "متجر في مسيمير الدوحة",
  "اطلب عرض السعر على واتساب",
  "بيع بالجملة والتجزئة",
- "كمبوند تلميع احترافي",
+ "كمبوند قطع وتلميع 4 لتر",
  "نورد المواد لفنيي التلميع",
- "منتجات عناية بالسيارات",
  "مورد مواد تلميع في قطر",
  "متوفر في مخزننا بالدوحة"
  ],
  "descriptions": [
- "مركب تلميع قوي من Autotriz بقدرة قطع عالية ولمعان نهائي، آمن لورش السمكرة",
- "عبوة 4 لتر من مواد التلميع الاحترافية، متوفرة في متجرنا بمسيمير الدوحة",
+ "مركب تلميع 2 في 1 من Autotriz يجمع بين القطع القوي واللمعان، صنع في ألمانيا",
+ "يعمل مع البوليشر الدوار والمزدوج، عبوة 4 لتر من مواد التلميع الاحترافية",
  "نورد المواد للورش والمغاسل والمحترفين في قطر، بيع بالجملة والتجزئة",
  "اطلب عرض السعر على واتساب واستفسر عن الكميات المتوفرة لدينا"
  ],
@@ -542,7 +608,7 @@
  "name": "AR - Rich Foam Shampoo",
  "maxCpcQAR": 2.2,
  "finalUrl": "https://abktradingservice.com/ar/b2c/products/autotriz-rich-foam-shampoo",
- "themeNote": "Volume wash chemical. مستلزمات مغاسل and the 20 لتر pack size are the unambiguous trade qualifiers in Arabic.",
+ "themeNote": "Volume wash chemical. مستلزمات مغاسل and the 20 لتر pack size are the unambiguous trade qualifiers in Arabic. The coating-safe angle is added on top: the SKU is a nano coating and PPF top-coat renewer, so شامبو للسيارات المطلية بالسيراميك is a query it can answer honestly, and the 1:80 concentrate carries the economy argument.",
  "keywords": [
  { "text": "autotriz rich foam shampoo", "matchType": "Exact" },
  { "text": "شامبو رغوي للسيارات", "matchType": "Phrase" },
@@ -557,7 +623,11 @@
  { "text": "شامبو فوم كانون", "matchType": "Phrase" },
  { "text": "مورد شامبو سيارات قطر", "matchType": "Phrase" },
  { "text": "شامبو سيارات متوازن الحموضة", "matchType": "Phrase" },
- { "text": "شامبو غسيل سيارات احترافي", "matchType": "Phrase" }
+ { "text": "شامبو غسيل سيارات احترافي", "matchType": "Phrase" },
+ { "text": "شامبو للسيارات المطلية بالسيراميك", "matchType": "Phrase" },
+ { "text": "شامبو آمن للسيراميك", "matchType": "Phrase" },
+ { "text": "شامبو لأفلام الحماية", "matchType": "Phrase" },
+ { "text": "شامبو نانو للسيارات", "matchType": "Phrase" }
  ],
  "negativeKeywords": [
  { "text": "معجون", "matchType": "Broad" },
@@ -569,30 +639,89 @@
  ],
  "ad": {
  "headlines": [
- "شامبو رغوي غني للسيارات",
- "رغوة كثيفة ولمعان عالي",
- "متوازن الحموضة",
+ "شامبو نانو رغوي للسيارات",
+ "آمن على طلاء السيراميك",
+ "مناسب لأفلام الحماية PPF",
+ "يجدد الطبقة العلوية للفيلم",
+ "تخفيف 1:80 مع الماء",
+ "اقتصادي جدا في الاستخدام",
  "عبوة 20 لتر للمغاسل",
- "شامبو سيارات Autotriz",
  "صنع في ألمانيا",
+ "رغوة غنية وكثيفة",
+ "شامبو سيارات Autotriz",
  "لمغاسل السيارات والورش",
  "متجر في مسيمير الدوحة",
  "اطلب عرض السعر على واتساب",
  "بيع بالجملة والتجزئة",
- "شامبو سيارات احترافي",
- "مناسب لمدفع الرغوة",
- "متوفر في مخزننا بالدوحة",
- "شامبو غسيل بالجملة",
- "منتجات لأجواء قطر القاسية"
+ "يعمل مع مدفع الرغوة"
  ],
  "descriptions": [
- "شامبو رغوي غني من Autotriz متوازن الحموضة برغوة كثيفة ومحسنات لمعان",
- "عبوة 20 لتر لمغاسل السيارات والمحترفين والموزعين في مختلف مناطق قطر",
- "صنع في ألمانيا، متوفر في متجرنا بمسيمير الدوحة، بيع بالجملة والتجزئة",
+ "شامبو نانو رغوي غني من Autotriz يجدد الطبقة العلوية لأفلام الحماية، صنع في ألمانيا",
+ "مناسب للسيارات المطلية بالسيراميك والمغطاة بأفلام الحماية، تخفيف 1:80 مع الماء",
+ "متوفر في متجرنا بمسيمير الدوحة، عبوة 20 لتر للمغاسل والورش والموزعين",
  "اطلب عرض السعر على واتساب واستفسر عن الكميات المتوفرة لدينا"
  ],
  "path1": "ar",
  "path2": "shampoo"
+ }
+ },
+ {
+ "name": "AR - Polishing Pads",
+ "maxCpcQAR": 2.0,
+ "finalUrl": "https://abktradingservice.com/ar/b2c/products?category=accessories",
+ "themeNote": "The pad consumable in Arabic, sold to the same body-shop and detailer who already buys the compound. Arabic buyers say فوم بوليش and اسفنج تلميع far more than وسادة, so those two lead the keyword set. Four SKUs split the range across three steps and two machine types, so the group lands on the accessories catalogue filter rather than a single product page. وسادة also means a pillow, so bedding and mattress foam are negatived.",
+ "keywords": [
+ { "text": "فوم بوليش", "matchType": "Phrase" },
+ { "text": "اسفنج تلميع", "matchType": "Phrase" },
+ { "text": "اسفنج تلميع السيارات", "matchType": "Phrase" },
+ { "text": "وسادات تلميع", "matchType": "Phrase" },
+ { "text": "وسادة تلميع فوم", "matchType": "Phrase" },
+ { "text": "فوم تلميع السيارات", "matchType": "Phrase" },
+ { "text": "اسفنج بوليشر", "matchType": "Phrase" },
+ { "text": "فوم بوليشر 6 انش", "matchType": "Phrase" },
+ { "text": "وسادة قص للسيارات", "matchType": "Phrase" },
+ { "text": "اسفنج تلميع قطر", "matchType": "Phrase" },
+ { "text": "شراء فوم تلميع", "matchType": "Phrase" },
+ { "text": "فوم تلميع الدوحة", "matchType": "Phrase" },
+ { "text": "اسفنج تلميع بالجملة", "matchType": "Phrase" }
+ ],
+ "negativeKeywords": [
+ { "text": "وسادة نوم", "matchType": "Phrase" },
+ { "text": "مخدة", "matchType": "Broad" },
+ { "text": "فوم مراتب", "matchType": "Phrase" },
+ { "text": "اسفنج مراتب", "matchType": "Phrase" },
+ { "text": "فحمات الفرامل", "matchType": "Phrase" },
+ { "text": "شراء ماكينة تلميع", "matchType": "Phrase" },
+ { "text": "سعر ماكينة تلميع", "matchType": "Phrase" },
+ { "text": "اسفنج غسيل", "matchType": "Phrase" },
+ { "text": "مركز تلميع", "matchType": "Phrase" }
+ ],
+ "ad": {
+ "headlines": [
+ "فوم بوليش للسيارات",
+ "اسفنج تلميع 6 انش",
+ "وسادات تلميع صناعة ألمانية",
+ "وسادة قص للخطوة الأولى",
+ "وسادة تلميع للخطوة الثانية",
+ "وسادة تشطيب للخطوة الثالثة",
+ "للبوليشر الدوار والمزدوج",
+ "تثبيت فيلكرو سريع",
+ "مقاس 6 انش 150 مم",
+ "لورش السمكرة والمغاسل",
+ "متجر في مسيمير الدوحة",
+ "اطلب عرض السعر على واتساب",
+ "بيع بالجملة والتجزئة",
+ "فوم تلميع مع مركبات القطع",
+ "متوفر في مخزننا بالدوحة"
+ ],
+ "descriptions": [
+ "وسادات تلميع فوم مقاس 6 انش بصناعة ألمانية للقص والتلميع والتشطيب النهائي",
+ "وسادة قص للخطوة الأولى ووسادة تلميع للخطوة الثانية ووسادة تشطيب للخطوة الثالثة",
+ "تناسب البوليشر الدوار والمزدوج بتثبيت فيلكرو، للورش والمغاسل والمحترفين في قطر",
+ "متوفرة في متجرنا بمسيمير الدوحة، اطلب عرض السعر على واتساب، والجمعة مغلق"
+ ],
+ "path1": "ar",
+ "path2": "pads"
  }
  }
  ]
@@ -684,5 +813,5 @@
  "مستعمل",
  "طريقة تصنيع"
  ],
- "notes": "PRE-IMPORT CHECKS AND JUDGEMENT CALLS.\n\n1. PRICE LEAK IN THE CATALOGUE, NOT IN THESE ADS. catalogue.json product `autotriz-one-step-finish` carries `Price=QAR 280 (Box rate: QAR 250 each)` in its specs string. That contradicts the site-wide no-prices rule and means the One Step Finish landing page may publish a price while every other page does not. No price appears in any asset here, but the owner should decide whether that spec line stays live before the One Step ad group is enabled - an ad that says 'ask on WhatsApp for a quote' pointing at a page showing QAR 280 is an ad/LP inconsistency.\n\n2. 20 L IS ONLY TRUE FOR THE SHAMPOO. The theme brief said to lean on 20 L availability, but catalogue.json only states 20 L for Rich Foam Shampoo (Briller's line is also 20 L). Power Cut 701 and One Step Finish are 4 L; Heavy Cut 901 and Ultimate Polish 302 state no size at all. So no compound ad claims 20 L and no compound keyword targets it. If the compounds genuinely ship in 20 L, confirm the pack sizes and add `polishing compound 20 litre qatar` / `شامبو ومعجون بالجملة` style bulk terms afterwards.\n\n3. 'MADE IN GERMANY' IS RESTRICTED TO THE SHAMPOO AD GROUP. catalogue.json states Origin=Made in Germany for Rich Foam Shampoo (and PPF Gel, REVO, ION+) but states no origin for 901, 701, 302 or One Step Finish. The claim is therefore used in the shampoo ads only. Do not let it drift onto the compound ad groups.\n\n4. 'POWER CUT' IS AN ELECTRICITY-OUTAGE HOMONYM. This is the single biggest waste risk in the theme and the research brief did not flag it. Every Power Cut keyword carries the SKU number 701, and the ad group negatives block power cut today / power cut in / power outage / electricity / kahramaa. Do not add a bare `power cut` keyword.\n\n5. 'COMPOUND' IS A QATARI REAL-ESTATE WORD. compound villa / compound for rent / compound house / family compound are in the shared negatives. Watch the search terms report for other rental phrasings in week 1.\n\n6. 'NEAR ME' IS DELIBERATELY NOT A BLANKET NEGATIVE, against the research brief's advice. ABK has a physical walk-in shop in Mesaimeer, so `car care products near me` is a genuine retail buyer. Only the service+proximity combinations are blocked (car polishing near me, car detailing near me, car wash near me).\n\n7. NO GCC GEO NEGATIVES AND NO BARE 'INSTALLATION' NEGATIVE, on purpose. assemble.mjs expands every sharedNegatives entry to a campaign negative on EVERY campaign in the account, including other themes' files. Blocking dubai/riyadh/kuwait would break a GCC wholesale campaign, and blocking `installation` would break the Autotriz PPF Gel product, whose own name is 'Installation Aid'. Both campaigns here are location-targeted to Qatar, and every keyword carries qatar/doha or an Autotriz SKU, so geo leakage is already low.\n\n8. CROSS-CAMPAIGN KEYWORD DEDUPE. Briller Wash & Wax is intentionally absent - it belongs to the Briller theme. Bare `car shampoo qatar` was left out for the same reason; this campaign uses purchase-qualified variants (buy car shampoo qatar, bulk car shampoo qatar, professional car shampoo qatar). If the Briller theme also bid bare shampoo head terms, the two campaigns would compete against each other in the same auction.\n\n9. THE ONE KEYWORD TO WATCH: `car polish qatar` (Exact, ad group Finishing Polish 302). Google close variants can pull `car polishing qatar`, which is service intent. It is the only head term in the theme with real service contamination risk - check its search terms after 7 days and pause it if the terms are workshop queries.\n\n10. BID STRATEGY DEPENDS ON A TRACKING STEP THAT IS NOT FINISHED. Both campaigns are set to Maximize conversions to match the shared schema, but Smart Bidding needs conversion signal. src/lib/ads-conversions.ts already implements a `whatsapp` conversion event on tag AW-18200382552, and its own comments record that the tag previously only ever called gtag('config') so zero conversions were ever reported. The per-action conversion LABELS still have to be created in Google Ads and supplied as NEXT_PUBLIC_* env vars, followed by a redeploy, before Maximize conversions can work. Until labels are live, run both campaigns on Maximize clicks with the per-ad-group max CPC as the cap. Note also that wa.me cannot be a Final URL - the display domain must match - so the conversion stays on the on-page WhatsApp button.\n\n11. ARABIC RENDERING. Every Arabic headline opens on an Arabic word, contains no em-dash, no terminal punctuation and no tashkeel, and uses Western digits mid-string only. The Latin brand token 'Autotriz' is always terminal or mid-string, never leading. Preview each Arabic RSA in Google's own ad preview before enabling - a monospace editor hides bidi reordering.\n\n12. ARABIC NEGATIVE SAFETY. `مركز` is never used as a bare negative because Google ignores diacritics and it would collide with مركّز (concentrated) in the shampoo terms; only the full phrases مركز تلميع / خدمة تلميع are blocked. Likewise `تلميع سيارات` is never a bare negative because it is contained inside the best product keyword معجون تلميع سيارات.\n\n13. ASSETS. This schema has no sitelink/callout fields, so add the account-level assets from assets.json. The most useful callouts for this theme are trade supply, walk-in Doha stock, and the supplier-not-workshop positioning."
+ "notes": "PRE-IMPORT CHECKS AND JUDGEMENT CALLS.\n\n1. PRICE LEAK IN THE CATALOGUE, NOT IN THESE ADS. catalogue.json product `autotriz-one-step-finish` carries `Price=QAR 280 (Box rate: QAR 250 each)` in its specs string. That contradicts the site-wide no-prices rule and means the One Step Finish landing page may publish a price while every other page does not. No price appears in any asset here, but the owner should decide whether that spec line stays live before the One Step ad group is enabled - an ad that says 'ask on WhatsApp for a quote' pointing at a page showing QAR 280 is an ad/LP inconsistency.\n\n2. 20 L IS ONLY TRUE FOR THE SHAMPOO. The theme brief said to lean on 20 L availability, but catalogue.json only states 20 L for Rich Foam Shampoo (Briller's line is also 20 L). Power Cut 701 and One Step Finish are 4 L; Heavy Cut 901 and Ultimate Polish 302 state no size at all. So no compound ad claims 20 L and no compound keyword targets it. If the compounds genuinely ship in 20 L, confirm the pack sizes and add `polishing compound 20 litre qatar` / `شامبو ومعجون بالجملة` style bulk terms afterwards.\n\n3. 'MADE IN GERMANY' IS RESTRICTED TO THE SKUS THAT CARRY THE ORIGIN SPEC, WHICH IS NO LONGER JUST THE SHAMPOO. catalogue.json now states Origin=Made in Germany for Autotriz Nano Rich Foam Shampoo, for Power Cut 701 (added when 701 was recatalogued as a 2-in-1 cut and polish compound) and for the four GrunesAuto pads. It still states NO origin for Heavy Cut 901, Ultimate Polish 302 or One Step Finish, so those three ad groups must not use the claim. assemble.mjs checks the claim against the landing page's Origin spec for any ad group whose finalUrl is a product page; the pads group lands on a catalogue filter, so its Made-in-Germany line is not machine-checked and is only as good as this note.\n\n4. 'POWER CUT' IS AN ELECTRICITY-OUTAGE HOMONYM. This is the single biggest waste risk in the theme and the research brief did not flag it. Every Power Cut keyword carries the SKU number 701, and the ad group negatives block power cut today / power cut in / power outage / electricity / kahramaa. Do not add a bare `power cut` keyword.\n\n5. 'COMPOUND' IS A QATARI REAL-ESTATE WORD. compound villa / compound for rent / compound house / family compound are in the shared negatives. Watch the search terms report for other rental phrasings in week 1.\n\n6. 'NEAR ME' IS DELIBERATELY NOT A BLANKET NEGATIVE, against the research brief's advice. ABK has a physical walk-in shop in Mesaimeer, so `car care products near me` is a genuine retail buyer. Only the service+proximity combinations are blocked (car polishing near me, car detailing near me, car wash near me).\n\n7. NO GCC GEO NEGATIVES AND NO BARE 'INSTALLATION' NEGATIVE, on purpose. assemble.mjs expands every sharedNegatives entry to a campaign negative on EVERY campaign in the account, including other themes' files. Blocking dubai/riyadh/kuwait would break a GCC wholesale campaign, and blocking `installation` would break the Autotriz PPF Gel product, whose own name is 'Installation Aid'. Both campaigns here are location-targeted to Qatar, and every keyword carries qatar/doha or an Autotriz SKU, so geo leakage is already low.\n\n8. CROSS-CAMPAIGN KEYWORD DEDUPE. Briller Wash & Wax is intentionally absent - it belongs to the Briller theme. Bare `car shampoo qatar` was left out for the same reason; this campaign uses purchase-qualified variants (buy car shampoo qatar, bulk car shampoo qatar, professional car shampoo qatar). If the Briller theme also bid bare shampoo head terms, the two campaigns would compete against each other in the same auction.\n\n9. THE ONE KEYWORD TO WATCH: `car polish qatar` (Exact, ad group Finishing Polish 302). Google close variants can pull `car polishing qatar`, which is service intent. It is the only head term in the theme with real service contamination risk - check its search terms after 7 days and pause it if the terms are workshop queries.\n\n10. BID STRATEGY DEPENDS ON A TRACKING STEP THAT IS NOT FINISHED. Both campaigns are set to Maximize conversions to match the shared schema, but Smart Bidding needs conversion signal. src/lib/ads-conversions.ts already implements a `whatsapp` conversion event on tag AW-18200382552, and its own comments record that the tag previously only ever called gtag('config') so zero conversions were ever reported. The per-action conversion LABELS still have to be created in Google Ads and supplied as NEXT_PUBLIC_* env vars, followed by a redeploy, before Maximize conversions can work. Until labels are live, run both campaigns on Maximize clicks with the per-ad-group max CPC as the cap. Note also that wa.me cannot be a Final URL - the display domain must match - so the conversion stays on the on-page WhatsApp button.\n\n11. ARABIC RENDERING. Every Arabic headline opens on an Arabic word, contains no em-dash, no terminal punctuation and no tashkeel, and uses Western digits mid-string only. The Latin brand token 'Autotriz' is always terminal or mid-string, never leading. Preview each Arabic RSA in Google's own ad preview before enabling - a monospace editor hides bidi reordering.\n\n12. ARABIC NEGATIVE SAFETY. `مركز` is never used as a bare negative because Google ignores diacritics and it would collide with مركّز (concentrated) in the shampoo terms; only the full phrases مركز تلميع / خدمة تلميع are blocked. Likewise `تلميع سيارات` is never a bare negative because it is contained inside the best product keyword معجون تلميع سيارات.\n\n13. ASSETS. This schema has no sitelink/callout fields, so add the account-level assets from assets.json. The most useful callouts for this theme are trade supply, walk-in Doha stock, and the supplier-not-workshop positioning.\n\n14. THE SHAMPOO'S DILUTION IS STATED AS 1:80 AND NOTHING ELSE. catalogue.json says Dilution=1:80 with water, and assemble.mjs fails the build on any `1:N` in ad text that does not match the landing page's spec. Both shampoo ad groups state it verbatim. If the concentrate is ever reformulated, the ratio in the ads must move with the spec in the same commit or the build stops.\n\n15. PAD BACKING: THE COOLING HOLE IS A DA-ONLY SPEC, SO NO AD MENTIONS IT. The three DA pads state Backing=Hook & Loop with Center Cooling Hole; the step-2 rotary pad states Backing=Solid Hook & Loop (Velcro) with no hole. Because an RSA headline is read without knowing which of the four SKUs the buyer will pick, the pad ads claim hook and loop / تثبيت فيلكرو only. Do not add a cooling-hole line to this ad group unless it is scoped to the DA pads.\n\n16. THE PADS LAND ON A FILTER, NOT A PRODUCT PAGE, ON PURPOSE. Four SKUs split the range across three steps and two machine types, so no single page answers 'polishing pads qatar'; the group targets ?category=accessories where all four sit together. That hub also lists towels, a sponge, a foam gun and masking tape, which is acceptable for a trade buyer restocking, but it costs the ad-to-page match a product page would give and it makes assemble.mjs skip the origin and pack-size claim checks for this group. If one grade turns out to be the only seller, promote it to its own product-page ad group.\n\n17. 'PAD' IS A BRAKE PART AND وسادة IS A PILLOW. Both homonyms are blocked at ad-group level rather than shared, because no other theme in the account bids on pad terms and a shared negative would be dead weight everywhere else. Also blocked in that group: wool pads (ABK stocks foam only) and polisher machines (not stocked at all) - but only as `buy polisher` / `polishing machine price` / `شراء ماكينة تلميع`, never as a bare `polishing machine`, which would also block the genuine query 'pads for polishing machine'."
 }

@@ -19,7 +19,7 @@
     "en": [
       {
         "text": "Shop All Products",
-        "desc1": "28 car care products in stock",
+        "desc1": "43 car care products in stock",
         "desc2": "VTEK, Autotriz, Briller",
         "url": "https://abktradingservice.com/en/b2c/products"
       },
@@ -173,7 +173,7 @@
   "scopedCallouts": [
     {
       "campaignMatch": "wash-care",
-      "note": "Briller only — Made in Canada is verified in products.ts specs for all five Briller SKUs and is NOT true of the other brands.",
+      "note": "Briller only — Made in Canada is verified in products.ts specs for all six Briller SKUs, and attached per ad group by landing-product Origin so non-Briller ad groups in the campaign never carry it and is NOT true of the other brands.",
       "en": ["Made in Canada"],
       "ar": ["صُنع في كندا"]
     }

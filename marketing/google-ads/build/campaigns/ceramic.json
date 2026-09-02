@@ -318,6 +318,69 @@
  "path1": "polish",
  "path2": "autotriz"
  }
+ },
+ {
+ "name": "PPF Refresh - Top Coat Polish",
+ "maxCpcQAR": 3.5,
+ "finalUrl": "https://abktradingservice.com/en/b2c/products/autotriz-ppf-refresh-1l",
+ "themeNote": "Maintenance chemistry for film that is ALREADY on the car - someone else fitted it, and the owner or their detailer now wants the top coat looking new again. That makes it a coating-adjacent product rather than a film product, which is why it sits here and not in the PPF theme: the PPF campaign sells rolls to installers, this sells a 1 litre bottle to whoever maintains the finished car. Every asset sells the bottle; nothing in the group may suggest ABK works on film.",
+ "keywords": [
+ { "text": "ppf top coat", "matchType": "Phrase" },
+ { "text": "ppf top coat qatar", "matchType": "Phrase" },
+ { "text": "ppf maintenance product", "matchType": "Phrase" },
+ { "text": "ppf scratch remover", "matchType": "Phrase" },
+ { "text": "ppf care product qatar", "matchType": "Phrase" },
+ { "text": "ppf polish qatar", "matchType": "Phrase" },
+ { "text": "paint protection film polish", "matchType": "Phrase" },
+ { "text": "restore ppf gloss", "matchType": "Phrase" },
+ { "text": "vinyl wrap care", "matchType": "Phrase" },
+ { "text": "vinyl wrap care product qatar", "matchType": "Phrase" },
+ { "text": "wrap film polish doha", "matchType": "Phrase" },
+ { "text": "film refresh polish qatar", "matchType": "Phrase" },
+ { "text": "ppf refresh 1 litre", "matchType": "Phrase" },
+ { "text": "autotriz ppf refresh", "matchType": "Exact" },
+ { "text": "buy autotriz ppf refresh", "matchType": "Exact" }
+ ],
+ "negativeKeywords": [
+ { "text": "near me", "matchType": "Phrase" },
+ { "text": "ppf installation", "matchType": "Phrase" },
+ { "text": "ppf removal", "matchType": "Phrase" },
+ { "text": "ppf roll", "matchType": "Phrase" },
+ { "text": "buy ppf film", "matchType": "Phrase" },
+ { "text": "car wrap service", "matchType": "Phrase" },
+ { "text": "wrap shop", "matchType": "Phrase" },
+ { "text": "ppf price", "matchType": "Phrase" },
+ { "text": "how to apply", "matchType": "Phrase" },
+ { "text": "public provident fund", "matchType": "Phrase" },
+ { "text": "ppf calculator", "matchType": "Phrase" }
+ ],
+ "ad": {
+ "headlines": [
+ "Autotriz PPF Refresh, 1 L",
+ "PPF Top Coat Refresher",
+ "For PPF and Vinyl Wraps",
+ "Refreshes the Top Coat",
+ "Removes Scratches, Fading",
+ "Body Shop Safe Polish",
+ "Non-Yellowing Formula",
+ "Made in Germany",
+ "For Detailers and Owners",
+ "Keep Your PPF Looking New",
+ "Restores Gloss to Film",
+ "Buy PPF Refresh in Doha",
+ "Stocked in Mesaimeer, Doha",
+ "Ask on WhatsApp for a Quote",
+ "We Supply, You Apply"
+ ],
+ "descriptions": [
+ "Autotriz PPF Refresh, 1 litre. Refreshes the top coat on paint protection film.",
+ "For PPF and vinyl wraps. Removes minor scratches and fading. Non-yellowing.",
+ "Body shop safe and made in Germany. We supply the bottle; you or your detailer use it.",
+ "Stocked in Mesaimeer, Doha. Ask on WhatsApp for stock and a quote. Sat to Thu."
+ ],
+ "path1": "ppf",
+ "path2": "refresh"
+ }
  }
  ]
  },
@@ -625,6 +688,63 @@
  "path1": "polish",
  "path2": "autotriz"
  }
+ },
+ {
+ "name": "AR - PPF Refresh",
+ "maxCpcQAR": 2.5,
+ "finalUrl": "https://abktradingservice.com/ar/b2c/products/autotriz-ppf-refresh-1l",
+ "themeNote": "The Arabic side of the same buyer: film is already on the car and the owner or his detailer wants the top coat clear again. Keywords are built on عناية / ملمع / تجديد plus أفلام الحماية, never on تركيب, so the group cannot pick up fitting intent - which also keeps it clear of the account-wide تركيب فيلم حماية negative. Copy carries the supplier framing نورد المنتج والتطبيق عليك and never suggests ABK touches the film.",
+ "keywords": [
+ { "text": "عناية بأفلام الحماية", "matchType": "Phrase" },
+ { "text": "ملمع أفلام الحماية", "matchType": "Phrase" },
+ { "text": "مجدد أفلام الحماية", "matchType": "Phrase" },
+ { "text": "تجديد فيلم الحماية", "matchType": "Phrase" },
+ { "text": "منتج عناية بفيلم الحماية", "matchType": "Phrase" },
+ { "text": "ملمع فيلم حماية الطلاء", "matchType": "Phrase" },
+ { "text": "ازالة خدوش فيلم الحماية", "matchType": "Phrase" },
+ { "text": "طبقة علوية لفيلم الحماية", "matchType": "Phrase" },
+ { "text": "شراء ملمع أفلام الحماية", "matchType": "Phrase" },
+ { "text": "عناية بالفينيل والتغليف", "matchType": "Phrase" },
+ { "text": "ملمع تغليف الفينيل", "matchType": "Phrase" },
+ { "text": "autotriz ppf refresh", "matchType": "Exact" }
+ ],
+ "negativeKeywords": [
+ { "text": "تركيب فيلم حماية", "matchType": "Phrase" },
+ { "text": "ازالة فيلم الحماية", "matchType": "Phrase" },
+ { "text": "رول فيلم حماية", "matchType": "Phrase" },
+ { "text": "سعر فيلم الحماية", "matchType": "Phrase" },
+ { "text": "تغليف سيارات", "matchType": "Phrase" },
+ { "text": "بالقرب مني", "matchType": "Phrase" },
+ { "text": "افضل مركز", "matchType": "Phrase" },
+ { "text": "كم سعر", "matchType": "Phrase" }
+ ],
+ "ad": {
+ "headlines": [
+ "ملمع ومجدد أفلام الحماية",
+ "يجدد الطبقة العلوية",
+ "لأفلام الحماية والفينيل",
+ "يزيل الخدوش الدقيقة",
+ "يعالج بهتان الفيلم",
+ "آمن لورش السمكرة",
+ "لا يسبب اصفرار الفيلم",
+ "صنع في ألمانيا",
+ "عبوة 1 لتر للمحترفين",
+ "يعيد اللمعان للفيلم",
+ "عناية بأفلام الحماية",
+ "متجر في مسيمير الدوحة",
+ "اطلب عرض السعر على واتساب",
+ "نورد المنتج والتطبيق عليك",
+ "للمحترفين وأصحاب السيارات"
+ ],
+ "descriptions": [
+ "ملمع ومجدد أفلام الحماية والفينيل من Autotriz بعبوة 1 لتر، صنع في ألمانيا",
+ "يجدد الطبقة العلوية ويزيل الخدوش الدقيقة والبهتان ويعيد اللمعان للفيلم",
+ "آمن لورش السمكرة ولا يسبب اصفرار الفيلم، نورد المنتج والتطبيق عليك أو على فنيك",
+ "متوفر في متجرنا بمسيمير الدوحة، اطلب عرض السعر على واتساب، والجمعة مغلق"
+ ],
+ "path1": "ppf",
+ "path2": "refresh"
+ }
  }
  ]
  }
@@ -804,5 +924,5 @@
  "جيت سن",
  "جريزلي"
  ],
- "notes": "LANDING PAGES: every URL is either a verbatim catalogue.json URL or an approved hub. The two filtered hubs (?category=ceramic and ?brand=Autotriz&category=ceramic) were verified against src/components/product/ProductGrid.tsx and src/data/products.ts - the filter is a case-sensitive match on the BRANDS/CATEGORIES enums, so 'Autotriz' must keep its capital A and 'ceramic' must stay lowercase; an unrecognised value silently falls back to the unfiltered grid, so a typo degrades to a working page rather than a 404. NO-SERVICE COMPLIANCE: no asset in either language contains install, book, appointment, fitting, service or their Arabic equivalents; the recurring honest line is 'we supply, you or your detailer applies'. The Arabic assets avoid the token تركيب altogether, even inside a denial, because an RSA headline is read in isolation - the supplier framing is carried by نورد المنتج والتطبيق عليك and توريد المنتجات فقط instead. NO-PRICE COMPLIANCE: no asset states or implies a price, discount or 'from QAR'; the only offer is a WhatsApp quote. I also deliberately excluded price-modified keywords ('ceramic coating price qatar', 'كم سعر') from the positives - the site carries no prices, so those clicks would bounce. CLAIMS: 'Made in Germany' appears ONLY tied to ION+ and REVO, which are the only two coatings in catalogue.json carrying that origin - do not let it drift onto 3D Matrix in any future asset edit. 9H is used as a keyword but never as a claim, because the catalogue does not state a hardness rating. JUDGEMENT CALLS TO DOUBLE-CHECK: (1) catalogue.json line ~429 gives autotriz-one-step-finish a specs string containing 'Price=QAR 280 (Box rate: QAR 250 each)' - that contradicts the site-wide no-prices rule; if that price is rendered on the live product page, the One Step Finish ad group's landing page breaks the no-price policy and the ad group should be paused until it is removed. (2) The 'One Step Finish Polish' ad group overlaps the compounds/polish theme - I kept it tight to one-step and all-in-one language and left heavy-cut, power-cut and rubbing-compound terms alone, but dedupe against that theme before import. (3) Autotriz PPF Gel has no ad group of its own; its two low-volume queries sit as exact matches inside the trade ad group, whose /en/b2b landing page does list it. If the PPF theme also claims the gel, delete the duplicate keywords here. (4) autotriz-leather-and-vinyl is catalogued as 'ceramic' but reads as interior care - I left it to the interior theme to avoid double-bidding. (5) Arabic brand keywords are Latin-token-plus-Arabic-word combinations only; the pure-Latin strings ('autotriz ceramic coating') live solely in the English campaign so the two campaigns never collide on one query. SHARED-NEGATIVE CARVE-OUTS - these are deliberate omissions, do not 'fix' them: bare 'service' is NOT listed because it is inside the company's own name (ABK Trading & Service) and would suppress brand queries in any brand campaign - only service phrases are listed. Bare 'installation'/'installer' is NOT listed because 'PPF supplier for installers' is a B2B buyer. Bare 'price'/'cost' is NOT listed because 'car shampoo price qatar' is product intent. 'free' is NOT listed because it would block 'streak free glass cleaner'. In Arabic, bare مركز is NOT listed because Google strips diacritics and it would collapse with مركّز (concentrated) and kill the shampoo/concentrate traffic; bare خدمة is NOT listed for the same brand-name reason; bare عروض is NOT listed because it would block عروض اسعار (quotations). GEO: both campaigns are Qatar-only, so the Gulf-city negatives are safe here - if a separate GCC wholesale campaign is ever built, do NOT apply this shared list to it. ARABIC RENDERING: every Arabic headline opens with an Arabic word, carries no terminal punctuation, no em-dash or pipe, no tashkeel and Western digits only, with Latin brand tokens placed mid-string or terminal - still preview each one in Google's ad preview before import. SCHEDULE: real hours are Sat-Thu 10:00-13:00 and 16:00-22:00, Friday closed; the schedule above adds a 30-minute shoulder each side and leaves the 13:30-15:30 lunch gap dark, because conversion is a human WhatsApp reply. BUDGET: 30 QAR/day English, 20 QAR/day Arabic; the trade ad groups carry the highest max CPC because order value is highest there."
+ "notes": "LANDING PAGES: every URL is either a verbatim catalogue.json URL or an approved hub. The two filtered hubs (?category=ceramic and ?brand=Autotriz&category=ceramic) were verified against src/components/product/ProductGrid.tsx and src/data/products.ts - the filter is a case-sensitive match on the BRANDS/CATEGORIES enums, so 'Autotriz' must keep its capital A and 'ceramic' must stay lowercase; an unrecognised value silently falls back to the unfiltered grid, so a typo degrades to a working page rather than a 404. NO-SERVICE COMPLIANCE: no asset in either language contains install, book, appointment, fitting, service or their Arabic equivalents; the recurring honest line is 'we supply, you or your detailer applies'. The Arabic assets avoid the token تركيب altogether, even inside a denial, because an RSA headline is read in isolation - the supplier framing is carried by نورد المنتج والتطبيق عليك and توريد المنتجات فقط instead. NO-PRICE COMPLIANCE: no asset states or implies a price, discount or 'from QAR'; the only offer is a WhatsApp quote. I also deliberately excluded price-modified keywords ('ceramic coating price qatar', 'كم سعر') from the positives - the site carries no prices, so those clicks would bounce. CLAIMS: 'Made in Germany' is tied to ION+ and REVO, the only two COATINGS in catalogue.json carrying that origin, and separately to Autotriz PPF Refresh, which carries the origin in its own spec - do not let it drift onto 3D Matrix in any future asset edit. assemble.mjs enforces the claim against the landing page's Origin spec, so it can only ever appear in an ad group whose product page states it. 9H is used as a keyword but never as a claim, because the catalogue does not state a hardness rating. JUDGEMENT CALLS TO DOUBLE-CHECK: (1) catalogue.json line ~429 gives autotriz-one-step-finish a specs string containing 'Price=QAR 280 (Box rate: QAR 250 each)' - that contradicts the site-wide no-prices rule; if that price is rendered on the live product page, the One Step Finish ad group's landing page breaks the no-price policy and the ad group should be paused until it is removed. (2) The 'One Step Finish Polish' ad group overlaps the compounds/polish theme - I kept it tight to one-step and all-in-one language and left heavy-cut, power-cut and rubbing-compound terms alone, but dedupe against that theme before import. (3) Autotriz PPF Gel has no ad group of its own; its two low-volume queries sit as exact matches inside the trade ad group, whose /en/b2b landing page does list it. If the PPF theme also claims the gel, delete the duplicate keywords here. (4) autotriz-leather-and-vinyl is catalogued as 'ceramic' but reads as interior care - I left it to the interior theme to avoid double-bidding. (5) Arabic brand keywords are Latin-token-plus-Arabic-word combinations only; the pure-Latin strings ('autotriz ceramic coating') live solely in the English campaign so the two campaigns never collide on one query. SHARED-NEGATIVE CARVE-OUTS - these are deliberate omissions, do not 'fix' them: bare 'service' is NOT listed because it is inside the company's own name (ABK Trading & Service) and would suppress brand queries in any brand campaign - only service phrases are listed. Bare 'installation'/'installer' is NOT listed because 'PPF supplier for installers' is a B2B buyer. Bare 'price'/'cost' is NOT listed because 'car shampoo price qatar' is product intent. 'free' is NOT listed because it would block 'streak free glass cleaner'. In Arabic, bare مركز is NOT listed because Google strips diacritics and it would collapse with مركّز (concentrated) and kill the shampoo/concentrate traffic; bare خدمة is NOT listed for the same brand-name reason; bare عروض is NOT listed because it would block عروض اسعار (quotations). GEO: both campaigns are Qatar-only, so the Gulf-city negatives are safe here - if a separate GCC wholesale campaign is ever built, do NOT apply this shared list to it. ARABIC RENDERING: every Arabic headline opens with an Arabic word, carries no terminal punctuation, no em-dash or pipe, no tashkeel and Western digits only, with Latin brand tokens placed mid-string or terminal - still preview each one in Google's ad preview before import. SCHEDULE: real hours are Sat-Thu 10:00-13:00 and 16:00-22:00, Friday closed; the schedule above adds a 30-minute shoulder each side and leaves the 13:30-15:30 lunch gap dark, because conversion is a human WhatsApp reply. BUDGET: 30 QAR/day English, 20 QAR/day Arabic; the trade ad groups carry the highest max CPC because order value is highest there. PPF REFRESH AD GROUP: it sells maintenance for film that SOMEONE ELSE ALREADY FITTED, which is the only reason a PPF product belongs in a coating theme - the buyer is the same detailer or owner who buys a coating bottle, not the installer who buys film by the roll from the PPF theme. That makes the no-service rule load-bearing rather than decorative here: nothing in the group may imply ABK fits, removes or services film, so the Arabic keywords avoid تركيب entirely and are built on عناية / ملمع / تجديد, and the ad-group negatives push ppf installation, ppf removal, ppf roll and buy ppf film back to ppf-tint.json. NON-YELLOWING IS A PROPERTY, NOT A REPAIR CLAIM: the spec says Safety=Non-Yellowing, meaning the polish itself does not yellow - it does not say the product REMOVES yellowing, so there is no yellowing keyword and no 'fixes yellowing' asset, and none should be added. The 1 litre figure is spec'd as Volume=, not Size=, so assemble.mjs's pack-size check does not fire on this group and the litre in the copy is only as good as this note. Dedupe against ppf-tint.json before import: that theme owns every film-by-the-roll term and today owns none of these maintenance terms, but the two lists sit one word apart."
 }

@@ -353,6 +353,132 @@
  "path1": "car-care",
  "path2": "dressing"
  }
+ },
+ {
+ "name": "EN Heavy Duty Degreaser",
+ "maxCpcQAR": 2.5,
+ "finalUrl": "https://abktradingservice.com/en/b2c/products/briller-heavy-duty-degreaser",
+ "themeNote": "Bulk degreaser buyers: car washes, workshops and garages taking a 20 L drum, plus engine-bay DIYers. Grease and oil chemistry, kept apart from the shampoo and interior groups because the buyer and the vocabulary are different. Product purchase intent only, no engine cleaning service.",
+ "keywords": [
+ { "text": "heavy duty degreaser qatar", "matchType": "Phrase" },
+ { "text": "degreaser qatar", "matchType": "Phrase" },
+ { "text": "degreaser doha", "matchType": "Phrase" },
+ { "text": "buy degreaser qatar", "matchType": "Phrase" },
+ { "text": "engine degreaser qatar", "matchType": "Phrase" },
+ { "text": "engine degreaser 20l", "matchType": "Phrase" },
+ { "text": "degreaser 20 litre", "matchType": "Phrase" },
+ { "text": "bulk degreaser qatar", "matchType": "Phrase" },
+ { "text": "degreaser supplier doha", "matchType": "Phrase" },
+ { "text": "degreaser supplier qatar", "matchType": "Phrase" },
+ { "text": "industrial degreaser qatar", "matchType": "Phrase" },
+ { "text": "grease remover for cars", "matchType": "Phrase" },
+ { "text": "engine bay cleaner qatar", "matchType": "Phrase" },
+ { "text": "degreaser concentrate", "matchType": "Phrase" },
+ { "text": "briller heavy duty degreaser", "matchType": "Exact" },
+ { "text": "briller degreaser", "matchType": "Exact" }
+ ],
+ "negativeKeywords": [
+ { "text": "kitchen degreaser", "matchType": "Phrase" },
+ { "text": "laundry", "matchType": "Broad" },
+ { "text": "oven cleaner", "matchType": "Phrase" },
+ { "text": "drain cleaner", "matchType": "Phrase" },
+ { "text": "oil change", "matchType": "Phrase" },
+ { "text": "dubai", "matchType": "Broad" },
+ { "text": "abu dhabi", "matchType": "Phrase" },
+ { "text": "riyadh", "matchType": "Broad" },
+ { "text": "jeddah", "matchType": "Broad" },
+ { "text": "kuwait", "matchType": "Broad" }
+ ],
+ "ad": {
+ "headlines": [
+ "Heavy Duty Degreaser Qatar",
+ "Briller Heavy Duty Degreaser",
+ "Degreaser Supply in Doha",
+ "Made in Canada Degreaser",
+ "20 L Degreaser Drum",
+ "Concentrate, Dilutes 1:5",
+ "Cuts Grease, Oil and Rust",
+ "Removes Tough Stains",
+ "All in One CA Tech Formula",
+ "For Car Washes and Garages",
+ "WhatsApp Us for a Quote",
+ "Stocked in Mesaimeer Doha",
+ "Bulk Degreaser Supply",
+ "Engine Bay and Workshop Use",
+ "Trade and Retail Supply"
+ ],
+ "descriptions": [
+ "Briller Heavy Duty Degreaser, made in Canada. A 20 L concentrate that dilutes 1:5.",
+ "Cuts through tough stains, heavy grease, engine oil and rust with All in One CA Tech.",
+ "Stocked at our Mesaimeer shop in Doha. Message us on WhatsApp for a quote.",
+ "Supplied in 20 L drums to car washes, workshops and garages across Qatar."
+ ],
+ "path1": "car-care",
+ "path2": "degreaser"
+ }
+ },
+ {
+ "name": "EN Alloy Wheel & Rim Cleaner",
+ "maxCpcQAR": 2.2,
+ "finalUrl": "https://abktradingservice.com/en/b2c/products/autotriz-hyper-wheel-cleaner",
+ "themeNote": "Buyers of wheel and rim cleaner as a product, in a 20 L drum for a car wash or detailer. This is an Autotriz SKU, not a Briller one, so it is the only ad group in this theme that is Made in GERMANY - the Made-in-Canada claim must never attach to it (see notes). Wheel and rim terms only; tyre shine and tyre foam stay in the tyre ad group.",
+ "keywords": [
+ { "text": "wheel cleaner qatar", "matchType": "Phrase" },
+ { "text": "wheel cleaner doha", "matchType": "Phrase" },
+ { "text": "alloy wheel cleaner qatar", "matchType": "Phrase" },
+ { "text": "buy wheel cleaner qatar", "matchType": "Phrase" },
+ { "text": "rim cleaner qatar", "matchType": "Phrase" },
+ { "text": "rim cleaner supplier", "matchType": "Phrase" },
+ { "text": "wheel cleaner 20l", "matchType": "Phrase" },
+ { "text": "wheel cleaner 20 litre", "matchType": "Phrase" },
+ { "text": "non acid wheel cleaner", "matchType": "Phrase" },
+ { "text": "non caustic wheel cleaner", "matchType": "Phrase" },
+ { "text": "bulk wheel cleaner qatar", "matchType": "Phrase" },
+ { "text": "wheel cleaner supplier qatar", "matchType": "Phrase" },
+ { "text": "chrome wheel cleaner qatar", "matchType": "Phrase" },
+ { "text": "brake dust remover qatar", "matchType": "Phrase" },
+ { "text": "autotriz hyper wheel cleaner", "matchType": "Exact" },
+ { "text": "autotriz wheel cleaner", "matchType": "Exact" }
+ ],
+ "negativeKeywords": [
+ { "text": "steering wheel", "matchType": "Phrase" },
+ { "text": "wheel alignment", "matchType": "Phrase" },
+ { "text": "wheel repair", "matchType": "Phrase" },
+ { "text": "wheel refurbishment", "matchType": "Phrase" },
+ { "text": "wheels for sale", "matchType": "Phrase" },
+ { "text": "dubai", "matchType": "Broad" },
+ { "text": "abu dhabi", "matchType": "Phrase" },
+ { "text": "riyadh", "matchType": "Broad" },
+ { "text": "jeddah", "matchType": "Broad" },
+ { "text": "kuwait", "matchType": "Broad" }
+ ],
+ "ad": {
+ "headlines": [
+ "Alloy Wheel Cleaner Qatar",
+ "Autotriz Hyper Wheel Cleaner",
+ "Wheel Cleaner in Doha",
+ "Made in Germany Formula",
+ "20 L Wheel Cleaner Drum",
+ "Concentrate, Dilutes 1:1",
+ "Non Caustic Wheel Cleaner",
+ "With Rust Inhibitors",
+ "Safe on Chrome and Painted",
+ "For Clear Coated Wheels",
+ "WhatsApp Us for a Quote",
+ "Stocked in Mesaimeer Doha",
+ "Bulk Wheel Cleaner Supply",
+ "Rim Cleaner for Car Washes",
+ "Trade and Retail Supply"
+ ],
+ "descriptions": [
+ "Autotriz Hyper Wheel Cleaner, made in Germany. A 20 L drum that dilutes 1:1.",
+ "Non caustic, with rust inhibitors. Safe on chrome, painted and clear coated wheels.",
+ "Stocked at our Mesaimeer shop in Doha. Message us on WhatsApp for a quote.",
+ "Bulk wheel and rim cleaner for car washes, detailers and workshops in Qatar."
+ ],
+ "path1": "car-care",
+ "path2": "wheel-cleaner"
+ }
  }
  ]
  },
@@ -688,6 +814,129 @@
  ],
  "path1": "ar",
  "path2": "dressing"
+ }
+ },
+ {
+ "name": "AR Heavy Duty Degreaser",
+ "maxCpcQAR": 2.0,
+ "finalUrl": "https://abktradingservice.com/ar/b2c/products/briller-heavy-duty-degreaser",
+ "themeNote": "Arabic buyers of a degreaser as a product, in the 20 L drum a car wash or garage buys. Keywords carry both Gulf words for the job, شحوم and دهون, plus the engine-cleaning phrasing. Note the دهون trap: it also means body fat, so slimming queries are blocked at ad-group level.",
+ "keywords": [
+ { "text": "مزيل شحوم", "matchType": "Phrase" },
+ { "text": "مزيل الشحوم للسيارات", "matchType": "Phrase" },
+ { "text": "منظف دهون", "matchType": "Phrase" },
+ { "text": "منظف دهون السيارات", "matchType": "Phrase" },
+ { "text": "منظف محركات", "matchType": "Phrase" },
+ { "text": "منظف محركات بالجملة", "matchType": "Phrase" },
+ { "text": "منظف محرك السيارة", "matchType": "Phrase" },
+ { "text": "مزيل الزيوت والشحوم", "matchType": "Phrase" },
+ { "text": "منظف شحوم قطر", "matchType": "Phrase" },
+ { "text": "مزيل شحوم بالجملة", "matchType": "Phrase" },
+ { "text": "مزيل شحوم 20 لتر", "matchType": "Phrase" },
+ { "text": "منظف دهون للمغاسل", "matchType": "Phrase" },
+ { "text": "مزيل الصدأ والشحوم", "matchType": "Phrase" },
+ { "text": "منظف شحوم صناعي", "matchType": "Phrase" },
+ { "text": "briller heavy duty degreaser", "matchType": "Exact" }
+ ],
+ "negativeKeywords": [
+ { "text": "حرق الدهون", "matchType": "Phrase" },
+ { "text": "دهون البطن", "matchType": "Phrase" },
+ { "text": "المطبخ", "matchType": "Broad" },
+ { "text": "تغيير الزيت", "matchType": "Phrase" },
+ { "text": "كورس", "matchType": "Broad" },
+ { "text": "دبي", "matchType": "Broad" },
+ { "text": "ابوظبي", "matchType": "Broad" },
+ { "text": "الرياض", "matchType": "Broad" },
+ { "text": "جدة", "matchType": "Broad" },
+ { "text": "الكويت", "matchType": "Broad" }
+ ],
+ "ad": {
+ "headlines": [
+ "مزيل الشحوم للسيارات",
+ "مزيل شحوم عالي الفعالية",
+ "مزيل شحوم في الدوحة",
+ "مزيل شحوم صنع في كندا",
+ "عبوة 20 لتر للمغاسل",
+ "مزيل شحوم مركز بتخفيف 1:5",
+ "يزيل الشحوم وزيوت المحركات",
+ "يزيل البقع الصعبة والصدأ",
+ "بتقنية All in One CA Tech",
+ "توريد للورش والمغاسل",
+ "اطلب عرض السعر على واتساب",
+ "متجر في مسيمير الدوحة",
+ "مزيل شحوم بالجملة",
+ "منظف محركات للسيارات",
+ "توريد بالجملة والتجزئة"
+ ],
+ "descriptions": [
+ "مزيل الشحوم عالي الفعالية من Briller صنع في كندا، عبوة 20 لتر بتخفيف 1:5",
+ "يزيل البقع الصعبة والشحوم الثقيلة وزيوت المحركات والصدأ بتقنية All in One CA Tech",
+ "متوفر في متجرنا بمسيمير الدوحة، تواصل معنا على واتساب لطلب عرض السعر",
+ "توريد بالجملة والتجزئة لمغاسل السيارات والورش في الدوحة وكل قطر"
+ ],
+ "path1": "ar",
+ "path2": "degreaser"
+ }
+ },
+ {
+ "name": "AR Alloy Wheel & Rim Cleaner",
+ "maxCpcQAR": 1.8,
+ "finalUrl": "https://abktradingservice.com/ar/b2c/products/autotriz-hyper-wheel-cleaner",
+ "themeNote": "Arabic buyers of wheel and rim cleaner as a product. Keywords use the Gulf جنوط and رنجات and deliberately avoid كفرات, which belongs to the tyre ad group, so the two do not compete. Autotriz, so this ad group is Made in GERMANY - never صنع في كندا.",
+ "keywords": [
+ { "text": "منظف جنوط", "matchType": "Phrase" },
+ { "text": "منظف جنوط السيارات", "matchType": "Phrase" },
+ { "text": "منظف جنوط قطر", "matchType": "Phrase" },
+ { "text": "منظف رنجات", "matchType": "Phrase" },
+ { "text": "ملمع جنوط", "matchType": "Phrase" },
+ { "text": "منظف عجلات السيارة", "matchType": "Phrase" },
+ { "text": "منظف عجلات قطر", "matchType": "Phrase" },
+ { "text": "منظف جنوط بالجملة", "matchType": "Phrase" },
+ { "text": "منظف جنوط 20 لتر", "matchType": "Phrase" },
+ { "text": "منظف جنوط الالمنيوم", "matchType": "Phrase" },
+ { "text": "منظف جنوط غير حمضي", "matchType": "Phrase" },
+ { "text": "مزيل غبار الفرامل", "matchType": "Phrase" },
+ { "text": "منظف جنوط للمغاسل", "matchType": "Phrase" },
+ { "text": "autotriz hyper wheel cleaner", "matchType": "Exact" }
+ ],
+ "negativeKeywords": [
+ { "text": "جنوط للبيع", "matchType": "Phrase" },
+ { "text": "اسعار الجنوط", "matchType": "Phrase" },
+ { "text": "تصليح جنوط", "matchType": "Phrase" },
+ { "text": "ترصيص", "matchType": "Broad" },
+ { "text": "كورس", "matchType": "Broad" },
+ { "text": "دبي", "matchType": "Broad" },
+ { "text": "ابوظبي", "matchType": "Broad" },
+ { "text": "الرياض", "matchType": "Broad" },
+ { "text": "جدة", "matchType": "Broad" },
+ { "text": "الكويت", "matchType": "Broad" }
+ ],
+ "ad": {
+ "headlines": [
+ "منظف جنوط السيارات",
+ "منظف جنوط في الدوحة",
+ "منظف جنوط غير كاوي",
+ "منظف جنوط صنع في ألمانيا",
+ "عبوة 20 لتر للمغاسل",
+ "منظف مركز بتخفيف 1:1",
+ "بمانع للصدأ وآمن على الجنوط",
+ "آمن على الكروم والمطلية",
+ "للجنوط المطلية والمحمية",
+ "توريد للورش والمغاسل",
+ "اطلب عرض السعر على واتساب",
+ "متجر في مسيمير الدوحة",
+ "منظف جنوط بالجملة",
+ "منظف جنوط Autotriz",
+ "منظف عجلات احترافي"
+ ],
+ "descriptions": [
+ "منظف الجنوط Autotriz صنع في ألمانيا، عبوة 20 لتر بتخفيف 1:1",
+ "تركيبة غير كاوية مع مانع للصدأ، آمنة على الكروم والجنوط المطلية والمحمية",
+ "متوفر في متجرنا بمسيمير الدوحة، تواصل معنا على واتساب لطلب عرض السعر",
+ "توريد بالجملة والتجزئة لمغاسل السيارات وورش التلميع في قطر"
+ ],
+ "path1": "ar",
+ "path2": "wheel-cleaner"
  }
  }
  ]
