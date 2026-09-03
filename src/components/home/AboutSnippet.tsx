@@ -118,17 +118,42 @@ export function AboutSnippet() {
             </div>
           </div>
 
-          {/* Showroom photo */}
+          {/* Actual Office & Store Photos */}
           <div className="lg:col-span-6">
-            <div className="relative h-72 sm:h-96 w-full overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
-              <Image
-                src="/home/about-showroom.webp"
-                alt="ABK Showroom Mesaimeer Doha"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover transition-transform duration-700 hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <div className="grid grid-cols-2 gap-3.5 sm:gap-5">
+              {/* Photo 1: Official ABK Branding & Demo Counter */}
+              <div className="group relative aspect-[3/4] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/15 bg-[#14161a] shadow-xl">
+                <Image
+                  src="/home/abk-office-branding.webp"
+                  alt="ABK Trading & Service Showroom Wall & Testing Counter in Mesaimeer Doha"
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-3 inset-x-3 sm:bottom-4 sm:inset-x-4">
+                  <span className="inline-block rounded-full bg-black/70 px-2.5 py-1 text-[11px] sm:text-caption font-semibold text-white/90 backdrop-blur-md border border-white/10">
+                    ABK Showroom
+                  </span>
+                </div>
+              </div>
+
+              {/* Photo 2: Stocked Warehouse & Retail Shelves */}
+              <div className="group relative aspect-[3/4] w-full overflow-hidden rounded-2xl sm:rounded-3xl border border-white/15 bg-[#14161a] shadow-xl">
+                <Image
+                  src="/home/abk-office-shelves.webp"
+                  alt="ABK Detailing Products & Chemical Inventory in Mesaimeer Store"
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-3 inset-x-3 sm:bottom-4 sm:inset-x-4">
+                  <span className="inline-block rounded-full bg-black/70 px-2.5 py-1 text-[11px] sm:text-caption font-semibold text-white/90 backdrop-blur-md border border-white/10">
+                    Supply Inventory
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

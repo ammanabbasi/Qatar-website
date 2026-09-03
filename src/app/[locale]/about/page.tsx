@@ -2,6 +2,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
+import Image from "next/image";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
 import { Container } from "@/components/ui/Container";
@@ -72,6 +73,26 @@ export default async function AboutPage({
             <div className="flex flex-col gap-5">
               <p className="text-body-lg text-(--color-text-muted)">{t("paragraph1")}</p>
               <p className="text-body-lg text-(--color-text-muted)">{t("paragraph2")}</p>
+              <div className="mt-4 grid grid-cols-2 gap-4">
+                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 shadow-md">
+                  <Image
+                    src="/home/abk-office-branding.webp"
+                    alt="ABK Trading & Service Showroom Wall in Mesaimeer Doha"
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 25vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 shadow-md">
+                  <Image
+                    src="/home/abk-office-shelves.webp"
+                    alt="ABK Detailing Products & Chemical Inventory"
+                    fill
+                    sizes="(max-width: 1024px) 50vw, 25vw"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
             </div>
             <aside className="flex flex-col gap-4">
               <h2 className="text-title-sm font-semibold">{t("valuesTitle")}</h2>
