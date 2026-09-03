@@ -123,7 +123,7 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-03",
   },
   {
     slug: "vtek-ppf-weather-armor-pro",
@@ -180,7 +180,64 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-03",
+  },
+  {
+    slug: "vtek-ppf-weather-armor-pro-plus",
+    brand: "VTEK",
+    category: "ppf",
+    name: {
+      en: "VTEK PPF — Weather Armor PRO PLUS",
+      ar: "VTEK — فيلم حماية الطلاء Weather Armor PRO PLUS",
+    },
+    shortDesc: {
+      en: "Advanced aliphatic TPU paint protection film with high-durability hydrophobic topcoat, extreme clarity and 12-year warranty.",
+      ar: "فيلم حماية طلاء متطور من TPU الأليفاتي مع طبقة نانوية طاردة للماء، لمعان فائق وضمان ١٢ سنة.",
+    },
+    longDesc: {
+      en: "VTEK® Weather Armor™ PRO PLUS takes paint defense to the next tier. Engineered with high-density aliphatic TPU and a resilient heat-activated nano topcoat, PRO PLUS delivers superior stone chip resistance, enhanced chemical tolerance against road film and bird droppings, and an ultra-gloss finish that deepens factory paint color. Ideal for high-mileage luxury vehicles and daily drivers in Qatar, backed by a comprehensive 12-year warranty.",
+      ar: "يرتقي فيلم VTEK® Weather Armor™ PRO PLUS بمستوى حماية الطلاء إلى درجات متقدمة. صُنع من مادة TPU الأليفاتية عالية الكثافة مع طبقة نانوية فائقة تنشط بالحرارة للإصلاح الذاتي، ليمنح مقاومة استثنائية لضربات الحصى والتأثيرات البيئية والمواد الكيميائية مع لمعان بصري عميق يعزز نقاء لون طلاء الوكالة، ومدعوم بضمان رسمي شامل لمدة ١٢ سنة.",
+    },
+    images: [
+      "/products/vtek/vtek-weather-armor-pro-plus.webp",
+      "/products/vtek/vtek-weather-armor-lineup-v2.webp",
+    ],
+    specs: [
+      {
+        label: { en: "Material", ar: "المادة" },
+        value: { en: "High-Grade Aliphatic TPU", ar: "مادة TPU أليفاتية عالية الجودة" },
+      },
+      {
+        label: { en: "Thickness", ar: "السماكة" },
+        value: { en: "8.0 mil (203 µm)", ar: "٨.٠ مل (٢٠٣ ميكرون)" },
+      },
+      {
+        label: { en: "Finish", ar: "التشطيب" },
+        value: { en: "High Optical Clarity Gloss", ar: "لمعان عالي الشفافية والنقاء" },
+      },
+      {
+        label: { en: "Technology", ar: "التقنية" },
+        value: {
+          en: "Heat-Activated Self-Healing Nano-Coat",
+          ar: "طلاء نانو ذاتي الإصلاح بالحرارة",
+        },
+      },
+      {
+        label: { en: "Warranty", ar: "الضمان" },
+        value: { en: "12-Year Warranty", ar: "ضمان ١٢ سنة" },
+      },
+      {
+        label: { en: "Resistance", ar: "المقاومة" },
+        value: {
+          en: "Extreme UV, Desert Sand & Chemical Stains",
+          ar: "مقاومة قصوى للأشعة والرمال والبقع",
+        },
+      },
+    ],
+    audience: "both",
+    featured: true,
+    highlight: "vertek-premium",
+    updatedAt: "2026-09-03",
   },
   {
     slug: "vtek-ppf-weather-armor-matte",
@@ -234,7 +291,7 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-03",
   },
   {
     slug: "vtek-ppf-weather-armor-prism",
@@ -290,7 +347,7 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-03",
   },
   // ───── VTEK — Solar Armor VUE Window Tint (STAR)
   {
