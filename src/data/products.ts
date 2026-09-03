@@ -349,7 +349,7 @@ export const PRODUCTS: Product[] = [
     highlight: "vertek-premium",
     updatedAt: "2026-09-03",
   },
-  // ───── VTEK — Solar Armor VUE Window Tint (STAR)
+  // ───── VTEK — Solar Armor Window Tints (STAR)
   {
     slug: "vtek-window-tints",
     brand: "VTEK",
@@ -368,6 +368,7 @@ export const PRODUCTS: Product[] = [
     },
     images: [
       "/products/vtek/vtek-solar-armor-window-tint.webp",
+      "/products/vtek/vtek-solar-armor-tints-lineup.webp",
     ],
     specs: [
       {
@@ -394,7 +395,101 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-03",
+  },
+  {
+    slug: "vtek-solar-armor-apex",
+    brand: "VTEK",
+    category: "tint",
+    name: {
+      en: "VTEK Solar Armor APEX — Ultra Nano-Ceramic Window Tint",
+      ar: "VTEK Solar Armor APEX — فيلم تظليل النوافذ الترا نانو سيراميك",
+    },
+    shortDesc: {
+      en: "Flagship multi-layer ceramic solar film delivering industry-leading 98% infrared heat rejection, maximum UV block, and 15-year e-warranty.",
+      ar: "فيلم تظليل النوافذ السيراميكي الرائد متعدد الطبقات بعزل حراري استثنائي 98% للأشعة تحت الحمراء، حماية قصوى من الأشعة فوق البنفسجية وضمان إلكتروني 15 سنة.",
+    },
+    longDesc: {
+      en: "VTEK® Solar Armor™ APEX is the ultimate high-performance window film engineered specifically for extreme Middle Eastern summers. Utilizing proprietary multi-layer ceramic sputtering technology, APEX repels up to 98% of infrared heat without interfering with GPS, cell signals, or keyless entry. Its optical-grade crystal matrix maintains pure clarity day and night while protecting occupants and vehicle interiors from damaging solar radiation. Backed by a comprehensive 15-year e-warranty.",
+      ar: "يمثل VTEK® Solar Armor™ APEX قمة الأداء في أفلام تظليل النوافذ المصممة خصيصاً لمواجهة صيف الخليج القاسي. بفضل تقنية الرش السيراميكي متعدد الطبقات الحصرية، يعزل APEX ما يصل إلى 98% من الأشعة تحت الحمراء المسببة للحرارة دون أي تأثير على إشارات الملاحة أو الهواتف. تضمن طبقته الكريستالية رؤية ليلية ونهارية نقية مع حماية داخلية مقصورة السيارة، ومدعوم بضمان إلكتروني لمدة 15 سنة.",
+    },
+    images: [
+      "/products/vtek/vtek-solar-armor-apex.webp",
+      "/products/vtek/vtek-solar-armor-tints-lineup.webp",
+    ],
+    specs: [
+      {
+        label: { en: "Series", ar: "السلسلة" },
+        value: { en: "APEX Flagship Series (Solar Armor)", ar: "سلسلة APEX الرائدة (Solar Armor)" },
+      },
+      {
+        label: { en: "Heat Rejection", ar: "العزل الحراري" },
+        value: { en: "Up to 98% Infrared Rejection (IRR)", ar: "عزل حراري يصل إلى ٩٨٪ للأشعة تحت الحمراء" },
+      },
+      {
+        label: { en: "UV Defense", ar: "حماية الأشعة" },
+        value: { en: "99.9% Ultraviolet (UV) Block", ar: "حجب ٩٩.٩٪ من الأشعة فوق البنفسجية" },
+      },
+      {
+        label: { en: "Signal Friendly", ar: "الإشارات اللاسلكية" },
+        value: { en: "100% Non-Metallic / Zero Signal Interference", ar: "غير معدني ١٠٠٪ / بدون أي تشويش على الإشارات" },
+      },
+      {
+        label: { en: "Warranty", ar: "الضمان" },
+        value: { en: "15-Year e-Warranty", ar: "ضمان إلكتروني لمدة ١٥ سنة" },
+      },
+    ],
+    audience: "both",
+    featured: true,
+    highlight: "vertek-premium",
+    updatedAt: "2026-09-03",
+  },
+  {
+    slug: "vtek-solar-armor-iconic",
+    brand: "VTEK",
+    category: "tint",
+    name: {
+      en: "VTEK Solar Armor ICONIC — Carbon Ceramic Window Tint",
+      ar: "VTEK Solar Armor ICONIC — فيلم تظليل النوافذ كربون سيراميك",
+    },
+    shortDesc: {
+      en: "High-performance carbon-ceramic hybrid window film engineered for deep fade-resistant color, superior heat reduction, and 10-year e-warranty.",
+      ar: "فيلم تظليل نوافذ هجين من الكربون والسيراميك عالي الأداء بلون عميق مقاوم للبهتان، عزل حراري متميز وضمان إلكتروني 10 سنوات.",
+    },
+    longDesc: {
+      en: "VTEK® Solar Armor™ ICONIC combines advanced carbon particles with nano-ceramic technology to produce a rich, non-fading charcoal finish that never turns purple. Engineered to handle intense Gulf solar exposure, ICONIC provides substantial heat dissipation, glare minimization, and passenger privacy while maintaining pristine interior clarity. Compliant with Qatar Traffic Law standards, backed by a 10-year e-warranty.",
+      ar: "يجمع VTEK® Solar Armor™ ICONIC بين جزيئات الكربون المتقدمة وتقنية النانو سيراميك لمنح لون فحمي عميق وثابت لا يتغير لونه أبداً مع مرور السنين. صُمم لمقاومة أشعة الشمس الشديدة في الخليج مع توفير عزل حراري ممتاز وتخفيف للوهج وتعزيز الخصوصية مع وضوح الرؤية من الداخل. متوافق مع معايير المرور في قطر ومدعوم بضمان إلكتروني لمدة 10 سنوات.",
+    },
+    images: [
+      "/products/vtek/vtek-solar-armor-iconic.webp",
+      "/products/vtek/vtek-solar-armor-tints-lineup.webp",
+    ],
+    specs: [
+      {
+        label: { en: "Series", ar: "السلسلة" },
+        value: { en: "ICONIC Hybrid Series (Solar Armor)", ar: "سلسلة ICONIC الهجينة (Solar Armor)" },
+      },
+      {
+        label: { en: "Technology", ar: "التقنية" },
+        value: { en: "Carbon-Ceramic Hybrid Matrix", ar: "مصفوفة هجينة من الكربون والسيراميك" },
+      },
+      {
+        label: { en: "Color Stability", ar: "ثبات اللون" },
+        value: { en: "Fade-Resistant Deep Charcoal / Never Turns Purple", ar: "لون فحمي فاخر مقاوم للبهتان ولا يتحول للبنفسجي" },
+      },
+      {
+        label: { en: "Compliance", ar: "المطابقة" },
+        value: { en: "Qatar Traffic Law & MOI Compliant", ar: "مطابق لقانون المرور ووزارة الداخلية في قطر" },
+      },
+      {
+        label: { en: "Warranty", ar: "الضمان" },
+        value: { en: "10-Year e-Warranty", ar: "ضمان إلكتروني لمدة ١٠ سنوات" },
+      },
+    ],
+    audience: "both",
+    featured: true,
+    highlight: "vertek-premium",
+    updatedAt: "2026-09-03",
   },
 
   // ───── Briller Car Care (STAR — line of colored car-wash products)
