@@ -185,7 +185,10 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
       "Briller Car Care",
       "Grizzly",
       "Grizzly PPF",
+      "GrünesAuto",
+      "GrünesAuto Detailing Pads",
     ],
+    paymentAccepted: ["Cash", "Credit Card", "Debit Card"],
     // Price range indicator for Google Knowledge Panel
     priceRange: "$$",
   };
@@ -219,6 +222,7 @@ export function productJsonLd(opts: {
     brand: { "@type": "Brand", name: opts.brand },
     image: opts.images,
     url: opts.url,
+    itemCondition: "https://schema.org/NewCondition",
   };
 }
 

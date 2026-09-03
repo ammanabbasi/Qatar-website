@@ -97,13 +97,16 @@ export async function generateMetadata({
       "max-snippet": -1,
       "max-video-preview": -1,
     },
-    // Legacy geo meta — Bing and older local crawlers still read these
-    // (Google relies on the LocalBusiness JSON-LD). QA-DA = ISO 3166-2 Doha.
+    // Local GEO meta tags — Bing, Yandex, Applebot and local regional crawlers
+    // read these. QA-DA = ISO 3166-2 Doha municipality.
     other: {
       "geo.region": "QA-DA",
-      "geo.placename": "Doha",
+      "geo.placename": "Mesaimeer, Doha, Qatar",
       "geo.position": `${SITE.geo.latitude};${SITE.geo.longitude}`,
       ICBM: `${SITE.geo.latitude}, ${SITE.geo.longitude}`,
+      "DC.title": SITE.name,
+      "DC.creator": SITE.name,
+      "DC.coverage": "Mesaimeer, Doha, Qatar",
     },
     // Search engine verification — set via Vercel env vars, no code change needed.
     // NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION → Google Search Console

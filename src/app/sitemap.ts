@@ -9,7 +9,8 @@ import { routing } from "@/i18n/routing";
 // lastmod signals ignored by Google — same principle as product lastmods below.
 // 2026-06-12: homepage moved from /{locale}/b2c to the locale root.
 // 2026-08-22: storefront redesign rewrote every static page's copy + layout.
-const STATIC_PAGES_UPDATED_AT = "2026-08-22";
+// 2026-09-03: updated telephone landline, refreshed packshots, catalog updates.
+const STATIC_PAGES_UPDATED_AT = "2026-09-03";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE.url;
