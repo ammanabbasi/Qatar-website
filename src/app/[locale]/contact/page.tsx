@@ -89,14 +89,22 @@ export default async function ContactPage({
                   icon={<PhoneIcon className="h-[18px] w-[18px]" />}
                   label={t("Contact.phone")}
                   value={
-                    <a
-                      href={waHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="ltr-nums transition-colors hover:text-(--color-link)"
-                    >
-                      {SITE.phone}
-                    </a>
+                    <div className="flex flex-col gap-1">
+                      <a
+                        href={waHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ltr-nums transition-colors hover:text-(--color-link)"
+                      >
+                        {SITE.phone}
+                      </a>
+                      <a
+                        href={`tel:${SITE.phoneLandlineE164}`}
+                        className="ltr-nums transition-colors hover:text-(--color-link)"
+                      >
+                        {SITE.phoneLandline}
+                      </a>
+                    </div>
                   }
                 />
                 <InfoRow

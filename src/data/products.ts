@@ -15,7 +15,6 @@ export type BrandKey =
   | "Grizzly"
   | "InstaFinish"
   | "Getsun"
-  | "Sitrett"
   | "ABK"
   | "SmartCar"
   | "Other";
@@ -478,7 +477,7 @@ export const PRODUCTS: Product[] = [
     ],
     audience: "both",
     highlight: "briller-color",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-02",
   },
 
   // ───── Autotriz — Detailing Chemicals
@@ -712,7 +711,7 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
     audience: "both",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-02",
   },
   {
     slug: "autotriz-one-step-finish",
@@ -845,7 +844,7 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
     audience: "both",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-02",
   },
   {
     slug: "autotriz-foam-gun",
@@ -875,7 +874,7 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
     audience: "both",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-02",
   },
   {
     slug: "autotriz-wax-and-polish-bottle",
@@ -902,7 +901,7 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
     audience: "both",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-02",
   },
   {
     slug: "autotriz-ppf-refresh-1l",
@@ -932,7 +931,7 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
     audience: "both",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-02",
   },
 
   // ───── Insta Finish — USA
@@ -1089,29 +1088,6 @@ export const PRODUCTS: Product[] = [
     audience: "both",
   },
 
-  // ───── Sitrett
-  {
-    slug: "sitrett-mx5-heavy-duty-cleaner",
-    brand: "Sitrett",
-    category: "heavy-duty",
-    name: {
-      en: "Sitrett MX5 — Heavy-Duty Stain & Oil Remover",
-      ar: "Sitrett MX5 — مزيل بقع وزيوت ثقيل",
-    },
-    shortDesc: {
-      en: "Professional-grade stain, grease and oil remover. Made in Turkey.",
-      ar: "مزيل بقع وشحوم وزيوت بدرجة احترافية. صُنع في تركيا.",
-    },
-    longDesc: {
-      en: "Sitrett MX5 is a professional heavy-duty cleaner designed for demanding jobs. Dissolves heavy grease, oil and stubborn stains on engines, wheels, concrete and workshop surfaces.",
-      ar: "Sitrett MX5 منظّف احترافي ثقيل لمهام صعبة. يُذيب الشحوم والزيوت الثقيلة والبقع العنيدة من المحركات والعجلات والأسطح.",
-    },
-    images: ["/products/sitrett/sitrett-mx5-heavy-duty-cleaner.webp"],
-    specs: [
-      { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Turkey", ar: "صُنع في تركيا" } },
-    ],
-    audience: "both",
-  },
 
   {
     slug: "briller-quick-dressing",
@@ -1305,7 +1281,7 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
     audience: "both",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-02",
   },
   {
     slug: "premium-microfiber-towel-60x40",
@@ -1335,7 +1311,7 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Features", ar: "المميزات" }, value: { en: "High absorption · Lint-free · Scratch-free", ar: "امتصاص عالي · خالية من الوبر · آمنة ضد الخدش" } },
     ],
     audience: "both",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-02",
   },
   {
     slug: "premium-chamois-leather-towel",
@@ -1362,7 +1338,7 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Features", ar: "المميزات" }, value: { en: "Zero watermarks · Super dust cleaning · Ultra-absorbent", ar: "بدون علامات مائية · إزالة فائقة للغبار · امتصاص فائق" } },
     ],
     audience: "both",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-02",
   },
   {
     slug: "car-washing-sponge-large",
@@ -1392,7 +1368,7 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Features", ar: "المميزات" }, value: { en: "High suds retention · Scratch-free · Tear resistant", ar: "احتفاظ عالي بالرغوة · آمن ضد الخدش · مقاوم للتمزق" } },
     ],
     audience: "both",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-02",
   },
   {
     slug: "tire-polish-sponge",
@@ -1422,7 +1398,7 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Features", ar: "المميزات" }, value: { en: "Even coverage · Mess-free hand grip · Reusable", ar: "توزيع متساوٍ · مسكة نظيفة لليد · قابلة لإعادة الاستخدام" } },
     ],
     audience: "both",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-02",
   },
   {
     slug: "grunes-auto-pad-step2-da-6in",
@@ -1449,7 +1425,7 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany (GrünesAuto)", ar: "صُنع في ألمانيا (GrünesAuto)" } },
     ],
     audience: "both",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-02",
   },
   {
     slug: "grunes-auto-pad-step1-da-6in",
@@ -1476,7 +1452,7 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany (GrünesAuto)", ar: "صُنع في ألمانيا (GrünesAuto)" } },
     ],
     audience: "both",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-02",
   },
   {
     slug: "grunes-auto-pad-step3-da-6in",
@@ -1503,7 +1479,7 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany (GrünesAuto)", ar: "صُنع في ألمانيا (GrünesAuto)" } },
     ],
     audience: "both",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-02",
   },
   {
     slug: "grunes-auto-pad-step2-rotary-6in",
@@ -1530,7 +1506,7 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany (GrünesAuto)", ar: "صُنع في ألمانيا (GrünesAuto)" } },
     ],
     audience: "both",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-09-02",
   },
 ];
 
@@ -1544,7 +1520,6 @@ export const BRANDS: BrandKey[] = [
   "Grizzly",
   "InstaFinish",
   "Getsun",
-  "Sitrett",
   "ABK",
   "SmartCar",
   "Other",
@@ -1603,7 +1578,7 @@ export const CATEGORY_THUMBS: Record<CategoryKey, string> = {
   wax: "/products/instafinish/insta-finish-spray-wax.webp",
   interior: "/products/autotriz/autotriz-leather-and-vinyl.webp",
   degreaser: "/products/getsun/getsun-foam-out-engine-degreaser.webp",
-  "heavy-duty": "/products/sitrett/sitrett-mx5-heavy-duty-cleaner.webp",
+  "heavy-duty": "/products/misc/detainer-sticker-remover.webp",
   fragrance: "/products/abk/abk-fragrance-pair.webp",
   accessories: "/products/misc/fast-masking-tape.webp",
 };
@@ -1617,7 +1592,6 @@ export const BRAND_IMAGES: Record<BrandKey, string> = {
   Grizzly: "/products/grizzly/grizzly-glossy-ppf-premium-plus.webp",
   InstaFinish: "/products/instafinish/insta-finish-spray-wax.webp",
   Getsun: "/products/getsun/getsun-foam-out-engine-degreaser.webp",
-  Sitrett: "/products/sitrett/sitrett-mx5-heavy-duty-cleaner.webp",
   ABK: "/products/abk/abk-fragrance-pair.webp",
   SmartCar: "/products/misc/smart-car-tyre-foam.webp",
   Other: "/products/misc/protectguard-wf-premium.webp",
@@ -1634,7 +1608,6 @@ export const BRAND_IMAGES: Record<BrandKey, string> = {
 export const UNPROMOTED_BRANDS: readonly BrandKey[] = [
   "InstaFinish",
   "Getsun",
-  "Sitrett",
 ];
 
 function visibleTo(audience: AudienceScope) {

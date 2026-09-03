@@ -9,6 +9,8 @@ export const SITE = {
   tagline: "Your One-Stop Supplier for Premium Car Care & PPF Solutions",
   phone: "+974 30838355",
   phoneE164: "+97430838355",
+  phoneLandline: "+974 4451 4476",
+  phoneLandlineE164: "+97444514476",
   whatsapp: "97430838355",
   email: "sales@abktradingservice.com",
   address: {

@@ -82,6 +82,9 @@ export function Footer({ audience }: { audience: Audience }) {
               <a className={`${linkCls} ltr-nums`} href={`tel:${SITE.phoneE164}`}>
                 {SITE.phone}
               </a>
+              <a className={`${linkCls} ltr-nums`} href={`tel:${SITE.phoneLandlineE164}`}>
+                {SITE.phoneLandline}
+              </a>
               <a className={linkCls} href={`mailto:${SITE.email}`}>
                 {SITE.email}
               </a>

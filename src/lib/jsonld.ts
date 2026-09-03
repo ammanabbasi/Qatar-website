@@ -54,6 +54,13 @@ export function organizationJsonLd() {
         areaServed: ["QA", "AE", "SA", "KW", "BH", "OM"],
         availableLanguage: ["en", "ar"],
       },
+      {
+        "@type": "ContactPoint",
+        telephone: SITE.phoneLandlineE164,
+        contactType: "customer service",
+        areaServed: "QA",
+        availableLanguage: ["en", "ar"],
+      },
     ],
   };
 }
@@ -108,7 +115,7 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
       locale === "ar"
         ? "الموزع والبائع للمنتجات الفاخرة للعناية بالسيارات في قطر — أفلام حماية الطلاء، الطلاءات السيراميكية، شامبو السيارات، التلميع والمزيد."
         : "Qatar's distributor and retailer of premium automotive care — PPF, ceramic coatings, car shampoos, detailing compounds and more.",
-    telephone: SITE.phoneE164,
+    telephone: [SITE.phoneE164, SITE.phoneLandlineE164],
     email: SITE.email,
     address: {
       "@type": "PostalAddress",
