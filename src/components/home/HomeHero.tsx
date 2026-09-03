@@ -1,14 +1,8 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
-import { ButtonLink, buttonClasses } from "@/components/ui/Button";
-import {
-  ArrowRightIcon,
-  BadgeIcon,
-  BoxIcon,
-  HeadsetIcon,
-  ShieldCheckIcon,
-} from "@/components/ui/Icons";
+import { ButtonLink } from "@/components/ui/Button";
+import { ArrowRightIcon } from "@/components/ui/Icons";
 import { Link } from "@/i18n/navigation";
 import { buildWhatsAppUrl, type Audience, type WALocale } from "@/lib/whatsapp";
 
@@ -17,13 +11,6 @@ type Props = {
   locale: WALocale;
 };
 
-const TRUST_POINTS = [
-  { key: "heroTrustAuthentic", Icon: BadgeIcon },
-  { key: "heroTrustDistributor", Icon: ShieldCheckIcon },
-  { key: "heroTrustRange", Icon: BoxIcon },
-  { key: "heroTrustSupport", Icon: HeadsetIcon },
-] as const;
-
 /**
  * Dark showroom hero — headline, gold CTAs and the four trust points over the
  * showroom photograph. Owns the page's single <h1>.
@@ -31,7 +18,6 @@ const TRUST_POINTS = [
 export function HomeHero({ audience, locale }: Props) {
   const t = useTranslations("Home");
   const waHref = buildWhatsAppUrl({ audience, locale });
-  const b2c = audience === "b2c";
 
   return (
     <section className="relative isolate overflow-hidden bg-(--color-hero-dark) text-white">
@@ -59,18 +45,32 @@ export function HomeHero({ audience, locale }: Props) {
             {t("heroEyebrow")}
           </p>
           <h1 className="mt-3 text-headline font-bold tracking-tight sm:text-display lg:text-display-lg">
-            <span className="block">{t("heroTitleLine1")}</span>
-            <span className="block text-(--color-brand)">{t("heroTitleLine2")}</span>
+            <span className="block text-white uppercase">{t("heroTitleLine1")}</span>
+            <span className="block text-(--color-brand) uppercase tracking-wide">{t("heroTitleLine2")}</span>
           </h1>
-          <p className="mt-4 max-w-[46ch] text-body text-white/80 sm:mt-5 sm:text-body-lg">
-            {b2c ? t("heroBodyB2c") : t("heroBodyB2b")}
-          </p>
+
+          {/* 3 Glass feature badges */}
+          <div className="mt-5 flex flex-wrap items-center gap-2.5 sm:gap-3">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-caption font-medium text-white/90 backdrop-blur-md">
+              <span className="text-(--color-brand)">☀️</span>
+              <span>{t("heroBadgeHeat")}</span>
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-caption font-medium text-white/90 backdrop-blur-md">
+              <span className="text-(--color-brand)">🌪️</span>
+              <span>{t("heroBadgeSand")}</span>
+            </span>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-caption font-medium text-white/90 backdrop-blur-md">
+              <span className="text-(--color-brand)">🛡️</span>
+              <span>{t("heroBadgeUV")}</span>
+            </span>
+          </div>
+
           <div className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:items-center">
             <Link
               href={`/${audience}/products`}
-              className={`${buttonClasses("primary", "lg")} w-full sm:w-auto`}
+              className="inline-flex items-center justify-center gap-2 rounded-pill whitespace-nowrap px-7 h-12 text-body font-bold uppercase tracking-wider bg-(--color-brand) text-black shadow-[0_4px_14px_rgba(245,166,35,0.35)] hover:bg-(--color-brand-hover) transition-all duration-200 w-full sm:w-auto cursor-pointer"
             >
-              {t("heroCtaProducts")}
+              <span>{t("heroCtaProducts")}</span>
               <ArrowRightIcon className="h-4 w-4 rtl:rotate-180" />
             </Link>
             <ButtonLink
@@ -79,28 +79,13 @@ export function HomeHero({ audience, locale }: Props) {
               href={waHref}
               target="_blank"
               rel="noopener noreferrer"
-              className={`plausible-event-name=whatsapp_click plausible-event-audience=${audience} w-full sm:w-auto`}
+              className={`plausible-event-name=whatsapp_click plausible-event-audience=${audience} uppercase tracking-wider font-semibold w-full sm:w-auto border-(--color-brand)/70 text-(--color-brand) hover:bg-(--color-brand)/15`}
             >
               {t("heroCtaQuote")}
               <ArrowRightIcon className="h-4 w-4 rtl:rotate-180" />
             </ButtonLink>
           </div>
         </div>
-
-        {/* Trust bar */}
-        <ul className="mt-10 grid grid-cols-2 rounded-hero border border-white/10 bg-white/5 backdrop-blur-md sm:mt-14 sm:grid-cols-4 sm:divide-x sm:divide-white/10 lg:mt-16">
-          {TRUST_POINTS.map(({ key, Icon }) => (
-            <li
-              key={key}
-              className="flex flex-col items-center gap-2.5 px-3 py-5 text-center sm:px-4 sm:py-6"
-            >
-              <Icon className="h-6 w-6 text-(--color-brand)" />
-              <span className="max-w-[17ch] text-caption font-medium text-balance text-white/90 sm:text-footnote">
-                {t(key)}
-              </span>
-            </li>
-          ))}
-        </ul>
       </Container>
     </section>
   );

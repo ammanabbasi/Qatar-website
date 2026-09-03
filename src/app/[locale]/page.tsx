@@ -11,19 +11,12 @@ import { WhyQatar } from "@/components/home/WhyQatar";
 import { BrandStrip } from "@/components/home/BrandStrip";
 import { TrustBadges } from "@/components/home/TrustBadges";
 import { AboutSnippet } from "@/components/home/AboutSnippet";
+import { BestSellerCard } from "@/components/home/BestSellerCard";
+import { getStoreShelfProducts } from "@/data/products";
 import { localBusinessJsonLd } from "@/lib/jsonld";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { pageMeta } from "@/lib/seo";
 
-/**
- * The B2C home renders directly at the locale root (`/en`, `/ar`).
- *
- * It previously lived at `/{locale}/b2c` with this route 307-redirecting to
- * it, which made the homepage a DOUBLE temporary-redirect chain from `/`
- * (`/` -> 307 -> `/en` -> 307 -> `/en/b2c`). Temporary redirects tell Google
- * the target is NOT canonical, so the most-linked URL on the domain never
- * consolidated ranking signals. `/{locale}/b2c` now 308s here (next.config.ts).
- */
 export async function generateMetadata({
   params,
 }: {
@@ -49,18 +42,20 @@ export default async function Home({
   setRequestLocale(locale);
   const l = locale as "en" | "ar";
   const jsonLd = localBusinessJsonLd(l);
+  const bestSellers = getStoreShelfProducts("b2c", 4);
 
   return (
     <Shell audience="b2c" locale={l}>
       <JsonLd id="ld-localbusiness-b2c" data={jsonLd} />
       <HomeHero audience="b2c" locale={l} />
-      <StoreHeader audience="b2c" locale={l} />
-      <CategoryShelf audience="b2c" />
-      <StarProducts audience="b2c" locale={l} />
+      <BestSellerCard products={bestSellers} audience="b2c" locale={l} />
       <WhyQatar />
       <BrandStrip audience="b2c" />
       <TrustBadges />
       <AboutSnippet />
+      <StoreHeader audience="b2c" locale={l} />
+      <CategoryShelf audience="b2c" />
+      <StarProducts audience="b2c" locale={l} />
     </Shell>
   );
 }

@@ -1,33 +1,45 @@
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 
-// NOTE: Distributor status wording ("Authorized Distributor") is a trust claim.
-// If ABK is not officially authorized by one or more of these brands, change
-// the relation per brand or remove it from the list. Labels live in
-// messages/*.json (Home.relationDistributor / Home.relationRetailer).
-const PARTNERS: Array<{ name: string; relation: "relationDistributor" | "relationRetailer" }> = [
+const PARTNERS: Array<{
+  name: string;
+  relation: "relationDistributor" | "relationRetailer";
+}> = [
   { name: "VTEK PPF", relation: "relationDistributor" },
   { name: "Autotriz", relation: "relationDistributor" },
   { name: "Briller Car Care", relation: "relationDistributor" },
   { name: "Grizzly PPF", relation: "relationDistributor" },
 ];
 
-/** Quiet one-line trust strip beneath the brand shelf. */
 export function TrustBadges() {
   const t = useTranslations("Home");
+
   return (
-    <section className="py-4">
+    <section className="bg-white pb-12 lg:pb-16 border-b border-(--color-border-soft)">
       <Container>
-        <ul className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-caption text-(--color-text-muted)">
-          <li className="font-semibold text-(--color-text)">{t("trustTitle")}</li>
-          {PARTNERS.map((p) => (
-            <li key={p.name}>
-              <span className="text-(--color-text)">{p.name}</span>
-              <span aria-hidden> · </span>
-              {t(p.relation)}
-            </li>
-          ))}
-        </ul>
+        <div className="overflow-hidden rounded-3xl bg-(--color-hero-dark) p-6 sm:p-8 border border-white/10 shadow-xl text-white">
+          <h3 className="text-footnote font-bold uppercase tracking-wider text-(--color-brand)">
+            {t("trustTitle")}
+          </h3>
+
+          <ul className="mt-5 grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-4 sm:gap-4">
+            {PARTNERS.map((p) => (
+              <li
+                key={p.name}
+                className="flex items-center gap-3 rounded-xl bg-white/5 border border-white/5 px-4 py-3"
+              >
+                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-(--color-brand) text-black font-black text-caption">
+                  ✓
+                </span>
+                <span className="text-footnote font-medium text-white/95">
+                  <span className="font-bold">{p.name}</span>
+                  <span className="text-white/60"> · </span>
+                  <span className="text-white/80">{t(p.relation)}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </Container>
     </section>
   );

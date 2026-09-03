@@ -1,74 +1,98 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Shelf } from "@/components/ui/Shelf";
 import { ChevronIcon } from "@/components/ui/Icons";
 import { Link } from "@/i18n/navigation";
-import {
-  BRAND_IMAGES,
-  getBrandsFor,
-  UNPROMOTED_BRANDS,
-  type BrandKey,
-} from "@/data/products";
+import type { BrandKey } from "@/data/products";
 import type { Audience } from "@/lib/whatsapp";
 
-const TAG_KEYS: Partial<Record<BrandKey, string>> = {
-  VTEK: "brandTagVTEK",
-  Vertek: "brandTagVertek",
-  Autotriz: "brandTagAutotriz",
-  Briller: "brandTagBriller",
-  Grizzly: "brandTagGrizzly",
-  SmartCar: "brandTagSmartCar",
-  ABK: "brandTagABK",
-};
+const FEATURED_BRANDS: Array<{
+  key: BrandKey;
+  name: string;
+  categoryKey: string;
+  image: string;
+}> = [
+  {
+    key: "VTEK",
+    name: "VTEK",
+    categoryKey: "brandTagVTEK",
+    image: "/products/vtek/vtek-weather-armor-lineup-v2.webp",
+  },
+  {
+    key: "Autotriz",
+    name: "Autotriz",
+    categoryKey: "brandTagAutotriz",
+    image: "/products/autotriz/autotriz-3d-matrix-range.webp",
+  },
+  {
+    key: "Briller",
+    name: "Briller",
+    categoryKey: "brandTagBriller",
+    image: "/products/briller/briller-wash-and-wax-20l-wide.webp",
+  },
+  {
+    key: "Grizzly",
+    name: "Grizzly PPF",
+    categoryKey: "brandTagGrizzly",
+    image: "/products/grizzly/grizzly-glossy-ppf-premium-plus.webp",
+  },
+];
 
-/** "Brands we carry." — compact white tiles linking into a brand-filtered catalogue. */
 export function BrandStrip({ audience }: { audience: Audience }) {
   const t = useTranslations();
-  const brands = getBrandsFor(audience).filter(
-    (b) => b !== "Other" && !UNPROMOTED_BRANDS.includes(b),
-  );
 
   return (
-    <section className="py-6 lg:py-8">
-      <Container className="mb-4">
-        <SectionHeading title={t("Home.brandsTitle")} subtitle={t("Home.brandsSubtitle")} />
-      </Container>
-      <Shelf ariaLabel={t("Home.brandsTitle")}>
-        {brands.map((b) => {
-          const tagKey = TAG_KEYS[b];
-          return (
+    <section className="bg-white py-12 lg:py-16 border-b border-(--color-border-soft)">
+      <Container>
+        {/* Two-tone header with gold accent */}
+        <div className="max-w-3xl">
+          <h2 className="text-display font-bold tracking-tight">
+            <span className="block text-(--color-text)">{t("Home.brandsTitle")}</span>
+            <span className="block text-(--color-brand-deep)">
+              {t("Home.brandsSubtitle")}
+            </span>
+          </h2>
+          <div className="mt-2 h-1 w-12 rounded-full bg-(--color-brand)" />
+        </div>
+
+        {/* 4 Brand Cards in 2x2 (mobile) or 4-col (desktop) */}
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+          {FEATURED_BRANDS.map((b) => (
             <Link
-              key={b}
-              href={`/${audience}/products?brand=${b}`}
-              className="tile group flex w-[240px] flex-col gap-4 p-5 transition-shadow duration-300 ease-soft hover:shadow-tile-hover lg:w-[270px]"
+              key={b.key}
+              href={`/${audience}/products?brand=${b.key}`}
+              className="group flex flex-col justify-between overflow-hidden rounded-2xl border border-black/5 bg-(--color-bg) p-5 sm:p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:border-(--color-brand)/40"
             >
-              <span className="relative block h-14 w-14 overflow-hidden rounded-[12px] bg-(--color-bg)">
+              {/* Product Packshot */}
+              <div className="relative h-44 w-full overflow-hidden rounded-xl bg-white p-2">
                 <Image
-                  src={BRAND_IMAGES[b]}
-                  alt=""
+                  src={b.image}
+                  alt={b.name}
                   fill
-                  sizes="56px"
-                  className="object-cover transition-transform duration-500 ease-soft group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-contain transition-transform duration-500 group-hover:scale-105"
                 />
-              </span>
-              <span className="flex flex-col gap-0.5">
-                <span className="text-title-sm font-semibold">{t(`Brands.${b}`)}</span>
-                {tagKey && (
-                  <span className="text-footnote text-(--color-text-muted)">
-                    {t(`Home.${tagKey}`)}
-                  </span>
-                )}
-              </span>
-              <span className="text-link mt-auto text-footnote font-medium">
-                {t("Cta.explore")}
-                <ChevronIcon className="h-[0.6em] w-[0.6em] rtl:-scale-x-100" />
-              </span>
+              </div>
+
+              {/* Details */}
+              <div className="mt-5 flex flex-col gap-1">
+                <h3 className="text-title-sm font-bold text-(--color-text)">
+                  {b.name}
+                </h3>
+                <p className="text-footnote text-(--color-text-muted)">
+                  {t(`Home.${b.categoryKey}`)}
+                </p>
+              </div>
+
+              {/* Explore action */}
+              <div className="mt-5 flex items-center gap-1 font-bold text-footnote text-(--color-brand-deep) group-hover:underline">
+                <span className="uppercase tracking-wider">{t("Cta.explore")}</span>
+                <ChevronIcon className="h-3 w-3 rtl:-scale-x-100" />
+              </div>
             </Link>
-          );
-        })}
-      </Shelf>
+          ))}
+        </div>
+      </Container>
     </section>
   );
 }
