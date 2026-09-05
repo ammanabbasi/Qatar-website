@@ -17,7 +17,7 @@ was missing.
 | Extensions | 14 sitelinks, 16 callouts, 4 structured snippet sets |
 | Landing pages | **200/200 verified 200** against live production |
 | Bid strategy at launch | **Manual CPC**, using each ad group's own max CPC |
-| Budget if every campaign were enabled | **310 QAR/day** ≈ 9,300 QAR/month — don't; enable one at a time |
+| Budget if every campaign were enabled | **310 QAR/day** ≈ 9,300 QAR/month, imported as **$85.16/day** — don't; enable one at a time |
 
 Themes: b2b-wholesale, ceramic, interior-fragrance, polish-compound, ppf-tint, wash-care.
 
@@ -50,7 +50,7 @@ in `Paused` status by design.** Nothing can spend until you deliberately enable 
 4. Paste the shared negative list and apply it to all campaigns.
 5. Review the ads in the Google Ads UI.
 6. Enable **one** campaign. Not all of them — all twelve at their listed budgets
-   is 310 QAR/day.
+   is 310 QAR/day ($85/day).
 
 ## Importing
 
@@ -105,7 +105,7 @@ start but never made it into this runbook until now.
 
 | Setting | Where | Set it to | Why |
 |---|---|---|---|
-| Account currency | Billing → Settings | Must be **QAR** | Every budget and bid in these files is a QAR figure. Imported into a USD account, "35" becomes $35/day — 3.6× the intended spend, across all twelve campaigns. Currency cannot be changed once an account exists; if it is wrong, create the account again before importing. |
+| Account currency | Billing → Settings | It is **USD** — leave it | The account (502-538-6770) bills in US dollars, verified 2026-09-05, and a currency cannot be changed once an account exists. The themes are authored in QAR, so the exporter now converts every budget and bid to USD at the riyal's fixed peg (3.64 QAR = $1) when it writes the CSVs — `01-campaigns.csv` and `02-ad-groups.csv` carry dollar figures, and `campaign-settings.csv` shows both. Do not "correct" the CSVs back to the QAR numbers: "35" imported into this account would be $35/day, 3.6× the plan. |
 | Location option | Each campaign → Settings → Locations → *Location options* | **Presence** (people in or regularly in your targeted locations) | Google's default, *Presence or interest*, also serves people outside Qatar who merely searched about it — in the Gulf that is the diaspora searching from India, Pakistan, Egypt and the Philippines. ABK is a Doha stockist; they cannot buy. This is the single largest source of wasted clicks in a GCC account left at defaults, and it applies to the six-country B2B campaigns too. |
 | Auto-apply recommendations | Tools → Recommendations → *Auto-apply* | **All off** | Left on, Google adds broad-match keywords, expands targeting and raises budgets without asking. Each of those undoes a deliberate decision in these files — there is not one broad-match keyword in the account, on purpose. |
 | Automatically created assets | Each campaign → Settings → *Automatically created assets* | **Off** | Google would write extra headlines from the landing-page text. Nothing it writes passes the validator, so it could reintroduce a spec that has since changed, or a phrase that reads as a service. |
@@ -295,8 +295,8 @@ Do not enable everything at once. You will learn nothing and spend fast.
 | 4 | Add Arabic, after the native review | Mirror the English budgets |
 
 **Bid strategy: launch on Manual CPC, switch later.** Every campaign imports as
-*Manual CPC*, using the max CPC set on each ad group (1.75–5.50 QAR depending on
-how competitive the theme is).
+*Manual CPC*, using the max CPC set on each ad group (1.75–5.50 QAR, imported as
+$0.48–$1.51, depending on how competitive the theme is).
 
 The themes were authored specifying *Maximize conversions*, and that is the right
 destination — but not the right starting point. Smart Bidding has no conversion

@@ -23,6 +23,16 @@ mkdirSync(OUT, { recursive: true });
 const LIMITS = { headline: 30, description: 90, path: 15 };
 const len = (s) => [...String(s)].length;
 
+// The live account (502-538-6770) bills in US dollars — verified in the
+// account on 2026-09-05, and a currency cannot be changed after creation.
+// Google Ads Editor imports every budget and bid as a bare number in the
+// ACCOUNT currency, so a QAR figure imported unconverted would spend 3.64×
+// the plan. The themes stay authored in QAR (that is how the business
+// prices); the emitter converts at the riyal's fixed peg to the dollar,
+// 3.64 QAR = 1 USD, unchanged since 2001.
+const QAR_PER_USD = 3.64;
+const usd = (qar) => Math.round((qar / QAR_PER_USD) * 100) / 100;
+
 const errors = [];
 const warnings = [];
 const fail = (where, msg) => errors.push(`${where}: ${msg}`);
@@ -310,7 +320,8 @@ for (const { file, data } of themes) {
       // ALWAYS paused on import. Enabling spend is a human decision, never a
       // side effect of running a build script.
       Status: "Paused",
-      Budget: c.dailyBudgetQAR,
+      // USD — the account's currency. See QAR_PER_USD.
+      Budget: usd(c.dailyBudgetQAR),
       "Budget Type": "Daily",
       // Both languages on every campaign, deliberately. Google's language
       // targeting keys off the user's INTERFACE language, not the query — and
@@ -355,6 +366,7 @@ for (const { file, data } of themes) {
       "Location option": "Presence (people in or regularly in the targeted locations), NOT the default 'Presence or interest'",
       "Ad schedule": c.adSchedule || "",
       "Daily budget (QAR)": c.dailyBudgetQAR,
+      "Daily budget (USD, as imported)": usd(c.dailyBudgetQAR),
       "Bid strategy at launch": "Manual CPC (ad-group Max CPC applies)",
       // Per-campaign Smart Bidding never reaches the data threshold at these
       // budgets (5-15 clicks/day needs a 7-20% conversion rate to make 30
@@ -381,7 +393,8 @@ for (const { file, data } of themes) {
         Campaign: c.name,
         "Ad Group": g.name,
         Status: "Enabled",
-        "Max CPC": g.maxCpcQAR ?? "",
+        // USD — the account's currency. See QAR_PER_USD.
+        "Max CPC": g.maxCpcQAR == null ? "" : usd(g.maxCpcQAR),
         "Ad Group Type": "Standard",
       });
       adGroupMeta.push({ campaign: c.name, name: g.name, lang: c.language, slug: url.split("?")[0].split("/products/")[1] || null });
