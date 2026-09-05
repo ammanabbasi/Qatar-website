@@ -2,7 +2,16 @@ import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 import { Link } from "@/i18n/navigation";
 import { SITE } from "@/lib/constants";
-import { InstagramIcon, FacebookIcon, TikTokIcon } from "@/components/ui/Icons";
+import {
+  InstagramIcon,
+  FacebookIcon,
+  TikTokIcon,
+  PinIcon,
+  ClockIcon,
+  MobilePhoneIcon,
+  PhoneIcon,
+  MailIcon,
+} from "@/components/ui/Icons";
 import type { Audience } from "@/lib/whatsapp";
 
 const SHOP_CATEGORIES = ["ppf", "ceramic", "shampoo", "polish", "tyre"] as const;
@@ -78,15 +87,19 @@ export function Footer({ audience }: { audience: Audience }) {
               {/* Address details */}
               <address className="flex flex-col gap-3.5 text-caption not-italic text-white/75">
                 {/* Location pin */}
-                <div className="flex items-start gap-2.5">
-                  <span className="text-(--color-brand) mt-0.5 shrink-0">📍</span>
-                  <p>{t("Contact.addressValue")}</p>
+                <div className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-(--color-brand)/10 text-(--color-brand) border border-(--color-brand)/25 shadow-xs">
+                    <PinIcon className="h-3.5 w-3.5" />
+                  </span>
+                  <p className="pt-0.5 leading-snug">{t("Contact.addressValue")}</p>
                 </div>
 
                 {/* Hours */}
-                <div className="flex items-start gap-2.5">
-                  <span className="text-(--color-brand) mt-0.5 shrink-0">🕒</span>
-                  <div>
+                <div className="flex items-start gap-3">
+                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-(--color-brand)/10 text-(--color-brand) border border-(--color-brand)/25 shadow-xs">
+                    <ClockIcon className="h-3.5 w-3.5" />
+                  </span>
+                  <div className="pt-0.5 leading-snug">
                     <span className="text-white/95">{t("Contact.hoursSatToThu")}</span>{" "}
                     <span className="ltr-nums block">
                       {SITE.hours.weekdaysMorning} · {SITE.hours.weekdaysEvening}
@@ -98,18 +111,22 @@ export function Footer({ audience }: { audience: Audience }) {
                 </div>
 
                 {/* Mobile */}
-                <div className="flex items-center gap-2.5">
-                  <span className="text-(--color-brand) shrink-0">📞</span>
-                  <a className={`${linkCls} ltr-nums`} href={`tel:${SITE.phoneE164}`}>
+                <div className="flex items-center gap-3">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-(--color-brand)/10 text-(--color-brand) border border-(--color-brand)/25 shadow-xs">
+                    <MobilePhoneIcon className="h-3.5 w-3.5" />
+                  </span>
+                  <a className={`${linkCls} ltr-nums pt-0.5`} href={`tel:${SITE.phoneE164}`}>
                     {SITE.phone}
                   </a>
                 </div>
 
                 {/* Landline */}
-                <div className="flex items-center gap-2.5">
-                  <span className="text-(--color-brand) shrink-0">☎️</span>
+                <div className="flex items-center gap-3">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-(--color-brand)/10 text-(--color-brand) border border-(--color-brand)/25 shadow-xs">
+                    <PhoneIcon className="h-3.5 w-3.5" />
+                  </span>
                   <a
-                    className={`${linkCls} ltr-nums`}
+                    className={`${linkCls} ltr-nums pt-0.5`}
                     href={`tel:${SITE.phoneLandlineE164}`}
                   >
                     {SITE.phoneLandline}
@@ -117,9 +134,11 @@ export function Footer({ audience }: { audience: Audience }) {
                 </div>
 
                 {/* Email */}
-                <div className="flex items-center gap-2.5">
-                  <span className="text-(--color-brand) shrink-0">✉️</span>
-                  <a className={linkCls} href={`mailto:${SITE.email}`}>
+                <div className="flex items-center gap-3">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-(--color-brand)/10 text-(--color-brand) border border-(--color-brand)/25 shadow-xs">
+                    <MailIcon className="h-3.5 w-3.5" />
+                  </span>
+                  <a className={`${linkCls} pt-0.5`} href={`mailto:${SITE.email}`}>
                     {SITE.email}
                   </a>
                 </div>

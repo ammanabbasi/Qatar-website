@@ -137,6 +137,24 @@ export function PhoneIcon({ className = "" }: IconProps) {
   );
 }
 
+export function MobilePhoneIcon({ className = "" }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="7" y="2" width="10" height="20" rx="2.5" />
+      <path d="M11 18h2" />
+    </svg>
+  );
+}
+
 export function MailIcon({ className = "" }: IconProps) {
   return (
     <svg
