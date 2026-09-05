@@ -8,7 +8,6 @@ import { StoreHeader } from "@/components/home/StoreHeader";
 import { CategoryShelf } from "@/components/home/CategoryShelf";
 import { StarProducts } from "@/components/home/StarProducts";
 import { WhyQatar } from "@/components/home/WhyQatar";
-import { BrandStrip } from "@/components/home/BrandStrip";
 import { TrustBadges } from "@/components/home/TrustBadges";
 import { AboutSnippet } from "@/components/home/AboutSnippet";
 import { BestSellerCard } from "@/components/home/BestSellerCard";
@@ -50,7 +49,6 @@ export default async function Home({
       <HomeHero audience="b2c" locale={l} />
       <BestSellerCard products={bestSellers} audience="b2c" locale={l} />
       <WhyQatar />
-      <BrandStrip audience="b2c" />
       <TrustBadges />
       <AboutSnippet />
       <StoreHeader audience="b2c" locale={l} />

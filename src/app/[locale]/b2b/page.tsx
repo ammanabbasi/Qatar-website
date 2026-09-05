@@ -8,7 +8,6 @@ import { HomeHero } from "@/components/home/HomeHero";
 import { StoreHeader } from "@/components/home/StoreHeader";
 import { CategoryShelf } from "@/components/home/CategoryShelf";
 import { StarProducts } from "@/components/home/StarProducts";
-import { BrandStrip } from "@/components/home/BrandStrip";
 import { DealerPitch } from "@/components/home/DealerPitch";
 import { TrustBadges } from "@/components/home/TrustBadges";
 import { localBusinessJsonLd } from "@/lib/jsonld";
@@ -48,7 +47,6 @@ export default async function B2BHome({
       <CategoryShelf audience="b2b" />
       <StarProducts audience="b2b" locale={l} />
       <DealerPitch locale={l} />
-      <BrandStrip audience="b2b" />
       <TrustBadges />
     </Shell>
   );
