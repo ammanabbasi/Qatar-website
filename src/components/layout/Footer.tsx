@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 import { Link } from "@/i18n/navigation";
 import { SITE } from "@/lib/constants";
+import { InstagramIcon, FacebookIcon, TikTokIcon } from "@/components/ui/Icons";
 import type { Audience } from "@/lib/whatsapp";
 
 const SHOP_CATEGORIES = ["ppf", "ceramic", "shampoo", "polish", "tyre"] as const;
@@ -196,33 +197,33 @@ export function Footer({ audience }: { audience: Audience }) {
             </div>
 
             {/* Social Icons */}
-            <div className="mt-2 flex items-center gap-3">
+            <div className="mt-3 flex items-center gap-3">
               <a
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 border border-white/10 text-white/80 transition-colors hover:text-(--color-brand) hover:border-(--color-brand)/60"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 border border-white/10 text-white/80 transition-all duration-200 hover:text-(--color-brand) hover:border-(--color-brand)/60 hover:bg-white/10 hover:scale-105"
                 href={SITE.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
               >
-                📸
+                <InstagramIcon className="h-4.5 w-4.5" />
               </a>
               <a
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 border border-white/10 text-white/80 transition-colors hover:text-(--color-brand) hover:border-(--color-brand)/60"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 border border-white/10 text-white/80 transition-all duration-200 hover:text-(--color-brand) hover:border-(--color-brand)/60 hover:bg-white/10 hover:scale-105"
                 href={SITE.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
               >
-                👍
+                <FacebookIcon className="h-4.5 w-4.5" />
               </a>
               <a
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 border border-white/10 text-white/80 transition-colors hover:text-(--color-brand) hover:border-(--color-brand)/60"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/5 border border-white/10 text-white/80 transition-all duration-200 hover:text-(--color-brand) hover:border-(--color-brand)/60 hover:bg-white/10 hover:scale-105"
                 href={SITE.social.tiktok}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok"
               >
-                🎵
+                <TikTokIcon className="h-4.5 w-4.5" />
               </a>
             </div>
           </div>
