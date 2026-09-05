@@ -99,6 +99,12 @@ export default async function ContactPage({
                         {SITE.phone}
                       </a>
                       <a
+                        href={`tel:${SITE.phoneSecondaryE164}`}
+                        className="ltr-nums transition-colors hover:text-(--color-link)"
+                      >
+                        {SITE.phoneSecondary}
+                      </a>
+                      <a
                         href={`tel:${SITE.phoneLandlineE164}`}
                         className="ltr-nums transition-colors hover:text-(--color-link)"
                       >

@@ -110,13 +110,26 @@ export function Footer({ audience }: { audience: Audience }) {
                   </div>
                 </div>
 
-                {/* Mobile */}
+                {/* Mobile 1 */}
                 <div className="flex items-center gap-3">
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-(--color-brand)/10 text-(--color-brand) border border-(--color-brand)/25 shadow-xs">
                     <MobilePhoneIcon className="h-3.5 w-3.5" />
                   </span>
                   <a className={`${linkCls} ltr-nums pt-0.5`} href={`tel:${SITE.phoneE164}`}>
                     {SITE.phone}
+                  </a>
+                </div>
+
+                {/* Mobile 2 */}
+                <div className="flex items-center gap-3">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-(--color-brand)/10 text-(--color-brand) border border-(--color-brand)/25 shadow-xs">
+                    <MobilePhoneIcon className="h-3.5 w-3.5" />
+                  </span>
+                  <a
+                    className={`${linkCls} ltr-nums pt-0.5`}
+                    href={`tel:${SITE.phoneSecondaryE164}`}
+                  >
+                    {SITE.phoneSecondary}
                   </a>
                 </div>
 

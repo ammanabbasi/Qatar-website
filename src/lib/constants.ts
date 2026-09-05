@@ -7,8 +7,10 @@ export const SITE = {
       .trim()
       .replace(/\/$/, ""),
   tagline: "Your One-Stop Supplier for Premium Car Care & PPF Solutions",
-  phone: "+974 30838355",
+  phone: "+974 3083 8355",
   phoneE164: "+97430838355",
+  phoneSecondary: "+974 7779 0915",
+  phoneSecondaryE164: "+97477790915",
   phoneLandline: "+974 4451 4476",
   phoneLandlineE164: "+97444514476",
   whatsapp: "97430838355",
