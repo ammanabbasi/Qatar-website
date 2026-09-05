@@ -345,10 +345,23 @@ for (const { file, data } of themes) {
       Language: c.language === "ar" ? "Arabic" : "English",
       "Target locations": (c.locations || []).join("; "),
       "Excluded locations": (c.excludedLocations || []).join("; "),
+      // Google's default location option, "Presence or interest", also serves
+      // people OUTSIDE the targeted country who merely searched about it. In
+      // the Gulf that is the diaspora searching from India, Pakistan, Egypt and
+      // the Philippines about Qatar — none of whom can buy from a Doha
+      // stockist. Presence-only is a per-campaign dropdown (Settings >
+      // Locations > Location options); Editor has no column for it, so the
+      // sheet has to say it out loud or it gets left at the default.
+      "Location option": "Presence (people in or regularly in the targeted locations), NOT the default 'Presence or interest'",
       "Ad schedule": c.adSchedule || "",
       "Daily budget (QAR)": c.dailyBudgetQAR,
       "Bid strategy at launch": "Manual CPC (ad-group Max CPC applies)",
-      "Switch to once ~30 conversions/30 days": c.bidStrategy || "Maximize conversions",
+      // Per-campaign Smart Bidding never reaches the data threshold at these
+      // budgets (5-15 clicks/day needs a 7-20% conversion rate to make 30
+      // conversions a month). A portfolio strategy pools the conversions of
+      // every attached campaign into one model, so the switch is made once for
+      // the account, not twelve times for twelve starved campaigns.
+      "Switch to (one portfolio strategy shared by all enabled campaigns, once they pool ~30 conversions/30 days)": c.bidStrategy || "Maximize conversions",
       Rationale: c.rationale || "",
     });
 

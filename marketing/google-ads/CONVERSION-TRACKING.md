@@ -119,6 +119,15 @@ installed), then set each up manually:
 | Email click | Contact | 20 QAR | One | Secondary |
 | Catalogue download | Other | 15 QAR | One | Secondary — **skip while dormant** (no page links the PDFs) |
 
+There is one more conversion that needs **no site code and no label**: **Calls
+from ads**. It counts calls placed from the call asset on the ad itself, not
+from the website, and Google creates the conversion action for you when the
+call asset is added with call reporting switched on (see the account-settings
+table in the README). Leave its default 60-second threshold and keep it
+*Primary*. It is the only conversion that reports from day one, before any
+label below is pasted — so if the account shows calls but no WhatsApp
+conversions, the labels are the gap, not the campaigns.
+
 Set **Email** and **Catalogue** to *Secondary* so they are measured but do not
 drive bidding — they are far weaker buying signals than a WhatsApp message.
 

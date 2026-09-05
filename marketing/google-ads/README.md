@@ -44,8 +44,9 @@ in `Paused` status by design.** Nothing can spend until you deliberately enable 
    paste their labels. Nothing else works properly without it: you cannot judge
    a campaign, and you cannot later switch to Smart Bidding, without conversions.
 2. Import the CSVs (below), in filename order.
-3. Set locations, ad schedule and budgets by hand — these are not importable.
-   Values are in `campaign-settings.csv`.
+3. Set locations, the location option (**Presence** only — see the
+   account-settings table below), ad schedule and budgets by hand — these are
+   not importable. Values are in `campaign-settings.csv`.
 4. Paste the shared negative list and apply it to all campaigns.
 5. Review the ads in the Google Ads UI.
 6. Enable **one** campaign. Not all of them — all twelve at their listed budgets
@@ -76,7 +77,7 @@ no file in that folder you have to remember *not* to import.
 | `import/07-callouts.csv` | Callout assets |
 | `import/08-structured-snippets.csv` | Structured snippet assets |
 | `import/09-shared-negative-list.txt` | **Not a CSV import.** Paste into a shared negative keyword list. |
-| `campaign-settings.csv` *(outside `import/`)* | Reference only. Locations, schedule, budget and bid-strategy target, applied by hand. |
+| `campaign-settings.csv` *(outside `import/`)* | Reference only. Locations, location option, schedule, budget and bid-strategy target, applied by hand. |
 
 ### The shared negative list
 
@@ -95,6 +96,21 @@ matter). If it flags a column, pick the right one from the dropdown or set it to
 *(ignore)*.
 
 4. Review the proposed changes, then **Post**.
+
+## Account settings to check before you enable anything
+
+None of these can be imported, every one of them costs money if left at
+Google's default, and the last two were declared in `build/assets.json` from the
+start but never made it into this runbook until now.
+
+| Setting | Where | Set it to | Why |
+|---|---|---|---|
+| Account currency | Billing → Settings | Must be **QAR** | Every budget and bid in these files is a QAR figure. Imported into a USD account, "35" becomes $35/day — 3.6× the intended spend, across all twelve campaigns. Currency cannot be changed once an account exists; if it is wrong, create the account again before importing. |
+| Location option | Each campaign → Settings → Locations → *Location options* | **Presence** (people in or regularly in your targeted locations) | Google's default, *Presence or interest*, also serves people outside Qatar who merely searched about it — in the Gulf that is the diaspora searching from India, Pakistan, Egypt and the Philippines. ABK is a Doha stockist; they cannot buy. This is the single largest source of wasted clicks in a GCC account left at defaults, and it applies to the six-country B2B campaigns too. |
+| Auto-apply recommendations | Tools → Recommendations → *Auto-apply* | **All off** | Left on, Google adds broad-match keywords, expands targeting and raises budgets without asking. Each of those undoes a deliberate decision in these files — there is not one broad-match keyword in the account, on purpose. |
+| Automatically created assets | Each campaign → Settings → *Automatically created assets* | **Off** | Google would write extra headlines from the landing-page text. Nothing it writes passes the validator, so it could reintroduce a spec that has since changed, or a phrase that reads as a service. |
+| Call asset | Assets → Calls → **+** | `+974 3083 8355`, **Use call reporting: on** | Adds a tap-to-call button to the ad itself on mobile. Google reports those as **Calls from ads** — the one conversion that works with zero site code, so the account gets data from day one while the website labels are still being set up. Phone numbers are not allowed inside ad text, which is why no ad carries one; this is the sanctioned place. |
+| Location asset | Tools → Linked accounts → Google Business Profile, then Assets → Locations | Link the *ABK Trading and Service* profile | Shows the Mesaimeer address and map pin under the ad. Free, and the strongest "we are physically here" signal a search ad can carry. |
 
 ## The one rule every ad in here follows
 
@@ -288,8 +304,17 @@ history to learn from in a new account, so it bids blind and spends the full
 daily budget gathering data. It would also make every ad group's hand-set max CPC
 inert. Manual CPC keeps spend predictable and those bids meaningful.
 
-**Switch to Maximize conversions once you have ~30 conversions in 30 days.** The
-target strategy is recorded per campaign in `campaign-settings.csv` so it isn't
+**Switch to Maximize conversions as one portfolio strategy, once the enabled
+campaigns together have ~30 conversions in 30 days.** Not one campaign at a time:
+the arithmetic does not work per campaign. At 15–55 QAR/day and 2–5 QAR a click,
+a campaign gets roughly 5–15 clicks a day, so reaching 30 conversions a month on
+its own needs a 7–20% conversion rate, sustained. Most never get there, and a
+campaign switched to Smart Bidding with too little data bids blind — the exact
+problem Manual CPC was chosen to avoid. A portfolio strategy (Tools → Bidding
+strategies → **+** → Maximize conversions, then attach campaigns) pools every
+attached campaign's conversions into one model, so the account as a whole
+reaches the threshold several times sooner than any campaign alone. The target
+strategy is recorded per campaign in `campaign-settings.csv` so it isn't
 forgotten.
 
 ### What to check after week 1
@@ -299,6 +324,16 @@ forgotten.
   the single highest-value hour you will spend on the account.
 - Any ad group with a **Below average** ad relevance or landing page experience.
 - Whether service-intent queries are leaking through despite the negatives.
+- **Where the clicks came from** (Insights and reports → When and where ads
+  showed → *User location*). Any impressions from outside the targeted countries
+  mean a campaign was left on *Presence or interest* — fix the location option.
+- **Calls** (Assets → Calls, and the *Calls from ads* conversion). Calls arriving
+  while the site reports no WhatsApp conversions means the website labels are not
+  pasted yet — a tracking gap, not a campaign problem.
+- **Hour of day and day of week** against your WhatsApp inbox. The schedule
+  pauses Friday and 13:30–15:30. If enquiries cluster on Friday evening or
+  Saturday morning, the pause is costing you the Qatar weekend: try Friday on at
+  a −50% bid adjustment before deciding.
 
 ## ⚠ After the first import, the live account is the source of truth
 
