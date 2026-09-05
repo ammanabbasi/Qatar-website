@@ -679,8 +679,25 @@ export const PRODUCTS: Product[] = [
     images: ["/products/autotriz/autotriz-heavy-cut-901.webp"],
     specs: [
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "901", ar: "901" } },
+      {
+        label: { en: "Cut Power", ar: "قوة القطع" },
+        value: { en: "High Cut (Removes P1500 Sanding Marks)", ar: "قطع عالي (إزالة سنفرة P1500)" },
+      },
+      {
+        label: { en: "Finish", ar: "التشطيب" },
+        value: { en: "High Gloss & Hologram-Free", ar: "لمعان عالي وخالٍ من الهالات" },
+      },
+      {
+        label: { en: "Formulation", ar: "التركيبة" },
+        value: { en: "Silicone-Free, No Fillers, Body Shop Safe", ar: "خالٍ من السيليكون وبدون حشوات، آمن لورش الصبغ" },
+      },
+      {
+        label: { en: "Origin", ar: "المنشأ" },
+        value: { en: "Made in Germany", ar: "صُنع في ألمانيا" },
+      },
     ],
     audience: "both",
+    updatedAt: "2026-09-04",
   },
   {
     slug: "autotriz-ultimate-polish-302",
