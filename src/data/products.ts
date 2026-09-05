@@ -547,7 +547,7 @@ export const PRODUCTS: Product[] = [
     ],
     audience: "both",
     highlight: "briller-color",
-    updatedAt: "2026-08-31",
+    updatedAt: "2026-09-05",
   },
   {
     slug: "briller-quick-tyre-shine",
@@ -593,14 +593,14 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/briller/briller-glass-cleaner.webp"],
     specs: [
-      { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B508", ar: "B508" } },
+      { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "D508", ar: "D508" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
       { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "Direct / 1:1", ar: "مباشر / ١:١" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
     audience: "both",
     highlight: "briller-color",
-    updatedAt: "2026-08-31",
+    updatedAt: "2026-09-05",
   },
   {
     slug: "briller-heavy-duty-degreaser",
@@ -718,8 +718,12 @@ export const PRODUCTS: Product[] = [
     images: ["/products/autotriz/autotriz-ultimate-polish-302.webp"],
     specs: [
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "302", ar: "302" } },
+      { label: { en: "Cut / Gloss", ar: "القطع واللمعان" }, value: { en: "Cut 2/10 · Gloss 10/10", ar: "قطع ٢/١٠ · لمعان ١٠/١٠" } },
+      { label: { en: "Finish", ar: "التشطيب" }, value: { en: "Hologram-Free Mirror Finish", ar: "لمعان مرآة خالٍ من الهالات" } },
+      { label: { en: "Safety", ar: "الأمان" }, value: { en: "Body Shop Safe", ar: "آمن لورش السمكرة" } },
     ],
     audience: "both",
+    updatedAt: "2026-09-05",
   },
 
   {
@@ -1283,7 +1287,7 @@ export const PRODUCTS: Product[] = [
     ],
     audience: "both",
     highlight: "briller-color",
-    updatedAt: "2026-08-30",
+    updatedAt: "2026-09-05",
   },
 
   // ───── ABK — white-label fragrances (own brand)
