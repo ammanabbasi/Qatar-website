@@ -16,12 +16,12 @@ export const SITE = {
   whatsapp: "97430838355",
   email: "sales@abktradingservice.com",
   address: {
-    line1: "Shop 2 & 3, Building 1306",
+    line1: "Showroom no. 2, Building 1306",
     line2: "Street 70, Zone 56, Mesaimeer",
     city: "Doha",
     country: "Qatar",
     countryCode: "QA",
-    full: "Shop 2 & 3, Building 1306, Street 70, Zone 56, Mesaimeer, Doha, Qatar",
+    full: "Showroom no. 2, Building 1306, Street 70, Zone 56, Mesaimeer, Doha, Qatar",
   },
   // Google Business Profile: "ABK Trading and Service — Vertek & Autotriz"
   // (car accessories store, 4.9★). Pin + CID captured from Google Maps on

@@ -82,7 +82,6 @@ export const PRODUCTS: Product[] = [
     },
     images: [
       "/products/vtek/vtek-weather-armor-ultimate-v2.webp",
-      "/products/vtek/vtek-weather-armor-lineup-v2.webp",
     ],
     specs: [
       {
@@ -143,7 +142,6 @@ export const PRODUCTS: Product[] = [
     },
     images: [
       "/products/vtek/vtek-weather-armor-pro.webp",
-      "/products/vtek/vtek-weather-armor-lineup-v2.webp",
     ],
     specs: [
       {
@@ -200,7 +198,6 @@ export const PRODUCTS: Product[] = [
     },
     images: [
       "/products/vtek/vtek-weather-armor-pro-plus.webp",
-      "/products/vtek/vtek-weather-armor-lineup-v2.webp",
     ],
     specs: [
       {
@@ -257,7 +254,6 @@ export const PRODUCTS: Product[] = [
     },
     images: [
       "/products/vtek/vtek-weather-armor-matte.webp",
-      "/products/vtek/vtek-weather-armor-lineup-v2.webp",
     ],
     specs: [
       {
@@ -311,7 +307,6 @@ export const PRODUCTS: Product[] = [
     },
     images: [
       "/products/vtek/vtek-weather-armor-prism.webp",
-      "/products/vtek/vtek-weather-armor-lineup-v2.webp",
     ],
     specs: [
       {
@@ -1037,7 +1032,6 @@ export const PRODUCTS: Product[] = [
     },
     images: [
       "/products/autotriz/autotriz-foam-gun.webp",
-      "/products/autotriz/autotriz-foam-gun-front.webp",
     ],
     specs: [
       { label: { en: "Type", ar: "النوع" }, value: { en: "High-Pressure Snow Foam Cannon", ar: "مدفع رغوة ثلجية عالي الضغط" } },
@@ -1094,7 +1088,6 @@ export const PRODUCTS: Product[] = [
     },
     images: [
       "/products/autotriz/autotriz-ppf-refresh-1l.webp",
-      "/products/autotriz/autotriz-ppf-refresh-1l-back.webp",
     ],
     specs: [
       { label: { en: "Volume", ar: "الحجم" }, value: { en: "1 Liter (1000 ml)", ar: "١ لتر (١٠٠٠ مل)" } },
@@ -1444,7 +1437,6 @@ export const PRODUCTS: Product[] = [
     },
     images: [
       "/products/misc/edgeless-microfiber-towel.webp",
-      "/products/misc/edgeless-microfiber-towel-folded.webp",
     ],
     specs: [
       { label: { en: "Size", ar: "المقاس" }, value: { en: "40 × 40 cm", ar: "٤٠ × ٤٠ سم" } },
@@ -1561,7 +1553,6 @@ export const PRODUCTS: Product[] = [
     },
     images: [
       "/products/misc/tire-polish-sponge.webp",
-      "/products/misc/tire-polish-sponge-side.webp",
     ],
     specs: [
       { label: { en: "Type", ar: "النوع" }, value: { en: "Contoured Tire Dressing Applicator", ar: "إسفنجة منحنية لتطبيق ملمع الإطارات" } },

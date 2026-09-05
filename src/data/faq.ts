@@ -66,8 +66,8 @@ export const FAQ: FaqEntry[] = [
       ar: "أين يقع متجر ABK في الدوحة؟",
     },
     a: {
-      en: "ABK Trading & Service is at Shop 2 & 3, Building 1306, Street 70, Zone 56, Mesaimeer, Doha, Qatar. Open Saturday to Thursday, 10:00–13:00 and 16:00–22:00. Closed Friday.",
-      ar: "يقع متجر ABK للتجارة والخدمات في المحل 2 و3، مبنى 1306، شارع 70، منطقة 56، مسيمير، الدوحة، قطر. مفتوح من السبت إلى الخميس، 10:00 – 1:00 و4:00 – 10:00. الجمعة مغلق.",
+      en: "ABK Trading & Service is at Showroom no. 2, Building 1306, Street 70, Zone 56, Mesaimeer, Doha, Qatar. Open Saturday to Thursday, 10:00–13:00 and 16:00–22:00. Closed Friday.",
+      ar: "يقع متجر ABK للتجارة والخدمات في المعرض رقم 2، مبنى 1306، شارع 70، منطقة 56، مسيمير، الدوحة، قطر. مفتوح من السبت إلى الخميس، 10:00 – 1:00 و4:00 – 10:00. الجمعة مغلق.",
     },
   },
   {

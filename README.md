@@ -122,7 +122,7 @@ Mark a product as a "star" (shown on homepage) by setting `featured: true`.
 ## Business details (baked into site + JSON-LD)
 
 - **Company:** ABK Trading & Service
-- **Address:** Shop 2 & 3, Building 1306, Street 70, Zone 56, Mesaimeer, Doha, Qatar
+- **Address:** Showroom no. 2, Building 1306, Street 70, Zone 56, Mesaimeer, Doha, Qatar
 - **Hours:** Sat – Thu 10:00–13:00 and 16:00–22:00 · Fri closed
 - **Phone / WhatsApp:** +974 30838355
 - **Email:** sales@abktradingservice.com
