@@ -30,6 +30,7 @@
 
 import {
   ADS_CONVERSION_ID,
+  GA_MEASUREMENT_ID,
   CONVERSION_EVENT_NAMES,
   isProductionHost,
   sendTo,
@@ -63,12 +64,31 @@ function bootstrapGtag(): boolean {
     w.dataLayer!.push(arguments);
   };
   w.gtag("js", new Date());
-  w.gtag("config", ADS_CONVERSION_ID);
+
+  const isDebug =
+    typeof window !== "undefined" &&
+    Boolean(
+      window.location.search &&
+        (window.location.search.includes("gtm_debug") ||
+          window.location.search.includes("debug_mode"))
+    );
+
+  if (GA_MEASUREMENT_ID) {
+    w.gtag("config", GA_MEASUREMENT_ID, {
+      send_page_view: true,
+      ...(isDebug ? { debug_mode: true } : {}),
+    });
+  }
+
+  if (ADS_CONVERSION_ID) {
+    w.gtag("config", ADS_CONVERSION_ID);
+  }
 
   const el = document.createElement("script");
   el.id = TAG_SCRIPT_ID;
   el.async = true;
-  el.src = `https://www.googletagmanager.com/gtag/js?id=${ADS_CONVERSION_ID}`;
+  const primaryId = GA_MEASUREMENT_ID || ADS_CONVERSION_ID;
+  el.src = `https://www.googletagmanager.com/gtag/js?id=${primaryId}`;
   document.head.appendChild(el);
   return true;
 }

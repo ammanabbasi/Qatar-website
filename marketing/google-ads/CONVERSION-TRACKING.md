@@ -15,8 +15,8 @@ catalogue download was invisible to Google Ads.
 
 | File | Purpose |
 |---|---|
-| `src/instrumentation-client.ts` | One capture-phase click listener on `document`. Instruments every CTA on the site. |
-| `src/lib/ads-conversions.ts` | Conversion IDs, labels and event names. |
+| `src/instrumentation-client.ts` | One capture-phase click listener on `document`. Bootstraps unified Google Tag (GA4 `G-V73K5YVK5T` + Google Ads `AW-18200382552`) and instruments every CTA on the site. |
+| `src/lib/ads-conversions.ts` | GA4 measurement ID, Google Ads conversion ID, labels, event names and hostname gate. |
 
 **Why a delegated listener and not `onClick` handlers:** every CTA in this repo
 is a Server Component — `WhatsAppButton`, `FloatingWhatsApp`, `ButtonLink`,

@@ -15,9 +15,11 @@
 import { SITE } from "@/lib/constants";
 
 export const ADS_CONVERSION_ID = "AW-18200382552";
+export const GA_MEASUREMENT_ID =
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-V73K5YVK5T";
 
 /**
- * The single gate on all Google Ads tracking: the tag loads, and conversions
+ * The single gate on all Google Ads & Analytics tracking: the tag loads, and conversions
  * fire, only on the real domain.
  *
  * Localhost and Vercel preview deployments must never report into the live Ads
@@ -32,10 +34,24 @@ export const ADS_CONVERSION_ID = "AW-18200382552";
  * the protection was unprovable. A hostname check is always available, always
  * correct, needs no Vercel setting, and can be tested locally.
  *
- * Set NEXT_PUBLIC_ADS_FORCE_TRACKING=1 to exercise tracking locally.
+ * Set NEXT_PUBLIC_ADS_FORCE_TRACKING=1 or NEXT_PUBLIC_GA_FORCE_TRACKING=1 to exercise tracking locally,
+ * or connect via Google Tag Assistant (?gtm_debug=... / debug_mode).
  */
 export function isProductionHost(hostname: string): boolean {
-  if (process.env.NEXT_PUBLIC_ADS_FORCE_TRACKING === "1") return true;
+  if (
+    process.env.NEXT_PUBLIC_ADS_FORCE_TRACKING === "1" ||
+    process.env.NEXT_PUBLIC_GA_FORCE_TRACKING === "1"
+  ) {
+    return true;
+  }
+  if (
+    typeof window !== "undefined" &&
+    window.location.search &&
+    (window.location.search.includes("gtm_debug") ||
+      window.location.search.includes("debug_mode"))
+  ) {
+    return true;
+  }
   return hostname === SITE.domain || hostname === `www.${SITE.domain}`;
 }
 
