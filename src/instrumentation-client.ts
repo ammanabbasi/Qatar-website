@@ -31,6 +31,7 @@
 import {
   ADS_CONVERSION_ID,
   GA_MEASUREMENT_ID,
+  GA_MEASUREMENT_IDS,
   CONVERSION_EVENT_NAMES,
   isProductionHost,
   sendTo,
@@ -73,8 +74,8 @@ function bootstrapGtag(): boolean {
           window.location.search.includes("debug_mode"))
     );
 
-  if (GA_MEASUREMENT_ID) {
-    w.gtag("config", GA_MEASUREMENT_ID, {
+  for (const gaId of GA_MEASUREMENT_IDS) {
+    w.gtag("config", gaId, {
       send_page_view: true,
       ...(isDebug ? { debug_mode: true } : {}),
     });

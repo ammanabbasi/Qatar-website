@@ -16,7 +16,10 @@ import { SITE } from "@/lib/constants";
 
 export const ADS_CONVERSION_ID = "AW-18200382552";
 export const GA_MEASUREMENT_ID =
-  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-V73K5YVK5T";
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-TYPKQ6L3SB";
+export const GA_MEASUREMENT_IDS = Array.from(
+  new Set([GA_MEASUREMENT_ID, "G-TYPKQ6L3SB", "G-V73K5YVK5T"].filter(Boolean))
+);
 
 /**
  * The single gate on all Google Ads & Analytics tracking: the tag loads, and conversions
