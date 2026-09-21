@@ -1,23 +1,10 @@
 {
   "site": "https://abktradingservice.com",
   "generatedFrom": "git show HEAD:src/data/products.ts (what is actually deployed)",
-  "totalProducts": 51,
-  "promotableProducts": 43,
-  "excludedBrands": [
-    "InstaFinish",
-    "Getsun",
-    "Sitrett"
-  ],
-  "excludedSlugs": [
-    "insta-finish-wash-and-wax",
-    "insta-finish-premium-dress-all",
-    "insta-finish-premium-blue-guard",
-    "insta-finish-spray-wax",
-    "getsun-foam-out-engine-degreaser",
-    "getsun-tire-shine",
-    "getsun-multi-purpose-foam-cleaner",
-    "sitrett-mx5-heavy-duty-cleaner"
-  ],
+  "totalProducts": 54,
+  "promotableProducts": 54,
+  "excludedBrands": [],
+  "excludedSlugs": [],
   "brands": [
     "VTEK",
     "Vertek",
@@ -26,7 +13,6 @@
     "Grizzly",
     "InstaFinish",
     "Getsun",
-    "Sitrett",
     "ABK",
     "SmartCar",
     "Other"
@@ -51,9 +37,12 @@
     "VTEK": [
       "vtek-ppf-weather-armor-ultimate",
       "vtek-ppf-weather-armor-pro",
+      "vtek-ppf-weather-armor-pro-plus",
       "vtek-ppf-weather-armor-matte",
       "vtek-ppf-weather-armor-prism",
-      "vtek-window-tints"
+      "vtek-window-tints",
+      "vtek-solar-armor-apex",
+      "vtek-solar-armor-iconic"
     ],
     "Briller": [
       "briller-wash-and-wax",
@@ -82,7 +71,19 @@
       "autotriz-wax-and-polish-bottle",
       "autotriz-ppf-refresh-1l"
     ],
+    "InstaFinish": [
+      "insta-finish-spray-wax",
+      "insta-finish-wash-and-wax",
+      "insta-finish-premium-blue-guard",
+      "insta-finish-premium-dress-all"
+    ],
+    "Getsun": [
+      "getsun-tire-shine",
+      "getsun-multi-purpose-foam-cleaner",
+      "getsun-foam-out-engine-degreaser"
+    ],
     "ABK": [
+      "abk-rejuvenate-plastic-restorer",
       "abk-mashmom-home-fragrance",
       "abk-secret-home-fragrance"
     ],
@@ -108,25 +109,31 @@
     "ppf": [
       "vtek-ppf-weather-armor-ultimate",
       "vtek-ppf-weather-armor-pro",
+      "vtek-ppf-weather-armor-pro-plus",
       "vtek-ppf-weather-armor-matte",
       "vtek-ppf-weather-armor-prism",
       "autotriz-ppf-gel",
       "autotriz-ppf-refresh-1l"
     ],
     "tint": [
-      "vtek-window-tints"
+      "vtek-window-tints",
+      "vtek-solar-armor-apex",
+      "vtek-solar-armor-iconic"
     ],
     "shampoo": [
       "briller-wash-and-wax",
-      "autotriz-rich-foam-shampoo"
+      "autotriz-rich-foam-shampoo",
+      "insta-finish-wash-and-wax"
     ],
     "interior": [
       "briller-multipurpose-cleaner",
-      "autotriz-fabric-textile-coating"
+      "autotriz-fabric-textile-coating",
+      "getsun-multi-purpose-foam-cleaner"
     ],
     "tyre": [
       "briller-quick-tyre-shine",
       "autotriz-hyper-wheel-cleaner",
+      "getsun-tire-shine",
       "smart-car-tyre-foam",
       "tire-polish-sponge"
     ],
@@ -134,7 +141,8 @@
       "briller-glass-cleaner"
     ],
     "degreaser": [
-      "briller-heavy-duty-degreaser"
+      "briller-heavy-duty-degreaser",
+      "getsun-foam-out-engine-degreaser"
     ],
     "polish": [
       "autotriz-heavy-cut-901",
@@ -163,8 +171,14 @@
       "grunes-auto-pad-step3-da-6in",
       "grunes-auto-pad-step2-rotary-6in"
     ],
+    "wax": [
+      "insta-finish-spray-wax"
+    ],
     "dressing": [
-      "briller-quick-dressing"
+      "insta-finish-premium-blue-guard",
+      "insta-finish-premium-dress-all",
+      "briller-quick-dressing",
+      "abk-rejuvenate-plastic-restorer"
     ],
     "fragrance": [
       "abk-mashmom-home-fragrance",
@@ -207,6 +221,22 @@
       "url_b2b_en": "https://abktradingservice.com/en/b2b/products/vtek-ppf-weather-armor-pro",
       "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/vtek-ppf-weather-armor-pro",
       "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/vtek-ppf-weather-armor-pro"
+    },
+    {
+      "slug": "vtek-ppf-weather-armor-pro-plus",
+      "brand": "VTEK",
+      "category": "ppf",
+      "audience": "both",
+      "featured": true,
+      "name_en": "VTEK PPF — Weather Armor PRO PLUS",
+      "name_ar": "VTEK — فيلم حماية الطلاء Weather Armor PRO PLUS",
+      "short_en": "Advanced aliphatic TPU paint protection film with high-durability hydrophobic topcoat, extreme clarity and 12-year warranty.",
+      "short_ar": "فيلم حماية طلاء متطور من TPU الأليفاتي مع طبقة نانوية طاردة للماء، لمعان فائق وضمان ١٢ سنة.",
+      "specs": "Material=High-Grade Aliphatic TPU | Thickness=8.0 mil (203 µm) | Finish=High Optical Clarity Gloss | Technology=Heat-Activated Self-Healing Nano-Coat | Warranty=12-Year Warranty | Resistance=Extreme UV, Desert Sand & Chemical Stains",
+      "url_b2c_en": "https://abktradingservice.com/en/b2c/products/vtek-ppf-weather-armor-pro-plus",
+      "url_b2b_en": "https://abktradingservice.com/en/b2b/products/vtek-ppf-weather-armor-pro-plus",
+      "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/vtek-ppf-weather-armor-pro-plus",
+      "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/vtek-ppf-weather-armor-pro-plus"
     },
     {
       "slug": "vtek-ppf-weather-armor-matte",
@@ -255,6 +285,38 @@
       "url_b2b_en": "https://abktradingservice.com/en/b2b/products/vtek-window-tints",
       "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/vtek-window-tints",
       "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/vtek-window-tints"
+    },
+    {
+      "slug": "vtek-solar-armor-apex",
+      "brand": "VTEK",
+      "category": "tint",
+      "audience": "both",
+      "featured": true,
+      "name_en": "VTEK Solar Armor APEX — Ultra Nano-Ceramic Window Tint",
+      "name_ar": "VTEK Solar Armor APEX — فيلم تظليل النوافذ الترا نانو سيراميك",
+      "short_en": "Flagship multi-layer ceramic solar film delivering industry-leading 98% infrared heat rejection, maximum UV block, and 15-year e-warranty.",
+      "short_ar": "فيلم تظليل النوافذ السيراميكي الرائد متعدد الطبقات بعزل حراري استثنائي 98% للأشعة تحت الحمراء، حماية قصوى من الأشعة فوق البنفسجية وضمان إلكتروني 15 سنة.",
+      "specs": "Series=APEX Flagship Series (Solar Armor) | Heat Rejection=Up to 98% Infrared Rejection (IRR) | UV Defense=99.9% Ultraviolet (UV) Block | Signal Friendly=100% Non-Metallic / Zero Signal Interference | Warranty=15-Year e-Warranty",
+      "url_b2c_en": "https://abktradingservice.com/en/b2c/products/vtek-solar-armor-apex",
+      "url_b2b_en": "https://abktradingservice.com/en/b2b/products/vtek-solar-armor-apex",
+      "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/vtek-solar-armor-apex",
+      "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/vtek-solar-armor-apex"
+    },
+    {
+      "slug": "vtek-solar-armor-iconic",
+      "brand": "VTEK",
+      "category": "tint",
+      "audience": "both",
+      "featured": true,
+      "name_en": "VTEK Solar Armor ICONIC — Carbon Ceramic Window Tint",
+      "name_ar": "VTEK Solar Armor ICONIC — فيلم تظليل النوافذ كربون سيراميك",
+      "short_en": "High-performance carbon-ceramic hybrid window film engineered for deep fade-resistant color, superior heat reduction, and 10-year e-warranty.",
+      "short_ar": "فيلم تظليل نوافذ هجين من الكربون والسيراميك عالي الأداء بلون عميق مقاوم للبهتان، عزل حراري متميز وضمان إلكتروني 10 سنوات.",
+      "specs": "Series=ICONIC Hybrid Series (Solar Armor) | Technology=Carbon-Ceramic Hybrid Matrix | Color Stability=Fade-Resistant Deep Charcoal / Never Turns Purple | Compliance=Qatar Traffic Law & MOI Compliant | Warranty=10-Year e-Warranty",
+      "url_b2c_en": "https://abktradingservice.com/en/b2c/products/vtek-solar-armor-iconic",
+      "url_b2b_en": "https://abktradingservice.com/en/b2b/products/vtek-solar-armor-iconic",
+      "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/vtek-solar-armor-iconic",
+      "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/vtek-solar-armor-iconic"
     },
     {
       "slug": "briller-wash-and-wax",
@@ -314,7 +376,7 @@
       "name_ar": "Briller — منظف الزجاج",
       "short_en": "Streak-free glass cleaner with All-in-One CA Tech™.",
       "short_ar": "منظف زجاج بدون أثر شطب، بتقنية CA Tech™.",
-      "specs": "SKU=B508 | Size=20 L | Dilution=Direct / 1:1 | Origin=Made in Canada",
+      "specs": "SKU=D508 | Size=20 L | Dilution=Direct / 1:1 | Origin=Made in Canada",
       "url_b2c_en": "https://abktradingservice.com/en/b2c/products/briller-glass-cleaner",
       "url_b2b_en": "https://abktradingservice.com/en/b2b/products/briller-glass-cleaner",
       "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/briller-glass-cleaner",
@@ -362,7 +424,7 @@
       "name_ar": "Autotriz Heavy Cut 901 — مركّب قطع ثقيل",
       "short_en": "Heavy-cut compound. Effectively removes P1500 sanding marks, restores high gloss, hologram-free.",
       "short_ar": "مركّب قطع ثقيل. يُزيل علامات السنفرة P1500، يعيد اللمعان العالي، خالٍ من الهالات.",
-      "specs": "SKU=901",
+      "specs": "SKU=901 | Cut Power=High Cut (Removes P1500 Sanding Marks) | Finish=High Gloss & Hologram-Free | Formulation=Silicone-Free, No Fillers, Body Shop Safe | Origin=Made in Germany",
       "url_b2c_en": "https://abktradingservice.com/en/b2c/products/autotriz-heavy-cut-901",
       "url_b2b_en": "https://abktradingservice.com/en/b2b/products/autotriz-heavy-cut-901",
       "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/autotriz-heavy-cut-901",
@@ -378,7 +440,7 @@
       "name_ar": "Autotriz Ultimate Polish 302 — ملمّع نهائي",
       "short_en": "Finishing polish — deep rich wet look, excellent for dark paint, hologram-free, body-shop safe.",
       "short_ar": "ملمّع نهائي — مظهر رطب غني، ممتاز للسيارات الداكنة، خالٍ من الهالات، آمن لورش السمكرة.",
-      "specs": "SKU=302",
+      "specs": "SKU=302 | Cut / Gloss=Cut 2/10 · Gloss 10/10 | Finish=Hologram-Free Mirror Finish | Safety=Body Shop Safe",
       "url_b2c_en": "https://abktradingservice.com/en/b2c/products/autotriz-ultimate-polish-302",
       "url_b2b_en": "https://abktradingservice.com/en/b2b/products/autotriz-ultimate-polish-302",
       "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/autotriz-ultimate-polish-302",
@@ -609,6 +671,118 @@
       "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/autotriz-ppf-refresh-1l"
     },
     {
+      "slug": "insta-finish-spray-wax",
+      "brand": "InstaFinish",
+      "category": "wax",
+      "audience": "both",
+      "featured": true,
+      "name_en": "Insta Finish Spray Wax",
+      "name_ar": "Insta Finish — شمع بخاخ Spray Wax",
+      "short_en": "High-gloss detail spray wax (473 ml). Use after car polish or car wash for an instant wet-shine look. Made in USA.",
+      "short_ar": "شمع بخاخ عالي اللمعان (٤٧٣ مل). يُستخدم بعد تلميع السيارة أو غسيلها لمظهر رطب فائق اللمعان. صُنع في أمريكا.",
+      "specs": "Price=QAR 45 | Size=16 fl oz (473 ml) | Origin=Made in USA | Usage=Apply after car polish or car wash | Application=Direct spray and wipe with clean microfibre | Finish=High-Gloss / Wet-Shine Look",
+      "url_b2c_en": "https://abktradingservice.com/en/b2c/products/insta-finish-spray-wax",
+      "url_b2b_en": "https://abktradingservice.com/en/b2b/products/insta-finish-spray-wax",
+      "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/insta-finish-spray-wax",
+      "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/insta-finish-spray-wax"
+    },
+    {
+      "slug": "insta-finish-wash-and-wax",
+      "brand": "InstaFinish",
+      "category": "shampoo",
+      "audience": "both",
+      "featured": true,
+      "name_en": "Insta Finish Wash N Wax",
+      "name_ar": "Insta Finish — شامبو وغسيل وشمع Wash N Wax",
+      "short_en": "Super concentrated car shampoo (473 ml). Mix with 20 litres water. Leaves a protective coating on top of paint. Made in USA.",
+      "short_ar": "شامبو سيارات فائق التركيز (٤٧٣ مل). يُخلط مع ٢٠ لتراً من الماء ليترك طبقة حماية ولمعان على الطلاء. صُنع في أمريكا.",
+      "specs": "Price=QAR 45 | Size=16 fl oz (473 ml) | Origin=Made in USA | Dilution=Mix with 20 Litres of water | Protection=Leaves a protective coating on top of paint | Finish=Durable High-Gloss & Water-Beading Shine",
+      "url_b2c_en": "https://abktradingservice.com/en/b2c/products/insta-finish-wash-and-wax",
+      "url_b2b_en": "https://abktradingservice.com/en/b2b/products/insta-finish-wash-and-wax",
+      "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/insta-finish-wash-and-wax",
+      "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/insta-finish-wash-and-wax"
+    },
+    {
+      "slug": "insta-finish-premium-blue-guard",
+      "brand": "InstaFinish",
+      "category": "dressing",
+      "audience": "both",
+      "featured": true,
+      "name_en": "Insta Finish Premium Blue Guard",
+      "name_ar": "Insta Finish — ملمّع الحماية الزرقاء Blue Guard (لمعان براق)",
+      "short_en": "Direct-use silicone polish (473 ml) for interior (leather, dashboard, steering wheel, plastic) & exterior trims. Glossy finish. Made in USA.",
+      "short_ar": "ملمّع سيليكون جاهز للاستخدام المباشر (٤٧٣ مل) للداخل (جلد، طبلون، مقود، بلاستيك) والخارج. يمنح لمعاناً براقاً (Glossy). صُنع في أمريكا.",
+      "specs": "Price=QAR 45 | Size=16 fl oz (473 ml) | Origin=Made in USA | Usage=Direct use (no dilution required) | Scope=Interior (leather, dashboard, steering wheel, plastic) & exterior plastics & trims | Finish=Glossy Finish",
+      "url_b2c_en": "https://abktradingservice.com/en/b2c/products/insta-finish-premium-blue-guard",
+      "url_b2b_en": "https://abktradingservice.com/en/b2b/products/insta-finish-premium-blue-guard",
+      "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/insta-finish-premium-blue-guard",
+      "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/insta-finish-premium-blue-guard"
+    },
+    {
+      "slug": "insta-finish-premium-dress-all",
+      "brand": "InstaFinish",
+      "category": "dressing",
+      "audience": "both",
+      "featured": true,
+      "name_en": "Insta Finish Premium Dress All",
+      "name_ar": "Insta Finish — ملمّع شامل فاخر Dress All (مظهر مطفي أنيق)",
+      "short_en": "Direct-use dressing (473 ml) for interior (leather, dashboard, steering wheel, plastic) & exterior trims. Elegant matte finish. Made in USA.",
+      "short_ar": "ملمّع شامل جاهز للاستخدام المباشر (٤٧٣ مل) للداخل (جلد، طبلون، مقود، بلاستيك) وديكورات الخارج. يمنح مظهراً مطفياً طبيعياً وأنيقاً (Matte). صُنع في أمريكا.",
+      "specs": "Price=QAR 45 | Size=16 fl oz (473 ml) | Origin=Made in USA | Usage=Direct use (no dilution required) | Scope=Interior (leather, dashboard, steering wheel, plastic) & exterior plastics & trims | Finish=Matte Finish (non-glare, non-greasy)",
+      "url_b2c_en": "https://abktradingservice.com/en/b2c/products/insta-finish-premium-dress-all",
+      "url_b2b_en": "https://abktradingservice.com/en/b2b/products/insta-finish-premium-dress-all",
+      "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/insta-finish-premium-dress-all",
+      "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/insta-finish-premium-dress-all"
+    },
+    {
+      "slug": "getsun-tire-shine",
+      "brand": "Getsun",
+      "category": "tyre",
+      "audience": "both",
+      "featured": true,
+      "name_en": "Getsun Tire Shine",
+      "name_ar": "Getsun — بخاخ ملمع الإطارات Tire Shine",
+      "short_en": "Aerosol tyre shine (500 ml). Leaves ultimate gloss on tyres lasting 7 to 8 hours. Made in China.",
+      "short_ar": "بخاخ ملمع إطارات (٥٠٠ مل). يمنح لمعاناً فائقاً يدوم من ٧ إلى ٨ ساعات. صُنع في الصين.",
+      "specs": "Price=QAR 15 | Size=500 ml (17.6 fl oz) | Origin=Made in China | Durability=Lasts 7 to 8 hours | Application=Apply on clean tyre (recommended) | Finish=Ultimate High Gloss (no wiping, no run-off)",
+      "url_b2c_en": "https://abktradingservice.com/en/b2c/products/getsun-tire-shine",
+      "url_b2b_en": "https://abktradingservice.com/en/b2b/products/getsun-tire-shine",
+      "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/getsun-tire-shine",
+      "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/getsun-tire-shine"
+    },
+    {
+      "slug": "getsun-multi-purpose-foam-cleaner",
+      "brand": "Getsun",
+      "category": "interior",
+      "audience": "both",
+      "featured": true,
+      "name_en": "Getsun Foam Spray Interior Cleaner",
+      "name_ar": "Getsun — رغوة تنظيف وتطهير المقصورة الداخلية",
+      "short_en": "Multi-purpose interior cleaner (500 ml / 650 ml). Removes strong stains from seats, car plastics & carpets. Made in China.",
+      "short_ar": "منظّف داخلي رغوي متعدد الاستخدامات. يزيل أصعب البقع من المقاعد وبلاستيك السيارة والموكيت والسجاد. صُنع في الصين.",
+      "specs": "Price=QAR 15 | Size=500 ml / 650 ml (22 fl oz) | Origin=Made in China | Surfaces=Seats (leather & fabric), car plastics, carpets | Action=Removes strong stains & deep cleans",
+      "url_b2c_en": "https://abktradingservice.com/en/b2c/products/getsun-multi-purpose-foam-cleaner",
+      "url_b2b_en": "https://abktradingservice.com/en/b2b/products/getsun-multi-purpose-foam-cleaner",
+      "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/getsun-multi-purpose-foam-cleaner",
+      "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/getsun-multi-purpose-foam-cleaner"
+    },
+    {
+      "slug": "getsun-foam-out-engine-degreaser",
+      "brand": "Getsun",
+      "category": "degreaser",
+      "audience": "both",
+      "featured": true,
+      "name_en": "Getsun Engine Cleaner Foam Spray",
+      "name_ar": "Getsun Foam Out — رغوة تنظيف ومزيل شحوم المحرك",
+      "short_en": "Engine foam degreaser (500 ml / 650 ml). Removes dirty grease and oil, leaving a clean matte finish on engine plastics. Made in China.",
+      "short_ar": "رغوة منظّفة ومذيبة لشحوم المحرك. تزيل الزيوت والشحوم المستعصية وتمنح البلاستيك مظهراً مطفياً أنيقاً (Matte). صُنع في الصين.",
+      "specs": "Price=QAR 15 | Size=500 ml / 650 ml (22 fl oz) | Origin=Made in China | Action=Removes dirty grease, oil & grime | Directions=After spray, wipe off with clean microfibre | Finish=Matte finish to engine plastic",
+      "url_b2c_en": "https://abktradingservice.com/en/b2c/products/getsun-foam-out-engine-degreaser",
+      "url_b2b_en": "https://abktradingservice.com/en/b2b/products/getsun-foam-out-engine-degreaser",
+      "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/getsun-foam-out-engine-degreaser",
+      "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/getsun-foam-out-engine-degreaser"
+    },
+    {
       "slug": "briller-quick-dressing",
       "brand": "Briller",
       "category": "dressing",
@@ -625,16 +799,32 @@
       "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/briller-quick-dressing"
     },
     {
+      "slug": "abk-rejuvenate-plastic-restorer",
+      "brand": "ABK",
+      "category": "dressing",
+      "audience": "both",
+      "featured": true,
+      "name_en": "ABK Rejuvenate — Multi-Surface Plastic Restorer",
+      "name_ar": "ABK Rejuvenate — مجدد وملمّع البلاستيك والديكورات",
+      "short_en": "Multi-surface trim restorer with 6 months durable gloss on faded plastic trims. Made in France. 60 ml (QAR 50) & 250 ml (QAR 150).",
+      "short_ar": "مجدد وملمّع البلاستيك والديكورات مع لمعان يدوم ٦ أشهر كاملة. صُنع في فرنسا. متوفر بحجم ٦٠ مل (٥٠ ر.ق) و٢٥٠ مل (١٥٠ ر.ق).",
+      "specs": "Price=60 ml: QAR 50 | 250 ml: QAR 150 | Sizes=60 ML & 250 ML | Origin=Made in France | Durability=6 Months Gloss on Plastic Trims | Application=Apply with microfibre or sponge, leave 10-15 mins, wipe with clean microfibre | Curing / Healing=Protect surface for 6 to 7 hours (do not drive during healing period)",
+      "url_b2c_en": "https://abktradingservice.com/en/b2c/products/abk-rejuvenate-plastic-restorer",
+      "url_b2b_en": "https://abktradingservice.com/en/b2b/products/abk-rejuvenate-plastic-restorer",
+      "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/abk-rejuvenate-plastic-restorer",
+      "url_b2b_ar": "https://abktradingservice.com/ar/b2b/products/abk-rejuvenate-plastic-restorer"
+    },
+    {
       "slug": "abk-mashmom-home-fragrance",
       "brand": "ABK",
       "category": "fragrance",
       "audience": "both",
       "featured": true,
-      "name_en": "ABK Mashmom — Home Fragrance",
-      "name_ar": "ABK مشموم — معطر المنزل",
-      "short_en": "ABK signature home fragrance — Mashmom blend. Long-lasting premium scent.",
-      "short_ar": "معطر ABK الحصري — خلطة مشموم. عطر فاخر يدوم طويلاً.",
-      "specs": "",
+      "name_en": "ABK Mashmom — Car & Home Fragrance",
+      "name_ar": "ABK مشموم — معطر السيارة والمنزل الفاخر",
+      "short_en": "Artisanal fruity fragrance spray (250 ml). Lasts up to 8 to 9 hours. Safe for skin, clothes, and seats. Made in Qatar.",
+      "short_ar": "بخاخ معطر برائحة فواكه فاخرة (٢٥٠ مل). يدوم من ٨ إلى ٩ ساعات. آمن على البشرة والملابس ومقاعد السيارة. صُنع في قطر.",
+      "specs": "Price=QAR 30 | Size=250 ml | Origin=Made in Qatar | Scent Profile=Fruity Smell (Fresh & Uplifting) | Durability=Lasts up to 8 to 9 hours | Safety=Safe for skin, clothes, and car seats",
       "url_b2c_en": "https://abktradingservice.com/en/b2c/products/abk-mashmom-home-fragrance",
       "url_b2b_en": "https://abktradingservice.com/en/b2b/products/abk-mashmom-home-fragrance",
       "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/abk-mashmom-home-fragrance",
@@ -645,12 +835,12 @@
       "brand": "ABK",
       "category": "fragrance",
       "audience": "both",
-      "featured": false,
-      "name_en": "ABK Secret — Home Fragrance",
-      "name_ar": "ABK Secret — معطر المنزل",
-      "short_en": "ABK signature home fragrance — Secret blend. Sophisticated, long-lasting scent.",
-      "short_ar": "معطر ABK الحصري — خلطة Secret. عطر راقٍ يدوم طويلاً.",
-      "specs": "",
+      "featured": true,
+      "name_en": "ABK Secret — Car & Home Fragrance (Best Seller)",
+      "name_ar": "ABK Secret — معطر السيارة والمنزل (الأكثر مبيعاً)",
+      "short_en": "Best-selling strong fresh fragrance spray (250 ml). Lasts up to 8 to 9 hours. Safe for skin, clothes, and seats. Made in Qatar.",
+      "short_ar": "المعطر الأكثر مبيعاً برائحة فواحة ومنعشة (٢٥٠ مل). يدوم من ٨ إلى ٩ ساعات. آمن على البشرة والملابس ومقاعد السيارة. صُنع في قطر.",
+      "specs": "Price=QAR 30 | Size=250 ml | Origin=Made in Qatar | Scent Profile=Strong Fresh Smell (Luxury Crisp) | Durability=Lasts up to 8 to 9 hours | Safety=Safe for skin, clothes, and car seats | Distinction=Best Seller",
       "url_b2c_en": "https://abktradingservice.com/en/b2c/products/abk-secret-home-fragrance",
       "url_b2b_en": "https://abktradingservice.com/en/b2b/products/abk-secret-home-fragrance",
       "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/abk-secret-home-fragrance",
@@ -661,12 +851,12 @@
       "brand": "SmartCar",
       "category": "tyre",
       "audience": "both",
-      "featured": false,
-      "name_en": "Smart Car Tyre Foam",
-      "name_ar": "Smart Car — رغوة الإطارات",
-      "short_en": "Hands-free tyre cleaner. Cleans, shines and protects. Spray and walk away.",
-      "short_ar": "منظّف إطارات بدون لمس. يُنظف، يُلمّع، يحمي. رُش واتركه.",
-      "specs": "Size=650 ml",
+      "featured": true,
+      "name_en": "Smart Car Tire Foam Spray",
+      "name_ar": "Smart Car — رغوة ملمع الإطارات السريعة",
+      "short_en": "Hands-free tyre cleaner & shine spray (500 ml / 650 ml). Lasts 7 to 8 hours with ultimate tyre gloss. Made in China.",
+      "short_ar": "رغوة تنظيف وتلميع الإطارات السريعة. تدوم من ٧ إلى ٨ ساعات مع لمعان فائق للإطار. صُنع في الصين.",
+      "specs": "Price=QAR 15 | Size=500 ml / 650 ml | Origin=Made in China | Durability=Lasts 7 to 8 hours | Application=Apply on clean tyre (recommended) — spray & walk away | Finish=Ultimate Gloss on Tires",
       "url_b2c_en": "https://abktradingservice.com/en/b2c/products/smart-car-tyre-foam",
       "url_b2b_en": "https://abktradingservice.com/en/b2b/products/smart-car-tyre-foam",
       "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/smart-car-tyre-foam",
@@ -677,12 +867,12 @@
       "brand": "Other",
       "category": "heavy-duty",
       "audience": "both",
-      "featured": false,
+      "featured": true,
       "name_en": "Detainer Sticker Remover",
-      "name_ar": "Detainer — مزيل الملصقات",
-      "short_en": "Aerosol sticker and adhesive remover. Penetrates fast, emulsifies glue, wipes clean.",
-      "short_ar": "بخاخ مزيل للملصقات والمواد اللاصقة. تغلغل سريع يُذيب الصمغ ويُنظّف بسهولة.",
-      "specs": "SKU=C1016 | Size=450 ml",
+      "name_ar": "Detainer — بخاخ مزيل الملصقات والغراء",
+      "short_en": "Adhesive & sticker remover (450 ml / 473 ml). Removes all kinds of glue from car paint and tinting residue. Made in China.",
+      "short_ar": "بخاخ مزيل للملصقات والغراء (٤٥٠ مل / ٤٧٣ مل). يزيل جميع أنواع الصمغ وبقايا التظليل من طلاء السيارة والزجاج. صُنع في الصين.",
+      "specs": "Price=QAR 15 | Size=450 ml / 473 ml | Origin=Made in China | Action=Removes all kinds of glue from car paint & tinting glue/residue | Safe On=Car paint, glass, chrome and metal trims",
       "url_b2c_en": "https://abktradingservice.com/en/b2c/products/detainer-sticker-remover",
       "url_b2b_en": "https://abktradingservice.com/en/b2b/products/detainer-sticker-remover",
       "url_b2c_ar": "https://abktradingservice.com/ar/b2c/products/detainer-sticker-remover",

@@ -13,7 +13,7 @@ import { WhyQatar } from "@/components/home/WhyQatar";
 import { pageMeta } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
 import { itemListJsonLd } from "@/lib/jsonld";
-import { PRODUCTS, getBrandsFor, getCategoriesFor } from "@/data/products";
+import { getBrandsFor, getCategoriesFor, getProductsFor } from "@/data/products";
 
 export async function generateMetadata({
   params,
@@ -24,13 +24,13 @@ export async function generateMetadata({
   if (!hasLocale(routing.locales, locale)) return {};
   const t = await getTranslations({ locale, namespace: "Meta" });
   return {
-    title: t("b2cProductsTitle"),
+    title: { absolute: t("b2cProductsTitle") },
     description: t("b2cProductsDescription"),
     ...pageMeta(locale as Locale, "/b2c/products"),
   };
 }
 
-export default async function B2CProducts({
+export default async function B2cProductsPage({
   params,
 }: {
   params: Promise<{ locale: string }>;
@@ -40,16 +40,14 @@ export default async function B2CProducts({
   setRequestLocale(locale);
   const l = locale as "en" | "ar";
   const t = await getTranslations({ locale, namespace: "Products" });
-  const eyebrows = await getTranslations({ locale, namespace: "Eyebrows" });
   const meta = await getTranslations({ locale, namespace: "Meta" });
+  const eyebrows = await getTranslations({ locale, namespace: "Eyebrows" });
 
   // ItemList helps Google interpret this page as a catalogue rather than a
   // generic content page. `audience: "both"` and `audience: "b2c"` both
   // surface here — same items as the visible grid, but without the JS-only
   // filter state (which is irrelevant to crawlers).
-  const audienceProducts = PRODUCTS.filter(
-    (p) => p.audience === "b2c" || p.audience === "both",
-  );
+  const audienceProducts = getProductsFor("b2c");
   const itemListLd = itemListJsonLd({
     name: meta("b2cProductsTitle"),
     url: `${SITE.url}/${l}/b2c/products`,

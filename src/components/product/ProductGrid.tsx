@@ -3,11 +3,11 @@
 import { useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import {
-  PRODUCTS,
   BRANDS,
   CATEGORIES,
   getBrandsFor,
   getCategoriesFor,
+  getProductsFor,
   type BrandKey,
   type CategoryKey,
 } from "@/data/products";
@@ -40,20 +40,16 @@ export function ProductGrid({ audience, locale }: Props) {
 
   const brands = useMemo(() => getBrandsFor(audience), [audience]);
   const categories = useMemo(() => getCategoriesFor(audience), [audience]);
+  const baseProducts = useMemo(() => getProductsFor(audience), [audience]);
 
   const products = useMemo(
     () =>
-      PRODUCTS.filter((p) => {
-        // Audience scope — products tagged b2c-only or b2b-only must not leak
-        // into the other audience's listing. `both` shows everywhere. The
-        // sitemap + ItemList JSON-LD apply the same rule, so UI and crawler
-        // surfaces stay consistent.
-        if (p.audience !== "both" && p.audience !== audience) return false;
+      baseProducts.filter((p) => {
         if (brand !== "all" && p.brand !== brand) return false;
         if (category !== "all" && p.category !== category) return false;
         return true;
       }),
-    [audience, brand, category],
+    [baseProducts, brand, category],
   );
 
   const setParam = (key: "brand" | "category", value: string) => {

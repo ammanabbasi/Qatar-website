@@ -6,6 +6,7 @@ type Props = {
   audience: Audience;
   locale: WALocale;
   productName?: string;
+  productPrice?: string;
   productUrl?: string;
   label: string;
   emailFallbackLabel: string;
@@ -19,6 +20,7 @@ export function WhatsAppButton({
   audience,
   locale,
   productName,
+  productPrice,
   productUrl,
   label,
   emailFallbackLabel,
@@ -27,7 +29,7 @@ export function WhatsAppButton({
   showEmailFallback = true,
   className = "",
 }: Props) {
-  const href = buildWhatsAppUrl({ audience, locale, productName, productUrl });
+  const href = buildWhatsAppUrl({ audience, locale, productName, productPrice, productUrl });
   const subject = productName
     ? `Inquiry: ${productName}`
     : audience === "b2b"

@@ -49,6 +49,11 @@ export function ProductTile({ product, locale, audience, eager = false }: Props)
         <h3 className="mt-1.5 text-title-sm font-semibold text-balance text-(--color-text) lg:text-title">
           {name}
         </h3>
+        {product.price && (
+          <p className="mt-1 text-footnote font-bold text-(--color-brand-deep)">
+            {product.price[locale]}
+          </p>
+        )}
         <p className="mt-2 line-clamp-2 text-footnote text-(--color-text-muted)">
           {product.shortDesc[locale]}
         </p>

@@ -47,9 +47,16 @@ export function ProductCard({
         />
       </div>
       <div className="flex flex-col gap-1 px-1 pt-4">
-        <p className="text-caption font-medium text-(--color-text-muted)">
-          {t(`Brands.${product.brand}`)} · {t(`Categories.${product.category}`)}
-        </p>
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-caption font-medium text-(--color-text-muted)">
+            {t(`Brands.${product.brand}`)} · {t(`Categories.${product.category}`)}
+          </p>
+          {product.price && (
+            <span className="shrink-0 rounded-md bg-(--color-brand)/12 px-2 py-0.5 text-caption font-bold text-(--color-brand-deep)">
+              {product.price[locale]}
+            </span>
+          )}
+        </div>
         <Heading className="text-body font-semibold text-(--color-text) sm:text-title-sm">
           {name}
         </Heading>

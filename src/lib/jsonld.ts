@@ -219,6 +219,7 @@ export function productJsonLd(opts: {
   sku: string;
   images: string[];
   url: string;
+  priceQar?: number;
 }) {
   return {
     "@context": "https://schema.org",
@@ -231,6 +232,17 @@ export function productJsonLd(opts: {
     image: opts.images,
     url: opts.url,
     itemCondition: "https://schema.org/NewCondition",
+    ...(opts.priceQar
+      ? {
+          offers: {
+            "@type": "Offer",
+            price: opts.priceQar,
+            priceCurrency: "QAR",
+            availability: "https://schema.org/InStock",
+            url: opts.url,
+          },
+        }
+      : {}),
   };
 }
 

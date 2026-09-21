@@ -13,6 +13,7 @@ export type WAContext = {
   audience: Audience;
   locale: WALocale;
   productName?: string;
+  productPrice?: string;
   productUrl?: string;
 };
 
@@ -24,22 +25,24 @@ export function buildWhatsAppMessage({
   audience,
   locale,
   productName,
+  productPrice,
   productUrl,
 }: WAContext): string {
   const hasProduct = Boolean(productName);
+  const priceTag = productPrice ? ` (${productPrice})` : "";
 
   if (audience === "b2c") {
     if (locale === "ar") {
       return hasProduct
-        ? `السلام عليكم، أنا مهتم بمنتج "${productName}" من ABK Trading & Service.${
+        ? `السلام عليكم، أنا مهتم بمنتج "${productName}"${priceTag} من ABK Trading & Service.${
             productUrl ? `\nالرابط: ${productUrl}` : ""
-          }\nأرجو إفادتي بالتفاصيل والتوفر.`
+          }\nأرجو إفادتي بالتفاصيل وطريقة الطلب.`
         : `السلام عليكم، أرغب في الاستفسار عن منتجاتكم. شكراً.`;
     }
     return hasProduct
-      ? `Hi ABK, I'm interested in "${productName}".${
+      ? `Hi ABK, I'm interested in "${productName}"${priceTag}.${
           productUrl ? `\nLink: ${productUrl}` : ""
-        }\nCould you share details and availability?`
+        }\nCould you share details and how to order?`
       : `Hi ABK, I'd like to inquire about your products.`;
   }
 

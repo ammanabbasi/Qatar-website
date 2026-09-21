@@ -41,7 +41,7 @@ export default async function Home({
   setRequestLocale(locale);
   const l = locale as "en" | "ar";
   const jsonLd = localBusinessJsonLd(l);
-  const bestSellers = getStoreShelfProducts("b2c", 4);
+  const bestSellers = getStoreShelfProducts("b2c", 5);
 
   return (
     <Shell audience="b2c" locale={l}>

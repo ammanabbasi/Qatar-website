@@ -41,6 +41,7 @@ export function BestSellerCard({ products, audience, locale }: Props) {
     audience,
     locale,
     productName: name,
+    productPrice: current.price ? current.price[l] : undefined,
     productUrl: `https://abktradingservice.com/${locale}/${audience}/products/${current.slug}`,
   });
 
@@ -51,9 +52,16 @@ export function BestSellerCard({ products, audience, locale }: Props) {
           <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-12">
             {/* Text details */}
             <div className="order-2 flex flex-col justify-center md:order-1 md:col-span-7">
-              <span className="inline-block text-caption font-bold uppercase tracking-[0.2em] text-(--color-brand-deep)">
-                {isAr ? "الأكثر مبيعاً" : "BEST-SELLER"}
-              </span>
+              <div className="flex items-center gap-3">
+                <span className="inline-block text-caption font-bold uppercase tracking-[0.2em] text-(--color-brand-deep)">
+                  {isAr ? "الأكثر مبيعاً" : "BEST-SELLER"}
+                </span>
+                {current.price && (
+                  <span className="inline-block rounded-full bg-(--color-brand)/12 px-3 py-0.5 text-caption font-bold text-(--color-brand-deep)">
+                    {current.price[l]}
+                  </span>
+                )}
+              </div>
 
               <h2 className="mt-2 text-title font-bold tracking-tight text-(--color-text) sm:text-headline">
                 {name}
@@ -70,7 +78,15 @@ export function BestSellerCard({ products, audience, locale }: Props) {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 font-bold text-(--color-brand-deep) hover:underline text-body"
                 >
-                  <span>{isAr ? "استفسر الآن" : "Inquire now"}</span>
+                  <span>
+                    {isAr
+                      ? current.price
+                        ? "اطلب الآن عبر واتساب"
+                        : "استفسر الآن"
+                      : current.price
+                        ? "Order on WhatsApp"
+                        : "Inquire now"}
+                  </span>
                   <ChevronIcon className="h-4 w-4 rtl:-scale-x-100" />
                 </a>
 

@@ -48,6 +48,8 @@ export type Product = {
   longDesc: LocalizedText;
   images: string[];
   specs?: Array<{ label: LocalizedText; value: LocalizedText }>;
+  price?: LocalizedText;
+  priceQar?: number;
   audience: AudienceScope;
   featured?: boolean; // star products
   highlight?: "briller-color" | "vertek-premium"; // special visual treatment hints
@@ -1102,48 +1104,66 @@ export const PRODUCTS: Product[] = [
 
   // ───── Insta Finish — USA
   {
+    slug: "insta-finish-spray-wax",
+    brand: "InstaFinish",
+    category: "wax",
+    name: {
+      en: "Insta Finish Spray Wax",
+      ar: "Insta Finish — شمع بخاخ Spray Wax",
+    },
+    shortDesc: {
+      en: "High-gloss detail spray wax (473 ml). Use after car polish or car wash for an instant wet-shine look. Made in USA.",
+      ar: "شمع بخاخ عالي اللمعان (٤٧٣ مل). يُستخدم بعد تلميع السيارة أو غسيلها لمظهر رطب فائق اللمعان. صُنع في أمريكا.",
+    },
+    longDesc: {
+      en: "Insta Finish Spray Wax is a premium high-gloss detail spray engineered and manufactured in the USA. Designed for fast, effortless application right after car polish or a car wash, it enhances paint depth and leaves a radiant wet-shine look while providing an extra layer of slick surface protection. Direct spray and wipe.",
+      ar: "شمع بخاخ Insta Finish هو بخاخ تلميع فائق الجودة مصنّع في الولايات المتحدة الأمريكية. صُمم للاستخدام السريع والسهل بعد تلميع السيارة أو بعد غسيلها، حيث يمنح طلاء السيارة عمقاً ولمعاناً رطباً ساحراً مع طبقة حماية ملساء تدوم طويلاً. استخدام مباشر وسهل بالرش والمسح.",
+    },
+    images: ["/products/instafinish/insta-finish-spray-wax.webp"],
+    specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 45", ar: "٤٥ ر.ق" } },
+      { label: { en: "Size", ar: "الحجم" }, value: { en: "16 fl oz (473 ml)", ar: "٤٧٣ مل" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in USA", ar: "صُنع في الولايات المتحدة الأمريكية (USA)" } },
+      { label: { en: "Usage", ar: "طريقة الاستخدام" }, value: { en: "Apply after car polish or car wash", ar: "يُستخدم بعد تلميع السيارة أو غسيلها" } },
+      { label: { en: "Application", ar: "التطبيق" }, value: { en: "Direct spray and wipe with clean microfibre", ar: "رش مباشر ومسح بمنشفة مايكروفايبر نظيفة" } },
+      { label: { en: "Finish", ar: "التشطيب" }, value: { en: "High-Gloss / Wet-Shine Look", ar: "لمعان عالي / مظهر رطب براق" } },
+    ],
+    price: { en: "QAR 45", ar: "٤٥ ر.ق" },
+    priceQar: 45,
+    audience: "both",
+    featured: true,
+    updatedAt: "2026-09-21",
+  },
+  {
     slug: "insta-finish-wash-and-wax",
     brand: "InstaFinish",
     category: "shampoo",
     name: {
-      en: "Insta Finish Wash & Wax",
-      ar: "Insta Finish — شامبو وشمع",
+      en: "Insta Finish Wash N Wax",
+      ar: "Insta Finish — شامبو وغسيل وشمع Wash N Wax",
     },
     shortDesc: {
-      en: "Super-concentrate shampoo — produces durable high gloss, water-beading shine.",
-      ar: "شامبو مركّز فائق — يُنتج لمعاناً متيناً وطارداً للماء.",
+      en: "Super concentrated car shampoo (473 ml). Mix with 20 litres water. Leaves a protective coating on top of paint. Made in USA.",
+      ar: "شامبو سيارات فائق التركيز (٤٧٣ مل). يُخلط مع ٢٠ لتراً من الماء ليترك طبقة حماية ولمعان على الطلاء. صُنع في أمريكا.",
     },
     longDesc: {
-      en: "Produces a durable high gloss shine. Performance liquid concentrate that washes away heavy dirt and road film. New-millennium technology produces a water-beading shine. Los Angeles, USA.",
-      ar: "يُنتج لمعاناً متيناً وعالي الجودة. تركيبة سائلة مركزة عالية الأداء تُزيل الأوساخ الثقيلة. تقنية حديثة تعطي طرداً للماء. صُنع في لوس أنجلوس، الولايات المتحدة.",
+      en: "Insta Finish Wash N Wax is a super-concentrated exterior shampoo made in the USA. Formulated to mix effortlessly with 20 litres of water, it easily lifts heavy road film and dirt while depositing an authentic protective coating directly on top of the paintwork. Delivers water-beading performance and a durable high-gloss shine after every wash.",
+      ar: "شامبو Insta Finish Wash N Wax هو منظف غسيل وشمع فائق التركيز مصنّع في الولايات المتحدة الأمريكية. يُخلط مع ٢٠ لتراً من الماء ليزيل أصعب الأوساخ وغبار الطرق بسهولة تامة، ويترك طبقة حماية ولمعان متينة على سطح الطلاء مع خاصية طرد الماء ولمعان عميق بعد كل غسلة.",
     },
     images: ["/products/instafinish/insta-finish-wash-and-wax.webp"],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 45", ar: "٤٥ ر.ق" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "16 fl oz (473 ml)", ar: "٤٧٣ مل" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in USA", ar: "صُنع في الولايات المتحدة الأمريكية (USA)" } },
+      { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "Mix with 20 Litres of water", ar: "يُخلط مع ٢٠ لتراً من الماء" } },
+      { label: { en: "Protection", ar: "الحماية" }, value: { en: "Leaves a protective coating on top of paint", ar: "يترك طبقة حماية عازلة على سطح الطلاء" } },
+      { label: { en: "Finish", ar: "التشطيب" }, value: { en: "Durable High-Gloss & Water-Beading Shine", ar: "لمعان متين عالي البريق وطارد للماء" } },
     ],
+    price: { en: "QAR 45", ar: "٤٥ ر.ق" },
+    priceQar: 45,
     audience: "both",
-  },
-  {
-    slug: "insta-finish-premium-dress-all",
-    brand: "InstaFinish",
-    category: "dressing",
-    name: {
-      en: "Insta Finish Premium Dress All",
-      ar: "Insta Finish — ملمّع الشامل الفاخر",
-    },
-    shortDesc: {
-      en: "Premium concentrated dressing for interior & exterior — leather, plastic, vinyl, rubber, wood.",
-      ar: "ملمّع مركّز فاخر للداخل والخارج — جلد، بلاستيك، فينيل، مطاط، خشب.",
-    },
-    longDesc: {
-      en: "Premium concentrated interior/exterior silicone dressing that protects and beautifies leather, plastic, vinyl, rubber and wood. Long-lasting oil-based silicone emulsion. Produces a durable deep shine.",
-      ar: "ملمّع سيليكون مركّز فاخر للداخل والخارج، يحمي ويجمّل الجلد والبلاستيك والفينيل والمطاط والخشب. مستحلب سيليكون زيتي طويل الأمد.",
-    },
-    images: ["/products/instafinish/insta-finish-premium-dress-all.webp"],
-    specs: [
-      { label: { en: "Size", ar: "الحجم" }, value: { en: "16 fl oz (473 ml)", ar: "٤٧٣ مل" } },
-    ],
-    audience: "both",
+    featured: true,
+    updatedAt: "2026-09-21",
   },
   {
     slug: "insta-finish-premium-blue-guard",
@@ -1151,107 +1171,155 @@ export const PRODUCTS: Product[] = [
     category: "dressing",
     name: {
       en: "Insta Finish Premium Blue Guard",
-      ar: "Insta Finish Blue Guard — حماية زرقاء فاخرة",
+      ar: "Insta Finish — ملمّع الحماية الزرقاء Blue Guard (لمعان براق)",
     },
     shortDesc: {
-      en: "Premium interior/exterior silicone dressing — deep shine for leather, plastic, vinyl, rubber, wood.",
-      ar: "ملمّع سيليكون فاخر للداخل والخارج — لمعان عميق للجلد والبلاستيك والفينيل والمطاط والخشب.",
+      en: "Direct-use silicone polish (473 ml) for interior (leather, dashboard, steering wheel, plastic) & exterior trims. Glossy finish. Made in USA.",
+      ar: "ملمّع سيليكون جاهز للاستخدام المباشر (٤٧٣ مل) للداخل (جلد، طبلون، مقود، بلاستيك) والخارج. يمنح لمعاناً براقاً (Glossy). صُنع في أمريكا.",
     },
     longDesc: {
-      en: "Premium interior/exterior silicone dressing that protects and beautifies leather, plastic, vinyl, rubber and wood. Long-lasting oil-based silicone formula. Produces a durable deep shine.",
-      ar: "ملمّع سيليكون فاخر للداخل والخارج، يحمي ويجمّل الأسطح كافة. تركيبة سيليكون زيتي طويلة الأمد.",
+      en: "Insta Finish Premium Blue Guard is a high-grade, ready-to-use silicone dressing formulated and manufactured in the USA. Designed for direct use without dilution, it revitalizes and conditions vehicle interiors — including leather seats, dashboard, steering wheel, and vinyl — as well as exterior plastics, bumpers, and rubber trims. Produces a durable, protective glossy finish that shields against sun fading and drying.",
+      ar: "ملمّع Insta Finish Premium Blue Guard هو تركيبة سيليكون متطورة صُنعت في الولايات المتحدة للاستخدام المباشر دون الحاجة لتخفيف. يجدد ويحمي الأسطح الداخلية (الجلد، طبلون السيارة، المقود، والبلاستيك) بالإضافة إلى البلاستيكات والديكورات الخارجية ومصدات السيارة. يمنح مظهراً فائق اللمعان (Glossy) ويحمي الأسطح من الجفاف والتشقق وحرارة الشمس.",
     },
     images: ["/products/instafinish/insta-finish-premium-blue-guard.webp"],
+    specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 45", ar: "٤٥ ر.ق" } },
+      { label: { en: "Size", ar: "الحجم" }, value: { en: "16 fl oz (473 ml)", ar: "٤٧٣ مل" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in USA", ar: "صُنع في الولايات المتحدة الأمريكية (USA)" } },
+      { label: { en: "Usage", ar: "الاستخدام" }, value: { en: "Direct use (no dilution required)", ar: "استخدام مباشر (بدون تخفيف)" } },
+      { label: { en: "Scope", ar: "مجال الاستخدام" }, value: { en: "Interior (leather, dashboard, steering wheel, plastic) & exterior plastics & trims", ar: "داخلي (جلد، طبلون، مقود، بلاستيك) وبلاستيكات وديكورات خارجية" } },
+      { label: { en: "Finish", ar: "التشطيب" }, value: { en: "Glossy Finish", ar: "لمعان براق (Glossy)" } },
+    ],
+    price: { en: "QAR 45", ar: "٤٥ ر.ق" },
+    priceQar: 45,
     audience: "both",
+    featured: true,
+    updatedAt: "2026-09-21",
   },
   {
-    slug: "insta-finish-spray-wax",
+    slug: "insta-finish-premium-dress-all",
     brand: "InstaFinish",
-    category: "wax",
+    category: "dressing",
     name: {
-      en: "Insta Finish Spray Wax",
-      ar: "Insta Finish — شمع بخاخ",
+      en: "Insta Finish Premium Dress All",
+      ar: "Insta Finish — ملمّع شامل فاخر Dress All (مظهر مطفي أنيق)",
     },
     shortDesc: {
-      en: "High-gloss detail spray — easy to use, leaves a wet-shine look.",
-      ar: "بخاخ لمعان عالي — سهل الاستخدام، يترك مظهراً رطباً.",
+      en: "Direct-use dressing (473 ml) for interior (leather, dashboard, steering wheel, plastic) & exterior trims. Elegant matte finish. Made in USA.",
+      ar: "ملمّع شامل جاهز للاستخدام المباشر (٤٧٣ مل) للداخل (جلد، طبلون، مقود، بلاستيك) وديكورات الخارج. يمنح مظهراً مطفياً طبيعياً وأنيقاً (Matte). صُنع في أمريكا.",
     },
     longDesc: {
-      en: "Easy to use. High gloss. Leaves a wet-shine look. Ideal for quick detail between full washes.",
-      ar: "سهل الاستخدام. لمعان عالي. يترك مظهراً رطباً. مثالي للتلميع السريع بين الغسلات.",
+      en: "Insta Finish Premium Dress All delivers a factory-fresh, sophisticated matte finish for drivers who prefer a clean, non-glare, non-greasy appearance. Formulated in the USA for direct application on interior surfaces (leather, dashboard, steering wheel, plastic) and exterior trim elements. Nourishes materials and provides long-lasting UV defense without artificial shine or greasy residue.",
+      ar: "ملمّع Insta Finish Premium Dress All هو الخيار المثالي لمن يفضل المظهر الطبيعي غير اللامع بنعومة تامة. صُنع في الولايات المتحدة للاستخدام المباشر على الأسطح الداخلية (الجلد، لوحة القيادة، المقود، البلاستيك) والقطع الخارجية. يغذي المواد ويحميها من بهتان أشعة الشمس مع لمسة نهائية مطفية فاخرة (Matte) بدون أي ملمس زيتي أو دهني.",
     },
-    images: ["/products/instafinish/insta-finish-spray-wax.webp"],
+    images: ["/products/instafinish/insta-finish-premium-dress-all.webp"],
+    specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 45", ar: "٤٥ ر.ق" } },
+      { label: { en: "Size", ar: "الحجم" }, value: { en: "16 fl oz (473 ml)", ar: "٤٧٣ مل" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in USA", ar: "صُنع في الولايات المتحدة الأمريكية (USA)" } },
+      { label: { en: "Usage", ar: "الاستخدام" }, value: { en: "Direct use (no dilution required)", ar: "استخدام مباشر (بدون تخفيف)" } },
+      { label: { en: "Scope", ar: "مجال الاستخدام" }, value: { en: "Interior (leather, dashboard, steering wheel, plastic) & exterior plastics & trims", ar: "داخلي (جلد، طبلون، مقود، بلاستيك) وبلاستيكات وديكورات خارجية" } },
+      { label: { en: "Finish", ar: "التشطيب" }, value: { en: "Matte Finish (non-glare, non-greasy)", ar: "مظهر مطفي أنيق غير لامع وغير دهني (Matte)" } },
+    ],
+    price: { en: "QAR 45", ar: "٤٥ ر.ق" },
+    priceQar: 45,
     audience: "both",
+    featured: true,
+    updatedAt: "2026-09-21",
   },
 
-  // ───── Getsun
-  {
-    slug: "getsun-foam-out-engine-degreaser",
-    brand: "Getsun",
-    category: "degreaser",
-    name: {
-      en: "Getsun Foam Out — Engine Degreaser",
-      ar: "Getsun Foam Out — منظف محرك رغوي",
-    },
-    shortDesc: {
-      en: "Engine surface foam degreaser. Cleans your engine fast.",
-      ar: "رغوة منظّفة لسطح المحرك. تنظيف سريع.",
-    },
-    longDesc: {
-      en: "Foam Out is a powerful engine-bay degreaser. Spray, let it foam, rinse — lifts grease and grime in minutes without damaging components.",
-      ar: "Foam Out منظّف قوي لمقصورة المحرك. رش، اترك الرغوة، اشطف — يرفع الشحوم والأوساخ دون الإضرار بالمكونات.",
-    },
-    images: ["/products/getsun/getsun-foam-out-engine-degreaser.webp"],
-    specs: [
-      { label: { en: "Size", ar: "الحجم" }, value: { en: "500 ml", ar: "٥٠٠ مل" } },
-    ],
-    audience: "both",
-  },
+  // ───── Getsun — China
   {
     slug: "getsun-tire-shine",
     brand: "Getsun",
     category: "tyre",
     name: {
       en: "Getsun Tire Shine",
-      ar: "Getsun — ملمع الإطارات",
+      ar: "Getsun — بخاخ ملمع الإطارات Tire Shine",
     },
     shortDesc: {
-      en: "No-wiping tyre shine aerosol. Long-lasting, no run-off.",
-      ar: "بخاخ ملمع للإطارات بدون مسح. يدوم طويلاً، بدون تسرّب.",
+      en: "Aerosol tyre shine (500 ml). Leaves ultimate gloss on tyres lasting 7 to 8 hours. Made in China.",
+      ar: "بخاخ ملمع إطارات (٥٠٠ مل). يمنح لمعاناً فائقاً يدوم من ٧ إلى ٨ ساعات. صُنع في الصين.",
     },
     longDesc: {
-      en: "Spray-on tyre dressing — no wiping, no run-off, long-lasting gloss. Protects and restores tyre appearance.",
-      ar: "بخاخ ملمع للإطارات — بدون مسح أو تسرّب، لمعان طويل الأمد. يحمي ويُجدد مظهر الإطار.",
+      en: "Getsun Tire Shine delivers an ultimate deep-wet gloss on car tyres with an easy aerosol application. Formulated to last 7 to 8 hours of road exposure. Recommended to apply directly onto clean tyres for maximum durability, UV protection, and a rich black finish without run-off or foaming.",
+      ar: "بخاخ تلميع الإطارات Getsun Tire Shine يمنح إطارات سيارتك لمعاناً أسود فائقاً وعميقاً يدوم من ٧ إلى ٨ ساعات. يُنصح برشه على إطار نظيف للحصول على أفضل لمعان وثبات، وحماية من أشعة الشمس والتشقق بدون أي تسرّب أو رغوة فوضوية.",
     },
     images: ["/products/getsun/getsun-tire-shine.webp"],
     specs: [
-      { label: { en: "Size", ar: "الحجم" }, value: { en: "500 ml", ar: "٥٠٠ مل" } },
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 15", ar: "١٥ ر.ق" } },
+      { label: { en: "Size", ar: "الحجم" }, value: { en: "500 ml (17.6 fl oz)", ar: "٥٠٠ مل" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in China", ar: "صُنع في الصين" } },
+      { label: { en: "Durability", ar: "المتانة" }, value: { en: "Lasts 7 to 8 hours", ar: "يدوم من ٧ إلى ٨ ساعات" } },
+      { label: { en: "Application", ar: "طريقة الاستخدام" }, value: { en: "Apply on clean tyre (recommended)", ar: "يُفضل التطبيق على إطار نظيف" } },
+      { label: { en: "Finish", ar: "التشطيب" }, value: { en: "Ultimate High Gloss (no wiping, no run-off)", ar: "لمعان فائق (بدون مسح أو تسرّب)" } },
     ],
+    price: { en: "QAR 15", ar: "١٥ ر.ق" },
+    priceQar: 15,
     audience: "both",
+    featured: true,
+    updatedAt: "2026-09-21",
   },
-
   {
     slug: "getsun-multi-purpose-foam-cleaner",
     brand: "Getsun",
     category: "interior",
     name: {
-      en: "Getsun Multi-Purpose Foam Cleaner",
-      ar: "Getsun — منظف رغوي متعدد الأغراض",
+      en: "Getsun Foam Spray Interior Cleaner",
+      ar: "Getsun — رغوة تنظيف وتطهير المقصورة الداخلية",
     },
     shortDesc: {
-      en: "Strong foam cleaner for leather, fabric, carpets and vinyl. Deep cleaning in one step.",
-      ar: "منظّف رغوي قوي للجلد والقماش والسجاد والفينيل. تنظيف عميق في خطوة واحدة.",
+      en: "Multi-purpose interior cleaner (500 ml / 650 ml). Removes strong stains from seats, car plastics & carpets. Made in China.",
+      ar: "منظّف داخلي رغوي متعدد الاستخدامات. يزيل أصعب البقع من المقاعد وبلاستيك السيارة والموكيت والسجاد. صُنع في الصين.",
     },
     longDesc: {
-      en: "Getsun Multi-Purpose Foam Cleaner lifts dirt and stains from every cabin surface — leather, fabric, carpet and vinyl. Built-in brush head agitates the foam into deep fibres, dissolving grime without harsh scrubbing. Strong effect, deep cleaning, safe on trim.",
-      ar: "Getsun Multi-Purpose Foam Cleaner يرفع الأوساخ والبقع من جميع أسطح المقصورة — جلد، قماش، سجاد، فينيل. فرشاة مدمجة في الغطاء تدفع الرغوة في عمق الألياف وتُذيب الأوساخ دون فرك عنيف. تأثير قوي، تنظيف عميق، آمن على الأسطح.",
+      en: "Getsun Foam Spray Interior Cleaner is a powerful active foam cleaner specially formulated to lift and dissolve stubborn stains from vehicle seats, dashboard plastics, door cards, and carpets. The integrated scrubber brush helps agitate the foam deeply into fabric textures, restoring an original clean appearance effortlessly.",
+      ar: "رغوة تنظيف وتطهير مقصورة السيارة Getsun Foam Spray مصممة خصيصاً لإزالة وتفتيت أصعب البقع والأوساخ من مقاعد السيارة، والأسطح البلاستيكية، والأبواب، والسجاد والموكيت. الغطاء المزود بفرشاة مدمجة يتيح تغلغل الرغوة في عمق الأقمشة ليعيد للفرش مظهره النظيف والمنعش.",
     },
     images: ["/products/getsun/getsun-multi-purpose-foam-cleaner.webp"],
     specs: [
-      { label: { en: "Size", ar: "الحجم" }, value: { en: "650 ml / 22 fl oz", ar: "٦٥٠ مل" } },
-      { label: { en: "Surfaces", ar: "الأسطح" }, value: { en: "Leather · Fabric · Carpet · Vinyl", ar: "جلد · قماش · سجاد · فينيل" } },
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 15", ar: "١٥ ر.ق" } },
+      { label: { en: "Size", ar: "الحجم" }, value: { en: "500 ml / 650 ml (22 fl oz)", ar: "٥٠٠ مل / ٦٥٠ مل" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in China", ar: "صُنع في الصين" } },
+      { label: { en: "Surfaces", ar: "الأسطح المناسبة" }, value: { en: "Seats (leather & fabric), car plastics, carpets", ar: "المقاعد (جلد وقماش)، بلاستيك السيارة، السجاد" } },
+      { label: { en: "Action", ar: "الفعالية" }, value: { en: "Removes strong stains & deep cleans", ar: "يزيل البقع المستعصية وتنظيف عميق" } },
     ],
+    price: { en: "QAR 15", ar: "١٥ ر.ق" },
+    priceQar: 15,
     audience: "both",
+    featured: true,
+    updatedAt: "2026-09-21",
+  },
+  {
+    slug: "getsun-foam-out-engine-degreaser",
+    brand: "Getsun",
+    category: "degreaser",
+    name: {
+      en: "Getsun Engine Cleaner Foam Spray",
+      ar: "Getsun Foam Out — رغوة تنظيف ومزيل شحوم المحرك",
+    },
+    shortDesc: {
+      en: "Engine foam degreaser (500 ml / 650 ml). Removes dirty grease and oil, leaving a clean matte finish on engine plastics. Made in China.",
+      ar: "رغوة منظّفة ومذيبة لشحوم المحرك. تزيل الزيوت والشحوم المستعصية وتمنح البلاستيك مظهراً مطفياً أنيقاً (Matte). صُنع في الصين.",
+    },
+    longDesc: {
+      en: "Getsun Engine Cleaner Foam Spray (Foam Out) is a fast-acting degreaser formulated to dissolve thick grease, motor oil, and road grime from the engine bay. After spraying, let the foam penetrate, then simply wipe off with a clean microfibre cloth to leave engine plastics and hoses with an OEM matte finish.",
+      ar: "رغوة تنظيف ومزيل شحوم المحرك Getsun Foam Out تعمل بقوة وسرعة على إذابة الشحوم والأوساخ والزيوت المتراكمة في مقصورة المحرك. بعد رش الرغوة وتركها لدقائق، امسح السطح بمنشفة مايكروفايبر نظيفة لتحصل على محرك نظيف مع مظهر مطفي طبيعي (Matte) للبلاستيك والخراطيم.",
+    },
+    images: ["/products/getsun/getsun-foam-out-engine-degreaser.webp"],
+    specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 15", ar: "١٥ ر.ق" } },
+      { label: { en: "Size", ar: "الحجم" }, value: { en: "500 ml / 650 ml (22 fl oz)", ar: "٥٠٠ مل / ٦٥٠ مل" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in China", ar: "صُنع في الصين" } },
+      { label: { en: "Action", ar: "الفعالية" }, value: { en: "Removes dirty grease, oil & grime", ar: "يزيل الشحوم والزيوت والأوساخ المستعصية" } },
+      { label: { en: "Directions", ar: "طريقة الاستخدام" }, value: { en: "After spray, wipe off with clean microfibre", ar: "بعد الرش، امسح بمنشفة مايكروفايبر نظيفة" } },
+      { label: { en: "Finish", ar: "التشطيب" }, value: { en: "Matte finish to engine plastic", ar: "مظهر مطفي أنيق لبلاستيك المحرك (Matte)" } },
+    ],
+    price: { en: "QAR 15", ar: "١٥ ر.ق" },
+    priceQar: 15,
+    audience: "both",
+    featured: true,
+    updatedAt: "2026-09-21",
   },
 
 
@@ -1283,75 +1351,139 @@ export const PRODUCTS: Product[] = [
     updatedAt: "2026-09-05",
   },
 
-  // ───── ABK — white-label fragrances (own brand)
+  // ───── ABK — in-house premium line
+  {
+    slug: "abk-rejuvenate-plastic-restorer",
+    brand: "ABK",
+    category: "dressing",
+    name: {
+      en: "ABK Rejuvenate — Multi-Surface Plastic Restorer",
+      ar: "ABK Rejuvenate — مجدد وملمّع البلاستيك والديكورات",
+    },
+    shortDesc: {
+      en: "Multi-surface trim restorer with 6 months durable gloss on faded plastic trims. Made in France. 60 ml (QAR 50) & 250 ml (QAR 150).",
+      ar: "مجدد وملمّع البلاستيك والديكورات مع لمعان يدوم ٦ أشهر كاملة. صُنع في فرنسا. متوفر بحجم ٦٠ مل (٥٠ ر.ق) و٢٥٠ مل (١٥٠ ر.ق).",
+    },
+    longDesc: {
+      en: "Don't replace it... Rejuvenate it! ABK Rejuvenate Multi-Surface Plastic Restorer is our signature restorative formula engineered in France. It restores faded, sun-damaged exterior and interior plastic trims, rubber, and cladding back to deep OEM richness while delivering a resilient gloss barrier that lasts up to 6 months. Apply with a microfibre or sponge, allow to bond for 10–15 minutes, then wipe off with a new microfibre. Protect the surface for 6–7 hours during the healing period (driving not recommended).",
+      ar: "لا تستبدلها... بل جدّدها! منتج ABK Rejuvenate هو التركيبة الحصرية المبتكرة في فرنسا لتجديد البلاستيك والأسطح المتضررة من شمس وحرارة قطر. يعيد الأجزاء البلاستيكية الباهتة والمصدات والديكورات إلى لونها الأصلي الغني مع لمعان وحماية تدوم ٦ أشهر. يُطبّق بمايكروفايبر أو إسفنجة، يُترك لمدة ١٠ إلى ١٥ دقيقة، ثم يُمسح بمايكروفايبر نظيفة. احمِ السطح لمدة ٦ إلى ٧ ساعات خلال فترة التماسك والتصلب (يُوصى بعدم قيادة السيارة خلالها).",
+    },
+    images: ["/products/abk/abk-rejuvenate-plastic-restorer.webp"],
+    specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "60 ml: QAR 50 | 250 ml: QAR 150", ar: "٦٠ مل: ٥٠ ر.ق | ٢٥٠ مل: ١٥٠ ر.ق" } },
+      { label: { en: "Sizes", ar: "الأحجام المتوفرة" }, value: { en: "60 ML & 250 ML", ar: "٦٠ مل و ٢٥٠ مل" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in France", ar: "صُنع في فرنسا" } },
+      { label: { en: "Durability", ar: "المتانة والفعالية" }, value: { en: "6 Months Gloss on Plastic Trims", ar: "لمعان وحماية تدوم حتى ٦ أشهر" } },
+      { label: { en: "Application", ar: "طريقة التطبيق" }, value: { en: "Apply with microfibre or sponge, leave 10-15 mins, wipe with clean microfibre", ar: "تطبيق بمايكروفايبر أو إسفنجة، يُترك ١٠-١٥ دقيقة، يُمسح بمايكروفايبر نظيفة" } },
+      { label: { en: "Curing / Healing", ar: "فترة التصلب والتماسك" }, value: { en: "Protect surface for 6 to 7 hours (do not drive during healing period)", ar: "حماية السطح لمدة ٦ إلى ٧ ساعات (يُوصى بعدم القيادة خلال هذه الفترة)" } },
+    ],
+    price: { en: "From QAR 50 (60ml / 250ml)", ar: "من ٥٠ ر.ق (٦٠ مل / ٢٥٠ مل)" },
+    priceQar: 50,
+    audience: "both",
+    featured: true,
+    updatedAt: "2026-09-21",
+  },
   {
     slug: "abk-mashmom-home-fragrance",
     brand: "ABK",
     category: "fragrance",
     name: {
-      en: "ABK Mashmom — Home Fragrance",
-      ar: "ABK مشموم — معطر المنزل",
+      en: "ABK Mashmom — Car & Home Fragrance",
+      ar: "ABK مشموم — معطر السيارة والمنزل الفاخر",
     },
     shortDesc: {
-      en: "ABK signature home fragrance — Mashmom blend. Long-lasting premium scent.",
-      ar: "معطر ABK الحصري — خلطة مشموم. عطر فاخر يدوم طويلاً.",
+      en: "Artisanal fruity fragrance spray (250 ml). Lasts up to 8 to 9 hours. Safe for skin, clothes, and seats. Made in Qatar.",
+      ar: "بخاخ معطر برائحة فواكه فاخرة (٢٥٠ مل). يدوم من ٨ إلى ٩ ساعات. آمن على البشرة والملابس ومقاعد السيارة. صُنع في قطر.",
     },
     longDesc: {
-      en: "ABK's signature 'Mashmom' home fragrance — a carefully crafted scent sold under our own label. Spray on fabrics, upholstery and in rooms for a long-lasting premium finish.",
-      ar: "معطر ABK الحصري 'مشموم' — خلطة مميزة تُباع تحت علامتنا الخاصة. استخدمه على الأقمشة والمفروشات وداخل الغرف للحصول على رائحة فاخرة تدوم طويلاً.",
+      en: "ABK Mashmom Car & Home Fragrance is an artisanal Qatar-made fragrance spray featuring a rich, invigorating fruity aroma. Formulated to last up to 8 to 9 hours, it neutralises unwanted odours and creates a welcoming, premium ambiance. Certified safe for direct application on skin, clothing fabrics, and automotive seat upholstery (leather and cloth).",
+      ar: "معطر ABK مشموم للسيارة والمنزل هو تركيبة عطرية راقية مصنّعة في قطر بنفحات فواكه فواحة ومنعشة تدوم من ٨ إلى ٩ ساعات. يزيل الروائح غير المرغوبة ويمنح مقصورة سيارتك أو غرفتك عبقاً يدوم طويلاً. يتميز بتركيبة آمنة تماماً على البشرة، الملابس، ومختلف مقاعد السيارات الجلدية والقماشية.",
     },
     images: [
       "/products/abk/abk-mashmom-home-fragrance.webp",
       "/products/abk/abk-fragrance-pair.webp",
     ],
+    specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 30", ar: "٣٠ ر.ق" } },
+      { label: { en: "Size", ar: "الحجم" }, value: { en: "250 ml", ar: "٢٥٠ مل" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Qatar", ar: "صُنع في قطر" } },
+      { label: { en: "Scent Profile", ar: "الرائحة" }, value: { en: "Fruity Smell (Fresh & Uplifting)", ar: "رائحة فواكه منعشة وعطرية" } },
+      { label: { en: "Durability", ar: "الثبات والدوام" }, value: { en: "Lasts up to 8 to 9 hours", ar: "يدوم من ٨ إلى ٩ ساعات" } },
+      { label: { en: "Safety", ar: "الأمان" }, value: { en: "Safe for skin, clothes, and car seats", ar: "آمن على البشرة والملابس ومقاعد السيارة" } },
+    ],
+    price: { en: "QAR 30", ar: "٣٠ ر.ق" },
+    priceQar: 30,
     audience: "both",
     featured: true,
+    updatedAt: "2026-09-21",
   },
   {
     slug: "abk-secret-home-fragrance",
     brand: "ABK",
     category: "fragrance",
     name: {
-      en: "ABK Secret — Home Fragrance",
-      ar: "ABK Secret — معطر المنزل",
+      en: "ABK Secret — Car & Home Fragrance (Best Seller)",
+      ar: "ABK Secret — معطر السيارة والمنزل (الأكثر مبيعاً)",
     },
     shortDesc: {
-      en: "ABK signature home fragrance — Secret blend. Sophisticated, long-lasting scent.",
-      ar: "معطر ABK الحصري — خلطة Secret. عطر راقٍ يدوم طويلاً.",
+      en: "Best-selling strong fresh fragrance spray (250 ml). Lasts up to 8 to 9 hours. Safe for skin, clothes, and seats. Made in Qatar.",
+      ar: "المعطر الأكثر مبيعاً برائحة فواحة ومنعشة (٢٥٠ مل). يدوم من ٨ إلى ٩ ساعات. آمن على البشرة والملابس ومقاعد السيارة. صُنع في قطر.",
     },
     longDesc: {
-      en: "ABK 'Secret' — a sophisticated home fragrance in our signature black-and-gold bottle. Designed to linger in fabrics and rooms for a luxurious premium feel.",
-      ar: "ABK 'Secret' — معطر منزلي راقٍ في عبوتنا الذهبية السوداء المميزة. مصمم ليبقى في الأقمشة والغرف لإحساس فاخر ومميز.",
+      en: "ABK Secret Car & Home Fragrance is our #1 best-selling signature Qatar-crafted scent, engineered with a bold, sophisticated fresh bouquet. Delivers exceptional longevity lasting 8 to 9 hours, commanding any interior cabin with refined luxury. Tested and certified safe for contact with skin, fabrics, clothing, and all automotive interior seating.",
+      ar: "معطر ABK Secret للسيارة والمنزل هو الخيار الأكثر مبيعاً والأول لدينا، صُنع في قطر بتركيبة عطرية فواحة منعشة وقوية تضفي فخامة استثنائية على مقصورة سيارتك. يدوم ثبات الرائحة من ٨ إلى ٩ ساعات. آمن تماماً على ملامسة البشرة، والملابس، ومقاعد السيارات الجلدية والقماشية دون ترك أي أثر.",
     },
     images: [
       "/products/abk/abk-secret-home-fragrance.webp",
       "/products/abk/abk-fragrance-pair.webp",
     ],
+    specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 30", ar: "٣٠ ر.ق" } },
+      { label: { en: "Size", ar: "الحجم" }, value: { en: "250 ml", ar: "٢٥٠ مل" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Qatar", ar: "صُنع في قطر" } },
+      { label: { en: "Scent Profile", ar: "الرائحة" }, value: { en: "Strong Fresh Smell (Luxury Crisp)", ar: "عطر فواح وقوي منعش" } },
+      { label: { en: "Durability", ar: "الثبات والدوام" }, value: { en: "Lasts up to 8 to 9 hours", ar: "يدوم من ٨ إلى ٩ ساعات" } },
+      { label: { en: "Safety", ar: "الأمان" }, value: { en: "Safe for skin, clothes, and car seats", ar: "آمن على البشرة والملابس ومقاعد السيارة" } },
+      { label: { en: "Distinction", ar: "الميزة" }, value: { en: "Best Seller", ar: "الأكثر مبيعاً" } },
+    ],
+    price: { en: "QAR 30", ar: "٣٠ ر.ق" },
+    priceQar: 30,
     audience: "both",
+    featured: true,
+    updatedAt: "2026-09-21",
   },
 
-  // ───── Misc
+  // ───── Smart Car & Detainer
   {
     slug: "smart-car-tyre-foam",
     brand: "SmartCar",
     category: "tyre",
     name: {
-      en: "Smart Car Tyre Foam",
-      ar: "Smart Car — رغوة الإطارات",
+      en: "Smart Car Tire Foam Spray",
+      ar: "Smart Car — رغوة ملمع الإطارات السريعة",
     },
     shortDesc: {
-      en: "Hands-free tyre cleaner. Cleans, shines and protects. Spray and walk away.",
-      ar: "منظّف إطارات بدون لمس. يُنظف، يُلمّع، يحمي. رُش واتركه.",
+      en: "Hands-free tyre cleaner & shine spray (500 ml / 650 ml). Lasts 7 to 8 hours with ultimate tyre gloss. Made in China.",
+      ar: "رغوة تنظيف وتلميع الإطارات السريعة. تدوم من ٧ إلى ٨ ساعات مع لمعان فائق للإطار. صُنع في الصين.",
     },
     longDesc: {
-      en: "Spray and walk away — Smart Car Tyre Foam cleans, shines and protects in one step. 650 ml aerosol.",
-      ar: "Smart Car Tyre Foam — رُش واتركه. يُنظّف، يُلمّع، يحمي في خطوة واحدة. علبة 650 مل.",
+      en: "Smart Car Tire Foam Spray cleans, shines, and protects tyres in one simple step. Formulated to last 7 to 8 hours, it leaves an ultimate deep gloss on rubber surfaces. Simply spray evenly onto a clean tyre and walk away — no wiping or brushing needed.",
+      ar: "رغوة Smart Car Tyre Foam تجمع بين التنظيف والتلميع والحماية في خطوة واحدة سهلة وسريعة. تدوم الفعالية من ٧ إلى ٨ ساعات لتمنح الإطارات لمعاناً رائعاً. يُنصح بالتطبيق على إطار نظيف: رُش الرغوة بالتساوي واتركها دون الحاجة للمسح أو الفرك.",
     },
     images: ["/products/misc/smart-car-tyre-foam.webp"],
     specs: [
-      { label: { en: "Size", ar: "الحجم" }, value: { en: "650 ml", ar: "٦٥٠ مل" } },
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 15", ar: "١٥ ر.ق" } },
+      { label: { en: "Size", ar: "الحجم" }, value: { en: "500 ml / 650 ml", ar: "٥٠٠ مل / ٦٥٠ مل" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in China", ar: "صُنع في الصين" } },
+      { label: { en: "Durability", ar: "المتانة" }, value: { en: "Lasts 7 to 8 hours", ar: "يدوم من ٧ إلى ٨ ساعات" } },
+      { label: { en: "Application", ar: "طريقة الاستخدام" }, value: { en: "Apply on clean tyre (recommended) — spray & walk away", ar: "يُفضل التطبيق على إطار نظيف — رُش واتركه" } },
+      { label: { en: "Finish", ar: "التشطيب" }, value: { en: "Ultimate Gloss on Tires", ar: "لمعان فائق للإطارات" } },
     ],
+    price: { en: "QAR 15", ar: "١٥ ر.ق" },
+    priceQar: 15,
     audience: "both",
+    featured: true,
+    updatedAt: "2026-09-21",
   },
   {
     slug: "detainer-sticker-remover",
@@ -1359,22 +1491,29 @@ export const PRODUCTS: Product[] = [
     category: "heavy-duty",
     name: {
       en: "Detainer Sticker Remover",
-      ar: "Detainer — مزيل الملصقات",
+      ar: "Detainer — بخاخ مزيل الملصقات والغراء",
     },
     shortDesc: {
-      en: "Aerosol sticker and adhesive remover. Penetrates fast, emulsifies glue, wipes clean.",
-      ar: "بخاخ مزيل للملصقات والمواد اللاصقة. تغلغل سريع يُذيب الصمغ ويُنظّف بسهولة.",
+      en: "Adhesive & sticker remover (450 ml / 473 ml). Removes all kinds of glue from car paint and tinting residue. Made in China.",
+      ar: "بخاخ مزيل للملصقات والغراء (٤٥٠ مل / ٤٧٣ مل). يزيل جميع أنواع الصمغ وبقايا التظليل من طلاء السيارة والزجاج. صُنع في الصين.",
     },
     longDesc: {
-      en: "Detainer Sticker Remover is a pressurised aerosol that dissolves adhesives behind stickers, decals, tape and glue residue. Penetrates the film, emulsifies the bond and wipes away cleanly. Always test on an inconspicuous area first — solvent-based removers can affect sensitive finishes.",
-      ar: "Detainer Sticker Remover بخاخ ضاغط يُذيب المواد اللاصقة خلف الملصقات والأشرطة والصمغ. يخترق الفيلم، يستحلب الرابط، ويُمسح بسهولة. يُنصح بالتجربة على منطقة صغيرة أولاً — المذيبات قد تؤثر على التشطيبات الحساسة.",
+      en: "Detainer Sticker Remover is a specialised adhesive dissolving spray manufactured in China. Specially engineered to safely remove all kinds of glue, tape residue, decals, stickers, and window tinting adhesive from car paint and glass surfaces without damaging the underlying finish.",
+      ar: "بخاخ Detainer Sticker Remover هو تركيبة متخصصة مصنّعة في الصين لإزالة وتفكيك جميع أنواع الغراء والمواد اللاصقة وبقايا أفلام التظليل والملصقات من طلاء السيارة والزجاج بأمان وسهولة تامة دون الإضرار بالطلاء.",
     },
     images: ["/products/misc/detainer-sticker-remover.webp"],
     specs: [
-      { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "C1016", ar: "C1016" } },
-      { label: { en: "Size", ar: "الحجم" }, value: { en: "450 ml", ar: "٤٥٠ مل" } },
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 15", ar: "١٥ ر.ق" } },
+      { label: { en: "Size", ar: "الحجم" }, value: { en: "450 ml / 473 ml", ar: "٤٥٠ مل / ٤٧٣ مل" } },
+      { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in China", ar: "صُنع في الصين" } },
+      { label: { en: "Action", ar: "الفعالية" }, value: { en: "Removes all kinds of glue from car paint & tinting glue/residue", ar: "يزيل كافة أنواع الغراء وبقايا التظليل والملصقات" } },
+      { label: { en: "Safe On", ar: "الأسطح الآمنة" }, value: { en: "Car paint, glass, chrome and metal trims", ar: "طلاء السيارات والزجاج والكروم والمعادن" } },
     ],
+    price: { en: "QAR 15", ar: "١٥ ر.ق" },
+    priceQar: 15,
     audience: "both",
+    featured: true,
+    updatedAt: "2026-09-21",
   },
   {
     slug: "protectguard-wf-premium",
@@ -1769,10 +1908,7 @@ export const BRAND_IMAGES: Record<BrandKey, string> = {
  * applied inside getBrandsFor() -- that also drives the catalogue filter
  * chips, which must keep working for anyone browsing to these products.
  */
-export const UNPROMOTED_BRANDS: readonly BrandKey[] = [
-  "InstaFinish",
-  "Getsun",
-];
+export const UNPROMOTED_BRANDS: readonly BrandKey[] = [];
 
 function visibleTo(audience: AudienceScope) {
   return (p: Product) => p.audience === "both" || p.audience === audience;
@@ -1792,6 +1928,19 @@ export function getBrandsFor(audience: AudienceScope): BrandKey[] {
   );
 }
 
+/** Products visible to this audience. For B2C, retail products with direct pricing lead the catalogue. */
+export function getProductsFor(audience: AudienceScope): Product[] {
+  const visible = PRODUCTS.filter(visibleTo(audience));
+  if (audience === "b2c") {
+    const priced = visible.filter((p) => p.price !== undefined);
+    const unpriced = visible.filter((p) => p.price === undefined);
+    const abkPriced = priced.filter((p) => p.brand === "ABK");
+    const otherPriced = priced.filter((p) => p.brand !== "ABK");
+    return [...abkPriced, ...otherPriced, ...unpriced];
+  }
+  return visible;
+}
+
 /**
  * Products for the home-page shelf: featured first, then one product from
  * each brand not yet represented so the shelf reads as a tour of the range,
@@ -1803,7 +1952,21 @@ export function getStoreShelfProducts(
   limit = 8,
 ): Product[] {
   const visible = PRODUCTS.filter(visibleTo(audience));
-  const picked: Product[] = visible.filter((p) => p.featured);
+  // When curating for B2C, consumer retail products with explicit pricing (InstaFinish, ABK Rejuvenate)
+  // lead the shelf ahead of commercial PPF/tint rolls to showcase the consumer retail range.
+  const featured = visible.filter((p) => p.featured);
+  const priced = featured.filter((p) => p.price !== undefined);
+  const sortedPriced = [
+    ...priced.filter((p) => p.brand === "ABK"),
+    ...priced.filter((p) => p.brand !== "ABK"),
+  ];
+  const picked: Product[] =
+    audience === "b2c"
+      ? [
+          ...sortedPriced,
+          ...featured.filter((p) => p.price === undefined),
+        ]
+      : featured;
   const seenBrands = new Set(picked.map((p) => p.brand));
   // Unpromoted brands are kept out of the brand tour and the top-up so the
   // home shelf stops advertising them -- they remain fully browsable in the

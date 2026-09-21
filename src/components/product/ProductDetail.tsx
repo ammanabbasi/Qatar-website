@@ -38,6 +38,7 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
     sku: product.slug,
     images: product.images.map((src) => `${SITE.url}${src}`),
     url: productUrl,
+    priceQar: product.priceQar,
   });
   // B2C home lives at the locale root; B2B home keeps its /b2b prefix.
   const homeHref = audience === "b2c" ? "/" : `/${audience}`;
@@ -107,8 +108,18 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
                 </li>
               </ul>
 
-              {/* CTA */}
+              {/* CTA & Pricing */}
               <div className="tile p-6">
+                {product.price && (
+                  <div className="mb-5 flex items-baseline justify-between border-b border-(--color-border-soft) pb-4">
+                    <span className="text-caption font-bold uppercase tracking-wider text-(--color-text-muted)">
+                      {locale === "ar" ? "السعر الرسمي" : "Official Price"}
+                    </span>
+                    <span className="text-title font-bold text-(--color-brand-deep)">
+                      {product.price[locale]}
+                    </span>
+                  </div>
+                )}
                 <h2 className="text-title-sm font-semibold">{t("Products.detailAskFor")}</h2>
                 <p className="mt-1.5 text-footnote text-(--color-text-muted)">
                   {audience === "b2b"
@@ -120,11 +131,14 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
                     audience={audience}
                     locale={locale}
                     productName={name}
+                    productPrice={product.price ? product.price[locale] : undefined}
                     productUrl={productUrl}
                     label={
                       audience === "b2b"
                         ? t("Cta.wholesaleInquiry")
-                        : t("Cta.inquireWhatsApp")
+                        : product.price
+                          ? t("Cta.orderWhatsApp")
+                          : t("Cta.inquireWhatsApp")
                     }
                     emailFallbackLabel={t("Cta.preferEmail")}
                     size="lg"
