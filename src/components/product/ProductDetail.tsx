@@ -5,9 +5,10 @@ import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Shelf } from "@/components/ui/Shelf";
 import { ChevronIcon, PinIcon, BadgeIcon } from "@/components/ui/Icons";
-import { WhatsAppButton } from "@/components/cta/WhatsAppButton";
 import { ProductCard } from "./ProductCard";
 import { ProductGallery } from "./ProductGallery";
+import { ProductPurchasePanel } from "./ProductPurchasePanel";
+import { ProductCrossBanner } from "./ProductCrossBanner";
 import { Link } from "@/i18n/navigation";
 import type { Product } from "@/data/products";
 import type { Audience, WALocale } from "@/lib/whatsapp";
@@ -29,6 +30,9 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
   const brandLabel = t(`Brands.${product.brand}`);
   const categoryLabel = t(`Categories.${product.category}`);
   const productUrl = `${SITE.url}/${locale}/${audience}/products/${product.slug}`;
+  const isAvailableInOtherAudience =
+    product.audience === "both" ||
+    product.audience === (audience === "b2c" ? "b2b" : "b2c");
 
   const productLd = productJsonLd({
     name,
@@ -95,6 +99,13 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
             <ProductGallery images={product.images} alt={name} />
 
             <div className="flex flex-col gap-6">
+              {/* Contextual Cross-Audience Banner */}
+              <ProductCrossBanner
+                audience={audience}
+                slug={product.slug}
+                isAvailableInOtherAudience={isAvailableInOtherAudience}
+              />
+
               <p className="text-body text-(--color-text-muted)">{longDesc}</p>
 
               <ul className="flex flex-col gap-2 text-footnote text-(--color-text)">
@@ -108,44 +119,13 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
                 </li>
               </ul>
 
-              {/* CTA & Pricing */}
-              <div className="tile p-6">
-                {product.price && (
-                  <div className="mb-5 flex items-baseline justify-between border-b border-(--color-border-soft) pb-4">
-                    <span className="text-caption font-bold uppercase tracking-wider text-(--color-text-muted)">
-                      {locale === "ar" ? "السعر الرسمي" : "Official Price"}
-                    </span>
-                    <span className="text-title font-bold text-(--color-brand-deep)">
-                      {product.price[locale]}
-                    </span>
-                  </div>
-                )}
-                <h2 className="text-title-sm font-semibold">{t("Products.detailAskFor")}</h2>
-                <p className="mt-1.5 text-footnote text-(--color-text-muted)">
-                  {audience === "b2b"
-                    ? t("Products.detailAskForB2b")
-                    : t("Products.detailAskForB2c")}
-                </p>
-                <div className="mt-5">
-                  <WhatsAppButton
-                    audience={audience}
-                    locale={locale}
-                    productName={name}
-                    productPrice={product.price ? product.price[locale] : undefined}
-                    productUrl={productUrl}
-                    label={
-                      audience === "b2b"
-                        ? t("Cta.wholesaleInquiry")
-                        : product.price
-                          ? t("Cta.orderWhatsApp")
-                          : t("Cta.inquireWhatsApp")
-                    }
-                    emailFallbackLabel={t("Cta.preferEmail")}
-                    size="lg"
-                    className="w-full"
-                  />
-                </div>
-              </div>
+              {/* Differentiated Purchase & Quote Panel */}
+              <ProductPurchasePanel
+                product={product}
+                audience={audience}
+                locale={locale}
+                productUrl={productUrl}
+              />
 
               {/* Specs */}
               {product.specs && product.specs.length > 0 && (

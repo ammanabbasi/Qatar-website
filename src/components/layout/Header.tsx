@@ -10,6 +10,7 @@ import { Container } from "@/components/ui/Container";
 import { MenuIcon, CloseIcon } from "@/components/ui/Icons";
 import { WhatsAppIcon } from "@/components/cta/WhatsAppIcon";
 import { buildWhatsAppUrl, type Audience, type WALocale } from "@/lib/whatsapp";
+import { useOrderTray, openTray } from "@/lib/orderTray";
 
 export function Header({
   audience,
@@ -29,6 +30,7 @@ export function Header({
   const [openFor, setOpenFor] = useState<string | null>(null);
   const open = openFor === pathname;
   const setOpen = (next: boolean) => setOpenFor(next ? pathname : null);
+  const { count, mounted } = useOrderTray();
 
   const audiencePrefix = `/${audience}`;
   // B2C home lives at the locale root; deeper b2c routes keep the /b2c prefix.
@@ -136,11 +138,34 @@ export function Header({
           })}
         </nav>
 
-        <div className="flex items-center gap-1.5">
-          <div className="hidden sm:block">
-            <AudienceSwitch current={audience} tone={tone} />
-          </div>
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <AudienceSwitch current={audience} tone={tone} />
           <LocaleSwitch current={locale} tone={tone} />
+          {mounted && count > 0 && (
+            <button
+              type="button"
+              onClick={openTray}
+              aria-label={locale === "ar" ? "سلة الاستفسار" : "Order Tray"}
+              className={`relative inline-flex h-8 items-center gap-1.5 rounded-full px-2.5 transition-colors duration-200 ease-soft ${
+                dark
+                  ? "bg-white/12 text-white hover:bg-white/20"
+                  : "bg-black/6 text-(--color-text) hover:bg-black/10"
+              }`}
+            >
+              <svg
+                viewBox="0 0 24 24"
+                className="h-4 w-4 text-(--color-brand)"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+              <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-(--color-brand) px-1 text-[10px] font-bold text-black shadow-xs">
+                {count}
+              </span>
+            </button>
+          )}
           <a
             href={waHref}
             target="_blank"
@@ -180,14 +205,104 @@ export function Header({
             dark ? "bg-(--color-hero-dark)" : "bg-white"
           }`}
         >
-          <Container className="flex flex-col gap-1 py-4">
+          <Container className="flex flex-col gap-3 py-4">
+            {/* Experience Selector Card */}
+            <div
+              className={`rounded-2xl border p-3 ${
+                dark
+                  ? "border-white/12 bg-white/5 text-white"
+                  : "border-black/8 bg-(--color-fill) text-(--color-text)"
+              }`}
+            >
+              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-(--color-brand)">
+                {t("chooseExperience")}
+              </p>
+              <div className="mt-2 grid grid-cols-2 gap-2">
+                <Link
+                  href="/"
+                  onClick={() => {
+                    document.cookie = `abk_audience=b2c; path=/; max-age=${60 * 60 * 24 * 180}; SameSite=Lax`;
+                    setOpen(false);
+                  }}
+                  className={`flex flex-col items-start rounded-xl p-2.5 transition-all ${
+                    audience === "b2c"
+                      ? "bg-(--color-brand) text-black shadow-sm font-bold"
+                      : dark
+                        ? "bg-white/8 text-white hover:bg-white/12"
+                        : "bg-white text-(--color-text) hover:bg-white/80"
+                  }`}
+                >
+                  <span className="text-body font-bold">{t("b2c")}</span>
+                  <span
+                    className={`text-[11px] mt-0.5 ${
+                      audience === "b2c" ? "text-black/75 font-medium" : dark ? "text-white/60" : "text-(--color-text-muted)"
+                    }`}
+                  >
+                    {t("b2cSubtitle")}
+                  </span>
+                </Link>
+                <Link
+                  href="/b2b"
+                  onClick={() => {
+                    document.cookie = `abk_audience=b2b; path=/; max-age=${60 * 60 * 24 * 180}; SameSite=Lax`;
+                    setOpen(false);
+                  }}
+                  className={`flex flex-col items-start rounded-xl p-2.5 transition-all ${
+                    audience === "b2b"
+                      ? "bg-(--color-brand) text-black shadow-sm font-bold"
+                      : dark
+                        ? "bg-white/8 text-white hover:bg-white/12"
+                        : "bg-white text-(--color-text) hover:bg-white/80"
+                  }`}
+                >
+                  <span className="text-body font-bold">{t("b2b")}</span>
+                  <span
+                    className={`text-[11px] mt-0.5 ${
+                      audience === "b2b" ? "text-black/75 font-medium" : dark ? "text-white/60" : "text-(--color-text-muted)"
+                    }`}
+                  >
+                    {t("b2bSubtitle")}
+                  </span>
+                </Link>
+              </div>
+            </div>
+
+            {mounted && count > 0 && (
+              <button
+                type="button"
+                onClick={() => {
+                  setOpen(false);
+                  openTray();
+                }}
+                className={`flex w-full items-center justify-between rounded-xl border p-3 text-start font-semibold transition-all ${
+                  dark
+                    ? "border-(--color-brand)/40 bg-(--color-brand)/10 text-white"
+                    : "border-(--color-brand)/40 bg-(--color-brand)/10 text-(--color-text)"
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-(--color-brand) text-black">
+                    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                  </span>
+                  <span className="text-footnote font-bold">
+                    {locale === "ar" ? "سلة الطلب والاستفسار" : "WhatsApp Order Sheet"}
+                  </span>
+                </div>
+                <span className="rounded-full bg-(--color-brand) px-2 py-0.5 text-caption font-bold text-black">
+                  {count} {locale === "ar" ? "منتج" : count === 1 ? "item" : "items"}
+                </span>
+              </button>
+            )}
+
             <nav aria-label={t("menu")} className="flex flex-col">
               {links.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className={`py-3.5 text-title-sm font-semibold last:border-b-0 ${
+                  className={`py-3 text-title-sm font-semibold last:border-b-0 ${
                     dark
                       ? "border-b border-white/10 text-white"
                       : "border-b border-(--color-border-soft) text-(--color-text)"
@@ -197,13 +312,13 @@ export function Header({
                 </Link>
               ))}
             </nav>
-            <div className="mt-6 flex flex-col gap-4 sm:hidden">
-              <AudienceSwitch current={audience} tone={tone} />
+
+            <div className="pt-2">
               <a
                 href={waHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`plausible-event-name=whatsapp_click plausible-event-audience=${audience} inline-flex h-11 w-fit items-center gap-2 whitespace-nowrap rounded-pill bg-(--color-brand) px-[22px] text-body font-medium text-(--color-ink) transition-colors hover:bg-(--color-brand-hover)`}
+                className={`plausible-event-name=whatsapp_click plausible-event-audience=${audience} inline-flex h-11 w-full items-center justify-center gap-2 whitespace-nowrap rounded-pill bg-(--color-brand) px-[22px] text-body font-bold text-black transition-colors hover:bg-(--color-brand-hover)`}
               >
                 <WhatsAppIcon className="h-5 w-5" />
                 {c("whatsAppUs")}

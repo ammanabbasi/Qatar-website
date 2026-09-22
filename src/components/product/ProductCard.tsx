@@ -29,11 +29,21 @@ export function ProductCard({
 }: Props) {
   const t = useTranslations();
   const name = product.name[locale];
+  const isB2b = audience === "b2b";
+  const ctaLabel = isB2b
+    ? locale === "ar"
+      ? "طلب تسعير جملة"
+      : "Wholesale Quote"
+    : product.price
+      ? locale === "ar"
+        ? "طلب عبر واتساب"
+        : "Order on WhatsApp"
+      : t("Cta.inquire");
 
   return (
     <Link
       href={`/${audience}/products/${product.slug}`}
-      className={`group flex flex-col ${className}`}
+      className={`group flex flex-col min-w-0 ${className}`}
     >
       <div className="relative aspect-square overflow-hidden rounded-tile bg-(--color-surface) shadow-tile transition-shadow duration-300 ease-soft group-hover:shadow-tile-hover">
         <Image
@@ -46,15 +56,28 @@ export function ProductCard({
           className="object-cover transition-transform duration-700 ease-soft group-hover:scale-[1.03]"
         />
       </div>
-      <div className="flex flex-col gap-1 px-1 pt-4">
-        <div className="flex items-center justify-between gap-2">
-          <p className="text-caption font-medium text-(--color-text-muted)">
+      <div className="flex flex-col gap-1 px-1 pt-4 min-w-0">
+        <div className="flex items-center justify-between gap-1.5 min-w-0">
+          <p className="min-w-0 truncate text-caption font-medium text-(--color-text-muted)">
             {t(`Brands.${product.brand}`)} · {t(`Categories.${product.category}`)}
           </p>
-          {product.price && (
-            <span className="shrink-0 rounded-md bg-(--color-brand)/12 px-2 py-0.5 text-caption font-bold text-(--color-brand-deep)">
-              {product.price[locale]}
-            </span>
+          {isB2b ? (
+            product.price ? (
+              <span className="shrink-0 rounded-md bg-(--color-brand)/12 px-2 py-0.5 text-[11px] font-semibold text-(--color-brand-deep) whitespace-nowrap">
+                {locale === "ar" ? "سعر تجزئة: " : "MSRP: "}
+                {product.price[locale]}
+              </span>
+            ) : (
+              <span className="shrink-0 rounded-md bg-blue-500/10 px-2 py-0.5 text-[11px] font-semibold text-blue-600 dark:text-blue-400 whitespace-nowrap">
+                {locale === "ar" ? "توريد جملة" : "Trade Supply"}
+              </span>
+            )
+          ) : (
+            product.price && (
+              <span className="shrink-0 rounded-md bg-(--color-brand)/12 px-2 py-0.5 text-caption font-bold text-(--color-brand-deep) whitespace-nowrap">
+                {product.price[locale]}
+              </span>
+            )
           )}
         </div>
         <Heading className="text-body font-semibold text-(--color-text) sm:text-title-sm">
@@ -63,9 +86,9 @@ export function ProductCard({
         <p className="line-clamp-2 text-footnote text-(--color-text-muted)">
           {product.shortDesc[locale]}
         </p>
-        <span className="text-link mt-1 text-footnote font-medium">
-          {t("Cta.inquire")}
-          <ChevronIcon className="h-[0.6em] w-[0.6em] rtl:-scale-x-100" />
+        <span className="text-link mt-1 text-footnote font-medium flex items-center gap-1">
+          <span>{ctaLabel}</span>
+          <ChevronIcon className="h-[0.65em] w-[0.65em] rtl:rotate-180" />
         </span>
       </div>
     </Link>

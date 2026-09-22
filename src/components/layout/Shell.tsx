@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { FloatingWhatsApp } from "@/components/cta/FloatingWhatsApp";
+import { OrderTray } from "@/components/cart/OrderTray";
 import type { Audience, WALocale } from "@/lib/whatsapp";
 
 type Props = {
@@ -27,6 +28,7 @@ export function Shell({ audience, locale, headerTone = "dark", children }: Props
           locale={locale}
           label={t("whatsAppUs")}
         />
+        <OrderTray audience={audience} locale={locale} />
       </main>
       <Footer audience={audience} />
     </>

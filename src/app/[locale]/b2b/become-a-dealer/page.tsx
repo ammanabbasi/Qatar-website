@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
 import { PageHero } from "@/components/ui/PageHero";
-import { DealerPitch } from "@/components/home/DealerPitch";
+import { DealerPartnershipTiers } from "@/components/dealer/DealerPartnershipTiers";
+import { DealerLogistics } from "@/components/dealer/DealerLogistics";
+import { DealerApplicationForm } from "@/components/dealer/DealerApplicationForm";
 import { TrustBadges } from "@/components/home/TrustBadges";
 import { pageMeta } from "@/lib/seo";
 
@@ -37,14 +39,14 @@ export default async function BecomeDealer({
 
   return (
     <Shell audience="b2b" locale={l}>
-      {/* "partner", not "wholesale" — DealerPitch directly below carries its
-          own WHOLESALE eyebrow and the band shouldn't echo it. */}
       <PageHero
         eyebrow={eyebrows("partner")}
         title={home("becomeDealerHeading")}
         subtitle={home("becomeDealerTagline")}
       />
-      <DealerPitch locale={l} />
+      <DealerPartnershipTiers />
+      <DealerLogistics />
+      <DealerApplicationForm locale={l} />
       <TrustBadges />
     </Shell>
   );

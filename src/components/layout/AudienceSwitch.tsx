@@ -24,10 +24,12 @@ function trackAudienceSwitch(next: Audience) {
 export function AudienceSwitch({
   current,
   tone = "light",
+  className = "",
 }: {
   current: Audience;
   /** "dark" matches the dark hero header. */
   tone?: "light" | "dark";
+  className?: string;
 }) {
   const dark = tone === "dark";
   const t = useTranslations("Nav");
@@ -52,9 +54,9 @@ export function AudienceSwitch({
     <div
       role="tablist"
       aria-label={t("audience")}
-      className={`inline-flex h-8 items-center rounded-pill p-0.5 text-caption font-medium ${
-        dark ? "bg-white/12" : "bg-(--color-fill)"
-      }`}
+      className={`inline-flex h-7 sm:h-8 items-center rounded-pill p-0.5 text-[12px] sm:text-caption font-medium ${
+        dark ? "bg-white/12 border border-white/10" : "bg-(--color-fill) border border-black/5"
+      } ${className}`}
     >
       {(["b2c", "b2b"] as Audience[]).map((a) => {
         const active = a === current;
@@ -65,9 +67,9 @@ export function AudienceSwitch({
             role="tab"
             aria-selected={active}
             onClick={() => switchTo(a)}
-            className={`h-7 rounded-pill px-3.5 transition-colors duration-200 ease-soft ${
+            className={`h-6 sm:h-7 rounded-pill px-2.5 sm:px-3.5 transition-all duration-200 ease-soft cursor-pointer whitespace-nowrap ${
               active
-                ? "bg-white text-(--color-text) shadow-[0_1px_3px_rgba(0,0,0,0.12)]"
+                ? "bg-white text-black font-bold shadow-[0_1px_4px_rgba(0,0,0,0.18)]"
                 : dark
                   ? "text-white/75 hover:text-white"
                   : "text-(--color-text)/75 hover:text-(--color-text)"

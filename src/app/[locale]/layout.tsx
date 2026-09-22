@@ -112,19 +112,16 @@ export async function generateMetadata({
     // NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION → Google Search Console
     // NEXT_PUBLIC_BING_SITE_VERIFICATION  → Bing Webmaster Tools
     // ⚠ Paste ONLY the content value (e.g. "abc123"), NOT the full <meta> tag.
-    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
-    process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
-      ? {
-          verification: {
-            ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
-              ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
-              : {}),
-            ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
-              ? { other: { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION } }
-              : {}),
-          },
-        }
-      : {}),
+    verification: {
+      ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+        ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+        : {}),
+      other: {
+        "msvalidate.01":
+          process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ||
+          "8F255517EF109A16B63BCAA87B78286B",
+      },
+    },
   };
 }
 

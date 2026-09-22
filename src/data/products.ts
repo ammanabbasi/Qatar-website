@@ -1377,7 +1377,7 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Application", ar: "طريقة التطبيق" }, value: { en: "Apply with microfibre or sponge, leave 10-15 mins, wipe with clean microfibre", ar: "تطبيق بمايكروفايبر أو إسفنجة، يُترك ١٠-١٥ دقيقة، يُمسح بمايكروفايبر نظيفة" } },
       { label: { en: "Curing / Healing", ar: "فترة التصلب والتماسك" }, value: { en: "Protect surface for 6 to 7 hours (do not drive during healing period)", ar: "حماية السطح لمدة ٦ إلى ٧ ساعات (يُوصى بعدم القيادة خلال هذه الفترة)" } },
     ],
-    price: { en: "From QAR 50 (60ml / 250ml)", ar: "من ٥٠ ر.ق (٦٠ مل / ٢٥٠ مل)" },
+    price: { en: "From QAR 50", ar: "من ٥٠ ر.ق" },
     priceQar: 50,
     audience: "both",
     featured: true,

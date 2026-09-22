@@ -46,9 +46,9 @@ export function BestSellerCard({ products, audience, locale }: Props) {
   });
 
   return (
-    <section className="bg-white py-8 sm:py-12 border-b border-(--color-border-soft)">
+    <section className="bg-(--color-bg) py-8 sm:py-12 border-b border-(--color-border-soft)">
       <Container>
-        <div className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl bg-(--color-bg) border border-(--color-border-soft) p-6 sm:p-10 shadow-sm transition-all duration-300">
+        <div className="relative mx-auto max-w-4xl overflow-hidden rounded-3xl bg-white border border-(--color-border-soft) p-6 sm:p-10 shadow-sm transition-all duration-300">
           <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-12">
             {/* Text details */}
             <div className="order-2 flex flex-col justify-center md:order-1 md:col-span-7">
@@ -101,13 +101,13 @@ export function BestSellerCard({ products, audience, locale }: Props) {
 
             {/* Product image */}
             <div className="order-1 flex items-center justify-center md:order-2 md:col-span-5">
-              <div className="relative h-64 w-64 sm:h-72 sm:w-72 transition-transform duration-300 hover:scale-105">
+              <div className="relative h-56 w-56 sm:h-64 sm:w-64 md:h-72 md:w-72 transition-transform duration-300 hover:scale-105">
                 <Image
                   src={current.images[0]}
                   alt={name}
                   fill
-                  sizes="(max-width: 768px) 256px, 288px"
-                  className="object-contain drop-shadow-md"
+                  sizes="(max-width: 768px) 224px, 288px"
+                  className="object-contain"
                 />
               </div>
             </div>

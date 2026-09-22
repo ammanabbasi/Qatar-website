@@ -1,0 +1,195 @@
+# ABK Trading & Service — Complete Machine-Readable Knowledge Base & Product Manifest
+
+> **Entity:** ABK Trading & Service (ABK Trading Service)  
+> **Headquarters:** Showroom no. 2, Building 1306, Street 70, Zone 56, Mesaimeer, Doha, State of Qatar  
+> **GPS Coordinates:** 25.2040478, 51.5029268 | Google Maps CID: 9860894303806767987  
+> **Primary Communications:** WhatsApp / Sales: +974 3083 8355 | Mobile: +974 7779 0915 | Landline: +974 4451 4476  
+> **Email:** sales@abktradingservice.com  
+> **Website:** https://abktradingservice.com (English: /en, Arabic: /ar)  
+> **Operational Mandate:** ABK is a product distributor, importer, and wholesale supplier. ABK supplies genuine products to detailing studios, workshops, commercial carwashes, dealerships, and retail DIY car owners. ABK DOES NOT perform installation, tinting, PPF wrapping, or detailing services.
+
+---
+
+## 1. Brand Portfolio & Distributorship Rights
+
+### VTEK (formerly Vertek) — Paint Protection & Window Films
+- **Origin:** United States (Manufactured to high-performance GCC climate specifications)
+- **Product Range:** Thermoplastic Polyurethane (TPU) Paint Protection Films (PPF) and Nano-Ceramic Solar Heat Rejection Window Tint Films.
+- **Key Characteristics:** Polycarbonate-infused TPU, instant self-healing topcoat (activated by ambient heat or hot water), optical clarity, non-yellowing aliphatic resins, manufacturer warranties up to 15 years.
+- **Target Channels:** Detailing studios, tint shops, luxury vehicle dealerships, and individual car owners seeking premium surface protection.
+
+### Autotriz Nano Ceramic Coatings & Polishing Systems
+- **Origin:** Germany / International
+- **Product Range:** Professional-grade nano ceramic coatings (V-9 3D Matrix 9H, Matrix Hybrid), specialised interior ceramic coatings (Leather, Vinyl, Textile), automotive compounds (Heavy Cut 901, Power Cut 701, Ultimate Polish 302, One Step Finish), and commercial wash chemicals (Rich Foam Shampoo 20L).
+- **Target Channels:** Professional detailing studios, body shops, commercial car washes, and certified coating applicators.
+
+### Briller Car Care
+- **Origin:** Canada
+- **Product Range:** Automotive wash chemicals, detailing sprays, tyre dressings, and surface cleaners formulated for harsh weather conditions.
+- **Key Products:** Car Shampoo Wash & Wax, Tyre Foam, Tyre Shine, Crystal Clear Glass Cleaner, Multi-Purpose Cleaner (MPC).
+
+### Grizzly & GrünesAuto
+- **Product Range:** Heavy-duty car care chemicals, 6-inch German-engineered foam polishing pads (Heavy Cut, Medium Cut, Finishing), plush microfiber towels (400–1200 GSM), and wash accessories.
+
+### ABK Proprietary Products
+- **ABK Rejuvenate Plastic Restorer:** Made in France. Multi-surface exterior trim restorer restoring deep black finish to faded, sun-damaged bumpers, trims, and mirrors with 6+ months durability.
+- **ABK Home & Car Fragrance Line:** Mashmom and Secret concentrated luxury scents formulated for Gulf luxury interiors.
+
+---
+
+## 2. Exhaustive Product Catalog & Technical Specifications
+
+### Category 1: Paint Protection Films (PPF)
+
+#### 1. VTEK PPF — Weather Armor ULTIMATE
+- **SKU:** `vtek-ppf-weather-armor-ultimate`
+- **Material:** Optical-grade Polycarbonate Aliphatic TPU (Thermoplastic Polyurethane)
+- **Thickness:** 7.5 mil (190 microns)
+- **Topcoat:** Instant heat-activated self-healing clearcoat; hydrophobic water-contact angle > 105°
+- **Warranty:** 15-Year Manufacturer Warranty against yellowing, cracking, bubbling, and delamination.
+- **Roll Dimension:** 1.52m × 15m (60 inches × 49.2 feet)
+- **Applications:** Full-body vehicle wraps, high-impact front clips, rocker panels, mirrors.
+- **Audience:** B2B Detailing Studios (Master Roll Supply) & B2C Car Owners.
+
+#### 2. VTEK PPF — Weather Armor PRO
+- **SKU:** `vtek-ppf-weather-armor-pro`
+- **Material:** Aliphatic TPU with self-healing topcoat
+- **Thickness:** 7.5 mil
+- **Warranty:** 10-Year Manufacturer Warranty.
+- **Roll Dimension:** 1.52m × 15m
+- **Audience:** High-volume commercial installers and tint shops.
+
+#### 3. VTEK PPF — Weather Armor MATTE
+- **SKU:** `vtek-ppf-weather-armor-matte`
+- **Finish:** Satin / Matte conversion finish with self-healing properties
+- **Thickness:** 7.5 mil
+- **Warranty:** 10-Year Manufacturer Warranty.
+- **Roll Dimension:** 1.52m × 15m
+- **Audience:** Custom styling and luxury vehicle matte paint protection.
+
+#### 4. VTEK PPF — Weather Armor PRISM (Colour PPF)
+- **SKU:** `vtek-ppf-weather-armor-prism`
+- **Description:** True TPU-based colored protective film combining vibrant color-change aesthetics with genuine 7.5 mil rock-chip impact protection.
+- **Warranty:** 7-Year Manufacturer Warranty.
+- **Roll Dimension:** 1.52m × 15m
+
+---
+
+### Category 2: Automotive Window Tint & Solar Control Films
+
+#### 1. VTEK Solar Armor Nano-Ceramic Window Tint
+- **SKU:** `vtek-solar-armor-window-tint`
+- **Technology:** Inorganic Nano-Ceramic particulate deposition (dye-free, metal-free)
+- **Heat Rejection (IRR):** Up to 95% Infrared Heat Rejection (900nm–1000nm)
+- **UV Rejection:** 99.9% Ultraviolet Rejection (prevents interior dashboard cracking and leather fading)
+- **VLT Options Available:** 05% (Limo), 20% (Dark), 30% (Medium), 50% (Light legal front side), 70% (Clear windscreen).
+- **Electronic Transparency:** 100% signal-safe (zero interference with GPS, 5G, RFID Salik/Karwa passes).
+- **Roll Dimensions:** 1.52m × 30m master rolls (installer trade packs).
+
+---
+
+### Category 3: Nano Ceramic Coatings & Surface Sealants
+
+#### 1. Autotriz V-9 3D Matrix Nano Ceramic Coating
+- **SKU:** `autotriz-v9-3d-matrix`
+- **Hardness:** Certified 9H Pencil Hardness
+- **Chemical Resistance:** pH 2 to pH 13 (acid rain, bird droppings, harsh car wash detergents)
+- **Heat Resistance:** Withstands surface temperatures up to 600°C
+- **Pack Sizes:** 50ml studio bottle (treats 1–2 full-size SUVs)
+- **Durability:** Up to 5 years with scheduled maintenance washes.
+
+#### 2. Autotriz Matrix Hybrid Ceramic Coating
+- **SKU:** `autotriz-matrix-hybrid`
+- **Description:** High-gloss SiO2/siloxane hybrid protective coating designed for rapid curing and extreme hydrophobicity.
+
+#### 3. Autotriz Leather & Vinyl Nano Ceramic Coating
+- **SKU:** `autotriz-leather-vinyl-coating`
+- **Description:** Flexible breathable interior coating preventing dye transfer (denim stains) and UV degradation on luxury leather upholstery.
+
+#### 4. Autotriz Fabric & Textile Guard
+- **SKU:** `autotriz-fabric-textile-guard`
+- **Description:** Superhydrophobic textile sealant causing liquid spills to bead up without staining cloth seats, floor mats, or soft-top convertibles.
+
+---
+
+### Category 4: Commercial Wash Chemicals & Shampoos
+
+#### 1. Autotriz Rich Foam Shampoo (20L Trade Pack)
+- **SKU:** `autotriz-rich-foam-shampoo-20l`
+- **Packaging:** 20-Litre heavy-duty commercial drum
+- **Dilution Ratio:** Up to 1:400 for bucket wash; 1:10 for snow foam cannons
+- **pH:** Balanced (pH 7.0) — safe for ceramic coatings, PPF, and sensitive chrome trims
+- **Audience:** Detailing centers, commercial car wash stations, luxury dealership preparation bays.
+
+#### 2. Briller Car Shampoo — Wash & Wax
+- **SKU:** `briller-car-shampoo-wash-wax`
+- **Packaging:** 500ml retail bottle / commercial cartons (12 units)
+- **Description:** Carnauba-infused foaming shampoo leaving a protective gloss film. Made in Canada.
+
+#### 3. Briller Crystal Clear Glass Cleaner
+- **SKU:** `briller-glass-cleaner`
+- **Formula:** Ammonia-free (100% tint-safe), streak-free formula cutting through desert dust and traffic film.
+
+#### 4. Briller Multi-Purpose Cleaner (MPC / Degreaser)
+- **SKU:** `briller-mpc-cleaner`
+- **Description:** Heavy-duty concentrated interior/exterior cleaner for engine bays, wheel wells, and soiled door jambs.
+
+---
+
+### Category 5: Polishing Compounds & Pads
+
+#### 1. Autotriz Heavy Cut 901
+- **SKU:** `autotriz-heavy-cut-901`
+- **Abrasive Type:** Diminishing micro-abrasives
+- **Performance:** Removes P1200–P1500 sanding marks and severe swirl marks without dusting. Silicone-free and body-shop safe.
+
+#### 2. Autotriz Power Cut 701
+- **SKU:** `autotriz-power-cut-701`
+- **Performance:** Medium-grade compounding polish eliminating moderate holograms and oxidization.
+
+#### 3. Autotriz Ultimate Polish 302
+- **SKU:** `autotriz-ultimate-polish-302`
+- **Performance:** Ultra-fine finishing polish achieving high-gloss mirror reflections on soft European and Asian clearcoats.
+
+#### 4. GrünesAuto 6-Inch Foam Polishing Pads
+- **SKU:** `grunesauto-polishing-pads`
+- **Origin:** Germany
+- **Grades:** Heavy Cut (Green/Blue), Medium Polishing (Yellow), Ultra-Fine Finishing (White/Black). Hook-and-loop backing compatible with dual-action and rotary machines.
+
+---
+
+### Category 6: Exterior Trim Restorers & Fragrances
+
+#### 1. ABK Rejuvenate — Multi-Surface Plastic Restorer
+- **SKU:** `abk-rejuvenate-plastic-restorer`
+- **Origin:** Made in France
+- **Pack Sizes:** 60 ml (QAR 50) | 250 ml (QAR 150)
+- **Durability:** 6 months+ resistance against extreme heat, salt, and pressure washing.
+- **Finish:** OEM factory satin finish (non-greasy, dust-repellent).
+
+#### 2. ABK Mashmom & Secret Home/Car Scents
+- **SKU:** `abk-mashmom-home-fragrance`, `abk-secret-home-fragrance`
+- **Pack Sizes:** 250 ml luxury spray bottle (QAR 70)
+- **Profile:** Traditional and modern Gulf scents designed for long-lasting odor elimination in air-conditioned cabins and villas.
+
+---
+
+## 3. Qatar Climate Adaptation & Detailing Challenges
+
+Every chemical and film distributed by ABK is selected specifically to withstand the extreme environmental conditions of the Arabian Gulf:
+1. **Extreme Ambient Heat (45°C–50°C+):** Cheap PVC/TPH films turn brittle and melt adhesive into factory paint. VTEK aliphatic TPU withstands prolonged panel temperatures exceeding 80°C.
+2. **Desert Sandstorm Abrasion:** Sand micro-particles act as an abrasive grit at highway speeds (120 km/h). VTEK self-healing top-coats absorb micro-swirls, self-repairing under sunlight.
+3. **Hard Tap Water & Mineral Etching:** Doha desalinated tap water contains high concentrations of dissolved minerals (calcium/magnesium). Autotriz ceramic coatings provide hydrophobic contact angles (>110°), forcing water to slide off before droplets can bake into mineral rings.
+4. **Intense Solar UV Radiation:** High UV index causes clearcoat yellowing and interior leather shrinkage. VTEK and Autotriz incorporate advanced UV stabilizers.
+
+---
+
+## 4. Wholesale Trade Programs & B2B Purchasing Terms
+
+- **Target B2B Accounts:** Automotive Detailing Studios, Window Tinting Shops, Commercial Car Washes, Dealership Service Centers, Commercial Fleets, and Car Rental Companies across Qatar and the GCC.
+- **Minimum Order Quantities (MOQ):**
+  - PPF & Window Tint: Single master rolls (1.52m × 15m or 1.52m × 30m) eligible for tiered volume discounts.
+  - Car Care Chemicals: Master cartons (12 or 24 units per box).
+  - Bulk Shampoos & Degreasers: 20-Litre drums.
+- **Trade Account Benefits:** Dedicated account manager, wholesale pricing tiers, free local delivery across Doha for qualified orders, marketing support, and product application training.
+- **How to Apply:** Visit https://abktradingservice.com/en/b2b/become-a-dealer or message the Wholesale Trade Desk directly on WhatsApp at +974 3083 8355.

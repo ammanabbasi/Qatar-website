@@ -185,4 +185,24 @@ export const FAQ: FaqEntry[] = [
       ar: "نعم — مركبات التلميع مثل Autotriz Heavy Cut 901 تزيل علامات السنفرة والدوائر العميقة، بينما الملمعات النهائية مثل Autotriz Ultimate Polish 302 تعيد لمعاناً عالياً خالياً من الهالات. للحصول على أفضل النتائج، يُنصح بالتلميع الاحترافي بالمكينة. توفر ABK هذه المركبات في متجرنا بمسيمير.",
     },
   },
+  {
+    q: {
+      en: "Can I buy single car care bottles for personal use or is ABK wholesale only?",
+      ar: "هل يمكنني شراء عبوات فردية لاستخدامي الشخصي أم أن البيع بالجملة فقط؟",
+    },
+    a: {
+      en: "ABK serves both individual car owners and commercial businesses. You can purchase single bottles of car shampoos, waxes, plastic restorers, and accessories at our Mesaimeer store or order on WhatsApp with rapid Qatar delivery. Detailing studios and workshops receive tiered wholesale volume pricing.",
+      ar: "تخدم ABK الأفراد والشركات على حد سواء. يمكنك شراء عبوات فردية من الشامبو والشمع ومجدد البلاستيك والإكسسوارات من متجرنا بمسيمير أو الطلب عبر واتساب مع خدمة التوصيل السريع في قطر. بينما تحصل الورش والمراكز على أسعار جملة تجارية مخصصة.",
+    },
+  },
+  {
+    q: {
+      en: "How does the WhatsApp Order Tray work?",
+      ar: "كيف تعمل سلة الطلب والاستفسار عبر واتساب؟",
+    },
+    a: {
+      en: "The WhatsApp Order Tray lets you browse products, set quantities, and compile a single multi-item order or commercial quote request. When ready, tap 'Send Order via WhatsApp' to launch a pre-formatted message with item details, quantities, and direct links.",
+      ar: "تتيح لك سلة الطلب تصفح المنتجات وتحديد الكميات وجمع طلبك أو طلب التسعير التجاري في رسالة موحدة واحدة، ثم إرسالها مباشرة لفريق المبيعات عبر واتساب بضغطة زر واحدة تشمل تفاصيل المنتجات وروابطها.",
+    },
+  },
 ];

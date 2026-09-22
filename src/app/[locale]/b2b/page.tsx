@@ -10,6 +10,7 @@ import { CategoryShelf } from "@/components/home/CategoryShelf";
 import { StarProducts } from "@/components/home/StarProducts";
 import { DealerPitch } from "@/components/home/DealerPitch";
 import { TrustBadges } from "@/components/home/TrustBadges";
+import { AudienceGateway } from "@/components/home/AudienceGateway";
 import { localBusinessJsonLd } from "@/lib/jsonld";
 import { pageMeta } from "@/lib/seo";
 
@@ -43,6 +44,7 @@ export default async function B2BHome({
     <Shell audience="b2b" locale={l}>
       <JsonLd id="ld-localbusiness-b2b" data={jsonLd} />
       <HomeHero audience="b2b" locale={l} />
+      <AudienceGateway currentAudience="b2b" locale={l} />
       <StoreHeader audience="b2b" locale={l} />
       <CategoryShelf audience="b2b" />
       <StarProducts audience="b2b" locale={l} />

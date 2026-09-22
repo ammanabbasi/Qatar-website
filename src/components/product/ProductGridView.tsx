@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { Chip } from "@/components/ui/Chip";
 import { Button } from "@/components/ui/Button";
 import { ProductCard } from "./ProductCard";
+import { AudienceCrossBanner } from "./AudienceCrossBanner";
 import type { BrandKey, CategoryKey, Product } from "@/data/products";
 import type { Audience } from "@/lib/whatsapp";
 
@@ -54,6 +55,9 @@ export function ProductGridView({
 
   return (
     <div className="flex flex-col gap-8">
+      {/* Audience Cross-Navigation Banner */}
+      <AudienceCrossBanner audience={audience} />
+
       <div className="flex flex-col gap-4">
         <ChipRow label={t("Products.filterCategory")}>
           <Chip active={filters.category === "all"} onClick={pickCategory("all")}>

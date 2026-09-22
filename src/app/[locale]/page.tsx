@@ -11,6 +11,7 @@ import { WhyQatar } from "@/components/home/WhyQatar";
 import { TrustBadges } from "@/components/home/TrustBadges";
 import { AboutSnippet } from "@/components/home/AboutSnippet";
 import { BestSellerCard } from "@/components/home/BestSellerCard";
+import { AudienceGateway } from "@/components/home/AudienceGateway";
 import { getStoreShelfProducts } from "@/data/products";
 import { localBusinessJsonLd } from "@/lib/jsonld";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -47,6 +48,7 @@ export default async function Home({
     <Shell audience="b2c" locale={l}>
       <JsonLd id="ld-localbusiness-b2c" data={jsonLd} />
       <HomeHero audience="b2c" locale={l} />
+      <AudienceGateway currentAudience="b2c" locale={l} />
       <BestSellerCard products={bestSellers} audience="b2c" locale={l} />
       <WhyQatar />
       <TrustBadges />
