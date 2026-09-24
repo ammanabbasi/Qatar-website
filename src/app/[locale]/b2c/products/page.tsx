@@ -82,6 +82,7 @@ export default async function B2cProductsPage({
                   brands={getBrandsFor("b2c")}
                   categories={getCategoriesFor("b2c")}
                   filters={{ brand: "all", category: "all" }}
+                  retailTools={{ query: "", sort: "recommended", pricedOnly: false }}
                 />
               }
             >
