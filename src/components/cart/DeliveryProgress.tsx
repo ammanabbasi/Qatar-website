@@ -25,7 +25,10 @@ export function DeliveryProgress({
         <TruckIcon className="mt-px h-4 w-4 shrink-0 text-(--color-brand-deep)" />
         <p>
           <span className="font-semibold text-(--color-text)">
-            {t("freeRule", { amount: formatQar(threshold, locale) })}
+            {t("freeRule", {
+              amount: formatQar(threshold, locale),
+              fee: formatQar(DELIVERY.feeQar, locale),
+            })}
           </span>{" "}
           {totals.unpricedLines > 0 ? t("freePending") : null}
         </p>

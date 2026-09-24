@@ -155,6 +155,7 @@ export function ProductGrid({ audience, locale }: Props) {
               onQuery: setQuery,
               onSort: (s) => updateUrl({ sort: s === "recommended" ? null : s }),
               onPricedOnly: (v) => updateUrl({ priced: v ? "1" : null }),
+              onSearchAll: () => updateUrl({ brand: null, category: null, priced: null }),
             }
           : undefined
       }

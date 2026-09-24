@@ -24,6 +24,8 @@ export type RetailTools = {
   onQuery?: (query: string) => void;
   onSort?: (sort: SortKey) => void;
   onPricedOnly?: (on: boolean) => void;
+  /** Keep the search, drop brand / category / priced — the "no results" escape hatch. */
+  onSearchAll?: () => void;
 };
 
 type Props = {
@@ -60,11 +62,11 @@ export function ProductGridView({
 }: Props) {
   const t = useTranslations();
   const query = retailTools?.query.trim() ?? "";
-  const filtered =
-    filters.brand !== "all" ||
-    filters.category !== "all" ||
-    query !== "" ||
-    Boolean(retailTools?.pricedOnly);
+  const chipsActive =
+    filters.brand !== "all" || filters.category !== "all" || Boolean(retailTools?.pricedOnly);
+  const filtered = chipsActive || query !== "";
+  const onQuery = retailTools?.onQuery;
+  const clearSearch = onQuery ? () => onQuery("") : undefined;
   // In the server-rendered fallback no handlers exist, and React Server
   // Components refuse event-handler props on DOM elements — so only attach
   // onClick when a handler was actually supplied.
@@ -143,11 +145,33 @@ export function ProductGridView({
             {query ? t("Products.noResultsQuery", { query }) : t("Products.noResultsTitle")}
           </h3>
           <p className="max-w-sm text-footnote text-(--color-text-muted)">
-            {query ? t("Products.noResultsQueryHint") : t("Products.noResults")}
+            {!query
+              ? t("Products.noResults")
+              : chipsActive
+                ? t("Products.noResultsQueryFilteredHint")
+                : t("Products.noResultsQueryHint")}
           </p>
-          <Button variant="secondary" size="sm" onClick={onClear} className="mt-2">
-            {t("Products.clearFilters")}
-          </Button>
+          {/* A search that finds nothing inside a filter usually exists outside
+              it — offer the whole catalogue before wiping the search too. */}
+          {query && chipsActive ? (
+            <div className="mt-2 flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+              <Button variant="primary" size="sm" onClick={retailTools?.onSearchAll}>
+                {t("Products.searchAll")}
+              </Button>
+              <button type="button" onClick={onClear} className="text-link text-footnote font-medium">
+                {t("Products.clearFilters")}
+              </button>
+            </div>
+          ) : (
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={query ? clearSearch : onClear}
+              className="mt-2"
+            >
+              {query ? t("Products.searchClear") : t("Products.clearFilters")}
+            </Button>
+          )}
         </div>
       ) : (
         <div className="grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-3 lg:grid-cols-4">
@@ -195,7 +219,11 @@ function RetailToolbar({ tools }: { tools: RetailTools }) {
         {interactive && tools.query ? (
           <button
             type="button"
-            onClick={() => tools.onQuery?.("")}
+            onClick={() => {
+              tools.onQuery?.("");
+              // This button unmounts with the query — keep focus in the box.
+              document.getElementById("catalogue-search")?.focus();
+            }}
             aria-label={t("searchClear")}
             className="absolute end-1 top-1/2 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full text-(--color-text-muted) transition-colors duration-150 ease-soft hover:bg-(--color-fill) hover:text-(--color-text)"
           >

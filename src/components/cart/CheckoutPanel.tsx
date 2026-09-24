@@ -126,12 +126,16 @@ export function CheckoutPanel({
     window.setTimeout(() => markCartSent("b2c"), 600);
   };
 
+  // With nothing priced yet the order value is unknown, so don't lead with the
+  // QAR 25 fee — DeliveryProgress below states the free-delivery rule and fee.
   const deliveryValue =
     quote.kind === "pickup" || quote.kind === "free"
       ? t("deliveryFree")
       : quote.kind === "fee"
         ? formatQar(quote.feeQar, locale)
-        : t("deliveryProvisional", { fee: formatQar(quote.feeQar, locale) });
+        : totals.pricedLines === 0
+          ? t("deliveryOnWhatsApp")
+          : t("deliveryProvisional", { fee: formatQar(quote.feeQar, locale) });
 
   const fulfilmentOptions: { value: Fulfilment; label: string; hint: string; icon: React.ReactNode }[] = [
     {
