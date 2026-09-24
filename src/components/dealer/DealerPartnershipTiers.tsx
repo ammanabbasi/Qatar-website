@@ -119,7 +119,7 @@ export function DealerPartnershipTiers() {
                   className={`flex w-full items-center justify-center rounded-full px-4 py-2.5 text-footnote font-bold transition-colors ${
                     tier.highlight
                       ? "bg-(--color-brand) text-black hover:bg-(--color-brand-hover)"
-                      : "bg-(--color-fill) text-(--color-text) hover:bg-(--color-fill-secondary)"
+                      : "bg-(--color-fill) text-(--color-text) hover:bg-(--color-fill-hover)"
                   }`}
                 >
                   {t("tierApplyCta")}
