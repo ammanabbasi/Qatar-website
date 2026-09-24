@@ -85,6 +85,43 @@ markup provides them, `audience` (`b2c`/`b2b`), `product`, and
 the **existing Plausible class-name tags**, so both analytics tools share one
 source of truth.
 
+### Cart orders (added 2026-09-24)
+
+Retail shoppers now build a cart and send the whole order from
+`/[locale]/b2c/cart`; wholesale buyers send their quote tray from the drawer.
+Both send buttons are ordinary `wa.me` links, so they still report as
+`whatsapp_enquiry` through the same listener — nothing new to set up in Google
+Ads — but they also describe the order on `data-*` attributes, which the
+listener adds to the event and the Ads conversion:
+
+| Param | Cart page (`placement: "cart"`) | Quote tray (`placement: "quote-tray"`) |
+|---|---|---|
+| `value` + `currency` | priced subtotal in QAR (omitted when every line is price-on-request) | — |
+| `item_count` | units in the cart | units in the tray |
+| `order_ref` | `ABK-XXXX`, also sent as the Ads `transaction_id` so a double-tapped send counts once | — |
+
+Plausible sees both sends as the `cart_whatsapp_send` goal (split by the
+`audience` prop). The cart page only renders the `wa.me` link once the
+checkout is valid — until then Send is a plain button that shows the missing
+field — so an incomplete form can never report a conversion.
+
+GA4 also receives the standard ecommerce events from `src/lib/analytics.ts`
+(retail only; same production-host gate, so localhost and previews stay
+silent). All carry `currency: "QAR"`, `value` (priced lines only) and `items[]`
+with `item_id` = slug and the English `item_name`:
+
+| Event | Fires when |
+|---|---|
+| `add_to_cart` | Add to cart on a card, shelf tile, product page, sticky bar or add-on; Undo after a removal |
+| `remove_from_cart` | a line is removed from the drawer or cart page |
+| `view_cart` | the drawer opens, or the cart page loads |
+| `begin_checkout` | first interaction with the cart page's checkout form |
+
+Heads-up for bidding: the product page's main button now adds to the cart
+instead of opening WhatsApp, so expect fewer (but larger) `whatsapp_enquiry`
+conversions while Smart Bidding re-learns. Once `value` has flowed for a few
+weeks, "Maximize conversion value" becomes an option.
+
 ### Verified working
 
 Tested against a production build (`next build` + `next start`), clicking real

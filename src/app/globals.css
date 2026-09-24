@@ -231,6 +231,68 @@ html[dir="rtl"] body * {
     direction: ltr;
     unicode-bidi: isolate;
   }
+
+  /* Cart drawer: slides in from the inline-end edge (the right in English,
+     the left in Arabic) over a fading scrim. Enter-only; closing is instant. */
+  .cart-scrim {
+    animation: cart-fade-in 300ms var(--ease-soft) both;
+  }
+  .cart-drawer {
+    animation: cart-drawer-in 300ms var(--ease-soft) both;
+  }
+  [dir="rtl"] .cart-drawer {
+    animation-name: cart-drawer-in-rtl;
+  }
+  .cart-toast {
+    animation: cart-toast-in 150ms var(--ease-soft) both;
+  }
+  .cart-sticky {
+    animation: cart-sticky-in 300ms var(--ease-soft) both;
+  }
+
+  /* The mobile sticky "Add to cart" bar sits where the floating WhatsApp
+     bubble lives, so the bubble rides up above the bar while it shows. */
+  .floating-wa {
+    transition:
+      transform 300ms var(--ease-soft),
+      background-color 200ms var(--ease-soft);
+  }
+  @media (max-width: 63.99rem) {
+    html[data-sticky-cta="on"] .floating-wa {
+      transform: translateY(calc(-1 * (4.75rem + env(safe-area-inset-bottom))));
+    }
+    /* Room under the footer so the bar never hides its last row. */
+    html[data-sticky-cta="on"] body {
+      padding-bottom: calc(4.75rem + env(safe-area-inset-bottom));
+    }
+  }
+}
+
+@keyframes cart-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes cart-drawer-in {
+  from {
+    transform: translateX(100%);
+  }
+}
+@keyframes cart-drawer-in-rtl {
+  from {
+    transform: translateX(-100%);
+  }
+}
+@keyframes cart-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+@keyframes cart-sticky-in {
+  from {
+    transform: translateY(100%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

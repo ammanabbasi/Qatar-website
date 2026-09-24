@@ -7,10 +7,12 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { AudienceSwitch } from "./AudienceSwitch";
 import { LocaleSwitch } from "./LocaleSwitch";
 import { Container } from "@/components/ui/Container";
-import { MenuIcon, CloseIcon } from "@/components/ui/Icons";
+import { BagIcon, MenuIcon, CloseIcon } from "@/components/ui/Icons";
 import { WhatsAppIcon } from "@/components/cta/WhatsAppIcon";
+import { HEADER_CART_BUTTON_ID, useCartUi } from "@/components/cart/CartProvider";
 import { buildWhatsAppUrl, type Audience, type WALocale } from "@/lib/whatsapp";
-import { useOrderTray, openTray } from "@/lib/orderTray";
+import { useCart } from "@/lib/cart";
+import { findProduct, formatNumber } from "@/lib/pricing";
 
 export function Header({
   audience,
@@ -30,7 +32,19 @@ export function Header({
   const [openFor, setOpenFor] = useState<string | null>(null);
   const open = openFor === pathname;
   const setOpen = (next: boolean) => setOpenFor(next ? pathname : null);
-  const { count, mounted } = useOrderTray();
+  const { lines: cartLines, hydrated } = useCart(audience);
+  const { openDrawer, drawerOpen, catalogue } = useCartUi();
+  // Only lines whose product still exists count (the provider prunes the rest).
+  const count = cartLines.reduce(
+    (sum, l) => sum + (findProduct(catalogue, l.slug) ? l.qty : 0),
+    0,
+  );
+  const tc = useTranslations("Cart");
+  const tt = useTranslations("Tray");
+  const isRetail = audience === "b2c";
+  // Retail says "Cart"; wholesale keeps its quote-tray wording.
+  const cartLabel = isRetail ? tc("open", { count }) : tt("open", { count });
+  const badge = count > 99 ? "99+" : formatNumber(count, locale);
 
   const audiencePrefix = `/${audience}`;
   // B2C home lives at the locale root; deeper b2c routes keep the /b2c prefix.
@@ -141,31 +155,31 @@ export function Header({
         <div className="flex items-center gap-1.5 sm:gap-2">
           <AudienceSwitch current={audience} tone={tone} />
           <LocaleSwitch current={locale} tone={tone} />
-          {mounted && count > 0 && (
-            <button
-              type="button"
-              onClick={openTray}
-              aria-label={locale === "ar" ? "سلة الاستفسار" : "Order Tray"}
-              className={`relative inline-flex h-8 items-center gap-1.5 rounded-full px-2.5 transition-colors duration-200 ease-soft ${
-                dark
-                  ? "bg-white/12 text-white hover:bg-white/20"
-                  : "bg-black/6 text-(--color-text) hover:bg-black/10"
-              }`}
-            >
-              <svg
-                viewBox="0 0 24 24"
-                className="h-4 w-4 text-(--color-brand)"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
+          {/* Always visible — shoppers look top-right for the cart. The badge
+              waits for hydration so the server HTML never shows a stale 0. */}
+          <button
+            type="button"
+            id={HEADER_CART_BUTTON_ID}
+            onClick={openDrawer}
+            aria-label={cartLabel}
+            aria-haspopup="dialog"
+            aria-expanded={drawerOpen}
+            className={`relative inline-flex h-8 w-8 items-center justify-center rounded-full transition-colors duration-200 ease-soft ${
+              dark
+                ? "text-white hover:bg-white/12 active:bg-white/20"
+                : "text-(--color-text) hover:bg-(--color-fill) active:bg-(--color-fill-hover)"
+            }`}
+          >
+            <BagIcon className="h-[19px] w-[19px]" />
+            {hydrated && count > 0 ? (
+              <span
+                aria-hidden
+                className="absolute -top-1 -end-1.5 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-(--color-brand) px-1 text-[11px] font-bold leading-none text-(--color-ink) tabular-nums"
               >
-                <path d="M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4L5 9z" />
-              </svg>
-              <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-(--color-brand) px-1 text-[10px] font-bold text-black shadow-xs">
-                {count}
+                {badge}
               </span>
-            </button>
-          )}
+            ) : null}
+          </button>
           <a
             href={waHref}
             target="_blank"
@@ -267,12 +281,12 @@ export function Header({
               </div>
             </div>
 
-            {mounted && count > 0 && (
+            {hydrated && count > 0 && (
               <button
                 type="button"
                 onClick={() => {
                   setOpen(false);
-                  openTray();
+                  openDrawer();
                 }}
                 className={`flex w-full items-center justify-between rounded-xl border p-3 text-start font-semibold transition-all ${
                   dark
@@ -281,17 +295,15 @@ export function Header({
                 }`}
               >
                 <div className="flex items-center gap-2.5">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-(--color-brand) text-black">
-                    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M16 11V7a4 4 0 0 0-8 0v4M5 9h14l1 12H4L5 9z" />
-                    </svg>
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-(--color-brand) text-(--color-ink)">
+                    <BagIcon className="h-4 w-4" />
                   </span>
                   <span className="text-footnote font-bold">
-                    {locale === "ar" ? "سلة الطلب والاستفسار" : "WhatsApp Order Sheet"}
+                    {isRetail ? tc("viewCart") : tt("title")}
                   </span>
                 </div>
-                <span className="rounded-full bg-(--color-brand) px-2 py-0.5 text-caption font-bold text-black">
-                  {count} {locale === "ar" ? "منتج" : count === 1 ? "item" : "items"}
+                <span className="rounded-full bg-(--color-brand) px-2 py-0.5 text-caption font-bold text-(--color-ink)">
+                  {isRetail ? tc("items", { count }) : tt("units", { count })}
                 </span>
               </button>
             )}

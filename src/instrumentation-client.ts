@@ -94,7 +94,9 @@ function bootstrapGtag(): boolean {
   return true;
 }
 
-function track(key: ConversionKey, params: Record<string, string>) {
+type TrackParams = Record<string, string | number>;
+
+function track(key: ConversionKey, params: TrackParams) {
   const gtag = (window as WindowWithGtag).gtag;
   if (typeof gtag !== "function") return; // tag gated off; nothing to report to
 
@@ -103,7 +105,36 @@ function track(key: ConversionKey, params: Record<string, string>) {
   gtag("event", CONVERSION_EVENT_NAMES[key], params);
 
   const target = sendTo(key);
-  if (target) gtag("event", "conversion", { send_to: target, ...params });
+  if (target) {
+    // A cart's order reference doubles as the Ads transaction_id, so a
+    // shopper who taps "Send" twice for the same order is counted once.
+    const orderRef = params.order_ref;
+    gtag("event", "conversion", {
+      send_to: target,
+      ...params,
+      ...(typeof orderRef === "string" ? { transaction_id: orderRef } : {}),
+    });
+  }
+}
+
+/**
+ * Cart hand-offs describe the order on data-* attributes: the priced subtotal
+ * as the conversion value (so Ads can learn basket size), the unit count, the
+ * order reference and where the send happened (cart page vs quote tray).
+ */
+function orderParams(anchor: HTMLAnchorElement): TrackParams {
+  const d = anchor.dataset;
+  const out: TrackParams = {};
+  const value = Number(d.conversionValue);
+  if (d.conversionValue && Number.isFinite(value)) {
+    out.value = value;
+    out.currency = d.conversionCurrency || "QAR";
+  }
+  const items = Number(d.itemCount);
+  if (d.itemCount && Number.isFinite(items)) out.item_count = items;
+  if (d.orderRef) out.order_ref = d.orderRef;
+  if (d.placement) out.placement = d.placement;
+  return out;
 }
 
 /**
@@ -137,9 +168,10 @@ function onClick(event: MouseEvent) {
   const key = classify(href);
   if (!key) return;
 
-  const params: Record<string, string> = {
+  const params: TrackParams = {
     link_url: href.slice(0, 500),
     page_path: window.location.pathname,
+    ...orderParams(anchor),
   };
 
   const audience = plausibleProp(anchor, "audience");

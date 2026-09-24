@@ -39,10 +39,12 @@ export function AudienceSwitch({
   const switchTo = (next: Audience) => {
     if (next === current) return;
     // Map equivalent path in the other audience where possible.
-    // Deep paths swap prefixes (/b2c/products <-> /b2b/products); otherwise
-    // go to the other audience's home. B2C home lives at the locale root.
+    // Only the catalogue exists under both audiences, so product paths swap
+    // prefixes (/b2c/products <-> /b2b/products); pages with no twin (the
+    // retail cart, the blog, the dealer form) go to the other audience's
+    // home instead of a 404. B2C home lives at the locale root.
     let target = next === "b2c" ? "/" : `/${next}`;
-    if (pathname.startsWith(`/${current}/`)) {
+    if (pathname.startsWith(`/${current}/products`)) {
       target = pathname.replace(`/${current}/`, `/${next}/`);
     }
     writeAudienceCookie(next);

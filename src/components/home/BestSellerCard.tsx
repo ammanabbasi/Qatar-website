@@ -2,10 +2,14 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/Container";
 import { ChevronIcon } from "@/components/ui/Icons";
+import { WhatsAppIcon } from "@/components/cta/WhatsAppIcon";
+import { AddToCartButton } from "@/components/cart/AddToCartButton";
 import { buildWhatsAppUrl, type Audience, type WALocale } from "@/lib/whatsapp";
+import { SITE } from "@/lib/constants";
 import type { Product } from "@/data/products";
 
 type Props = {
@@ -15,6 +19,7 @@ type Props = {
 };
 
 export function BestSellerCard({ products, audience, locale }: Props) {
+  const t = useTranslations();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   if (!products || products.length === 0) return null;
@@ -23,7 +28,6 @@ export function BestSellerCard({ products, audience, locale }: Props) {
   const l = locale === "ar" ? "ar" : "en";
   const name = current.name[l];
   const desc = current.shortDesc[l];
-  const isAr = locale === "ar";
 
   const prev = () => {
     setCurrentIndex((prevIdx) =>
@@ -42,7 +46,7 @@ export function BestSellerCard({ products, audience, locale }: Props) {
     locale,
     productName: name,
     productPrice: current.price ? current.price[l] : undefined,
-    productUrl: `https://abktradingservice.com/${locale}/${audience}/products/${current.slug}`,
+    productUrl: `${SITE.url}/${locale}/${audience}/products/${current.slug}`,
   });
 
   return (
@@ -54,7 +58,7 @@ export function BestSellerCard({ products, audience, locale }: Props) {
             <div className="order-2 flex flex-col justify-center md:order-1 md:col-span-7">
               <div className="flex items-center gap-3">
                 <span className="inline-block text-caption font-bold uppercase tracking-[0.2em] text-(--color-brand-deep)">
-                  {isAr ? "الأكثر مبيعاً" : "BEST-SELLER"}
+                  {t("Home.bestSeller")}
                 </span>
                 {current.price && (
                   <span className="inline-block rounded-full bg-(--color-brand)/12 px-3 py-0.5 text-caption font-bold text-(--color-brand-deep)">
@@ -71,30 +75,30 @@ export function BestSellerCard({ products, audience, locale }: Props) {
                 {desc}
               </p>
 
-              <div className="mt-6 flex flex-wrap items-center gap-4">
+              {!current.price ? (
+                <p className="mt-2 text-footnote font-medium text-(--color-text-muted)">
+                  {t("Cart.priceOnRequest")}
+                </p>
+              ) : null}
+
+              {/* Cart first; ordering just this one on WhatsApp stays one tap away. */}
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
+                <AddToCartButton key={current.slug} slug={current.slug} variant="primary" />
                 <a
                   href={waHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-bold text-(--color-brand-deep) hover:underline text-body"
+                  className={`plausible-event-name=whatsapp_click plausible-event-audience=${audience} plausible-event-product=${current.slug} inline-flex min-h-11 items-center gap-2 text-footnote font-semibold text-(--color-link) underline-offset-2 hover:underline`}
                 >
-                  <span>
-                    {isAr
-                      ? current.price
-                        ? "اطلب الآن عبر واتساب"
-                        : "استفسر الآن"
-                      : current.price
-                        ? "Order on WhatsApp"
-                        : "Inquire now"}
-                  </span>
-                  <ChevronIcon className="h-4 w-4 rtl:-scale-x-100" />
+                  <WhatsAppIcon className="h-4 w-4" />
+                  <span>{current.price ? t("Cta.orderWhatsApp") : t("Cta.inquireWhatsApp")}</span>
                 </a>
-
                 <Link
                   href={`/${audience}/products/${current.slug}`}
-                  className="text-caption font-medium text-(--color-text-subtle) hover:text-(--color-text)"
+                  className="inline-flex min-h-11 items-center gap-1 text-footnote font-medium text-(--color-text-muted) hover:text-(--color-text)"
                 >
-                  {isAr ? "عرض التفاصيل" : "View specs"}
+                  {t("Products.viewDetails")}
+                  <ChevronIcon className="h-3 w-3 rtl:-scale-x-100" />
                 </Link>
               </div>
             </div>
@@ -118,7 +122,7 @@ export function BestSellerCard({ products, audience, locale }: Props) {
             <button
               type="button"
               onClick={prev}
-              aria-label={isAr ? "السابق" : "Previous"}
+              aria-label={t("Home.bestSellerPrev")}
               className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-(--color-text) shadow-sm border border-black/10 hover:bg-(--color-fill) transition-colors cursor-pointer"
             >
               <ChevronIcon className="h-4 w-4 rotate-180 rtl:rotate-0" />
@@ -131,7 +135,7 @@ export function BestSellerCard({ products, audience, locale }: Props) {
             <button
               type="button"
               onClick={next}
-              aria-label={isAr ? "التالي" : "Next"}
+              aria-label={t("Home.bestSellerNext")}
               className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-(--color-text) shadow-sm border border-black/10 hover:bg-(--color-fill) transition-colors cursor-pointer"
             >
               <ChevronIcon className="h-4 w-4 rtl:rotate-180" />

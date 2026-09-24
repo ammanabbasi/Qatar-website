@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ChevronIcon } from "@/components/ui/Icons";
+import { AddToCartButton } from "@/components/cart/AddToCartButton";
 import type { Product } from "@/data/products";
 import type { Audience } from "@/lib/whatsapp";
 
@@ -17,16 +18,17 @@ type Props = {
  * Large shelf tile — the Apple "iPhone 17 Pro" tile on a light ground. Copy
  * sits at the top; the white-background packshot fills the lower four-fifths
  * and merges into the white tile, so there is no visible photo edge.
+ *
+ * A full-tile overlay link makes the whole tile clickable while the retail
+ * "Add to cart" button sits above it (never inside a link).
  */
 export function ProductTile({ product, locale, audience, eager = false }: Props) {
   const t = useTranslations();
   const name = product.name[locale];
+  const isB2c = audience === "b2c";
 
   return (
-    <Link
-      href={`/${audience}/products/${product.slug}`}
-      className="tile group relative block aspect-[4/5] w-[300px] overflow-hidden transition-shadow duration-300 ease-soft hover:shadow-tile-hover sm:w-[340px] lg:w-[405px]"
-    >
+    <div className="tile group relative block aspect-[4/5] w-[300px] overflow-hidden transition-shadow duration-300 ease-soft hover:shadow-tile-hover sm:w-[340px] lg:w-[405px]">
       <div className="tile-fade-top absolute inset-x-0 bottom-0 aspect-square overflow-hidden">
         <Image
           src={product.images[0]}
@@ -49,19 +51,35 @@ export function ProductTile({ product, locale, audience, eager = false }: Props)
         <h3 className="mt-1.5 text-title-sm font-semibold text-balance text-(--color-text) lg:text-title">
           {name}
         </h3>
-        {product.price && (
+        {product.price ? (
           <p className="mt-1 text-footnote font-bold text-(--color-brand-deep)">
             {product.price[locale]}
           </p>
-        )}
+        ) : isB2c ? (
+          <p className="mt-1 text-footnote font-medium text-(--color-text-muted)">
+            {t("Cart.priceOnRequest")}
+          </p>
+        ) : null}
         <p className="mt-2 line-clamp-2 text-footnote text-(--color-text-muted)">
           {product.shortDesc[locale]}
         </p>
-        <span className="mt-3 inline-flex items-center gap-1 text-footnote font-medium text-(--color-text)">
-          {t("Cta.inquire")}
-          <ChevronIcon className="h-[0.6em] w-[0.6em] rtl:-scale-x-100" />
-        </span>
+        {isB2c ? null : (
+          <span className="mt-3 inline-flex items-center gap-1 text-footnote font-medium text-(--color-text)">
+            {t("Cta.inquire")}
+            <ChevronIcon className="h-[0.6em] w-[0.6em] rtl:-scale-x-100" />
+          </span>
+        )}
       </div>
-    </Link>
+      <Link
+        href={`/${audience}/products/${product.slug}`}
+        aria-label={name}
+        className="absolute inset-0 z-[1] rounded-[inherit] focus-visible:-outline-offset-4"
+      />
+      {isB2c ? (
+        <div className="absolute bottom-5 start-6 z-[2] lg:bottom-6 lg:start-7">
+          <AddToCartButton slug={product.slug} variant="compact" className="shadow-tile" />
+        </div>
+      ) : null}
+    </div>
   );
 }

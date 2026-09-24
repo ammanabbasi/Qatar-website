@@ -3,6 +3,14 @@
  * Phone number is the user-supplied ABK WhatsApp line: +974 30838355
  */
 
+import {
+  DELIVERY,
+  formatNumber,
+  formatQar,
+  quoteDelivery,
+  type Fulfilment,
+} from "./pricing";
+
 export const WHATSAPP_PHONE = "97430838355"; // no + or spaces per wa.me spec
 export const CONTACT_EMAIL = "sales@abktradingservice.com";
 
@@ -19,24 +27,36 @@ export type WAContext = {
   notes?: string;
 };
 
-export type TrayItem = {
-  slug: string;
+/** One line of the wholesale quote tray. */
+export type QuoteTrayItem = {
   name: string;
-  brand: string;
-  category?: string;
-  price?: string;
-  priceQar?: number;
   quantity: number;
-  audience: Audience;
   url: string;
-  image?: string;
 };
 
-export type TrayContext = {
-  items: TrayItem[];
-  audience: Audience;
+export type QuoteTrayContext = {
+  items: QuoteTrayItem[];
   locale: WALocale;
   companyName?: string;
+  notes?: string;
+};
+
+/** One line of the retail cart order. `unitPriceQar` is absent for price-on-request products. */
+export type CartMessageLine = {
+  name: string;
+  qty: number;
+  unitPriceQar?: number;
+  /** Multi-size product priced "From QAR …" — staff confirm the size. */
+  priceIsFrom?: boolean;
+};
+
+export type CartMessageContext = {
+  locale: WALocale;
+  orderRef: string;
+  lines: CartMessageLine[];
+  fulfilment: Fulfilment;
+  /** Localized area name (or the shopper's own text for "Other"). Delivery only. */
+  areaLabel?: string;
   notes?: string;
 };
 
@@ -111,42 +131,143 @@ export function buildWhatsAppUrl(ctx: WAContext): string {
   return `https://wa.me/${WHATSAPP_PHONE}?text=${encode(text)}`;
 }
 
-export function buildTrayWhatsAppMessage({
+/**
+ * Retail cart order. Deliberately link-free: product URLs made up most of the
+ * old tray message (a 12-item Arabic cart was a 5,791-char wa.me link, since
+ * each Arabic letter percent-encodes to 6 characters) and staff know the
+ * products by name. Totals count priced lines only and say so.
+ */
+export function buildCartWhatsAppMessage({
+  locale,
+  orderRef,
+  lines,
+  fulfilment,
+  areaLabel,
+  notes,
+}: CartMessageContext): string {
+  const ar = locale === "ar";
+  let pricedSubtotal = 0;
+  let pricedLines = 0;
+  let fromPricedLines = 0;
+  let unpricedLines = 0;
+  for (const l of lines) {
+    if (l.unitPriceQar !== undefined) {
+      pricedSubtotal += l.unitPriceQar * l.qty;
+      pricedLines += 1;
+      if (l.priceIsFrom) fromPricedLines += 1;
+    } else {
+      unpricedLines += 1;
+    }
+  }
+  const quote = quoteDelivery(
+    { pricedSubtotal, pricedLines, fromPricedLines, unpricedLines, units: 0 },
+    fulfilment,
+  );
+  const qar = (n: number) => formatQar(n, locale);
+  const num = (n: number) => formatNumber(n, locale);
+  const threshold = qar(DELIVERY.freeThresholdQar);
+
+  // Arabic lines that open with a digit or a Latin brand name would otherwise
+  // be laid out left-to-right by WhatsApp; a leading RLM keeps them RTL.
+  const rlm = ar ? "‏" : "";
+  const items = lines.map((l, i) => {
+    const price =
+      l.unitPriceQar !== undefined
+        ? `${l.priceIsFrom ? (ar ? "من " : "from ") : ""}${qar(l.unitPriceQar * l.qty)}`
+        : ar
+          ? "السعر عند الطلب"
+          : "price on request";
+    return `${rlm}${num(i + 1)}. ${l.name} × ${num(l.qty)} — ${price}`;
+  });
+
+  const summary: string[] = [];
+  if (pricedLines > 0) {
+    summary.push(
+      ar
+        ? `المجموع الفرعي للمنتجات المسعّرة (${num(pricedLines)}): ${qar(pricedSubtotal)}`
+        : `Subtotal (${pricedLines} priced item${pricedLines === 1 ? "" : "s"}): ${qar(pricedSubtotal)}`,
+    );
+  }
+  if (unpricedLines > 0) {
+    summary.push(
+      ar
+        ? `منتجات بانتظار التسعير من فريقكم: ${num(unpricedLines)}`
+        : `${unpricedLines} item${unpricedLines === 1 ? "" : "s"} to be priced by your team`,
+    );
+  }
+
+  const area = areaLabel?.trim() || "—";
+  switch (quote.kind) {
+    case "pickup":
+      summary.push(ar ? "الاستلام: من معرض مسيمير" : "Pickup: Mesaimeer showroom");
+      break;
+    case "free":
+      summary.push(
+        ar
+          ? `التوصيل إلى: ${area} — مجاني (طلب بقيمة ${threshold} فأكثر)`
+          : `Delivery to: ${area} — free (order of ${threshold} or more)`,
+      );
+      break;
+    case "fee":
+      summary.push(
+        ar
+          ? `التوصيل إلى: ${area} — ${qar(quote.feeQar)} (مجاني للطلبات بقيمة ${threshold} فأكثر)`
+          : `Delivery to: ${area} — ${qar(quote.feeQar)} (free on orders of ${threshold} or more)`,
+      );
+      break;
+    case "provisional":
+      summary.push(
+        ar
+          ? `التوصيل إلى: ${area} — ${qar(quote.feeQar)}، أو مجاني إذا بلغ الطلب ${threshold} بعد التسعير`
+          : `Delivery to: ${area} — ${qar(quote.feeQar)}, or free if the order reaches ${threshold} once priced`,
+      );
+      break;
+  }
+
+  // A firm total only exists when nothing is waiting to be priced or sized.
+  if (unpricedLines === 0 && fromPricedLines === 0 && pricedLines > 0) {
+    const fee = quote.kind === "fee" ? quote.feeQar : 0;
+    summary.push(
+      ar
+        ? `الإجمالي: ${qar(pricedSubtotal + fee)}${fee > 0 ? " شامل التوصيل" : ""}`
+        : `Total: ${qar(pricedSubtotal + fee)}${fee > 0 ? " incl. delivery" : ""}`,
+    );
+  }
+
+  const trimmedNotes = notes?.trim();
+  if (trimmedNotes) summary.push(ar ? `ملاحظات: ${trimmedNotes}` : `Notes: ${trimmedNotes}`);
+
+  const closing =
+    fulfilment === "pickup"
+      ? ar
+        ? "يرجى تأكيد التوفر والمجموع وموعد الاستلام. شكراً لكم!"
+        : "Please confirm availability, the total and when I can collect. Thank you!"
+      : ar
+        ? "يرجى تأكيد التوفر والمجموع وموعد التوصيل. شكراً لكم!"
+        : "Please confirm availability, the total and the delivery time. Thank you!";
+
+  const header = ar
+    ? `السلام عليكم ABK، أود تقديم طلب.\nرقم الطلب: ${orderRef}`
+    : `Hi ABK, I'd like to place an order.\nOrder ref: ${orderRef}`;
+
+  return [header, items.join("\n"), summary.join("\n"), closing].join("\n\n");
+}
+
+export function buildCartWhatsAppUrl(ctx: CartMessageContext): string {
+  return `https://wa.me/${WHATSAPP_PHONE}?text=${encode(buildCartWhatsAppMessage(ctx))}`;
+}
+
+/** Wholesale quote tray — message text unchanged from the original tray. */
+export function buildQuoteTrayWhatsAppMessage({
   items,
-  audience,
   locale,
   companyName,
   notes,
-}: TrayContext): string {
+}: QuoteTrayContext): string {
   if (items.length === 0) {
-    return buildWhatsAppMessage({ audience, locale });
+    return buildWhatsAppMessage({ audience: "b2b", locale });
   }
 
-  if (audience === "b2c") {
-    if (locale === "ar") {
-      const list = items
-        .map(
-          (item, idx) =>
-            `${idx + 1}. ${item.name} × ${item.quantity}${item.price ? ` (${item.price})` : ""}\n   الرابط: ${item.url}`,
-        )
-        .join("\n");
-      return `السلام عليكم ABK،\nأود تأكيد طلب السلة الموحد للمنتجات التالية:\n\n${list}\n\nإجمالي العناصر: ${items.reduce((s, i) => s + i.quantity, 0)}${
-        notes ? `\nملاحظات التوصيل/الاستلام: ${notes}` : ""
-      }\nيرجى تأكيد التوفر في متجر مسيمير والتكلفة الإجمالية وطريقة الدفع عند الاستلام/التوصيل. شكراً لك!`;
-    }
-
-    const list = items
-      .map(
-        (item, idx) =>
-          `${idx + 1}. ${item.name} × ${item.quantity}${item.price ? ` (${item.price})` : ""}\n   Link: ${item.url}`,
-      )
-      .join("\n");
-    return `Hi ABK,\nI'd like to place an order for the following items:\n\n${list}\n\nTotal Items: ${items.reduce((s, i) => s + i.quantity, 0)}${
-      notes ? `\nPickup/Delivery notes: ${notes}` : ""
-    }\nPlease confirm availability at your Mesaimeer store, order total, and delivery schedule. Thank you!`;
-  }
-
-  // B2B Wholesale Tray
   if (locale === "ar") {
     const list = items
       .map(
@@ -174,8 +295,8 @@ export function buildTrayWhatsAppMessage({
   }\nPlease provide tiered wholesale trade pricing and dispatch timeframe from your Doha warehouse. Thank you!`;
 }
 
-export function buildTrayWhatsAppUrl(ctx: TrayContext): string {
-  const text = buildTrayWhatsAppMessage(ctx);
+export function buildQuoteTrayWhatsAppUrl(ctx: QuoteTrayContext): string {
+  const text = buildQuoteTrayWhatsAppMessage(ctx);
   return `https://wa.me/${WHATSAPP_PHONE}?text=${encode(text)}`;
 }
 
