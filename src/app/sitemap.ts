@@ -11,7 +11,9 @@ import { routing } from "@/i18n/routing";
 // 2026-08-22: storefront redesign rewrote every static page's copy + layout.
 // 2026-09-03: updated telephone landline, refreshed packshots, catalog updates.
 // 2026-09-22: B2C/B2B funnels redesign, WhatsApp order tray, dealer onboarding upgrade.
-const STATIC_PAGES_UPDATED_AT = "2026-09-22";
+// 2026-09-24: shop-first homepage order, catalogue search/sort, retail cart
+//             (the /b2c/cart checkout page is noindex and deliberately absent).
+const STATIC_PAGES_UPDATED_AT = "2026-09-24";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE.url;

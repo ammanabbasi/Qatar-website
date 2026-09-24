@@ -16,6 +16,8 @@ import type { Audience } from "@/lib/whatsapp";
 type Props = {
   currentAudience: Audience;
   locale: "en" | "ar";
+  /** Directly under a hero the cards tuck up into it; elsewhere they sit in normal flow. */
+  overlapHero?: boolean;
 };
 
 function writeAudienceCookie(value: Audience) {
@@ -23,7 +25,7 @@ function writeAudienceCookie(value: Audience) {
   document.cookie = `abk_audience=${value}; path=/; max-age=${60 * 60 * 24 * 180}; SameSite=Lax`;
 }
 
-export function AudienceGateway({ currentAudience, locale }: Props) {
+export function AudienceGateway({ currentAudience, overlapHero = true }: Props) {
   const t = useTranslations("Gateway");
   const router = useRouter();
 
@@ -38,7 +40,7 @@ export function AudienceGateway({ currentAudience, locale }: Props) {
   return (
     <section
       id="experience-gateway"
-      className="relative z-10 -mt-3 sm:-mt-6 pb-10 sm:pb-14"
+      className={`relative z-10 pb-10 sm:pb-14 ${overlapHero ? "-mt-3 sm:-mt-6" : "pt-10 sm:pt-14"}`}
     >
       <Container>
         {/* Section Heading */}
@@ -74,7 +76,7 @@ export function AudienceGateway({ currentAudience, locale }: Props) {
                 {isB2cActive && (
                   <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-(--color-brand-deep)">
                     <span className="h-1.5 w-1.5 rounded-full bg-(--color-brand)" />
-                    {locale === "ar" ? "الوضع النشط حالياً" : "Active Mode"}
+                    {t("activeMode")}
                   </span>
                 )}
               </div>
@@ -130,14 +132,14 @@ export function AudienceGateway({ currentAudience, locale }: Props) {
             <div>
               {/* Header pill & Status */}
               <div className="flex items-center justify-between gap-2">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-900/8 dark:bg-white/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-(--color-text)">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-slate-900/8 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-(--color-text)">
                   <BoxIcon className="h-3.5 w-3.5 text-(--color-brand-deep)" />
                   <span>{t("wholesaleBadge")}</span>
                 </span>
                 {isB2bActive && (
                   <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-(--color-brand-deep)">
                     <span className="h-1.5 w-1.5 rounded-full bg-(--color-brand)" />
-                    {locale === "ar" ? "الوضع النشط حالياً" : "Active Mode"}
+                    {t("activeMode")}
                   </span>
                 )}
               </div>

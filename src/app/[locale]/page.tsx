@@ -48,14 +48,20 @@ export default async function Home({
     <Shell audience="b2c" locale={l}>
       <JsonLd id="ld-localbusiness-b2c" data={jsonLd} />
       <HomeHero audience="b2c" locale={l} />
-      <AudienceGateway currentAudience="b2c" locale={l} />
-      <BestSellerCard products={bestSellers} audience="b2c" locale={l} />
+      {/* Shop-first: categories and the add-to-cart shelf come straight after
+          the hero. The trust and climate sections below carry the page's SEO
+          copy, so they moved down rather than out. The Retail/Wholesale
+          chooser closes the page — the header switch covers it up top. */}
+      <div className="pt-4 lg:pt-6">
+        <CategoryShelf audience="b2c" />
+      </div>
+      <StarProducts audience="b2c" locale={l} />
       <WhyQatar />
+      <BestSellerCard products={bestSellers} audience="b2c" locale={l} />
       <TrustBadges />
       <AboutSnippet />
       <StoreHeader audience="b2c" locale={l} />
-      <CategoryShelf audience="b2c" />
-      <StarProducts audience="b2c" locale={l} />
+      <AudienceGateway currentAudience="b2c" locale={l} overlapHero={false} />
     </Shell>
   );
 }
