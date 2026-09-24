@@ -23,8 +23,8 @@ export function AudienceCrossBanner({ audience }: { audience: Audience }) {
         <span
           className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${
             isB2C
-              ? "bg-amber-500/10 text-amber-600 dark:bg-amber-400/10 dark:text-amber-400"
-              : "bg-blue-500/10 text-blue-600 dark:bg-blue-400/10 dark:text-blue-400"
+              ? "bg-amber-500/10 text-amber-600"
+              : "bg-blue-500/10 text-blue-600"
           }`}
         >
           {isB2C ? (
@@ -48,7 +48,7 @@ export function AudienceCrossBanner({ audience }: { audience: Audience }) {
       <Link
         href={crossHref}
         onClick={() => writeAudienceCookie(isB2C ? "b2b" : "b2c")}
-        className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-full bg-(--color-fill) px-4 py-2 text-footnote font-semibold text-(--color-text) transition-colors hover:bg-(--color-fill-secondary) self-start sm:self-auto"
+        className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-full bg-(--color-fill) px-4 py-2 text-footnote font-semibold text-(--color-text) transition-colors hover:bg-(--color-fill-hover) self-start sm:self-auto"
       >
         <span>{crossAction}</span>
         <ChevronIcon className="h-3.5 w-3.5 rtl:rotate-180" />
