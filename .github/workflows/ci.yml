@@ -24,9 +24,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          # 22.18+ is the floor: scripts/generate-og.mjs imports products.ts
-          # directly via native TypeScript type stripping.
-          node-version: 22
+          # 24 = the Node/npm 11 that writes package-lock.json. npm 10 (Node 22)
+          # rejects that lock in `npm ci` (it wants next-intl's optional
+          # @swc/helpers peer pinned). 22.18+ would otherwise be the floor:
+          # scripts/generate-og.mjs imports products.ts via type stripping.
+          node-version: 24
           cache: npm
 
       - name: Install
