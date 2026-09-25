@@ -273,6 +273,38 @@ export function setLineQty(audience: Audience, slug: string, qty: number) {
   );
 }
 
+/**
+ * Switches a line's variant from one slug to another.
+ * If the target slug is already in the cart, merges the quantities.
+ */
+export function switchLineVariant(
+  audience: Audience,
+  oldSlug: string,
+  newSlug: string,
+) {
+  if (oldSlug === newSlug) return;
+  const { lines } = getCart(audience);
+  const oldIndex = lines.findIndex((l) => l.slug === oldSlug);
+  if (oldIndex < 0) return;
+
+  const currentQty = lines[oldIndex].qty;
+  const existingNewIndex = lines.findIndex((l) => l.slug === newSlug);
+
+  let updatedLines: CartLine[];
+  if (existingNewIndex >= 0) {
+    // Merge into existing line and remove old line
+    const combinedQty = clampQty(lines[existingNewIndex].qty + currentQty, audience);
+    updatedLines = lines
+      .filter((l) => l.slug !== oldSlug)
+      .map((l) => (l.slug === newSlug ? { slug: newSlug, qty: combinedQty } : l));
+  } else {
+    // Replace old slug in-place with new slug, preserving order and qty
+    updatedLines = lines.map((l) => (l.slug === oldSlug ? { slug: newSlug, qty: currentQty } : l));
+  }
+
+  editLines(audience, updatedLines);
+}
+
 export type RemovedLine = { line: CartLine; index: number; ref: string | null };
 
 /** Removes a line and returns what Undo needs to put it back. */

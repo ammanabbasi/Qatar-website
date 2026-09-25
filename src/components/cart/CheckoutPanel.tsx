@@ -10,6 +10,7 @@ import {
   AREA_OTHER_MAX,
   NOTES_MAX,
   markCartSent,
+  switchLineVariant,
   updateCheckoutDetails,
   type CheckoutDetails,
 } from "@/lib/cart";
@@ -95,7 +96,9 @@ export function CheckoutPanel({
     locale,
     orderRef,
     lines: lines.map((l) => ({
-      name: l.product.name[locale],
+      name: l.product.variantSize
+        ? `${l.product.name[locale]} (${l.product.variantSize[locale]})`
+        : l.product.name[locale],
       qty: l.qty,
       unitPriceQar: l.product.priceQar,
       priceIsFrom: isFromPrice(l.product),
@@ -164,6 +167,66 @@ export function CheckoutPanel({
         <h2 id="checkout-summary" className="text-title-sm font-semibold text-(--color-text)">
           {t("summaryTitle")}
         </h2>
+
+        {/* Items in order with quick size selection */}
+        {lines.length > 0 && (
+          <div className="flex flex-col divide-y divide-(--color-border-soft) rounded-2xl border border-(--color-border-soft) bg-(--color-fill)/25 px-3.5 py-1">
+            {lines.map((l) => {
+              const hasVariants = Boolean(l.product.variants && l.product.variants.length > 1);
+              return (
+                <div key={l.slug} className="flex flex-col gap-1.5 py-2.5 text-caption">
+                  <div className="flex items-start justify-between gap-2">
+                    <span className="font-semibold text-(--color-text) line-clamp-1">
+                      {l.product.name[locale]}
+                      <span className="font-normal text-(--color-text-muted)"> × {l.qty}</span>
+                    </span>
+                    <span className="shrink-0 font-bold tabular-nums text-(--color-text)">
+                      {l.product.priceQar !== undefined
+                        ? formatQar(l.product.priceQar * l.qty, locale)
+                        : t("priceOnRequest")}
+                    </span>
+                  </div>
+                  {hasVariants && (
+                    <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+                      <span className="text-[11px] font-medium text-(--color-text-muted)">
+                        {t("size")}:
+                      </span>
+                      <div
+                        role="radiogroup"
+                        aria-label={t("selectSize")}
+                        className="inline-flex rounded-lg bg-(--color-surface) p-0.5 shadow-2xs border border-(--color-border-soft)"
+                      >
+                        {l.product.variants!.map((v) => {
+                          const isCurrent =
+                            v.slug === l.slug ||
+                            (l.slug === (l.product.parentSlug ?? l.product.slug) && v.slug === l.product.slug);
+                          return (
+                            <button
+                              key={v.id}
+                              type="button"
+                              role="radio"
+                              aria-checked={isCurrent}
+                              onClick={() => {
+                                if (!isCurrent) switchLineVariant("b2c", l.slug, v.slug);
+                              }}
+                              className={`rounded px-1.5 py-0.5 text-[11px] font-bold transition-all cursor-pointer ${
+                                isCurrent
+                                  ? "bg-(--color-brand) text-black shadow-2xs ring-1 ring-black/10"
+                                  : "text-(--color-text-muted) hover:text-(--color-text) hover:bg-black/5"
+                              }`}
+                            >
+                              {v.size[locale]} ({v.price[locale]})
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
 
         <div className="flex flex-col gap-2.5 text-footnote">
           {totals.pricedLines > 0 ? (

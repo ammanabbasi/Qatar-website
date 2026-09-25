@@ -39,6 +39,14 @@ export type AudienceScope = "b2c" | "b2b" | "both";
 
 export type LocalizedText = { en: string; ar: string };
 
+export type ProductVariant = {
+  id: string;
+  size: LocalizedText;
+  priceQar: number;
+  price: LocalizedText;
+  slug: string;
+};
+
 export type Product = {
   slug: string;
   brand: BrandKey;
@@ -53,6 +61,7 @@ export type Product = {
   audience: AudienceScope;
   featured?: boolean; // star products
   highlight?: "briller-color" | "vertek-premium"; // special visual treatment hints
+  variants?: ProductVariant[];
   // ISO date (YYYY-MM-DD). Bump when product copy/images change so the sitemap
   // signals a real update to crawlers. Sites that lie with `lastmod=now` on
   // every URL get demoted by Google's freshness heuristic.
@@ -1379,9 +1388,25 @@ export const PRODUCTS: Product[] = [
     ],
     price: { en: "From QAR 50", ar: "من ٥٠ ر.ق" },
     priceQar: 50,
+    variants: [
+      {
+        id: "60ml",
+        slug: "abk-rejuvenate-plastic-restorer",
+        size: { en: "60 ml", ar: "٦٠ مل" },
+        priceQar: 50,
+        price: { en: "QAR 50", ar: "٥٠ ر.ق" },
+      },
+      {
+        id: "250ml",
+        slug: "abk-rejuvenate-plastic-restorer-250ml",
+        size: { en: "250 ml", ar: "٢٥٠ مل" },
+        priceQar: 150,
+        price: { en: "QAR 150", ar: "١٥٠ ر.ق" },
+      },
+    ],
     audience: "both",
     featured: true,
-    updatedAt: "2026-09-21",
+    updatedAt: "2026-09-25",
   },
   {
     slug: "abk-mashmom-home-fragrance",
@@ -1846,7 +1871,9 @@ export const CATEGORIES: CategoryKey[] = [
 ];
 
 export function getProductBySlug(slug: string): Product | undefined {
-  return PRODUCTS.find((p) => p.slug === slug);
+  return PRODUCTS.find(
+    (p) => p.slug === slug || p.variants?.some((v) => v.slug === slug),
+  );
 }
 
 export function getRelatedProducts(

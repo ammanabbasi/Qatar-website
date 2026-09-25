@@ -24,12 +24,17 @@ export function suggestAddOns(
   fallbackSlugs: readonly string[] = [],
   limit = 4,
 ): AddOnSuggestion[] {
-  const inCart = new Set(lines.map((l) => l.slug));
+  const inCart = new Set(
+    lines.flatMap((l) => (l.product.parentSlug ? [l.slug, l.product.parentSlug] : [l.slug])),
+  );
   const ordered: string[] = [];
   const push = (slug: string) => {
     if (!inCart.has(slug) && !ordered.includes(slug)) ordered.push(slug);
   };
-  for (const l of lines) ADD_ONS_BY_SLUG[l.slug]?.forEach(push);
+  for (const l of lines) {
+    const slug = l.product.parentSlug ?? l.slug;
+    ADD_ONS_BY_SLUG[slug]?.forEach(push);
+  }
   for (const l of lines) ADD_ONS_BY_CATEGORY[l.product.category]?.forEach(push);
   fallbackSlugs.forEach(push);
 

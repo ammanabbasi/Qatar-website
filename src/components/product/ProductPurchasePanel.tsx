@@ -81,6 +81,43 @@ export function ProductPurchasePanel({
   const name = product.name[locale];
   const priceDisplay = product.price ? product.price[locale] : undefined;
 
+  const variants = product.variants;
+  const hasVariants = Boolean(variants && variants.length > 0);
+  const [selectedVariantId, setSelectedVariantId] = useState<string>(
+    hasVariants ? variants![0].id : "",
+  );
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const sizeParam = params.get("size")?.toLowerCase();
+    if (!sizeParam || !product.variants) return;
+    const match = product.variants.find(
+      (v) =>
+        v.id.toLowerCase() === sizeParam ||
+        v.size.en.toLowerCase().replace(/\s+/g, "") === sizeParam.replace(/\s+/g, ""),
+    );
+    if (match) {
+      window.requestAnimationFrame(() => setSelectedVariantId(match.id));
+    }
+  }, [product.variants]);
+
+  const selectedVariant = hasVariants
+    ? variants!.find((v) => v.id === selectedVariantId) ?? variants![0]
+    : undefined;
+
+  const currentSlug = selectedVariant?.slug ?? product.slug;
+  const currentPriceDisplay = selectedVariant
+    ? selectedVariant.price[locale]
+    : priceDisplay;
+  const currentName = selectedVariant
+    ? `${product.name[locale]} (${selectedVariant.size[locale]})`
+    : name;
+
+  const handleSelectVariant = (variantId: string) => {
+    setSelectedVariantId(variantId);
+    setJustAdded(false);
+  };
+
   const changeQuantity = (next: number) => {
     setQuantity(next);
     setJustAdded(false);
@@ -93,18 +130,18 @@ export function ProductPurchasePanel({
       openDrawer();
       return;
     }
-    if (add(product.slug, quantity)) setJustAdded(true);
+    if (add(currentSlug, quantity)) setJustAdded(true);
   };
 
   const whatsappUrl = buildWhatsAppUrl({
     audience,
     locale,
-    productName: name,
-    productPrice: priceDisplay,
-    productUrl,
+    productName: currentName,
+    productPrice: currentPriceDisplay,
+    productUrl: `${productUrl}${selectedVariant ? `?size=${selectedVariant.id}` : ""}`,
     quantity,
   });
-  const whatsappTag = `plausible-event-name=whatsapp_click plausible-event-audience=${audience} plausible-event-product=${product.slug}`;
+  const whatsappTag = `plausible-event-name=whatsapp_click plausible-event-audience=${audience} plausible-event-product=${currentSlug}`;
 
   const diyTip = getDiyTip(product.category, locale);
 
@@ -122,13 +159,13 @@ export function ProductPurchasePanel({
       {/* ── B2C RETAIL PURCHASE PANEL ── */}
       {!isB2b && (
         <>
-          {product.price ? (
+          {currentPriceDisplay ? (
             <div className="flex items-baseline justify-between border-b border-(--color-border-soft) pb-4">
               <span className="text-caption font-bold uppercase tracking-wider text-(--color-text-muted)">
                 {t("retailOfficialPrice")}
               </span>
               <span className="text-title font-bold text-(--color-brand-deep) sm:text-display">
-                {priceDisplay}
+                {currentPriceDisplay}
               </span>
             </div>
           ) : (
@@ -169,13 +206,13 @@ export function ProductPurchasePanel({
       {isB2b && (
         <>
           {/* MSRP / Retail Reference if price exists */}
-          {product.price && (
+          {currentPriceDisplay && (
             <div className="flex items-baseline justify-between border-b border-(--color-border-soft) pb-3">
               <span className="text-caption font-bold uppercase tracking-wider text-(--color-text-muted)">
                 {t("wholesaleMsrp")}
               </span>
               <span className="text-callout font-semibold text-(--color-text-muted) line-through">
-                {priceDisplay}
+                {currentPriceDisplay}
               </span>
             </div>
           )}
@@ -230,13 +267,81 @@ export function ProductPurchasePanel({
         </>
       )}
 
+      {/* ── SIZE / VARIANT SELECTOR ── */}
+      {hasVariants && (
+        <div className="flex flex-col gap-2.5 rounded-2xl border border-(--color-border-soft) bg-(--color-fill)/30 p-3.5">
+          <div className="flex items-center justify-between">
+            <span className="text-caption font-bold uppercase tracking-wider text-(--color-text-muted)">
+              {t("size")}
+            </span>
+            <span className="text-footnote font-bold text-(--color-brand-deep)">
+              {selectedVariant?.size[locale]} · {selectedVariant?.price[locale]}
+            </span>
+          </div>
+
+          <div
+            role="radiogroup"
+            aria-label={t("selectSize")}
+            className="grid grid-cols-2 gap-2.5"
+          >
+            {variants!.map((v) => {
+              const isSelected = v.id === selectedVariantId;
+              const isBestValue = v.id === "250ml";
+              return (
+                <button
+                  key={v.id}
+                  type="button"
+                  role="radio"
+                  aria-checked={isSelected}
+                  onClick={() => handleSelectVariant(v.id)}
+                  className={`group relative flex flex-col items-start justify-between rounded-xl p-3 text-start transition-all duration-200 cursor-pointer ${
+                    isSelected
+                      ? "border-2 border-(--color-brand) bg-(--color-surface) shadow-sm ring-1 ring-(--color-brand)"
+                      : "border border-(--color-border-soft) bg-(--color-surface) hover:border-(--color-border) hover:bg-(--color-fill)/50 active:scale-[0.98]"
+                  }`}
+                >
+                  {isBestValue && (
+                    <span className="absolute -top-2.5 end-2.5 rounded-full bg-(--color-brand-deep) px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white shadow-xs">
+                      {t("bestValue")}
+                    </span>
+                  )}
+                  <div className="flex w-full items-center justify-between gap-1">
+                    <span
+                      className={`text-body font-bold transition-colors ${
+                        isSelected ? "text-(--color-brand-deep)" : "text-(--color-text)"
+                      }`}
+                    >
+                      {v.size[locale]}
+                    </span>
+                    <span
+                      className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border transition-all ${
+                        isSelected
+                          ? "border-(--color-brand-deep) bg-(--color-brand-deep) text-white"
+                          : "border-(--color-border) bg-transparent"
+                      }`}
+                    >
+                      {isSelected && <span className="h-1.5 w-1.5 rounded-full bg-white" />}
+                    </span>
+                  </div>
+                  <div className="mt-1 flex items-baseline gap-1">
+                    <span className="text-callout font-bold text-(--color-text)">
+                      {v.price[locale]}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
       {/* ── QUANTITY SELECTOR ── */}
       <div className="flex items-center justify-between gap-3 pt-1">
         <span className="text-footnote font-semibold text-(--color-text)">{t("quantity")}</span>
         <QuantityStepper
           value={quantity}
           onChange={changeQuantity}
-          name={name}
+          name={currentName}
           max={MAX_QTY[audience]}
         />
       </div>
@@ -298,8 +403,8 @@ export function ProductPurchasePanel({
           </a>
           <StickyAddToCart
             targetRef={addButtonRef}
-            name={name}
-            priceLabel={priceDisplay ?? tc("priceOnRequest")}
+            name={currentName}
+            priceLabel={currentPriceDisplay ?? tc("priceOnRequest")}
             image={product.images[0]}
             added={justAdded}
             onAdd={handleAdd}

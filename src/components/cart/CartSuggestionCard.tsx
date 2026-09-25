@@ -21,7 +21,7 @@ export function CartSuggestionCard({
 }) {
   const t = useTranslations("Cart");
   const name = product.name[locale];
-  const href = `/b2c/products/${product.slug}`;
+  const href = `/b2c/products/${product.parentSlug ?? product.slug}`;
 
   return (
     <div className={`tile flex min-w-0 flex-col gap-2.5 p-3 ${className}`}>

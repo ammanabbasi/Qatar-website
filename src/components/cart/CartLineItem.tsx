@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { TrashIcon } from "@/components/ui/Icons";
-import { MAX_QTY, setLineQty } from "@/lib/cart";
+import { MAX_QTY, setLineQty, switchLineVariant } from "@/lib/cart";
 import { gaItem, trackCartEvent } from "@/lib/analytics";
 import {
   formatQar,
@@ -41,7 +41,11 @@ export function CartLineItem({
   const t = useTranslations();
   const { product, qty } = line;
   const name = product.name[locale];
-  const href = `/${audience}/products/${product.slug}`;
+  const baseSlug = product.parentSlug ?? product.slug;
+  const sizeParam = product.variantSize
+    ? `?size=${encodeURIComponent(product.variantSize.en.replace(/\s+/g, ""))}`
+    : "";
+  const href = `/${audience}/products/${baseSlug}${sizeParam}`;
   const priced = product.priceQar !== undefined;
 
   return (
@@ -80,10 +84,50 @@ export function CartLineItem({
                   : t("Cart.priceOnRequest")}
               </p>
             ) : null}
+
+            {/* Size options if product has variants */}
+            {product.variants && product.variants.length > 1 ? (
+              <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                <span className="text-[11px] font-semibold text-(--color-text-muted)">
+                  {t("Products.size")}:
+                </span>
+                <div
+                  role="radiogroup"
+                  aria-label={t("Products.selectSize")}
+                  className="inline-flex rounded-lg bg-(--color-fill) p-0.5 shadow-xs"
+                >
+                  {product.variants.map((v) => {
+                    const isCurrent =
+                      v.slug === line.slug ||
+                      (line.slug === (product.parentSlug ?? product.slug) && v.slug === product.slug);
+                    return (
+                      <button
+                        key={v.id}
+                        type="button"
+                        role="radio"
+                        aria-checked={isCurrent}
+                        onClick={() => {
+                          if (!isCurrent) {
+                            switchLineVariant(audience, line.slug, v.slug);
+                          }
+                        }}
+                        className={`rounded-md px-2 py-0.5 text-[11px] font-bold transition-all duration-150 cursor-pointer ${
+                          isCurrent
+                            ? "bg-(--color-brand) text-black shadow-xs ring-1 ring-black/10"
+                            : "text-(--color-text-muted) hover:text-(--color-text) hover:bg-black/5"
+                        }`}
+                      >
+                        {v.size[locale]} {showPrices ? `· ${v.price[locale]}` : ""}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : null}
           </div>
           <button
             type="button"
-            onClick={() => onRemove(product.slug)}
+            onClick={() => onRemove(line.slug)}
             aria-label={t("Cart.remove", { name })}
             className="-me-2.5 -mt-2 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-(--color-text-muted) transition-colors duration-150 ease-soft hover:bg-(--color-fill) hover:text-(--color-danger) active:bg-(--color-fill-hover)"
           >
@@ -97,7 +141,7 @@ export function CartLineItem({
             name={name}
             max={MAX_QTY[audience]}
             onChange={(next) => {
-              setLineQty(audience, product.slug, next);
+              setLineQty(audience, line.slug, next);
               const delta = next - qty;
               if (audience === "b2c" && delta !== 0) {
                 trackCartEvent(delta > 0 ? "add_to_cart" : "remove_from_cart", [

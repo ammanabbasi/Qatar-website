@@ -1,6 +1,6 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
 import { ProductDetail } from "@/components/product/ProductDetail";
@@ -14,9 +14,10 @@ export const dynamicParams = false;
 export async function generateStaticParams() {
   return PRODUCTS.filter(
     (p) => p.audience === "b2c" || p.audience === "both",
-  ).flatMap((p) =>
-    routing.locales.map((locale) => ({ locale, slug: p.slug })),
-  );
+  ).flatMap((p) => {
+    const slugs = [p.slug, ...(p.variants?.map((v) => v.slug).filter((s) => s !== p.slug) ?? [])];
+    return routing.locales.flatMap((locale) => slugs.map((slug) => ({ locale, slug })));
+  });
 }
 
 export async function generateMetadata({
@@ -66,6 +67,14 @@ export default async function B2CProductPage({
   setRequestLocale(locale);
   const product = getProductBySlug(slug);
   if (!product) notFound();
+
+  // If accessed directly via a variant slug, redirect to canonical product URL with ?size=
+  if (slug !== product.slug) {
+    const variant = product.variants?.find((v) => v.slug === slug);
+    const sizeParam = variant ? `?size=${encodeURIComponent(variant.id)}` : "";
+    redirect(`/${locale}/b2c/products/${product.slug}${sizeParam}`);
+  }
+
   const related = getRelatedProducts(product, "b2c");
   const l = locale as "en" | "ar";
 
