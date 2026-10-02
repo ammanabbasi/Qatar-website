@@ -9,7 +9,7 @@
       "bidStrategy": "Maximize conversions",
       "locations": ["Qatar"],
       "excludedLocations": [],
-      "adSchedule": "Sat-Thu 09:30-13:30 and 15:30-22:30; Fri paused (store closed Friday)",
+      "adSchedule": "All hours - the booking form captures leads 24/7 and staff confirm on the next working day",
       "rationale": "The one campaign in the account that sells a service: installed VTEK PPF, quoted and booked by ABK and fitted at a VTEK-authorised partner centre (owner decision 2026-10-02). It takes exactly the installation-intent searches every product campaign blocks (ppf installation, full body ppf price, front ppf) and lands them on the configurator, which shows the installed price. Service wording and 'From QAR' prices are allowed here only - assemble.mjs checks every price against the deployed src/data/ppfInstall.ts. Primary conversion: booking saved (ppf_booking); judge on cost per paid installation, imported via Data Manager.",
       "adGroups": [
         {
@@ -186,7 +186,7 @@
       "bidStrategy": "Maximize conversions",
       "locations": ["Qatar"],
       "excludedLocations": [],
-      "adSchedule": "Sat-Thu 09:30-13:30 and 15:30-22:30; Fri paused (store closed Friday)",
+      "adSchedule": "All hours - the booking form captures leads 24/7 and staff confirm on the next working day",
       "rationale": "Arabic mirror of the installation campaign for Qatari nationals and Arab residents, where clicks are cheaper. Written for RTL rather than translated; brand tokens (VTEK, PPF) stay in Latin because that is how people type them. No prices in Arabic copy, so no Arabic-numeral price formatting can drift from the page.",
       "adGroups": [
         {
