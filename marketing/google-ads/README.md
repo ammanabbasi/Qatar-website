@@ -128,6 +128,16 @@ start but never made it into this runbook until now.
 This is enforced mechanically, not just by review: `build/assemble.mjs` fails the
 build if any ad text matches a service-promise or price-claim pattern.
 
+**One exception, since 2026-10-02: installed PPF.** ABK now sells installed
+VTEK PPF packages — ABK quotes, books and guarantees the job; a VTEK-authorised
+partner centre does the fitting (`/b2c/ppf-installation`). Only themes marked
+`"service": true` (today just `ppf-installation.json`) may use installation and
+booking language and "From QAR …" prices, and each price must equal a starting
+price in the deployed `src/data/ppfInstall.ts`. First-person labour claims
+("we install", "our workshop") still fail everywhere, and every other theme
+keeps the supply-only rule. Live-account changes for that theme are in
+`additions/2026-10-02-ppf-installation/`.
+
 ## What the exporter changes, and what it deliberately doesn't
 
 **77 duplicate keywords removed.** The six themes were written independently, so

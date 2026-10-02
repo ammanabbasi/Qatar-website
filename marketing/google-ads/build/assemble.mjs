@@ -12,6 +12,7 @@
  * Run: node marketing/google-ads/build/assemble.mjs
  */
 import { readFileSync, writeFileSync, readdirSync, mkdirSync } from "node:fs";
+import { execSync } from "node:child_process";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -68,7 +69,7 @@ for (const p of catalogue.products) {
     if (p[k]) liveUrls.add(p[k]);
   }
 }
-const HUBS = ["", "/b2c/products", "/b2b", "/b2b/products", "/b2b/become-a-dealer", "/about", "/contact", "/b2c/blog"];
+const HUBS = ["", "/b2c/products", "/b2c/ppf-installation", "/b2b", "/b2b/products", "/b2b/become-a-dealer", "/about", "/contact", "/b2c/blog"];
 for (const loc of ["en", "ar"]) for (const path of HUBS) liveUrls.add(`${SITE}/${loc}${path}`);
 
 /**
@@ -270,6 +271,55 @@ const servicePromise = /\b(we install|installation|we fit|fitting service|we app
 const servicePromiseAr = /(نركب|نقوم بالتركيب|نقوم بتركيب|خدمة التركيب|احجز موعد|ورشتنا)/;
 
 /**
+ * Service themes (`"service": true` — today only ppf-installation) sell the
+ * installed-PPF package: ABK quotes, books and guarantees the job and a
+ * VTEK-authorised PARTNER centre fits the film (owner decision 2026-10-02).
+ * Installation and booking language is therefore true there — but ABK still
+ * has no workshop and does no labour itself, so first-person labour claims
+ * stay banned even in a service theme.
+ */
+const labourClaim = /\b(we install|we fit|we apply|our workshop|we tint|we coat)\b/i;
+const labourClaimAr = /(نركب|نقوم بالتركيب|نقوم بتركيب|ورشتنا)/;
+
+/**
+ * The installed-PPF page publishes "From QAR …" prices, so a service ad may
+ * quote one — but only a starting price the DEPLOYED page shows. Read from
+ * git HEAD (like the catalogue), so an ad can never quote a price the live
+ * page doesn't carry yet.
+ */
+const installFromPrices = new Set();
+try {
+  const src = execSync("git show HEAD:src/data/ppfInstall.ts", {
+    cwd: HERE,
+    encoding: "utf8",
+    stdio: ["ignore", "pipe", "ignore"],
+  });
+  const table = /PRESET_PRICES_QAR[^=]*=\s*\{([\s\S]*?)\n\};/.exec(src)?.[1] ?? "";
+  for (const row of table.matchAll(/\{([^}]*)\}/g)) {
+    const nums = [...row[1].matchAll(/:\s*(\d+)/g)].map((m) => Number(m[1]));
+    if (nums.length) installFromPrices.add(Math.min(...nums));
+  }
+} catch {
+  // Page not deployed yet: every service price claim fails below.
+}
+
+function checkServicePrice(where, t) {
+  const amounts = [...toWestern(t).matchAll(/(?:QAR|ر\.ق)\s?([\d,٬]+)|([\d,٬]+)\s?(?:QAR|ر\.ق)/g)].map((m) =>
+    Number((m[1] ?? m[2]).replace(/[,٬]/g, "")),
+  );
+  if (!amounts.length) return;
+  if (!/\bfrom\b|من/i.test(t)) fail(where, `a service price must be a starting price ("From QAR …"): "${t}"`);
+  for (const a of amounts) {
+    if (!installFromPrices.has(a)) {
+      fail(
+        where,
+        `QAR ${a} is not a "From" price on the deployed installation page (${[...installFromPrices].join(", ") || "page not deployed"}): "${t}"`,
+      );
+    }
+  }
+}
+
+/**
  * Negative match types are used exactly as declared.
  *
  * An earlier version of this script silently rewrote every multi-word Broad
@@ -306,6 +356,7 @@ let totalKeywords = 0, totalNegatives = 0, totalAds = 0;
 
 for (const { file, data } of themes) {
   const campaigns = data?.campaigns ?? [];
+  const isService = data?.service === true;
   if (!campaigns.length) fail(file, "no `campaigns` array");
 
   for (const c of campaigns) {
@@ -451,9 +502,16 @@ for (const { file, data } of themes) {
         }
         if (/!{2,}|\?{2,}/.test(t)) fail(gw, `repeated punctuation is disallowed: "${t}"`);
         if (/\b(click here|best price|cheapest|guaranteed|lowest price)\b/i.test(t)) fail(gw, `policy-risk phrase: "${t}"`);
-        if (servicePromise.test(t)) fail(gw, `implies ABK performs the work (it supplies product only): "${t}"`);
-        if (servicePromiseAr.test(t)) fail(gw, `Arabic text implies ABK performs the work: "${t}"`);
-        if (/\bQAR\s?\d|\bد\.ق\s?\d|\d+\s?%\s?(off|discount)/i.test(t)) fail(gw, `price/discount claim, but the site publishes no prices: "${t}"`);
+        if (isService) {
+          if (labourClaim.test(t)) fail(gw, `claims ABK does the fitting itself (a partner centre does): "${t}"`);
+          if (labourClaimAr.test(t)) fail(gw, `Arabic text claims ABK does the fitting itself: "${t}"`);
+          if (/\d+\s?%\s?(off|discount)/i.test(t)) fail(gw, `discount claim: "${t}"`);
+          checkServicePrice(gw, t);
+        } else {
+          if (servicePromise.test(t)) fail(gw, `implies ABK performs the work (it supplies product only): "${t}"`);
+          if (servicePromiseAr.test(t)) fail(gw, `Arabic text implies ABK performs the work: "${t}"`);
+          if (/\bQAR\s?\d|\bد\.ق\s?\d|\d+\s?%\s?(off|discount)/i.test(t)) fail(gw, `price/discount claim, but the site publishes no prices: "${t}"`);
+        }
         // Google disallows phone numbers in ad text — they belong in a call asset.
         if (/\+?\s?974[\s-]?\d{6,}|30838355/.test(t)) fail(gw, `phone number in ad text (use a call asset instead): "${t}"`);
       }
@@ -690,7 +748,9 @@ if (assets) {
             });
           }
         } else {
-          for (const n of matchedCampaigns) {
+          // Language-matched only: an English callout must not attach to the
+          // Arabic campaign (campaign names carry "| EN |" / "| AR |").
+          for (const n of matchedCampaigns.filter((name) => name.includes(`| ${lang.toUpperCase()} |`))) {
             assetRows.callouts.push({
               Language: lang === "ar" ? "Arabic" : "English",
               Scope: n, "Callout text": c,

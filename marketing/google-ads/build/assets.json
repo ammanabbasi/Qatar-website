@@ -19,7 +19,7 @@
     "en": [
       {
         "text": "Shop All Products",
-        "desc1": "43 car care products in stock",
+        "desc1": "54 car care products in stock",
         "desc2": "VTEK, Autotriz, Briller",
         "url": "https://abktradingservice.com/en/b2c/products"
       },
@@ -176,6 +176,12 @@
       "note": "Briller only — Made in Canada is verified in products.ts specs for all six Briller SKUs, and attached per ad group by landing-product Origin so non-Briller ad groups in the campaign never carry it and is NOT true of the other brands.",
       "en": ["Made in Canada"],
       "ar": ["صُنع في كندا"]
+    },
+    {
+      "campaignMatch": "ppf installation",
+      "note": "Installed-PPF campaigns only. Campaign-level callouts override the account-level set, which is product/wholesale language (Bulk 20L Sizes, Trade Accounts Welcome) that would read wrong beside an installation ad. Every claim matches /b2c/ppf-installation.",
+      "en": ["VTEK-Authorised Fitting", "1-Year Workmanship Cover", "Live Price Online", "Pick Your Own Panels", "Genuine VTEK Film", "Pay Once Slot Confirmed"],
+      "ar": ["تركيب بمركز معتمد", "ضمان تركيب لمدة سنة", "سعر فوري أونلاين", "اختر القطع بنفسك", "فيلم VTEK أصلي"]
     }
   ],
 

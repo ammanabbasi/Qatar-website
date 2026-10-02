@@ -1,0 +1,298 @@
+{
+  "campaignKey": "ppf-installation",
+  "service": true,
+  "campaigns": [
+    {
+      "name": "ABK | Search | EN | PPF Installation",
+      "language": "en",
+      "dailyBudgetQAR": 60,
+      "bidStrategy": "Maximize conversions",
+      "locations": ["Qatar"],
+      "excludedLocations": [],
+      "adSchedule": "Sat-Thu 09:30-13:30 and 15:30-22:30; Fri paused (store closed Friday)",
+      "rationale": "The one campaign in the account that sells a service: installed VTEK PPF, quoted and booked by ABK and fitted at a VTEK-authorised partner centre (owner decision 2026-10-02). It takes exactly the installation-intent searches every product campaign blocks (ppf installation, full body ppf price, front ppf) and lands them on the configurator, which shows the installed price. Service wording and 'From QAR' prices are allowed here only - assemble.mjs checks every price against the deployed src/data/ppfInstall.ts. Primary conversion: booking saved (ppf_booking); judge on cost per paid installation, imported via Data Manager.",
+      "adGroups": [
+        {
+          "name": "PPF Installation Doha",
+          "maxCpcQAR": 6,
+          "finalUrl": "https://abktradingservice.com/en/b2c/ppf-installation",
+          "themeNote": "Generic installation intent, including price/cost searches — the page answers them with a live price.",
+          "keywords": [
+            { "text": "ppf installation qatar", "matchType": "Phrase" },
+            { "text": "ppf installation doha", "matchType": "Phrase" },
+            { "text": "paint protection film installation", "matchType": "Phrase" },
+            { "text": "ppf installation price", "matchType": "Phrase" },
+            { "text": "ppf installation cost", "matchType": "Phrase" },
+            { "text": "ppf price qatar", "matchType": "Phrase" },
+            { "text": "ppf price doha", "matchType": "Phrase" },
+            { "text": "car ppf qatar", "matchType": "Phrase" },
+            { "text": "car ppf doha", "matchType": "Phrase" },
+            { "text": "ppf for car doha", "matchType": "Phrase" },
+            { "text": "ppf shop doha", "matchType": "Phrase" },
+            { "text": "ppf near me", "matchType": "Phrase" },
+            { "text": "paint protection film qatar price", "matchType": "Phrase" },
+            { "text": "vtek ppf installation", "matchType": "Phrase" },
+            { "text": "vertek ppf installation", "matchType": "Phrase" }
+          ],
+          "negativeKeywords": [
+            { "text": "roll", "matchType": "Broad" },
+            { "text": "rolls", "matchType": "Broad" },
+            { "text": "wholesale", "matchType": "Broad" },
+            { "text": "supplier", "matchType": "Broad" },
+            { "text": "distributor", "matchType": "Broad" },
+            { "text": "diy", "matchType": "Broad" },
+            { "text": "per meter", "matchType": "Phrase" },
+            { "text": "training", "matchType": "Broad" },
+            { "text": "course", "matchType": "Broad" },
+            { "text": "jobs", "matchType": "Broad" },
+            { "text": "window", "matchType": "Broad" },
+            { "text": "tint", "matchType": "Broad" },
+            { "text": "dubai", "matchType": "Broad" }
+          ],
+          "ad": {
+            "headlines": [
+              "PPF Installation in Doha",
+              "Installed VTEK PPF",
+              "Full Body PPF From QAR 5,500",
+              "Full Front PPF From QAR 2,200",
+              "Front PPF From QAR 1,200",
+              "See Your Price Online",
+              "Live Quote in 4 Steps",
+              "VTEK-Authorised Fitting",
+              "Up to 15-Year Film Warranty",
+              "1-Year Workmanship Cover",
+              "Genuine VTEK Weather Armor",
+              "Self-Healing Gloss Film",
+              "Choose the Panels You Want",
+              "Book on WhatsApp in Minutes",
+              "One Contact, Quote to Handover"
+            ],
+            "descriptions": [
+              "Pick your car, coverage and VTEK film online and see the installed price instantly.",
+              "Fitted at a VTEK-authorised partner centre in Doha. Film warranty + 1-year cover.",
+              "Full front from QAR 2,200, full body from QAR 5,500. Pay once your slot is confirmed.",
+              "Genuine film from VTEK's authorised Qatar distributor. Book in minutes on WhatsApp."
+            ],
+            "path1": "PPF",
+            "path2": "Installation"
+          }
+        },
+        {
+          "name": "Full Body PPF",
+          "maxCpcQAR": 7,
+          "finalUrl": "https://abktradingservice.com/en/b2c/ppf-installation",
+          "themeNote": "Highest-value job. Price-led copy: full body from QAR 5,500.",
+          "keywords": [
+            { "text": "full body ppf", "matchType": "Phrase" },
+            { "text": "full body ppf qatar", "matchType": "Phrase" },
+            { "text": "full body ppf price", "matchType": "Phrase" },
+            { "text": "full car ppf", "matchType": "Phrase" },
+            { "text": "full body paint protection film", "matchType": "Phrase" },
+            { "text": "full ppf for car", "matchType": "Phrase" },
+            { "text": "ppf whole car", "matchType": "Phrase" }
+          ],
+          "negativeKeywords": [
+            { "text": "roll", "matchType": "Broad" },
+            { "text": "rolls", "matchType": "Broad" },
+            { "text": "wholesale", "matchType": "Broad" },
+            { "text": "supplier", "matchType": "Broad" },
+            { "text": "diy", "matchType": "Broad" },
+            { "text": "dubai", "matchType": "Broad" },
+            { "text": "jobs", "matchType": "Broad" }
+          ],
+          "ad": {
+            "headlines": [
+              "Full Body PPF in Doha",
+              "Full Body PPF From QAR 5,500",
+              "Every Panel, Edge to Edge",
+              "Installed VTEK PPF",
+              "See Your Price Online",
+              "Live Quote in 4 Steps",
+              "VTEK-Authorised Fitting",
+              "Up to 15-Year Film Warranty",
+              "1-Year Workmanship Cover",
+              "Self-Healing Gloss Film",
+              "Matte Finish Option",
+              "Sedan, SUV or Large SUV",
+              "Book on WhatsApp in Minutes",
+              "Genuine VTEK Weather Armor",
+              "Shield Paint From Sand & UV"
+            ],
+            "descriptions": [
+              "Full body VTEK PPF from QAR 5,500 installed. See your exact price for your car online.",
+              "Every painted panel protected against sand, stone chips and swirl marks.",
+              "Fitted at a VTEK-authorised partner centre in Doha. Film warranty + 1-year cover.",
+              "Choose PRO, ULTIMATE or MATTE film. Book in minutes, pay once your slot is confirmed."
+            ],
+            "path1": "Full-Body",
+            "path2": "PPF"
+          }
+        },
+        {
+          "name": "Front PPF",
+          "maxCpcQAR": 5,
+          "finalUrl": "https://abktradingservice.com/en/b2c/ppf-installation",
+          "themeNote": "Entry jobs: front-end and full-front kits, and single panels via the configurator.",
+          "keywords": [
+            { "text": "front ppf", "matchType": "Phrase" },
+            { "text": "front end ppf", "matchType": "Phrase" },
+            { "text": "full front ppf", "matchType": "Phrase" },
+            { "text": "bonnet ppf", "matchType": "Phrase" },
+            { "text": "hood ppf", "matchType": "Phrase" },
+            { "text": "front bumper ppf", "matchType": "Phrase" },
+            { "text": "partial ppf", "matchType": "Phrase" }
+          ],
+          "negativeKeywords": [
+            { "text": "roll", "matchType": "Broad" },
+            { "text": "wholesale", "matchType": "Broad" },
+            { "text": "diy", "matchType": "Broad" },
+            { "text": "kit for sale", "matchType": "Phrase" },
+            { "text": "dubai", "matchType": "Broad" }
+          ],
+          "ad": {
+            "headlines": [
+              "Front PPF in Doha",
+              "Front PPF From QAR 1,200",
+              "Full Front PPF From QAR 2,200",
+              "Stop Stone Chips Up Front",
+              "Bonnet, Bumper & Mirrors",
+              "Or Pick Single Panels",
+              "See Your Price Online",
+              "Live Quote in 4 Steps",
+              "VTEK-Authorised Fitting",
+              "1-Year Workmanship Cover",
+              "Up to 15-Year Film Warranty",
+              "Installed VTEK PPF",
+              "Self-Healing Gloss Film",
+              "Book on WhatsApp in Minutes",
+              "Genuine VTEK Weather Armor"
+            ],
+            "descriptions": [
+              "Front-end PPF from QAR 1,200 and full front from QAR 2,200, installed in Doha.",
+              "Choose the panels on a car diagram and see your installed price as you go.",
+              "Fitted at a VTEK-authorised partner centre in Doha. Film warranty + 1-year cover.",
+              "Genuine film from VTEK's authorised Qatar distributor. Book in minutes on WhatsApp."
+            ],
+            "path1": "Front",
+            "path2": "PPF"
+          }
+        }
+      ]
+    },
+    {
+      "name": "ABK | Search | AR | PPF Installation",
+      "language": "ar",
+      "dailyBudgetQAR": 25,
+      "bidStrategy": "Maximize conversions",
+      "locations": ["Qatar"],
+      "excludedLocations": [],
+      "adSchedule": "Sat-Thu 09:30-13:30 and 15:30-22:30; Fri paused (store closed Friday)",
+      "rationale": "Arabic mirror of the installation campaign for Qatari nationals and Arab residents, where clicks are cheaper. Written for RTL rather than translated; brand tokens (VTEK, PPF) stay in Latin because that is how people type them. No prices in Arabic copy, so no Arabic-numeral price formatting can drift from the page.",
+      "adGroups": [
+        {
+          "name": "تركيب حماية الطلاء",
+          "maxCpcQAR": 4,
+          "finalUrl": "https://abktradingservice.com/ar/b2c/ppf-installation",
+          "themeNote": "Arabic installation intent, including price searches.",
+          "keywords": [
+            { "text": "تركيب حماية الطلاء", "matchType": "Phrase" },
+            { "text": "تركيب ppf", "matchType": "Phrase" },
+            { "text": "تركيب فيلم حماية", "matchType": "Phrase" },
+            { "text": "تركيب حماية السيارة", "matchType": "Phrase" },
+            { "text": "سعر تركيب ppf", "matchType": "Phrase" },
+            { "text": "سعر حماية ppf", "matchType": "Phrase" },
+            { "text": "حماية ppf قطر", "matchType": "Phrase" },
+            { "text": "حماية ppf الدوحة", "matchType": "Phrase" },
+            { "text": "تركيب vtek", "matchType": "Phrase" }
+          ],
+          "negativeKeywords": [
+            { "text": "رول", "matchType": "Broad" },
+            { "text": "بالجملة", "matchType": "Broad" },
+            { "text": "جملة", "matchType": "Broad" },
+            { "text": "مورد", "matchType": "Broad" },
+            { "text": "وظائف", "matchType": "Broad" },
+            { "text": "دورة", "matchType": "Broad" },
+            { "text": "تظليل", "matchType": "Broad" },
+            { "text": "دبي", "matchType": "Broad" }
+          ],
+          "ad": {
+            "headlines": [
+              "تركيب حماية الطلاء بالدوحة",
+              "فيلم VTEK مع التركيب",
+              "اعرف السعر أونلاين",
+              "عرض سعر فوري بأربع خطوات",
+              "تركيب بمركز معتمد من VTEK",
+              "ضمان تركيب لمدة سنة",
+              "ضمان الفيلم حتى 15 سنة",
+              "اختر القطع التي تريدها",
+              "حماية الواجهة الأمامية",
+              "حماية السيارة بالكامل",
+              "فيلم أصلي من الموزع المعتمد",
+              "احجز عبر واتساب بدقائق",
+              "جهة تواصل واحدة حتى التسليم",
+              "فيلم لامع بمعالجة ذاتية",
+              "حماية من الرمل والحصى"
+            ],
+            "descriptions": [
+              "اختر سيارتك والتغطية وفيلم VTEK أونلاين واعرف سعر التركيب فوراً.",
+              "التركيب في مركز شريك معتمد من VTEK بالدوحة، مع ضمان الفيلم وضمان تركيب سنة.",
+              "فيلم أصلي من الموزع المعتمد لـ VTEK في قطر. احجز خلال دقائق عبر واتساب.",
+              "تدفع بعد تأكيد الموعد، مع استرداد كامل حتى 48 ساعة قبل الموعد."
+            ],
+            "path1": "تركيب",
+            "path2": "PPF"
+          }
+        },
+        {
+          "name": "حماية كاملة للسيارة",
+          "maxCpcQAR": 5,
+          "finalUrl": "https://abktradingservice.com/ar/b2c/ppf-installation",
+          "themeNote": "Full-body intent in Arabic.",
+          "keywords": [
+            { "text": "حماية ppf كاملة", "matchType": "Phrase" },
+            { "text": "ppf كامل للسيارة", "matchType": "Phrase" },
+            { "text": "حماية كاملة للسيارة", "matchType": "Phrase" },
+            { "text": "تغليف حماية كامل", "matchType": "Phrase" },
+            { "text": "سعر حماية كاملة للسيارة", "matchType": "Phrase" }
+          ],
+          "negativeKeywords": [
+            { "text": "رول", "matchType": "Broad" },
+            { "text": "بالجملة", "matchType": "Broad" },
+            { "text": "وظائف", "matchType": "Broad" },
+            { "text": "تأمين", "matchType": "Broad" },
+            { "text": "دبي", "matchType": "Broad" }
+          ],
+          "ad": {
+            "headlines": [
+              "حماية كاملة للسيارة بالدوحة",
+              "كل الألواح من الحافة للحافة",
+              "فيلم VTEK مع التركيب",
+              "اعرف السعر أونلاين",
+              "عرض سعر فوري بأربع خطوات",
+              "تركيب بمركز معتمد من VTEK",
+              "ضمان تركيب لمدة سنة",
+              "ضمان الفيلم حتى 15 سنة",
+              "خيار لمسة مطفية MATTE",
+              "سيدان أو SUV أو SUV كبيرة",
+              "احجز عبر واتساب بدقائق",
+              "فيلم أصلي من الموزع المعتمد",
+              "فيلم لامع بمعالجة ذاتية",
+              "حماية من الرمل والحصى",
+              "جهة تواصل واحدة حتى التسليم"
+            ],
+            "descriptions": [
+              "حماية كل الألواح المطلية من الرمل والحصى وخدوش الغسيل بفيلم VTEK الأصلي.",
+              "اختر سيارتك وفيلم PRO أو ULTIMATE أو MATTE واعرف سعر التركيب فوراً.",
+              "التركيب في مركز شريك معتمد من VTEK بالدوحة، مع ضمان الفيلم وضمان تركيب سنة.",
+              "تدفع بعد تأكيد الموعد، مع استرداد كامل حتى 48 ساعة قبل الموعد."
+            ],
+            "path1": "حماية-كاملة",
+            "path2": "PPF"
+          }
+        }
+      ]
+    }
+  ],
+  "sharedNegatives": [],
+  "notes": "Added 2026-10-02 for the installed-PPF service (/b2c/ppf-installation). The live account was already imported, so this theme ships as an ADDITIONS-ONLY import — see marketing/google-ads/additions/2026-10-02-ppf-installation/README.md. Never re-import the full account over the live one."
+}
