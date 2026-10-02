@@ -1,5 +1,5 @@
 /**
- * FAQ entries used both as visible content on the services page AND as
+ * FAQ entries used both as visible content on the About page AND as
  * FAQPage JSON-LD for Google rich results / AI Overview answers.
  *
  * Constraints (Google FAQ rich results spec):
@@ -76,8 +76,8 @@ export const FAQ: FaqEntry[] = [
       ar: "كم تبلغ تكلفة فيلم حماية الطلاء في قطر؟",
     },
     a: {
-      en: "PPF pricing depends on roll size, coverage area and finish (gloss or matte). Send a WhatsApp message with your car model and the coverage you need and we'll quote within hours.",
-      ar: "تتفاوت أسعار فيلم حماية الطلاء حسب مساحة التغطية وحجم السيارة ونوع التشطيب (لامع أو مطفي). أرسل لنا موديل سيارتك ونوع التغطية المطلوبة عبر واتساب وسنرد بعرض السعر خلال ساعات.",
+      en: "Installed VTEK PPF from ABK starts at QAR 1,200 for a front-end kit, QAR 2,200 for a full front and QAR 5,500 for a full body, depending on car size and film. Film by the roll is quoted on WhatsApp.",
+      ar: "يبدأ تركيب فيلم VTEK من ABK من 1,200 ر.ق للواجهة الأساسية، و2,200 ر.ق للواجهة الكاملة، و5,500 ر.ق للهيكل بالكامل، حسب حجم السيارة ونوع الفيلم. أما الفيلم بالرول فيُسعَّر عبر واتساب.",
     },
   },
   {
@@ -203,6 +203,64 @@ export const FAQ: FaqEntry[] = [
     a: {
       en: "The WhatsApp Order Tray lets you browse products, set quantities, and compile a single multi-item order or commercial quote request. When ready, tap 'Send Order via WhatsApp' to launch a pre-formatted message with item details, quantities, and direct links.",
       ar: "تتيح لك سلة الطلب تصفح المنتجات وتحديد الكميات وجمع طلبك أو طلب التسعير التجاري في رسالة موحدة واحدة، ثم إرسالها مباشرة لفريق المبيعات عبر واتساب بضغطة زر واحدة تشمل تفاصيل المنتجات وروابطها.",
+    },
+  },
+];
+
+/**
+ * Installation-page FAQ — rendered (with its own FAQPage JSON-LD) only on
+ * /[locale]/b2c/ppf-installation. Kept separate from FAQ so no question
+ * appears on two pages.
+ */
+export const PPF_INSTALL_FAQ: FaqEntry[] = [
+  {
+    q: {
+      en: "Who installs the film?",
+      ar: "من يقوم بتركيب الفيلم؟",
+    },
+    a: {
+      en: "A VTEK-authorised partner centre in Doha, booked and managed by ABK. ABK supplies the genuine film, confirms your slot, inspects the finished car and stays your single point of contact.",
+      ar: "مركز شريك معتمد من VTEK في الدوحة، تحجزه وتديره ABK. توفّر ABK الفيلم الأصلي وتؤكد موعدك وتفحص السيارة بعد التركيب وتبقى جهة التواصل الوحيدة معك.",
+    },
+  },
+  {
+    q: {
+      en: "How long does PPF installation take?",
+      ar: "كم يستغرق تركيب فيلم الحماية؟",
+    },
+    a: {
+      en: "Typically the same day for a front-end kit, one day for a full front and two to three days for a full body, including curing time. We confirm the exact time with your slot.",
+      ar: "عادةً في اليوم نفسه للواجهة الأساسية، ويوم واحد للواجهة الكاملة، ومن يومين إلى ثلاثة أيام للهيكل بالكامل شاملةً وقت التثبيت. نؤكد المدة بدقة مع الموعد.",
+    },
+  },
+  {
+    q: {
+      en: "How do I pay, and can I cancel?",
+      ar: "كيف أدفع، وهل يمكنني الإلغاء؟",
+    },
+    a: {
+      en: "Once we confirm your slot you pay in full by bank transfer or cash. Cancel up to 48 hours before for a full refund; one reschedule is free.",
+      ar: "بعد تأكيد موعدك تدفع المبلغ كاملاً بتحويل بنكي أو نقداً. يمكنك الإلغاء مع استرداد كامل حتى 48 ساعة قبل الموعد، وتغيير الموعد مرة واحدة مجاناً.",
+    },
+  },
+  {
+    q: {
+      en: "What is the difference between the film warranty and the workmanship cover?",
+      ar: "ما الفرق بين ضمان الفيلم وضمان التركيب؟",
+    },
+    a: {
+      en: "VTEK's warranty covers the film itself against yellowing, cracking and delamination for 5 to 15 years depending on the film. ABK's 12-month workmanship cover handles the fitting: lifting, bubbles or edges letting go.",
+      ar: "يغطي ضمان VTEK الفيلم نفسه ضد الاصفرار والتشقق والانفصال لمدة من 5 إلى 15 سنة حسب نوع الفيلم. أما ضمان التركيب من ABK لمدة 12 شهراً فيغطي جودة التركيب: انفصال الفيلم أو الفقاعات أو ارتفاع الحواف.",
+    },
+  },
+  {
+    q: {
+      en: "My car already has old PPF or a wrap. Can you still do it?",
+      ar: "سيارتي عليها فيلم حماية قديم أو تغليف. هل يمكنكم التركيب؟",
+    },
+    a: {
+      en: "Yes. Tell us in the booking form; old film or wrap has to be removed first, and we include that in the confirmed price.",
+      ar: "نعم. أخبرنا بذلك في نموذج الحجز؛ إذ يجب إزالة الفيلم أو التغليف القديم أولاً، ونضمّن ذلك في السعر المؤكد.",
     },
   },
 ];

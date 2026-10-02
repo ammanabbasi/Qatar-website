@@ -45,6 +45,9 @@ export function Footer({ audience }: { audience: Audience }) {
             <Link className={linkCls} href={`${audiencePrefix}/products`}>
               {t("Nav.products")}
             </Link>
+            <Link className={linkCls} href="/b2c/ppf-installation">
+              {t("Nav.ppfInstall")}
+            </Link>
             {SHOP_CATEGORIES.map((c) => (
               <Link
                 key={c}

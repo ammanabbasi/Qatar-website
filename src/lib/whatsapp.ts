@@ -329,3 +329,65 @@ export function buildMailto(subject: string, body?: string) {
   if (body) params.set("body", body);
   return `mailto:${CONTACT_EMAIL}?${params.toString()}`;
 }
+
+/** Installed-PPF booking — sent after the configurator saves (or fails to save) the request. */
+export type PpfBookingMessageContext = {
+  locale: WALocale;
+  ref: string;
+  vehicle: string;
+  bodyType: string;
+  coverage: string;
+  /** Custom part list, already localized. Empty for presets. */
+  parts: string[];
+  film: string;
+  /** Pre-formatted price ("QAR 2,200" / "Estimate: QAR 1,450"), or undefined for a per-car quote. */
+  price?: string;
+  preferredDate?: string;
+  name: string;
+};
+
+export function buildPpfBookingWhatsAppMessage(c: PpfBookingMessageContext): string {
+  const ar = c.locale === "ar";
+  const rlm = ar ? "‏" : "";
+  const lines = ar
+    ? [
+        `السلام عليكم ABK، أود حجز تركيب فيلم حماية الطلاء.`,
+        `رقم الحجز: ${c.ref}`,
+        "",
+        `${rlm}• السيارة: ${c.vehicle} (${c.bodyType})`,
+        `${rlm}• التغطية: ${c.coverage}${c.parts.length ? ` — ${c.parts.join("، ")}` : ""}`,
+        `${rlm}• الفيلم: ${c.film}`,
+        `${rlm}• السعر: ${c.price ?? "يرجى تزويدي بعرض سعر"}`,
+        ...(c.preferredDate ? [`${rlm}• الموعد المفضل: ${c.preferredDate}`] : []),
+        `${rlm}• الاسم: ${c.name}`,
+        "",
+        "يرجى تأكيد الموعد وتفاصيل الدفع. شكراً لكم!",
+      ]
+    : [
+        `Hi ABK, I'd like to book a PPF installation.`,
+        `Booking ref: ${c.ref}`,
+        "",
+        `• Car: ${c.vehicle} (${c.bodyType})`,
+        `• Coverage: ${c.coverage}${c.parts.length ? ` — ${c.parts.join(", ")}` : ""}`,
+        `• Film: ${c.film}`,
+        `• Price: ${c.price ?? "please quote"}`,
+        ...(c.preferredDate ? [`• Preferred date: ${c.preferredDate}`] : []),
+        `• Name: ${c.name}`,
+        "",
+        "Please confirm the slot and payment details. Thank you!",
+      ];
+  return lines.join("\n");
+}
+
+export function buildPpfBookingWhatsAppUrl(ctx: PpfBookingMessageContext): string {
+  return `https://wa.me/${WHATSAPP_PHONE}?text=${encode(buildPpfBookingWhatsAppMessage(ctx))}`;
+}
+
+/** Floating bubble on the installation page — an installation enquiry, not a generic "car care products" one. */
+export function buildPpfEnquiryWhatsAppUrl(locale: WALocale): string {
+  const text =
+    locale === "ar"
+      ? "السلام عليكم ABK، أود الاستفسار عن تركيب فيلم حماية الطلاء VTEK لسيارتي."
+      : "Hi ABK, I'd like to ask about getting VTEK paint protection film installed on my car.";
+  return `https://wa.me/${WHATSAPP_PHONE}?text=${encode(text)}`;
+}

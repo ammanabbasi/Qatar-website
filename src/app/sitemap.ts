@@ -13,7 +13,7 @@ import { routing } from "@/i18n/routing";
 // 2026-09-22: B2C/B2B funnels redesign, WhatsApp order tray, dealer onboarding upgrade.
 // 2026-09-24: shop-first homepage order, catalogue search/sort, retail cart
 //             (the /b2c/cart checkout page is noindex and deliberately absent).
-const STATIC_PAGES_UPDATED_AT = "2026-09-24";
+const STATIC_PAGES_UPDATED_AT = "2026-10-02";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE.url;
@@ -32,6 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
     "",
     "/b2c/products",
+    "/b2c/ppf-installation",
     "/b2c/blog",
     "/b2b",
     "/b2b/products",

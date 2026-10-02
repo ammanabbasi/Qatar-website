@@ -1,11 +1,13 @@
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { FAQ } from "@/data/faq";
+import { FAQ, type FaqEntry } from "@/data/faq";
 
 type Props = {
   locale: "en" | "ar";
   title: string;
   subtitle?: string;
+  /** Defaults to the site FAQ; the installation page passes its own. */
+  items?: FaqEntry[];
 };
 
 /**
@@ -14,7 +16,7 @@ type Props = {
  * here MUST match what's emitted in the FAQPage JSON-LD on the same page,
  * or Google flags it as cloaking. Styled as Apple's hairline accordion.
  */
-export function FaqSection({ locale, title, subtitle }: Props) {
+export function FaqSection({ locale, title, subtitle, items = FAQ }: Props) {
   return (
     <section className="py-10 lg:py-14">
       <Container>
@@ -23,7 +25,7 @@ export function FaqSection({ locale, title, subtitle }: Props) {
           <p className="mt-3 max-w-3xl text-body text-(--color-text-muted)">{subtitle}</p>
         )}
         <div className="mt-8 max-w-3xl divide-y divide-(--color-border) border-y border-(--color-border)">
-          {FAQ.map((item, i) => (
+          {items.map((item, i) => (
             <details key={i} className="group">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-body font-semibold text-(--color-text) [&::-webkit-details-marker]:hidden">
                 <span>{item.q[locale]}</span>

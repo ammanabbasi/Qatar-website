@@ -5,11 +5,13 @@ type Props = {
   audience: Audience;
   locale: WALocale;
   label: string;
+  /** Page-specific pre-fill (e.g. the PPF installation page); defaults to the audience message. */
+  href?: string;
 };
 
 /** Persistent chat entry point — a circle on phones, a labelled pill from sm up. */
-export function FloatingWhatsApp({ audience, locale, label }: Props) {
-  const href = buildWhatsAppUrl({ audience, locale });
+export function FloatingWhatsApp({ audience, locale, label, href: hrefOverride }: Props) {
+  const href = hrefOverride ?? buildWhatsAppUrl({ audience, locale });
   return (
     <a
       href={href}

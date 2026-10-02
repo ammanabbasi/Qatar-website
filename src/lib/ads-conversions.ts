@@ -58,7 +58,12 @@ export function isProductionHost(hostname: string): boolean {
   return hostname === SITE.domain || hostname === `www.${SITE.domain}`;
 }
 
-export type ConversionKey = "whatsapp" | "phone" | "email" | "catalogue";
+/**
+ * `ppf_booking` is the installed-PPF booking saved on /b2c/ppf-installation.
+ * It is the only key not fired by the click listener: the configurator reports
+ * it once the server confirms the save (see trackPpfBooking in analytics.ts).
+ */
+export type ConversionKey = "whatsapp" | "phone" | "email" | "catalogue" | "ppf_booking";
 
 /**
  * Conversion LABELS are issued by Google Ads, one per conversion action
@@ -78,6 +83,7 @@ export const CONVERSION_LABELS: Record<ConversionKey, string> = {
   phone: process.env.NEXT_PUBLIC_ADS_LABEL_PHONE ?? "",
   email: process.env.NEXT_PUBLIC_ADS_LABEL_EMAIL ?? "",
   catalogue: process.env.NEXT_PUBLIC_ADS_LABEL_CATALOGUE ?? "",
+  ppf_booking: process.env.NEXT_PUBLIC_ADS_LABEL_PPF_BOOKING ?? "",
 };
 
 /** Event name reported to gtag/GA4 alongside the Ads conversion. */
@@ -86,6 +92,7 @@ export const CONVERSION_EVENT_NAMES: Record<ConversionKey, string> = {
   phone: "phone_enquiry",
   email: "email_enquiry",
   catalogue: "catalogue_download",
+  ppf_booking: "ppf_booking_request",
 };
 
 /** `send_to` value for gtag, or null when the label has not been issued yet. */

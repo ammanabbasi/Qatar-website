@@ -55,6 +55,7 @@ export function Header({
     { href: `${audiencePrefix}/products`, label: t("products") },
     ...(audience === "b2c"
       ? [
+          { href: "/b2c/ppf-installation", label: t("ppfInstall") },
           { href: "/b2c/blog", label: t("blog") },
         ]
       : [{ href: "/b2b/become-a-dealer", label: t("becomeDealer") }]),
@@ -128,7 +129,7 @@ export function Header({
         </Link>
 
         {/* Desktop nav */}
-        <nav aria-label={t("menu")} className="hidden md:flex md:items-center md:gap-7">
+        <nav aria-label={t("menu")} className="hidden md:flex md:items-center md:gap-4 lg:gap-7">
           {links.map((link) => {
             const active =
               pathname === link.href ||
@@ -138,7 +139,7 @@ export function Header({
                 key={link.href}
                 href={link.href}
                 aria-current={active ? "page" : undefined}
-                className={`text-caption transition-colors duration-200 ease-soft rtl:text-[13px] ${
+                className={`whitespace-nowrap text-caption transition-colors duration-200 ease-soft rtl:text-[13px] ${
                   active
                     ? `font-medium ${dark ? "text-white" : "text-(--color-text)"}`
                     : dark

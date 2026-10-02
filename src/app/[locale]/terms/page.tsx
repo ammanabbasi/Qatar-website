@@ -38,7 +38,7 @@ export default async function TermsPage({
   const t = await getTranslations({ locale, namespace: "Terms" });
   const eyebrows = await getTranslations({ locale, namespace: "Eyebrows" });
 
-  const sections = [1, 2, 3, 4, 5, 6, 7] as const;
+  const sections = [1, 2, 3, 4, 5, 6, 7, 8] as const;
 
   return (
     <Shell audience={audience} locale={l}>

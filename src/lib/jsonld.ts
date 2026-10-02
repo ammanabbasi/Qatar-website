@@ -262,6 +262,39 @@ export function breadcrumbJsonLd(
 }
 
 /**
+ * Service node for the installed-PPF page. ABK is the provider: it sells the
+ * job and stands behind it, even though a partner centre does the fitting.
+ * The offer range is the configurator's own lowest and highest fixed price,
+ * both visible on the page — an Offer whose price isn't shown is an error.
+ */
+export function serviceJsonLd(opts: {
+  name: string;
+  description: string;
+  url: string;
+  serviceType: string;
+  lowPriceQar: number;
+  highPriceQar: number;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: opts.name,
+    description: opts.description,
+    serviceType: opts.serviceType,
+    url: opts.url,
+    provider: { "@id": IDS.business },
+    areaServed: QATAR_SERVICE_AREA,
+    audience: { "@type": "Audience", audienceType: "Car owners in Qatar" },
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "QAR",
+      lowPrice: opts.lowPriceQar,
+      highPrice: opts.highPriceQar,
+    },
+  };
+}
+
+/**
  * FAQPage. The Q/A pairs render as expandable items in Google search results
  * (when eligible) and are quoted heavily by AI Overviews / ChatGPT / Perplexity
  * shopping answers. High-leverage for a small Qatar retail site.
