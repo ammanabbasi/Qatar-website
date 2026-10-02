@@ -3,8 +3,11 @@
  *
  * The site's only server-side write. The record goes to the owner's Google
  * Sheet through an Apps Script web app (PPF_BOOKING_WEBHOOK_URL), called from
- * here so the shared secret never reaches the browser. The proxy matcher in
- * src/proxy.ts already excludes /api, so next-intl never touches this route.
+ * here so the endpoint never reaches the browser — the unguessable deployment
+ * URL is the capability. PPF_BOOKING_WEBHOOK_SECRET is optional hardening:
+ * when set (and set as SHARED_SECRET in the script), it is sent and checked.
+ * The proxy matcher in src/proxy.ts already excludes /api, so next-intl never
+ * touches this route.
  *
  * Failure is never fatal for the customer: on any error the client still
  * offers the WhatsApp hand-off with a reference, so a lead is never lost.
@@ -84,7 +87,7 @@ export async function POST(request: Request) {
 
   const url = process.env.PPF_BOOKING_WEBHOOK_URL;
   const secret = process.env.PPF_BOOKING_WEBHOOK_SECRET;
-  if (!url || !secret) {
+  if (!url) {
     console.error("[ppf-booking] webhook not configured; booking", ref, "not saved");
     return json(503, { ok: false, error: "not_configured", ref, priceQar: quote.priceQar });
   }
@@ -120,7 +123,7 @@ export async function POST(request: Request) {
     const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ secret, booking }),
+      body: JSON.stringify(secret ? { secret, booking } : { booking }),
       signal: AbortSignal.timeout(10000),
     });
     const out = (await res.json().catch(() => null)) as { ok?: boolean } | null;
