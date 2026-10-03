@@ -7,12 +7,16 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { AudienceSwitch } from "./AudienceSwitch";
 import { LocaleSwitch } from "./LocaleSwitch";
 import { Container } from "@/components/ui/Container";
-import { BagIcon, MenuIcon, CloseIcon } from "@/components/ui/Icons";
+import { ArrowRightIcon, BagIcon, MenuIcon, CloseIcon } from "@/components/ui/Icons";
 import { WhatsAppIcon } from "@/components/cta/WhatsAppIcon";
 import { HEADER_CART_BUTTON_ID, useCartUi } from "@/components/cart/CartProvider";
 import { buildWhatsAppUrl, type Audience, type WALocale } from "@/lib/whatsapp";
 import { useCart } from "@/lib/cart";
-import { findProduct, formatNumber } from "@/lib/pricing";
+import { findProduct, formatNumber, formatQar } from "@/lib/pricing";
+import { installedFromQar } from "@/lib/ppfOffer";
+
+/** The one standout retail item: professionally installed PPF. */
+const PPF_HREF = "/b2c/ppf-installation";
 
 export function Header({
   audience,
@@ -39,6 +43,7 @@ export function Header({
     (sum, l) => sum + (findProduct(catalogue, l.slug) ? l.qty : 0),
     0,
   );
+  const tp = useTranslations("PpfPromo");
   const tc = useTranslations("Cart");
   const tt = useTranslations("Tray");
   const isRetail = audience === "b2c";
@@ -46,6 +51,7 @@ export function Header({
   const cartLabel = isRetail ? tc("open", { count }) : tt("open", { count });
   const badge = count > 99 ? "99+" : formatNumber(count, locale);
 
+  const ppfFrom = installedFromQar("pro");
   const audiencePrefix = `/${audience}`;
   // B2C home lives at the locale root; deeper b2c routes keep the /b2c prefix.
   const homeHref = audience === "b2c" ? "/" : audiencePrefix;
@@ -55,7 +61,7 @@ export function Header({
     { href: `${audiencePrefix}/products`, label: t("products") },
     ...(audience === "b2c"
       ? [
-          { href: "/b2c/ppf-installation", label: t("ppfInstall") },
+          { href: PPF_HREF, label: t("ppfInstall") },
           { href: "/b2c/blog", label: t("blog") },
         ]
       : [{ href: "/b2b/become-a-dealer", label: t("becomeDealer") }]),
@@ -129,11 +135,36 @@ export function Header({
         </Link>
 
         {/* Desktop nav */}
-        <nav aria-label={t("menu")} className="hidden md:flex md:items-center md:gap-4 lg:gap-7">
+        <nav aria-label={t("menu")} className="hidden md:flex md:items-center md:gap-3 lg:gap-7">
           {links.map((link) => {
             const active =
               pathname === link.href ||
               (link.href !== homeHref && pathname.startsWith(link.href));
+            if (link.href === PPF_HREF) {
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`group/ppf inline-flex h-8 items-center gap-1.5 whitespace-nowrap rounded-pill border px-2.5 text-caption font-semibold transition-colors duration-200 ease-soft rtl:text-[13px] lg:ps-3 lg:pe-1.5 ${
+                    active
+                      ? "border-(--color-brand) bg-(--color-brand) text-black"
+                      : dark
+                        ? "border-(--color-brand)/55 bg-(--color-brand)/12 text-(--color-brand) hover:bg-(--color-brand)/22"
+                        : "border-(--color-ink) bg-(--color-ink) text-white hover:bg-black"
+                  }`}
+                >
+                  <span>{link.label}</span>
+                  <span
+                    className={`hidden rounded-pill px-1.5 py-px text-[10px] font-bold uppercase leading-[1.5] tracking-[0.08em] lg:inline ${
+                      active ? "bg-black/85 text-(--color-brand)" : "bg-(--color-brand) text-black"
+                    }`}
+                  >
+                    {tp("newTag")}
+                  </span>
+                </Link>
+              );
+            }
             return (
               <Link
                 key={link.href}
@@ -221,6 +252,31 @@ export function Header({
           }`}
         >
           <Container className="flex flex-col gap-3 py-4">
+            {isRetail && (
+              <Link
+                href={PPF_HREF}
+                onClick={() => setOpen(false)}
+                className="group/ppf relative isolate flex min-h-[72px] items-center justify-between gap-3 overflow-hidden rounded-2xl bg-(--color-tile-dark) p-4 text-white ring-1 ring-inset ring-(--color-brand)/45"
+              >
+                <span aria-hidden className="ppf-blueprint absolute inset-0 -z-10" />
+                <span className="min-w-0">
+                  <span className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-(--color-brand)">
+                    <span className="rounded-pill bg-(--color-brand) px-1.5 py-px text-[10px] leading-[1.5] tracking-[0.08em] text-black">
+                      {tp("newTag")}
+                    </span>
+                    {tp("menuEyebrow")}
+                  </span>
+                  <span className="mt-1 block text-title-sm font-bold">{t("ppfInstall")}</span>
+                  {ppfFrom !== null && (
+                    <span className="mt-0.5 block text-footnote text-white/65">
+                      {tp("menuSub", { price: formatQar(ppfFrom, locale) })}
+                    </span>
+                  )}
+                </span>
+                <ArrowRightIcon className="h-5 w-5 shrink-0 text-(--color-brand) transition-transform duration-200 ease-soft group-hover/ppf:translate-x-0.5 rtl:rotate-180 rtl:group-hover/ppf:-translate-x-0.5" />
+              </Link>
+            )}
+
             {/* Experience Selector Card */}
             <div
               className={`rounded-2xl border p-3 ${
@@ -310,7 +366,7 @@ export function Header({
             )}
 
             <nav aria-label={t("menu")} className="flex flex-col">
-              {links.map((link) => (
+              {links.filter((link) => link.href !== PPF_HREF).map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}

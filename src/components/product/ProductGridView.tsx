@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { CloseIcon, SearchIcon } from "@/components/ui/Icons";
 import { ProductCard } from "./ProductCard";
 import { AudienceCrossBanner } from "./AudienceCrossBanner";
+import { PpfInstallStrip } from "@/components/ppf/PpfInstallStrip";
 import type { BrandKey, CategoryKey, Product } from "@/data/products";
 import type { Audience } from "@/lib/whatsapp";
 
@@ -79,6 +80,12 @@ export function ProductGridView({
 
   return (
     <div className="flex flex-col gap-8">
+      {/* Retail shoppers browsing everything, or the film category, see the
+          installed-PPF service; a search or another category stays clean. */}
+      {audience === "b2c" && !query && (filters.category === "all" || filters.category === "ppf") ? (
+        <PpfInstallStrip locale={locale} />
+      ) : null}
+
       {/* Audience Cross-Navigation Banner */}
       <AudienceCrossBanner audience={audience} />
 

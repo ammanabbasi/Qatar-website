@@ -5,6 +5,8 @@ import { ChevronIcon } from "@/components/ui/Icons";
 import { AddToCartButton } from "@/components/cart/AddToCartButton";
 import type { Product } from "@/data/products";
 import type { Audience } from "@/lib/whatsapp";
+import { filmForSlug, installHref, installedFromQar } from "@/lib/ppfOffer";
+import { formatQar } from "@/lib/pricing";
 
 type Props = {
   product: Product;
@@ -35,6 +37,10 @@ export function ProductCard({
   const t = useTranslations();
   const name = product.name[locale];
   const isB2b = audience === "b2b";
+  // Retail VTEK films also sell as an installed service. A sibling of the
+  // stretched product link (never inside it), above its overlay like the cart button.
+  const film = !isB2b ? filmForSlug(product.slug) : undefined;
+  const installFrom = film ? installedFromQar(film.key) : null;
 
   return (
     <div className={`group relative flex min-w-0 flex-col ${className}`}>
@@ -94,7 +100,24 @@ export function ProductCard({
         ) : (
           // Above the stretched link's overlay, and pushed to the card's
           // bottom so buttons line up across a grid row.
-          <div className="relative z-10 mt-auto pt-3">
+          <div className="relative z-10 mt-auto flex flex-col gap-2 pt-3">
+            {film ? (
+              <Link
+                href={installHref(film.key)}
+                className="group/install flex min-h-11 items-center justify-between gap-2 rounded-xl bg-(--color-tile-dark) px-3 py-1.5 text-white ring-1 ring-inset ring-(--color-brand)/35 transition-colors duration-150 ease-soft hover:ring-(--color-brand)"
+              >
+                <span className="min-w-0 leading-tight">
+                  <span className="block text-[11px] font-semibold text-(--color-brand)">
+                    {installFrom === null ? t("PpfPromo.installedLabel") : t("PpfPromo.fromLabel")}
+                  </span>
+                  <span className="block truncate text-footnote font-bold tabular-nums">
+                    {installFrom === null ? t("PpfPromo.perCar") : formatQar(installFrom, locale)}
+                  </span>
+                  <span className="sr-only"> — {film.name[locale]}</span>
+                </span>
+                <ChevronIcon className="h-3.5 w-3.5 shrink-0 text-(--color-brand) transition-transform duration-150 ease-soft group-hover/install:translate-x-0.5 rtl:rotate-180 rtl:group-hover/install:-translate-x-0.5" />
+              </Link>
+            ) : null}
             <AddToCartButton slug={product.slug} />
           </div>
         )}

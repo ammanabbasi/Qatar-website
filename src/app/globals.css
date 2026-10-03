@@ -393,6 +393,139 @@ html[dir="rtl"] body * {
     animation: ppf-ring 1400ms var(--ease-soft) 300ms both;
   }
 
+  /* Small technical labels: monospace in English, the Arabic face in Arabic (PPF quote). */
+  .ppf-mono {
+    font-family: var(--font-mono);
+  }
+  html[dir="rtl"] .ppf-mono {
+    font-family: inherit;
+  }
+
+  /* ── PPF blueprint motif ─────────────────────────────────────────────
+     Fine grid + ruler ticks behind the car. Hairlines only, one accent. */
+  .ppf-grid {
+    background-image:
+      linear-gradient(rgb(255 255 255 / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-position: center;
+  }
+  .ppf-ruler {
+    position: absolute;
+    top: 3rem;
+    bottom: 3rem;
+    width: 12px;
+    pointer-events: none;
+    background-repeat: no-repeat;
+    background-image:
+      repeating-linear-gradient(to bottom, rgb(255 255 255 / 0.3) 0 1px, transparent 1px 12px),
+      repeating-linear-gradient(to bottom, rgb(255 255 255 / 0.55) 0 1px, transparent 1px 60px);
+    background-size:
+      6px 100%,
+      12px 100%;
+  }
+  .ppf-ruler-l {
+    left: 0;
+    background-position:
+      left top,
+      left top;
+  }
+  .ppf-ruler-r {
+    right: 0;
+    background-position:
+      right top,
+      right top;
+  }
+  /* Corner crop marks on the hero drawing frame. */
+  .ppf-crop {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border: 0 solid var(--color-brand);
+    pointer-events: none;
+  }
+
+  /* ── PPF car diagram ─────────────────────────────────────────────────
+     Panel states: idle outline -> hover -> pressed -> selected. */
+  .ppf-car {
+    height: 300px;
+    width: auto;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    overflow: visible;
+  }
+  @media (min-width: 40rem) {
+    .ppf-car {
+      height: 340px;
+    }
+  }
+  .ppf-car .ppf-body {
+    fill: rgb(255 255 255 / 0.03);
+    stroke: rgb(255 255 255 / 0.22);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+  .ppf-car .ppf-glass {
+    stroke: rgb(255 255 255 / 0.14);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+  .ppf-car .ppf-vis {
+    fill: rgb(255 255 255 / 0.06);
+    stroke: rgb(255 255 255 / 0.4);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+    stroke-linejoin: round;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition:
+      fill 200ms var(--ease-sheet),
+      stroke 200ms var(--ease-sheet),
+      transform 150ms var(--ease-sheet);
+  }
+  .ppf-car .ppf-part[data-on] .ppf-vis {
+    fill: color-mix(in srgb, var(--color-brand) 88%, transparent);
+    stroke: var(--color-brand);
+  }
+  .ppf-car[data-interactive] .ppf-hit {
+    cursor: pointer;
+  }
+  @media (hover: hover) {
+    .ppf-car[data-interactive] .ppf-part:hover .ppf-vis {
+      fill: color-mix(in srgb, var(--color-brand) 24%, transparent);
+      stroke: var(--color-brand);
+    }
+    .ppf-car[data-interactive] .ppf-part[data-on]:hover .ppf-vis {
+      fill: color-mix(in srgb, var(--color-brand) 70%, transparent);
+    }
+  }
+  .ppf-car[data-interactive] .ppf-part:active .ppf-vis {
+    fill: color-mix(in srgb, var(--color-brand) 50%, transparent);
+    transform: scale(0.96);
+  }
+  /* Idle hint: until the first tap, panels pulse front-to-back. */
+  .ppf-car[data-hint] .ppf-part:not([data-on]) .ppf-vis {
+    animation: ppf-panel-hint 4.2s var(--ease-soft) calc(var(--i) * 150ms) infinite;
+  }
+  .ppf-tap-ring {
+    fill: none;
+    stroke: var(--color-brand);
+    stroke-width: 1.5;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: ppf-tap-ring 2.4s var(--ease-soft) infinite;
+  }
+  /* Hero drawing: each panel lights as the scan line reaches it. */
+  .ppf-car[data-loop] .ppf-vis {
+    animation: ppf-panel-wrap 9s var(--ease-soft) var(--d) infinite;
+  }
+  .ppf-scan-once {
+    animation: ppf-scan-once 700ms var(--ease-sheet) both;
+  }
+  .ppf-scan-loop {
+    animation: ppf-scan-loop 9s var(--ease-soft) infinite;
+  }
+
   /* The mobile sticky "Add to cart" bar sits where the floating WhatsApp
      bubble lives, so the bubble rides up above the bar while it shows. */
   .floating-wa {
@@ -530,6 +663,73 @@ html[dir="rtl"] body * {
     transform: scale(1.7);
   }
 }
+@keyframes ppf-panel-hint {
+  0%,
+  22%,
+  100% {
+    fill: rgb(255 255 255 / 0.06);
+    stroke: rgb(255 255 255 / 0.4);
+  }
+  8% {
+    fill: color-mix(in srgb, var(--color-brand) 26%, transparent);
+    stroke: var(--color-brand);
+  }
+}
+@keyframes ppf-tap-ring {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.6);
+  }
+  70%,
+  100% {
+    opacity: 0;
+    transform: scale(3);
+  }
+}
+@keyframes ppf-panel-wrap {
+  0%,
+  100% {
+    fill: rgb(255 255 255 / 0.06);
+    stroke: rgb(255 255 255 / 0.4);
+  }
+  5%,
+  62% {
+    fill: color-mix(in srgb, var(--color-brand) 62%, transparent);
+    stroke: var(--color-brand);
+  }
+  80% {
+    fill: rgb(255 255 255 / 0.06);
+    stroke: rgb(255 255 255 / 0.4);
+  }
+}
+@keyframes ppf-scan-once {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(520px);
+    opacity: 0;
+  }
+}
+@keyframes ppf-scan-loop {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  2% {
+    opacity: 1;
+  }
+  32% {
+    transform: translateY(500px);
+    opacity: 1;
+  }
+  35%,
+  100% {
+    transform: translateY(520px);
+    opacity: 0;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .shelf-scroller {
@@ -541,5 +741,33 @@ html[dir="rtl"] body * {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+  }
+}
+
+/* ── Installed-PPF promos (home band, catalogue strip, film-page card) ──
+   Blueprint ground and the one-time "coverage reveal" on the car drawing.
+   Owned by the retail promo components; the .ppf-* rules above belong to
+   the installation page. Reduced motion is handled by the global rule. */
+.ppf-blueprint {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+  -webkit-mask-image: radial-gradient(120% 90% at 85% 40%, #000 0%, transparent 75%);
+  mask-image: radial-gradient(120% 90% at 85% 40%, #000 0%, transparent 75%);
+}
+[dir="rtl"] .ppf-blueprint {
+  -webkit-mask-image: radial-gradient(120% 90% at 15% 40%, #000 0%, transparent 75%);
+  mask-image: radial-gradient(120% 90% at 15% 40%, #000 0%, transparent 75%);
+}
+.ppf-promo-reveal {
+  transform-box: fill-box;
+  transform-origin: 100% 50%;
+  animation: ppf-promo-reveal 900ms var(--ease-sheet) 250ms backwards;
+}
+@keyframes ppf-promo-reveal {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
   }
 }

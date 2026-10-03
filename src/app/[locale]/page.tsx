@@ -5,6 +5,7 @@ import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
 import { HomeHero } from "@/components/home/HomeHero";
 import { StoreHeader } from "@/components/home/StoreHeader";
+import { PpfInstallPromo } from "@/components/home/PpfInstallPromo";
 import { CategoryShelf } from "@/components/home/CategoryShelf";
 import { StarProducts } from "@/components/home/StarProducts";
 import { WhyQatar } from "@/components/home/WhyQatar";
@@ -48,6 +49,9 @@ export default async function Home({
     <Shell audience="b2c" locale={l}>
       <JsonLd id="ld-localbusiness-b2c" data={jsonLd} />
       <HomeHero audience="b2c" locale={l} />
+      {/* Installed PPF — the premium service sits right under the hero so it
+          is found without opening the menu. */}
+      <PpfInstallPromo locale={l} />
       {/* Shop-first: categories and the add-to-cart shelf come straight after
           the hero. The trust and climate sections below carry the page's SEO
           copy, so they moved down rather than out. The Retail/Wholesale

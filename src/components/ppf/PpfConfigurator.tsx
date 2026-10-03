@@ -23,6 +23,7 @@ import {
   PARTS,
   PART_KEYS,
   PRESET_PARTS,
+  isFilm,
   makeBookingRef,
   quotePpf,
   type BodyType,
@@ -192,9 +193,22 @@ function Tick({ on }: { on: boolean }) {
 }
 
 const optionCls = (active: boolean) =>
-  `ppf-rise relative flex w-full items-center gap-4 rounded-tile border-2 bg-(--color-surface) p-4 text-start transition-[border-color,box-shadow,transform] duration-200 ease-soft hover:shadow-tile-hover active:scale-[0.985] ${
-    active ? "border-(--color-brand) shadow-tile-hover" : "border-transparent shadow-tile"
+  `ppf-rise relative flex w-full items-center gap-4 rounded-xl border bg-(--color-surface) p-4 text-start transition-[border-color,background-color,box-shadow,transform] duration-150 ease-soft active:scale-[0.985] ${
+    active
+      ? "border-(--color-brand) bg-(--color-brand)/[0.07] shadow-[inset_0_0_0_1px_var(--color-brand)]"
+      : "border-(--color-border) hover:border-(--color-text-subtle)"
   }`;
+
+/** Crosshair: the "tap here" cue beside the diagram instruction. */
+function TargetIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 20 20" aria-hidden className={className} fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
+      <circle cx="10" cy="10" r="2.2" fill="currentColor" stroke="none" />
+      <circle cx="10" cy="10" r="6.2" />
+      <path d="M10 1.5v2.5M10 16v2.5M1.5 10H4M16 10h2.5" />
+    </svg>
+  );
+}
 
 /**
  * The installed-PPF quote builder. On the page it is a launcher card; the
@@ -213,9 +227,15 @@ export function PpfConfigurator() {
   const [step, setStep] = useState<Step>(0);
   const [dir, setDir] = useState<1 | -1>(1);
   const [body, setBody] = useState<BodyType | null>(null);
-  const [coverage, setCoverage] = useState<CoverageKey | null>(null);
+  // "Choose parts" is the default coverage: the diagram is the first thing
+  // the customer sees at the coverage step and every panel on it is tappable.
+  const [coverage, setCoverage] = useState<CoverageKey>("custom");
   const [parts, setParts] = useState<Set<PartKey>>(new Set());
   const [film, setFilm] = useState<FilmKey>("pro");
+  // Idle hint on the diagram stops for good after the first interaction.
+  const [hinted, setHinted] = useState(false);
+  const [scanKey, setScanKey] = useState(0);
+  const [announce, setAnnounce] = useState("");
   const [form, setForm] = useState<Form>({
     make: "",
     model: "",
@@ -315,12 +335,18 @@ export function PpfConfigurator() {
     return () => document.removeEventListener("click", onClick);
   }, [openSheet]);
 
+  // Deep links, first load only: `?film=ultimate` preselects that film (the
+  // product pages link here) and `#quote` opens the sheet. Read on the client
+  // so the page itself can stay statically rendered.
   useEffect(() => {
-    if (window.location.hash === "#quote") {
-      const id = window.setTimeout(() => openSheet(), 350);
-      return () => window.clearTimeout(id);
-    }
-    // Deep link only on first load.
+    const wanted = new URLSearchParams(window.location.search).get("film");
+    const deepLink = window.location.hash === "#quote";
+    if (!isFilm(wanted) && !deepLink) return;
+    const id = window.setTimeout(() => {
+      if (isFilm(wanted)) setFilm(wanted);
+      if (deepLink) openSheet();
+    }, 350);
+    return () => window.clearTimeout(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -377,13 +403,12 @@ export function PpfConfigurator() {
   // ── quote ───────────────────────────────────────────────────────────────
   const selectedParts: Set<PartKey> = useMemo(() => {
     if (coverage === "custom") return parts;
-    if (coverage) return new Set(PRESET_PARTS[coverage]);
-    return new Set();
+    return new Set(PRESET_PARTS[coverage]);
   }, [coverage, parts]);
 
   const quote = useMemo(
     () =>
-      body && coverage
+      body
         ? quotePpf({ body, coverage, parts: [...parts], film })
         : { priceQar: null, isEstimate: false },
     [body, coverage, parts, film],
@@ -391,13 +416,13 @@ export function PpfConfigurator() {
   const animatedPrice = useAnimatedNumber(quote.priceQar);
 
   const bodyInfo = BODY_TYPES.find((b) => b.key === body);
-  const coverageInfo = COVERAGES.find((c) => c.key === coverage);
+  const coverageInfo = COVERAGES.find((c) => c.key === coverage)!;
   const filmInfo = FILMS.find((f) => f.key === film)!;
   const partNames = coverage === "custom" ? PARTS.filter((p) => parts.has(p.key)).map((p) => p.name[locale]) : [];
 
   const canAdvance =
     (step === 0 && body !== null) ||
-    (step === 1 && coverage !== null && (coverage !== "custom" || parts.size > 0)) ||
+    (step === 1 && (coverage !== "custom" || parts.size > 0)) ||
     step === 2;
 
   const go = (next: Step) => {
@@ -443,13 +468,37 @@ export function PpfConfigurator() {
   const borderFor = (k: FieldKey) =>
     shownError(k) ? "border-(--color-danger)" : "border-(--color-border)";
 
+  /** Any selection change: stop the idle hint, replay the scan line. */
+  function touchDiagram() {
+    setHinted(true);
+    setScanKey((k) => k + 1);
+  }
+
+  // Tapping a panel (diagram or list) always lands in "Choose parts": from a
+  // preset it seeds the selection with that preset's panels, then toggles.
   function togglePart(p: PartKey) {
-    setParts((prev) => {
-      const next = new Set(prev);
-      if (next.has(p)) next.delete(p);
-      else next.add(p);
-      return next;
-    });
+    const next = new Set(selectedParts);
+    const wasOn = next.has(p);
+    if (wasOn) next.delete(p);
+    else next.add(p);
+    setCoverage("custom");
+    setParts(next);
+    touchDiagram();
+    const name = PARTS.find((x) => x.key === p)?.name[locale] ?? p;
+    setAnnounce(t(wasOn ? "partRemoved" : "partAdded", { part: name }));
+  }
+
+  function chooseCoverage(c: CoverageKey) {
+    // "Choose parts" keeps whatever is lit, so the customer edits from there.
+    if (c === "custom") setParts(new Set(selectedParts));
+    setCoverage(c);
+    touchDiagram();
+  }
+
+  function setAllParts(all: boolean) {
+    setCoverage("custom");
+    setParts(all ? new Set(PART_KEYS) : new Set());
+    touchDiagram();
   }
 
   async function onSubmit(e: FormEvent) {
@@ -462,7 +511,7 @@ export function PpfConfigurator() {
       el?.scrollIntoView({ block: "center", behavior: prefersReducedMotion() ? "auto" : "smooth" });
       return;
     }
-    if (!body || !coverage) return;
+    if (!body) return;
     setSending(true);
     const payload = {
       body,
@@ -506,8 +555,8 @@ export function PpfConfigurator() {
 
   // Before a coverage is chosen the footer shows the entry price instead of a dash.
   const entryPrice = quotePpf({ body: body ?? "sedan", coverage: "front-end", parts: [], film: "pro" }).priceQar!;
-  const priceLabel = !coverage
-    ? t("launchEyebrow")
+  const priceLabel = !body
+    ? t("eyebrow")
     : quote.priceQar === null
       ? coverage === "custom" && parts.size === 0
         ? t("summaryChooseParts")
@@ -518,7 +567,7 @@ export function PpfConfigurator() {
   const priceText =
     animatedPrice !== null && quote.priceQar !== null
       ? qar(animatedPrice)
-      : !coverage
+      : !body
         ? t("priceFrom", { price: qar(entryPrice) })
         : "—";
 
@@ -528,7 +577,7 @@ export function PpfConfigurator() {
         ref: result.ref,
         vehicle: `${form.year} ${form.make} ${form.model}`.trim(),
         bodyType: bodyInfo?.name[locale] ?? "",
-        coverage: coverageInfo?.name[locale] ?? "",
+        coverage: coverageInfo.name[locale],
         parts: partNames,
         film: filmInfo.name[locale],
         price:
@@ -542,70 +591,62 @@ export function PpfConfigurator() {
 
   const startedQuote = body !== null && !result;
 
-  // ── launcher (on the page) ──────────────────────────────────────────────
-  const launcher = (
-    <div className="ppf-sheen relative overflow-hidden rounded-hero bg-(--color-hero-dark) p-5 text-white sm:p-10">
-      {/* Gold glow behind the cars */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-24 end-[-10%] h-72 w-72 rounded-full bg-(--color-brand)/25 blur-3xl"
-      />
-      <div className="relative">
-        <p className="text-caption font-semibold uppercase tracking-[0.16em] text-(--color-brand)">
-          {t("launchEyebrow")}
-        </p>
-        <h3 className="mt-2 text-title-sm font-semibold sm:text-title">{t("bodyTitle")}</h3>
-        <p className="mt-2 max-w-xl text-footnote text-white/70">{t("launchSubtitle")}</p>
+  // ── quote selector (in the page hero) ───────────────────────────────────
+  const ctaLabel = result
+    ? t("launchViewBooking", { ref: result.ref })
+    : startedQuote
+      ? `${t("launchResume")}${quote.priceQar !== null ? ` · ${qar(quote.priceQar)}` : ""}`
+      : t("launchStart");
 
-        <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
-          {BODY_TYPES.map((b, i) => {
-            const from = quotePpf({ body: b.key, coverage: "front-end", parts: [], film: "pro" }).priceQar!;
-            return (
+  const launcher = (
+    <div>
+      <p className="flex items-center gap-2.5 ppf-mono text-caption uppercase tracking-[0.14em] text-white/55">
+        <span className="tabular-nums text-(--color-brand)">01</span>
+        <span aria-hidden className="h-px w-5 bg-white/25" />
+        {t("launchPick")}
+      </p>
+      <ul className="mt-3 divide-y divide-white/10 overflow-hidden rounded-tile border border-white/12 bg-white/[0.035]">
+        {BODY_TYPES.map((b) => {
+          const from = quotePpf({ body: b.key, coverage: "front-end", parts: [], film: "pro" }).priceQar!;
+          return (
+            <li key={b.key}>
               <button
-                key={b.key}
                 type="button"
                 onClick={() => openSheet(b.key)}
-                style={{ animationDelay: `${i * 70}ms` }}
-                className="ppf-rise group flex min-w-0 items-center gap-4 rounded-tile border border-white/10 bg-white/[0.04] p-4 text-start transition-[background-color,border-color,transform] duration-200 ease-soft hover:border-(--color-brand)/60 hover:bg-white/[0.08] focus-visible:outline-2 focus-visible:outline-(--color-brand) active:scale-[0.98] sm:flex-col sm:items-start"
+                className="group flex min-h-16 w-full items-center gap-3 px-3.5 py-2.5 text-start transition-colors duration-150 hover:bg-white/[0.06] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-(--color-brand) active:bg-white/[0.1]"
               >
-                <span className="shrink-0 text-white/80 transition-[color,transform] duration-300 ease-soft group-hover:translate-x-1 group-hover:text-(--color-brand) rtl:-scale-x-100 rtl:group-hover:-translate-x-1">
-                  <BodyIcon body={b.key} className="h-6 w-auto sm:h-12" />
+                <span className="flex h-10 w-12 shrink-0 items-center justify-center text-white/70 transition-colors duration-150 group-hover:text-(--color-brand) rtl:-scale-x-100">
+                  <BodyIcon body={b.key} className="h-7 w-auto" />
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block text-body font-semibold">{b.name[locale]}</span>
-                  <span className="block truncate text-caption text-white/55">{b.examples[locale]}</span>
-                  <span className="mt-1 block text-footnote font-semibold text-(--color-brand)">
-                    {t("priceFrom", { price: qar(from) })}
-                  </span>
+                  <span className="block text-body font-semibold leading-tight">{b.name[locale]}</span>
+                  <span className="mt-0.5 block truncate text-caption text-white/50">{b.examples[locale]}</span>
                 </span>
-                <ChevronIcon className="h-3.5 w-3.5 shrink-0 text-white/40 sm:hidden rtl:-scale-x-100" />
+                <span className="shrink-0 text-end leading-tight">
+                  <span className="block text-caption text-white/50">{t("from")}</span>
+                  <span className="block text-footnote font-semibold tabular-nums text-(--color-brand)">{qar(from)}</span>
+                </span>
+                <ChevronIcon className="hidden h-3.5 w-3.5 shrink-0 text-white/35 transition-transform sm:block duration-150 group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
               </button>
-            );
-          })}
-        </div>
-
-        <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <ul className="flex flex-wrap gap-x-5 gap-y-2 text-caption text-white/70">
-            {(["launchTrust1", "launchTrust2", "launchTrust3"] as const).map((k) => (
-              <li key={k} className="flex items-center gap-1.5">
-                <ShieldCheckIcon className="h-3.5 w-3.5 text-(--color-brand)" />
-                {t(k)}
-              </li>
-            ))}
-          </ul>
-          <button
-            type="button"
-            onClick={() => openSheet()}
-            className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-pill bg-(--color-brand) px-6 text-body font-semibold text-(--color-ink) transition-[background-color,transform] duration-200 hover:bg-(--color-brand-hover) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:scale-[0.98]"
-          >
-            {result
-              ? t("launchViewBooking", { ref: result.ref })
-              : startedQuote
-                ? `${t("launchResume")}${quote.priceQar !== null ? ` · ${qar(quote.priceQar)}` : ""}`
-                : t("launchStart")}
-            <ChevronIcon className="h-3.5 w-3.5 rtl:-scale-x-100" />
-          </button>
-        </div>
+            </li>
+          );
+        })}
+      </ul>
+      <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+        <button
+          type="button"
+          onClick={() => openSheet()}
+          className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-pill bg-(--color-brand) px-7 text-body font-semibold text-(--color-ink) transition-[background-color,transform] duration-150 hover:bg-(--color-brand-hover) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:scale-[0.98] sm:w-auto"
+        >
+          {ctaLabel}
+          <ChevronIcon className="h-3.5 w-3.5 rtl:-scale-x-100" />
+        </button>
+        <a
+          href="#prices"
+          className="text-center text-footnote text-white/70 underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-brand) sm:text-start"
+        >
+          {t("launchPrices")}
+        </a>
       </div>
     </div>
   );
@@ -661,114 +702,133 @@ export function PpfConfigurator() {
         </>
       );
 
-    if (step === 1 && body)
+    if (step === 1 && body) {
+      const total = PARTS.length;
+      const packages = [
+        COVERAGES.find((c) => c.key === "custom")!,
+        ...COVERAGES.filter((c) => c.key !== "custom"),
+      ];
       return (
         <>
           {heading(t("coverageTitle"))}
-          {/* Live preview: the car lights up as coverage changes. */}
-          <div className="ppf-rise mt-5 flex items-center gap-4 rounded-tile bg-(--color-hero-dark) p-4 text-white sm:gap-6 sm:p-5">
-            <div className="w-[104px] shrink-0 sm:w-[132px] [&_p]:text-white/40">
-              <CarDiagram
-                selected={selectedParts}
-                frontEdge={coverage === "front-end"}
-                onToggle={coverage === "custom" ? togglePart : undefined}
-                label={t("diagramLabel")}
-                frontLabel={t("front")}
-                rearLabel={t("rear")}
-              />
-            </div>
-            <div key={coverage ?? "none"} className="ppf-step-in min-w-0 flex-1">
-              {coverageInfo ? (
-                <>
-                  <p className="text-body font-semibold">{coverageInfo.name[locale]}</p>
-                  <p className="mt-1 text-caption text-white/65">{coverageInfo.desc[locale]}</p>
-                  {coverage === "front-end" ? (
-                    <p className="mt-2 text-caption text-white/45">{t("frontEndNote")}</p>
-                  ) : null}
-                  <p className="mt-3 text-caption text-white/55">
-                    {t("summaryDuration", { duration: t(DURATION[coverageInfo.key] as "durationFrontEnd") })}
-                  </p>
-                </>
-              ) : (
-                <>
-                  <span className="block text-white/80 rtl:-scale-x-100">
-                    <BodyIcon body={body} className="h-6 w-auto" />
+          <p className="mt-1.5 flex items-center gap-2 text-footnote text-(--color-text-muted)">
+            <TargetIcon className="h-4 w-4 shrink-0 text-(--color-brand-deep)" />
+            {t("coverageTap")}
+          </p>
+          {/* Spoken confirmation of each tap on the diagram or the list. */}
+          <p role="status" aria-live="polite" className="sr-only">
+            {announce}
+          </p>
+
+          <div className="mt-4 sm:grid sm:grid-cols-[minmax(0,15.5rem)_minmax(0,1fr)] sm:items-start sm:gap-6">
+            {/* The diagram is the centrepiece: large, always tappable. */}
+            <div className="ppf-rise ppf-grid relative overflow-hidden rounded-tile bg-(--color-hero-dark) px-3 pb-2.5 pt-2.5 text-white">
+              <span aria-hidden className="ppf-ruler ppf-ruler-l" />
+              <span aria-hidden className="ppf-ruler ppf-ruler-r" />
+              <div className="relative flex items-start justify-between ppf-mono text-caption uppercase tracking-[0.14em] text-white/50">
+                <span>{t("front")}</span>
+                <span className="tabular-nums">
+                  <span className={selectedParts.size ? "text-(--color-brand)" : ""}>
+                    {String(selectedParts.size).padStart(2, "0")}
                   </span>
-                  <p className="mt-2 text-body font-semibold">{bodyInfo?.name[locale]}</p>
-                  <p className="mt-1 text-caption text-white/55">{bodyInfo?.examples[locale]}</p>
-                </>
-              )}
-            </div>
-          </div>
-
-          <div role="radiogroup" aria-label={t("coverageTitle")} className="mt-4 flex flex-col gap-2.5">
-            {COVERAGES.map((c, i) => {
-              const active = coverage === c.key;
-              const p = c.key === "custom" ? null : quotePpf({ body, coverage: c.key, parts: [], film: "pro" }).priceQar;
-              return (
-                <button
-                  key={c.key}
-                  type="button"
-                  role="radio"
-                  aria-checked={active}
-                  onClick={() => setCoverage(c.key)}
-                  style={{ animationDelay: `${80 + i * 50}ms` }}
-                  className={`${optionCls(active)} py-3.5`}
-                >
-                  <Tick on={active} />
-                  <span className="min-w-0 flex-1 text-body font-semibold">{c.name[locale]}</span>
-                  {p !== null ? (
-                    <span className="shrink-0 text-footnote font-semibold text-(--color-brand-deep)">{qar(p)}</span>
-                  ) : null}
-                </button>
-              );
-            })}
-          </div>
-
-          {coverage === "custom" ? (
-            <fieldset className="ppf-step-in mt-5">
-              <legend className="text-body font-semibold">{t("partsTitle")}</legend>
-              <div className="mt-1 flex flex-wrap items-center justify-between gap-2">
-                <p className="text-caption text-(--color-text-muted)" aria-live="polite">
-                  {t("partsSelected", { count: parts.size })}
-                </p>
-                <div className="flex gap-2">
-                  <Button size="sm" variant="secondary" onClick={() => setParts(new Set(PART_KEYS))}>
-                    {t("partsSelectAll")}
-                  </Button>
-                  <Button size="sm" variant="secondary" onClick={() => setParts(new Set())} disabled={parts.size === 0}>
-                    {t("partsClear")}
-                  </Button>
-                </div>
+                  /{total}
+                </span>
               </div>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {PARTS.map((p, i) => {
-                  const on = parts.has(p.key);
+              <div className="relative my-1">
+                <CarDiagram
+                  selected={selectedParts}
+                  frontEdge={coverage === "front-end"}
+                  onTogglePart={togglePart}
+                  hint={!hinted}
+                  scanKey={scanKey}
+                  label={t("diagramLabel")}
+                />
+              </div>
+              <p className="relative ppf-mono text-caption uppercase tracking-[0.14em] text-white/50">{t("rear")}</p>
+            </div>
+
+            <div className="mt-5 sm:mt-0">
+              <p className="ppf-mono text-caption uppercase tracking-[0.14em] text-(--color-text-muted)">
+                {t("packagesTitle")}
+              </p>
+              <div role="radiogroup" aria-label={t("packagesTitle")} className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-1">
+                {packages.map((c, i) => {
+                  const active = coverage === c.key;
+                  const p = c.key === "custom" ? null : quotePpf({ body, coverage: c.key, parts: [], film: "pro" }).priceQar;
                   return (
                     <button
-                      key={p.key}
+                      key={c.key}
                       type="button"
-                      aria-pressed={on}
-                      onClick={() => togglePart(p.key)}
-                      style={{ animationDelay: `${i * 25}ms` }}
-                      className={`ppf-rise inline-flex h-10 items-center gap-1.5 rounded-pill border px-3.5 text-footnote font-medium transition-[background-color,border-color,color,transform] duration-200 ease-soft active:scale-95 ${
-                        on
-                          ? "border-(--color-brand) bg-(--color-brand) text-(--color-ink)"
-                          : "border-(--color-border) bg-(--color-surface) text-(--color-text) hover:border-(--color-text-subtle)"
-                      }`}
+                      role="radio"
+                      aria-checked={active}
+                      onClick={() => chooseCoverage(c.key)}
+                      style={{ animationDelay: `${80 + i * 40}ms` }}
+                      className={`${optionCls(active)} min-h-14 gap-2.5 px-3 py-2.5`}
                     >
-                      {on ? <CheckIcon key="on" className="ppf-pop h-3.5 w-3.5" /> : null}
-                      {p.name[locale]}
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-footnote font-semibold leading-tight">{c.name[locale]}</span>
+                        <span className="mt-0.5 block text-caption tabular-nums text-(--color-text-muted)">
+                          {p !== null ? qar(p) : t("packageCustomSub")}
+                        </span>
+                      </span>
+                      <Tick on={active} />
                     </button>
                   );
                 })}
               </div>
-            </fieldset>
-          ) : null}
+              <p key={coverage} className="ppf-step-in mt-2.5 text-caption text-(--color-text-muted)">
+                {coverageInfo.desc[locale]}
+                {coverage === "front-end" ? ` ${t("frontEndNote")}` : ""}{" "}
+                {t("summaryDuration", { duration: t(DURATION[coverageInfo.key] as "durationFrontEnd") })}
+              </p>
+            </div>
+          </div>
+
+          <div role="group" aria-labelledby="ppf-parts-label" className="mt-6">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <p
+                id="ppf-parts-label"
+                className="ppf-mono text-caption uppercase tracking-[0.14em] text-(--color-text-muted)"
+              >
+                {t("partsTitle")} <span className="tabular-nums text-(--color-text)">{selectedParts.size}/{total}</span>
+              </p>
+              <div className="flex gap-2">
+                <Button size="sm" variant="secondary" onClick={() => setAllParts(true)} disabled={selectedParts.size === total}>
+                  {t("partsSelectAll")}
+                </Button>
+                <Button size="sm" variant="secondary" onClick={() => setAllParts(false)} disabled={selectedParts.size === 0}>
+                  {t("partsClear")}
+                </Button>
+              </div>
+            </div>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {PARTS.map((p, i) => {
+                const on = selectedParts.has(p.key);
+                return (
+                  <button
+                    key={p.key}
+                    type="button"
+                    aria-pressed={on}
+                    onClick={() => togglePart(p.key)}
+                    style={{ animationDelay: `${i * 25}ms` }}
+                    className={`ppf-rise inline-flex h-10 items-center gap-1.5 rounded-pill border px-3.5 text-footnote font-medium transition-[background-color,border-color,color,transform] duration-150 ease-soft active:scale-95 ${
+                      on
+                        ? "border-(--color-brand) bg-(--color-brand) text-(--color-ink)"
+                        : "border-(--color-border) bg-(--color-surface) text-(--color-text) hover:border-(--color-text-subtle)"
+                    }`}
+                  >
+                    {on ? <CheckIcon key="on" className="ppf-pop h-3.5 w-3.5" /> : null}
+                    {p.name[locale]}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </>
       );
+    }
 
-    if (step === 2 && body && coverage)
+    if (step === 2 && body)
       return (
         <>
           {heading(t("filmTitle"))}
@@ -827,7 +887,7 @@ export function PpfConfigurator() {
         <form id="ppf-form" noValidate onSubmit={onSubmit}>
           {heading(t("detailsTitle"))}
           <p className="mt-1 text-footnote text-(--color-text-muted)">
-            {bodyInfo?.name[locale]} · {coverageInfo?.name[locale]} · {filmInfo.name[locale]}
+            {bodyInfo?.name[locale]} · {coverageInfo.name[locale]} · {filmInfo.name[locale]}
           </p>
           {submitted && FORM_FIELDS.some((k) => errorFor(k)) ? (
             <p role="alert" className="mt-4 flex items-center gap-2 rounded-xl bg-(--color-danger)/8 px-4 py-3 text-footnote font-medium text-(--color-danger)">
@@ -933,7 +993,7 @@ export function PpfConfigurator() {
         <p className="text-caption font-semibold uppercase tracking-[0.14em] text-white/55">{t("refLabel")}</p>
         <p className="ltr-nums mt-1 font-mono text-title font-bold tracking-wider text-(--color-brand)">{result.ref}</p>
         <p className="mt-2 text-footnote text-white/65">
-          {bodyInfo?.name[locale]} · {coverageInfo?.name[locale]} · {filmInfo.name[locale]}
+          {bodyInfo?.name[locale]} · {coverageInfo.name[locale]} · {filmInfo.name[locale]}
           {quote.priceQar !== null ? ` · ${qar(quote.priceQar)}` : ""}
         </p>
       </div>
@@ -961,7 +1021,7 @@ export function PpfConfigurator() {
       <dl className="flex flex-col gap-2 text-footnote">
         {[
           [t("summaryCar"), bodyInfo?.name[locale]],
-          [t("summaryCoverage"), coverageInfo ? coverageInfo.name[locale] + (partNames.length ? ` (${partNames.length})` : "") : undefined],
+          [t("summaryCoverage"), body ? coverageInfo.name[locale] + (partNames.length ? ` (${partNames.length})` : "") : undefined],
           [t("summaryFilm"), body ? filmInfo.name[locale] : undefined],
         ].map(([k, v]) => (
           <div key={k} className="flex justify-between gap-4">
@@ -970,7 +1030,7 @@ export function PpfConfigurator() {
           </div>
         ))}
       </dl>
-      {coverage ? (
+      {body ? (
         <ul className="flex flex-col gap-1.5 border-t border-white/10 pt-4 text-caption text-white/60">
           <li className="flex items-start gap-1.5">
             <ShieldCheckIcon className="mt-px h-3.5 w-3.5 shrink-0 text-(--color-brand)" />

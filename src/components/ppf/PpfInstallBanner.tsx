@@ -1,44 +1,77 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { ChevronIcon, ShieldCheckIcon } from "@/components/ui/Icons";
-import { FILMS, WORKMANSHIP_COVER_MONTHS, quotePpf } from "@/data/ppfInstall";
-import { formatQar } from "@/lib/pricing";
+import { ArrowRightIcon } from "@/components/ui/Icons";
+import { PpfCarLine } from "./PpfCarLine";
+import { WORKMANSHIP_COVER_MONTHS, filmForSlug, installHref, installedFromQar } from "@/lib/ppfOffer";
+import { formatNumber, formatQar } from "@/lib/pricing";
 
 /**
- * "Want it fitted?" on the retail page of each VTEK PPF film. Car owners who
- * land on a film page usually want it installed, and the link tells crawlers
- * that the film and the installed service belong together. Renders nothing
- * for products that aren't an installable film.
+ * The premium upsell on the retail page of each VTEK PPF film: the same film,
+ * professionally installed, with that film's own from-price and warranty. The
+ * link carries the film so the installation page opens with it preselected,
+ * and it tells crawlers the film and the installed service belong together.
+ * Renders nothing for products that aren't an installable film.
  */
 export function PpfInstallBanner({ slug, locale }: { slug: string; locale: "en" | "ar" }) {
-  const t = useTranslations("Products");
-  const film = FILMS.find((f) => f.productSlug === slug);
+  const t = useTranslations("PpfPromo");
+  const film = filmForSlug(slug);
   if (!film) return null;
-  const { priceQar } = quotePpf({ body: "sedan", coverage: "front-end", parts: [], film: film.key });
+  const priceQar = installedFromQar(film.key);
 
   return (
-    <div className="flex flex-col gap-3 rounded-2xl border border-(--color-border) bg-(--color-surface) p-4 shadow-xs sm:flex-row sm:items-center sm:justify-between">
-      <div className="flex items-start gap-3">
-        <ShieldCheckIcon className="mt-0.5 h-6 w-6 shrink-0 text-(--color-brand-deep)" />
-        <div className="min-w-0">
-          <p className="text-callout font-semibold text-(--color-text)">{t("pdpInstallTitle")}</p>
-          <p className="mt-0.5 text-footnote text-(--color-text-muted)">
-            {priceQar === null
-              ? t("pdpInstallBodyQuote", { months: WORKMANSHIP_COVER_MONTHS })
-              : t("pdpInstallBody", {
-                  price: formatQar(priceQar, locale),
-                  months: WORKMANSHIP_COVER_MONTHS,
-                })}
+    <aside
+      aria-labelledby="ppf-pdp-title"
+      className="relative isolate overflow-hidden rounded-tile bg-(--color-tile-dark) text-white ring-1 ring-inset ring-white/10"
+    >
+      <div aria-hidden className="ppf-blueprint absolute inset-0 -z-10" />
+      <div className="p-5 sm:p-6">
+        <p className="flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[0.12em] text-(--color-brand)">
+          <span aria-hidden className="hidden h-px w-5 bg-(--color-brand) sm:block" />
+          {t("eyebrow")}
+        </p>
+        <h2 id="ppf-pdp-title" className="mt-2 text-title-sm font-bold">
+          {t("pdpTitle")}
+        </h2>
+
+        <div className="mt-4 grid items-end gap-4 sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-8">
+          <p className="leading-tight">
+            <span className="block text-caption font-semibold uppercase tracking-[0.12em] text-white/55">
+              {priceQar === null ? t("installedLabel") : t("fromLabel")}
+            </span>
+            <span className="mt-1 block text-title font-bold tabular-nums">
+              {priceQar === null ? t("perCar") : formatQar(priceQar, locale)}
+            </span>
           </p>
+          <PpfCarLine
+            id="ppf-pdp-car"
+            ruler={false}
+            className="max-h-[84px] max-w-[260px] sm:justify-self-end"
+          />
         </div>
+
+        <ul className="mt-4 flex flex-wrap gap-2 text-caption font-medium text-white/80">
+          <li className="rounded-pill border border-white/15 px-3 py-1">
+            {t("pdpWarranty", {
+              years: film.warrantyYears,
+              text: formatNumber(film.warrantyYears, locale),
+            })}
+          </li>
+          <li className="rounded-pill border border-white/15 px-3 py-1">
+            {t("pdpWorkmanship", { months: formatNumber(WORKMANSHIP_COVER_MONTHS, locale) })}
+          </li>
+        </ul>
+
+        <Link
+          href={installHref(film.key)}
+          className="mt-5 inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-pill bg-(--color-brand) px-7 text-body font-bold text-black transition-colors duration-200 ease-soft hover:bg-(--color-brand-hover) sm:w-auto"
+        >
+          <span>{t("cta")}</span>
+          <ArrowRightIcon className="h-4 w-4 rtl:rotate-180" />
+        </Link>
+        <p className="mt-3 text-caption text-white/50">
+          {priceQar === null ? t("pdpNoteQuote") : t("pdpNote")}
+        </p>
       </div>
-      <Link
-        href="/b2c/ppf-installation"
-        className="inline-flex shrink-0 items-center justify-center gap-1.5 self-start rounded-full bg-(--color-fill) px-4 py-2 text-footnote font-semibold text-(--color-text) transition-colors hover:bg-(--color-fill-hover) sm:self-auto"
-      >
-        <span>{t("pdpInstallAction")}</span>
-        <ChevronIcon className="h-3.5 w-3.5 rtl:rotate-180" />
-      </Link>
-    </div>
+    </aside>
   );
 }
