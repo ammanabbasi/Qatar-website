@@ -31,6 +31,13 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+  experimental: {
+    // Vercel restores .next/cache between builds. On 2026-10-03 the warm
+    // Turbopack cache shipped the previous globals.css (new .ppf-* rules
+    // missing) although the source had changed. Builds take under a minute
+    // cold, so correctness wins over the warm start.
+    turbopackFileSystemCacheForBuild: false,
+  },
   async headers() {
     return [
       {
