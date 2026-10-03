@@ -10,10 +10,12 @@ import { CheckIcon, ShieldCheckIcon } from "@/components/ui/Icons";
 import { FaqSection } from "@/components/home/FaqSection";
 import { FloatingWhatsApp } from "@/components/cta/FloatingWhatsApp";
 import { PpfConfigurator } from "@/components/ppf/PpfConfigurator";
+import { PpfPriceList } from "@/components/ppf/PpfPriceList";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PPF_INSTALL_FAQ } from "@/data/faq";
-import { PRESET_PRICES_QAR, quotePpf } from "@/data/ppfInstall";
-import { faqJsonLd, serviceJsonLd } from "@/lib/jsonld";
+import { PRESET_PRICES_QAR, presetPriceList, quotePpf } from "@/data/ppfInstall";
+import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "@/lib/jsonld";
+import { formatQar } from "@/lib/pricing";
 import { pageMeta } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
 import { buildPpfEnquiryWhatsAppUrl } from "@/lib/whatsapp";
@@ -48,6 +50,7 @@ export default async function PpfInstallationPage({
   const l = locale as "en" | "ar";
   const t = await getTranslations({ locale, namespace: "PpfInstall" });
   const meta = await getTranslations({ locale, namespace: "Meta" });
+  const nav = await getTranslations({ locale, namespace: "Nav" });
 
   const low = PRESET_PRICES_QAR["front-end"].sedan;
   const high =
@@ -67,7 +70,17 @@ export default async function PpfInstallationPage({
           serviceType: "Paint protection film installation",
           lowPriceQar: low,
           highPriceQar: high,
+          prices: presetPriceList(),
+          locale: l,
+          termsUrl: `${SITE.url}/${l}/terms`,
         })}
+      />
+      <JsonLd
+        id="ld-breadcrumb"
+        data={breadcrumbJsonLd([
+          { name: nav("home"), url: `${SITE.url}/${l}` },
+          { name: nav("ppfInstall"), url: `${SITE.url}/${l}${PATH}` },
+        ])}
       />
       {/* FAQPage schema must sit on the same page as the rendered Q/A. */}
       <JsonLd
@@ -77,10 +90,10 @@ export default async function PpfInstallationPage({
 
       <PageHero eyebrow={t("eyebrow")} title={t("heading")} subtitle={t("subtitle")}>
         <ul className="mt-6 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-6">
-          {(["heroPoint1", "heroPoint2", "heroPoint3"] as const).map((k) => (
+          {(["heroPoint1", "heroPoint2", "heroPoint3", "heroPoint4"] as const).map((k) => (
             <li key={k} className="flex items-center gap-2 text-footnote text-white/80">
               <CheckIcon className="h-4 w-4 shrink-0 text-(--color-brand)" />
-              {t(k)}
+              {t(k, { price: formatQar(low, l) })}
             </li>
           ))}
         </ul>
@@ -100,6 +113,8 @@ export default async function PpfInstallationPage({
           </div>
         </Container>
       </section>
+
+      <PpfPriceList locale={l} />
 
       <section className="py-10 lg:py-14">
         <Container>

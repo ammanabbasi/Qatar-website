@@ -9,6 +9,7 @@ import { ProductCard } from "./ProductCard";
 import { ProductGallery } from "./ProductGallery";
 import { ProductPurchasePanel } from "./ProductPurchasePanel";
 import { ProductCrossBanner } from "./ProductCrossBanner";
+import { PpfInstallBanner } from "@/components/ppf/PpfInstallBanner";
 import { Link } from "@/i18n/navigation";
 import type { Product } from "@/data/products";
 import type { Audience, WALocale } from "@/lib/whatsapp";
@@ -126,6 +127,8 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
                 locale={locale}
                 productUrl={productUrl}
               />
+
+              {audience === "b2c" && <PpfInstallBanner slug={product.slug} locale={locale} />}
 
               {/* Specs */}
               {product.specs && product.specs.length > 0 && (

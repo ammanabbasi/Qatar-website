@@ -14,6 +14,29 @@
  * buyer intents; replace with the real ones as you gather them.
  */
 
+import {
+  CUSTOM_MINIMUM_QAR,
+  FILMS,
+  PRESET_PRICES_QAR,
+  fromPrice,
+} from "./ppfInstall";
+import { formatNumber, formatQar as qar } from "@/lib/pricing";
+
+// Prices and warranty years in the answers below are read from ppfInstall.ts,
+// so the FAQ text (and its FAQPage JSON-LD) can never quote a stale price.
+const film = (key: string) => FILMS.find((f) => f.key === key)!;
+const pct = (n: number, l: "en" | "ar") =>
+  l === "ar" ? `${formatNumber(Math.round(n * 100), "ar")}٪` : `${Math.round(n * 100)}%`;
+const yrs = (key: string, l: "en" | "ar") =>
+  l === "ar" ? formatNumber(film(key).warrantyYears, "ar") : String(film(key).warrantyYears);
+// Arabic counted noun: 3–10 take the plural (سنوات), 11 and up the singular (سنة).
+const arYears = (key: string) => {
+  const n = film(key).warrantyYears;
+  return n >= 3 && n <= 10 ? "سنوات" : "سنة";
+};
+const ff = PRESET_PRICES_QAR["full-front"];
+const fb = PRESET_PRICES_QAR["full-body"];
+
 export type FaqEntry = {
   q: { en: string; ar: string };
   a: { en: string; ar: string };
@@ -76,8 +99,8 @@ export const FAQ: FaqEntry[] = [
       ar: "كم تبلغ تكلفة فيلم حماية الطلاء في قطر؟",
     },
     a: {
-      en: "Installed VTEK PPF from ABK starts at QAR 1,200 for a front-end kit, QAR 2,200 for a full front and QAR 5,500 for a full body, depending on car size and film. Film by the roll is quoted on WhatsApp.",
-      ar: "يبدأ تركيب فيلم VTEK من ABK من 1,200 ر.ق للواجهة الأساسية، و2,200 ر.ق للواجهة الكاملة، و5,500 ر.ق للهيكل بالكامل، حسب حجم السيارة ونوع الفيلم. أما الفيلم بالرول فيُسعَّر عبر واتساب.",
+      en: `Installed VTEK PPF from ABK starts at ${qar(fromPrice("front-end"), "en")} for a front-end kit, ${qar(fromPrice("full-front"), "en")} for a full front and ${qar(fromPrice("full-body"), "en")} for a full body, depending on car size and film. Film by the roll is quoted on WhatsApp.`,
+      ar: `يبدأ تركيب فيلم VTEK من ABK من ${qar(fromPrice("front-end"), "ar")} للواجهة الأساسية، و${qar(fromPrice("full-front"), "ar")} للواجهة الكاملة، و${qar(fromPrice("full-body"), "ar")} للهيكل بالكامل، حسب حجم السيارة ونوع الفيلم. أما الفيلم بالرول فيُسعَّر عبر واتساب.`,
     },
   },
   {
@@ -221,6 +244,46 @@ export const PPF_INSTALL_FAQ: FaqEntry[] = [
     a: {
       en: "A VTEK-authorised partner centre in Doha, booked and managed by ABK. ABK supplies the genuine film, confirms your slot, inspects the finished car and stays your single point of contact.",
       ar: "مركز شريك معتمد من VTEK في الدوحة، تحجزه وتديره ABK. توفّر ABK الفيلم الأصلي وتؤكد موعدك وتفحص السيارة بعد التركيب وتبقى جهة التواصل الوحيدة معك.",
+    },
+  },
+  {
+    q: {
+      en: "How do I know the film is genuine and the fitting is done properly?",
+      ar: "كيف أتأكد أن الفيلم أصلي وأن التركيب يتم بشكل صحيح؟",
+    },
+    a: {
+      en: "ABK is VTEK's authorised distributor in Qatar and supplies the film for every job from its own stock, so it never comes from a third party. Only VTEK-authorised installers fit it; the car is photographed at drop-off, ABK inspects the finish before handover, and the VTEK warranty is registered to your car.",
+      ar: "ABK هي الموزع المعتمد لأفلام VTEK في قطر وتوفّر الفيلم لكل عملية تركيب من مخزونها مباشرة، فلا يأتي من أي طرف آخر. لا يركّبه إلا مُركّبون معتمدون من VTEK؛ وتُصوَّر السيارة عند الاستلام، وتفحص ABK النتيجة قبل التسليم، ويُسجَّل ضمان VTEK باسم سيارتك.",
+    },
+  },
+  {
+    q: {
+      en: "Which VTEK film should I choose for Qatar's heat?",
+      ar: "أي فيلم من VTEK أختار لحرارة قطر؟",
+    },
+    a: {
+      en: `Weather Armor PRO suits most daily drivers: 7.5 mil (190 µm) gloss TPU with heat-activated self-healing and a ${yrs("pro", "en")}-year VTEK warranty. ULTIMATE is the same thickness with VTEK's ultra-gloss finish, a hydrophobic top coat and a ${yrs("ultimate", "en")}-year warranty, for ${pct(film("ultimate").uplift ?? 0, "en")} more. MATTE gives a satin finish (${yrs("matte", "en")}-year warranty) and PRISM changes the colour (${yrs("prism", "en")}-year warranty).`,
+      ar: `يناسب Weather Armor PRO معظم السيارات اليومية: فيلم TPU لامع بسماكة ٧.٥ مل (١٩٠ ميكرون) مع معالجة ذاتية بالحرارة وضمان VTEK لمدة ${yrs("pro", "ar")} ${arYears("pro")}. أما ULTIMATE فبالسماكة نفسها مع لمعان VTEK الفائق وطبقة علوية طاردة للماء وضمان ${yrs("ultimate", "ar")} ${arYears("ultimate")}، بزيادة ${pct(film("ultimate").uplift ?? 0, "ar")}. ويمنح MATTE لمسة ساتان مطفية (ضمان ${yrs("matte", "ar")} ${arYears("matte")})، بينما يغيّر PRISM لون السيارة (ضمان ${yrs("prism", "ar")} ${arYears("prism")}).`,
+    },
+  },
+  {
+    q: {
+      en: "Is a full front enough, or should I get a full body?",
+      ar: "هل تكفي الواجهة الكاملة أم أختار الهيكل بالكامل؟",
+    },
+    a: {
+      en: `A full front covers the panels that take stone chips on Qatar's highways — bonnet, front bumper, fenders, mirrors and headlights — from ${qar(ff.sedan, "en")} on a sedan. A full body (from ${qar(fb.sedan, "en")}) adds the doors, sides, roof and rear against sand abrasion, parking scuffs and wash swirls, and suits a new or high-value car you plan to keep.`,
+      ar: `تغطي الواجهة الكاملة القطع التي تتعرض للحصى على الطرق السريعة في قطر — الكبوت والصدام الأمامي والرفارف والمرايا والمصابيح — بسعر يبدأ من ${qar(ff.sedan, "ar")} للسيدان. أما الهيكل بالكامل (من ${qar(fb.sedan, "ar")}) فيضيف الأبواب والجوانب والسقف والخلفية لحمايتها من احتكاك الرمل وخدوش المواقف ودوائر الغسيل، وهو الأنسب لسيارة جديدة أو عالية القيمة تنوي الاحتفاظ بها.`,
+    },
+  },
+  {
+    q: {
+      en: "Can I protect only some panels?",
+      ar: "هل يمكنني حماية بعض القطع فقط؟",
+    },
+    a: {
+      en: `Yes. Pick "Choose parts" in the quote builder and tap the panels you want. The estimate updates as you go, starts at ${qar(CUSTOM_MINIMUM_QAR, "en")} and never exceeds the full-body price for your car; we confirm the final price on WhatsApp.`,
+      ar: `نعم. اختر «اختر القطع» في أداة التسعير وحدّد القطع التي تريدها. يتحدّث السعر التقديري فوراً، ويبدأ من ${qar(CUSTOM_MINIMUM_QAR, "ar")} ولا يتجاوز سعر الهيكل بالكامل لسيارتك، ونؤكد السعر النهائي عبر واتساب.`,
     },
   },
   {

@@ -91,7 +91,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const article of ARTICLES) {
       entries.push({
         url: `${base}/${locale}/b2c/blog/${article.slug}`,
-        lastModified: new Date(article.date),
+        lastModified: new Date(article.updated ?? article.date),
         changeFrequency: "monthly",
         priority: 0.7,
         alternates: { languages: languages(`/b2c/blog/${article.slug}`) },

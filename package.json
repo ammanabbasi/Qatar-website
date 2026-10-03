@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "og:products": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/generate-og.mjs"
+    "og:products": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/generate-og.mjs",
+    "indexnow": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/indexnow.mjs"
   },
   "dependencies": {
     "next": "16.3.6",

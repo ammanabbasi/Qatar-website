@@ -1,5 +1,6 @@
 import { SITE } from "./constants";
 import { defaultSocialImage } from "./seo";
+import { BODY_TYPES, COVERAGES, FILMS, type PresetPrice } from "@/data/ppfInstall";
 
 /**
  * Single source of truth for the @id values used to link nodes together.
@@ -121,8 +122,8 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
     slogan: SITE.tagline,
     description:
       locale === "ar"
-        ? "الموزع والبائع للمنتجات الفاخرة للعناية بالسيارات في قطر — أفلام حماية الطلاء، الطلاءات السيراميكية، شامبو السيارات، التلميع والمزيد."
-        : "Qatar's distributor and retailer of premium automotive care — PPF, ceramic coatings, car shampoos, detailing compounds and more.",
+        ? "الموزع والبائع للمنتجات الفاخرة للعناية بالسيارات في قطر — أفلام حماية الطلاء، الطلاءات السيراميكية، شامبو السيارات، التلميع والمزيد — مع باقات تركيب أفلام حماية الطلاء VTEK بأسعار ثابتة لدى مراكز معتمدة من VTEK."
+        : "Qatar's distributor and retailer of premium automotive care — PPF, ceramic coatings, car shampoos, detailing compounds and more — plus installed VTEK PPF packages at fixed prices, fitted at VTEK-authorised centres.",
     telephone: [SITE.phoneE164, SITE.phoneSecondaryE164, SITE.phoneLandlineE164],
     email: SITE.email,
     address: {
@@ -179,6 +180,7 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
     // ABK owns them). Same four names as the trust strip (TrustBadges.tsx).
     knowsAbout: [
       "Paint Protection Film",
+      "PPF Installation",
       "Ceramic Coating",
       "Car Detailing",
       "Window Tinting",
@@ -264,8 +266,8 @@ export function breadcrumbJsonLd(
 /**
  * Service node for the installed-PPF page. ABK is the provider: it sells the
  * job and stands behind it, even though a partner centre does the fitting.
- * The offer range is the configurator's own lowest and highest fixed price,
- * both visible on the page — an Offer whose price isn't shown is an error.
+ * Every offer below is a row of the server-rendered price list on the same
+ * page (PpfPriceList) — an Offer whose price isn't shown is an error.
  */
 export function serviceJsonLd(opts: {
   name: string;
@@ -274,22 +276,46 @@ export function serviceJsonLd(opts: {
   serviceType: string;
   lowPriceQar: number;
   highPriceQar: number;
+  prices: PresetPrice[];
+  locale: "en" | "ar";
+  termsUrl: string;
 }) {
+  const label = (p: PresetPrice) =>
+    [
+      COVERAGES.find((c) => c.key === p.coverage)?.name[opts.locale],
+      BODY_TYPES.find((b) => b.key === p.body)?.name[opts.locale],
+      `VTEK ${FILMS.find((f) => f.key === p.film)?.name[opts.locale]}`,
+    ].join(" · ");
   return {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${opts.url}#service`,
     name: opts.name,
     description: opts.description,
     serviceType: opts.serviceType,
     url: opts.url,
+    brand: { "@type": "Brand", name: "VTEK" },
     provider: { "@id": IDS.business },
     areaServed: QATAR_SERVICE_AREA,
     audience: { "@type": "Audience", audienceType: "Car owners in Qatar" },
+    termsOfService: opts.termsUrl,
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "QAR",
       lowPrice: opts.lowPriceQar,
       highPrice: opts.highPriceQar,
+      offerCount: opts.prices.length,
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: opts.name,
+      itemListElement: opts.prices.map((p) => ({
+        "@type": "Offer",
+        name: label(p),
+        price: p.priceQar,
+        priceCurrency: "QAR",
+        url: `${opts.url}#prices`,
+      })),
     },
   };
 }

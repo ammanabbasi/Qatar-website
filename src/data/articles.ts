@@ -1,3 +1,13 @@
+import {
+  CUSTOM_MINIMUM_QAR,
+  FILMS,
+  PRESET_PRICES_QAR,
+  PRICES_UPDATED_AT,
+  fromPrice,
+  quotePpf,
+} from "./ppfInstall";
+import { formatQar } from "@/lib/pricing";
+
 /**
  * Blog article data — SEO-targeted content hub.
  * Each article targets a high-value keyword cluster that ABK isn't ranking for.
@@ -19,9 +29,138 @@ export type Article = {
   }>;
   /** Product slugs to cross-link at the bottom */
   relatedProducts: string[];
+  /** Last meaningful edit — feeds dateModified and the sitemap lastmod. */
+  updated?: string;
+  /** Call to action rendered after the body (e.g. the installed-PPF page). */
+  cta?: {
+    href: string;
+    title: { en: string; ar: string };
+    body: { en: string; ar: string };
+    action: { en: string; ar: string };
+  };
+};
+
+// Prices in the PPF articles are read from ppfInstall.ts, so the guide can
+// never quote a figure the quote builder no longer shows.
+const q = (n: number, l: "en" | "ar") => formatQar(n, l);
+const P = PRESET_PRICES_QAR;
+const pro = FILMS.find((f) => f.key === "pro")!;
+const ultimate = FILMS.find((f) => f.key === "ultimate")!;
+const ultimateFullBodySedan = quotePpf({
+  body: "sedan",
+  coverage: "full-body",
+  parts: [],
+  film: "ultimate",
+}).priceQar!;
+const upliftPct = Math.round((ultimate.uplift ?? 0) * 100);
+const pricesAsOf = (l: "en" | "ar") =>
+  new Date(PRICES_UPDATED_AT).toLocaleDateString(l === "ar" ? "ar-QA" : "en-QA", {
+    year: "numeric",
+    month: "long",
+  });
+
+/** Shared by every article that talks about having PPF fitted. */
+const PPF_INSTALL_CTA: NonNullable<Article["cta"]> = {
+  href: "/b2c/ppf-installation",
+  title: {
+    en: "Want PPF fitted? See the installed prices.",
+    ar: "تريد تركيب PPF؟ اطّلع على أسعار التركيب.",
+  },
+  body: {
+    en: `Genuine VTEK film from ABK, fitted at a VTEK-authorised centre in Doha with a 12-month workmanship cover — from ${q(fromPrice("front-end"), "en")} for a front-end kit and ${q(fromPrice("full-body"), "en")} for a full body.`,
+    ar: `فيلم VTEK أصلي من ABK يُركَّب في مركز معتمد من VTEK في الدوحة مع ضمان تركيب لمدة 12 شهراً — من ${q(fromPrice("front-end"), "ar")} للواجهة الأساسية و${q(fromPrice("full-body"), "ar")} للهيكل بالكامل.`,
+  },
+  action: { en: "Build your quote", ar: "احسب السعر" },
 };
 
 export const ARTICLES: Article[] = [
+  {
+    slug: "ppf-cost-qatar",
+    title: {
+      en: "How Much Does PPF Cost in Qatar? (2026 Price Guide)",
+      ar: "كم تكلفة فيلم حماية الطلاء PPF في قطر؟ (دليل الأسعار 2026)",
+    },
+    description: {
+      en: `PPF prices in Qatar for 2026: installed VTEK film from ${q(fromPrice("front-end"), "en")} (front-end), ${q(fromPrice("full-front"), "en")} (full front) and ${q(fromPrice("full-body"), "en")} (full body) — what drives the cost and how to compare quotes in Doha.`,
+      ar: `أسعار فيلم حماية الطلاء في قطر لعام 2026: تركيب فيلم VTEK من ${q(fromPrice("front-end"), "ar")} للواجهة الأساسية و${q(fromPrice("full-front"), "ar")} للواجهة الكاملة و${q(fromPrice("full-body"), "ar")} للهيكل بالكامل — ما الذي يحدد التكلفة وكيف تقارن العروض في الدوحة.`,
+    },
+    date: "2026-10-02",
+    readingTime: 5,
+    category: "buying-guide",
+    keywords: {
+      en: ["PPF price Qatar", "PPF cost Doha", "paint protection film price Qatar", "full body PPF price Qatar", "VTEK PPF price", "PPF installation Doha"],
+      ar: ["سعر PPF قطر", "تكلفة فيلم حماية الطلاء الدوحة", "سعر حماية الطلاء للسيارات قطر", "سعر تركيب PPF الدوحة"],
+    },
+    sections: [
+      {
+        heading: {
+          en: "PPF Prices in Qatar at a Glance",
+          ar: "أسعار PPF في قطر باختصار",
+        },
+        body: {
+          en: `These are ABK's fixed installed prices for genuine VTEK Weather Armor PRO film (${pro.warrantyYears}-year warranty), as of ${pricesAsOf("en")}. Front-end kit: ${q(P["front-end"].sedan, "en")} for a sedan or coupe, ${q(P["front-end"].suv, "en")} for an SUV and ${q(P["front-end"]["large-suv"], "en")} for a large SUV or pickup. Full front: ${q(P["full-front"].sedan, "en")}, ${q(P["full-front"].suv, "en")} and ${q(P["full-front"]["large-suv"], "en")}. Full body: ${q(P["full-body"].sedan, "en")}, ${q(P["full-body"].suv, "en")} and ${q(P["full-body"]["large-suv"], "en")}. ULTIMATE film (${ultimate.warrantyYears}-year warranty) and MATTE film cost ${upliftPct}% more — a full-body sedan in ULTIMATE is ${q(ultimateFullBodySedan, "en")}. PRISM colour film is priced per car. Every price includes the film, fitting at a VTEK-authorised centre in Doha, warranty registration and a 12-month ABK workmanship cover.`,
+          ar: `هذه أسعار التركيب الثابتة لدى ABK لفيلم VTEK Weather Armor PRO الأصلي (ضمان ${pro.warrantyYears} سنوات)، حتى ${pricesAsOf("ar")}. الواجهة الأساسية: ${q(P["front-end"].sedan, "ar")} للسيدان أو الكوبيه، و${q(P["front-end"].suv, "ar")} لسيارات SUV، و${q(P["front-end"]["large-suv"], "ar")} لسيارات SUV الكبيرة أو البيك أب. الواجهة الكاملة: ${q(P["full-front"].sedan, "ar")} و${q(P["full-front"].suv, "ar")} و${q(P["full-front"]["large-suv"], "ar")}. الهيكل بالكامل: ${q(P["full-body"].sedan, "ar")} و${q(P["full-body"].suv, "ar")} و${q(P["full-body"]["large-suv"], "ar")}. يكلّف فيلما ULTIMATE (ضمان ${ultimate.warrantyYears} سنة) وMATTE أكثر بنسبة ${upliftPct}% — فالهيكل بالكامل لسيارة سيدان بفيلم ULTIMATE بسعر ${q(ultimateFullBodySedan, "ar")}. ويُسعَّر فيلم PRISM الملوّن لكل سيارة. يشمل كل سعر الفيلم والتركيب في مركز معتمد من VTEK في الدوحة وتسجيل الضمان وضمان تركيب من ABK لمدة 12 شهراً.`,
+        },
+      },
+      {
+        heading: {
+          en: "What Drives the Price of PPF",
+          ar: "ما الذي يحدد سعر PPF",
+        },
+        body: {
+          en: "Four things set the price of a PPF job. Coverage matters most: a front-end kit protects the bumper and the leading edges, a full front adds the whole bonnet and fenders, and a full body wraps every painted panel. Vehicle size comes next — a Land Cruiser or Patrol simply needs more film and more hours than a Camry. Then the film grade: thicker, glossier films with longer warranties cost more per metre. Finally the car's condition: old film or a wrap has to be removed first, and paint with heavy swirls or etching should be corrected before film goes on, because PPF seals in whatever is underneath it.",
+          ar: "أربعة عوامل تحدد سعر أي عملية تركيب PPF. التغطية هي الأهم: الواجهة الأساسية تحمي الصدام والحواف الأمامية، والواجهة الكاملة تضيف الكبوت والرفارف بالكامل، والهيكل بالكامل يغطي كل لوح مطلي. ثم حجم السيارة — فلاندكروزر أو باترول تحتاج ببساطة فيلماً أكثر وساعات عمل أطول من كامري. ثم فئة الفيلم: الأفلام الأسمك والأكثر لمعاناً بضمان أطول أغلى للمتر. وأخيراً حالة السيارة: يجب إزالة الفيلم أو التغليف القديم أولاً، والطلاء الذي فيه دوائر أو حفر واضحة يُفضَّل تصحيحه قبل التركيب، لأن PPF يثبّت ما تحته كما هو.",
+        },
+      },
+      {
+        heading: {
+          en: "Front-End, Full Front or Full Body?",
+          ar: "واجهة أساسية أم واجهة كاملة أم هيكل كامل؟",
+        },
+        body: {
+          en: `A front-end kit (from ${q(fromPrice("front-end"), "en")}) is the entry point: it takes the first hit from stones on the bumper, mirrors and headlights. A full front (from ${q(fromPrice("full-front"), "en")}) suits highway commuters because it covers the whole bonnet with no visible film line. A full body (from ${q(fromPrice("full-body"), "en")}) adds the doors, sides, roof and rear against sand abrasion, parking scuffs and wash swirls — the choice for a new or high-value car you plan to keep. If you only want certain panels, they can be priced individually from ${q(CUSTOM_MINIMUM_QAR, "en")}.`,
+          ar: `الواجهة الأساسية (من ${q(fromPrice("front-end"), "ar")}) هي نقطة البداية: تتلقى الضربة الأولى من الحصى على الصدام والمرايا والمصابيح. والواجهة الكاملة (من ${q(fromPrice("full-front"), "ar")}) تناسب من يقود كثيراً على الطرق السريعة لأنها تغطي الكبوت كاملاً دون خط ظاهر للفيلم. أما الهيكل بالكامل (من ${q(fromPrice("full-body"), "ar")}) فيضيف الأبواب والجوانب والسقف والخلفية لحمايتها من احتكاك الرمل وخدوش المواقف ودوائر الغسيل — وهو خيار السيارة الجديدة أو عالية القيمة التي تنوي الاحتفاظ بها. وإن أردت قطعاً محددة فقط، يمكن تسعيرها منفردة بدءاً من ${q(CUSTOM_MINIMUM_QAR, "ar")}.`,
+        },
+      },
+      {
+        heading: {
+          en: "How to Compare PPF Quotes in Doha",
+          ar: "كيف تقارن عروض أسعار PPF في الدوحة",
+        },
+        body: {
+          en: "Two quotes are only comparable when they describe the same job. Ask every installer five things: which brand and which film line they will use (and to see the roll label); whether they are authorised by that brand, since film warranties usually depend on it; whether the warranty is registered to your car; how long they guarantee their own workmanship and what that covers; and exactly which panels and edges are included. A price that does not name the film, or a warranty that exists only verbally, is a warning sign — cheap unbranded film is what yellows, cracks and lifts in Qatar's summer.",
+          ar: "لا يمكن مقارنة عرضين إلا إذا وصفا العمل نفسه. اسأل أي مُركّب خمسة أسئلة: ما العلامة التجارية وما خط الفيلم الذي سيستخدمه (واطلب رؤية ملصق الرول)؛ وهل هو معتمد من تلك العلامة، إذ يعتمد ضمان الفيلم عادةً على ذلك؛ وهل يُسجَّل الضمان باسم سيارتك؛ وكم مدة ضمانه لجودة التركيب وماذا يغطي؛ وما القطع والحواف المشمولة بالضبط. السعر الذي لا يذكر اسم الفيلم، أو الضمان الشفهي فقط، علامة تحذير — فالأفلام الرخيصة مجهولة المصدر هي التي تصفرّ وتتشقق وتنفصل في صيف قطر.",
+        },
+      },
+      {
+        heading: {
+          en: "Why ABK Publishes Fixed Prices",
+          ar: "لماذا تعلن ABK أسعاراً ثابتة",
+        },
+        body: {
+          en: "ABK is the authorised VTEK distributor in Qatar, so the film on your car comes straight from our stock rather than through a reseller, and the installed price is set before you book: for a preset package on a car with factory paint, the price in the quote builder is the price you pay. Every job is fitted by a VTEK-authorised installer, photographed at drop-off, inspected by ABK before handover and covered twice — by VTEK's film warranty and by ABK's own 12-month workmanship cover. You deal with one contact from quote to handover.",
+          ar: "ABK هي الموزع المعتمد لأفلام VTEK في قطر، لذا يأتي الفيلم على سيارتك من مخزوننا مباشرة لا عبر وسيط، ويُحدَّد سعر التركيب قبل الحجز: للباقات الجاهزة على سيارة بطلاء المصنع، السعر في أداة التسعير هو السعر الذي تدفعه. يُركَّب كل فيلم لدى مُركّب معتمد من VTEK، وتُصوَّر السيارة عند الاستلام، وتفحصها ABK قبل التسليم، وتحظى بضمانين — ضمان VTEK للفيلم وضمان ABK للتركيب لمدة 12 شهراً. وتتعامل مع جهة تواصل واحدة من عرض السعر حتى التسليم.",
+        },
+      },
+      {
+        heading: {
+          en: "Get the Exact Price for Your Car",
+          ar: "احصل على السعر الدقيق لسيارتك",
+        },
+        body: {
+          en: "Use the quote builder on the PPF installation page: choose your car, the coverage and the film and the installed price appears instantly. Send it to us on WhatsApp (+974 3083 8355) and we confirm the slot. Payment is in full by bank transfer or cash once the slot is confirmed, with a full refund if you cancel at least 48 hours before.",
+          ar: "استخدم أداة التسعير في صفحة تركيب أفلام الحماية: اختر سيارتك والتغطية والفيلم ليظهر سعر التركيب فوراً. أرسله إلينا عبر واتساب (+974 3083 8355) ونؤكد لك الموعد. يتم الدفع كاملاً بتحويل بنكي أو نقداً بعد تأكيد الموعد، مع استرداد كامل عند الإلغاء قبل 48 ساعة على الأقل.",
+        },
+      },
+    ],
+    relatedProducts: [
+      "vtek-ppf-weather-armor-pro",
+      "vtek-ppf-weather-armor-ultimate",
+      "vtek-ppf-weather-armor-matte",
+      "vtek-ppf-weather-armor-prism",
+    ],
+    cta: PPF_INSTALL_CTA,
+  },
   {
     slug: "window-tinting-rules-qatar-guide",
     title: {
@@ -324,6 +463,8 @@ export const ARTICLES: Article[] = [
       "vtek-window-tints",
       "briller-wash-and-wax",
     ],
+    updated: "2026-10-02",
+    cta: PPF_INSTALL_CTA,
   },
   {
     slug: "ppf-vs-ceramic-coating-qatar",
@@ -378,6 +519,8 @@ export const ARTICLES: Article[] = [
       "autotriz-3d-matrix-hybrid",
       "autotriz-ion-plus-ceramic-coating",
     ],
+    updated: "2026-10-02",
+    cta: PPF_INSTALL_CTA,
   },
   {
     slug: "complete-guide-car-care-products-qatar",

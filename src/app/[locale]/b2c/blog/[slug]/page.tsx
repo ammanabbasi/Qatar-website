@@ -70,7 +70,7 @@ export default async function ArticlePage({
     keywords: article.keywords[l].join(", "),
     articleSection: article.category,
     datePublished: article.date,
-    dateModified: article.date,
+    dateModified: article.updated ?? article.date,
     author: { "@type": "Organization", name: SITE.name, url: SITE.url },
     publisher: {
       "@type": "Organization",
@@ -154,6 +154,21 @@ export default async function ArticlePage({
               </section>
             ))}
           </div>
+
+          {article.cta && (
+            <aside className="tile mt-12 flex max-w-3xl flex-col gap-4 p-6 sm:flex-row sm:items-center sm:justify-between">
+              <div className="min-w-0">
+                <h2 className="text-body-lg font-semibold">{article.cta.title[l]}</h2>
+                <p className="mt-1 text-footnote text-(--color-text-muted)">{article.cta.body[l]}</p>
+              </div>
+              <Link
+                href={article.cta.href}
+                className="inline-flex h-11 shrink-0 items-center justify-center self-start rounded-pill bg-(--color-brand) px-6 text-footnote font-semibold text-(--color-ink) transition-colors duration-200 hover:bg-(--color-brand-hover) sm:self-auto"
+              >
+                {article.cta.action[l]}
+              </Link>
+            </aside>
+          )}
 
           {/* Related products */}
           {relatedProducts.length > 0 && (

@@ -245,6 +245,42 @@ export function fromPrice(coverage: Exclude<CoverageKey, "custom">): number {
   return Math.min(...Object.values(PRESET_PRICES_QAR[coverage]));
 }
 
+/**
+ * Shown as "Prices updated …" next to the price list. Bump it whenever
+ * PRESET_PRICES_QAR or a film uplift changes — and update the same figures in
+ * public/llms.txt and public/llms-full.txt, which are static files.
+ */
+export const PRICES_UPDATED_AT = "2026-10-02";
+
+export type PresetCoverage = Exclude<CoverageKey, "custom">;
+export const PRESET_COVERAGES: PresetCoverage[] = ["front-end", "full-front", "full-body"];
+
+/**
+ * Every fixed price, film by film — the server-rendered price list, the
+ * Service offer catalogue and the cost guide all read from here, so a crawler
+ * that never runs the configurator still sees the same numbers it would.
+ * PRISM is left out: it is priced per car.
+ */
+export type PresetPrice = {
+  coverage: PresetCoverage;
+  body: BodyType;
+  film: FilmKey;
+  priceQar: number;
+};
+
+export function presetPriceList(): PresetPrice[] {
+  const out: PresetPrice[] = [];
+  for (const film of FILMS) {
+    for (const coverage of PRESET_COVERAGES) {
+      for (const { key: body } of BODY_TYPES) {
+        const { priceQar } = quotePpf({ body, coverage, parts: [], film: film.key });
+        if (priceQar !== null) out.push({ coverage, body, film: film.key, priceQar });
+      }
+    }
+  }
+  return out;
+}
+
 // Same alphabet as makeOrderRef in src/lib/cart.ts (no 0/O or 1/I/L — the
 // reference gets read aloud and retyped). Kept here because cart.ts is a
 // client module and the booking route generates references on the server.
