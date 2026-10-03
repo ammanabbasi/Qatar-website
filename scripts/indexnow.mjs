@@ -64,6 +64,11 @@ async function main() {
   if (all) entries.forEach((e) => urls.add(e.loc));
   if (since) entries.filter((e) => e.lastmod.slice(0, 10) >= since).forEach((e) => urls.add(e.loc));
   for (const a of explicit) {
+    // Git Bash rewrites a bare "/path" argument into "C:/Program Files/Git/path".
+    if (/^[A-Za-z]:[\\/]/.test(a)) {
+      console.error(`"${a}" looks like a path Git Bash rewrote — pass the full https:// URL instead.`);
+      process.exit(1);
+    }
     const url = a.startsWith("http") ? a : `${ORIGIN}${a.startsWith("/") ? "" : "/"}${a}`;
     if (new URL(url).host !== HOST) {
       console.error(`Skipping ${url} — not on ${HOST}`);

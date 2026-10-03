@@ -89,6 +89,8 @@
     sans-serif;
 
   --ease-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
+  /* iOS-style sheet spring: fast start, long soft settle. */
+  --ease-sheet: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 html {
@@ -255,6 +257,142 @@ html[dir="rtl"] body * {
     animation: ppf-step-in 300ms var(--ease-soft) both;
   }
 
+  /* ── PPF quote sheet ─────────────────────────────────────────────────
+     A native <dialog>: a full-height bottom sheet on phones, a centred
+     modal from 40rem up. Entrances use fill-mode `backwards` so that, once
+     settled, the drag-to-dismiss gesture can move the sheet through the
+     separate `translate` property without fighting a held keyframe. */
+  .ppf-sheet {
+    position: fixed;
+    inset: auto 0 0 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: 100%;
+    max-width: none;
+    height: calc(100dvh - 12px);
+    max-height: none;
+    overflow: hidden;
+    border-radius: 24px 24px 0 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.25);
+  }
+  .ppf-sheet[open] {
+    animation: ppf-sheet-up 560ms var(--ease-sheet) backwards;
+  }
+  .ppf-sheet[open][data-closing] {
+    animation: ppf-sheet-down 260ms var(--ease-soft) forwards;
+  }
+  .ppf-sheet::backdrop {
+    background: rgb(10 10 13 / 0.55);
+    backdrop-filter: blur(6px);
+    animation: ppf-fade-in 300ms var(--ease-soft) both;
+  }
+  .ppf-sheet[data-closing]::backdrop {
+    animation: ppf-fade-out 260ms var(--ease-soft) forwards;
+  }
+  @media (min-width: 40rem) {
+    .ppf-sheet {
+      inset: 0;
+      margin: auto;
+      width: min(980px, calc(100vw - 48px));
+      height: min(780px, calc(100dvh - 48px));
+      border-radius: var(--radius-hero);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    }
+    .ppf-sheet[open] {
+      animation-name: ppf-modal-in;
+      animation-duration: 420ms;
+    }
+    .ppf-sheet[open][data-closing] {
+      animation-name: ppf-modal-out;
+    }
+  }
+
+  /* Step changes slide in from the side you are heading to. */
+  .ppf-slide-fwd {
+    animation: ppf-slide-fwd 380ms var(--ease-sheet) both;
+  }
+  .ppf-slide-back {
+    animation: ppf-slide-back 380ms var(--ease-sheet) both;
+  }
+  [dir="rtl"] .ppf-slide-fwd {
+    animation-name: ppf-slide-back;
+  }
+  [dir="rtl"] .ppf-slide-back {
+    animation-name: ppf-slide-fwd;
+  }
+  /* Lists rise one item after another (delay set inline). */
+  .ppf-rise {
+    animation: ppf-step-in 420ms var(--ease-sheet) both;
+  }
+  .ppf-pop {
+    animation: ppf-pop 320ms var(--ease-sheet) both;
+  }
+  .ppf-price-tick {
+    animation: ppf-price-tick 600ms var(--ease-soft);
+  }
+
+  /* A slow band of light across glossy surfaces — the "film" sheen. */
+  .ppf-sheen {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .ppf-sheen::after {
+    content: "";
+    position: absolute;
+    inset: -20% auto -20% 0;
+    width: 40%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgb(255 255 255 / 0.16) 45%,
+      rgb(255 255 255 / 0.32) 50%,
+      rgb(255 255 255 / 0.16) 55%,
+      transparent
+    );
+    transform: translateX(-160%) skewX(-18deg);
+    animation: ppf-sheen 4.2s var(--ease-soft) 0.6s infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Film swatches: painted panels showing each finish. */
+  .ppf-swatch {
+    background:
+      radial-gradient(120% 90% at 20% 10%, rgb(255 255 255 / 0.35), transparent 45%),
+      linear-gradient(145deg, #2b2f36, #0d0f12 70%);
+  }
+  .ppf-swatch-ultimate {
+    background:
+      radial-gradient(120% 90% at 20% 10%, rgb(255 255 255 / 0.55), transparent 50%),
+      linear-gradient(145deg, #3a2a10, #0b0b0d 70%);
+  }
+  .ppf-swatch-matte {
+    background:
+      repeating-radial-gradient(circle at 30% 30%, rgb(255 255 255 / 0.03) 0 1px, transparent 1px 3px),
+      linear-gradient(145deg, #3b3e44, #24262a);
+  }
+  .ppf-swatch-prism {
+    background: conic-gradient(from 200deg, #f5a623, #e2416f, #6a5cff, #19b5c9, #f5a623);
+    animation: ppf-hue 6s linear infinite;
+  }
+  .ppf-swatch-matte.ppf-sheen::after {
+    display: none;
+  }
+
+  /* Success mark: the circle and tick draw themselves, rings ripple out. */
+  .ppf-draw {
+    stroke-dasharray: var(--len);
+    stroke-dashoffset: var(--len);
+    animation: ppf-draw 600ms var(--ease-sheet) forwards;
+  }
+  .ppf-ring {
+    animation: ppf-ring 1400ms var(--ease-soft) 300ms both;
+  }
+
   /* The mobile sticky "Add to cart" bar sits where the floating WhatsApp
      bubble lives, so the bubble rides up above the bar while it shows. */
   .floating-wa {
@@ -303,6 +441,93 @@ html[dir="rtl"] body * {
   from {
     opacity: 0;
     transform: translateY(12px);
+  }
+}
+@keyframes ppf-sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+}
+@keyframes ppf-sheet-down {
+  to {
+    transform: translateY(100%);
+  }
+}
+@keyframes ppf-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+}
+@keyframes ppf-modal-out {
+  to {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+}
+@keyframes ppf-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes ppf-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes ppf-slide-fwd {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+}
+@keyframes ppf-slide-back {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+}
+@keyframes ppf-pop {
+  0% {
+    transform: scale(0.5);
+  }
+  60% {
+    transform: scale(1.18);
+  }
+}
+@keyframes ppf-price-tick {
+  0% {
+    color: var(--color-brand-deep);
+    transform: scale(1.06);
+  }
+}
+@keyframes ppf-sheen {
+  0% {
+    transform: translateX(-160%) skewX(-18deg);
+  }
+  45%,
+  100% {
+    transform: translateX(360%) skewX(-18deg);
+  }
+}
+@keyframes ppf-hue {
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+@keyframes ppf-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes ppf-ring {
+  from {
+    opacity: 0.55;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.7);
   }
 }
 
