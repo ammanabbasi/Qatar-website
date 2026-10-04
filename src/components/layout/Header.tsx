@@ -111,7 +111,7 @@ export function Header({
             // duplicate the text label.
             <Image
               src="/logo-dark.webp"
-              alt=""
+              alt="ABK Trading & Service — Car Care & PPF Qatar"
               width={452}
               height={305}
               loading="eager"
@@ -121,7 +121,7 @@ export function Header({
             <>
               <Image
                 src="/logo-mark.webp"
-                alt=""
+                alt="ABK Trading & Service"
                 width={28}
                 height={28}
                 loading="eager"

@@ -335,11 +335,12 @@ export function PpfConfigurator() {
     return () => document.removeEventListener("click", onClick);
   }, [openSheet]);
 
-  // Deep links, first load only: `?film=ultimate` preselects that film (the
+  // Deep links, first load only: `?film=pro-plus` preselects that film (the
   // product pages link here) and `#quote` opens the sheet. Read on the client
   // so the page itself can stay statically rendered.
   useEffect(() => {
-    const wanted = new URLSearchParams(window.location.search).get("film");
+    let wanted = new URLSearchParams(window.location.search).get("film");
+    if (wanted === "ultimate") wanted = "pro-plus";
     const deepLink = window.location.hash === "#quote";
     if (!isFilm(wanted) && !deepLink) return;
     const id = window.setTimeout(() => {
@@ -836,6 +837,11 @@ export function PpfConfigurator() {
             {FILMS.map((f, i) => {
               const active = film === f.key;
               const p = quotePpf({ body, coverage, parts: [...parts], film: f.key }).priceQar;
+              const baseP = quotePpf({ body, coverage, parts: [...parts], film: "pro" }).priceQar;
+              const upliftPct =
+                baseP && p && p > baseP
+                  ? Math.round(((p - baseP) / baseP) * 100)
+                  : Math.round((f.uplift ?? 0) * 100);
               return (
                 <div key={f.key} className="ppf-rise relative" style={{ animationDelay: `${i * 60}ms` }}>
                   <button
@@ -856,7 +862,7 @@ export function PpfConfigurator() {
                           ? t("filmIncluded")
                           : f.uplift === null
                             ? t("filmQuote")
-                            : `${t("filmUplift", { pct: Math.round(f.uplift * 100) })}${p !== null ? ` · ${qar(p)}` : ""}`}
+                            : `${t("filmUplift", { pct: upliftPct })}${p !== null ? ` · ${qar(p)}` : ""}`}
                       </span>
                       <span className="mt-1 block text-caption text-(--color-text-muted)">{f.desc[locale]}</span>
                       <span className="mt-1.5 flex items-center gap-1.5 text-caption text-(--color-text-muted)">
@@ -1158,6 +1164,8 @@ export function PpfConfigurator() {
                 rel="noopener noreferrer"
                 data-order-ref={result.ref}
                 data-placement="ppf_booking"
+                data-conversion-value={quote.priceQar ?? undefined}
+                data-conversion-currency="QAR"
                 className={`plausible-event-name=whatsapp_click plausible-event-audience=b2c w-full ${buttonClasses("primary", "lg")}`}
               >
                 <WhatsAppIcon className="h-5 w-5" />

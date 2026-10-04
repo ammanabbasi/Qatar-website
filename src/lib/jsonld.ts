@@ -102,7 +102,7 @@ export function websiteJsonLd(locale: "en" | "ar" = "en") {
 export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
   return {
     "@context": "https://schema.org",
-    "@type": "AutoPartsStore",
+    "@type": ["AutoPartsStore", "AutoRepair"],
     "@id": IDS.business,
     name: SITE.name,
     // Second alternateName matches the Google Business Profile listing name
@@ -294,6 +294,7 @@ export function serviceJsonLd(opts: {
     description: opts.description,
     serviceType: opts.serviceType,
     url: opts.url,
+    image: [defaultSocialImage(opts.locale).url],
     brand: { "@type": "Brand", name: "VTEK" },
     provider: { "@id": IDS.business },
     areaServed: QATAR_SERVICE_AREA,

@@ -365,6 +365,7 @@ html[dir="rtl"] body * {
       radial-gradient(120% 90% at 20% 10%, rgb(255 255 255 / 0.35), transparent 45%),
       linear-gradient(145deg, #2b2f36, #0d0f12 70%);
   }
+  .ppf-swatch-pro-plus,
   .ppf-swatch-ultimate {
     background:
       radial-gradient(120% 90% at 20% 10%, rgb(255 255 255 / 0.55), transparent 50%),

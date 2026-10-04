@@ -6,7 +6,7 @@
 > **Primary Communications:** WhatsApp / Sales: +974 3083 8355 | Mobile: +974 7779 0915 | Landline: +974 4451 4476  
 > **Email:** sales@abktradingservice.com  
 > **Website:** https://abktradingservice.com (English: /en, Arabic: /ar)  
-> **Operational Mandate:** ABK is a product distributor, importer, and wholesale supplier. ABK supplies genuine products to detailing studios, workshops, commercial carwashes, dealerships, and retail DIY car owners. ABK is not a workshop. The one installed service ABK sells is VTEK paint protection film for car owners in Qatar: ABK quotes, books and guarantees the job, and the film is fitted at a VTEK-authorised partner centre in Doha (https://abktradingservice.com/en/b2c/ppf-installation — from QAR 1,200 front-end, QAR 2,200 full front, QAR 5,500 full body). ABK does not perform window tinting, ceramic coating application or detailing services.
+> **Operational Mandate:** ABK is a product distributor, importer, and wholesale supplier. ABK supplies genuine products to detailing studios, workshops, commercial carwashes, dealerships, and retail DIY car owners. ABK is not a workshop. The one installed service ABK sells is VTEK paint protection film for car owners in Qatar: ABK quotes, books and guarantees the job, and the film is fitted at a VTEK-authorised partner centre in Doha (https://abktradingservice.com/en/b2c/ppf-installation — from QAR 899 front-end, QAR 1,599 full front, QAR 3,999 full body). ABK does not perform window tinting, ceramic coating application or detailing services.
 
 ---
 
@@ -200,29 +200,29 @@ Every chemical and film distributed by ABK is selected specifically to withstand
 
 ABK sells installed VTEK paint protection film. ABK quotes, books, takes payment and stands behind the job; a VTEK-authorised installer at a partner centre in Doha does the fitting. ABK supplies the film from its own stock as the authorised VTEK distributor in Qatar.
 
-### Installed prices (QAR, updated 2 October 2026)
+### Installed prices (QAR, updated 4 October 2026)
 
 | Coverage | Film | Sedan / Coupe | SUV / Crossover | Large SUV / Pickup |
 |---|---|---|---|---|
-| Front-end kit | PRO | 1,200 | 1,400 | 1,600 |
-| Front-end kit | ULTIMATE or MATTE | 1,500 | 1,750 | 2,000 |
-| Full front | PRO | 2,200 | 2,600 | 3,000 |
-| Full front | ULTIMATE or MATTE | 2,750 | 3,250 | 3,750 |
-| Full body | PRO | 5,500 | 6,500 | 7,500 |
-| Full body | ULTIMATE or MATTE | 6,900 | 8,150 | 9,400 |
+| Front-end kit | PRO | 899 | 1,049 | 1,199 |
+| Front-end kit | PRO PLUS or MATTE | 1,099 | 1,249 | 1,399 |
+| Full front | PRO | 1,599 | 1,899 | 2,199 |
+| Full front | PRO PLUS or MATTE | 1,899 | 2,299 | 2,599 |
+| Full body | PRO | 3,999 | 4,799 | 5,499 |
+| Full body | PRO PLUS or MATTE | 4,799 | 5,699 | 6,499 |
 
 - **Front-end kit:** front bumper, the leading ~40 cm of the bonnet and fenders, mirrors, headlights.
 - **Full front:** whole bonnet, front bumper, both front fenders, mirrors, headlights.
 - **Full body:** every painted panel.
 - **Individual panels:** live estimate in the quote builder, from QAR 500, capped at the full-body price; confirmed on WhatsApp.
-- **PRISM colour PPF:** priced per car. **Old film or wrap removal:** added to the confirmed price.
+- **PRISM colour PPF:** priced per car (enquire on WhatsApp). **Old film or wrap removal:** added to the confirmed price.
 
 ### What every installation includes (verification steps)
 1. Genuine VTEK film from the authorised Qatar distributor (never sourced from a third party).
 2. Fitting by a VTEK-authorised installer in Doha.
 3. Condition photos at drop-off; pre-existing paint defects recorded.
 4. ABK inspection of the finish before handover.
-5. VTEK manufacturer warranty registered to the car: PRO 10 years, ULTIMATE 15 years, MATTE 5 years, PRISM 5 years (against yellowing, cracking, delamination).
+5. VTEK manufacturer warranty registered to the car: PRO 10 years, PRO PLUS 12 years, MATTE 5 years, PRISM 5 years (against yellowing, cracking, delamination).
 6. ABK workmanship cover for 12 months (lifting, bubbles, edge failure).
 
 ### Booking terms
@@ -231,3 +231,4 @@ ABK sells installed VTEK paint protection film. ABK quotes, books, takes payment
 - Cancellation: full refund up to 48 hours before the slot; one free reschedule.
 - Quote builder and booking: https://abktradingservice.com/en/b2c/ppf-installation (Arabic: /ar/b2c/ppf-installation). WhatsApp: +974 3083 8355.
 - Price guide: https://abktradingservice.com/en/b2c/blog/ppf-cost-qatar
+- Doha installer evaluation guide: https://abktradingservice.com/en/b2c/blog/best-ppf-installers-doha-qatar-guide

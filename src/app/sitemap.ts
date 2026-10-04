@@ -13,7 +13,7 @@ import { routing } from "@/i18n/routing";
 // 2026-09-22: B2C/B2B funnels redesign, WhatsApp order tray, dealer onboarding upgrade.
 // 2026-09-24: shop-first homepage order, catalogue search/sort, retail cart
 //             (the /b2c/cart checkout page is noindex and deliberately absent).
-const STATIC_PAGES_UPDATED_AT = "2026-10-02";
+const STATIC_PAGES_UPDATED_AT = "2026-10-04";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE.url;
@@ -54,9 +54,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority:
           path === ""
             ? 1.0
-            : path === "/privacy" || path === "/terms"
-              ? 0.3
-              : 0.7,
+            : path === "/b2c/ppf-installation"
+              ? 0.9
+              : path === "/privacy" || path === "/terms"
+                ? 0.3
+                : 0.7,
         alternates: { languages: languages(path) },
       });
     }

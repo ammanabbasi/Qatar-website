@@ -18,7 +18,7 @@ import type { LocalizedText } from "./products";
 
 export type BodyType = "sedan" | "suv" | "large-suv";
 export type CoverageKey = "front-end" | "full-front" | "full-body" | "custom";
-export type FilmKey = "pro" | "ultimate" | "matte" | "prism";
+export type FilmKey = "pro" | "pro-plus" | "matte" | "prism";
 export type PartKey =
   | "front-bumper"
   | "bonnet"
@@ -51,11 +51,28 @@ export const BODY_TYPES: Array<{ key: BodyType; name: LocalizedText; examples: L
   },
 ];
 
-/** Weather Armor PRO prices (QAR), owner-confirmed 2026-10-02. */
+/** Weather Armor PRO prices (QAR), updated 2026-10-04. */
 export const PRESET_PRICES_QAR: Record<Exclude<CoverageKey, "custom">, Record<BodyType, number>> = {
-  "front-end": { sedan: 1200, suv: 1400, "large-suv": 1600 },
-  "full-front": { sedan: 2200, suv: 2600, "large-suv": 3000 },
-  "full-body": { sedan: 5500, suv: 6500, "large-suv": 7500 },
+  "front-end": { sedan: 899, suv: 1049, "large-suv": 1199 },
+  "full-front": { sedan: 1599, suv: 1899, "large-suv": 2199 },
+  "full-body": { sedan: 3999, suv: 4799, "large-suv": 5499 },
+};
+
+/** Weather Armor PRO PLUS and MATTE fixed package prices (QAR). */
+export const FILM_PRESET_PRICES_QAR: Record<
+  "pro-plus" | "matte",
+  Record<Exclude<CoverageKey, "custom">, Record<BodyType, number>>
+> = {
+  "pro-plus": {
+    "front-end": { sedan: 1099, suv: 1249, "large-suv": 1399 },
+    "full-front": { sedan: 1899, suv: 2299, "large-suv": 2599 },
+    "full-body": { sedan: 4799, suv: 5699, "large-suv": 6499 },
+  },
+  matte: {
+    "front-end": { sedan: 1099, suv: 1249, "large-suv": 1399 },
+    "full-front": { sedan: 1899, suv: 2299, "large-suv": 2599 },
+    "full-body": { sedan: 4799, suv: 5699, "large-suv": 6499 },
+  },
 };
 
 /** A single-part job still carries a booking, film delivery and a centre slot. */
@@ -154,15 +171,15 @@ export const FILMS: Array<{
     uplift: 0,
   },
   {
-    key: "ultimate",
-    productSlug: "vtek-ppf-weather-armor-ultimate",
-    name: { en: "Weather Armor ULTIMATE", ar: "Weather Armor ULTIMATE" },
+    key: "pro-plus",
+    productSlug: "vtek-ppf-weather-armor-pro-plus",
+    name: { en: "Weather Armor PRO PLUS", ar: "Weather Armor PRO PLUS" },
     desc: {
-      en: "VTEK's flagship ultra-gloss film with the deepest finish and longest warranty.",
-      ar: "فيلم VTEK الأعلى فئةً بلمعان فائق وعمق لوني وأطول ضمان.",
+      en: "Advanced high-density aliphatic TPU with extreme optical clarity, resilient self-healing and 12-year warranty.",
+      ar: "فيلم TPU أليفاتي متطور عالي الكثافة بنقاء بصري فائق ومعالجة ذاتية مرنة وضمان ١٢ سنة.",
     },
-    warrantyYears: 15,
-    uplift: 0.25,
+    warrantyYears: 12,
+    uplift: 0.18,
   },
   {
     key: "matte",
@@ -173,7 +190,7 @@ export const FILMS: Array<{
       ar: "لمسة ساتان غير لامعة — تحوّل الطلاء اللامع إلى مطفي أو تحمي الطلاء المطفي الأصلي.",
     },
     warrantyYears: 5,
-    uplift: 0.25,
+    uplift: 0.18,
   },
   {
     key: "prism",
@@ -214,7 +231,7 @@ export function isCoverage(v: unknown): v is CoverageKey {
   return COVERAGES.some((c) => c.key === v);
 }
 export function isFilm(v: unknown): v is FilmKey {
-  return FILMS.some((f) => f.key === v);
+  return FILMS.some((f) => f.key === v) || v === "ultimate";
 }
 export function isPart(v: unknown): v is PartKey {
   return PARTS.some((p) => p.key === v);
@@ -230,10 +247,22 @@ function proPrice(sel: PpfSelection): number | null {
 }
 
 export function quotePpf(sel: PpfSelection): PpfQuote {
-  const film = FILMS.find((f) => f.key === sel.film);
-  const base = proPrice(sel);
+  const filmKey = ((sel.film as string) === "ultimate" ? "pro-plus" : sel.film) as FilmKey;
+  const film = FILMS.find((f) => f.key === filmKey);
   const isEstimate = sel.coverage === "custom";
-  if (base === null || !film || film.uplift === null) return { priceQar: null, isEstimate };
+  if (!film || film.uplift === null) return { priceQar: null, isEstimate };
+
+  if (sel.coverage !== "custom") {
+    if (filmKey === "pro") {
+      return { priceQar: PRESET_PRICES_QAR[sel.coverage][sel.body], isEstimate: false };
+    }
+    if (filmKey === "pro-plus" || filmKey === "matte") {
+      return { priceQar: FILM_PRESET_PRICES_QAR[filmKey][sel.coverage][sel.body], isEstimate: false };
+    }
+  }
+
+  const base = proPrice(sel);
+  if (base === null) return { priceQar: null, isEstimate };
   return {
     priceQar: film.uplift === 0 ? base : roundUp50(base * (1 + film.uplift)),
     isEstimate,
@@ -250,7 +279,7 @@ export function fromPrice(coverage: Exclude<CoverageKey, "custom">): number {
  * PRESET_PRICES_QAR or a film uplift changes — and update the same figures in
  * public/llms.txt and public/llms-full.txt, which are static files.
  */
-export const PRICES_UPDATED_AT = "2026-10-02";
+export const PRICES_UPDATED_AT = "2026-10-04";
 
 export type PresetCoverage = Exclude<CoverageKey, "custom">;
 export const PRESET_COVERAGES: PresetCoverage[] = ["front-end", "full-front", "full-body"];

@@ -29,7 +29,7 @@ export async function PpfPriceList({ locale }: { locale: "en" | "ar" }) {
   const price = (coverage: string, body: string, film: string) =>
     prices.find((p) => p.coverage === coverage && p.body === body && p.film === film)?.priceQar;
   const years = (key: string) => FILMS.find((f) => f.key === key)!.warrantyYears;
-  // Films that cost the same share a column (today: ULTIMATE and MATTE).
+  // Films that cost the same share a column (today: PRO PLUS and MATTE).
   // PRISM (uplift null) is priced per car and stays out of the table.
   const columns: Array<{ label: string; films: string[] }> = [];
   for (const f of FILMS) {
@@ -58,7 +58,7 @@ export async function PpfPriceList({ locale }: { locale: "en" | "ar" }) {
             <caption className="px-4 py-3 text-start text-caption text-(--color-text-muted) sm:px-6">
               {t("pricesCaption", {
                 pro: years("pro"),
-                ultimate: years("ultimate"),
+                proPlus: years("pro-plus"),
                 matte: years("matte"),
               })}
             </caption>

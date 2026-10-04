@@ -262,8 +262,8 @@ export const PPF_INSTALL_FAQ: FaqEntry[] = [
       ar: "أي فيلم من VTEK أختار لحرارة قطر؟",
     },
     a: {
-      en: `Weather Armor PRO suits most daily drivers: 7.5 mil (190 µm) gloss TPU with heat-activated self-healing and a ${yrs("pro", "en")}-year VTEK warranty. ULTIMATE is the same thickness with VTEK's ultra-gloss finish, a hydrophobic top coat and a ${yrs("ultimate", "en")}-year warranty, for ${pct(film("ultimate").uplift ?? 0, "en")} more. MATTE gives a satin finish (${yrs("matte", "en")}-year warranty) and PRISM changes the colour (${yrs("prism", "en")}-year warranty).`,
-      ar: `يناسب Weather Armor PRO معظم السيارات اليومية: فيلم TPU لامع بسماكة ٧.٥ مل (١٩٠ ميكرون) مع معالجة ذاتية بالحرارة وضمان VTEK لمدة ${yrs("pro", "ar")} ${arYears("pro")}. أما ULTIMATE فبالسماكة نفسها مع لمعان VTEK الفائق وطبقة علوية طاردة للماء وضمان ${yrs("ultimate", "ar")} ${arYears("ultimate")}، بزيادة ${pct(film("ultimate").uplift ?? 0, "ar")}. ويمنح MATTE لمسة ساتان مطفية (ضمان ${yrs("matte", "ar")} ${arYears("matte")})، بينما يغيّر PRISM لون السيارة (ضمان ${yrs("prism", "ar")} ${arYears("prism")}).`,
+      en: `Weather Armor PRO suits most daily drivers: 7.5 mil (190 µm) gloss TPU with heat-activated self-healing and a ${yrs("pro", "en")}-year VTEK warranty. PRO PLUS is an 8.0 mil (203 µm) film with VTEK's ultra-gloss finish, a hydrophobic top coat and a ${yrs("pro-plus", "en")}-year warranty, for ${pct(film("pro-plus").uplift ?? 0, "en")} more. MATTE gives a satin finish (${yrs("matte", "en")}-year warranty) and PRISM changes the colour (${yrs("prism", "en")}-year warranty).`,
+      ar: `يناسب Weather Armor PRO معظم السيارات اليومية: فيلم TPU لامع بسماكة ٧.٥ مل (١٩٠ ميكرون) مع معالجة ذاتية بالحرارة وضمان VTEK لمدة ${yrs("pro", "ar")} ${arYears("pro")}. أما PRO PLUS فبسماكة ٨.٠ مل (٢٠٣ ميكرون) مع لمعان VTEK الفائق وطبقة علوية طاردة للماء وضمان ${yrs("pro-plus", "ar")} ${arYears("pro-plus")}، بزيادة ${pct(film("pro-plus").uplift ?? 0, "ar")}. ويمنح MATTE لمسة ساتان مطفية (ضمان ${yrs("matte", "ar")} ${arYears("matte")})، بينما يغيّر PRISM لون السيارة (ضمان ${yrs("prism", "ar")} ${arYears("prism")}).`,
     },
   },
   {
@@ -324,6 +324,56 @@ export const PPF_INSTALL_FAQ: FaqEntry[] = [
     a: {
       en: "Yes. Tell us in the booking form; old film or wrap has to be removed first, and we include that in the confirmed price.",
       ar: "نعم. أخبرنا بذلك في نموذج الحجز؛ إذ يجب إزالة الفيلم أو التغليف القديم أولاً، ونضمّن ذلك في السعر المؤكد.",
+    },
+  },
+  {
+    q: {
+      en: "Can VTEK PPF handle sandstorms and gravel on Qatar highways (Al Shamal and Salwa roads)?",
+      ar: "هل يتحمل فيلم VTEK PPF العواصف الرملية وحصى الطرق السريعة في قطر (طريق الشمال وطريق سلوى)؟",
+    },
+    a: {
+      en: "Yes. VTEK Weather Armor PRO and PRO PLUS use 7.5 to 8.0 mil (190–203 µm) aliphatic TPU. The elastomeric urethane absorbs high-speed gravel impacts and deflects abrasive desert sand without puncturing. Fine micro-scratches from dust storms automatically self-heal under Qatar's natural sun heat.",
+      ar: "نعم. تستخدم أفلام VTEK Weather Armor PRO وPRO PLUS مادة TPU أليفاتية بسماكة 7.5 إلى 8.0 مل (190–203 ميكرون). يمتص البولي يوريثان المرن صدمات الحصى على السرعات العالية ويصد رمال الصحراء المتطايرة دون تمزق، وتلتئم الخدوش الدقيقة الناتجة عن العواصف الرملية تلقائياً بحرارة شمس قطر.",
+    },
+  },
+  {
+    q: {
+      en: "How soon after PPF installation can I wash my car in Doha?",
+      ar: "متى يمكنني غسيل سيارتي بعد تركيب فيلم الحماية في الدوحة؟",
+    },
+    a: {
+      en: "Wait 48 to 72 hours before the first wash so the installation slip solution fully cures and edges bond firmly. After curing, hand wash with a pH-neutral car shampoo like Autotriz Rich Foam. Avoid holding high-pressure spray nozzles closer than 40 cm from film edges.",
+      ar: "انتظر من 48 إلى 72 ساعة قبل الغسلة الأولى حتى يجف محلول التثبيت تماماً وتلتصق الحواف بإحكام. بعد ذلك، يُفضل الغسيل اليدوي بشامبو متوازن الحموضة مثل Autotriz Rich Foam، وتجنب توجيه مضخات الضغط العالي إلى حواف الفيلم من مسافة أقل من 40 سم.",
+    },
+  },
+  {
+    q: {
+      en: "What is the difference between genuine TPU and cheap PVC or TPH film?",
+      ar: "ما الفرق بين فيلم TPU الأصلي وأفلام PVC أو TPH الرخيصة؟",
+    },
+    a: {
+      en: "Genuine TPU (Thermoplastic Polyurethane) is an optically clear, self-healing polymer that does not yellow or crack in Qatar's 45°C+ summer heat, backed by a 10 to 12-year warranty. Cheap PVC or TPH films turn cloudy, yellow, and brittle within 6 to 12 months, and their harsh adhesives can damage clear coats upon removal. ABK is Qatar's authorized VTEK distributor, supplying only 100% genuine TPU.",
+      ar: "فيلم TPU الأصلي هو بوليمر مرن بصري فائق النقاء ومعالج ذاتياً، لا يصفرّ ولا يتشقق في حرارة صيف قطر (45°م+) مع ضمان من 10 إلى 12 سنة. أما أفلام PVC أو TPH الرخيصة فتصفرّ وتتصلب وتتلف خلال 6 إلى 12 شهراً، ومادتها اللاصقة الرديئة قد تؤذي طلاء الوكالة عند الإزالة. توفر ABK بصفتها الموزع المعتمد أفلام TPU الأصلية 100%.",
+    },
+  },
+  {
+    q: {
+      en: "Can I combine PPF installation with ceramic coating?",
+      ar: "هل يمكنني دمج تركيب PPF مع الطلاء السيراميكي؟",
+    },
+    a: {
+      en: "Yes. Applying a 9H ceramic coating (such as Autotriz 3D Matrix Ultra) over VTEK PPF is the gold standard for Qatar. The PPF provides impact defense against rock chips and sand abrasion, while the ceramic layer provides deep gloss, hydrophobicity, and protection against mineral water spots from Doha tap water.",
+      ar: "نعم. يُعد تطبيق طلاء سيراميكي 9H (مثل Autotriz 3D Matrix Ultra) فوق فيلم VTEK PPF المعيار الذهبي في قطر؛ حيث يمنحك PPF درعاً فيزيائياً ضد الحصى والرمل، بينما يضيف السيراميك لمعاناً عميقاً وعزلاً طارداً للماء يحمي من ترسبات ماء الصنبور وبقع الغسيل.",
+    },
+  },
+  {
+    q: {
+      en: "Where in Doha is the PPF installation performed?",
+      ar: "أين يتم تركيب فيلم الحماية في الدوحة؟",
+    },
+    a: {
+      en: "Installations are carried out in VTEK-authorized clean-booth partner studios in Doha equipped with dust filtration and climate control. Location and drop-off instructions are confirmed with your appointment slot, easily accessible from Mesaimeer, Al Rayyan, Lusail, West Bay, The Pearl, Al Wakrah, and Al Khor.",
+      ar: "يتم التركيب في استوديوهات شريكة معتمدة من VTEK داخل الدوحة، مجهزة بكبائن خالية من الغبار ونظام تكييف محكوم لضمان نقاء التطبيق. يتم تأكيد الموقع وإرشادات تسليم السيارة مع موعدك، بموقع ملائم للمقيمين في مسيمير، الريان، لوسيل، الدفنة، اللؤلؤة، الوكرة، والخور.",
     },
   },
 ];

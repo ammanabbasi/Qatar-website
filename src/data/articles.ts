@@ -45,14 +45,14 @@ export type Article = {
 const q = (n: number, l: "en" | "ar") => formatQar(n, l);
 const P = PRESET_PRICES_QAR;
 const pro = FILMS.find((f) => f.key === "pro")!;
-const ultimate = FILMS.find((f) => f.key === "ultimate")!;
-const ultimateFullBodySedan = quotePpf({
+const proPlus = FILMS.find((f) => f.key === "pro-plus")!;
+const proPlusFullBodySedan = quotePpf({
   body: "sedan",
   coverage: "full-body",
   parts: [],
-  film: "ultimate",
+  film: "pro-plus",
 }).priceQar!;
-const upliftPct = Math.round((ultimate.uplift ?? 0) * 100);
+const upliftPct = Math.round((proPlus.uplift ?? 0) * 100);
 const pricesAsOf = (l: "en" | "ar") =>
   new Date(PRICES_UPDATED_AT).toLocaleDateString(l === "ar" ? "ar-QA" : "en-QA", {
     year: "numeric",
@@ -98,8 +98,8 @@ export const ARTICLES: Article[] = [
           ar: "أسعار PPF في قطر باختصار",
         },
         body: {
-          en: `These are ABK's fixed installed prices for genuine VTEK Weather Armor PRO film (${pro.warrantyYears}-year warranty), as of ${pricesAsOf("en")}. Front-end kit: ${q(P["front-end"].sedan, "en")} for a sedan or coupe, ${q(P["front-end"].suv, "en")} for an SUV and ${q(P["front-end"]["large-suv"], "en")} for a large SUV or pickup. Full front: ${q(P["full-front"].sedan, "en")}, ${q(P["full-front"].suv, "en")} and ${q(P["full-front"]["large-suv"], "en")}. Full body: ${q(P["full-body"].sedan, "en")}, ${q(P["full-body"].suv, "en")} and ${q(P["full-body"]["large-suv"], "en")}. ULTIMATE film (${ultimate.warrantyYears}-year warranty) and MATTE film cost ${upliftPct}% more — a full-body sedan in ULTIMATE is ${q(ultimateFullBodySedan, "en")}. PRISM colour film is priced per car. Every price includes the film, fitting at a VTEK-authorised centre in Doha, warranty registration and a 12-month ABK workmanship cover.`,
-          ar: `هذه أسعار التركيب الثابتة لدى ABK لفيلم VTEK Weather Armor PRO الأصلي (ضمان ${pro.warrantyYears} سنوات)، حتى ${pricesAsOf("ar")}. الواجهة الأساسية: ${q(P["front-end"].sedan, "ar")} للسيدان أو الكوبيه، و${q(P["front-end"].suv, "ar")} لسيارات SUV، و${q(P["front-end"]["large-suv"], "ar")} لسيارات SUV الكبيرة أو البيك أب. الواجهة الكاملة: ${q(P["full-front"].sedan, "ar")} و${q(P["full-front"].suv, "ar")} و${q(P["full-front"]["large-suv"], "ar")}. الهيكل بالكامل: ${q(P["full-body"].sedan, "ar")} و${q(P["full-body"].suv, "ar")} و${q(P["full-body"]["large-suv"], "ar")}. يكلّف فيلما ULTIMATE (ضمان ${ultimate.warrantyYears} سنة) وMATTE أكثر بنسبة ${upliftPct}% — فالهيكل بالكامل لسيارة سيدان بفيلم ULTIMATE بسعر ${q(ultimateFullBodySedan, "ar")}. ويُسعَّر فيلم PRISM الملوّن لكل سيارة. يشمل كل سعر الفيلم والتركيب في مركز معتمد من VTEK في الدوحة وتسجيل الضمان وضمان تركيب من ABK لمدة 12 شهراً.`,
+          en: `These are ABK's fixed installed prices for genuine VTEK Weather Armor PRO film (${pro.warrantyYears}-year warranty), as of ${pricesAsOf("en")}. Front-end kit: ${q(P["front-end"].sedan, "en")} for a sedan or coupe, ${q(P["front-end"].suv, "en")} for an SUV and ${q(P["front-end"]["large-suv"], "en")} for a large SUV or pickup. Full front: ${q(P["full-front"].sedan, "en")}, ${q(P["full-front"].suv, "en")} and ${q(P["full-front"]["large-suv"], "en")}. Full body: ${q(P["full-body"].sedan, "en")}, ${q(P["full-body"].suv, "en")} and ${q(P["full-body"]["large-suv"], "en")}. PRO PLUS film (${proPlus.warrantyYears}-year warranty) and MATTE film cost ${upliftPct}% more — a full-body sedan in PRO PLUS is ${q(proPlusFullBodySedan, "en")}. PRISM colour film is priced per car. Every price includes the film, fitting at a VTEK-authorised centre in Doha, warranty registration and a 12-month ABK workmanship cover.`,
+          ar: `هذه أسعار التركيب الثابتة لدى ABK لفيلم VTEK Weather Armor PRO الأصلي (ضمان ${pro.warrantyYears} سنوات)، حتى ${pricesAsOf("ar")}. الواجهة الأساسية: ${q(P["front-end"].sedan, "ar")} للسيدان أو الكوبيه، و${q(P["front-end"].suv, "ar")} لسيارات SUV، و${q(P["front-end"]["large-suv"], "ar")} لسيارات SUV الكبيرة أو البيك أب. الواجهة الكاملة: ${q(P["full-front"].sedan, "ar")} و${q(P["full-front"].suv, "ar")} و${q(P["full-front"]["large-suv"], "ar")}. الهيكل بالكامل: ${q(P["full-body"].sedan, "ar")} و${q(P["full-body"].suv, "ar")} و${q(P["full-body"]["large-suv"], "ar")}. يكلّف فيلما PRO PLUS (ضمان ${proPlus.warrantyYears} سنة) وMATTE أكثر بنسبة ${upliftPct}% — فالهيكل بالكامل لسيارة سيدان بفيلم PRO PLUS بسعر ${q(proPlusFullBodySedan, "ar")}. ويُسعَّر فيلم PRISM الملوّن لكل سيارة. يشمل كل سعر الفيلم والتركيب في مركز معتمد من VTEK في الدوحة وتسجيل الضمان وضمان تركيب من ABK لمدة 12 شهراً.`,
         },
       },
       {
@@ -155,7 +155,7 @@ export const ARTICLES: Article[] = [
     ],
     relatedProducts: [
       "vtek-ppf-weather-armor-pro",
-      "vtek-ppf-weather-armor-ultimate",
+      "vtek-ppf-weather-armor-pro-plus",
       "vtek-ppf-weather-armor-matte",
       "vtek-ppf-weather-armor-prism",
     ],
@@ -235,6 +235,7 @@ export const ARTICLES: Article[] = [
       "vtek-ppf-weather-armor-ultimate",
       "briller-glass-cleaner",
     ],
+    cta: PPF_INSTALL_CTA,
   },
   {
     slug: "ceramic-coating-cost-qatar",
@@ -311,6 +312,7 @@ export const ARTICLES: Article[] = [
       "autotriz-3d-matrix-ultra",
       "autotriz-3d-matrix-hybrid",
     ],
+    cta: PPF_INSTALL_CTA,
   },
   {
     slug: "remove-hard-water-spots-car-qatar",
@@ -575,6 +577,84 @@ export const ARTICLES: Article[] = [
       "autotriz-heavy-cut-901",
       "briller-quick-tyre-shine",
     ],
+    cta: PPF_INSTALL_CTA,
+  },
+  {
+    slug: "best-ppf-installers-doha-qatar-guide",
+    title: {
+      en: "Choosing the Best PPF Installer in Doha, Qatar: 2026 Standards & Price Guide",
+      ar: "دليل اختيار أفضل مركز تركيب أفلام حماية PPF في الدوحة، قطر: المعايير والأسعار 2026",
+    },
+    description: {
+      en: "How to evaluate PPF installers in Doha: dust-controlled clean booths, edge-wrapping vs pre-cut, genuine aliphatic TPU warranties, and 2026 price comparisons in Qatar.",
+      ar: "كيف تقيّم مراكز تركيب أفلام الحماية في الدوحة: كبائن العمل المعزولة، لف الحواف، ضمان مادة TPU الأليفاتية، ومقارنة أسعار التركيب في قطر لعام 2026.",
+    },
+    date: "2026-10-04",
+    readingTime: 6,
+    category: "buying-guide",
+    keywords: {
+      en: ["best PPF installer Doha", "PPF Qatar", "paint protection film Doha", "VTEK PPF price Qatar", "car PPF installation Qatar", "edge wrapping PPF Doha"],
+      ar: ["أفضل تركيب حماية سيارات الدوحة", "مركز حماية سيارات قطر", "سعر تركيب PPF قطر", "أفلام حماية الطلاء الدوحة"],
+    },
+    sections: [
+      {
+        heading: {
+          en: "Clean-Room Environment: Why Shop Conditions Matter in Qatar",
+          ar: "بيئة العمل المعزولة: لماذا تعد ظروف المركز حاسمة في قطر",
+        },
+        body: {
+          en: "In Qatar's desert climate, airborne sand and fine dust are constant. Applying paint protection film in an open bay or a semi-sealed workshop inevitably traps microscopic dust specks under the clear urethane, creating permanent bubbles and unsightly blemishes that ruin optical clarity. The best PPF installers in Doha operate sealed, climate-controlled, positive-pressure clean booths with medical-grade air filtration and multi-angle LED inspection lighting. This controlled environment ensures the mounting slip solution dries crystal clear, with zero dust contamination between your factory clear coat and the film.",
+          ar: "في مناخ قطر الصحراوي، يتطاير الغبار الناعم والرمل في الهواء باستمرار. تركيب فيلم حماية الطلاء في كبائن مفتوحة أو ورش غير محكمة الإغلاق يؤدي حتماً إلى احتجاز ذرات غبار مجهرية تحت طبقة اليوريثان الشفافة، مما يخلق فقاعات وبقعاً تشوّه نقاء الطلاء. أفضل مراكز تركيب PPF في الدوحة تعمل داخل كبائن معزولة ومكيفة بنظام ضغط هواء إيجابي وفلاتر ترشيح دقيقة وإضاءة LED فحصية متعددة الزوايا. تضمن هذه البيئة المحكومة جفاف محلول التثبيت بنقاء تام دون أي تلوث غباري بين طلاء الوكالة والفيلم.",
+        },
+      },
+      {
+        heading: {
+          en: "Cutting Technology & Edge Wrapping: Protecting Panel Seams",
+          ar: "تقنية القص ولف الحواف: حماية فواصل الألواح",
+        },
+        body: {
+          en: "There are two fundamental installation techniques in Doha: standard pre-cut kits and custom edge-wrapped installations. Low-cost shops often use generic plotter templates that stop 2–3 mm short of each panel's edge. Over time, these exposed borders accumulate dirt, turn dark, and become vulnerable to lifting when hit by high-pressure car wash sprays. Superior installers use advanced software (such as VTEK's computerized design suite) configured with extended borders, allowing technicians to wrap the film around bonnet seams, fender lips, and door edges. Furthermore, computer-plotted templates ensure no razor blades ever touch your vehicle's factory paint.",
+          ar: "هناك أسلوبان أساسيان للتركيب في الدوحة: القوالب الجاهزة القياسية والتركيب الاحترافي بلف الحواف. الورش منخفضة التكلفة تستخدم قوالب تقف قبل حافة اللوح بنحو 2 إلى 3 ملم، مما يترك خطاً مكشوفاً يجمع الأوساخ بمرور الوقت ويكون عرضة للانفصال عند غسيل السيارة بضغط ماء عالٍ. أما المراكز المتقدمة فتعتمد برمجيات قص متطورة (مثل منظومة VTEK الرقمية) مبرمجة بزيادات خاصة تتيح للفنيين لف الفيلم حول حواف الكبوت وفواصل الرفارف والأبواب بالكامل. والأهم من ذلك أن القوالب المقصوصة بالكمبيوتر تضمن عدم اقتراب شفرات القطع اليدوية من طلاء المصنع إطلاقاً.",
+        },
+      },
+      {
+        heading: {
+          en: "Material Chemistry: Aliphatic TPU vs Cheap TPH & PVC",
+          ar: "كيمياء المواد: بوليمر TPU الأليفاتي مقابل TPH وPVC الرخيص",
+        },
+        body: {
+          en: "Not all paint protection films survive a Gulf summer. Cheap films made from PVC (polyvinyl chloride) or TPH (hybridized PVC) use volatile plasticizers that degrade rapidly when exposed to Doha's 45°C+ temperatures and UV Index 11+. Within 6 to 12 months, PVC films turn yellow, lose their elasticity, become brittle, and can cause catastrophic paint damage when their low-grade adhesive bakes onto your clear coat. Genuine premium PPF, such as VTEK Weather Armor PRO and PRO PLUS, is manufactured exclusively from 100% optical-grade aliphatic thermoplastic polyurethane (TPU). Aliphatic TPU never yellows, absorbs severe gravel impacts on highways like Salwa Road and Al Shamal Road, and features heat-activated self-healing topcoats that erase swirl marks under ambient sunlight.",
+          ar: "ليست كل أفلام حماية الطلاء قادرة على الصمود أمام صيف الخليج. الأفلام الرخيصة المصنوعة من PVC أو TPH تستخدم ملدنات كيميائية تتطاير وتتحلل سريعاً تحت حرارة صيف الدوحة التي تتجاوز 45°م ومؤشر الأشعة فوق البنفسجية 11+. وخلال 6 إلى 12 شهراً تصفرّ هذه الأفلام وتفقد مرونتها وتتصلب، وقد تسبب ضرراً جسيماً لطلاء السيارة عند إزالتها بسبب تفاعل المادة اللاصقة الرديئة مع اللك. في المقابل، تُصنع أفلام VTEK Weather Armor PRO وPRO PLUS حصرياً من مادة TPU الأليفاتية البصرية 100%؛ وهي مادة لا تصفرّ إطلاقاً وتمتص صدمات الحصى العنيفة على طرق قطر السريعة وتتميز بمعالجة ذاتية فورية تزيل الخدوش بحرارة الشمس الطبيعية.",
+        },
+      },
+      {
+        heading: {
+          en: "Pricing & Direct-Distributor Value in Doha",
+          ar: "الأسعار وقيمة التوريد المباشر من الموزع في الدوحة",
+        },
+        body: {
+          en: "PPF quotes in Doha vary dramatically, typically ranging from QAR 4,000 to QAR 7,500+ for full-body coverage, often with opaque 'call for price' policies. Much of this variance comes from middlemen markups: independent workshops buy rolls from local importers with added distributor margins. ABK Trading & Service operates on a transparent, distributor-direct model. As the authorized Qatar distributor of VTEK, ABK provides fixed, published pricing from its own central stock: front-end kits from QAR 899, full front from QAR 1,599, and full body from QAR 3,999 for sedans, fitted by authorized partner studios. Vehicle owners get genuine top-tier American-standard TPU film at honest, published rates with no hidden surcharges.",
+          ar: "تتفاوت عروض أسعار PPF في الدوحة بشدة؛ حيث تتراوح عادةً بين 4,000 و7,500+ ريال قطري للهيكل الكامل، وتكتفي معظم الورش بسياسة «اتصل لمعرفة السعر». يعود جزء كبير من هذا الفارق إلى هوامش الوسطاء حيث تشتري الورش الرولات من الموزعين بأسعار مضافة. تعمل ABK للتجارة والخدمات بنموذج التوريد المباشر من الموزع المعتمد؛ وبصفتها الموزع المعتمد لأفلام VTEK في قطر، تعلن ABK أسعاراً ثابتة وشفافة من مخزونها المركزي: باقة الواجهة من 899 ر.ق، والواجهة الكاملة من 1,599 ر.ق، والهيكل كاملاً من 3,999 ر.ق للسيدان، وتُركَّب في استوديوهات شريكة معتمدة دون أي تكاليف خفية.",
+        },
+      },
+      {
+        heading: {
+          en: "Warranties in Writing: Film Guarantee vs Workmanship Cover",
+          ar: "الضمانات المكتوبة: ضمان خامة الفيلم مقابل ضمان جودة التركيب",
+        },
+        body: {
+          en: "A verbal warranty in the car care industry is unenforceable. When comparing installers, demand two separate written guarantees. First, the manufacturer film warranty: VTEK provides a 10 to 12-year factory warranty registered to your vehicle's VIN against yellowing, cracking, bubbling, or delamination. Second, an explicit installer workmanship guarantee. ABK backs every installation with its own 12-month workmanship cover: if an edge lifts, a corner peels, or a bubble develops from slip-solution trapping, ABK corrects it at zero cost. Every drop-off includes photographic intake documentation and an exhaustive handover inspection.",
+          ar: "الضمان الشفهي في قطاع العناية بالسيارات لا قيمة له عند حدوث مشكلة. عند مقارنة المراكز، اطلب ضمانين كتابيين منفصلين: الأول هو ضمان المصنع لخامة الفيلم؛ وتوفر VTEK ضماناً مصنعياً مسجلاً برقم هيكل سيارتك (VIN) لمدة من 10 إلى 12 سنة ضد الاصفرار والتشقق والفقاعات والانفصال. والضمان الثاني هو ضمان جودة التركيب؛ حيث تدعم ABK كل عملية تركيب بضمان تركيب خاص لمدة 12 شهراً: إذا ارتفعت أي حافة أو ظهرت فقاعة يعالجها المركز مجاناً. وتتضمن كل عملية تسليم توثيقاً فوتوغرافياً شاملاً لحالة السيارة عند الاستلام والتسليم.",
+        },
+      },
+    ],
+    relatedProducts: [
+      "vtek-ppf-weather-armor-pro",
+      "vtek-ppf-weather-armor-pro-plus",
+      "vtek-ppf-weather-armor-matte",
+      "vtek-ppf-weather-armor-prism",
+    ],
+    cta: PPF_INSTALL_CTA,
   },
 ];
 

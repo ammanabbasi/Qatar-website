@@ -2,10 +2,13 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing, type Locale } from "@/i18n/routing";
+import { Link } from "@/i18n/navigation";
 import { Shell } from "@/components/layout/Shell";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { CheckIcon, ShieldCheckIcon } from "@/components/ui/Icons";
+import { CheckIcon, ShieldCheckIcon, PinIcon, PhoneIcon } from "@/components/ui/Icons";
+import { WhatsAppIcon } from "@/components/cta/WhatsAppIcon";
+import { buttonClasses } from "@/components/ui/Button";
 import { FaqSection } from "@/components/home/FaqSection";
 import { FloatingWhatsApp } from "@/components/cta/FloatingWhatsApp";
 import { PpfConfigurator } from "@/components/ppf/PpfConfigurator";
@@ -14,7 +17,7 @@ import { PpfPriceList } from "@/components/ppf/PpfPriceList";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PPF_INSTALL_FAQ } from "@/data/faq";
 import { PRESET_PRICES_QAR, presetPriceList, quotePpf } from "@/data/ppfInstall";
-import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from "@/lib/jsonld";
+import { breadcrumbJsonLd, faqJsonLd, localBusinessJsonLd, serviceJsonLd } from "@/lib/jsonld";
 import { pageMeta } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
 import { buildPpfEnquiryWhatsAppUrl } from "@/lib/whatsapp";
@@ -37,6 +40,17 @@ export async function generateMetadata({
 }
 
 const HOW = [1, 2, 3, 4, 5, 6] as const;
+const SPECS = [1, 2, 3, 4] as const;
+const CITIES = [
+  "Doha",
+  "Mesaimeer",
+  "Al Rayyan",
+  "Lusail",
+  "West Bay",
+  "The Pearl",
+  "Al Wakrah",
+  "Al Khor",
+] as const;
 
 export default async function PpfInstallationPage({
   params,
@@ -53,13 +67,14 @@ export default async function PpfInstallationPage({
 
   const low = PRESET_PRICES_QAR["front-end"].sedan;
   const high =
-    quotePpf({ body: "large-suv", coverage: "full-body", parts: [], film: "ultimate" }).priceQar ??
+    quotePpf({ body: "large-suv", coverage: "full-body", parts: [], film: "pro-plus" }).priceQar ??
     PRESET_PRICES_QAR["full-body"]["large-suv"];
 
   return (
     // The site-wide bubble would send a generic "car care products" message;
     // this page gets its own, asking about installation.
     <Shell audience="b2c" locale={l} floatingWhatsApp={false}>
+      <JsonLd id="ld-business" data={localBusinessJsonLd(l)} />
       <JsonLd
         id="ld-service"
         data={serviceJsonLd({
@@ -144,6 +159,50 @@ export default async function PpfInstallationPage({
 
       <PpfPriceList locale={l} />
 
+      {/* Qatar Climate Defense & Technical Specs */}
+      <section className="border-t border-(--color-border) bg-(--color-surface-sunken) py-12 lg:py-16">
+        <Container>
+          <SectionHeading
+            title={t("specsTitle")}
+            subtitle={t("specsSubtitle")}
+          />
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {SPECS.map((i) => (
+              <div
+                key={i}
+                className="flex flex-col rounded-tile border border-(--color-border) bg-(--color-surface) p-5 shadow-tile transition-all duration-200 hover:shadow-card"
+              >
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-(--color-brand)/10 text-(--color-brand-deep)">
+                  <ShieldCheckIcon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-4 text-footnote font-semibold text-(--color-text)">
+                  {t(`specs${i}Title`)}
+                </h3>
+                <p className="mt-1.5 text-caption leading-relaxed text-(--color-text-muted)">
+                  {t(`specs${i}Body`)}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-xl border border-(--color-border) bg-(--color-surface) p-4 text-caption text-(--color-text-muted)">
+            <div className="flex items-center gap-2">
+              <span className="inline-flex h-2 w-2 rounded-full bg-(--color-brand)" />
+              <span className="font-medium text-(--color-text)">
+                {l === "ar"
+                  ? "معايير VTEK TPU الأليفاتية الأصلية (100% خالية من PVC)"
+                  : "Genuine VTEK Aliphatic TPU Standard (100% PVC-Free)"}
+              </span>
+            </div>
+            <p className="text-caption">
+              {l === "ar"
+                ? "سماكة من 7.5 إلى 8.0 مل · لمعان فائق 99% · مقاومة للحرارة حتى 105°م · لا يصفر ولا يتشقق"
+                : "7.5–8.0 mil thickness · 99% optical gloss · Heat stable to 105°C · Non-yellowing formula"}
+            </p>
+          </div>
+        </Container>
+      </section>
+
       <section className="py-8 lg:py-12">
         <Container>
           <SectionHeading title={t("howTitle")} />
@@ -179,6 +238,68 @@ export default async function PpfInstallationPage({
                 </div>
               </div>
             ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Local Doha Service Area & Installation Partner Network */}
+      <section className="border-t border-(--color-border) py-10 lg:py-14">
+        <Container>
+          <div className="rounded-hero border border-(--color-border) bg-(--color-surface) p-6 sm:p-8 lg:p-10">
+            <div className="max-w-2xl">
+              <p className="flex items-center gap-2 text-caption font-bold uppercase tracking-wider text-(--color-brand-deep)">
+                <PinIcon className="h-4 w-4" />
+                {l === "ar" ? "نطاق الخدمة في قطر" : "Service Area in Qatar"}
+              </p>
+              <h2 className="mt-2 text-title font-bold text-(--color-text) sm:text-headline">
+                {t("serviceAreaTitle")}
+              </h2>
+              <p className="mt-2 text-footnote text-(--color-text-muted) sm:text-body">
+                {t("serviceAreaSubtitle")}
+              </p>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              {CITIES.map((c) => (
+                <span
+                  key={c}
+                  className="inline-flex items-center gap-1.5 rounded-full border border-(--color-border) bg-(--color-surface-sunken) px-3 py-1.5 text-caption font-medium text-(--color-text)"
+                >
+                  <PinIcon className="h-3 w-3 text-(--color-brand-deep)" />
+                  {c}
+                </span>
+              ))}
+            </div>
+
+            <p className="mt-4 text-caption leading-relaxed text-(--color-text-muted)">
+              {t("serviceAreaGuarantee")}
+            </p>
+
+            <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-(--color-border) pt-6">
+              <Link
+                href="#quote"
+                className={buttonClasses("primary", "md")}
+              >
+                {l === "ar" ? "احسب سعر سيارتك الآن" : "Build Your Instant Quote"}
+              </Link>
+              <a
+                href={buildPpfEnquiryWhatsAppUrl(l)}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-placement="service_area_cta"
+                className={`plausible-event-name=whatsapp_click plausible-event-audience=b2c ${buttonClasses("secondary", "md")}`}
+              >
+                <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+                {l === "ar" ? "محادثة فورية على واتساب" : "Chat on WhatsApp"}
+              </a>
+              <a
+                href={`tel:${SITE.phoneE164}`}
+                className={buttonClasses("secondary", "md")}
+              >
+                <PhoneIcon className="h-4 w-4" />
+                <span>{SITE.phone}</span>
+              </a>
+            </div>
           </div>
         </Container>
       </section>

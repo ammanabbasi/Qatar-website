@@ -28,7 +28,7 @@ export function installedFromQar(film: FilmKey): number | null {
 
 /** Warranty span across the gloss range, e.g. 10 and 15 years. */
 export function glossWarrantyRange(): { min: number; max: number } {
-  const years = FILMS.filter((f) => f.key === "pro" || f.key === "ultimate").map(
+  const years = FILMS.filter((f) => f.key === "pro" || f.key === "pro-plus").map(
     (f) => f.warrantyYears,
   );
   return { min: Math.min(...years), max: Math.max(...years) };
