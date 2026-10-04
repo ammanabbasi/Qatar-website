@@ -21,6 +21,7 @@ export type CartVariantOption = {
   priceQar: number;
   price: LocalizedText;
   slug: string;
+  badge?: LocalizedText;
 };
 
 export type CartProduct = {
@@ -54,6 +55,7 @@ export function getCartCatalogue(): CartCatalogue {
       priceQar: v.priceQar,
       price: v.price,
       slug: v.slug,
+      badge: v.badge,
     }));
 
     catalogue[p.slug] = {

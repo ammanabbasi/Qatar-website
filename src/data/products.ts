@@ -45,6 +45,7 @@ export type ProductVariant = {
   priceQar: number;
   price: LocalizedText;
   slug: string;
+  badge?: LocalizedText;
 };
 
 export type Product = {
@@ -1370,8 +1371,8 @@ export const PRODUCTS: Product[] = [
       ar: "ABK Rejuvenate — مجدد وملمّع البلاستيك والديكورات",
     },
     shortDesc: {
-      en: "Multi-surface trim restorer with 6 months durable gloss on faded plastic trims. Made in France. 60 ml (QAR 50) & 250 ml (QAR 150).",
-      ar: "مجدد وملمّع البلاستيك والديكورات مع لمعان يدوم ٦ أشهر كاملة. صُنع في فرنسا. متوفر بحجم ٦٠ مل (٥٠ ر.ق) و٢٥٠ مل (١٥٠ ر.ق).",
+      en: "Multi-surface trim restorer with 6 months durable gloss on faded plastic trims. Made in France. 60 ml, 250 ml, 350 ml & 500 ml (From QAR 50).",
+      ar: "مجدد وملمّع البلاستيك والديكورات مع لمعان يدوم ٦ أشهر كاملة. صُنع في فرنسا. متوفر بأحجام ٦٠ مل، ٢٥٠ مل، ٣٥٠ مل و٥٠٠ مل (ابتداءً من ٥٠ ر.ق).",
     },
     longDesc: {
       en: "Don't replace it... Rejuvenate it! ABK Rejuvenate Multi-Surface Plastic Restorer is our signature restorative formula engineered in France. It restores faded, sun-damaged exterior and interior plastic trims, rubber, and cladding back to deep OEM richness while delivering a resilient gloss barrier that lasts up to 6 months. Apply with a microfibre or sponge, allow to bond for 10–15 minutes, then wipe off with a new microfibre. Protect the surface for 6–7 hours during the healing period (driving not recommended).",
@@ -1379,8 +1380,8 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/abk/abk-rejuvenate-plastic-restorer.webp"],
     specs: [
-      { label: { en: "Price", ar: "السعر" }, value: { en: "60 ml: QAR 50 | 250 ml: QAR 150", ar: "٦٠ مل: ٥٠ ر.ق | ٢٥٠ مل: ١٥٠ ر.ق" } },
-      { label: { en: "Sizes", ar: "الأحجام المتوفرة" }, value: { en: "60 ML & 250 ML", ar: "٦٠ مل و ٢٥٠ مل" } },
+      { label: { en: "Price", ar: "السعر" }, value: { en: "60 ml: QAR 50 | 250 ml: QAR 180 | 350 ml: QAR 220 | 500 ml: QAR 265", ar: "٦٠ مل: ٥٠ ر.ق | ٢٥٠ مل: ١٨٠ ر.ق | ٣٥٠ مل: ٢٢٠ ر.ق | ٥٠٠ مل: ٢٦٥ ر.ق" } },
+      { label: { en: "Sizes", ar: "الأحجام المتوفرة" }, value: { en: "60 ML, 250 ML, 350 ML & 500 ML", ar: "٦٠ مل، ٢٥٠ مل، ٣٥٠ مل و ٥٠٠ مل" } },
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in France", ar: "صُنع في فرنسا" } },
       { label: { en: "Durability", ar: "المتانة والفعالية" }, value: { en: "6 Months Gloss on Plastic Trims", ar: "لمعان وحماية تدوم حتى ٦ أشهر" } },
       { label: { en: "Application", ar: "طريقة التطبيق" }, value: { en: "Apply with microfibre or sponge, leave 10-15 mins, wipe with clean microfibre", ar: "تطبيق بمايكروفايبر أو إسفنجة، يُترك ١٠-١٥ دقيقة، يُمسح بمايكروفايبر نظيفة" } },
@@ -1400,13 +1401,28 @@ export const PRODUCTS: Product[] = [
         id: "250ml",
         slug: "abk-rejuvenate-plastic-restorer-250ml",
         size: { en: "250 ml", ar: "٢٥٠ مل" },
-        priceQar: 150,
-        price: { en: "QAR 150", ar: "١٥٠ ر.ق" },
+        priceQar: 180,
+        price: { en: "QAR 180", ar: "١٨٠ ر.ق" },
+      },
+      {
+        id: "350ml",
+        slug: "abk-rejuvenate-plastic-restorer-350ml",
+        size: { en: "350 ml", ar: "٣٥٠ مل" },
+        priceQar: 220,
+        price: { en: "QAR 220", ar: "٢٢٠ ر.ق" },
+      },
+      {
+        id: "500ml",
+        slug: "abk-rejuvenate-plastic-restorer-500ml",
+        size: { en: "500 ml", ar: "٥٠٠ مل" },
+        priceQar: 265,
+        price: { en: "QAR 265", ar: "٢٦٥ ر.ق" },
+        badge: { en: "Best Value", ar: "أفضل قيمة" },
       },
     ],
     audience: "both",
     featured: true,
-    updatedAt: "2026-09-25",
+    updatedAt: "2026-10-04",
   },
   {
     slug: "abk-mashmom-home-fragrance",

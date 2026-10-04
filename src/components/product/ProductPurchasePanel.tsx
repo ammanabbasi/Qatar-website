@@ -286,7 +286,7 @@ export function ProductPurchasePanel({
           >
             {variants!.map((v) => {
               const isSelected = v.id === selectedVariantId;
-              const isBestValue = v.id === "250ml";
+              const badgeLabel = v.badge ? v.badge[locale] : (v.id === "500ml" ? t("bestValue") : null);
               return (
                 <button
                   key={v.id}
@@ -300,9 +300,9 @@ export function ProductPurchasePanel({
                       : "border border-(--color-border-soft) bg-(--color-surface) hover:border-(--color-border) hover:bg-(--color-fill)/50 active:scale-[0.98]"
                   }`}
                 >
-                  {isBestValue && (
+                  {badgeLabel && (
                     <span className="absolute -top-2.5 end-2.5 rounded-full bg-(--color-brand-deep) px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white shadow-xs">
-                      {t("bestValue")}
+                      {badgeLabel}
                     </span>
                   )}
                   <div className="flex w-full items-center justify-between gap-1">
