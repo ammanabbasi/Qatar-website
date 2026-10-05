@@ -54,6 +54,11 @@ export function ProductCard({
           fetchPriority={eager ? "high" : undefined}
           className="object-cover transition-transform duration-700 ease-soft group-hover:scale-[1.03]"
         />
+        {product.originalPrice && (
+          <span className="absolute start-2.5 top-2.5 z-[2] rounded-full bg-red-600 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white shadow-sm">
+            {t("Products.saleBadge")}
+          </span>
+        )}
       </div>
       <div className="flex min-w-0 flex-1 flex-col gap-1 px-1 pt-4">
         <div className="flex min-w-0 items-center justify-between gap-1.5">
@@ -62,18 +67,32 @@ export function ProductCard({
           </p>
           {isB2b ? (
             product.price ? (
-              <span className="shrink-0 whitespace-nowrap rounded-md bg-(--color-brand)/12 px-2 py-0.5 text-[11px] font-semibold text-(--color-brand-deep)">
-                {t("Products.cardMsrp", { price: product.price[locale] })}
-              </span>
+              <div className="flex shrink-0 items-center gap-1.5">
+                <span className="whitespace-nowrap rounded-md bg-(--color-brand)/12 px-2 py-0.5 text-[11px] font-semibold text-(--color-brand-deep)">
+                  {t("Products.cardMsrp", { price: product.price[locale] })}
+                </span>
+                {product.originalPrice ? (
+                  <span className="whitespace-nowrap text-[10px] text-(--color-text-muted) line-through">
+                    {product.originalPrice[locale]}
+                  </span>
+                ) : null}
+              </div>
             ) : (
               <span className="shrink-0 whitespace-nowrap rounded-md bg-blue-500/10 px-2 py-0.5 text-[11px] font-semibold text-blue-600">
                 {t("Products.cardTradeSupply")}
               </span>
             )
           ) : product.price ? (
-            <span className="shrink-0 whitespace-nowrap rounded-md bg-(--color-brand)/12 px-2 py-0.5 text-caption font-bold text-(--color-brand-deep)">
-              {product.price[locale]}
-            </span>
+            <div className="flex shrink-0 items-baseline gap-1.5">
+              <span className="whitespace-nowrap rounded-md bg-(--color-brand)/12 px-2 py-0.5 text-caption font-bold text-(--color-brand-deep)">
+                {product.price[locale]}
+              </span>
+              {product.originalPrice ? (
+                <span className="whitespace-nowrap text-[11px] text-(--color-text-muted) line-through">
+                  {product.originalPrice[locale]}
+                </span>
+              ) : null}
+            </div>
           ) : null}
         </div>
         <Heading className="text-body font-semibold text-(--color-text) sm:text-title-sm">

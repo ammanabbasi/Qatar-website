@@ -73,6 +73,19 @@
 - **Warranty:** 7-Year Manufacturer Warranty.
 - **Roll Dimension:** 1.52m × 15m
 
+#### 5. Autotriz PPF Gel — Installation Aid (4L & 20L)
+- **SKU:** `autotriz-ppf-gel` (4L) / `autotriz-ppf-gel-20l` (20L)
+- **Pricing:** 4L: QAR 150 | 20L: QAR 500 (Bulk Value)
+- **Packaging:** 4L bottle and 20L bulk drum / retail purchase available
+- **Description:** Professional PPF & window tint installation gel. 1:1 dilution ratio, thick viscous formula preventing dripping and leaving zero residue. Made in Germany.
+
+#### 6. Autotriz PPF Refresh — Polish & Surface Restorer (1L)
+- **SKU:** `autotriz-ppf-refresh-1l`
+- **Price:** QAR 130
+- **Packaging:** 1 Liter (1000 ml) dispenser bottle / retail purchase available
+- **Origin:** Made in Germany
+- **Description:** Specialized paint protection film & vinyl wrap restoration polish removing minor scratches, fading, and water spots while reviving high-gloss clarity without yellowing.
+
 ---
 
 ### Category 2: Automotive Window Tint & Solar Control Films
@@ -90,7 +103,13 @@
 
 ### Category 3: Nano Ceramic Coatings & Surface Sealants
 
-#### 1. Autotriz V-9 3D Matrix Nano Ceramic Coating
+#### 1. Autotriz 3D Matrix Ultra Ceramic Coating (50ml Kit)
+- **SKU:** `autotriz-3d-matrix-ultra`
+- **Price:** QAR 280
+- **Packaging:** 50 ml / 1.7 oz kit / retail purchase available
+- **Description:** Professional nano-technology ceramic coating providing deep gloss and long-term surface protection.
+
+#### 2. Autotriz V-9 3D Matrix Nano Ceramic Coating
 - **SKU:** `autotriz-v9-3d-matrix`
 - **Hardness:** Certified 9H Pencil Hardness
 - **Chemical Resistance:** pH 2 to pH 13 (acid rain, bird droppings, harsh car wash detergents)
@@ -98,16 +117,36 @@
 - **Pack Sizes:** 50ml studio bottle (treats 1–2 full-size SUVs)
 - **Durability:** Up to 5 years with scheduled maintenance washes.
 
-#### 2. Autotriz Matrix Hybrid Ceramic Coating
-- **SKU:** `autotriz-matrix-hybrid`
+#### 3. Autotriz 3D Matrix Hybrid Ceramic Coating (50ml Kit)
+- **SKU:** `autotriz-3d-matrix-hybrid`
+- **Price:** QAR 280
+- **Packaging:** 50 ml / 1.7 oz kit / retail purchase available
 - **Description:** High-gloss SiO2/siloxane hybrid protective coating designed for rapid curing and extreme hydrophobicity.
 
-#### 3. Autotriz Leather & Vinyl Nano Ceramic Coating
+#### 4. Autotriz REVO +15 — Ceramic Coating (50ml)
+- **SKU:** `autotriz-revo-ceramic-coating`
+- **Packaging:** 50 ml / 1.7 oz bottle / retail purchase available
+- **Price:** QAR 250
+- **Origin:** Made in Germany
+- **Description:** Cutting-edge nano ceramic coating that fills nanopores and establishes strong molecular bonds for next-level durability and gloss.
+
+#### 5. Autotriz ION+ +15 — Ceramic Coating (50ml)
+- **SKU:** `autotriz-ion-plus-ceramic-coating`
+- **Packaging:** 50 ml / 1.7 oz bottle / retail purchase available
+- **Price:** QAR 250
+- **Origin:** Made in Germany
+- **Description:** Advanced nano ceramic coating with surface ionized technology bringing supreme smoothness and slickness.
+
+#### 6. Autotriz Leather & Vinyl Nano Ceramic Coating (50ml)
 - **SKU:** `autotriz-leather-vinyl-coating`
+- **Packaging:** 50 ml / 1.7 oz bottle / retail purchase available
+- **Price:** QAR 280
 - **Description:** Flexible breathable interior coating preventing dye transfer (denim stains) and UV degradation on luxury leather upholstery.
 
-#### 4. Autotriz Fabric & Textile Guard
-- **SKU:** `autotriz-fabric-textile-guard`
+#### 7. Autotriz Fabric & Textile Guard (300ml)
+- **SKU:** `autotriz-fabric-textile-coating`
+- **Packaging:** 300 ml / 10.1 oz spray / retail purchase available
+- **Price:** QAR 280
 - **Description:** Superhydrophobic textile sealant causing liquid spills to bead up without staining cloth seats, floor mats, or soft-top convertibles.
 
 ---
@@ -115,24 +154,56 @@
 ### Category 4: Commercial Wash Chemicals & Shampoos
 
 #### 1. Autotriz Rich Foam Shampoo (20L Trade Pack)
-- **SKU:** `autotriz-rich-foam-shampoo-20l`
-- **Packaging:** 20-Litre heavy-duty commercial drum
-- **Dilution Ratio:** Up to 1:400 for bucket wash; 1:10 for snow foam cannons
+- **SKU:** `autotriz-rich-foam-shampoo`
+- **Packaging:** 20-Litre heavy-duty commercial drum / retail purchase available
+- **Price:** QAR 450 (Special promotional offer, was QAR 500)
+- **Dilution Ratio:** 1:80 for foam cannons and wash buckets (up to 1:400 for light maintenance)
 - **pH:** Balanced (pH 7.0) — safe for ceramic coatings, PPF, and sensitive chrome trims
 - **Audience:** Detailing centers, commercial car wash stations, luxury dealership preparation bays.
 
-#### 2. Briller Car Shampoo — Wash & Wax
-- **SKU:** `briller-car-shampoo-wash-wax`
-- **Packaging:** 500ml retail bottle / commercial cartons (12 units)
-- **Description:** Carnauba-infused foaming shampoo leaving a protective gloss film. Made in Canada.
+#### 2. Briller Car Shampoo — Wash & Wax (All-in-One 20L)
+- **SKU:** `briller-wash-and-wax`
+- **Packaging:** 20L bulk commercial drum / retail purchase available
+- **Price:** QAR 350 (Special promotional offer, was QAR 400)
+- **Description:** Carnauba-infused foaming shampoo leaving a protective gloss film with All-in-One CA Tech™. Made in Canada.
 
-#### 3. Briller Crystal Clear Glass Cleaner
+#### 3. Briller Crystal Clear Glass Cleaner (20L)
 - **SKU:** `briller-glass-cleaner`
-- **Formula:** Ammonia-free (100% tint-safe), streak-free formula cutting through desert dust and traffic film.
+- **Packaging:** 20L commercial drum / retail purchase available
+- **Price:** QAR 265
+- **Formula:** Ammonia-free (100% tint-safe), streak-free formula cutting through desert dust and traffic film with All-in-One CA Tech™. Dilutes 1:1 or use direct. Made in Canada.
 
-#### 4. Briller Multi-Purpose Cleaner (MPC / Degreaser)
-- **SKU:** `briller-mpc-cleaner`
-- **Description:** Heavy-duty concentrated interior/exterior cleaner for engine bays, wheel wells, and soiled door jambs.
+#### 4. Briller Multi-Purpose Cleaner (MPC, 20L)
+- **SKU:** `briller-multipurpose-cleaner`
+- **Packaging:** 20L commercial drum / retail purchase available
+- **Price:** QAR 350 (Special promotional offer, was QAR 400)
+- **Description:** Concentrated interior-safe foaming cleaner for fabric, plastic, leather, and carpet with All-in-One CA Tech™. Dilutes 1:5. Made in Canada.
+
+#### 5. Briller Quick Tyre Shine (20L)
+- **SKU:** `briller-quick-tyre-shine`
+- **Packaging:** 20L commercial drum / retail purchase available
+- **Price:** QAR 280
+- **Description:** Aqua-based tyre dressing providing peak shine inside and out, with long-lasting sling-free protection. Made in Canada.
+
+#### 6. Briller Heavy Duty Degreaser (20L)
+- **SKU:** `briller-heavy-duty-degreaser`
+- **Packaging:** 20L commercial drum / retail purchase available
+- **Price:** QAR 300
+- **Description:** Industrial-strength degreaser dissolving grease, engine oil buildup, road grime and rust with All-in-One CA Tech™. Dilutes 1:5. Made in Canada.
+
+#### 7. Autotriz Hyper Wheel Cleaner (20L)
+- **SKU:** `autotriz-hyper-wheel-cleaner`
+- **Packaging:** 20L bulk commercial drum / retail purchase available
+- **Price:** QAR 400
+- **Dilution Ratio:** 1:1 with water (economical concentrate)
+- **Compatibility:** Safe for chrome, clear-coated, and factory painted wheels. Non-caustic with built-in rust inhibitors. Made in Germany.
+
+#### 8. Briller Quick Dressing (20L)
+- **SKU:** `briller-quick-dressing`
+- **Packaging:** 20L bulk commercial drum / retail purchase available
+- **Price:** QAR 450
+- **Dilution Ratio:** 1:1 with water
+- **Description:** Aqua-based all-in-one dressing for interior trim, engine bays, and tyres delivering peak shine with All-in-One CA Tech™. Safe on plastic, rubber, and vinyl. Made in Canada.
 
 ---
 
@@ -143,18 +214,82 @@
 - **Abrasive Type:** Diminishing micro-abrasives
 - **Performance:** Removes P1200–P1500 sanding marks and severe swirl marks without dusting. Silicone-free and body-shop safe.
 
-#### 2. Autotriz Power Cut 701
+#### 2. Autotriz Power Cut 701 (4L)
 - **SKU:** `autotriz-power-cut-701`
-- **Performance:** Medium-grade compounding polish eliminating moderate holograms and oxidization.
+- **Packaging:** 4L bulk jug / retail purchase available
+- **Price:** QAR 280
+- **Performance:** 2-in-1 compounding and finishing polish eliminating scratches, sanding marks (P1500–P2000), and moderate holograms. Made in Germany.
 
 #### 3. Autotriz Ultimate Polish 302
 - **SKU:** `autotriz-ultimate-polish-302`
-- **Performance:** Ultra-fine finishing polish achieving high-gloss mirror reflections on soft European and Asian clearcoats.
+- **Price:** QAR 135
+- **Performance:** Ultra-fine finishing polish achieving high-gloss mirror reflections on soft European and Asian clearcoats. Body-shop safe and hologram-free. Made in Germany.
 
-#### 4. GrünesAuto 6-Inch Foam Polishing Pads
-- **SKU:** `grunesauto-polishing-pads`
-- **Origin:** Germany
-- **Grades:** Heavy Cut (Green/Blue), Medium Polishing (Yellow), Ultra-Fine Finishing (White/Black). Hook-and-loop backing compatible with dual-action and rotary machines.
+#### 4. Autotriz One Step Finish (4L)
+- **SKU:** `autotriz-one-step-finish`
+- **Packaging:** 4L bulk jug / retail purchase available
+- **Price:** QAR 265
+- **Performance:** All-in-one compounding and finishing polish removing light-to-moderate swirls, scratches, and defects while delivering a deep, glossy finish in a single step.
+
+#### 5. GrünesAuto 6-Inch Foam Polishing Pads (DA & Rotary)
+- **SKUs:** `grunes-auto-pad-step1-da-6in` (DA Heavy Cut Maroon), `grunes-auto-pad-step2-da-6in` (DA Medium Polish Yellow), `grunes-auto-pad-step3-da-6in` (DA Finishing Black), `grunes-auto-pad-step2-rotary-6in` (Rotary Polish Yellow)
+- **Price:** QAR 30 each
+- **Origin:** Made in Germany
+- **Grades:** Step 1 Heavy Cut (DA Maroon), Step 2 Medium Cut & Polish (DA Yellow & Rotary Yellow), Step 3 Ultra-Fine Finishing (DA Black). Hook-and-loop backing.
+
+#### 6. Premium Autotriz Spray Bottle (Empty)
+- **SKU:** `autotriz-spray-bottle`
+- **Packaging:** Chemical-resistant HDPE spray bottle with adjustable trigger nozzle / retail purchase available
+- **Price:** QAR 15
+- **Origin:** Made in Germany
+- **Description:** Professional-grade chemical-resistant empty spray bottle with adjustable nozzle (fine mist to stream) and dilution markings.
+
+#### 7. Autotriz High-Pressure Foam Gun
+- **SKU:** `autotriz-foam-gun`
+- **Packaging:** Solid stainless steel cannon with 1-litre wide-base bottle / retail purchase available
+- **Price:** QAR 180
+- **Origin:** Made in Germany
+- **Description:** Heavy-duty snow foam cannon with solid all-around stainless steel body core and 1/4" quick-connect inlet.
+
+#### 8. Autotriz Wax & Polish Dispenser Bottle
+- **SKU:** `autotriz-wax-and-polish-bottle`
+- **Packaging:** Chemical-resistant squeeze dispenser bottle with pull-push spout / retail purchase available
+- **Price:** QAR 12
+- **Origin:** Made in Germany
+- **Description:** Professional detailing squeeze bottle for compounds, polishes, and waxes with pre-printed identification checkboxes ([ ] Cut, [ ] Polish, [ ] Wax).
+
+#### 9. Masking Tape — PPF & Paint Prep (1" & 2")
+- **SKU:** `fast-masking-tape` (1") / `fast-masking-tape-2inch` (2")
+- **Pricing:** 1 Inch (24 mm): QAR 2.5 | 2 Inch (48 mm): QAR 3.5
+- **Packaging:** Rolls / retail and wholesale purchase available
+- **Description:** Professional-grade yellow masking tape for PPF installation, paint preparation, and detailing. Clean edge release with zero adhesive residue.
+
+#### 10. GrünesAuto Edgeless Microfibre Towel (40×40 cm)
+- **SKU:** `edgeless-microfiber-towel`
+- **Price:** QAR 10
+- **Origin:** Made in Germany
+- **Description:** Ultra-plush borderless laser-cut microfibre towel (40×40 cm) guaranteeing zero swirl marks or marring on sensitive clear coats, ceramic coatings, and glass.
+
+#### 11. Premium Microfibre Towel (60×40 cm)
+- **SKU:** `premium-microfiber-towel-60x40`
+- **Price:** QAR 8
+- **Description:** Multi-purpose purple microfibre towel (60×40 cm) with reinforced stitched borders for car washing, streak-free glass, and interior detailing.
+
+#### 12. Premium Chamois & Synthetic Leather Drying Towel (64×43 cm)
+- **SKU:** `premium-chamois-leather-towel`
+- **Price:** QAR 18
+- **Packaging:** Reusable cylindrical storage tube / retail purchase available
+- **Description:** High-tech synthetic PVA chamois drying towel (64×43 cm) with 3D concave-convex design for resistance-free gliding, rapid water absorption, and zero watermarks.
+
+#### 13. Jumbo Honeycomb Car Washing Sponge (Large Size)
+- **SKU:** `car-washing-sponge-large`
+- **Price:** QAR 10
+- **Description:** Extra-large high-density honeycomb wash sponge with ergonomic contour grip holding massive suds and trapping grit safely away from paintwork.
+
+#### 14. Tire Polish & Dressing Applicator Sponge
+- **SKU:** `tire-polish-sponge`
+- **Price:** QAR 8
+- **Description:** Ergonomic contoured high-density foam sponge for even application of tyre shine, dressings, and gels along curved sidewalls without mess or sling.
 
 ---
 

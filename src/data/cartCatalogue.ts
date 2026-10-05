@@ -20,6 +20,8 @@ export type CartVariantOption = {
   size: LocalizedText;
   priceQar: number;
   price: LocalizedText;
+  originalPriceQar?: number;
+  originalPrice?: LocalizedText;
   slug: string;
   badge?: LocalizedText;
 };
@@ -31,8 +33,10 @@ export type CartProduct = {
   category: CategoryKey;
   name: LocalizedText;
   priceQar?: number;
+  originalPriceQar?: number;
   /** The catalogue's own price text — "From QAR 50" for multi-size products. */
   priceLabel?: LocalizedText;
+  originalPriceLabel?: LocalizedText;
   image: string;
   audience: AudienceScope;
   variantSize?: LocalizedText;
@@ -54,6 +58,8 @@ export function getCartCatalogue(): CartCatalogue {
       size: v.size,
       priceQar: v.priceQar,
       price: v.price,
+      originalPriceQar: v.originalPriceQar,
+      originalPrice: v.originalPrice,
       slug: v.slug,
       badge: v.badge,
     }));
@@ -64,10 +70,17 @@ export function getCartCatalogue(): CartCatalogue {
       category: p.category,
       name: p.name,
       ...(defaultVariant
-        ? { priceQar: defaultVariant.priceQar, priceLabel: defaultVariant.price }
+        ? {
+            priceQar: defaultVariant.priceQar,
+            priceLabel: defaultVariant.price,
+            originalPriceQar: defaultVariant.originalPriceQar,
+            originalPriceLabel: defaultVariant.originalPrice,
+          }
         : {
             ...(p.priceQar !== undefined ? { priceQar: p.priceQar } : {}),
             ...(p.price ? { priceLabel: p.price } : {}),
+            ...(p.originalPriceQar !== undefined ? { originalPriceQar: p.originalPriceQar } : {}),
+            ...(p.originalPrice ? { originalPriceLabel: p.originalPrice } : {}),
           }),
       image: p.images[0],
       audience: p.audience,
@@ -86,6 +99,8 @@ export function getCartCatalogue(): CartCatalogue {
             name: p.name,
             priceQar: v.priceQar,
             priceLabel: v.price,
+            originalPriceQar: v.originalPriceQar,
+            originalPriceLabel: v.originalPrice,
             image: p.images[0],
             audience: p.audience,
             variantSize: v.size,

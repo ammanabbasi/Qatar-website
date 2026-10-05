@@ -44,6 +44,8 @@ export type ProductVariant = {
   size: LocalizedText;
   priceQar: number;
   price: LocalizedText;
+  originalPriceQar?: number;
+  originalPrice?: LocalizedText;
   slug: string;
   badge?: LocalizedText;
 };
@@ -59,6 +61,8 @@ export type Product = {
   specs?: Array<{ label: LocalizedText; value: LocalizedText }>;
   price?: LocalizedText;
   priceQar?: number;
+  originalPrice?: LocalizedText;
+  originalPriceQar?: number;
   audience: AudienceScope;
   featured?: boolean; // star products
   highlight?: "briller-color" | "vertek-premium"; // special visual treatment hints
@@ -518,16 +522,21 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/briller/briller-wash-and-wax.webp"],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 350 (Was QAR 400)", ar: "٣٥٠ ر.ق (سابقاً ٤٠٠ ر.ق)" } },
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B505", ar: "B505" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
       { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "1:50", ar: "١:٥٠" } },
       { label: { en: "Features", ar: "المميزات" }, value: { en: "With wax", ar: "مع شمع" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
+    price: { en: "QAR 350", ar: "٣٥٠ ر.ق" },
+    priceQar: 350,
+    originalPrice: { en: "QAR 400", ar: "٤٠٠ ر.ق" },
+    originalPriceQar: 400,
     audience: "both",
     featured: true,
     highlight: "briller-color",
-    updatedAt: "2026-08-30",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "briller-multipurpose-cleaner",
@@ -547,14 +556,19 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/briller/briller-multipurpose-cleaner.webp"],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 350 (Was QAR 400)", ar: "٣٥٠ ر.ق (سابقاً ٤٠٠ ر.ق)" } },
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B502", ar: "B502" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
       { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "1:5", ar: "١:٥" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
+    price: { en: "QAR 350", ar: "٣٥٠ ر.ق" },
+    priceQar: 350,
+    originalPrice: { en: "QAR 400", ar: "٤٠٠ ر.ق" },
+    originalPriceQar: 400,
     audience: "both",
     highlight: "briller-color",
-    updatedAt: "2026-09-05",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "briller-quick-tyre-shine",
@@ -574,13 +588,16 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/briller/briller-quick-tyre-shine.webp"],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 280", ar: "٢٨٠ ر.ق" } },
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B503", ar: "B503" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
+    price: { en: "QAR 280", ar: "٢٨٠ ر.ق" },
+    priceQar: 280,
     audience: "both",
     highlight: "briller-color",
-    updatedAt: "2026-08-30",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "briller-glass-cleaner",
@@ -600,14 +617,17 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/briller/briller-glass-cleaner.webp"],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 265", ar: "٢٦٥ ر.ق" } },
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "D508", ar: "D508" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
       { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "Direct / 1:1", ar: "مباشر / ١:١" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
+    price: { en: "QAR 265", ar: "٢٦٥ ر.ق" },
+    priceQar: 265,
     audience: "both",
     highlight: "briller-color",
-    updatedAt: "2026-09-05",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "briller-heavy-duty-degreaser",
@@ -627,6 +647,7 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/briller/briller-heavy-duty-degreaser.webp"],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 300", ar: "٣٠٠ ر.ق" } },
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B507", ar: "B507" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
       { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "1:5 with water", ar: "١:٥ مع الماء" } },
@@ -634,9 +655,11 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Technology", ar: "التقنية" }, value: { en: "All-in-One CA Tech™", ar: "تقنية All-in-One CA Tech™" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
+    price: { en: "QAR 300", ar: "٣٠٠ ر.ق" },
+    priceQar: 300,
     audience: "both",
     highlight: "briller-color",
-    updatedAt: "2026-09-02",
+    updatedAt: "2026-10-05",
   },
 
   // ───── Autotriz — Detailing Chemicals
@@ -658,6 +681,7 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/autotriz/autotriz-rich-foam-shampoo-20l.webp"],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 450 (Was QAR 500)", ar: "٤٥٠ ر.ق (سابقاً ٥٠٠ ر.ق)" } },
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "AT-CC-RFS-20", ar: "AT-CC-RFS-20" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
       { label: { en: "Technology", ar: "التقنية" }, value: { en: "Nano Coating & PPF Top Coat Renewer", ar: "تقنية النانو وتجديد طبقة الـ PPF" } },
@@ -665,7 +689,12 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Application", ar: "الاستخدام" }, value: { en: "Best for PPF & Ceramic Coated Cars", ar: "مثالي لسيارات أفلام الحماية والسيراميك" } },
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
+    price: { en: "QAR 450", ar: "٤٥٠ ر.ق" },
+    priceQar: 450,
+    originalPrice: { en: "QAR 500", ar: "٥٠٠ ر.ق" },
+    originalPriceQar: 500,
     audience: "both",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "autotriz-heavy-cut-901",
@@ -724,13 +753,16 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/autotriz/autotriz-ultimate-polish-302.webp"],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 135", ar: "١٣٥ ر.ق" } },
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "302", ar: "302" } },
       { label: { en: "Cut / Gloss", ar: "القطع واللمعان" }, value: { en: "Cut 2/10 · Gloss 10/10", ar: "قطع ٢/١٠ · لمعان ١٠/١٠" } },
       { label: { en: "Finish", ar: "التشطيب" }, value: { en: "Hologram-Free Mirror Finish", ar: "لمعان مرآة خالٍ من الهالات" } },
       { label: { en: "Safety", ar: "الأمان" }, value: { en: "Body Shop Safe", ar: "آمن لورش السمكرة" } },
     ],
+    price: { en: "QAR 135", ar: "١٣٥ ر.ق" },
+    priceQar: 135,
     audience: "both",
-    updatedAt: "2026-09-05",
+    updatedAt: "2026-10-05",
   },
 
   {
@@ -751,13 +783,17 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/autotriz/autotriz-power-cut-701-4l.webp"],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 280", ar: "٢٨٠ ر.ق" } },
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "AT-PC-701", ar: "AT-PC-701" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "4 L", ar: "٤ لتر" } },
       { label: { en: "Type", ar: "النوع" }, value: { en: "2-in-1 Cut & Polish Compound", ar: "مركّب ٢ في ١ قطع وتلميع" } },
       { label: { en: "Compatibility", ar: "التوافق" }, value: { en: "Rotary · Dual Action", ar: "روتاري · دوال أكشن" } },
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
+    price: { en: "QAR 280", ar: "٢٨٠ ر.ق" },
+    priceQar: 280,
     audience: "both",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "autotriz-3d-matrix-ultra",
@@ -779,10 +815,14 @@ export const PRODUCTS: Product[] = [
       "/products/autotriz/autotriz-3d-matrix-ultra.webp",
     ],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 280", ar: "٢٨٠ ر.ق" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "50 ml / 1.7 oz", ar: "٥٠ مل" } },
       { label: { en: "Technology", ar: "التقنية" }, value: { en: "Nano-technology ceramic", ar: "سيراميك نانو" } },
     ],
+    price: { en: "QAR 280", ar: "٢٨٠ ر.ق" },
+    priceQar: 280,
     audience: "both",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "autotriz-3d-matrix-hybrid",
@@ -805,10 +845,14 @@ export const PRODUCTS: Product[] = [
       "/products/autotriz/autotriz-3d-matrix-hybrid-box.webp",
     ],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 280", ar: "٢٨٠ ر.ق" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "50 ml / 1.7 oz", ar: "٥٠ مل" } },
       { label: { en: "Technology", ar: "التقنية" }, value: { en: "Nano-technology ceramic", ar: "سيراميك نانو" } },
     ],
+    price: { en: "QAR 280", ar: "٢٨٠ ر.ق" },
+    priceQar: 280,
     audience: "both",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "autotriz-fabric-textile-coating",
@@ -830,10 +874,14 @@ export const PRODUCTS: Product[] = [
       "/products/autotriz/autotriz-fabric-and-textile.webp",
     ],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 280", ar: "٢٨٠ ر.ق" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "300 ml / 10.1 oz", ar: "٣٠٠ مل" } },
       { label: { en: "Technology", ar: "التقنية" }, value: { en: "Nano-technology fabric protector", ar: "حماية نانو للأقمشة" } },
     ],
+    price: { en: "QAR 280", ar: "٢٨٠ ر.ق" },
+    priceQar: 280,
     audience: "both",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "autotriz-ppf-gel",
@@ -856,13 +904,33 @@ export const PRODUCTS: Product[] = [
       "/products/autotriz/autotriz-ppf-gel-20l.webp",
     ],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "4 L: QAR 150 | 20 L: QAR 500", ar: "٤ لتر: ١٥٠ ر.ق | ٢٠ لتر: ٥٠٠ ر.ق" } },
       { label: { en: "Sizes", ar: "الأحجام" }, value: { en: "4 L (Bottle) · 20 L (Drum)", ar: "٤ لتر (عبوة) · ٢٠ لتر (برميل)" } },
       { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "1:1 with water", ar: "١:١ مع الماء" } },
       { label: { en: "Application", ar: "الاستخدام" }, value: { en: "Suitable for tints & PPF application", ar: "مناسب لتركيب التظليل وأفلام الحماية" } },
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
+    price: { en: "From QAR 150", ar: "من ١٥٠ ر.ق" },
+    priceQar: 150,
+    variants: [
+      {
+        id: "4l",
+        slug: "autotriz-ppf-gel",
+        size: { en: "4 L", ar: "٤ لتر" },
+        priceQar: 150,
+        price: { en: "QAR 150", ar: "١٥٠ ر.ق" },
+      },
+      {
+        id: "20l",
+        slug: "autotriz-ppf-gel-20l",
+        size: { en: "20 L", ar: "٢٠ لتر" },
+        priceQar: 500,
+        price: { en: "QAR 500", ar: "٥٠٠ ر.ق" },
+        badge: { en: "Bulk Value", ar: "أفضل قيمة" },
+      },
+    ],
     audience: "both",
-    updatedAt: "2026-09-01",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "autotriz-hyper-wheel-cleaner",
@@ -884,14 +952,17 @@ export const PRODUCTS: Product[] = [
       "/products/autotriz/autotriz-hyper-wheel-cleaner-20l.webp",
     ],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 400", ar: "٤٠٠ ر.ق" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L (Drum)", ar: "٢٠ لتر (برميل)" } },
       { label: { en: "Compatibility", ar: "التوافق" }, value: { en: "Safe for Chrome, Painted & Clear-Coated Wheels", ar: "آمن على الكروم والجنوط المطلية والمحمية" } },
       { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "1:1 with water", ar: "١:١ مع الماء" } },
       { label: { en: "Formula", ar: "التركيبة" }, value: { en: "Non-caustic with rust inhibitors", ar: "غير كاوي مع مانع للصدأ" } },
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
+    price: { en: "QAR 400", ar: "٤٠٠ ر.ق" },
+    priceQar: 400,
     audience: "both",
-    updatedAt: "2026-09-02",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "autotriz-one-step-finish",
@@ -911,12 +982,15 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/autotriz/autotriz-one-step-finish-4l.webp"],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 265", ar: "٢٦٥ ر.ق" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "4 L", ar: "٤ لتر" } },
       { label: { en: "Step", ar: "الخطوة" }, value: { en: "Second step (one-step finish)", ar: "الخطوة الثانية (تلميع بخطوة واحدة)" } },
       { label: { en: "Compatibility", ar: "التوافق" }, value: { en: "Rotary · DA · Hand", ar: "روتاري · DA · يدوي" } },
-      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 280 (Box rate: QAR 250 each)", ar: "٢٨٠ ر.ق (سعر الكرتون: ٢٥٠ ر.ق للواحدة)" } },
     ],
+    price: { en: "QAR 265", ar: "٢٦٥ ر.ق" },
+    priceQar: 265,
     audience: "both",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "autotriz-revo-ceramic-coating",
@@ -939,11 +1013,15 @@ export const PRODUCTS: Product[] = [
       "/products/autotriz/autotriz-revo-ceramic-coating-box.webp",
     ],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 250", ar: "٢٥٠ ر.ق" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "50 ml / 1.7 oz", ar: "٥٠ مل" } },
       { label: { en: "Technology", ar: "التقنية" }, value: { en: "Nano ceramic coating", ar: "سيراميك نانو" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
+    price: { en: "QAR 250", ar: "٢٥٠ ر.ق" },
+    priceQar: 250,
     audience: "both",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "autotriz-leather-and-vinyl",
@@ -966,11 +1044,15 @@ export const PRODUCTS: Product[] = [
       "/products/autotriz/autotriz-leather-and-vinyl-box.webp",
     ],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 280", ar: "٢٨٠ ر.ق" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "50 ml / 1.7 oz", ar: "٥٠ مل" } },
       { label: { en: "Surfaces", ar: "الأسطح" }, value: { en: "Leather · Synthetic leather · Vinyl · Plastic", ar: "جلد · جلد صناعي · فينيل · بلاستيك" } },
       { label: { en: "Technology", ar: "التقنية" }, value: { en: "Ceramic coating", ar: "طلاء سيراميك" } },
     ],
+    price: { en: "QAR 280", ar: "٢٨٠ ر.ق" },
+    priceQar: 280,
     audience: "both",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "autotriz-ion-plus-ceramic-coating",
@@ -993,11 +1075,15 @@ export const PRODUCTS: Product[] = [
       "/products/autotriz/autotriz-ion-plus-ceramic-coating-box.webp",
     ],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 250", ar: "٢٥٠ ر.ق" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "50 ml / 1.7 oz", ar: "٥٠ مل" } },
       { label: { en: "Technology", ar: "التقنية" }, value: { en: "Surface ionized nano ceramic", ar: "سيراميك نانو بتأين سطحي" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
+    price: { en: "QAR 250", ar: "٢٥٠ ر.ق" },
+    priceQar: 250,
     audience: "both",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "autotriz-spray-bottle",
@@ -1017,14 +1103,17 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/autotriz/autotriz-spray-bottle.webp"],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 15", ar: "١٥ ر.ق" } },
       { label: { en: "Type", ar: "النوع" }, value: { en: "Chemical-Resistant Empty Spray Bottle", ar: "بخاخ فارغ مقاوم للمواد الكيميائية" } },
       { label: { en: "Trigger", ar: "الرشاش" }, value: { en: "Adjustable Nozzle (Mist to Stream)", ar: "فوهة قابلة للتعديل (رذاذ إلى تيار مباشر)" } },
       { label: { en: "Material", ar: "المادة" }, value: { en: "High-Density Polyethylene (HDPE)", ar: "بولي إيثيلين عالي الكثافة (HDPE)" } },
       { label: { en: "Compatibility", ar: "التوافق" }, value: { en: "Suitable for all detailing chemicals", ar: "مناسب لجميع المواد والمحاليل الكيميائية" } },
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
+    price: { en: "QAR 15", ar: "١٥ ر.ق" },
+    priceQar: 15,
     audience: "both",
-    updatedAt: "2026-09-02",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "autotriz-foam-gun",
@@ -1046,14 +1135,17 @@ export const PRODUCTS: Product[] = [
       "/products/autotriz/autotriz-foam-gun.webp",
     ],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 180", ar: "١٨٠ ر.ق" } },
       { label: { en: "Type", ar: "النوع" }, value: { en: "High-Pressure Snow Foam Cannon", ar: "مدفع رغوة ثلجية عالي الضغط" } },
       { label: { en: "Body Core", ar: "الهيكل الداخلي" }, value: { en: "All-Around Solid Stainless Steel", ar: "فولاذ مقاوم للصدأ صلب بالكامل" } },
       { label: { en: "Foam Density", ar: "كثافة الرغوة" }, value: { en: "Adjustable Ultra-Thick Clinging Foam", ar: "رغوة ثلجية كثيفة وملتصقة قابلة للتعديل" } },
       { label: { en: "Connection", ar: "الموصل" }, value: { en: "1/4\" Quick-Connect Stainless Steel", ar: "وصلة سريعة ١/٤ بوصة استانلس ستيل" } },
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
+    price: { en: "QAR 180", ar: "١٨٠ ر.ق" },
+    priceQar: 180,
     audience: "both",
-    updatedAt: "2026-09-02",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "autotriz-wax-and-polish-bottle",
@@ -1073,14 +1165,17 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/autotriz/autotriz-wax-and-polish-bottle.webp"],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 12", ar: "١٢ ر.ق" } },
       { label: { en: "Type", ar: "النوع" }, value: { en: "Squeeze Dispenser Bottle", ar: "عبوة ضغط لتوزيع السوائل" } },
       { label: { en: "Spout", ar: "الفوهة" }, value: { en: "Precision Pull-Push Dispensing Tip", ar: "فوهة سحب ودفع دقيقة" } },
       { label: { en: "Checkboxes", ar: "خيارات التحديد" }, value: { en: "[ ] Cut · [ ] Polish · [ ] Wax", ar: "قطع · بولش وتلميع · شمع" } },
       { label: { en: "Material", ar: "المادة" }, value: { en: "Chemical-Resistant Polyethylene", ar: "بولي إيثيلين مقاوم للمواد الكيميائية" } },
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
+    price: { en: "QAR 12", ar: "١٢ ر.ق" },
+    priceQar: 12,
     audience: "both",
-    updatedAt: "2026-09-02",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "autotriz-ppf-refresh-1l",
@@ -1102,14 +1197,17 @@ export const PRODUCTS: Product[] = [
       "/products/autotriz/autotriz-ppf-refresh-1l.webp",
     ],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 130", ar: "١٣٠ ر.ق" } },
       { label: { en: "Volume", ar: "الحجم" }, value: { en: "1 Liter (1000 ml)", ar: "١ لتر (١٠٠٠ مل)" } },
       { label: { en: "Application", ar: "الاستخدام" }, value: { en: "Paint Protection Film (PPF) & Vinyl Wraps", ar: "أفلام حماية الطلاء (PPF) وتغليف الفينيل" } },
       { label: { en: "Function", ar: "الوظيفة" }, value: { en: "Refreshes Top Coat · Removes Scratches & Fading", ar: "تجديد الطبقة العلوية · إزالة الخدوش والبهتان" } },
       { label: { en: "Safety", ar: "الأمان" }, value: { en: "Body Shop Safe · Non-Yellowing", ar: "آمن للورش · غير مسبب للاصفرار" } },
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
+    price: { en: "QAR 130", ar: "١٣٠ ر.ق" },
+    priceQar: 130,
     audience: "both",
-    updatedAt: "2026-09-02",
+    updatedAt: "2026-10-05",
   },
 
   // ───── Insta Finish — USA
@@ -1351,14 +1449,17 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/briller/briller-quick-dressing.webp"],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 450", ar: "٤٥٠ ر.ق" } },
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B511", ar: "B511" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
       { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "1:1", ar: "١:١" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
+    price: { en: "QAR 450", ar: "٤٥٠ ر.ق" },
+    priceQar: 450,
     audience: "both",
     highlight: "briller-color",
-    updatedAt: "2026-09-05",
+    updatedAt: "2026-10-05",
   },
 
   // ───── ABK — in-house premium line
@@ -1557,30 +1658,6 @@ export const PRODUCTS: Product[] = [
     updatedAt: "2026-09-21",
   },
   {
-    slug: "protectguard-wf-premium",
-    brand: "Other",
-    category: "heavy-duty",
-    name: {
-      en: "ProtectGuard WF Premium — Wet Finish Sealer",
-      ar: "ProtectGuard WF Premium — عازل تشطيب رطب",
-    },
-    shortDesc: {
-      en: "Professional multi-surface sealer — intensifies colour, repels water and oil. Works on stone, concrete, and as an automotive paint protection layer.",
-      ar: "عازل احترافي متعدد الأسطح — يُبرز اللون ويطرد الماء والزيت. يعمل على الحجر والخرسانة، ويُستخدم كذلك كطبقة حماية لطلاء السيارات.",
-    },
-    longDesc: {
-      en: "ProtectGuard WF Premium (Wet Finish) by Guard Industry is a long-lasting water and oil repellent. On stone, concrete, pavers and tile it delivers a deep, saturated 'wet look' with anti-stain protection. ABK also applies this formula as a protective coat on automotive paint — a use case developed from our detailing practice. Suitable for all types of materials indoors and outdoors. Economical coverage: 5 kg ≈ 100 m².",
-      ar: "ProtectGuard WF Premium من Guard Industry عازل طويل الأمد طارد للماء والزيت. على الحجر والخرسانة والبلاط يمنح مظهراً رطباً غنياً مع حماية مضادة للبقع. كما تُطبّق ABK هذه التركيبة كطبقة حماية على طلاء السيارات — استخدام تطور من خبرتنا في التلميع. مناسب لجميع أنواع المواد داخلياً وخارجياً. تغطية اقتصادية: 5 كغم ≈ 100 م².",
-    },
-    images: ["/products/misc/protectguard-wf-premium.webp"],
-    specs: [
-      { label: { en: "Size", ar: "الحجم" }, value: { en: "5 kg", ar: "٥ كغم" } },
-      { label: { en: "Coverage", ar: "التغطية" }, value: { en: "~100 m² per 5 kg", ar: "~١٠٠ م² لكل ٥ كغم" } },
-      { label: { en: "Use", ar: "الاستخدام" }, value: { en: "Indoor & outdoor · all materials", ar: "داخلي وخارجي · جميع المواد" } },
-    ],
-    audience: "b2b",
-  },
-  {
     slug: "fast-masking-tape",
     brand: "Other",
     category: "accessories",
@@ -1597,7 +1674,33 @@ export const PRODUCTS: Product[] = [
       ar: "شريط لاصق أصفر بحواف نظيفة يُستخدم في تركيب PPF والطلاء والتلميع. يُنزع بسهولة دون أثر.",
     },
     images: ["/products/misc/fast-masking-tape.webp"],
+    specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "1 Inch: QAR 2.5 | 2 Inch: QAR 3.5", ar: "١ بوصة: ٢.٥ ر.ق | ٢ بوصة: ٣.٥ ر.ق" } },
+      { label: { en: "Sizes", ar: "المقاسات" }, value: { en: "1 Inch (24 mm) · 2 Inch (48 mm)", ar: "١ بوصة (٢٤ ملم) · ٢ بوصة (٤٨ ملم)" } },
+      { label: { en: "Type", ar: "النوع" }, value: { en: "Yellow Masking Tape", ar: "شريط لاصق أصفر" } },
+      { label: { en: "Application", ar: "الاستخدام" }, value: { en: "PPF installation · paint prep · detailing", ar: "تركيب أفلام الحماية PPF وإعداد الطلاء والتلميع" } },
+      { label: { en: "Adhesive", ar: "المادة اللاصقة" }, value: { en: "Clean peel, zero residue", ar: "إزالة نظيفة بدون بقايا" } },
+    ],
+    price: { en: "From QAR 2.5", ar: "من ٢.٥ ر.ق" },
+    priceQar: 2.5,
+    variants: [
+      {
+        id: "1inch",
+        slug: "fast-masking-tape",
+        size: { en: "1 Inch (24 mm)", ar: "١ بوصة (٢٤ ملم)" },
+        priceQar: 2.5,
+        price: { en: "QAR 2.5", ar: "٢.٥ ر.ق" },
+      },
+      {
+        id: "2inch",
+        slug: "fast-masking-tape-2inch",
+        size: { en: "2 Inch (48 mm)", ar: "٢ بوصة (٤٨ ملم)" },
+        priceQar: 3.5,
+        price: { en: "QAR 3.5", ar: "٣.٥ ر.ق" },
+      },
+    ],
     audience: "both",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "edgeless-microfiber-towel",
@@ -1619,14 +1722,17 @@ export const PRODUCTS: Product[] = [
       "/products/misc/edgeless-microfiber-towel.webp",
     ],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 10", ar: "١٠ ر.ق" } },
       { label: { en: "Size", ar: "المقاس" }, value: { en: "40 × 40 cm", ar: "٤٠ × ٤٠ سم" } },
       { label: { en: "Design", ar: "التصميم" }, value: { en: "Edgeless (Laser-Cut, Scratch-Free)", ar: "بدون حواف (قص ليزر آمن ضد الخدش)" } },
       { label: { en: "Applications", ar: "الاستخدامات" }, value: { en: "Polishing · Ceramic coating · Drying · Glass", ar: "التلميع · طلاء السيراميك · التجفيف · الزجاج" } },
       { label: { en: "Features", ar: "المميزات" }, value: { en: "Leaves no marks or swirls · Ultra-absorbent", ar: "لا يترك علامات أو دوامات · فائق الامتصاص" } },
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
+    price: { en: "QAR 10", ar: "١٠ ر.ق" },
+    priceQar: 10,
     audience: "both",
-    updatedAt: "2026-09-02",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "premium-microfiber-towel-60x40",
@@ -1649,14 +1755,17 @@ export const PRODUCTS: Product[] = [
       "/products/misc/premium-microfiber-towel-60x40-folded.webp",
     ],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 8", ar: "٨ ر.ق" } },
       { label: { en: "Size", ar: "المقاس" }, value: { en: "60 × 40 cm", ar: "٦٠ × ٤٠ سم" } },
       { label: { en: "Color", ar: "اللون" }, value: { en: "Purple", ar: "بنفسجي" } },
       { label: { en: "Applications", ar: "الاستخدامات" }, value: { en: "Car washing · Glass · Interior detailing", ar: "غسيل السيارات · الزجاج · العناية بالداخلية" } },
       { label: { en: "Edge Type", ar: "نوع الحواف" }, value: { en: "Reinforced Stitched Border", ar: "حواف مخيطة ومدعمة" } },
       { label: { en: "Features", ar: "المميزات" }, value: { en: "High absorption · Lint-free · Scratch-free", ar: "امتصاص عالي · خالية من الوبر · آمنة ضد الخدش" } },
     ],
+    price: { en: "QAR 8", ar: "٨ ر.ق" },
+    priceQar: 8,
     audience: "both",
-    updatedAt: "2026-09-02",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "premium-chamois-leather-towel",
@@ -1676,14 +1785,17 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/misc/chamois-leather-towel-64x43.webp"],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 18", ar: "١٨ ر.ق" } },
       { label: { en: "Size", ar: "المقاس" }, value: { en: "64 × 43 cm", ar: "٦٤ × ٤٣ سم" } },
       { label: { en: "Material", ar: "المادة" }, value: { en: "High-Tech Synthetic PVA Chamois", ar: "شامواه جلد صناعي PVA عالي التقنية" } },
       { label: { en: "Design", ar: "التصميم" }, value: { en: "3D Concave-Convex Resistance-Free", ar: "تصميم ثلاثي الأبعاد مقعر ومحدب مانع للمقاومة" } },
       { label: { en: "Packaging", ar: "التغليف" }, value: { en: "Reusable Storage Cylinder Tube", ar: "أنبوب أسطواني مخصص للحفظ" } },
       { label: { en: "Features", ar: "المميزات" }, value: { en: "Zero watermarks · Super dust cleaning · Ultra-absorbent", ar: "بدون علامات مائية · إزالة فائقة للغبار · امتصاص فائق" } },
     ],
+    price: { en: "QAR 18", ar: "١٨ ر.ق" },
+    priceQar: 18,
     audience: "both",
-    updatedAt: "2026-09-02",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "car-washing-sponge-large",
@@ -1706,14 +1818,17 @@ export const PRODUCTS: Product[] = [
       "/products/misc/car-washing-sponge-large-side.webp",
     ],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 10", ar: "١٠ ر.ق" } },
       { label: { en: "Size", ar: "المقاس" }, value: { en: "Extra Large Jumbo Size", ar: "حجم كبير جداً (جامبو)" } },
       { label: { en: "Foam Structure", ar: "هيكل الإسفنج" }, value: { en: "High-Density Honeycomb Foam", ar: "فوم عالي الكثافة بخلايا مسامية" } },
       { label: { en: "Shape", ar: "الشكل" }, value: { en: "Ergonomic Easy-Grip Bone Design", ar: "تصميم مريح مع انحناء جانبي للمسكة" } },
       { label: { en: "Applications", ar: "الاستخدامات" }, value: { en: "Car washing · Trucks · SUVs · Commercial Fleets", ar: "غسيل السيارات · الشاحنات · مركبات الدفع الرباعي" } },
       { label: { en: "Features", ar: "المميزات" }, value: { en: "High suds retention · Scratch-free · Tear resistant", ar: "احتفاظ عالي بالرغوة · آمن ضد الخدش · مقاوم للتمزق" } },
     ],
+    price: { en: "QAR 10", ar: "١٠ ر.ق" },
+    priceQar: 10,
     audience: "both",
-    updatedAt: "2026-09-02",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "tire-polish-sponge",
@@ -1735,14 +1850,17 @@ export const PRODUCTS: Product[] = [
       "/products/misc/tire-polish-sponge.webp",
     ],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 8", ar: "٨ ر.ق" } },
       { label: { en: "Type", ar: "النوع" }, value: { en: "Contoured Tire Dressing Applicator", ar: "إسفنجة منحنية لتطبيق ملمع الإطارات" } },
       { label: { en: "Shape", ar: "الشكل" }, value: { en: "Curved Sidewall Profile & Hourglass Grip", ar: "تصميم مقعر لجوانب الإطار مع مسكة ساعة رملية" } },
       { label: { en: "Material", ar: "المادة" }, value: { en: "High-Density Micro-Cell Polyurethane Foam", ar: "فوم بولي يوريثان دقيق عالي الكثافة" } },
       { label: { en: "Applications", ar: "الاستخدامات" }, value: { en: "Tire Shines · Rubber Dressings · Trim Conditioners", ar: "ملمع الإطارات · معالجة المطاط · مرطبات البلاستيك" } },
       { label: { en: "Features", ar: "المميزات" }, value: { en: "Even coverage · Mess-free hand grip · Reusable", ar: "توزيع متساوٍ · مسكة نظيفة لليد · قابلة لإعادة الاستخدام" } },
     ],
+    price: { en: "QAR 8", ar: "٨ ر.ق" },
+    priceQar: 8,
     audience: "both",
-    updatedAt: "2026-09-02",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "grunes-auto-pad-step2-da-6in",
@@ -1762,14 +1880,17 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/misc/grunes-auto-pad-step2-da-6in.webp"],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 30", ar: "٣٠ ر.ق" } },
       { label: { en: "Step / Grade", ar: "المرحلة / الدرجة" }, value: { en: "Step 2 — Medium Cut & Polish", ar: "الخطوة ٢ — قص وتلميع متوسط" } },
       { label: { en: "Size", ar: "المقاس" }, value: { en: "6 Inch (150 mm)", ar: "٦ إنش (١٥٠ مم)" } },
       { label: { en: "Machine Type", ar: "نوع الجهاز" }, value: { en: "Dual Action (DA) & Orbital Polishers", ar: "أجهزة التلميع المزدوج (DA) والمدارية" } },
       { label: { en: "Backing", ar: "قاعدة التثبيت" }, value: { en: "Hook & Loop with Center Cooling Hole", ar: "فلكرو مع فتحة تبريد ومحاذاة مركزية" } },
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany (GrünesAuto)", ar: "صُنع في ألمانيا (GrünesAuto)" } },
     ],
+    price: { en: "QAR 30", ar: "٣٠ ر.ق" },
+    priceQar: 30,
     audience: "both",
-    updatedAt: "2026-09-02",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "grunes-auto-pad-step1-da-6in",
@@ -1789,14 +1910,17 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/misc/grunes-auto-pad-step1-da-6in.webp"],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 30", ar: "٣٠ ر.ق" } },
       { label: { en: "Step / Grade", ar: "المرحلة / الدرجة" }, value: { en: "Step 1 — Heavy Cut & Defect Removal", ar: "الخطوة ١ — قص خشن وإزالة العيوب" } },
       { label: { en: "Size", ar: "المقاس" }, value: { en: "6 Inch (150 mm)", ar: "٦ إنش (١٥٠ مم)" } },
       { label: { en: "Machine Type", ar: "نوع الجهاز" }, value: { en: "Dual Action (DA) & Orbital Polishers", ar: "أجهزة التلميع المزدوج (DA) والمدارية" } },
       { label: { en: "Backing", ar: "قاعدة التثبيت" }, value: { en: "Hook & Loop with Center Cooling Hole", ar: "فلكرو مع فتحة تبريد ومحاذاة مركزية" } },
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany (GrünesAuto)", ar: "صُنع في ألمانيا (GrünesAuto)" } },
     ],
+    price: { en: "QAR 30", ar: "٣٠ ر.ق" },
+    priceQar: 30,
     audience: "both",
-    updatedAt: "2026-09-02",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "grunes-auto-pad-step3-da-6in",
@@ -1816,14 +1940,17 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/misc/grunes-auto-pad-step3-da-6in.webp"],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 30", ar: "٣٠ ر.ق" } },
       { label: { en: "Step / Grade", ar: "المرحلة / الدرجة" }, value: { en: "Step 3 — Ultra-Fine Finishing & Waxing", ar: "الخطوة ٣ — فينش نهائي فائق وتطبيق واكس" } },
       { label: { en: "Size", ar: "المقاس" }, value: { en: "6 Inch (150 mm)", ar: "٦ إنش (١٥٠ مم)" } },
       { label: { en: "Machine Type", ar: "نوع الجهاز" }, value: { en: "Dual Action (DA) & Orbital Polishers", ar: "أجهزة التلميع المزدوج (DA) والمدارية" } },
       { label: { en: "Backing", ar: "قاعدة التثبيت" }, value: { en: "Hook & Loop with Center Cooling Hole", ar: "فلكرو مع فتحة تبريد ومحاذاة مركزية" } },
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany (GrünesAuto)", ar: "صُنع في ألمانيا (GrünesAuto)" } },
     ],
+    price: { en: "QAR 30", ar: "٣٠ ر.ق" },
+    priceQar: 30,
     audience: "both",
-    updatedAt: "2026-09-02",
+    updatedAt: "2026-10-05",
   },
   {
     slug: "grunes-auto-pad-step2-rotary-6in",
@@ -1843,14 +1970,17 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/misc/grunes-auto-pad-step2-rotary-6in.webp"],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 30", ar: "٣٠ ر.ق" } },
       { label: { en: "Step / Grade", ar: "المرحلة / الدرجة" }, value: { en: "Step 2 — Medium Cut & Rotary Polishing", ar: "الخطوة ٢ — قص وتلميع روتاري متوسط" } },
       { label: { en: "Size", ar: "المقاس" }, value: { en: "6 Inch (150 mm)", ar: "٦ إنش (١٥٠ مم)" } },
       { label: { en: "Machine Type", ar: "نوع الجهاز" }, value: { en: "Direct-Drive Rotary Polishers", ar: "أجهزة التلميع الدائري (الروتاري)" } },
       { label: { en: "Backing", ar: "قاعدة التثبيت" }, value: { en: "Solid Hook & Loop (Velcro)", ar: "فلكرو كامل بدون فتحة مركزية" } },
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany (GrünesAuto)", ar: "صُنع في ألمانيا (GrünesAuto)" } },
     ],
+    price: { en: "QAR 30", ar: "٣٠ ر.ق" },
+    priceQar: 30,
     audience: "both",
-    updatedAt: "2026-09-02",
+    updatedAt: "2026-10-05",
   },
 ];
 
@@ -1940,7 +2070,7 @@ export const BRAND_IMAGES: Record<BrandKey, string> = {
   Getsun: "/products/getsun/getsun-foam-out-engine-degreaser.webp",
   ABK: "/products/abk/abk-fragrance-pair.webp",
   SmartCar: "/products/misc/smart-car-tyre-foam.webp",
-  Other: "/products/misc/protectguard-wf-premium.webp",
+  Other: "/products/misc/fast-masking-tape.webp",
 };
 
 /**

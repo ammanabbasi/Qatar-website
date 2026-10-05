@@ -80,6 +80,7 @@ export function ProductPurchasePanel({
   const isB2b = audience === "b2b";
   const name = product.name[locale];
   const priceDisplay = product.price ? product.price[locale] : undefined;
+  const originalPriceDisplay = product.originalPrice ? product.originalPrice[locale] : undefined;
 
   const variants = product.variants;
   const hasVariants = Boolean(variants && variants.length > 0);
@@ -109,6 +110,9 @@ export function ProductPurchasePanel({
   const currentPriceDisplay = selectedVariant
     ? selectedVariant.price[locale]
     : priceDisplay;
+  const currentOriginalPriceDisplay = selectedVariant?.originalPrice
+    ? selectedVariant.originalPrice[locale]
+    : originalPriceDisplay;
   const currentName = selectedVariant
     ? `${product.name[locale]} (${selectedVariant.size[locale]})`
     : name;
@@ -161,12 +165,26 @@ export function ProductPurchasePanel({
         <>
           {currentPriceDisplay ? (
             <div className="flex items-baseline justify-between border-b border-(--color-border-soft) pb-4">
-              <span className="text-caption font-bold uppercase tracking-wider text-(--color-text-muted)">
-                {t("retailOfficialPrice")}
-              </span>
-              <span className="text-title font-bold text-(--color-brand-deep) sm:text-display">
-                {currentPriceDisplay}
-              </span>
+              <div className="flex flex-col gap-1">
+                <span className="text-caption font-bold uppercase tracking-wider text-(--color-text-muted)">
+                  {currentOriginalPriceDisplay ? t("specialOfferPrice") : t("retailOfficialPrice")}
+                </span>
+                {currentOriginalPriceDisplay && (
+                  <span className="inline-flex w-fit items-center rounded-md bg-red-500/10 px-2 py-0.5 text-[11px] font-bold text-red-600 dark:text-red-400">
+                    {t("saleBadge")}
+                  </span>
+                )}
+              </div>
+              <div className="flex flex-col items-end gap-0.5">
+                <span className="text-title font-bold text-(--color-brand-deep) sm:text-display">
+                  {currentPriceDisplay}
+                </span>
+                {currentOriginalPriceDisplay && (
+                  <span className="text-footnote font-semibold text-(--color-text-muted) line-through">
+                    {t("wasPrice", { price: currentOriginalPriceDisplay })}
+                  </span>
+                )}
+              </div>
             </div>
           ) : (
             <div className="flex flex-col gap-1 border-b border-(--color-border-soft) pb-4">
@@ -211,9 +229,16 @@ export function ProductPurchasePanel({
               <span className="text-caption font-bold uppercase tracking-wider text-(--color-text-muted)">
                 {t("wholesaleMsrp")}
               </span>
-              <span className="text-callout font-semibold text-(--color-text-muted) line-through">
-                {currentPriceDisplay}
-              </span>
+              <div className="flex items-baseline gap-2">
+                <span className="text-callout font-semibold text-(--color-text-muted) line-through">
+                  {currentPriceDisplay}
+                </span>
+                {currentOriginalPriceDisplay && (
+                  <span className="text-caption text-(--color-text-muted)/70 line-through">
+                    ({currentOriginalPriceDisplay})
+                  </span>
+                )}
+              </div>
             </div>
           )}
 

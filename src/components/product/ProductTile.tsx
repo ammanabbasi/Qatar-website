@@ -52,9 +52,21 @@ export function ProductTile({ product, locale, audience, eager = false }: Props)
           {name}
         </h3>
         {product.price ? (
-          <p className="mt-1 text-footnote font-bold text-(--color-brand-deep)">
-            {product.price[locale]}
-          </p>
+          <div className="mt-1 flex flex-wrap items-baseline gap-1.5">
+            <span className="text-footnote font-bold text-(--color-brand-deep)">
+              {product.price[locale]}
+            </span>
+            {product.originalPrice ? (
+              <span className="text-[11px] text-(--color-text-muted) line-through">
+                {product.originalPrice[locale]}
+              </span>
+            ) : null}
+            {product.originalPrice ? (
+              <span className="rounded bg-red-500/10 px-1.5 py-0.5 text-[10px] font-bold text-red-600 dark:text-red-400">
+                {t("Products.saleBadge")}
+              </span>
+            ) : null}
+          </div>
         ) : isB2c ? (
           <p className="mt-1 text-footnote font-medium text-(--color-text-muted)">
             {t("Cart.priceOnRequest")}
