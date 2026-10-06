@@ -53,13 +53,13 @@
             "headlines": [
               "PPF Installation in Doha",
               "Installed VTEK PPF",
-              "Full Body PPF From QAR 5,500",
-              "Full Front PPF From QAR 2,200",
-              "Front PPF From QAR 1,200",
+              "Full Body PPF From QAR 3,999",
+              "Full Front PPF From QAR 1,599",
+              "Front PPF From QAR 899",
               "See Your Price Online",
               "Live Quote in 4 Steps",
               "VTEK-Authorised Fitting",
-              "Up to 15-Year Film Warranty",
+              "Up to 12-Year Film Warranty",
               "1-Year Workmanship Cover",
               "Genuine VTEK Weather Armor",
               "Self-Healing Gloss Film",
@@ -70,7 +70,7 @@
             "descriptions": [
               "Pick your car, coverage and VTEK film online and see the installed price instantly.",
               "Fitted at a VTEK-authorised partner centre in Doha. Film warranty + 1-year cover.",
-              "Full front from QAR 2,200, full body from QAR 5,500. Pay once your slot is confirmed.",
+              "Full front from QAR 1,599, full body from QAR 3,999. Pay once your slot is confirmed.",
               "Genuine film from VTEK's authorised Qatar distributor. Book in minutes on WhatsApp."
             ],
             "path1": "PPF",
@@ -81,7 +81,7 @@
           "name": "Full Body PPF",
           "maxCpcQAR": 7,
           "finalUrl": "https://abktradingservice.com/en/b2c/ppf-installation",
-          "themeNote": "Highest-value job. Price-led copy: full body from QAR 5,500.",
+          "themeNote": "Highest-value job. Price-led copy: full body from QAR 3,999.",
           "keywords": [
             { "text": "full body ppf", "matchType": "Phrase" },
             { "text": "full body ppf qatar", "matchType": "Phrase" },
@@ -103,13 +103,13 @@
           "ad": {
             "headlines": [
               "Full Body PPF in Doha",
-              "Full Body PPF From QAR 5,500",
+              "Full Body PPF From QAR 3,999",
               "Every Panel, Edge to Edge",
               "Installed VTEK PPF",
               "See Your Price Online",
               "Live Quote in 4 Steps",
               "VTEK-Authorised Fitting",
-              "Up to 15-Year Film Warranty",
+              "Up to 12-Year Film Warranty",
               "1-Year Workmanship Cover",
               "Self-Healing Gloss Film",
               "Matte Finish Option",
@@ -119,10 +119,10 @@
               "Shield Paint From Sand & UV"
             ],
             "descriptions": [
-              "Full body VTEK PPF from QAR 5,500 installed. See your exact price for your car online.",
+              "Full body VTEK PPF from QAR 3,999 installed. See your exact price for your car online.",
               "Every painted panel protected against sand, stone chips and swirl marks.",
               "Fitted at a VTEK-authorised partner centre in Doha. Film warranty + 1-year cover.",
-              "Choose PRO, ULTIMATE or MATTE film. Book in minutes, pay once your slot is confirmed."
+              "Choose PRO, PRO PLUS or MATTE film. Book in minutes, pay once your slot is confirmed."
             ],
             "path1": "Full-Body",
             "path2": "PPF"
@@ -152,8 +152,8 @@
           "ad": {
             "headlines": [
               "Front PPF in Doha",
-              "Front PPF From QAR 1,200",
-              "Full Front PPF From QAR 2,200",
+              "Front PPF From QAR 899",
+              "Full Front PPF From QAR 1,599",
               "Stop Stone Chips Up Front",
               "Bonnet, Bumper & Mirrors",
               "Or Pick Single Panels",
@@ -161,14 +161,14 @@
               "Live Quote in 4 Steps",
               "VTEK-Authorised Fitting",
               "1-Year Workmanship Cover",
-              "Up to 15-Year Film Warranty",
+              "Up to 12-Year Film Warranty",
               "Installed VTEK PPF",
               "Self-Healing Gloss Film",
               "Book on WhatsApp in Minutes",
               "Genuine VTEK Weather Armor"
             ],
             "descriptions": [
-              "Front-end PPF from QAR 1,200 and full front from QAR 2,200, installed in Doha.",
+              "Front-end PPF from QAR 899 and full front from QAR 1,599, installed in Doha.",
               "Choose the panels on a car diagram and see your installed price as you go.",
               "Fitted at a VTEK-authorised partner centre in Doha. Film warranty + 1-year cover.",
               "Genuine film from VTEK's authorised Qatar distributor. Book in minutes on WhatsApp."
@@ -223,7 +223,7 @@
               "عرض سعر فوري بأربع خطوات",
               "تركيب بمركز معتمد من VTEK",
               "ضمان تركيب لمدة سنة",
-              "ضمان الفيلم حتى 15 سنة",
+              "ضمان الفيلم حتى 12 سنة",
               "اختر القطع التي تريدها",
               "حماية الواجهة الأمامية",
               "حماية السيارة بالكامل",
@@ -271,7 +271,7 @@
               "عرض سعر فوري بأربع خطوات",
               "تركيب بمركز معتمد من VTEK",
               "ضمان تركيب لمدة سنة",
-              "ضمان الفيلم حتى 15 سنة",
+              "ضمان الفيلم حتى 12 سنة",
               "خيار لمسة مطفية MATTE",
               "سيدان أو SUV أو SUV كبيرة",
               "احجز عبر واتساب بدقائق",
@@ -282,7 +282,7 @@
             ],
             "descriptions": [
               "حماية كل الألواح المطلية من الرمل والحصى وخدوش الغسيل بفيلم VTEK الأصلي.",
-              "اختر سيارتك وفيلم PRO أو ULTIMATE أو MATTE واعرف سعر التركيب فوراً.",
+              "اختر سيارتك وفيلم PRO أو PRO PLUS أو MATTE واعرف سعر التركيب فوراً.",
               "التركيب في مركز شريك معتمد من VTEK بالدوحة، مع ضمان الفيلم وضمان تركيب سنة.",
               "تدفع بعد تأكيد الموعد، مع استرداد كامل حتى 48 ساعة قبل الموعد."
             ],
