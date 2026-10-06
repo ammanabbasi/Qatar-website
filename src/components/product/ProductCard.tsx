@@ -1,14 +1,11 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { ChevronIcon } from "@/components/ui/Icons";
 import { AddToCartButton } from "@/components/cart/AddToCartButton";
 import { WhatsAppIcon } from "@/components/cta/WhatsAppIcon";
 import { buildWhatsAppUrl, type Audience } from "@/lib/whatsapp";
 import { SITE } from "@/lib/constants";
 import type { Product } from "@/data/products";
-import { filmForSlug, installHref, installedFromQar } from "@/lib/ppfOffer";
-import { formatQar } from "@/lib/pricing";
 
 type Props = {
   product: Product;
@@ -37,8 +34,6 @@ export function ProductCard({
 }: Props) {
   const t = useTranslations();
   const name = product.name[locale];
-  const film = filmForSlug(product.slug);
-  const installFrom = film ? installedFromQar(film.key) : null;
 
   const wholesaleWaUrl = buildWhatsAppUrl({
     audience: "b2b",
@@ -102,24 +97,6 @@ export function ProductCard({
 
         {/* Action buttons — above the stretched link overlay */}
         <div className="relative z-10 mt-auto flex flex-col gap-2 pt-3">
-          {film ? (
-            <Link
-              href={installHref(film.key)}
-              className="group/install flex min-h-11 items-center justify-between gap-2 rounded-xl bg-(--color-tile-dark) px-3 py-1.5 text-white ring-1 ring-inset ring-(--color-brand)/35 transition-colors duration-150 ease-soft hover:ring-(--color-brand)"
-            >
-              <span className="min-w-0 leading-tight">
-                <span className="block text-[11px] font-semibold text-(--color-brand)">
-                  {installFrom === null ? t("PpfPromo.installedLabel") : t("PpfPromo.fromLabel")}
-                </span>
-                <span className="block truncate text-footnote font-bold tabular-nums">
-                  {installFrom === null ? t("PpfPromo.perCar") : formatQar(installFrom, locale)}
-                </span>
-                <span className="sr-only"> — {film.name[locale]}</span>
-              </span>
-              <ChevronIcon className="h-3.5 w-3.5 shrink-0 text-(--color-brand) transition-transform duration-150 ease-soft group-hover/install:translate-x-0.5 rtl:rotate-180 rtl:group-hover/install:-translate-x-0.5" />
-            </Link>
-          ) : null}
-
           {product.price ? (
             <AddToCartButton slug={product.slug} />
           ) : null}

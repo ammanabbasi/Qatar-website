@@ -81,15 +81,13 @@ export function HomeHero({ audience, locale }: Props) {
               <span>{ctaProducts}</span>
               <ArrowRightIcon className="h-4 w-4 rtl:rotate-180" />
             </Link>
-            <a
-              href={buildWhatsAppUrl({ audience: "b2b", locale })}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/b2b/products"
               className="inline-flex items-center justify-center gap-2 rounded-pill whitespace-nowrap px-7 h-12 text-body font-bold uppercase tracking-wider border border-(--color-brand)/60 text-(--color-brand) hover:bg-(--color-brand)/15 transition-all duration-200 w-full sm:w-auto cursor-pointer"
             >
               <span>{ctaQuote}</span>
               <ArrowRightIcon className="h-4 w-4 rtl:rotate-180" />
-            </a>
+            </Link>
           </div>
         </div>
       </Container>
