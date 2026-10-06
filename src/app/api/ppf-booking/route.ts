@@ -10,7 +10,11 @@
  * touches this route.
  *
  * Failure is never fatal for the customer: on any error the client still
- * offers the WhatsApp hand-off with a reference, so a lead is never lost.
+ * offers the WhatsApp hand-off with a reference. A failed save is retried
+ * once (the script ignores a ref it already has, so a retry never writes a
+ * second row); if it still fails, the full booking is logged on one
+ * "UNSAVED PPF BOOKING" line so the owner can recover it from Vercel →
+ * Logs even if the customer never sends the WhatsApp message.
  */
 
 import {
@@ -24,6 +28,11 @@ import {
 } from "@/data/ppfInstall";
 
 const MAX = { short: 60, name: 80, notes: 500, clickId: 200 } as const;
+
+// Two webhook attempts of up to 12 s each, plus the pause between them.
+export const maxDuration = 30;
+const ATTEMPT_TIMEOUT_MS = 12000;
+const RETRY_PAUSE_MS = 1500;
 
 type Fields = Record<string, unknown>;
 
@@ -87,10 +96,6 @@ export async function POST(request: Request) {
 
   const url = process.env.PPF_BOOKING_WEBHOOK_URL;
   const secret = process.env.PPF_BOOKING_WEBHOOK_SECRET;
-  if (!url) {
-    console.error("[ppf-booking] webhook not configured; booking", ref, "not saved");
-    return json(503, { ok: false, error: "not_configured", ref, priceQar: quote.priceQar });
-  }
 
   const booking = {
     ref,
@@ -117,21 +122,44 @@ export async function POST(request: Request) {
     utmCampaign: str(f.utmCampaign, MAX.short),
   };
 
-  try {
-    // Apps Script answers a POST with a 302 to the script's output; fetch
-    // follows it as a GET, which is how web apps are meant to be called.
-    const res = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(secret ? { secret, booking } : { booking }),
-      signal: AbortSignal.timeout(10000),
-    });
-    const out = (await res.json().catch(() => null)) as { ok?: boolean } | null;
-    if (!res.ok || !out?.ok) throw new Error(`webhook replied ${res.status}`);
-  } catch (err) {
-    console.error("[ppf-booking] save failed for", ref, err);
-    return json(502, { ok: false, error: "save_failed", ref, priceQar: quote.priceQar });
+  if (!url) {
+    logUnsaved("webhook not configured", booking);
+    return json(503, { ok: false, error: "not_configured", ref, priceQar: quote.priceQar });
   }
 
-  return json(200, { ok: true, ref, priceQar: quote.priceQar });
+  let failure = "";
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    try {
+      // Apps Script answers a POST with a 302 to the script's output; fetch
+      // follows it as a GET, which is how web apps are meant to be called.
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(secret ? { secret, booking } : { booking }),
+        signal: AbortSignal.timeout(ATTEMPT_TIMEOUT_MS),
+      });
+      const out = (await res.json().catch(() => null)) as { ok?: boolean; error?: string; stored?: string } | null;
+      if (res.ok && out?.ok) {
+        if (out.stored === "email") console.warn("[ppf-booking] Sheet unavailable; booking", ref, "was emailed to staff instead");
+        return json(200, { ok: true, ref, priceQar: quote.priceQar });
+      }
+      failure = `attempt ${attempt}: HTTP ${res.status} ${out?.error ?? "no JSON reply"}`;
+      // A wrong secret will not fix itself; retrying only delays the customer.
+      if (out?.error === "unauthorized") break;
+    } catch (err) {
+      failure = `attempt ${attempt}: ${err instanceof Error ? err.message : String(err)}`;
+    }
+    if (attempt === 1) await new Promise((r) => setTimeout(r, RETRY_PAUSE_MS));
+  }
+
+  logUnsaved(failure, booking);
+  return json(502, { ok: false, error: "save_failed", ref, priceQar: quote.priceQar });
+}
+
+/**
+ * The last line of defence: one greppable error line carrying the whole
+ * booking, so nothing depends on the customer pressing send in WhatsApp.
+ */
+function logUnsaved(reason: string, booking: Record<string, unknown>) {
+  console.error(`[ppf-booking] UNSAVED PPF BOOKING (${reason}) ${JSON.stringify(booking)}`);
 }

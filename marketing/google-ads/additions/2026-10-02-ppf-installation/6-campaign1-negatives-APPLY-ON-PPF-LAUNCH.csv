@@ -1,0 +1,5 @@
+﻿Row Type,Action,Keyword status,Level,Campaign,Ad group,Negative keyword,Type
+Negative keyword,Add,Enabled,Campaign,Campaign #1,,installation,Broad match
+Negative keyword,Add,Enabled,Campaign,Campaign #1,,install,Broad match
+Negative keyword,Add,Enabled,Campaign,Campaign #1,,near me,Phrase match
+Negative keyword,Add,Enabled,Campaign,Campaign #1,,تركيب,Broad match
