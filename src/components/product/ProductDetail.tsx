@@ -83,6 +83,17 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
               <li aria-hidden>
                 <ChevronIcon className="h-2.5 w-2.5 text-white/40 rtl:-scale-x-100" />
               </li>
+              <li>
+                <Link
+                  href={`/b2c/products?category=${product.category}`}
+                  className={crumb}
+                >
+                  {categoryLabel}
+                </Link>
+              </li>
+              <li aria-hidden>
+                <ChevronIcon className="h-2.5 w-2.5 text-white/40 rtl:-scale-x-100" />
+              </li>
               <li className="text-caption text-white/90">{name}</li>
             </ol>
           </nav>

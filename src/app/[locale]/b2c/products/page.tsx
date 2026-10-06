@@ -13,7 +13,13 @@ import { WhyQatar } from "@/components/home/WhyQatar";
 import { pageMeta } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
 import { itemListJsonLd } from "@/lib/jsonld";
-import { getBrandsFor, getCategoriesFor, getProductsFor } from "@/data/products";
+import {
+  PACKS,
+  getBrandsFor,
+  getCategoriesFor,
+  getProductsFor,
+  isTradePack,
+} from "@/data/products";
 
 export async function generateMetadata({
   params,
@@ -79,9 +85,18 @@ export default async function B2cProductsPage({
                   audience="b2c"
                   locale={l}
                   products={audienceProducts}
-                  brands={getBrandsFor("b2c")}
-                  categories={getCategoriesFor("b2c")}
-                  filters={{ brand: "all", category: "all" }}
+                  categories={getCategoriesFor("b2c").map((key) => ({ key }))}
+                  uses={[]}
+                  brands={getBrandsFor("b2c").map((key) => ({
+                    key,
+                    count: audienceProducts.filter((p) => p.brand === key).length,
+                  }))}
+                  packs={PACKS.map((key) => ({
+                    key,
+                    count: audienceProducts.filter((p) => isTradePack(p) === (key === "trade"))
+                      .length,
+                  }))}
+                  filters={{ brand: "all", category: "all", use: "all", pack: "all" }}
                   retailTools={{ query: "", sort: "recommended", pricedOnly: false }}
                 />
               }

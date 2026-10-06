@@ -60,7 +60,6 @@ export const ADD_ONS_BY_SLUG: Readonly<Record<string, readonly string[]>> = {
 /** Category fallback when a product has no explicit pairing. */
 export const ADD_ONS_BY_CATEGORY: Readonly<Partial<Record<CategoryKey, readonly string[]>>> = {
   shampoo: ["insta-finish-spray-wax", "getsun-tire-shine", "car-washing-sponge-large"],
-  wax: ["edgeless-microfiber-towel", "insta-finish-wash-and-wax"],
   polish: [
     "grunes-auto-pad-step1-da-6in",
     "grunes-auto-pad-step2-da-6in",
@@ -70,14 +69,11 @@ export const ADD_ONS_BY_CATEGORY: Readonly<Partial<Record<CategoryKey, readonly 
   ceramic: ["edgeless-microfiber-towel", "insta-finish-wash-and-wax"],
   tyre: ["tire-polish-sponge", "getsun-tire-shine"],
   interior: ["abk-rejuvenate-plastic-restorer", "premium-microfiber-towel-60x40"],
-  glass: ["premium-microfiber-towel-60x40", "edgeless-microfiber-towel"],
   dressing: ["edgeless-microfiber-towel", "getsun-multi-purpose-foam-cleaner"],
-  degreaser: ["premium-microfiber-towel-60x40", "getsun-foam-out-engine-degreaser"],
-  ppf: ["autotriz-ppf-refresh-1l", "edgeless-microfiber-towel"],
-  tint: ["detainer-sticker-remover", "premium-microfiber-towel-60x40"],
+  cleaners: ["premium-microfiber-towel-60x40", "getsun-foam-out-engine-degreaser"],
+  film: ["autotriz-ppf-refresh-1l", "detainer-sticker-remover", "edgeless-microfiber-towel"],
   fragrance: ["abk-secret-home-fragrance", "abk-mashmom-home-fragrance"],
-  accessories: ["insta-finish-wash-and-wax", "insta-finish-spray-wax"],
-  "heavy-duty": ["edgeless-microfiber-towel", "insta-finish-spray-wax"],
+  tools: ["insta-finish-wash-and-wax", "insta-finish-spray-wax"],
 };
 
 /** Every slug the add-on config references — used by the build-time check. */

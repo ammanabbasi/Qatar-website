@@ -17,23 +17,49 @@ export type BrandKey =
   | "Getsun"
   | "ABK"
   | "SmartCar"
+  | "GrunesAuto"
   | "Other";
 
+// Ten flat categories, listed in CATEGORIES in process order (film first).
 export type CategoryKey =
-  | "ppf"
-  | "tint"
+  | "film"
   | "shampoo"
   | "polish"
-  | "tyre"
-  | "glass"
+  | "ceramic"
   | "dressing"
-  | "wax"
+  | "tyre"
   | "interior"
-  | "degreaser"
-  | "heavy-duty"
-  | "fragrance"
-  | "accessories"
-  | "ceramic";
+  | "cleaners"
+  | "tools"
+  | "fragrance";
+
+// Task-based sub-filter inside a category. Keys are globally unique and never
+// equal a category key; CATEGORY_USES says which uses belong to which category.
+export type UseKey =
+  | "ppf-film"
+  | "window-tint"
+  | "install-care"
+  | "wash-wax"
+  | "foam-wash"
+  | "compound"
+  | "pad"
+  | "spray-wax"
+  | "trim-dressing"
+  | "restorer"
+  | "wheel-cleaner"
+  | "tyre-shine"
+  | "applicator"
+  | "interior-clean"
+  | "glass-care"
+  | "interior-protect"
+  | "degrease"
+  | "all-purpose"
+  | "adhesive-remover"
+  | "towel"
+  | "sponge"
+  | "sprayer";
+
+export type PackKey = "retail" | "trade";
 
 export type AudienceScope = "b2c" | "b2b" | "both";
 
@@ -54,6 +80,9 @@ export type Product = {
   slug: string;
   brand: BrandKey;
   category: CategoryKey;
+  // Required on every product whose category has uses (see CATEGORY_USES),
+  // omitted on the rest, and always one of that category's own uses.
+  use?: UseKey;
   name: LocalizedText;
   shortDesc: LocalizedText;
   longDesc: LocalizedText;
@@ -67,6 +96,12 @@ export type Product = {
   featured?: boolean; // star products
   highlight?: "briller-color" | "vertek-premium"; // special visual treatment hints
   variants?: ProductVariant[];
+  // Every pack volume in millilitres the listing states (a 4 L jug is 4000).
+  // Drives the Pack facet via isTradePack(); omitted where no size is stated.
+  volumesMl?: number[];
+  // Tie-break inside a category + use group for the Recommended sort: lower
+  // first, default 0, then catalogue order.
+  rank?: number;
   // ISO date (YYYY-MM-DD). Bump when product copy/images change so the sitemap
   // signals a real update to crawlers. Sites that lie with `lastmod=now` on
   // every URL get demoted by Google's freshness heuristic.
@@ -83,7 +118,8 @@ export const PRODUCTS: Product[] = [
   {
     slug: "vtek-ppf-weather-armor-ultimate",
     brand: "VTEK",
-    category: "ppf",
+    category: "film",
+    use: "ppf-film",
     name: {
       en: "VTEK PPF — Weather Armor ULTIMATE",
       ar: "VTEK — فيلم حماية الطلاء Weather Armor ULTIMATE",
@@ -138,12 +174,13 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-09-03",
+    updatedAt: "2026-10-06",
   },
   {
     slug: "vtek-ppf-weather-armor-pro",
     brand: "VTEK",
-    category: "ppf",
+    category: "film",
+    use: "ppf-film",
     name: {
       en: "VTEK PPF — Weather Armor PRO",
       ar: "VTEK — فيلم حماية الطلاء Weather Armor PRO",
@@ -194,12 +231,13 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-09-03",
+    updatedAt: "2026-10-06",
   },
   {
     slug: "vtek-ppf-weather-armor-pro-plus",
     brand: "VTEK",
-    category: "ppf",
+    category: "film",
+    use: "ppf-film",
     name: {
       en: "VTEK PPF — Weather Armor PRO PLUS",
       ar: "VTEK — فيلم حماية الطلاء Weather Armor PRO PLUS",
@@ -250,12 +288,13 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-09-03",
+    updatedAt: "2026-10-06",
   },
   {
     slug: "vtek-ppf-weather-armor-matte",
     brand: "VTEK",
-    category: "ppf",
+    category: "film",
+    use: "ppf-film",
     name: {
       en: "VTEK PPF — Weather Armor MATTE",
       ar: "VTEK — فيلم حماية الطلاء Weather Armor MATTE (مطفي)",
@@ -303,12 +342,13 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-09-03",
+    updatedAt: "2026-10-06",
   },
   {
     slug: "vtek-ppf-weather-armor-prism",
     brand: "VTEK",
-    category: "ppf",
+    category: "film",
+    use: "ppf-film",
     name: {
       en: "VTEK PPF — Weather Armor PRISM (Color PPF)",
       ar: "VTEK — فيلم حماية الطلاء الملون Weather Armor PRISM",
@@ -358,13 +398,14 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-09-03",
+    updatedAt: "2026-10-06",
   },
   // ───── VTEK — Solar Armor Window Tints (STAR)
   {
     slug: "vtek-window-tints",
     brand: "VTEK",
-    category: "tint",
+    category: "film",
+    use: "window-tint",
     name: {
       en: "VTEK Solar Armor VUE — Nano-Ceramic Window Tint",
       ar: "VTEK Solar Armor VUE — فيلم تظليل النوافذ نانو سيراميك",
@@ -406,12 +447,13 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-09-03",
+    updatedAt: "2026-10-06",
   },
   {
     slug: "vtek-solar-armor-apex",
     brand: "VTEK",
-    category: "tint",
+    category: "film",
+    use: "window-tint",
     name: {
       en: "VTEK Solar Armor APEX — Ultra Nano-Ceramic Window Tint",
       ar: "VTEK Solar Armor APEX — فيلم تظليل النوافذ الترا نانو سيراميك",
@@ -453,12 +495,13 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-09-03",
+    updatedAt: "2026-10-06",
   },
   {
     slug: "vtek-solar-armor-iconic",
     brand: "VTEK",
-    category: "tint",
+    category: "film",
+    use: "window-tint",
     name: {
       en: "VTEK Solar Armor ICONIC — Carbon Ceramic Window Tint",
       ar: "VTEK Solar Armor ICONIC — فيلم تظليل النوافذ كربون سيراميك",
@@ -500,7 +543,7 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-09-03",
+    updatedAt: "2026-10-06",
   },
 
   // ───── Briller Car Care (STAR — line of colored car-wash products)
@@ -508,9 +551,10 @@ export const PRODUCTS: Product[] = [
     slug: "briller-wash-and-wax",
     brand: "Briller",
     category: "shampoo",
+    use: "wash-wax",
     name: {
-      en: "Briller Wash & Wax — All-in-One",
-      ar: "Briller — شامبو وشمع في خطوة واحدة",
+      en: "Briller Wash & Wax",
+      ar: "Briller — شامبو وشمع",
     },
     shortDesc: {
       en: "Concentrated wash + wax car shampoo with All-in-One CA Tech™. High gloss, water-beading finish.",
@@ -536,12 +580,14 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "briller-color",
-    updatedAt: "2026-10-05",
+    volumesMl: [20000],
+    updatedAt: "2026-10-06",
   },
   {
     slug: "briller-multipurpose-cleaner",
     brand: "Briller",
-    category: "interior",
+    category: "cleaners",
+    use: "all-purpose",
     name: {
       en: "Briller Multipurpose Cleaner",
       ar: "Briller — منظف متعدد الأغراض",
@@ -568,12 +614,14 @@ export const PRODUCTS: Product[] = [
     originalPriceQar: 400,
     audience: "both",
     highlight: "briller-color",
-    updatedAt: "2026-10-05",
+    volumesMl: [20000],
+    updatedAt: "2026-10-06",
   },
   {
     slug: "briller-quick-tyre-shine",
     brand: "Briller",
     category: "tyre",
+    use: "tyre-shine",
     name: {
       en: "Briller Quick Tyre Shine",
       ar: "Briller — ملمع الإطارات السريع",
@@ -597,12 +645,14 @@ export const PRODUCTS: Product[] = [
     priceQar: 280,
     audience: "both",
     highlight: "briller-color",
+    volumesMl: [20000],
     updatedAt: "2026-10-05",
   },
   {
     slug: "briller-glass-cleaner",
     brand: "Briller",
-    category: "glass",
+    category: "interior",
+    use: "glass-care",
     name: {
       en: "Briller Glass Cleaner",
       ar: "Briller — منظف الزجاج",
@@ -627,15 +677,17 @@ export const PRODUCTS: Product[] = [
     priceQar: 265,
     audience: "both",
     highlight: "briller-color",
-    updatedAt: "2026-10-05",
+    volumesMl: [20000],
+    updatedAt: "2026-10-06",
   },
   {
     slug: "briller-heavy-duty-degreaser",
     brand: "Briller",
-    category: "degreaser",
+    category: "cleaners",
+    use: "degrease",
     name: {
-      en: "Briller Heavy Duty Degreaser (20L)",
-      ar: "Briller — مزيل الشحوم عالي الفعالية (٢٠ لتر)",
+      en: "Briller Heavy Duty Degreaser",
+      ar: "Briller — مزيل الشحوم عالي الفعالية",
     },
     shortDesc: {
       en: "Professional heavy-duty degreaser with All-in-One CA Tech™. Formulated for tough stains, heavy grease, engine oil and rust. 1:5 dilution ratio. Made in Canada.",
@@ -659,7 +711,8 @@ export const PRODUCTS: Product[] = [
     priceQar: 300,
     audience: "both",
     highlight: "briller-color",
-    updatedAt: "2026-10-05",
+    volumesMl: [20000],
+    updatedAt: "2026-10-06",
   },
 
   // ───── Autotriz — Detailing Chemicals
@@ -667,9 +720,10 @@ export const PRODUCTS: Product[] = [
     slug: "autotriz-rich-foam-shampoo",
     brand: "Autotriz",
     category: "shampoo",
+    use: "foam-wash",
     name: {
-      en: "Autotriz Nano Rich Foam Shampoo (20L)",
-      ar: "Autotriz — شامبو نانو رغوي غني (٢٠ لتر)",
+      en: "Autotriz Nano Rich Foam Shampoo",
+      ar: "Autotriz — شامبو نانو رغوي غني",
     },
     shortDesc: {
       en: "Nano coating shampoo for PPF and coated cars — renews PPF top coat, pH-balanced thick foam with 1:80 dilution ratio in 20L bulk drum. Made in Germany.",
@@ -694,12 +748,14 @@ export const PRODUCTS: Product[] = [
     originalPrice: { en: "QAR 500", ar: "٥٠٠ ر.ق" },
     originalPriceQar: 500,
     audience: "both",
-    updatedAt: "2026-10-05",
+    volumesMl: [20000],
+    updatedAt: "2026-10-06",
   },
   {
     slug: "autotriz-heavy-cut-901",
     brand: "Autotriz",
     category: "polish",
+    use: "compound",
     name: {
       en: "Autotriz Heavy Cut 901",
       ar: "Autotriz Heavy Cut 901 — مركّب قطع ثقيل",
@@ -742,6 +798,7 @@ export const PRODUCTS: Product[] = [
     slug: "autotriz-ultimate-polish-302",
     brand: "Autotriz",
     category: "polish",
+    use: "compound",
     name: {
       en: "Autotriz Ultimate Polish 302",
       ar: "Autotriz Ultimate Polish 302 — ملمّع نهائي",
@@ -765,6 +822,7 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 135", ar: "١٣٥ ر.ق" },
     priceQar: 135,
     audience: "both",
+    rank: 1,
     updatedAt: "2026-10-05",
   },
 
@@ -772,9 +830,10 @@ export const PRODUCTS: Product[] = [
     slug: "autotriz-power-cut-701",
     brand: "Autotriz",
     category: "polish",
+    use: "compound",
     name: {
-      en: "Autotriz Power Cut 701 — 2-in-1 Polishing Compound (4L)",
-      ar: "Autotriz Power Cut 701 — مركّب تلميع ٢ في ١ (٤ لتر)",
+      en: "Autotriz Power Cut 701 — 2-in-1 Polishing Compound",
+      ar: "Autotriz Power Cut 701 — مركّب تلميع ٢ في ١",
     },
     shortDesc: {
       en: "2-in-1 polishing compound — heavy cutting performance with a brilliant high-gloss finish in 4L bulk jug. Made in Germany.",
@@ -796,7 +855,8 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 280", ar: "٢٨٠ ر.ق" },
     priceQar: 280,
     audience: "both",
-    updatedAt: "2026-10-05",
+    volumesMl: [4000],
+    updatedAt: "2026-10-06",
   },
   {
     slug: "autotriz-3d-matrix-ultra",
@@ -825,6 +885,7 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 280", ar: "٢٨٠ ر.ق" },
     priceQar: 280,
     audience: "both",
+    volumesMl: [50],
     updatedAt: "2026-10-05",
   },
   {
@@ -855,12 +916,14 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 280", ar: "٢٨٠ ر.ق" },
     priceQar: 280,
     audience: "both",
+    volumesMl: [50],
     updatedAt: "2026-10-05",
   },
   {
     slug: "autotriz-fabric-textile-coating",
     brand: "Autotriz",
     category: "interior",
+    use: "interior-protect",
     name: {
       en: "Autotriz Fabric & Textile Coating",
       ar: "Autotriz — طلاء حماية الأقمشة والمفروشات",
@@ -884,15 +947,17 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 280", ar: "٢٨٠ ر.ق" },
     priceQar: 280,
     audience: "both",
+    volumesMl: [300],
     updatedAt: "2026-10-05",
   },
   {
     slug: "autotriz-ppf-gel",
     brand: "Autotriz",
-    category: "ppf",
+    category: "film",
+    use: "install-care",
     name: {
-      en: "Autotriz PPF Gel — Installation Aid (4L & 20L)",
-      ar: "Autotriz PPF Gel — مساعد تركيب أفلام الحماية والتظليل (٤ لتر و ٢٠ لتر)",
+      en: "Autotriz PPF Gel — Installation Aid",
+      ar: "Autotriz PPF Gel — مساعد تركيب أفلام الحماية والتظليل",
     },
     shortDesc: {
       en: "Professional PPF & window tint installation gel in 4L and 20L sizes. 1:1 dilution ratio, thick viscous formula — prevents dripping, leaves zero residue. Made in Germany.",
@@ -933,15 +998,17 @@ export const PRODUCTS: Product[] = [
       },
     ],
     audience: "both",
-    updatedAt: "2026-10-05",
+    volumesMl: [4000, 20000],
+    updatedAt: "2026-10-06",
   },
   {
     slug: "autotriz-hyper-wheel-cleaner",
     brand: "Autotriz",
     category: "tyre",
+    use: "wheel-cleaner",
     name: {
-      en: "Autotriz Hyper Wheel Cleaner (20L)",
-      ar: "Autotriz Hyper Wheel Cleaner — منظف العجلات والجنوط (٢٠ لتر)",
+      en: "Autotriz Hyper Wheel Cleaner",
+      ar: "Autotriz Hyper Wheel Cleaner — منظف العجلات والجنوط",
     },
     shortDesc: {
       en: "Professional heavy-duty wheel cleaner in 20L bulk drum. Safe for chrome, clear-coated, and factory painted wheels. 1:1 dilution ratio. Made in Germany.",
@@ -965,15 +1032,17 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 400", ar: "٤٠٠ ر.ق" },
     priceQar: 400,
     audience: "both",
-    updatedAt: "2026-10-05",
+    volumesMl: [20000],
+    updatedAt: "2026-10-06",
   },
   {
     slug: "autotriz-one-step-finish",
     brand: "Autotriz",
     category: "polish",
+    use: "compound",
     name: {
-      en: "Autotriz One Step Finish (4L)",
-      ar: "Autotriz One Step Finish — ملمّع خطوة واحدة (٤ لتر)",
+      en: "Autotriz One Step Finish",
+      ar: "Autotriz One Step Finish — ملمّع خطوة واحدة",
     },
     shortDesc: {
       en: "All-in-one polish — removes swirls and scratches while delivering a deep, glossy finish in a single step.",
@@ -993,7 +1062,8 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 265", ar: "٢٦٥ ر.ق" },
     priceQar: 265,
     audience: "both",
-    updatedAt: "2026-10-05",
+    volumesMl: [4000],
+    updatedAt: "2026-10-06",
   },
   {
     slug: "autotriz-revo-ceramic-coating",
@@ -1024,12 +1094,14 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 250", ar: "٢٥٠ ر.ق" },
     priceQar: 250,
     audience: "both",
+    volumesMl: [50],
     updatedAt: "2026-10-05",
   },
   {
     slug: "autotriz-leather-and-vinyl",
     brand: "Autotriz",
-    category: "ceramic",
+    category: "interior",
+    use: "interior-protect",
     name: {
       en: "Autotriz Leather & Vinyl — Ceramic Coating",
       ar: "Autotriz Leather & Vinyl — طلاء سيراميك للجلد والفينيل",
@@ -1055,7 +1127,8 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 280", ar: "٢٨٠ ر.ق" },
     priceQar: 280,
     audience: "both",
-    updatedAt: "2026-10-05",
+    volumesMl: [50],
+    updatedAt: "2026-10-06",
   },
   {
     slug: "autotriz-ion-plus-ceramic-coating",
@@ -1086,12 +1159,14 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 250", ar: "٢٥٠ ر.ق" },
     priceQar: 250,
     audience: "both",
+    volumesMl: [50],
     updatedAt: "2026-10-05",
   },
   {
     slug: "autotriz-spray-bottle",
     brand: "Autotriz",
-    category: "accessories",
+    category: "tools",
+    use: "sprayer",
     name: {
       en: "Premium Autotriz Spray Bottle (Empty)",
       ar: "Autotriz — بخاخ كيميائي احترافي (فارغ)",
@@ -1116,12 +1191,13 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 15", ar: "١٥ ر.ق" },
     priceQar: 15,
     audience: "both",
-    updatedAt: "2026-10-05",
+    updatedAt: "2026-10-06",
   },
   {
     slug: "autotriz-foam-gun",
     brand: "Autotriz",
-    category: "accessories",
+    category: "tools",
+    use: "sprayer",
     name: {
       en: "Autotriz High-Pressure Foam Gun",
       ar: "Autotriz — مدفع رغوة عالي الضغط",
@@ -1148,12 +1224,13 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 180", ar: "١٨٠ ر.ق" },
     priceQar: 180,
     audience: "both",
-    updatedAt: "2026-10-05",
+    updatedAt: "2026-10-06",
   },
   {
     slug: "autotriz-wax-and-polish-bottle",
     brand: "Autotriz",
-    category: "accessories",
+    category: "tools",
+    use: "sprayer",
     name: {
       en: "Autotriz Wax & Polish Dispenser Bottle",
       ar: "Autotriz — عبوة توزيع البولش والشمع",
@@ -1178,15 +1255,16 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 12", ar: "١٢ ر.ق" },
     priceQar: 12,
     audience: "both",
-    updatedAt: "2026-10-05",
+    updatedAt: "2026-10-06",
   },
   {
     slug: "autotriz-ppf-refresh-1l",
     brand: "Autotriz",
-    category: "ppf",
+    category: "film",
+    use: "install-care",
     name: {
-      en: "Autotriz PPF Refresh (1L)",
-      ar: "Autotriz — ملمع ومجدد أفلام الحماية PPF (١ لتر)",
+      en: "Autotriz PPF Refresh",
+      ar: "Autotriz — ملمع ومجدد أفلام الحماية PPF",
     },
     shortDesc: {
       en: "Professional 1L PPF & vinyl film restoration polish. Refreshes top coat, eliminates minor scratches, fading, water spots and restores high-gloss clarity. Made in Germany.",
@@ -1210,14 +1288,16 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 130", ar: "١٣٠ ر.ق" },
     priceQar: 130,
     audience: "both",
-    updatedAt: "2026-10-05",
+    volumesMl: [1000],
+    updatedAt: "2026-10-06",
   },
 
   // ───── Insta Finish — USA
   {
     slug: "insta-finish-spray-wax",
     brand: "InstaFinish",
-    category: "wax",
+    category: "dressing",
+    use: "spray-wax",
     name: {
       en: "Insta Finish Spray Wax",
       ar: "Insta Finish — شمع بخاخ Spray Wax",
@@ -1243,15 +1323,17 @@ export const PRODUCTS: Product[] = [
     priceQar: 45,
     audience: "both",
     featured: true,
-    updatedAt: "2026-09-21",
+    volumesMl: [473],
+    updatedAt: "2026-10-06",
   },
   {
     slug: "insta-finish-wash-and-wax",
     brand: "InstaFinish",
     category: "shampoo",
+    use: "wash-wax",
     name: {
-      en: "Insta Finish Wash N Wax",
-      ar: "Insta Finish — شامبو وغسيل وشمع Wash N Wax",
+      en: "Insta Finish Wash & Wax",
+      ar: "Insta Finish — شامبو وغسيل وشمع",
     },
     shortDesc: {
       en: "Super concentrated car shampoo (473 ml). Mix with 20 litres water. Leaves a protective coating on top of paint. Made in USA.",
@@ -1274,12 +1356,14 @@ export const PRODUCTS: Product[] = [
     priceQar: 45,
     audience: "both",
     featured: true,
-    updatedAt: "2026-09-21",
+    volumesMl: [473],
+    updatedAt: "2026-10-06",
   },
   {
     slug: "insta-finish-premium-blue-guard",
     brand: "InstaFinish",
     category: "dressing",
+    use: "trim-dressing",
     name: {
       en: "Insta Finish Premium Blue Guard",
       ar: "Insta Finish — ملمّع الحماية الزرقاء Blue Guard (لمعان براق)",
@@ -1305,12 +1389,14 @@ export const PRODUCTS: Product[] = [
     priceQar: 45,
     audience: "both",
     featured: true,
+    volumesMl: [473],
     updatedAt: "2026-09-21",
   },
   {
     slug: "insta-finish-premium-dress-all",
     brand: "InstaFinish",
     category: "dressing",
+    use: "trim-dressing",
     name: {
       en: "Insta Finish Premium Dress All",
       ar: "Insta Finish — ملمّع شامل فاخر Dress All (مظهر مطفي أنيق)",
@@ -1336,6 +1422,7 @@ export const PRODUCTS: Product[] = [
     priceQar: 45,
     audience: "both",
     featured: true,
+    volumesMl: [473],
     updatedAt: "2026-09-21",
   },
 
@@ -1344,8 +1431,9 @@ export const PRODUCTS: Product[] = [
     slug: "getsun-tire-shine",
     brand: "Getsun",
     category: "tyre",
+    use: "tyre-shine",
     name: {
-      en: "Getsun Tire Shine",
+      en: "Getsun Tyre Shine",
       ar: "Getsun — بخاخ ملمع الإطارات Tire Shine",
     },
     shortDesc: {
@@ -1369,12 +1457,14 @@ export const PRODUCTS: Product[] = [
     priceQar: 15,
     audience: "both",
     featured: true,
-    updatedAt: "2026-09-21",
+    volumesMl: [500],
+    updatedAt: "2026-10-06",
   },
   {
     slug: "getsun-multi-purpose-foam-cleaner",
     brand: "Getsun",
     category: "interior",
+    use: "interior-clean",
     name: {
       en: "Getsun Foam Spray Interior Cleaner",
       ar: "Getsun — رغوة تنظيف وتطهير المقصورة الداخلية",
@@ -1399,12 +1489,14 @@ export const PRODUCTS: Product[] = [
     priceQar: 15,
     audience: "both",
     featured: true,
+    volumesMl: [500, 650],
     updatedAt: "2026-09-21",
   },
   {
     slug: "getsun-foam-out-engine-degreaser",
     brand: "Getsun",
-    category: "degreaser",
+    category: "cleaners",
+    use: "degrease",
     name: {
       en: "Getsun Engine Cleaner Foam Spray",
       ar: "Getsun Foam Out — رغوة تنظيف ومزيل شحوم المحرك",
@@ -1430,7 +1522,8 @@ export const PRODUCTS: Product[] = [
     priceQar: 15,
     audience: "both",
     featured: true,
-    updatedAt: "2026-09-21",
+    volumesMl: [500, 650],
+    updatedAt: "2026-10-06",
   },
 
 
@@ -1438,6 +1531,7 @@ export const PRODUCTS: Product[] = [
     slug: "briller-quick-dressing",
     brand: "Briller",
     category: "dressing",
+    use: "trim-dressing",
     name: {
       en: "Briller Quick Dressing",
       ar: "Briller — ملمّع سريع",
@@ -1462,6 +1556,7 @@ export const PRODUCTS: Product[] = [
     priceQar: 450,
     audience: "both",
     highlight: "briller-color",
+    volumesMl: [20000],
     updatedAt: "2026-10-05",
   },
 
@@ -1470,6 +1565,7 @@ export const PRODUCTS: Product[] = [
     slug: "abk-rejuvenate-plastic-restorer",
     brand: "ABK",
     category: "dressing",
+    use: "restorer",
     name: {
       en: "ABK Rejuvenate — Multi-Surface Plastic Restorer",
       ar: "ABK Rejuvenate — مجدد وملمّع البلاستيك والديكورات",
@@ -1526,6 +1622,7 @@ export const PRODUCTS: Product[] = [
     ],
     audience: "both",
     featured: true,
+    volumesMl: [60, 250, 350, 500],
     updatedAt: "2026-10-04",
   },
   {
@@ -1560,6 +1657,7 @@ export const PRODUCTS: Product[] = [
     priceQar: 30,
     audience: "both",
     featured: true,
+    volumesMl: [250],
     updatedAt: "2026-09-21",
   },
   {
@@ -1567,8 +1665,8 @@ export const PRODUCTS: Product[] = [
     brand: "ABK",
     category: "fragrance",
     name: {
-      en: "ABK Secret — Car & Home Fragrance (Best Seller)",
-      ar: "ABK Secret — معطر السيارة والمنزل (الأكثر مبيعاً)",
+      en: "ABK Secret — Car & Home Fragrance",
+      ar: "ABK Secret — معطر السيارة والمنزل",
     },
     shortDesc: {
       en: "Best-selling strong fresh fragrance spray (250 ml). Lasts up to 8 to 9 hours. Safe for skin, clothes, and seats. Made in Qatar.",
@@ -1595,7 +1693,8 @@ export const PRODUCTS: Product[] = [
     priceQar: 30,
     audience: "both",
     featured: true,
-    updatedAt: "2026-09-21",
+    volumesMl: [250],
+    updatedAt: "2026-10-06",
   },
 
   // ───── Smart Car & Detainer
@@ -1603,8 +1702,9 @@ export const PRODUCTS: Product[] = [
     slug: "smart-car-tyre-foam",
     brand: "SmartCar",
     category: "tyre",
+    use: "tyre-shine",
     name: {
-      en: "Smart Car Tire Foam Spray",
+      en: "Smart Car Tyre Foam",
       ar: "Smart Car — رغوة ملمع الإطارات السريعة",
     },
     shortDesc: {
@@ -1628,12 +1728,14 @@ export const PRODUCTS: Product[] = [
     priceQar: 15,
     audience: "both",
     featured: true,
-    updatedAt: "2026-09-21",
+    volumesMl: [500, 650],
+    updatedAt: "2026-10-06",
   },
   {
     slug: "detainer-sticker-remover",
     brand: "Other",
-    category: "heavy-duty",
+    category: "cleaners",
+    use: "adhesive-remover",
     name: {
       en: "Detainer Sticker Remover",
       ar: "Detainer — بخاخ مزيل الملصقات والغراء",
@@ -1658,12 +1760,14 @@ export const PRODUCTS: Product[] = [
     priceQar: 15,
     audience: "both",
     featured: true,
-    updatedAt: "2026-09-21",
+    volumesMl: [450, 473],
+    updatedAt: "2026-10-06",
   },
   {
     slug: "fast-masking-tape",
     brand: "Other",
-    category: "accessories",
+    category: "film",
+    use: "install-care",
     name: {
       en: "Masking Tape — PPF / Paint Prep",
       ar: "شريط لاصق — لتركيب PPF والطلاء",
@@ -1703,15 +1807,16 @@ export const PRODUCTS: Product[] = [
       },
     ],
     audience: "both",
-    updatedAt: "2026-10-05",
+    updatedAt: "2026-10-06",
   },
   {
     slug: "edgeless-microfiber-towel",
-    brand: "Other",
-    category: "accessories",
+    brand: "GrunesAuto",
+    category: "tools",
+    use: "towel",
     name: {
-      en: "Edgeless Microfibre Towel (40×40 cm)",
-      ar: "منشفة مايكروفايبر بدون حواف — ٤٠×٤٠ سم",
+      en: "GrünesAuto Edgeless Microfibre Towel (40×40 cm)",
+      ar: "GrünesAuto — منشفة مايكروفايبر بدون حواف — ٤٠×٤٠ سم",
     },
     shortDesc: {
       en: "Ultra-plush edgeless microfibre towel (40×40 cm). Leaves zero marks or swirl marks. Ideal for polishing, ceramic coatings, drying & glass. Made in Germany.",
@@ -1735,12 +1840,13 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 10", ar: "١٠ ر.ق" },
     priceQar: 10,
     audience: "both",
-    updatedAt: "2026-10-05",
+    updatedAt: "2026-10-06",
   },
   {
     slug: "premium-microfiber-towel-60x40",
     brand: "Other",
-    category: "accessories",
+    category: "tools",
+    use: "towel",
     name: {
       en: "Premium Microfibre Towel (60×40 cm)",
       ar: "منشفة مايكروفايبر فاخرة — ٦٠×٤٠ سم",
@@ -1768,12 +1874,13 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 8", ar: "٨ ر.ق" },
     priceQar: 8,
     audience: "both",
-    updatedAt: "2026-10-05",
+    updatedAt: "2026-10-06",
   },
   {
     slug: "premium-chamois-leather-towel",
     brand: "Other",
-    category: "accessories",
+    category: "tools",
+    use: "towel",
     name: {
       en: "Premium Chamois & Leather Towel (64×43 cm)",
       ar: "منشفة شامواه وجلد فاخرة — ٦٤×٤٣ سم",
@@ -1798,12 +1905,13 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 18", ar: "١٨ ر.ق" },
     priceQar: 18,
     audience: "both",
-    updatedAt: "2026-10-05",
+    updatedAt: "2026-10-06",
   },
   {
     slug: "car-washing-sponge-large",
     brand: "Other",
-    category: "accessories",
+    category: "tools",
+    use: "sponge",
     name: {
       en: "Car Washing Sponge (Large Size)",
       ar: "إسفنجة غسيل سيارات كبيرة الحجم",
@@ -1831,14 +1939,15 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 10", ar: "١٠ ر.ق" },
     priceQar: 10,
     audience: "both",
-    updatedAt: "2026-10-05",
+    updatedAt: "2026-10-06",
   },
   {
     slug: "tire-polish-sponge",
     brand: "Other",
     category: "tyre",
+    use: "applicator",
     name: {
-      en: "Tire Polish & Dressing Applicator Sponge",
+      en: "Tyre Polish & Dressing Applicator Sponge",
       ar: "إسفنجة تلميع وتوزيع ملمع الإطارات",
     },
     shortDesc: {
@@ -1863,12 +1972,13 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 8", ar: "٨ ر.ق" },
     priceQar: 8,
     audience: "both",
-    updatedAt: "2026-10-05",
+    updatedAt: "2026-10-06",
   },
   {
     slug: "grunes-auto-pad-step2-da-6in",
-    brand: "Other",
-    category: "accessories",
+    brand: "GrunesAuto",
+    category: "polish",
+    use: "pad",
     name: {
       en: "GrünesAuto 2nd Step Dual Action Polishing Pad (6 Inch)",
       ar: "GrünesAuto — وسادة تلميع الخطوة الثانية لأجهزة DA (٦ إنش)",
@@ -1893,12 +2003,14 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 30", ar: "٣٠ ر.ق" },
     priceQar: 30,
     audience: "both",
-    updatedAt: "2026-10-05",
+    rank: 1,
+    updatedAt: "2026-10-06",
   },
   {
     slug: "grunes-auto-pad-step1-da-6in",
-    brand: "Other",
-    category: "accessories",
+    brand: "GrunesAuto",
+    category: "polish",
+    use: "pad",
     name: {
       en: "GrünesAuto 1st Step Dual Action Cutting Pad (6 Inch)",
       ar: "GrünesAuto — وسادة قص وتلميع خشن الخطوة الأولى لأجهزة DA (٦ إنش)",
@@ -1909,7 +2021,7 @@ export const PRODUCTS: Product[] = [
     },
     longDesc: {
       en: "The GrünesAuto 1st Step Dual Action Cutting Pad (6 Inch) is a heavy-duty German-engineered cutting foam pad designed specifically for Dual Action (DA) orbital polishers. Engineered as the aggressive first step in multi-stage paint correction to rapidly level severe clear-coat defects, heavy swirls, sanding marks, water spots, and severe oxidation without scouring the paint.\n\nKey Highlights:\n• Step 1 Heavy Cut: High-density firm maroon foam provides powerful cutting power when paired with compounds\n• 6-Inch Dual Action Fit: Sized for 5\" and 6\" DA backing plates with precision center cooling/alignment hole\n• Hook & Loop Backing: Industrial-grade Velcro backing withstands high friction, heat, and lateral shear forces\n• Thermally Stable Open-Cell Foam: Retains firm cutting density across extended compounding passes without softening\n• Origin: Made in Germany (GrünesAuto — True German Product)",
-      ar: "وسادة القص والتلميع الخشن الخطوة الأولى GrünesAuto 1st Step DA Cutting Pad (٦ إنش) وسادة فوم ألمانية فائقة المتانة مخصصة لأجهزة التلميع المزدوج (Dual Action Polishers). مصممة للمرحلة الأولى الأساسية في تصحيح الطلاء لإزالة الخدوش العميقة والدوامات الشديدة وعلامات الصنفرة والأكسدة بسرعة ودقة دون الإضرار بطبقة اللقلق (Clear Coat).\n\nأبرز المواصفات:\n• قص وتصحيح مكثف (الخطوة ١): فوم مارون عالي الكثافة والصلابة يمنحك قوة قص هائلة عند دمجه مع مركبات التلميع الخشن\n• مقاس ٦ إنش لأجهزة DA: متوافقة مع قواعد أجهزة التلميع مقاس ٥ و ٦ إنش مع فتحة تهوية ومحاذاة مركزية\n• ظهر فلكرو (Hook & Loop) صناعي: مقاوم للحرارة العالية وقوى القص الجانبية أثناء العمل المتواصل\n• فوم ذو خلايا مفتوحة ومقاوم للحرارة: يحافظ على صلابته وكفاءته في القص دون أن يلين مع ارتفاع الحرارة\n• بلد المنشأ: صُنع في ألمانيا (GrünesAuto — منتج ألماني أصلي)",
+      ar: "وسادة القص والتلميع الخشن الخطوة الأولى GrünesAuto 1st Step DA Cutting Pad (٦ إنش) وسادة فوم ألمانية فائقة المتانة مخصصة لأجهزة التلميع المزدوج (Dual Action Polishers). مصممة للمرحلة الأولى الأساسية في تصحيح الطلاء لإزالة الخدوش العميقة والدوامات الشديدة وعلامات الصنفرة والأكسدة بسرعة ودقة دون الإضرار بالطلاء الشفاف (Clear Coat).\n\nأبرز المواصفات:\n• قص وتصحيح مكثف (الخطوة ١): فوم مارون عالي الكثافة والصلابة يمنحك قوة قص هائلة عند دمجه مع مركبات التلميع الخشن\n• مقاس ٦ إنش لأجهزة DA: متوافقة مع قواعد أجهزة التلميع مقاس ٥ و ٦ إنش مع فتحة تهوية ومحاذاة مركزية\n• ظهر فلكرو (Hook & Loop) صناعي: مقاوم للحرارة العالية وقوى القص الجانبية أثناء العمل المتواصل\n• فوم ذو خلايا مفتوحة ومقاوم للحرارة: يحافظ على صلابته وكفاءته في القص دون أن يلين مع ارتفاع الحرارة\n• بلد المنشأ: صُنع في ألمانيا (GrünesAuto — منتج ألماني أصلي)",
     },
     images: ["/products/misc/grunes-auto-pad-step1-da-6in.webp"],
     specs: [
@@ -1923,12 +2035,13 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 30", ar: "٣٠ ر.ق" },
     priceQar: 30,
     audience: "both",
-    updatedAt: "2026-10-05",
+    updatedAt: "2026-10-06",
   },
   {
     slug: "grunes-auto-pad-step3-da-6in",
-    brand: "Other",
-    category: "accessories",
+    brand: "GrunesAuto",
+    category: "polish",
+    use: "pad",
     name: {
       en: "GrünesAuto 3rd Step Dual Action Finishing Pad (6 Inch)",
       ar: "GrünesAuto — وسادة التلميع النهائي والفينش الخطوة الثالثة لأجهزة DA (٦ إنش)",
@@ -1938,7 +2051,7 @@ export const PRODUCTS: Product[] = [
       ar: "وسادة فوم فائقة النعومة ٦ إنش للخطوة الثالثة والفينش النهائي لأجهزة التلميع المزدوج (DA). هندسة ألمانية للمعان المرآة وإزالة الهولوجرام وتطبيق الشمع والسيلانت. صُنعت في ألمانيا.",
     },
     longDesc: {
-      en: "The GrünesAuto 3rd Step Dual Action Finishing Pad (6 Inch) is an ultra-fine, open-cell German finishing foam pad engineered specifically for Dual Action (DA) orbital polishers. Designed as the ultimate final step in paint correction and gloss enhancement to eliminate micro-marring, ultrafine holograms, and buffer trails while leaving an ultra-deep, mirror-like wet reflection.\n\nKey Highlights:\n• Step 3 Ultra-Gloss Finishing: Ultra-soft black foam creates zero cut and maximum gloss depth across all paint types\n• Wax & Sealant Application: Ideal vehicle for machine application of synthetic sealants, liquid carnauba waxes, and glaze coats\n• 6-Inch Dual Action Fit: Sized for 5\" and 6\" DA backing plates with precision center cooling/alignment hole\n• Hook & Loop Backing: Heavy-duty Velcro backing with reinforced bonding to prevent delamination during high-speed finishing\n• Origin: Made in Germany (GrünesAuto — True German Product)",
+      en: "The GrünesAuto 3rd Step Dual Action Finishing Pad (6 Inch) is an ultra-fine, open-cell German finishing foam pad engineered specifically for Dual Action (DA) orbital polishers. Designed as the ultimate final step in paint correction and gloss enhancement to eliminate micro-marring, ultrafine holograms, and buffer trails while leaving an ultra-deep, mirror-like wet reflection.\n\nKey Highlights:\n• Step 3 Ultra-Gloss Finishing: Ultra-soft black foam creates zero cut and maximum gloss depth across all paint types\n• Wax & Sealant Application: Ideal for machine application of synthetic sealants, liquid carnauba waxes, and glaze coats\n• 6-Inch Dual Action Fit: Sized for 5\" and 6\" DA backing plates with precision center cooling/alignment hole\n• Hook & Loop Backing: Heavy-duty Velcro backing with reinforced bonding to prevent delamination during high-speed finishing\n• Origin: Made in Germany (GrünesAuto — True German Product)",
       ar: "وسادة التلميع النهائي والفينش الخطوة الثالثة GrünesAuto 3rd Step DA Finishing Pad (٦ إنش) وسادة فوم ألمانية فائقة النعومة ومصممة خصيصاً لأجهزة التلميع المزدوج (Dual Action Polishers). تمثل المرحلة النهائية الحاسمة في العناية بالطلاء لإبراز أقصى درجات اللمعان وعكس الضوء مثل المرآة، مع إزالة أدق آثار الهولوجرام والدوامات المجهرية.\n\nأبرز المواصفات:\n• لمعان وفينش فائق (الخطوة ٣): فوم أسود ناعم جداً بدون أي قوة كشط ليمنحك عمقاً زجاجياً رطباً في اللمعان\n• تطبيق الشمع والسيلانت: مثالية لتوزيع طبقات واكس الكارنوبا السائل والسيلانت ومثبتات اللمعان آلياً\n• مقاس ٦ إنش لأجهزة DA: متوافقة مع قواعد أجهزة التلميع مقاس ٥ و ٦ إنش مع فتحة تهوية ومحاذاة مركزية\n• ظهر فلكرو (Hook & Loop) متين: تثبيت عالي الجودة يتحمل السرعات العالية دون تفكك\n• بلد المنشأ: صُنع في ألمانيا (GrünesAuto — منتج ألماني أصلي)",
     },
     images: ["/products/misc/grunes-auto-pad-step3-da-6in.webp"],
@@ -1953,12 +2066,14 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 30", ar: "٣٠ ر.ق" },
     priceQar: 30,
     audience: "both",
-    updatedAt: "2026-10-05",
+    rank: 2,
+    updatedAt: "2026-10-06",
   },
   {
     slug: "grunes-auto-pad-step2-rotary-6in",
-    brand: "Other",
-    category: "accessories",
+    brand: "GrunesAuto",
+    category: "polish",
+    use: "pad",
     name: {
       en: "GrünesAuto 2nd Step Rotary Polishing Pad (6 Inch)",
       ar: "GrünesAuto — وسادة تلميع الخطوة الثانية لأجهزة الروتاري (٦ إنش)",
@@ -1983,7 +2098,8 @@ export const PRODUCTS: Product[] = [
     price: { en: "QAR 28", ar: "٢٨ ر.ق" },
     priceQar: 28,
     audience: "both",
-    updatedAt: "2026-10-05",
+    rank: 3,
+    updatedAt: "2026-10-06",
   },
 ];
 
@@ -1999,25 +2115,93 @@ export const BRANDS: BrandKey[] = [
   "Getsun",
   "ABK",
   "SmartCar",
+  "GrunesAuto",
   "Other",
 ];
 
 export const CATEGORIES: CategoryKey[] = [
-  "ppf",
-  "tint",
+  "film",
   "shampoo",
   "polish",
-  "tyre",
-  "glass",
-  "dressing",
-  "wax",
-  "interior",
-  "degreaser",
-  "heavy-duty",
-  "fragrance",
-  "accessories",
   "ceramic",
+  "dressing",
+  "tyre",
+  "interior",
+  "cleaners",
+  "tools",
+  "fragrance",
 ];
+
+/** Pack-size bands for the catalogue filter; see isTradePack(). */
+export const PACKS: PackKey[] = ["retail", "trade"];
+
+/**
+ * Uses per category, in display order (also the Recommended-sort order).
+ * Categories listed with none (ceramic, fragrance) have no Use filter.
+ */
+export const CATEGORY_USES: Record<CategoryKey, readonly UseKey[]> = {
+  film: ["ppf-film", "window-tint", "install-care"],
+  shampoo: ["wash-wax", "foam-wash"],
+  polish: ["compound", "pad"],
+  ceramic: [],
+  dressing: ["spray-wax", "trim-dressing", "restorer"],
+  tyre: ["wheel-cleaner", "tyre-shine", "applicator"],
+  interior: ["interior-clean", "glass-care", "interior-protect"],
+  cleaners: ["all-purpose", "degrease", "adhesive-remover"],
+  tools: ["towel", "sponge", "sprayer"],
+  fragrance: [],
+};
+
+/**
+ * Old `?category=` values still live in ads, bookmarks and shared links. The
+ * catalogue resolves them to the new category (+ use) and rewrites the address
+ * bar; there is no HTTP redirect. Keys that are also a current category
+ * (shampoo, polish, tyre, dressing, interior, fragrance, ceramic) are shadowed:
+ * ProductGrid lets the current key win, so `?category=polish` means the whole
+ * Polishing category and `polish` -> `compound` below is not applied.
+ */
+export const LEGACY_CATEGORY_ALIASES: Readonly<
+  Record<string, { category: CategoryKey; use?: UseKey }>
+> = {
+  ppf: { category: "film", use: "ppf-film" },
+  tint: { category: "film", use: "window-tint" },
+  shampoo: { category: "shampoo" },
+  polish: { category: "polish", use: "compound" },
+  tyre: { category: "tyre" },
+  glass: { category: "interior", use: "glass-care" },
+  dressing: { category: "dressing" },
+  wax: { category: "dressing", use: "spray-wax" },
+  interior: { category: "interior" },
+  degreaser: { category: "cleaners", use: "degrease" },
+  "heavy-duty": { category: "cleaners", use: "adhesive-remover" },
+  fragrance: { category: "fragrance" },
+  accessories: { category: "polish", use: "pad" },
+  ceramic: { category: "ceramic" },
+};
+
+/**
+ * Extra bilingual search tokens, keyed by category key, use key or brand key
+ * (the three namespaces never overlap). The catalogue search adds the tokens of
+ * each product's brand, category and use to its searchable text, so shoppers
+ * who type "wax", "كفرات" or "foam cannon" find the right shelf. 'فوطة' and
+ * 'جنوط' are not evidenced in the repo's keyword research: native review.
+ */
+export const SEARCH_ALIASES: Readonly<Record<string, readonly string[]>> = {
+  VTEK: ["فيتك"],
+  Autotriz: ["اوتوتريز"],
+  ceramic: ["coating", "كوتينج", "كوتنج", "nano"],
+  tyre: ["tire", "wheel", "كفرات", "تواير", "جنوط"],
+  fragrance: ["perfume", "air freshener", "scent", "معطر", "عطر"],
+  "ppf-film": ["ppf"],
+  "window-tint": ["heat rejection", "عازل حراري"],
+  "wash-wax": ["wax", "واكس", "شمع"],
+  "spray-wax": ["wax", "واكس", "شمع"],
+  compound: ["compound", "كومباوند"],
+  pad: ["pad", "pads"],
+  "adhesive-remover": ["sticker remover", "glue remover", "adhesive", "ملصق", "غراء"],
+  towel: ["towel", "cloth", "فوطة", "منشفة"],
+  sprayer: ["foam cannon", "foam gun", "bottle", "مدفع رغوة"],
+};
 
 export function getProductBySlug(slug: string): Product | undefined {
   return PRODUCTS.find(
@@ -2030,15 +2214,27 @@ export function getRelatedProducts(
   audience: AudienceScope,
   limit = 4,
 ): Product[] {
-  // Match by brand or category, but never recommend a product the current
-  // audience can't browse — clicking the related card would 404 once the
-  // product detail page filters its own static params by audience.
+  // Same category and use first, then same category, then same brand; never
+  // recommend a product the current audience can't browse — clicking the
+  // related card would 404 once the product detail page filters its own static
+  // params by audience. Array.prototype.sort is stable, so catalogue order
+  // holds inside each tier.
+  const tier = (p: Product) =>
+    p.category === product.category
+      ? p.use === product.use
+        ? 0
+        : 1
+      : p.brand === product.brand
+        ? 2
+        : 3;
   return PRODUCTS.filter(
     (p) =>
       p.slug !== product.slug &&
       (p.audience === "both" || p.audience === audience) &&
-      (p.brand === product.brand || p.category === product.category),
-  ).slice(0, limit);
+      tier(p) < 3,
+  )
+    .sort((a, b) => tier(a) - tier(b))
+    .slice(0, limit);
 }
 
 
@@ -2046,20 +2242,16 @@ export function getRelatedProducts(
 
 /** Representative photo per category — drives the "Shop by category" shelf. */
 export const CATEGORY_THUMBS: Record<CategoryKey, string> = {
-  ppf: "/products/vtek/vtek-weather-armor-lineup-v2.webp",
-  tint: "/products/vtek/vtek-solar-armor-window-tint.webp",
-  ceramic: "/products/autotriz/autotriz-ion-plus-ceramic-coating.webp",
+  film: "/products/vtek/vtek-weather-armor-lineup-v2.webp",
   shampoo: "/products/autotriz/autotriz-rich-foam-shampoo-20l.webp",
   polish: "/products/autotriz/autotriz-ultimate-polish-302.webp",
-  tyre: "/products/getsun/getsun-tire-shine.webp",
-  glass: "/products/briller/briller-glass-cleaner.webp",
+  ceramic: "/products/autotriz/autotriz-ion-plus-ceramic-coating.webp",
   dressing: "/products/briller/briller-quick-dressing.webp",
-  wax: "/products/instafinish/insta-finish-spray-wax.webp",
+  tyre: "/products/getsun/getsun-tire-shine.webp",
   interior: "/products/autotriz/autotriz-leather-and-vinyl.webp",
-  degreaser: "/products/getsun/getsun-foam-out-engine-degreaser.webp",
-  "heavy-duty": "/products/misc/detainer-sticker-remover.webp",
+  cleaners: "/products/getsun/getsun-foam-out-engine-degreaser.webp",
+  tools: "/products/misc/edgeless-microfiber-towel.webp",
   fragrance: "/products/abk/abk-fragrance-pair.webp",
-  accessories: "/products/misc/fast-masking-tape.webp",
 };
 
 /** Representative photo per brand — drives the "Brands we carry" shelf. */
@@ -2073,6 +2265,7 @@ export const BRAND_IMAGES: Record<BrandKey, string> = {
   Getsun: "/products/getsun/getsun-foam-out-engine-degreaser.webp",
   ABK: "/products/abk/abk-fragrance-pair.webp",
   SmartCar: "/products/misc/smart-car-tyre-foam.webp",
+  GrunesAuto: "/products/misc/grunes-auto-pad-step2-da-6in.webp",
   Other: "/products/misc/fast-masking-tape.webp",
 };
 
@@ -2104,17 +2297,24 @@ export function getBrandsFor(audience: AudienceScope): BrandKey[] {
   );
 }
 
-/** Products visible to this audience. For B2C, retail products with direct pricing lead the catalogue. */
+/** Trade & bulk band: price-on-request items and any pack of 4 L or more. Retail is the complement. */
+export function isTradePack(p: Product): boolean {
+  return p.priceQar === undefined || p.volumesMl?.some((v) => v >= 4000) === true;
+}
+
+/**
+ * Products visible to this audience, grouped by category (CATEGORIES order),
+ * then use (CATEGORY_USES order), then `rank`, then catalogue order.
+ */
 export function getProductsFor(audience: AudienceScope): Product[] {
-  const visible = PRODUCTS.filter(visibleTo(audience));
-  if (audience === "b2c") {
-    const priced = visible.filter((p) => p.price !== undefined);
-    const unpriced = visible.filter((p) => p.price === undefined);
-    const abkPriced = priced.filter((p) => p.brand === "ABK");
-    const otherPriced = priced.filter((p) => p.brand !== "ABK");
-    return [...abkPriced, ...otherPriced, ...unpriced];
-  }
-  return visible;
+  const useIndex = (p: Product) => (p.use ? CATEGORY_USES[p.category].indexOf(p.use) : 0);
+  // Array.prototype.sort is stable, so catalogue order breaks the remaining ties.
+  return PRODUCTS.filter(visibleTo(audience)).sort(
+    (a, b) =>
+      CATEGORIES.indexOf(a.category) - CATEGORIES.indexOf(b.category) ||
+      useIndex(a) - useIndex(b) ||
+      (a.rank ?? 0) - (b.rank ?? 0),
+  );
 }
 
 /**

@@ -1,15 +1,28 @@
 import { useTranslations } from "next-intl";
 import { Chip } from "@/components/ui/Chip";
+import { ChipRow } from "@/components/ui/ChipRow";
 import { Button } from "@/components/ui/Button";
 import { CloseIcon, SearchIcon } from "@/components/ui/Icons";
 import { ProductCard } from "./ProductCard";
+import { FilterDisclosure } from "./FilterDisclosure";
 import { PpfInstallStrip } from "@/components/ppf/PpfInstallStrip";
-import type { BrandKey, CategoryKey, Product } from "@/data/products";
+import { formatNumber } from "@/lib/pricing";
+import type { BrandKey, CategoryKey, PackKey, Product, UseKey } from "@/data/products";
 import type { Audience } from "@/lib/whatsapp";
 
 export type GridFilters = {
   brand: BrandKey | "all";
   category: CategoryKey | "all";
+  use: UseKey | "all";
+  pack: PackKey | "all";
+};
+
+/** One chip of a filter row. Without a count (the static fallback) it is a plain chip. */
+export type FacetOption<K extends string> = {
+  key: K;
+  count?: number;
+  /** Nothing would match: stays in the row, dimmed, so the row never reflows. */
+  disabled?: boolean;
 };
 
 export const SORT_KEYS = ["recommended", "price-asc", "price-desc"] as const;
@@ -33,12 +46,19 @@ type Props = {
   locale: "en" | "ar";
   /** Already filtered. */
   products: Product[];
-  brands: BrandKey[];
-  categories: CategoryKey[];
+  categories: FacetOption<CategoryKey>[];
+  /** Empty hides the row: no category chosen, or fewer than two uses to pick from. */
+  uses: FacetOption<UseKey>[];
+  /** Empty hides the row. */
+  brands: FacetOption<BrandKey>[];
+  /** Empty hides the row. */
+  packs: FacetOption<PackKey>[];
   filters: GridFilters;
   /** Omit for the static (server) render — chips are then purely presentational. */
   onBrand?: (b: BrandKey | "all") => void;
   onCategory?: (c: CategoryKey | "all") => void;
+  onUse?: (u: UseKey | "all") => void;
+  onPack?: (p: PackKey | "all") => void;
   onClear?: () => void;
   retailTools?: RetailTools;
 };
@@ -52,19 +72,29 @@ export function ProductGridView({
   audience,
   locale,
   products,
-  brands,
   categories,
+  uses,
+  brands,
+  packs,
   filters,
   onBrand,
   onCategory,
+  onUse,
+  onPack,
   onClear,
   retailTools,
 }: Props) {
   const t = useTranslations();
   const query = retailTools?.query.trim() ?? "";
   const chipsActive =
-    filters.brand !== "all" || filters.category !== "all" || Boolean(retailTools?.pricedOnly);
+    filters.brand !== "all" ||
+    filters.category !== "all" ||
+    filters.use !== "all" ||
+    filters.pack !== "all" ||
+    Boolean(retailTools?.pricedOnly);
   const filtered = chipsActive || query !== "";
+  // Brand and pack live behind the "Filters" pill on phones.
+  const disclosureActive = Number(filters.brand !== "all") + Number(filters.pack !== "all");
   const onQuery = retailTools?.onQuery;
   const clearSearch = onQuery ? () => onQuery("") : undefined;
   // In the server-rendered fallback no handlers exist, and React Server
@@ -75,38 +105,75 @@ export function ProductGridView({
     (value: string) =>
       fn ? () => fn(value) : undefined;
   const pickCategory = pick(onCategory as ((v: string) => void) | undefined);
+  const pickUse = pick(onUse as ((v: string) => void) | undefined);
   const pickBrand = pick(onBrand as ((v: string) => void) | undefined);
+  const pickPack = pick(onPack as ((v: string) => void) | undefined);
 
   return (
     <div className="flex flex-col gap-8">
-      {/* Retail shoppers browsing everything, or the film category, see the
-          installed-PPF service; a search or another category stays clean. */}
-      {!query && (filters.category === "all" || filters.category === "ppf") ? (
-        <PpfInstallStrip locale={locale} />
-      ) : null}
-
       <div className="flex flex-col gap-4">
         {retailTools ? <RetailToolbar tools={retailTools} /> : null}
-        <ChipRow label={t("Products.filterCategory")}>
-          <Chip active={filters.category === "all"} onClick={pickCategory("all")}>
-            {t("Products.filterAll")}
-          </Chip>
-          {categories.map((c) => (
-            <Chip key={c} active={filters.category === c} onClick={pickCategory(c)}>
-              {t(`Categories.${c}`)}
-            </Chip>
-          ))}
+        <ChipRow
+          label={t("Products.filterCategory")}
+          activeKey={filters.category === "all" ? undefined : filters.category}
+        >
+          <FacetChips
+            options={categories}
+            selected={filters.category}
+            label={(c) => t(`Categories.${c}`)}
+            onPick={pickCategory}
+            locale={locale}
+          />
         </ChipRow>
-        <ChipRow label={t("Products.filterBrand")}>
-          <Chip active={filters.brand === "all"} onClick={pickBrand("all")}>
-            {t("Products.filterAll")}
-          </Chip>
-          {brands.map((b) => (
-            <Chip key={b} active={filters.brand === b} onClick={pickBrand(b)}>
-              {t(`Brands.${b}`)}
-            </Chip>
-          ))}
-        </ChipRow>
+        {uses.length > 0 ? (
+          <ChipRow
+            label={t("Products.filterUse")}
+            activeKey={filters.use === "all" ? undefined : filters.use}
+          >
+            <FacetChips
+              options={uses}
+              selected={filters.use}
+              label={(u) => t(`Uses.${u}`)}
+              onPick={pickUse}
+              locale={locale}
+              showCounts
+            />
+          </ChipRow>
+        ) : null}
+        {brands.length > 0 || packs.length > 0 ? (
+          <FilterDisclosure label={t("Products.filtersToggle")} activeCount={disclosureActive}>
+            {brands.length > 0 ? (
+              <ChipRow
+                label={t("Products.filterBrand")}
+                activeKey={filters.brand === "all" ? undefined : filters.brand}
+              >
+                <FacetChips
+                  options={brands}
+                  selected={filters.brand}
+                  label={(b) => t(`Brands.${b}`)}
+                  onPick={pickBrand}
+                  locale={locale}
+                  showCounts
+                />
+              </ChipRow>
+            ) : null}
+            {packs.length > 0 ? (
+              <ChipRow
+                label={t("Products.filterPack")}
+                activeKey={filters.pack === "all" ? undefined : filters.pack}
+              >
+                <FacetChips
+                  options={packs}
+                  selected={filters.pack}
+                  label={(k) => t(`Packs.${k}`)}
+                  onPick={pickPack}
+                  locale={locale}
+                  showCounts
+                />
+              </ChipRow>
+            ) : null}
+          </FilterDisclosure>
+        ) : null}
         <div
           className="flex flex-wrap items-center gap-x-4 gap-y-2 text-footnote text-(--color-text-muted)"
           aria-live="polite"
@@ -134,7 +201,20 @@ export function ProductGridView({
             </button>
           )}
         </div>
+        {filters.pack === "trade" ? (
+          <p className="text-footnote text-(--color-text-muted)">{t("Products.tradeNote")}</p>
+        ) : null}
       </div>
+
+      {/* Below the filters, not above them, so a filter that removes the strip
+          never moves the chip rows under the cursor. Shown to shoppers browsing
+          everything or the film category (but not the window tints); a search
+          stays clean. */}
+      {!query &&
+      (filters.category === "all" ||
+        (filters.category === "film" && filters.use !== "window-tint")) ? (
+        <PpfInstallStrip locale={locale} />
+      ) : null}
 
       {products.length === 0 ? (
         <div className="tile flex flex-col items-center gap-3 px-6 py-16 text-center">
@@ -261,14 +341,49 @@ function RetailToolbar({ tools }: { tools: RetailTools }) {
   );
 }
 
-function ChipRow({ label, children }: { label: string; children: React.ReactNode }) {
+/**
+ * "All" plus one chip per option. A disabled option keeps its place but is
+ * dimmed and inert (aria-disabled rather than `disabled`, so it stays
+ * focusable and announced). A zero count is left off: the Arabic-Indic zero is
+ * a lone dot, and a dimmed chip already says "none".
+ */
+function FacetChips<K extends string>({
+  options,
+  selected,
+  label,
+  onPick,
+  locale,
+  showCounts = false,
+}: {
+  options: FacetOption<K>[];
+  selected: K | "all";
+  label: (key: K) => string;
+  onPick: (value: string) => (() => void) | undefined;
+  locale: "en" | "ar";
+  showCounts?: boolean;
+}) {
+  const t = useTranslations("Products");
   return (
-    <div className="flex flex-col gap-2">
-      <span className="text-caption font-semibold text-(--color-text-muted)">{label}</span>
-      {/* Scrolls sideways on phones, wraps from sm up. */}
-      <div className="hide-scrollbar -mx-6 flex gap-2 overflow-x-auto px-6 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
-        {children}
-      </div>
-    </div>
+    <>
+      <Chip active={selected === "all"} onClick={onPick("all")}>
+        {t("filterAll")}
+      </Chip>
+      {options.map((o) => (
+        <Chip
+          key={o.key}
+          active={selected === o.key}
+          onClick={o.disabled ? undefined : onPick(o.key)}
+          aria-disabled={o.disabled || undefined}
+          className="aria-disabled:pointer-events-none aria-disabled:opacity-40"
+        >
+          {label(o.key)}
+          {showCounts && o.count ? (
+            <span className="ms-1.5 text-caption tabular-nums opacity-70">
+              {formatNumber(o.count, locale)}
+            </span>
+          ) : null}
+        </Chip>
+      ))}
+    </>
   );
 }

@@ -146,6 +146,10 @@
     "filterBrand": "Brand",
     "filterCategory": "Category",
     "filterAll": "All",
+    "filterUse": "Use",
+    "filterPack": "Pack size",
+    "filtersToggle": "Filters",
+    "tradeNote": "Trade and bulk packs, plus quote-only films and tints. Message us on WhatsApp for wholesale pricing.",
     "noResults": "Try another brand or category, or clear the filters to see the full range.",
     "detailAskFor": "Interested in this product?",
     "detailAskForB2c": "Send us a WhatsApp message — we'll confirm availability and walk you through options.",
@@ -219,20 +223,44 @@
     "searchAll": "Search all products"
   },
   "Categories": {
-    "ppf": "Paint Protection Film",
-    "tint": "Window Tints",
+    "film": "PPF & Window Tint",
     "shampoo": "Car Shampoos",
-    "polish": "Compounds & Polishes",
-    "tyre": "Tyre Care",
-    "glass": "Glass Cleaners",
-    "dressing": "Dressings & Protectants",
-    "wax": "Waxes",
-    "interior": "Interior Care",
-    "degreaser": "Engine Degreasers",
-    "heavy-duty": "Heavy-Duty Cleaners",
-    "fragrance": "Home & Car Fragrances",
-    "accessories": "Detailing Accessories",
-    "ceramic": "Ceramic Coatings"
+    "polish": "Polishing",
+    "ceramic": "Ceramic Coatings",
+    "dressing": "Waxes & Dressings",
+    "tyre": "Wheels & Tyres",
+    "interior": "Interior & Glass",
+    "cleaners": "Cleaners & Degreasers",
+    "tools": "Towels & Tools",
+    "fragrance": "Fragrances"
+  },
+  "Uses": {
+    "ppf-film": "Paint protection film",
+    "window-tint": "Window tint",
+    "install-care": "Installation & aftercare",
+    "wash-wax": "Wash & wax",
+    "foam-wash": "Foam wash",
+    "compound": "Compounds & polishes",
+    "pad": "Polishing pads",
+    "spray-wax": "Spray wax",
+    "trim-dressing": "Trim & interior dressings",
+    "restorer": "Plastic restorers",
+    "wheel-cleaner": "Wheel cleaner",
+    "tyre-shine": "Tyre shine & foam",
+    "applicator": "Applicators",
+    "interior-clean": "Interior cleaner",
+    "glass-care": "Glass cleaner",
+    "interior-protect": "Leather, vinyl & fabric protection",
+    "degrease": "Degreasers",
+    "all-purpose": "All-purpose cleaner",
+    "adhesive-remover": "Sticker & adhesive remover",
+    "towel": "Towels",
+    "sponge": "Sponges",
+    "sprayer": "Sprayers & bottles"
+  },
+  "Packs": {
+    "retail": "Retail packs",
+    "trade": "Trade & bulk"
   },
   "Brands": {
     "VTEK": "VTEK",
@@ -245,7 +273,8 @@
     "Sitrett": "Sitrett",
     "ABK": "ABK",
     "SmartCar": "Smart Car",
-    "Other": "Other"
+    "GrunesAuto": "GrünesAuto",
+    "Other": "Other brands"
   },
   "About": {
     "title": "About ABK",

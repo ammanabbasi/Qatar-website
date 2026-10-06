@@ -10,7 +10,7 @@ import { useCartUi } from "@/components/cart/CartProvider";
 import { MAX_QTY } from "@/lib/cart";
 import { QuantityStepper } from "@/components/cart/QuantityStepper";
 import { StickyAddToCart } from "./StickyAddToCart";
-import type { Product } from "@/data/products";
+import type { CategoryKey, Product, UseKey } from "@/data/products";
 
 type Props = {
   product: Product;
@@ -19,10 +19,26 @@ type Props = {
   productUrl: string;
 };
 
-function getDiyTip(category: string, locale: "en" | "ar"): string {
-  switch (category) {
-    case "ppf":
-    case "tint":
+function getDiyTip(
+  category: CategoryKey,
+  use: UseKey | undefined,
+  locale: "en" | "ar",
+): string {
+  // Where a category mixes treatments the tip follows the product's use: spray
+  // wax gets the wax tip, and only the interior protectants get the foam-pad
+  // dressing tip (glass and foam cleaners get the neutral default). Wheel
+  // cleaner is not a tyre dressing, and film aftercare and install supplies
+  // are not film installation, so those get the default too.
+  const tip =
+    category === "dressing" && use === "spray-wax"
+      ? "wax"
+      : (category === "interior" && use !== "interior-protect") ||
+          (category === "tyre" && use === "wheel-cleaner") ||
+          (category === "film" && use === "install-care")
+        ? "default"
+        : category;
+  switch (tip) {
+    case "film":
       return locale === "ar"
         ? "لأفضل نتائج، يُنصح بالتركيب في مكان مغلق وخالٍ من الغبار باستخدام محلول الانزلاق (Slip Solution) وممسحة سيليكونية مرنة مع الحفاظ على ترطيب السطح."
         : "For best results, install in a clean dust-free indoor area using slip solution and a flexible felt squeegee. Keep the film surface uniformly lubricated.";
@@ -41,7 +57,7 @@ function getDiyTip(category: string, locale: "en" | "ar"): string {
     case "dressing":
     case "interior":
       return locale === "ar"
-        ? "ضع كمية معتدلة على إسفنجة مخصصة ووزعها بانتظام على الأسطح البلاستيكية والجلدية، ثم امسح الزوائد للحصول على مظهر وكالة مطفأ غير زيتي."
+        ? "ضع كمية معتدلة على إسفنجة مخصصة ووزعها بانتظام على الأسطح البلاستيكية والجلدية، ثم امسح الزوائد للحصول على مظهر وكالة مطفي غير زيتي."
         : "Apply a small amount to a foam applicator pad. Spread evenly and buff off any excess for a clean, non-greasy OEM satin finish.";
     case "tyre":
       return locale === "ar"
@@ -157,14 +173,12 @@ export function ProductPurchasePanel({
   });
   const wholesaleWaTag = `plausible-event-name=whatsapp_wholesale_click plausible-event-product=${currentSlug}`;
 
-  const diyTip = getDiyTip(product.category, locale);
+  const diyTip = getDiyTip(product.category, product.use, locale);
 
   const packagingInfo =
-    product.category === "ppf" || product.category === "tint"
+    product.category === "film"
       ? t("commercialPackagingRoll")
-      : product.category === "shampoo" ||
-          product.category === "degreaser" ||
-          product.category === "heavy-duty"
+      : product.category === "shampoo" || product.category === "cleaners"
         ? t("commercialPackagingDrum")
         : t("commercialPackagingCarton");
 

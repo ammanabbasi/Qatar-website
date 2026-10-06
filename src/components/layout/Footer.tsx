@@ -13,8 +13,20 @@ import {
   MailIcon,
 } from "@/components/ui/Icons";
 import type { Audience } from "@/lib/whatsapp";
+import type { CategoryKey } from "@/data/products";
 
-const SHOP_CATEGORIES = ["ppf", "ceramic", "shampoo", "polish", "tyre"] as const;
+const SHOP_CATEGORIES = [
+  "film",
+  "shampoo",
+  "polish",
+  "ceramic",
+  "dressing",
+  "tyre",
+  "interior",
+  "cleaners",
+  "tools",
+  "fragrance",
+] as const satisfies readonly CategoryKey[];
 
 export function Footer({ audience }: { audience: Audience }) {
   const t = useTranslations();

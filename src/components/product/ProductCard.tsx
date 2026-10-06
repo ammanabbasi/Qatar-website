@@ -64,7 +64,8 @@ export function ProductCard({
       <div className="flex min-w-0 flex-1 flex-col gap-1 px-1 pt-4">
         <div className="flex min-w-0 items-center justify-between gap-1.5">
           <p className="min-w-0 truncate text-caption font-medium text-(--color-text-muted)">
-            {t(`Brands.${product.brand}`)} · {t(`Categories.${product.category}`)}
+            {t(`Brands.${product.brand}`)}
+            <span className="max-sm:hidden"> · {t(`Categories.${product.category}`)}</span>
           </p>
           {product.price ? (
             <div className="flex shrink-0 items-baseline gap-1.5">

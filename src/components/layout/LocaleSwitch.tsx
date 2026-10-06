@@ -24,7 +24,15 @@ export function LocaleSwitch({
         props: { to: next },
       });
     }
-    router.replace(pathname, { locale: next });
+    // Keep the query string (catalogue filters) across the language switch.
+    // Read at click time: ProductGrid rewrites the address bar with
+    // history.replaceState, so it can be newer than any router state. An
+    // object href with an empty query would append a bare "?" to the path.
+    const query = Object.fromEntries(new URLSearchParams(window.location.search));
+    router.replace(
+      Object.keys(query).length > 0 ? { pathname, query } : pathname,
+      { locale: next },
+    );
   };
 
   // Label is written in the TARGET language so the reader who needs it can
