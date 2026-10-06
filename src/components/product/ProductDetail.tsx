@@ -8,7 +8,6 @@ import { ChevronIcon, PinIcon, BadgeIcon } from "@/components/ui/Icons";
 import { ProductCard } from "./ProductCard";
 import { ProductGallery } from "./ProductGallery";
 import { ProductPurchasePanel } from "./ProductPurchasePanel";
-import { ProductCrossBanner } from "./ProductCrossBanner";
 import { PpfInstallBanner } from "@/components/ppf/PpfInstallBanner";
 import { Link } from "@/i18n/navigation";
 import type { Product } from "@/data/products";
@@ -30,10 +29,7 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
   const shortDesc = product.shortDesc[locale];
   const brandLabel = t(`Brands.${product.brand}`);
   const categoryLabel = t(`Categories.${product.category}`);
-  const productUrl = `${SITE.url}/${locale}/${audience}/products/${product.slug}`;
-  const isAvailableInOtherAudience =
-    product.audience === "both" ||
-    product.audience === (audience === "b2c" ? "b2b" : "b2c");
+  const productUrl = `${SITE.url}/${locale}/b2c/products/${product.slug}`;
 
   const productLd = productJsonLd({
     name,
@@ -45,14 +41,13 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
     url: productUrl,
     priceQar: product.priceQar,
   });
-  // B2C home lives at the locale root; B2B home keeps its /b2b prefix.
-  const homeHref = audience === "b2c" ? "/" : `/${audience}`;
+  const homeHref = "/";
   const bcLd = breadcrumbJsonLd([
     {
       name: t("Brand.name"),
-      url: audience === "b2c" ? `${SITE.url}/${locale}` : `${SITE.url}/${locale}/${audience}`,
+      url: `${SITE.url}/${locale}`,
     },
-    { name: t("Products.title"), url: `${SITE.url}/${locale}/${audience}/products` },
+    { name: t("Products.title"), url: `${SITE.url}/${locale}/b2c/products` },
     { name, url: productUrl },
   ]);
 
@@ -81,7 +76,7 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
                 <ChevronIcon className="h-2.5 w-2.5 text-white/40 rtl:-scale-x-100" />
               </li>
               <li>
-                <Link href={`/${audience}/products`} className={crumb}>
+                <Link href="/b2c/products" className={crumb}>
                   {t("Nav.products")}
                 </Link>
               </li>
@@ -100,12 +95,6 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
             <ProductGallery images={product.images} alt={name} />
 
             <div className="flex flex-col gap-6">
-              {/* Contextual Cross-Audience Banner */}
-              <ProductCrossBanner
-                audience={audience}
-                slug={product.slug}
-                isAvailableInOtherAudience={isAvailableInOtherAudience}
-              />
 
               <p className="text-body text-(--color-text-muted)">{longDesc}</p>
 
@@ -128,7 +117,7 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
                 productUrl={productUrl}
               />
 
-              {audience === "b2c" && <PpfInstallBanner slug={product.slug} locale={locale} />}
+              <PpfInstallBanner slug={product.slug} locale={locale} />
 
               {/* Specs */}
               {product.specs && product.specs.length > 0 && (

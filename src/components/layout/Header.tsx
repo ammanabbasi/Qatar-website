@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
-import { AudienceSwitch } from "./AudienceSwitch";
 import { LocaleSwitch } from "./LocaleSwitch";
 import { Container } from "@/components/ui/Container";
 import { ArrowRightIcon, BagIcon, MenuIcon, CloseIcon } from "@/components/ui/Icons";
@@ -52,19 +51,14 @@ export function Header({
   const badge = count > 99 ? "99+" : formatNumber(count, locale);
 
   const ppfFrom = installedFromQar("pro");
-  const audiencePrefix = `/${audience}`;
-  // B2C home lives at the locale root; deeper b2c routes keep the /b2c prefix.
-  const homeHref = audience === "b2c" ? "/" : audiencePrefix;
+  const homeHref = "/";
 
   const links = [
-    { href: homeHref, label: t("home") },
-    { href: `${audiencePrefix}/products`, label: t("products") },
-    ...(audience === "b2c"
-      ? [
-          { href: PPF_HREF, label: t("ppfInstall") },
-          { href: "/b2c/blog", label: t("blog") },
-        ]
-      : [{ href: "/b2b/become-a-dealer", label: t("becomeDealer") }]),
+    { href: "/", label: t("home") },
+    { href: "/b2c/products", label: t("products") },
+    { href: PPF_HREF, label: t("ppfInstall") },
+    { href: "/b2c/blog", label: t("blog") },
+    { href: "/b2b/become-a-dealer", label: t("becomeDealer") },
     { href: "/about", label: t("about") },
     { href: "/contact", label: t("contact") },
   ];
@@ -185,7 +179,6 @@ export function Header({
         </nav>
 
         <div className="flex items-center gap-1.5 sm:gap-2">
-          <AudienceSwitch current={audience} tone={tone} />
           <LocaleSwitch current={locale} tone={tone} />
           {/* Always visible — shoppers look top-right for the cart. The badge
               waits for hydration so the server HTML never shows a stale 0. */}
@@ -277,66 +270,7 @@ export function Header({
               </Link>
             )}
 
-            {/* Experience Selector Card */}
-            <div
-              className={`rounded-2xl border p-3 ${
-                dark
-                  ? "border-white/12 bg-white/5 text-white"
-                  : "border-black/8 bg-(--color-fill) text-(--color-text)"
-              }`}
-            >
-              <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-(--color-brand)">
-                {t("chooseExperience")}
-              </p>
-              <div className="mt-2 grid grid-cols-2 gap-2">
-                <Link
-                  href="/"
-                  onClick={() => {
-                    document.cookie = `abk_audience=b2c; path=/; max-age=${60 * 60 * 24 * 180}; SameSite=Lax`;
-                    setOpen(false);
-                  }}
-                  className={`flex flex-col items-start rounded-xl p-2.5 transition-all ${
-                    audience === "b2c"
-                      ? "bg-(--color-brand) text-black shadow-sm font-bold"
-                      : dark
-                        ? "bg-white/8 text-white hover:bg-white/12"
-                        : "bg-white text-(--color-text) hover:bg-white/80"
-                  }`}
-                >
-                  <span className="text-body font-bold">{t("b2c")}</span>
-                  <span
-                    className={`text-[11px] mt-0.5 ${
-                      audience === "b2c" ? "text-black/75 font-medium" : dark ? "text-white/60" : "text-(--color-text-muted)"
-                    }`}
-                  >
-                    {t("b2cSubtitle")}
-                  </span>
-                </Link>
-                <Link
-                  href="/b2b"
-                  onClick={() => {
-                    document.cookie = `abk_audience=b2b; path=/; max-age=${60 * 60 * 24 * 180}; SameSite=Lax`;
-                    setOpen(false);
-                  }}
-                  className={`flex flex-col items-start rounded-xl p-2.5 transition-all ${
-                    audience === "b2b"
-                      ? "bg-(--color-brand) text-black shadow-sm font-bold"
-                      : dark
-                        ? "bg-white/8 text-white hover:bg-white/12"
-                        : "bg-white text-(--color-text) hover:bg-white/80"
-                  }`}
-                >
-                  <span className="text-body font-bold">{t("b2b")}</span>
-                  <span
-                    className={`text-[11px] mt-0.5 ${
-                      audience === "b2b" ? "text-black/75 font-medium" : dark ? "text-white/60" : "text-(--color-text-muted)"
-                    }`}
-                  >
-                    {t("b2bSubtitle")}
-                  </span>
-                </Link>
-              </div>
-            </div>
+
 
             {hydrated && count > 0 && (
               <button

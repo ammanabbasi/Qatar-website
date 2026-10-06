@@ -714,6 +714,7 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/autotriz/autotriz-heavy-cut-901.webp"],
     specs: [
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 130", ar: "١٣٠ ر.ق" } },
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "901", ar: "901" } },
       {
         label: { en: "Cut Power", ar: "قوة القطع" },
@@ -732,8 +733,10 @@ export const PRODUCTS: Product[] = [
         value: { en: "Made in Germany", ar: "صُنع في ألمانيا" },
       },
     ],
+    price: { en: "QAR 130", ar: "١٣٠ ر.ق" },
+    priceQar: 130,
     audience: "both",
-    updatedAt: "2026-09-04",
+    updatedAt: "2026-10-06",
   },
   {
     slug: "autotriz-ultimate-polish-302",
@@ -1970,15 +1973,15 @@ export const PRODUCTS: Product[] = [
     },
     images: ["/products/misc/grunes-auto-pad-step2-rotary-6in.webp"],
     specs: [
-      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 30", ar: "٣٠ ر.ق" } },
+      { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 28", ar: "٢٨ ر.ق" } },
       { label: { en: "Step / Grade", ar: "المرحلة / الدرجة" }, value: { en: "Step 2 — Medium Cut & Rotary Polishing", ar: "الخطوة ٢ — قص وتلميع روتاري متوسط" } },
       { label: { en: "Size", ar: "المقاس" }, value: { en: "6 Inch (150 mm)", ar: "٦ إنش (١٥٠ مم)" } },
       { label: { en: "Machine Type", ar: "نوع الجهاز" }, value: { en: "Direct-Drive Rotary Polishers", ar: "أجهزة التلميع الدائري (الروتاري)" } },
       { label: { en: "Backing", ar: "قاعدة التثبيت" }, value: { en: "Solid Hook & Loop (Velcro)", ar: "فلكرو كامل بدون فتحة مركزية" } },
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in Germany (GrünesAuto)", ar: "صُنع في ألمانيا (GrünesAuto)" } },
     ],
-    price: { en: "QAR 30", ar: "٣٠ ر.ق" },
-    priceQar: 30,
+    price: { en: "QAR 28", ar: "٢٨ ر.ق" },
+    priceQar: 28,
     audience: "both",
     updatedAt: "2026-10-05",
   },

@@ -77,7 +77,7 @@ export function StoreHeader({ audience, locale }: Props) {
           {DISTRIBUTOR_BRANDS.map((brand) => (
             <Link
               key={brand.key}
-              href={`/${audience}/products?brand=${brand.key}`}
+              href={`/b2c/products?brand=${brand.key}`}
               style={{ backgroundColor: brand.bg }}
               className="tile group flex flex-col items-center gap-2 rounded-[16px] border border-white/10 p-3 pb-2.5 transition-all duration-300 ease-soft hover:border-white/25 hover:shadow-tile-hover sm:gap-2.5 sm:p-4 sm:pb-3"
             >

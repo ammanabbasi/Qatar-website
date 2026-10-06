@@ -75,23 +75,7 @@ export default async function B2BProductPage({
   if (!product) notFound();
 
   // If accessed directly via a variant slug, redirect to canonical product URL with ?size=
-  if (slug !== product.slug) {
-    const variant = product.variants?.find((v) => v.slug === slug);
-    const sizeParam = variant ? `?size=${encodeURIComponent(variant.id)}` : "";
-    redirect(`/${locale}/b2b/products/${product.slug}${sizeParam}`);
-  }
-
-  const related = getRelatedProducts(product, "b2b");
-  const l = locale as "en" | "ar";
-
-  return (
-    <Shell audience="b2b" locale={l}>
-      <ProductDetail
-        product={product}
-        related={related}
-        audience="b2b"
-        locale={l}
-      />
-    </Shell>
-  );
+  const variant = product.variants?.find((v) => v.slug === slug);
+  const sizeParam = variant ? `?size=${encodeURIComponent(variant.id)}` : "";
+  redirect(`/${locale}/b2c/products/${product.slug}${sizeParam}`);
 }

@@ -1,31 +1,36 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { ChevronIcon } from "@/components/ui/Icons";
 import { AddToCartButton } from "@/components/cart/AddToCartButton";
+import { WhatsAppIcon } from "@/components/cta/WhatsAppIcon";
+import { buildWhatsAppUrl, type Audience } from "@/lib/whatsapp";
+import { SITE } from "@/lib/constants";
 import type { Product } from "@/data/products";
-import type { Audience } from "@/lib/whatsapp";
 
 type Props = {
   product: Product;
   locale: "en" | "ar";
-  audience: Audience;
+  audience?: Audience;
   /** Load immediately at high priority — for the first tiles above the fold. */
   eager?: boolean;
 };
 
 /**
- * Large shelf tile — the Apple "iPhone 17 Pro" tile on a light ground. Copy
- * sits at the top; the white-background packshot fills the lower four-fifths
- * and merges into the white tile, so there is no visible photo edge.
- *
- * A full-tile overlay link makes the whole tile clickable while the retail
- * "Add to cart" button sits above it (never inside a link).
+ * Large shelf tile — copy sits at the top; the white-background packshot fills
+ * the lower area. "Add to cart" and "Inquire for Wholesale" buttons sit in the
+ * bottom action area above the link overlay.
  */
-export function ProductTile({ product, locale, audience, eager = false }: Props) {
+export function ProductTile({ product, locale, audience = "b2c", eager = false }: Props) {
   const t = useTranslations();
   const name = product.name[locale];
-  const isB2c = audience === "b2c";
+
+  const wholesaleWaUrl = buildWhatsAppUrl({
+    audience: "b2b",
+    locale,
+    productName: name,
+    productPrice: product.price ? product.price[locale] : undefined,
+    productUrl: `${SITE.url}/${locale}/b2c/products/${product.slug}`,
+  });
 
   return (
     <div className="tile group relative block aspect-[4/5] w-[300px] overflow-hidden transition-shadow duration-300 ease-soft hover:shadow-tile-hover sm:w-[340px] lg:w-[405px]">
@@ -67,31 +72,35 @@ export function ProductTile({ product, locale, audience, eager = false }: Props)
               </span>
             ) : null}
           </div>
-        ) : isB2c ? (
+        ) : (
           <p className="mt-1 text-footnote font-medium text-(--color-text-muted)">
             {t("Cart.priceOnRequest")}
           </p>
-        ) : null}
+        )}
         <p className="mt-2 line-clamp-2 text-footnote text-(--color-text-muted)">
           {product.shortDesc[locale]}
         </p>
-        {isB2c ? null : (
-          <span className="mt-3 inline-flex items-center gap-1 text-footnote font-medium text-(--color-text)">
-            {t("Cta.inquire")}
-            <ChevronIcon className="h-[0.6em] w-[0.6em] rtl:-scale-x-100" />
-          </span>
-        )}
       </div>
       <Link
-        href={`/${audience}/products/${product.slug}`}
+        href={`/b2c/products/${product.slug}`}
         aria-label={name}
         className="absolute inset-0 z-[1] rounded-[inherit] focus-visible:-outline-offset-4"
       />
-      {isB2c ? (
-        <div className="absolute bottom-5 start-6 z-[2] lg:bottom-6 lg:start-7">
+      <div className="absolute bottom-5 start-6 end-6 z-[2] flex flex-wrap items-center gap-2 lg:bottom-6 lg:start-7 lg:end-7">
+        {product.price ? (
           <AddToCartButton slug={product.slug} variant="compact" className="shadow-tile" />
-        </div>
-      ) : null}
+        ) : null}
+        <a
+          href={wholesaleWaUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${t("Products.inquireWholesale")} — ${name}`}
+          className="inline-flex h-10 items-center justify-center gap-1.5 rounded-pill border border-black/10 bg-white/95 px-3.5 text-footnote font-semibold text-black transition-colors hover:border-(--color-brand) hover:bg-(--color-brand)/15 shadow-tile backdrop-blur-xs"
+        >
+          <WhatsAppIcon className="h-4 w-4 shrink-0 text-emerald-600" />
+          <span>{t("Products.inquireWholesale")}</span>
+        </a>
+      </div>
     </div>
   );
 }

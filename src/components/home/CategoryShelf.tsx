@@ -19,7 +19,7 @@ export function CategoryShelf({ audience }: { audience: Audience }) {
         {categories.map((c, i) => (
           <Link
             key={c}
-            href={`/${audience}/products?category=${c}`}
+            href={`/b2c/products?category=${c}`}
             className="group flex w-[104px] flex-col items-center gap-3 text-center lg:w-[120px]"
           >
             <span className="relative block h-[104px] w-[104px] overflow-hidden rounded-tile bg-(--color-surface) shadow-tile lg:h-[120px] lg:w-[120px]">

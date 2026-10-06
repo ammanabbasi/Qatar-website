@@ -728,6 +728,13 @@ export function PpfConfigurator() {
               <span aria-hidden className="ppf-ruler ppf-ruler-r" />
               <div className="relative flex items-start justify-between ppf-mono text-caption uppercase tracking-[0.14em] text-white/50">
                 <span>{t("front")}</span>
+                <span className="text-[10px] font-mono tracking-wider text-(--color-brand)/85">
+                  {body === "sedan"
+                    ? "CAMRY BLUEPRINT"
+                    : body === "suv"
+                    ? "JETOUR T2 SPEC"
+                    : "LC300 SPEC"}
+                </span>
                 <span className="tabular-nums">
                   <span className={selectedParts.size ? "text-(--color-brand)" : ""}>
                     {String(selectedParts.size).padStart(2, "0")}

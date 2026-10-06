@@ -38,7 +38,7 @@ export function StarProducts({
           />
         ))}
         <Link
-          href={`/${audience}/products`}
+          href="/b2c/products"
           className="tile flex w-[200px] flex-col items-center justify-center gap-4 p-6 text-center transition-shadow duration-300 ease-soft hover:shadow-tile-hover lg:w-[240px]"
         >
           <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-(--color-fill) text-(--color-text)">

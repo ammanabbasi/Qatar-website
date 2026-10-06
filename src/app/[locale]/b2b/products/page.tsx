@@ -1,19 +1,9 @@
-import { Suspense } from "react";
-import { setRequestLocale, getTranslations } from "next-intl/server";
+import { redirect } from "next/navigation";
+import { routing, type Locale } from "@/i18n/routing";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import { JsonLd } from "@/components/seo/JsonLd";
-import { routing, type Locale } from "@/i18n/routing";
-import { Shell } from "@/components/layout/Shell";
-import { Container } from "@/components/ui/Container";
-import { PageHero } from "@/components/ui/PageHero";
-import { ProductGrid } from "@/components/product/ProductGrid";
-import { ProductGridView } from "@/components/product/ProductGridView";
-import { DealerPitch } from "@/components/home/DealerPitch";
+import { getTranslations } from "next-intl/server";
 import { pageMeta } from "@/lib/seo";
-import { SITE } from "@/lib/constants";
-import { itemListJsonLd } from "@/lib/jsonld";
-import { PRODUCTS, getBrandsFor, getCategoriesFor } from "@/data/products";
 
 export async function generateMetadata({
   params,
@@ -26,7 +16,7 @@ export async function generateMetadata({
   return {
     title: t("b2bProductsTitle"),
     description: t("b2bProductsDescription"),
-    ...pageMeta(locale as Locale, "/b2b/products"),
+    ...pageMeta(locale as Locale, "/b2c/products"),
   };
 }
 
@@ -37,60 +27,5 @@ export default async function B2BProducts({
 }) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
-  setRequestLocale(locale);
-  const l = locale as "en" | "ar";
-  const t = await getTranslations({ locale, namespace: "Products" });
-  const eyebrows = await getTranslations({ locale, namespace: "Eyebrows" });
-  const meta = await getTranslations({ locale, namespace: "Meta" });
-
-  const audienceProducts = PRODUCTS.filter(
-    (p) => p.audience === "b2b" || p.audience === "both",
-  );
-  const itemListLd = itemListJsonLd({
-    name: meta("b2bProductsTitle"),
-    url: `${SITE.url}/${l}/b2b/products`,
-    items: audienceProducts.map((p) => ({
-      name: p.name[l],
-      url: `${SITE.url}/${l}/b2b/products/${p.slug}`,
-      image: p.images[0] ? `${SITE.url}${p.images[0]}` : undefined,
-    })),
-  });
-
-  return (
-    <Shell audience="b2b" locale={l}>
-      <JsonLd id="ld-itemlist-b2b-products" data={itemListLd} />
-      <PageHero
-        eyebrow={eyebrows("products")}
-        title={t("heading")}
-        subtitle={t("subtitleB2b")}
-      />
-      <section className="pb-8 pt-8 sm:pt-10">
-        <Container>
-          <div>
-            {/* See the B2C products page for why the fallback is the full
-                static grid. */}
-            <Suspense
-              fallback={
-                <ProductGridView
-                  audience="b2b"
-                  locale={l}
-                  products={audienceProducts}
-                  brands={getBrandsFor("b2b")}
-                  categories={getCategoriesFor("b2b")}
-                  filters={{ brand: "all", category: "all" }}
-                />
-              }
-            >
-              <ProductGrid audience="b2b" locale={l} />
-            </Suspense>
-          </div>
-        </Container>
-      </section>
-      {/* Wholesale-buyer conversion CTA at the bottom of the catalogue —
-          repeats DealerPitch from the b2b home so a buyer who jumps
-          straight to /b2b/products still hits the volume-pricing inquiry
-          flow without having to backtrack. */}
-      <DealerPitch locale={l} />
-    </Shell>
-  );
+  redirect(`/${locale}/b2c/products`);
 }

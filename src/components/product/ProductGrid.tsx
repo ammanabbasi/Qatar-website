@@ -68,7 +68,7 @@ function byPrice(products: Product[], direction: 1 | -1): Product[] {
 export function ProductGrid({ audience, locale }: Props) {
   const t = useTranslations();
   const params = useSearchParams();
-  const retail = audience === "b2c";
+  const retail = true;
   const brand = asBrand(params.get("brand"));
   const category = asCategory(params.get("category"));
   const sort = retail ? asSort(params.get("sort")) : "recommended";

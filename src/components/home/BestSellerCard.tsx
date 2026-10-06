@@ -46,7 +46,15 @@ export function BestSellerCard({ products, audience, locale }: Props) {
     locale,
     productName: name,
     productPrice: current.price ? current.price[l] : undefined,
-    productUrl: `${SITE.url}/${locale}/${audience}/products/${current.slug}`,
+    productUrl: `${SITE.url}/${locale}/b2c/products/${current.slug}`,
+  });
+
+  const wholesaleWaHref = buildWhatsAppUrl({
+    audience: "b2b",
+    locale,
+    productName: name,
+    productPrice: current.price ? current.price[l] : undefined,
+    productUrl: `${SITE.url}/${locale}/b2c/products/${current.slug}`,
   });
 
   return (
@@ -81,20 +89,22 @@ export function BestSellerCard({ products, audience, locale }: Props) {
                 </p>
               ) : null}
 
-              {/* Cart first; ordering just this one on WhatsApp stays one tap away. */}
-              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3">
-                <AddToCartButton key={current.slug} slug={current.slug} variant="primary" />
+              {/* Cart first, wholesale inquiry and view details */}
+              <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-3">
+                {current.price ? (
+                  <AddToCartButton key={current.slug} slug={current.slug} variant="primary" />
+                ) : null}
                 <a
-                  href={waHref}
+                  href={wholesaleWaHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`plausible-event-name=whatsapp_click plausible-event-audience=${audience} plausible-event-product=${current.slug} inline-flex min-h-11 items-center gap-2 text-footnote font-semibold text-(--color-link) underline-offset-2 hover:underline`}
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-pill border border-(--color-brand) bg-(--color-brand)/10 px-5 text-footnote font-bold text-(--color-text) hover:bg-(--color-brand) hover:text-black transition-colors"
                 >
-                  <WhatsAppIcon className="h-4 w-4" />
-                  <span>{current.price ? t("Cta.orderWhatsApp") : t("Cta.inquireWhatsApp")}</span>
+                  <WhatsAppIcon className="h-4 w-4 text-emerald-600" />
+                  <span>{t("Products.inquireWholesale")}</span>
                 </a>
                 <Link
-                  href={`/${audience}/products/${current.slug}`}
+                  href={`/b2c/products/${current.slug}`}
                   className="inline-flex min-h-11 items-center gap-1 text-footnote font-medium text-(--color-text-muted) hover:text-(--color-text)"
                 >
                   {t("Products.viewDetails")}

@@ -145,8 +145,8 @@ export default async function PpfInstallationPage({
               <span className="ppf-crop end-4 bottom-4 border-b-2 border-e-2 rtl:border-s-2 rtl:border-e-0" />
               <span className="ppf-ruler ppf-ruler-l" />
               <span className="ppf-ruler ppf-ruler-r" />
-              <span className="absolute inset-x-0 top-5 text-center ppf-mono text-caption uppercase tracking-[0.14em] text-white/45">
-                {t("front")}
+              <span className="absolute inset-x-0 top-5 text-center ppf-mono text-caption uppercase tracking-[0.14em] text-white/55">
+                CAMRY BLUEPRINT SCHEMATIC · {t("front")}
               </span>
               <CarBlueprint className="h-[27rem]" />
               <span className="absolute inset-x-0 bottom-5 text-center ppf-mono text-caption uppercase tracking-[0.14em] text-white/45">

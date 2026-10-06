@@ -58,6 +58,27 @@ const nextConfig: NextConfig = {
         destination: "/:locale",
         permanent: true,
       },
+      // Unified catalogue: redirect B2B wholesale routes to the main offerings catalogue
+      {
+        source: "/:locale(en|ar)/b2b/products/:slug*",
+        destination: "/:locale/b2c/products/:slug*",
+        permanent: true,
+      },
+      {
+        source: "/b2b/products/:slug*",
+        destination: "/b2c/products/:slug*",
+        permanent: true,
+      },
+      {
+        source: "/:locale(en|ar)/b2b",
+        destination: "/:locale/b2c/products",
+        permanent: true,
+      },
+      {
+        source: "/b2b",
+        destination: "/b2c/products",
+        permanent: true,
+      },
       // /b2c/services was live and indexed before the services offering was
       // withdrawn. 301 to the catalogue so its link equity carries over and
       // shared links do not dead-end on a 404.

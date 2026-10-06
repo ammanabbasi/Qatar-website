@@ -42,7 +42,7 @@ export function Footer({ audience }: { audience: Audience }) {
           {/* Shop Column */}
           <div className="flex flex-col gap-3 md:col-span-3">
             <h3 className={headCls}>{t("Footer.shop")}</h3>
-            <Link className={linkCls} href={`${audiencePrefix}/products`}>
+            <Link className={linkCls} href="/b2c/products">
               {t("Nav.products")}
             </Link>
             <Link className={linkCls} href="/b2c/ppf-installation">
@@ -52,7 +52,7 @@ export function Footer({ audience }: { audience: Audience }) {
               <Link
                 key={c}
                 className={linkCls}
-                href={`${audiencePrefix}/products?category=${c}`}
+                href={`/b2c/products?category=${c}`}
               >
                 {t(`Categories.${c}`)}
               </Link>
@@ -62,7 +62,7 @@ export function Footer({ audience }: { audience: Audience }) {
           {/* Company Column */}
           <div className="flex flex-col gap-3 md:col-span-3">
             <h3 className={headCls}>{t("Footer.company")}</h3>
-            <Link className={linkCls} href={homeHref}>
+            <Link className={linkCls} href="/">
               {t("Nav.home")}
             </Link>
             <Link className={linkCls} href="/b2c/blog">
@@ -73,9 +73,6 @@ export function Footer({ audience }: { audience: Audience }) {
             </Link>
             <Link className={linkCls} href="/contact">
               {t("Nav.contact")}
-            </Link>
-            <Link className={linkCls} href="/b2b">
-              {t("Nav.b2bFull")}
             </Link>
             <Link className={linkCls} href="/b2b/become-a-dealer">
               {t("Nav.becomeDealer")}
