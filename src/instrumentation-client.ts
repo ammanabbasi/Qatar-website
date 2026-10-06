@@ -165,8 +165,14 @@ function onClick(event: MouseEvent) {
   // Read the literal attribute: anchor.href would resolve tel:/mailto:
   // inconsistently across browsers.
   const href = anchor.getAttribute("href") || "";
-  const key = classify(href);
+  let key = classify(href);
   if (!key) return;
+
+  // The PPF booking hand-off IS the booking whenever the Sheet save failed, so
+  // it reports as ppf_booking, not a generic WhatsApp click. Its order_ref is
+  // the same booking ref trackPpfBooking sends as transaction_id, so a booking
+  // that was saved AND sent still counts once.
+  if (key === "whatsapp" && anchor.dataset.placement === "ppf_booking") key = "ppf_booking";
 
   const params: TrackParams = {
     link_url: href.slice(0, 500),

@@ -79,8 +79,8 @@ export type ConversionKey = "whatsapp" | "phone" | "email" | "catalogue" | "ppf_
  * site shippable before the ads account is finished.
  */
 export const CONVERSION_LABELS: Record<ConversionKey, string> = {
-  whatsapp: process.env.NEXT_PUBLIC_ADS_LABEL_WHATSAPP ?? "",
-  phone: process.env.NEXT_PUBLIC_ADS_LABEL_PHONE ?? "",
+  whatsapp: process.env.NEXT_PUBLIC_ADS_LABEL_WHATSAPP ?? "fTHvCNXXr5MdENiYz-ZD",
+  phone: process.env.NEXT_PUBLIC_ADS_LABEL_PHONE ?? "0rdHCL7KqJMdENiYz-ZD",
   email: process.env.NEXT_PUBLIC_ADS_LABEL_EMAIL ?? "",
   catalogue: process.env.NEXT_PUBLIC_ADS_LABEL_CATALOGUE ?? "",
   ppf_booking: process.env.NEXT_PUBLIC_ADS_LABEL_PPF_BOOKING ?? "",

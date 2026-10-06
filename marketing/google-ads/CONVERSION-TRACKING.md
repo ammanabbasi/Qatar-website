@@ -205,6 +205,26 @@ Install the **Google Tag Assistant** Chrome extension, open
 event fires with the right `send_to`. Conversions then appear in the Google Ads
 UI within ~3 hours (sometimes up to 24).
 
+## Status (2026-10-06)
+
+| Conversion action | Label | Where it lives |
+|---|---|---|
+| WhatsApp enquiry (Contact, Primary, default value US$11) | `fTHvCNXXr5MdENiYz-ZD` | fallback string in `src/lib/ads-conversions.ts` |
+| Phone click (Contact, Primary, default value US$11) | `0rdHCL7KqJMdENiYz-ZD` | fallback string in `src/lib/ads-conversions.ts` |
+| PPF booking request (Submit lead form, Primary, value from event) | `J9TLCOe7n44dENiYz-ZD` | Vercel env `NEXT_PUBLIC_ADS_LABEL_PPF_BOOKING` |
+
+Email and catalogue still have no action; their events stay dataLayer-only.
+
+**The PPF booking hand-off counts as the booking.** `/api/ppf-booking`
+returned `503 not_configured` on 2026-10-06: `PPF_BOOKING_WEBHOOK_URL` is not
+set, so no booking is saved and `trackPpfBooking` never fires. The "Send on
+WhatsApp" button on the configurator's result screen (`data-placement="ppf_booking"`)
+therefore reports as `ppf_booking_request` with the quoted price as value and the
+booking ref as `transaction_id` — not as a WhatsApp enquiry, so one booking is
+never counted by two primary actions, and a booking that was saved and then sent
+is deduplicated by the shared ref. Until the Sheet is connected, a customer who
+fills the form but never presses Send is a lost lead that nobody sees.
+
 ## Known gap: WhatsApp clicks are not sales
 
 A `wa.me` click means the user opened WhatsApp — not that they messaged you, and
