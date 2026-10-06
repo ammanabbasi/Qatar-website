@@ -77,7 +77,7 @@ export async function PpfPriceList({ locale }: { locale: "en" | "ar" }) {
             {PRESET_COVERAGES.map((c) => (
               <tbody key={c}>
                 <tr className="border-t border-(--color-border-soft) bg-(--color-bg)">
-                  <th colSpan={columns.length + 1} scope="colgroup" className="px-4 py-2 text-start ppf-mono text-caption font-semibold uppercase tracking-[0.1em] sm:px-6">
+                  <th colSpan={columns.length + 1} scope="colgroup" className="px-4 py-2 text-start text-footnote font-semibold sm:px-6">
                     {COVERAGES.find((x) => x.key === c)!.name[locale]}
                   </th>
                 </tr>

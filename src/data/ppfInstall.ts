@@ -37,17 +37,17 @@ export const BODY_TYPES: Array<{ key: BodyType; name: LocalizedText; examples: L
   {
     key: "sedan",
     name: { en: "Sedan / Coupe", ar: "سيدان / كوبيه" },
-    examples: { en: "Blueprint of Camry (Toyota Camry)", ar: "مخطط كامري (تويوتا كامري)" },
+    examples: { en: "e.g. Camry, Accord, Altima, Mustang", ar: "مثل كامري، أكورد، ألتيما، موستانج" },
   },
   {
     key: "suv",
     name: { en: "Mid SUV / Crossover", ar: "SUV متوسطة / كروس أوفر" },
-    examples: { en: "JETOUR T2", ar: "جيتور T2" },
+    examples: { en: "e.g. RAV4, Tucson, Sportage, X-Trail", ar: "مثل راف فور، توسان، سبورتاج، إكس تريل" },
   },
   {
     key: "large-suv",
     name: { en: "SUV / Large SUV", ar: "SUV / دفع رباعي كبير" },
-    examples: { en: "LAND CRUISER LC300", ar: "لاند كروزر LC300" },
+    examples: { en: "e.g. Land Cruiser, Patrol, Tahoe, Yukon", ar: "مثل لاند كروزر، باترول، تاهو، يوكن" },
   },
 ];
 
