@@ -695,12 +695,8 @@ export const PRODUCTS: Product[] = [
       ar: "مزيل شحوم احترافي عالي الفعالية بتقنية CA Tech™. مصمم للبقع الصعبة والشحوم وزيوت المحركات والصدأ. نسبة تخفيف ١:٥. للاستخدام الخارجي فقط. صُنع في كندا.",
     },
     longDesc: {
-      en: "Briller Heavy Duty Degreaser is an industrial-strength, Canadian-engineered degreaser powered by All-in-One CA Tech™. Formulated for commercial detail shops, car washes, and fleet maintenance facilities. Available in a 20 L bulk drum.\n\nEngineered specifically to dissolve and lift the toughest contaminants — including baked-on grease, engine oil buildup, heavy road grime, industrial stains, and rust residue. Highly concentrated formula dilutes 1:5 with water for maximum cleaning efficiency and cost savings.
-
-Recommended for exterior use only.",
-      ar: "مزيل الشحوم فائق القوة Briller Heavy Duty Degreaser تركيبة كندية صناعية متطورة تعمل بتقنية All-in-One CA Tech™. مصمم لمراكز العناية بالسيارات والورش ومحطات الغسيل. متوفر ببرميل سعة ٢٠ لتر.\n\nمصمم خصيصاً لإذابة وإزالة أصعب الملوثات والترسبات — بما في ذلك الشحوم المستعصية، تراكمات زيوت المحركات، أوساخ الطريق الثقيلة، البقع الصناعية، وبقايا الصدأ. تركيبة مركزة تُخفف بنسبة ١:٥ مع الماء لأقصى كفاءة تنظيف وتوفير اقتصادي.
-
-يُنصح باستخدامه للأسطح الخارجية فقط.",
+      en: "Briller Heavy Duty Degreaser is an industrial-strength, Canadian-engineered degreaser powered by All-in-One CA Tech™. Formulated for commercial detail shops, car washes, and fleet maintenance facilities. Available in a 20 L bulk drum.\n\nEngineered specifically to dissolve and lift the toughest contaminants — including baked-on grease, engine oil buildup, heavy road grime, industrial stains, and rust residue. Highly concentrated formula dilutes 1:5 with water for maximum cleaning efficiency and cost savings.\n\nRecommended for exterior use only.",
+      ar: "مزيل الشحوم فائق القوة Briller Heavy Duty Degreaser تركيبة كندية صناعية متطورة تعمل بتقنية All-in-One CA Tech™. مصمم لمراكز العناية بالسيارات والورش ومحطات الغسيل. متوفر ببرميل سعة ٢٠ لتر.\n\nمصمم خصيصاً لإذابة وإزالة أصعب الملوثات والترسبات — بما في ذلك الشحوم المستعصية، تراكمات زيوت المحركات، أوساخ الطريق الثقيلة، البقع الصناعية، وبقايا الصدأ. تركيبة مركزة تُخفف بنسبة ١:٥ مع الماء لأقصى كفاءة تنظيف وتوفير اقتصادي.\n\nيُنصح باستخدامه للأسطح الخارجية فقط.",
     },
     images: ["/products/briller/briller-heavy-duty-degreaser.webp"],
     specs: [
