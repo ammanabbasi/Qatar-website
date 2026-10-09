@@ -565,7 +565,7 @@ export const PRODUCTS: Product[] = [
       ar: "تركيبة Briller CA Tech™ تنظف وتشمع في غسلة واحدة. رغوة كثيفة وآمنة ترفع الأوساخ دون خدش، وتترك طبقة طاردة للماء تعطي لمعاناً عالياً. متوفر في عبوات 20 لتر بألوان أزرق وأحمر وأخضر — مثالي لمحطات الغسيل وورش التلميع.",
     },
     images: [
-      "/products/briller/briller-wash-and-wax.webp",
+      "/products/briller/briller-wash-and-wax-blue-green.webp",
       "/products/briller/briller-wash-and-wax-red.webp",
       "/products/briller/briller-wash-and-wax-green.webp",
     ],
