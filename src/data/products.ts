@@ -561,8 +561,8 @@ export const PRODUCTS: Product[] = [
       ar: "شامبو مركّز للغسيل والتشميع في خطوة واحدة بتقنية CA Tech™. لمعان عالي وطرد للماء.",
     },
     longDesc: {
-      en: "Briller's All-in-One CA Tech™ formula cleans and waxes in a single wash. Produces thick, safe suds that lift dirt without scratching, then leaves a durable hydrophobic layer for a water-beading high-gloss finish. Available in 20L bulk — ideal for car washes and detailing shops.",
-      ar: "تركيبة Briller CA Tech™ تنظف وتشمع في غسلة واحدة. رغوة كثيفة وآمنة ترفع الأوساخ دون خدش، وتترك طبقة طاردة للماء تعطي لمعاناً عالياً. متوفر في عبوات 20 لتر — مثالي لمحطات الغسيل وورش التلميع.",
+      en: "Briller's All-in-One CA Tech™ formula cleans and waxes in a single wash. Produces thick, safe suds that lift dirt without scratching, then leaves a durable hydrophobic layer for a water-beading high-gloss finish. Available in 20L bulk in blue, red or green — ideal for car washes and detailing shops.",
+      ar: "تركيبة Briller CA Tech™ تنظف وتشمع في غسلة واحدة. رغوة كثيفة وآمنة ترفع الأوساخ دون خدش، وتترك طبقة طاردة للماء تعطي لمعاناً عالياً. متوفر في عبوات 20 لتر بألوان أزرق وأحمر وأخضر — مثالي لمحطات الغسيل وورش التلميع.",
     },
     images: ["/products/briller/briller-wash-and-wax.webp"],
     specs: [
@@ -571,6 +571,7 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
       { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "1:50", ar: "١:٥٠" } },
       { label: { en: "Features", ar: "المميزات" }, value: { en: "With wax", ar: "مع شمع" } },
+      { label: { en: "Colours", ar: "الألوان" }, value: { en: "Blue, Red & Green", ar: "أزرق وأحمر وأخضر" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
     price: { en: "QAR 350", ar: "٣٥٠ ر.ق" },
@@ -581,7 +582,7 @@ export const PRODUCTS: Product[] = [
     featured: true,
     highlight: "briller-color",
     volumesMl: [20000],
-    updatedAt: "2026-10-06",
+    updatedAt: "2026-10-09",
   },
   {
     slug: "briller-multipurpose-cleaner",
