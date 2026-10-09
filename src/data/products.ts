@@ -659,19 +659,19 @@ export const PRODUCTS: Product[] = [
       ar: "Briller — منظف الزجاج",
     },
     shortDesc: {
-      en: "Streak-free glass cleaner with All-in-One CA Tech™.",
-      ar: "منظف زجاج بدون أثر شطب، بتقنية CA Tech™.",
+      en: "Streak-free glass cleaner that gives car windows a new look. All-in-One CA Tech™.",
+      ar: "منظف زجاج بدون أثر شطب يعيد لنوافذ السيارة مظهراً جديداً. بتقنية CA Tech™.",
     },
     longDesc: {
       en: "Professional streak-free glass cleaner. Lifts film, road grime and bug residue from windshields and side glass.",
       ar: "منظف زجاج احترافي بدون شطب. يُزيل الأفلام والأوساخ من الزجاج الأمامي والجانبي.",
     },
-    images: ["/products/briller/briller-glass-cleaner.webp"],
+    images: ["/products/briller/briller-glass-cleaner-new.webp"],
     specs: [
       { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 265", ar: "٢٦٥ ر.ق" } },
-      { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "D508", ar: "D508" } },
+      { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B504", ar: "B504" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
-      { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "Direct / 1:1", ar: "مباشر / ١:١" } },
+      { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "Direct (use as is)", ar: "مباشر (يُستخدم كما هو)" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
     price: { en: "QAR 265", ar: "٢٦٥ ر.ق" },
@@ -679,7 +679,7 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     highlight: "briller-color",
     volumesMl: [20000],
-    updatedAt: "2026-10-06",
+    updatedAt: "2026-10-09",
   },
   {
     slug: "briller-heavy-duty-degreaser",
@@ -691,12 +691,16 @@ export const PRODUCTS: Product[] = [
       ar: "Briller — مزيل الشحوم عالي الفعالية",
     },
     shortDesc: {
-      en: "Professional heavy-duty degreaser with All-in-One CA Tech™. Formulated for tough stains, heavy grease, engine oil and rust. 1:5 dilution ratio. Made in Canada.",
-      ar: "مزيل شحوم احترافي عالي الفعالية بتقنية CA Tech™. مصمم للبقع الصعبة والشحوم وزيوت المحركات والصدأ. نسبة تخفيف ١:٥. صُنع في كندا.",
+      en: "Professional heavy-duty degreaser with All-in-One CA Tech™. Formulated for tough stains, heavy grease, engine oil and rust. 1:5 dilution ratio. For exterior use only. Made in Canada.",
+      ar: "مزيل شحوم احترافي عالي الفعالية بتقنية CA Tech™. مصمم للبقع الصعبة والشحوم وزيوت المحركات والصدأ. نسبة تخفيف ١:٥. للاستخدام الخارجي فقط. صُنع في كندا.",
     },
     longDesc: {
-      en: "Briller Heavy Duty Degreaser is an industrial-strength, Canadian-engineered degreaser powered by All-in-One CA Tech™. Formulated for commercial detail shops, car washes, and fleet maintenance facilities. Available in a 20 L bulk drum.\n\nEngineered specifically to dissolve and lift the toughest contaminants — including baked-on grease, engine oil buildup, heavy road grime, industrial stains, and rust residue. Highly concentrated formula dilutes 1:5 with water for maximum cleaning efficiency and cost savings.",
-      ar: "مزيل الشحوم فائق القوة Briller Heavy Duty Degreaser تركيبة كندية صناعية متطورة تعمل بتقنية All-in-One CA Tech™. مصمم لمراكز العناية بالسيارات والورش ومحطات الغسيل. متوفر ببرميل سعة ٢٠ لتر.\n\nمصمم خصيصاً لإذابة وإزالة أصعب الملوثات والترسبات — بما في ذلك الشحوم المستعصية، تراكمات زيوت المحركات، أوساخ الطريق الثقيلة، البقع الصناعية، وبقايا الصدأ. تركيبة مركزة تُخفف بنسبة ١:٥ مع الماء لأقصى كفاءة تنظيف وتوفير اقتصادي.",
+      en: "Briller Heavy Duty Degreaser is an industrial-strength, Canadian-engineered degreaser powered by All-in-One CA Tech™. Formulated for commercial detail shops, car washes, and fleet maintenance facilities. Available in a 20 L bulk drum.\n\nEngineered specifically to dissolve and lift the toughest contaminants — including baked-on grease, engine oil buildup, heavy road grime, industrial stains, and rust residue. Highly concentrated formula dilutes 1:5 with water for maximum cleaning efficiency and cost savings.
+
+Recommended for exterior use only.",
+      ar: "مزيل الشحوم فائق القوة Briller Heavy Duty Degreaser تركيبة كندية صناعية متطورة تعمل بتقنية All-in-One CA Tech™. مصمم لمراكز العناية بالسيارات والورش ومحطات الغسيل. متوفر ببرميل سعة ٢٠ لتر.\n\nمصمم خصيصاً لإذابة وإزالة أصعب الملوثات والترسبات — بما في ذلك الشحوم المستعصية، تراكمات زيوت المحركات، أوساخ الطريق الثقيلة، البقع الصناعية، وبقايا الصدأ. تركيبة مركزة تُخفف بنسبة ١:٥ مع الماء لأقصى كفاءة تنظيف وتوفير اقتصادي.
+
+يُنصح باستخدامه للأسطح الخارجية فقط.",
     },
     images: ["/products/briller/briller-heavy-duty-degreaser.webp"],
     specs: [
@@ -705,6 +709,7 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
       { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "1:5 with water", ar: "١:٥ مع الماء" } },
       { label: { en: "Targets", ar: "الاستخدام" }, value: { en: "Tough stains · Grease · Engine oil · Rust", ar: "البقع الصعبة · الشحوم · زيت المحرك · الصدأ" } },
+      { label: { en: "Recommended use", ar: "الاستخدام الموصى به" }, value: { en: "Exterior use only", ar: "للاستخدام الخارجي فقط" } },
       { label: { en: "Technology", ar: "التقنية" }, value: { en: "All-in-One CA Tech™", ar: "تقنية All-in-One CA Tech™" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
@@ -713,7 +718,7 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     highlight: "briller-color",
     volumesMl: [20000],
-    updatedAt: "2026-10-06",
+    updatedAt: "2026-10-09",
   },
 
   // ───── Autotriz — Detailing Chemicals
