@@ -564,7 +564,11 @@ export const PRODUCTS: Product[] = [
       en: "Briller's All-in-One CA Tech™ formula cleans and waxes in a single wash. Produces thick, safe suds that lift dirt without scratching, then leaves a durable hydrophobic layer for a water-beading high-gloss finish. Available in 20L bulk in blue, red or green — ideal for car washes and detailing shops.",
       ar: "تركيبة Briller CA Tech™ تنظف وتشمع في غسلة واحدة. رغوة كثيفة وآمنة ترفع الأوساخ دون خدش، وتترك طبقة طاردة للماء تعطي لمعاناً عالياً. متوفر في عبوات 20 لتر بألوان أزرق وأحمر وأخضر — مثالي لمحطات الغسيل وورش التلميع.",
     },
-    images: ["/products/briller/briller-wash-and-wax.webp"],
+    images: [
+      "/products/briller/briller-wash-and-wax.webp",
+      "/products/briller/briller-wash-and-wax-red.webp",
+      "/products/briller/briller-wash-and-wax-green.webp",
+    ],
     specs: [
       { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 350 (Was QAR 400)", ar: "٣٥٠ ر.ق (سابقاً ٤٠٠ ر.ق)" } },
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B505", ar: "B505" } },
