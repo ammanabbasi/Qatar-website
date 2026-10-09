@@ -1590,6 +1590,7 @@ export const PRODUCTS: Product[] = [
       { label: { en: "Price", ar: "السعر" }, value: { en: "60 ml: QAR 50 | 250 ml: QAR 180 | 350 ml: QAR 220 | 500 ml: QAR 280", ar: "٦٠ مل: ٥٠ ر.ق | ٢٥٠ مل: ١٨٠ ر.ق | ٣٥٠ مل: ٢٢٠ ر.ق | ٥٠٠ مل: ٢٨٠ ر.ق" } },
       { label: { en: "Sizes", ar: "الأحجام المتوفرة" }, value: { en: "60 ML, 250 ML, 350 ML & 500 ML", ar: "٦٠ مل، ٢٥٠ مل، ٣٥٠ مل و ٥٠٠ مل" } },
       { label: { en: "Origin", ar: "بلد المنشأ" }, value: { en: "Made in France", ar: "صُنع في فرنسا" } },
+      { label: { en: "Includes", ar: "يشمل" }, value: { en: "2 sponges + 1 premium microfibre", ar: "إسفنجتان + قطعة مايكروفايبر فاخرة" } },
       { label: { en: "Durability", ar: "المتانة والفعالية" }, value: { en: "6 Months Gloss on Plastic Trims", ar: "لمعان وحماية تدوم حتى ٦ أشهر" } },
       { label: { en: "Application", ar: "طريقة التطبيق" }, value: { en: "Apply with microfibre or sponge, leave 10-15 mins, wipe with clean microfibre", ar: "تطبيق بمايكروفايبر أو إسفنجة، يُترك ١٠-١٥ دقيقة، يُمسح بمايكروفايبر نظيفة" } },
       { label: { en: "Curing / Healing", ar: "فترة التصلب والتماسك" }, value: { en: "Protect surface for 6 to 7 hours (do not drive during healing period)", ar: "حماية السطح لمدة ٦ إلى ٧ ساعات (يُوصى بعدم القيادة خلال هذه الفترة)" } },
@@ -1630,7 +1631,7 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     volumesMl: [60, 250, 350, 500],
-    updatedAt: "2026-10-04",
+    updatedAt: "2026-10-09",
   },
   {
     slug: "abk-mashmom-home-fragrance",
