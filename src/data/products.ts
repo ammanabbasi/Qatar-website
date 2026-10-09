@@ -594,8 +594,8 @@ export const PRODUCTS: Product[] = [
       ar: "Briller — منظف متعدد الأغراض",
     },
     shortDesc: {
-      en: "Interior-safe foaming cleaner. All-in-One CA Tech™.",
-      ar: "منظف رغوي آمن للداخلية بتقنية CA Tech™.",
+      en: "Lemon-scented foaming cleaner, safe on leather, fabric, plastic and interiors. All-in-One CA Tech™.",
+      ar: "منظف رغوي برائحة الليمون، آمن على الجلد والقماش والبلاستيك والمقصورة الداخلية. بتقنية CA Tech™.",
     },
     longDesc: {
       en: "Briller Multipurpose Cleaner lifts dirt from every interior surface — fabric, plastic, leather, carpet. Foaming action penetrates deep, elevates luxury feel with enhanced fabric softener results.",
@@ -607,6 +607,8 @@ export const PRODUCTS: Product[] = [
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B502", ar: "B502" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
       { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "1:5", ar: "١:٥" } },
+      { label: { en: "Scent", ar: "الرائحة" }, value: { en: "Lemon", ar: "ليمون" } },
+      { label: { en: "Safe on", ar: "آمن على" }, value: { en: "Leather · Fabric · Plastic · Interior", ar: "الجلد · القماش · البلاستيك · المقصورة الداخلية" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
     price: { en: "QAR 350", ar: "٣٥٠ ر.ق" },
@@ -616,7 +618,7 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     highlight: "briller-color",
     volumesMl: [20000],
-    updatedAt: "2026-10-06",
+    updatedAt: "2026-10-09",
   },
   {
     slug: "briller-quick-tyre-shine",
@@ -1539,12 +1541,12 @@ export const PRODUCTS: Product[] = [
       ar: "Briller — ملمّع سريع",
     },
     shortDesc: {
-      en: "Aqua-based all-in-one dressing — peak shine for interior, engine and tyres. Ratio 1:1.",
-      ar: "ملمّع مائي شامل — لمعان فائق للداخل والمحرك والإطارات. بنسبة تخفيف ١:١.",
+      en: "Aqua-based, perfume-scented dressing for exterior plastic trims, leather, dashboard and interior trims. Satin finish. Ratio 1:1.",
+      ar: "ملمّع مائي برائحة عطرية للديكورات البلاستيكية الخارجية والجلد والطبلون وديكورات المقصورة. لمسة ساتان. بنسبة تخفيف ١:١.",
     },
     longDesc: {
-      en: "Briller Quick Dressing is an aqua-based all-in-one dressing for interior trim, engine bays and tyres. Peak shine inside and out, safe on plastic, rubber and vinyl. Dilutes 1:1 for economical bulk detailing work. Available in 20 L — ideal for car washes and detail shops.",
-      ar: "Briller Quick Dressing ملمّع مائي شامل للداخلية ومقصورة المحرك والإطارات. لمعان فائق داخلياً وخارجياً، آمن على البلاستيك والمطاط والفينيل. يخفّف بنسبة ١:١ للاستخدام الاقتصادي. متوفر بعبوة 20 لتر — مثالي لمحطات الغسيل وورش التلميع.",
+      en: "Briller Quick Dressing is an aqua-based dressing with a perfume scent for exterior plastic trims, leather, dashboard and interior trims. Leaves a satin finish, safe on plastic, rubber and vinyl. Dilutes 1:1 for economical bulk detailing work. Available in 20 L — ideal for car washes and detail shops.",
+      ar: "Briller Quick Dressing ملمّع مائي برائحة عطرية للديكورات البلاستيكية الخارجية والجلد والطبلون وديكورات المقصورة. يترك لمسة ساتان، آمن على البلاستيك والمطاط والفينيل. يخفّف بنسبة ١:١ للاستخدام الاقتصادي. متوفر بعبوة 20 لتر — مثالي لمحطات الغسيل وورش التلميع.",
     },
     images: ["/products/briller/briller-quick-dressing.webp"],
     specs: [
@@ -1552,6 +1554,9 @@ export const PRODUCTS: Product[] = [
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B511", ar: "B511" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
       { label: { en: "Dilution", ar: "نسبة التخفيف" }, value: { en: "1:1", ar: "١:١" } },
+      { label: { en: "Finish", ar: "اللمسة النهائية" }, value: { en: "Satin", ar: "ساتان" } },
+      { label: { en: "Base", ar: "الأساس" }, value: { en: "Aqua-based · Perfume scent", ar: "مائي · رائحة عطرية" } },
+      { label: { en: "Use on", ar: "الاستخدام" }, value: { en: "Exterior plastic trims · Leather · Dashboard · Interior trims", ar: "الديكورات البلاستيكية الخارجية · الجلد · الطبلون · ديكورات المقصورة" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
     price: { en: "QAR 450", ar: "٤٥٠ ر.ق" },
@@ -1559,7 +1564,7 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     highlight: "briller-color",
     volumesMl: [20000],
-    updatedAt: "2026-10-05",
+    updatedAt: "2026-10-09",
   },
 
   // ───── ABK — in-house premium line
