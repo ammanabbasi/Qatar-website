@@ -1,7 +1,9 @@
 import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { buttonClasses } from "@/components/ui/Button";
 import { CheckIcon } from "@/components/ui/Icons";
+import { WhatsAppIcon } from "@/components/cta/WhatsAppIcon";
 import {
   BODY_TYPES,
   COVERAGES,
@@ -13,6 +15,7 @@ import {
   presetPriceList,
 } from "@/data/ppfInstall";
 import { formatQar } from "@/lib/pricing";
+import { buildPpfCustomOfferWhatsAppUrl } from "@/lib/whatsapp";
 
 const INCLUDED = ["included1", "included2", "included3"] as const;
 
@@ -83,8 +86,11 @@ export async function PpfPriceList({ locale }: { locale: "en" | "ar" }) {
                 </tr>
                 {BODY_TYPES.map((b) => (
                   <tr key={b.key} className="border-t border-(--color-border-soft)">
-                    <th scope="row" className="px-4 py-2.5 text-start font-normal text-(--color-text-muted) sm:px-6">
-                      {b.name[locale]}
+                    <th scope="row" className="px-4 py-2.5 text-start font-normal sm:px-6">
+                      <span className="block font-medium text-(--color-text)">{b.name[locale]}</span>
+                      <span className="mt-0.5 block text-caption text-(--color-text-muted)">
+                        {b.examples[locale]}
+                      </span>
                     </th>
                     {columns.map((col) => (
                       <td key={col.films[0]} className="px-4 py-2.5 text-end font-semibold whitespace-nowrap text-(--color-text) sm:px-6">
@@ -96,6 +102,36 @@ export async function PpfPriceList({ locale }: { locale: "en" | "ar" }) {
               </tbody>
             ))}
           </table>
+        </div>
+
+        {/* Callout for customers unsure which category their vehicle falls under */}
+        <div className="mt-5 flex max-w-3xl flex-col justify-between gap-4 rounded-tile border border-(--color-border) bg-(--color-surface) p-5 sm:flex-row sm:items-center sm:p-6">
+          <div className="min-w-0 flex-1">
+            <h3 className="text-body font-semibold text-(--color-text)">
+              {t("pricesUnsureTitle")}
+            </h3>
+            <p className="mt-1 text-footnote text-(--color-text-muted)">
+              {t("pricesUnsureBody")}
+            </p>
+          </div>
+          <div className="flex shrink-0 flex-wrap items-center gap-2.5">
+            <a
+              href="#quote-custom"
+              className={buttonClasses("primary", "sm")}
+            >
+              {t("pricesUnsureCtaQuote")}
+            </a>
+            <a
+              href={buildPpfCustomOfferWhatsAppUrl({ locale })}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-placement="prices_unsure_whatsapp"
+              className={`plausible-event-name=whatsapp_click plausible-event-audience=b2c ${buttonClasses("secondary", "sm")}`}
+            >
+              <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+              {t("pricesUnsureCtaWhatsApp")}
+            </a>
+          </div>
         </div>
 
         <ul className="mt-5 grid max-w-3xl gap-x-6 gap-y-2 sm:grid-cols-2">

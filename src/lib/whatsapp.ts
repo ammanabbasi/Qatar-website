@@ -383,6 +383,59 @@ export function buildPpfBookingWhatsAppUrl(ctx: PpfBookingMessageContext): strin
   return `https://wa.me/${WHATSAPP_PHONE}?text=${encode(buildPpfBookingWhatsAppMessage(ctx))}`;
 }
 
+export type PpfCustomOfferMessageContext = {
+  locale: WALocale;
+  vehicle?: string;
+  coverage?: string;
+  parts?: string[];
+  film?: string;
+  priceRange?: string;
+};
+
+/**
+ * Quick custom-offer WhatsApp message when a customer enters their car's
+ * make & model (or isn't sure which size category their car belongs to).
+ */
+export function buildPpfCustomOfferWhatsAppMessage(c: PpfCustomOfferMessageContext): string {
+  const ar = c.locale === "ar";
+  const rlm = ar ? "‏" : "";
+  const carText = c.vehicle?.trim() || (ar ? "يرجى تحديد نوع وطراز السيارة" : "please see my car details");
+
+  if (ar) {
+    const lines = [
+      `السلام عليكم ABK، أود الحصول على عرض سعر مخصص لتركيب فيلم حماية الطلاء (PPF) لسيارتي:`,
+      "",
+      `${rlm}• السيارة: ${carText}`,
+      ...(c.coverage
+        ? [`${rlm}• التغطية المطلوبة: ${c.coverage}${c.parts?.length ? ` — ${c.parts.join("، ")}` : ""}`]
+        : []),
+      ...(c.film ? [`${rlm}• الفيلم: ${c.film}`] : []),
+      ...(c.priceRange ? [`${rlm}• النطاق السعري الاسترشادي: ${c.priceRange}`] : []),
+      "",
+      "يرجى إفادتي بالفئة المناسبة لسيارتي وتزويدي بالعرض النهائي. شكراً لكم!",
+    ];
+    return lines.join("\n");
+  }
+
+  const lines = [
+    `Hi ABK, I'd like a custom PPF installation offer for my car:`,
+    "",
+    `• Car: ${carText}`,
+    ...(c.coverage
+      ? [`• Coverage: ${c.coverage}${c.parts?.length ? ` — ${c.parts.join(", ")}` : ""}`]
+      : []),
+    ...(c.film ? [`• Film: ${c.film}`] : []),
+    ...(c.priceRange ? [`• Guide price range: ${c.priceRange}`] : []),
+    "",
+    "Could you confirm which category my car falls under and send me a custom offer? Thank you!",
+  ];
+  return lines.join("\n");
+}
+
+export function buildPpfCustomOfferWhatsAppUrl(ctx: PpfCustomOfferMessageContext): string {
+  return `https://wa.me/${WHATSAPP_PHONE}?text=${encode(buildPpfCustomOfferWhatsAppMessage(ctx))}`;
+}
+
 /** Floating bubble on the installation page — an installation enquiry, not a generic "car care products" one. */
 export function buildPpfEnquiryWhatsAppUrl(locale: WALocale): string {
   const text =
@@ -391,3 +444,4 @@ export function buildPpfEnquiryWhatsAppUrl(locale: WALocale): string {
       : "Hi ABK, I'd like to ask about getting VTEK paint protection film installed on my car.";
   return `https://wa.me/${WHATSAPP_PHONE}?text=${encode(text)}`;
 }
+

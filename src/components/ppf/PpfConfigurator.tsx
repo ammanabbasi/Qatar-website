@@ -28,13 +28,24 @@ import {
   isFilm,
   makeBookingRef,
   quotePpf,
+  quotePpfRange,
   type BodyType,
   type CoverageKey,
   type FilmKey,
   type PartKey,
+  type VehicleBodySelection,
 } from "@/data/ppfInstall";
+import {
+  resolveCarModelName,
+  searchQatarCars,
+  splitCarQuery,
+  type QatarCarEntry,
+} from "@/data/qatarCars";
 import { formatNumber, formatQar } from "@/lib/pricing";
-import { buildPpfBookingWhatsAppUrl } from "@/lib/whatsapp";
+import {
+  buildPpfBookingWhatsAppUrl,
+  buildPpfCustomOfferWhatsAppUrl,
+} from "@/lib/whatsapp";
 import { trackPpfBooking } from "@/lib/analytics";
 
 type L = "en" | "ar";
@@ -144,6 +155,26 @@ function BodyIcon({ body, className = "h-10 w-auto" }: { body: BodyType; classNa
   );
 }
 
+function CustomCarIcon({ className = "h-7 w-7" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 28 28" aria-hidden className={className} fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 18.5h20v-3.2c0-1.1-.7-2.1-1.8-2.4l-2.7-.8-2.1-3.3A2.4 2.4 0 0 0 15.4 7.7H9.8c-.9 0-1.7.5-2.1 1.2L5.8 12l-1 .4c-.5.2-.8.7-.8 1.3v4.8Z" />
+      <circle cx="8.5" cy="18.5" r="2.2" fill="var(--color-surface)" />
+      <circle cx="19.5" cy="18.5" r="2.2" fill="var(--color-surface)" />
+      <path d="M21 4.5v3M19.5 6h3" stroke="var(--color-brand-deep)" strokeWidth="2" />
+    </svg>
+  );
+}
+
+function SearchIcon({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 20 20" aria-hidden className={className} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="9" cy="9" r="6" />
+      <path d="m13.5 13.5 3.5 3.5" />
+    </svg>
+  );
+}
+
 function Field({
   id,
   label,
@@ -212,13 +243,15 @@ export function PpfConfigurator() {
   const [closing, setClosing] = useState(false);
   const [step, setStep] = useState<Step>(0);
   const [dir, setDir] = useState<1 | -1>(1);
-  const [body, setBody] = useState<BodyType | null>(null);
+  const [body, setBody] = useState<VehicleBodySelection | null>(null);
   // "Front-end" is the default coverage: it matches the "from" price, so the
   // footer shows a real price and the diagram shows its zone from the first
   // view. Every panel on the diagram stays tappable ("Choose parts" is last).
   const [coverage, setCoverage] = useState<CoverageKey>("front-end");
   const [parts, setParts] = useState<Set<PartKey>>(new Set());
   const [film, setFilm] = useState<FilmKey>("pro");
+  const [carQuery, setCarQuery] = useState("");
+  const [customStepError, setCustomStepError] = useState(false);
   const [announce, setAnnounce] = useState("");
   const [form, setForm] = useState<Form>({
     make: "",
@@ -241,6 +274,7 @@ export function PpfConfigurator() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const customMakeRef = useRef<HTMLInputElement>(null);
   const closeTimer = useRef(0);
   const drag = useRef<{ y: number; dy: number; t: number } | null>(null);
 
@@ -276,17 +310,24 @@ export function PpfConfigurator() {
   }, [animateClose]);
 
   const openSheet = useCallback(
-    (preset?: BodyType) => {
+    (preset?: VehicleBodySelection, targetStep?: Step) => {
       if (preset && !result) {
         setBody(preset);
         setDir(1);
-        setStep(1);
+        if (targetStep !== undefined) {
+          setStep(targetStep);
+        } else if (preset === "custom") {
+          const hasCar = Boolean(form.make.trim() || form.model.trim());
+          setStep(hasCar ? 1 : 0);
+        } else {
+          setStep(1);
+        }
       }
       if (open) return;
       window.history.pushState({ ppfSheet: true }, "");
       setOpen(true);
     },
-    [open, result],
+    [open, result, form.make, form.model],
   );
 
   useEffect(() => {
@@ -306,30 +347,36 @@ export function PpfConfigurator() {
     };
   }, [open, animateClose]);
 
-  // Any "#quote" link on the page (the hero button, deep links) opens the
-  // sheet; without JavaScript it still scrolls to the launcher.
+  // Any "#quote" or "#quote-custom" link on the page opens the sheet;
+  // without JavaScript it still scrolls to the launcher.
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
-      const a = (e.target as Element | null)?.closest?.('a[href="#quote"]');
+      const a = (e.target as Element | null)?.closest?.('a[href="#quote"], a[href="#quote-custom"]');
       if (!a) return;
       e.preventDefault();
-      openSheet();
+      const href = a.getAttribute("href");
+      if (href === "#quote-custom") {
+        openSheet("custom", 0);
+      } else {
+        openSheet();
+      }
     };
     document.addEventListener("click", onClick);
     return () => document.removeEventListener("click", onClick);
   }, [openSheet]);
 
   // Deep links, first load only: `?film=pro-plus` preselects that film (the
-  // product pages link here) and `#quote` opens the sheet. Read on the client
-  // so the page itself can stay statically rendered.
+  // product pages link here) and `#quote` / `#quote-custom` opens the sheet.
   useEffect(() => {
     let wanted = new URLSearchParams(window.location.search).get("film");
     if (wanted === "ultimate") wanted = "pro-plus";
-    const deepLink = window.location.hash === "#quote";
+    const hash = window.location.hash;
+    const deepLink = hash === "#quote" || hash === "#quote-custom";
     if (!isFilm(wanted) && !deepLink) return;
     const id = window.setTimeout(() => {
       if (isFilm(wanted)) setFilm(wanted);
-      if (deepLink) openSheet();
+      if (hash === "#quote-custom") openSheet("custom", 0);
+      else if (deepLink) openSheet();
     }, 350);
     return () => window.clearTimeout(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -342,6 +389,16 @@ export function PpfConfigurator() {
     scrollRef.current?.scrollTo({ top: 0 });
     headingRef.current?.focus({ preventScroll: true });
   }, [viewKey, open]);
+
+  // Focus the Make input when selecting "Custom offer" in Step 0
+  useEffect(() => {
+    if (open && step === 0 && body === "custom") {
+      const id = window.setTimeout(() => {
+        customMakeRef.current?.focus({ preventScroll: true });
+      }, 120);
+      return () => window.clearTimeout(id);
+    }
+  }, [open, step, body]);
 
   // ── drag the sheet down to dismiss (phones only) ─────────────────────────
   function onDragStart(e: ReactPointerEvent) {
@@ -385,6 +442,48 @@ export function PpfConfigurator() {
     }
   }
 
+  // ── smart car search & custom offer helpers ─────────────────────────────
+  const matchedCars = useMemo(() => searchQatarCars(carQuery, 5), [carQuery]);
+
+  const detectedFromCustomForm = useMemo(() => {
+    const combined = `${form.make} ${form.model}`.trim();
+    if (combined.length < 2) return null;
+    return searchQatarCars(combined, 1)[0] ?? null;
+  }, [form.make, form.model]);
+
+  function selectMatchedCar(entry: QatarCarEntry) {
+    const resolved = resolveCarModelName(entry, carQuery, locale);
+    setForm((f) => ({ ...f, make: resolved.make, model: resolved.model }));
+    setCarQuery("");
+    setCustomStepError(false);
+    if (open) {
+      setBody(entry.body);
+      setDir(1);
+      setStep(1);
+    } else {
+      openSheet(entry.body, 1);
+    }
+  }
+
+  function selectCustomFromQuery(raw: string) {
+    const { make, model } = splitCarQuery(raw, locale);
+    setForm((f) => ({
+      ...f,
+      make: make || f.make,
+      model: model || f.model,
+    }));
+    setCarQuery("");
+    setCustomStepError(false);
+    const hasBoth = Boolean(make && model);
+    if (open) {
+      setBody("custom");
+      setDir(1);
+      setStep(hasBoth ? 1 : 0);
+    } else {
+      openSheet("custom", hasBoth ? 1 : 0);
+    }
+  }
+
   // ── quote ───────────────────────────────────────────────────────────────
   const selectedParts: Set<PartKey> = useMemo(() => {
     if (coverage === "custom") return parts;
@@ -398,6 +497,15 @@ export function PpfConfigurator() {
         : { priceQar: null, isEstimate: false },
     [body, coverage, parts, film],
   );
+
+  const quoteRange = useMemo(
+    () =>
+      body === "custom"
+        ? quotePpfRange({ coverage, parts: [...parts], film })
+        : null,
+    [body, coverage, parts, film],
+  );
+
   const animatedPrice = useAnimatedNumber(quote.priceQar);
 
   const bodyInfo = BODY_TYPES.find((b) => b.key === body);
@@ -405,12 +513,21 @@ export function PpfConfigurator() {
   const filmInfo = FILMS.find((f) => f.key === film)!;
   const partNames = coverage === "custom" ? PARTS.filter((p) => parts.has(p.key)).map((p) => p.name[locale]) : [];
 
+  const shortCarName = [form.make.trim(), form.model.trim()].filter(Boolean).join(" ");
+  const fullCarName = [form.year.trim(), form.make.trim(), form.model.trim()].filter(Boolean).join(" ");
+
   const canAdvance =
-    (step === 0 && body !== null) ||
+    (step === 0 && body !== null && (body !== "custom" || Boolean(shortCarName))) ||
     (step === 1 && (coverage !== "custom" || parts.size > 0)) ||
     step === 2;
 
   const go = (next: Step) => {
+    if (step === 0 && next > 0 && body === "custom" && !shortCarName) {
+      setCustomStepError(true);
+      customMakeRef.current?.focus();
+      return;
+    }
+    setCustomStepError(false);
     setDir(next > step ? 1 : -1);
     setStep(next);
   };
@@ -532,16 +649,33 @@ export function PpfConfigurator() {
   }
 
   // Before a coverage is chosen the footer shows the entry price instead of a dash.
-  const entryPrice = quotePpf({ body: body ?? "sedan", coverage: "front-end", parts: [], film: "pro" }).priceQar!;
+  const entryPrice = quotePpf({
+    body: body && body !== "custom" ? body : "sedan",
+    coverage: "front-end",
+    parts: [],
+    film: "pro",
+  }).priceQar!;
+
+  const rangeText = quoteRange
+    ? t("priceRange", { min: qar(quoteRange.minQar), max: qar(quoteRange.maxQar) })
+    : undefined;
+
   const priceLabel = !body
     ? t("eyebrow")
-    : quote.priceQar === null
+    : body === "custom"
       ? coverage === "custom" && parts.size === 0
         ? t("summaryChooseParts")
-        : t("summaryQuote")
-      : quote.isEstimate
-        ? t("summaryEstimate")
-        : t("summaryFixed");
+        : quoteRange
+          ? t("summaryCustomRange")
+          : t("summaryCustomOffer")
+      : quote.priceQar === null
+        ? coverage === "custom" && parts.size === 0
+          ? t("summaryChooseParts")
+          : t("summaryQuote")
+        : quote.isEstimate
+          ? t("summaryEstimate")
+          : t("summaryFixed");
+
   const priceText =
     animatedPrice !== null && quote.priceQar !== null
       ? qar(animatedPrice)
@@ -549,42 +683,163 @@ export function PpfConfigurator() {
         ? t("priceFrom", { price: qar(entryPrice) })
         : coverage === "custom" && parts.size === 0
           ? t("priceFrom", { price: qar(CUSTOM_MINIMUM_QAR) })
-          : t("priceToQuote");
+          : body === "custom" && rangeText
+            ? rangeText
+            : t("priceToQuote");
+
+  const bodyLabel =
+    body === "custom"
+      ? t("customCarBadge")
+      : bodyInfo?.name[locale] ?? "";
+
+  const vehicleDisplay = shortCarName
+    ? `${shortCarName} (${bodyLabel})`
+    : bodyLabel;
+
+  const recap = `${vehicleDisplay} · ${coverageInfo.name[locale]} · ${filmInfo.name[locale]}`;
 
   const whatsappHref = result
     ? buildPpfBookingWhatsAppUrl({
         locale,
         ref: result.ref,
         vehicle: `${form.year} ${form.make} ${form.model}`.trim(),
-        bodyType: bodyInfo?.name[locale] ?? "",
+        bodyType: bodyLabel,
         coverage: coverageInfo.name[locale],
         parts: partNames,
         film: filmInfo.name[locale],
         price:
-          quote.priceQar === null
-            ? undefined
-            : `${quote.isEstimate ? (locale === "ar" ? "تقديري " : "estimate ") : ""}${qar(quote.priceQar)}`,
+          quote.priceQar !== null
+            ? `${quote.isEstimate ? (locale === "ar" ? "تقديري " : "estimate ") : ""}${qar(quote.priceQar)}`
+            : rangeText
+              ? `${t("customCarBadge")} (${rangeText})`
+              : undefined,
         preferredDate: form.preferredDate || undefined,
         name: form.name.trim(),
       })
     : "";
 
-  const recap = `${bodyInfo?.name[locale]} · ${coverageInfo.name[locale]} · ${filmInfo.name[locale]}`;
+  const fastOfferWhatsAppHref = buildPpfCustomOfferWhatsAppUrl({
+    locale,
+    vehicle: fullCarName || carQuery.trim() || undefined,
+    coverage: step >= 1 ? coverageInfo.name[locale] : undefined,
+    parts: step >= 1 ? partNames : undefined,
+    film: step >= 2 ? filmInfo.name[locale] : undefined,
+    priceRange:
+      step >= 1
+        ? quote.priceQar !== null
+          ? qar(quote.priceQar)
+          : rangeText
+        : undefined,
+  });
+
   const startedQuote = body !== null && !result;
+
+  // ── reusable Smart Car Make/Model Search Box ───────────────────────────
+  const renderCarSearchBox = (inputId: string) => {
+    const trimmed = carQuery.trim();
+    return (
+      <div className="relative">
+        <label htmlFor={inputId} className="block text-caption font-medium text-(--color-text-muted)">
+          {t("carSearchLabel")}
+        </label>
+        <div className="relative mt-1.5 flex items-center">
+          <SearchIcon className="pointer-events-none absolute start-3.5 h-4 w-4 text-(--color-text-subtle)" />
+          <input
+            id={inputId}
+            type="search"
+            autoComplete="off"
+            value={carQuery}
+            onChange={(e) => setCarQuery(e.target.value)}
+            placeholder={t("carSearchPlaceholder")}
+            className="h-11 w-full rounded-xl border border-(--color-border) bg-(--color-bg) ps-10 pe-9 text-footnote text-(--color-text) transition-colors placeholder:text-(--color-text-subtle) hover:border-(--color-text-subtle) focus:bg-(--color-surface) focus-visible:border-(--color-brand-deep) focus-visible:outline-2 focus-visible:outline-offset-0"
+          />
+          {carQuery ? (
+            <button
+              type="button"
+              onClick={() => setCarQuery("")}
+              aria-label={t("carSearchClear")}
+              className="absolute end-2 inline-flex h-7 w-7 items-center justify-center rounded-full text-(--color-text-subtle) hover:bg-(--color-fill) hover:text-(--color-text)"
+            >
+              <svg viewBox="0 0 16 16" aria-hidden className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M4 4l8 8M12 4l-8 8" />
+              </svg>
+            </button>
+          ) : null}
+        </div>
+
+        {trimmed.length > 0 ? (
+          <div className="mt-2 overflow-hidden rounded-xl border border-(--color-border) bg-(--color-surface) shadow-tile">
+            {matchedCars.length > 0 ? (
+              <ul className="divide-y divide-(--color-border-soft)">
+                {matchedCars.map((entry) => {
+                  const cat = BODY_TYPES.find((b) => b.key === entry.body)!;
+                  const from = quotePpf({ body: entry.body, coverage: "front-end", parts: [], film: "pro" }).priceQar!;
+                  return (
+                    <li key={entry.id}>
+                      <button
+                        type="button"
+                        onClick={() => selectMatchedCar(entry)}
+                        className="flex w-full items-center justify-between gap-3 px-3.5 py-2.5 text-start transition-colors hover:bg-(--color-bg) active:bg-(--color-fill)"
+                      >
+                        <span className="min-w-0 flex-1">
+                          <span className="block truncate text-footnote font-semibold text-(--color-text)">
+                            {entry.make[locale]} {entry.model[locale]}
+                          </span>
+                          <span className="mt-0.5 block text-caption text-(--color-brand-deep)">
+                            {t("carSearchMatched", { category: cat.name[locale] })}
+                          </span>
+                        </span>
+                        <span className="shrink-0 text-end">
+                          <span className="block text-caption text-(--color-text-muted)">{t("from")}</span>
+                          <span className="block text-footnote font-semibold tabular-nums">{qar(from)}</span>
+                        </span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : null}
+
+            <button
+              type="button"
+              onClick={() => selectCustomFromQuery(trimmed)}
+              className="flex w-full items-center justify-between gap-3 border-t border-(--color-border-soft) bg-(--color-brand)/[0.08] px-3.5 py-3 text-start transition-colors hover:bg-(--color-brand)/[0.14]"
+            >
+              <span className="min-w-0 flex-1">
+                <span className="block text-footnote font-semibold text-(--color-text)">
+                  {t("carSearchUseCustom", { car: trimmed })}
+                </span>
+                <span className="mt-0.5 block text-caption text-(--color-text-muted)">
+                  {t("carSearchUseCustomSub")}
+                </span>
+              </span>
+              <ChevronIcon className="h-4 w-4 shrink-0 text-(--color-brand-deep) rtl:-scale-x-100" />
+            </button>
+          </div>
+        ) : null}
+      </div>
+    );
+  };
 
   // ── quote selector (in the page hero) ───────────────────────────────────
   const ctaLabel = result
     ? t("launchViewBooking", { ref: result.ref })
     : startedQuote
-      ? `${t("launchResume")}${quote.priceQar !== null ? ` · ${qar(quote.priceQar)}` : ""}`
+      ? `${t("launchResume")}${quote.priceQar !== null ? ` · ${qar(quote.priceQar)}` : rangeText ? ` · ${rangeText}` : ""}`
       : t("launchStart");
 
   const launcher = (
     <div className="rounded-hero bg-(--color-surface) p-4 text-(--color-text) sm:p-5">
       <p className="px-2 text-footnote font-semibold">{t("bodyTitle")}</p>
-      <ul className="mt-1 divide-y divide-(--color-border-soft)">
+
+      <div className="mt-2.5 px-1">
+        {renderCarSearchBox("ppf-hero-car-search")}
+      </div>
+
+      <ul className="mt-2 divide-y divide-(--color-border-soft)">
         {BODY_TYPES.map((b) => {
           const from = quotePpf({ body: b.key, coverage: "front-end", parts: [], film: "pro" }).priceQar!;
+          const isSelectedTier = body === b.key && Boolean(shortCarName);
           return (
             <li key={b.key}>
               <button
@@ -596,19 +851,52 @@ export function PpfConfigurator() {
                   <BodyIcon body={b.key} className="h-7 w-auto" />
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block text-body font-semibold leading-tight">{b.name[locale]}</span>
+                  <span className="flex flex-wrap items-center gap-1.5">
+                    <span className="text-body font-semibold leading-tight">{b.name[locale]}</span>
+                    {isSelectedTier ? (
+                      <span className="rounded-pill bg-(--color-brand)/20 px-2 py-0.5 text-caption font-semibold text-(--color-ink)">
+                        {shortCarName}
+                      </span>
+                    ) : null}
+                  </span>
                   <span className="mt-0.5 block text-caption text-(--color-text-muted)">{b.examples[locale]}</span>
                 </span>
                 <span className="shrink-0 text-end leading-tight">
                   <span className="block text-caption text-(--color-text-muted)">{t("from")}</span>
                   <span className="block text-footnote font-semibold tabular-nums">{qar(from)}</span>
                 </span>
-                <ChevronIcon className="hidden h-3.5 w-3.5 shrink-0 text-(--color-text-subtle) transition-transform sm:block duration-150 group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
+                <ChevronIcon className="hidden h-3.5 w-3.5 shrink-0 text-(--color-text-subtle) transition-transform duration-150 group-hover:translate-x-0.5 sm:block rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
               </button>
             </li>
           );
         })}
+
+        {/* 4th option: Not sure of your car type? Enter Make & Model for a Custom Offer */}
+        <li>
+          <button
+            type="button"
+            onClick={() => openSheet("custom", 0)}
+            className="group flex min-h-16 w-full items-center gap-3 rounded-xl px-2 py-2.5 text-start transition-colors duration-150 hover:bg-(--color-bg) focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-(--color-brand-deep) active:bg-(--color-fill)"
+          >
+            <span className="flex h-10 w-14 shrink-0 items-center justify-center text-(--color-brand-deep) transition-colors duration-150">
+              <CustomCarIcon className="h-7 w-7" />
+            </span>
+            <span className="min-w-0 flex-1">
+              <span className="block text-footnote font-semibold leading-tight text-(--color-text) sm:text-body">
+                {t("customCarOptionTitle")}
+              </span>
+              <span className="mt-0.5 block text-caption text-(--color-text-muted)">
+                {t("customCarOptionSub")}
+              </span>
+            </span>
+            <span className="shrink-0 rounded-pill bg-(--color-brand)/15 px-2.5 py-1 text-caption font-semibold text-(--color-brand-deep)">
+              {t("customCarBadge")}
+            </span>
+            <ChevronIcon className="hidden h-3.5 w-3.5 shrink-0 text-(--color-text-subtle) transition-transform duration-150 group-hover:translate-x-0.5 sm:block rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
+          </button>
+        </li>
       </ul>
+
       <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
         <button
           type="button"
@@ -636,11 +924,24 @@ export function PpfConfigurator() {
   );
 
   const stepBody = (() => {
-    if (step === 0)
+    if (step === 0) {
+      const customActive = body === "custom";
+      const detectedCat = detectedFromCustomForm
+        ? BODY_TYPES.find((b) => b.key === detectedFromCustomForm.body)
+        : null;
+      const detectedFromPrice = detectedFromCustomForm
+        ? quotePpf({ body: detectedFromCustomForm.body, coverage: "front-end", parts: [], film: "pro" }).priceQar!
+        : null;
+
       return (
         <>
           {heading(t("bodyTitle"))}
-          <div role="radiogroup" aria-label={t("bodyTitle")} className="mt-5 grid gap-3 sm:grid-cols-3">
+
+          <div className="mt-4">
+            {renderCarSearchBox("ppf-sheet-car-search")}
+          </div>
+
+          <div role="radiogroup" aria-label={t("bodyTitle")} className="mt-4 grid gap-3 sm:grid-cols-3">
             {BODY_TYPES.map((b) => {
               const active = body === b.key;
               const from = quotePpf({ body: b.key, coverage: "front-end", parts: [], film: "pro" }).priceQar!;
@@ -652,6 +953,7 @@ export function PpfConfigurator() {
                   aria-checked={active}
                   onClick={() => {
                     setBody(b.key);
+                    setCustomStepError(false);
                     window.setTimeout(() => go(1), prefersReducedMotion() ? 0 : 220);
                   }}
                   className={`${optionCls(active)} sm:flex-col sm:items-start sm:gap-3 sm:p-5`}
@@ -671,8 +973,142 @@ export function PpfConfigurator() {
               );
             })}
           </div>
+
+          {/* 4th option card: Not sure of your car type? Enter Make & Model for a Custom Offer */}
+          <div className="mt-3">
+            <button
+              type="button"
+              role="radio"
+              aria-checked={customActive}
+              onClick={() => {
+                setBody("custom");
+                setCustomStepError(false);
+              }}
+              className={optionCls(customActive)}
+            >
+              <span className="flex h-11 w-14 shrink-0 items-center justify-center rounded-xl bg-(--color-brand)/15 text-(--color-brand-deep)">
+                <CustomCarIcon className="h-7 w-7" />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-body font-semibold">{t("customCarOptionTitle")}</span>
+                <span className="mt-0.5 block text-caption text-(--color-text-muted)">
+                  {t("customCarOptionSub")}
+                </span>
+              </span>
+              <span className="shrink-0 rounded-pill bg-(--color-brand)/15 px-3 py-1 text-caption font-semibold text-(--color-brand-deep)">
+                {t("customCarBadge")}
+              </span>
+            </button>
+
+            {customActive ? (
+              <div className="ppf-step-in mt-3 rounded-tile border border-(--color-border) bg-(--color-surface) p-4 sm:p-5">
+                <p className="text-footnote font-semibold text-(--color-text)">
+                  {t("customCarPanelTitle")}
+                </p>
+                <p className="mt-1 text-caption text-(--color-text-muted)">
+                  {t("customCarPanelDesc")}
+                </p>
+
+                <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                  <Field id="ppf-step0-make" label={t("make")} required>
+                    <input
+                      ref={customMakeRef}
+                      id="ppf-step0-make"
+                      autoComplete="off"
+                      placeholder={t("makePlaceholder")}
+                      value={form.make}
+                      onChange={(e) => {
+                        set("make", e.target.value);
+                        if (e.target.value.trim()) setCustomStepError(false);
+                      }}
+                      maxLength={60}
+                      className={`${inputCls} ${customStepError && !shortCarName ? "border-(--color-danger)" : plainBorder}`}
+                    />
+                  </Field>
+                  <Field id="ppf-step0-model" label={t("model")} required>
+                    <input
+                      id="ppf-step0-model"
+                      autoComplete="off"
+                      placeholder={t("modelPlaceholder")}
+                      value={form.model}
+                      onChange={(e) => {
+                        set("model", e.target.value);
+                        if (e.target.value.trim()) setCustomStepError(false);
+                      }}
+                      maxLength={60}
+                      className={`${inputCls} ${customStepError && !shortCarName ? "border-(--color-danger)" : plainBorder}`}
+                    />
+                  </Field>
+                  <Field id="ppf-step0-year" label={t("year")} optionalLabel={t("optional")}>
+                    <input
+                      id="ppf-step0-year"
+                      inputMode="numeric"
+                      placeholder={t("yearPlaceholder")}
+                      value={form.year}
+                      onChange={(e) => set("year", e.target.value.replace(/\D/g, "").slice(0, 4))}
+                      className={`${inputCls} ltr-nums ${plainBorder}`}
+                    />
+                  </Field>
+                </div>
+
+                {customStepError && !shortCarName ? (
+                  <p role="alert" className="mt-2.5 text-caption font-medium text-(--color-danger)">
+                    {t("customCarErrMakeOrModel")}
+                  </p>
+                ) : null}
+
+                {/* If their typed Make + Model matches a known Qatar car, offer 1-tap instant fixed pricing */}
+                {detectedFromCustomForm && detectedCat && detectedFromPrice !== null ? (
+                  <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-(--color-brand)/40 bg-(--color-brand)/[0.08] px-3.5 py-2.5">
+                    <p className="text-caption font-medium text-(--color-text)">
+                      {t("customCarAutoDetected", {
+                        car: `${detectedFromCustomForm.make[locale]} ${detectedFromCustomForm.model[locale]}`,
+                        category: detectedCat.name[locale],
+                        price: t("priceFrom", { price: qar(detectedFromPrice) }),
+                      })}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => selectMatchedCar(detectedFromCustomForm)}
+                      className="rounded-pill bg-(--color-brand) px-3.5 py-1.5 text-caption font-semibold text-(--color-ink) transition-colors hover:bg-(--color-brand-hover)"
+                    >
+                      {t("customCarUseDetected", { category: detectedCat.name[locale] })}
+                    </button>
+                  </div>
+                ) : null}
+
+                <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-(--color-border-soft) pt-4">
+                  <Button
+                    size="md"
+                    onClick={() => {
+                      if (!shortCarName) {
+                        setCustomStepError(true);
+                        customMakeRef.current?.focus();
+                        return;
+                      }
+                      go(1);
+                    }}
+                  >
+                    {t("customCarContinue")}
+                    <ChevronIcon className="h-3.5 w-3.5 rtl:-scale-x-100" />
+                  </Button>
+                  <a
+                    href={fastOfferWhatsAppHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-placement="ppf_custom_offer_fast"
+                    className={`plausible-event-name=whatsapp_click plausible-event-audience=b2c ${buttonClasses("secondary", "md")}`}
+                  >
+                    <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+                    {t("customCarWhatsAppFast")}
+                  </a>
+                </div>
+              </div>
+            ) : null}
+          </div>
         </>
       );
+    }
 
     if (step === 1 && body) {
       const total = PARTS.length;
@@ -704,7 +1140,16 @@ export function PpfConfigurator() {
             <div role="radiogroup" aria-label={t("packagesTitle")} className="grid gap-2">
               {COVERAGES.map((c) => {
                 const active = coverage === c.key;
-                const p = c.key === "custom" ? null : quotePpf({ body, coverage: c.key, parts: [], film: "pro" }).priceQar;
+                const p =
+                  c.key === "custom"
+                    ? null
+                    : body === "custom"
+                      ? null
+                      : quotePpf({ body, coverage: c.key, parts: [], film: "pro" }).priceQar;
+                const r =
+                  c.key !== "custom" && body === "custom"
+                    ? quotePpfRange({ coverage: c.key, parts: [], film: "pro" })
+                    : null;
                 return (
                   <button
                     key={c.key}
@@ -717,7 +1162,11 @@ export function PpfConfigurator() {
                     <span className="min-w-0 flex-1">
                       <span className="block text-footnote font-semibold leading-tight">{c.name[locale]}</span>
                       <span className="mt-0.5 block text-caption tabular-nums text-(--color-text-muted)">
-                        {p !== null ? qar(p) : t("packageCustomSub")}
+                        {p !== null
+                          ? qar(p)
+                          : r !== null
+                            ? t("priceRange", { min: qar(r.minQar), max: qar(r.maxQar) })
+                            : t("packageCustomSub")}
                       </span>
                     </span>
                   </button>
@@ -774,6 +1223,24 @@ export function PpfConfigurator() {
               </div>
             </div>
           </div>
+
+          {body === "custom" ? (
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-(--color-border-soft) bg-(--color-surface) px-4 py-3">
+              <p className="text-caption text-(--color-text-muted)">
+                {t("customOfferFastBar")}
+              </p>
+              <a
+                href={fastOfferWhatsAppHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-placement="ppf_custom_offer_step1"
+                className={`plausible-event-name=whatsapp_click plausible-event-audience=b2c ${buttonClasses("secondary", "sm")}`}
+              >
+                <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+                {t("customOfferFastCta")}
+              </a>
+            </div>
+          ) : null}
         </>
       );
     }
@@ -787,6 +1254,10 @@ export function PpfConfigurator() {
               const active = film === f.key;
               const p = quotePpf({ body, coverage, parts: [...parts], film: f.key }).priceQar;
               const baseP = quotePpf({ body, coverage, parts: [...parts], film: "pro" }).priceQar;
+              const fRange =
+                body === "custom"
+                  ? quotePpfRange({ coverage, parts: [...parts], film: f.key })
+                  : null;
               return (
                 <div key={f.key} className="relative">
                   <button
@@ -802,13 +1273,15 @@ export function PpfConfigurator() {
                     <span className="min-w-0 flex-1">
                       <span className="block text-body font-semibold">{f.name[locale]}</span>
                       <span className="mt-0.5 block text-footnote font-semibold tabular-nums">
-                        {f.uplift === 0
-                          ? t("filmIncluded")
-                          : f.uplift === null
-                            ? t("filmQuote")
-                            : p !== null && baseP !== null
-                              ? t("filmExtra", { amount: qar(p - baseP) })
-                              : ""}
+                        {f.uplift === null
+                          ? t("filmQuote")
+                          : fRange !== null
+                            ? t("priceRange", { min: qar(fRange.minQar), max: qar(fRange.maxQar) })
+                            : f.uplift === 0
+                              ? t("filmIncluded")
+                              : p !== null && baseP !== null
+                                ? t("filmExtra", { amount: qar(p - baseP) })
+                                : ""}
                       </span>
                       <span className="mt-1 block text-caption text-(--color-text-muted)">{f.desc[locale]}</span>
                       <span className="mt-1.5 block text-caption text-(--color-text-muted)">
@@ -827,6 +1300,24 @@ export function PpfConfigurator() {
               );
             })}
           </div>
+
+          {body === "custom" ? (
+            <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-(--color-border-soft) bg-(--color-surface) px-4 py-3">
+              <p className="text-caption text-(--color-text-muted)">
+                {t("customOfferFastBar")}
+              </p>
+              <a
+                href={fastOfferWhatsAppHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-placement="ppf_custom_offer_step2"
+                className={`plausible-event-name=whatsapp_click plausible-event-audience=b2c ${buttonClasses("secondary", "sm")}`}
+              >
+                <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+                {t("customOfferFastCta")}
+              </a>
+            </div>
+          ) : null}
         </>
       );
 
@@ -838,12 +1329,31 @@ export function PpfConfigurator() {
             <p className="min-w-0 text-footnote text-(--color-text-muted)">{recap}</p>
             <button
               type="button"
-              onClick={() => go(1)}
+              onClick={() => go(0)}
               className="text-link min-h-11 shrink-0 px-2 text-footnote font-medium"
             >
               {t("recapChange")}
             </button>
           </div>
+
+          {body === "custom" ? (
+            <div className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-(--color-brand)/35 bg-(--color-brand)/[0.07] px-4 py-2.5">
+              <p className="text-caption font-medium text-(--color-text)">
+                {t("customOfferFastBar")}
+              </p>
+              <a
+                href={fastOfferWhatsAppHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-placement="ppf_custom_offer_step3"
+                className={`plausible-event-name=whatsapp_click plausible-event-audience=b2c ${buttonClasses("secondary", "sm")}`}
+              >
+                <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+                {t("customOfferFastCta")}
+              </a>
+            </div>
+          ) : null}
+
           {submitted && FORM_FIELDS.some((k) => errorFor(k)) ? (
             <p role="alert" className="mt-4 flex items-center gap-2 rounded-xl bg-(--color-danger)/8 px-4 py-3 text-footnote font-medium text-(--color-danger)">
               <AlertIcon className="h-4 w-4 shrink-0" />
@@ -855,14 +1365,14 @@ export function PpfConfigurator() {
               {t("groupCar")}
             </p>
             <Field id="ppf-make" label={t("make")} required error={shownError("make")}>
-              <input id="ppf-make" autoComplete="off" value={form.make} onChange={(e) => set("make", e.target.value)} onBlur={blur("make")} maxLength={60} className={`${inputCls} ${borderFor("make")}`} {...aria("make")} />
+              <input id="ppf-make" autoComplete="off" placeholder={t("makePlaceholder")} value={form.make} onChange={(e) => set("make", e.target.value)} onBlur={blur("make")} maxLength={60} className={`${inputCls} ${borderFor("make")}`} {...aria("make")} />
             </Field>
             <Field id="ppf-model" label={t("model")} required error={shownError("model")}>
-              <input id="ppf-model" autoComplete="off" value={form.model} onChange={(e) => set("model", e.target.value)} onBlur={blur("model")} maxLength={60} className={`${inputCls} ${borderFor("model")}`} {...aria("model")} />
+              <input id="ppf-model" autoComplete="off" placeholder={t("modelPlaceholder")} value={form.model} onChange={(e) => set("model", e.target.value)} onBlur={blur("model")} maxLength={60} className={`${inputCls} ${borderFor("model")}`} {...aria("model")} />
             </Field>
             <div className="col-span-2 sm:col-span-1">
               <Field id="ppf-year" label={t("year")} required error={shownError("year")}>
-                <input id="ppf-year" inputMode="numeric" value={form.year} onChange={(e) => set("year", e.target.value.replace(/\D/g, "").slice(0, 4))} onBlur={blur("year")} className={`${inputCls} ltr-nums ${borderFor("year")}`} {...aria("year")} />
+                <input id="ppf-year" inputMode="numeric" placeholder={t("yearPlaceholder")} value={form.year} onChange={(e) => set("year", e.target.value.replace(/\D/g, "").slice(0, 4))} onBlur={blur("year")} className={`${inputCls} ltr-nums ${borderFor("year")}`} {...aria("year")} />
               </Field>
             </div>
             <div className="col-span-2 sm:col-span-1">
@@ -955,7 +1465,7 @@ export function PpfConfigurator() {
         <p className="ltr-nums mt-1 font-mono text-title font-semibold tracking-wider text-(--color-text)">{result.ref}</p>
         <p className="mt-2 text-footnote text-(--color-text-muted)">
           {recap}
-          {quote.priceQar !== null ? ` · ${qar(quote.priceQar)}` : ""}
+          {quote.priceQar !== null ? ` · ${qar(quote.priceQar)}` : rangeText ? ` · ${rangeText}` : ""}
         </p>
       </div>
       <ol className="mt-7 flex flex-col gap-3 text-start">
@@ -1112,7 +1622,7 @@ export function PpfConfigurator() {
               {/* Distinct keys: reusing one DOM button and flipping it to
                   type="submit" mid-click would submit the empty form the
                   moment "Continue" reaches the details step. */}
-              {step === 0 ? null : step < 3 ? (
+              {step === 0 && !body ? null : step < 3 ? (
                 <Button key="next" size="lg" onClick={() => go((step + 1) as Step)} disabled={!canAdvance}>
                   {t("next")}
                   <ChevronIcon className="h-3.5 w-3.5 rtl:-scale-x-100" />

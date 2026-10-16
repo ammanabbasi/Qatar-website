@@ -17,6 +17,7 @@
 import type { LocalizedText } from "./products";
 
 export type BodyType = "sedan" | "suv" | "large-suv";
+export type VehicleBodySelection = BodyType | "custom";
 export type CoverageKey = "front-end" | "full-front" | "full-body" | "custom";
 export type FilmKey = "pro" | "pro-plus" | "matte" | "prism";
 export type PartKey =
@@ -37,17 +38,17 @@ export const BODY_TYPES: Array<{ key: BodyType; name: LocalizedText; examples: L
   {
     key: "sedan",
     name: { en: "Sedan / Coupe", ar: "سيدان / كوبيه" },
-    examples: { en: "e.g. Camry, Accord, Altima, Mustang", ar: "مثل كامري، أكورد، ألتيما، موستانج" },
+    examples: { en: "e.g. Camry, Accord, Altima, Mustang, 911", ar: "مثل كامري، أكورد، ألتيما، موستانج، 911" },
   },
   {
     key: "suv",
     name: { en: "Mid SUV / Crossover", ar: "SUV متوسطة / كروس أوفر" },
-    examples: { en: "e.g. RAV4, Tucson, Sportage, X-Trail", ar: "مثل راف فور، توسان، سبورتاج، إكس تريل" },
+    examples: { en: "e.g. RAV4, Jetour T2, Cayenne, X5, Tucson", ar: "مثل راف فور، جيتور T2، كايين، X5، توسان" },
   },
   {
     key: "large-suv",
     name: { en: "SUV / Large SUV", ar: "SUV / دفع رباعي كبير" },
-    examples: { en: "e.g. Land Cruiser, Patrol, Tahoe, Yukon", ar: "مثل لاند كروزر، باترول، تاهو، يوكن" },
+    examples: { en: "e.g. Land Cruiser, Patrol, Prado, Defender, Yukon", ar: "مثل لاند كروزر، باترول، برادو، ديفندر، يوكن" },
   },
 ];
 
@@ -209,14 +210,14 @@ export const FILMS: Array<{
 export const WORKMANSHIP_COVER_MONTHS = 12;
 
 export type PpfSelection = {
-  body: BodyType;
+  body: VehicleBodySelection;
   coverage: CoverageKey;
   parts: PartKey[];
   film: FilmKey;
 };
 
 export type PpfQuote = {
-  /** null when the job is priced individually (PRISM, or no parts chosen). */
+  /** null when the job is priced individually (PRISM, custom vehicle offer, or no parts chosen). */
   priceQar: number | null;
   /** Custom-parts totals are estimates; presets are fixed prices. */
   isEstimate: boolean;
@@ -226,6 +227,9 @@ const roundUp50 = (n: number) => Math.ceil(n / 50) * 50;
 
 export function isBodyType(v: unknown): v is BodyType {
   return BODY_TYPES.some((b) => b.key === v);
+}
+export function isVehicleBodySelection(v: unknown): v is VehicleBodySelection {
+  return isBodyType(v) || v === "custom";
 }
 export function isCoverage(v: unknown): v is CoverageKey {
   return COVERAGES.some((c) => c.key === v);
@@ -238,7 +242,7 @@ export function isPart(v: unknown): v is PartKey {
 }
 
 /** Price of a PRO job before any film upgrade. */
-function proPrice(sel: PpfSelection): number | null {
+function proPrice(sel: { body: BodyType; coverage: CoverageKey; parts: PartKey[]; film: FilmKey }): number | null {
   if (sel.coverage !== "custom") return PRESET_PRICES_QAR[sel.coverage][sel.body];
   if (sel.parts.length === 0) return null;
   const fullBody = PRESET_PRICES_QAR["full-body"][sel.body];
@@ -247,6 +251,9 @@ function proPrice(sel: PpfSelection): number | null {
 }
 
 export function quotePpf(sel: PpfSelection): PpfQuote {
+  if (sel.body === "custom") {
+    return { priceQar: null, isEstimate: true };
+  }
   const filmKey = ((sel.film as string) === "ultimate" ? "pro-plus" : sel.film) as FilmKey;
   const film = FILMS.find((f) => f.key === filmKey);
   const isEstimate = sel.coverage === "custom";
@@ -261,12 +268,27 @@ export function quotePpf(sel: PpfSelection): PpfQuote {
     }
   }
 
-  const base = proPrice(sel);
+  const base = proPrice({ ...sel, body: sel.body });
   if (base === null) return { priceQar: null, isEstimate };
   return {
     priceQar: film.uplift === 0 ? base : roundUp50(base * (1 + film.uplift)),
     isEstimate,
   };
+}
+
+/**
+ * Guide price range (Sedan -> Large SUV) when the customer chooses the
+ * "Not sure / Custom offer by Make & Model" path (`body === "custom"`).
+ */
+export function quotePpfRange(sel: {
+  coverage: CoverageKey;
+  parts: PartKey[];
+  film: FilmKey;
+}): { minQar: number; maxQar: number } | null {
+  const low = quotePpf({ ...sel, body: "sedan" }).priceQar;
+  const high = quotePpf({ ...sel, body: "large-suv" }).priceQar;
+  if (low === null || high === null) return null;
+  return { minQar: low, maxQar: high };
 }
 
 /** Lowest PRO price per coverage — the "From QAR …" on each card. */

@@ -18,10 +18,10 @@
  */
 
 import {
-  isBodyType,
   isCoverage,
   isFilm,
   isPart,
+  isVehicleBodySelection,
   makeBookingRef,
   quotePpf,
   type PartKey,
@@ -66,7 +66,7 @@ export async function POST(request: Request) {
 
   const { body, coverage, film } = f;
   const parts = Array.isArray(f.parts) ? (f.parts.filter(isPart) as PartKey[]) : [];
-  if (!isBodyType(body) || !isCoverage(coverage) || !isFilm(film)) {
+  if (!isVehicleBodySelection(body) || !isCoverage(coverage) || !isFilm(film)) {
     return json(422, { ok: false, error: "invalid_selection" });
   }
   if (coverage === "custom" && parts.length === 0) {

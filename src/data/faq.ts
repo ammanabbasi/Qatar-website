@@ -376,4 +376,15 @@ export const PPF_INSTALL_FAQ: FaqEntry[] = [
       ar: "يتم التركيب في استوديوهات شريكة معتمدة من VTEK داخل الدوحة، مجهزة بكبائن خالية من الغبار ونظام تكييف محكوم لضمان نقاء التطبيق. يتم تأكيد الموقع وإرشادات تسليم السيارة مع موعدك، بموقع ملائم للمقيمين في مسيمير، الريان، لوسيل، الدفنة، اللؤلؤة، الوكرة، والخور.",
     },
   },
+  {
+    q: {
+      en: "I'm not sure which category my car falls under. How can I get an exact offer?",
+      ar: "لست متأكداً من الفئة التي تُحسب عليها سيارتي. كيف أحصل على عرض سعر دقيق؟",
+    },
+    a: {
+      en: "Type your car's make and model in the quote builder search bar to automatically see its category and instant price. If your vehicle isn't listed or you prefer a tailored quote, select 'Not sure? Get a Custom Offer' and enter your make and model — our team will confirm the exact offer on WhatsApp.",
+      ar: "اكتب نوع وطراز سيارتك في خانة البحث داخل أداة التسعير لمعرفة فئتها وسعرها الفوري تلقائياً. وإذا لم تجد سيارتك أو كنت تفضل عرضاً مخصصاً، اختر «لست متأكداً؟ احصل على عرض مخصص» وأدخل نوع وطراز السيارة ليؤكد لك فريقنا العرض الدقيق عبر واتساب.",
+    },
+  },
 ];
+
