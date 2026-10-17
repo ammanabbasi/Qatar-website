@@ -24,28 +24,34 @@
         "url": "https://abktradingservice.com/en/b2c/products"
       },
       {
-        "text": "Wholesale Pricing",
-        "desc1": "Trade rates for workshops",
-        "desc2": "Ask for the price list",
-        "url": "https://abktradingservice.com/en/b2b"
+        "text": "Window Tint Film",
+        "desc1": "VTEK Solar Armor nano-ceramic",
+        "desc2": "Heat & UV rejection rolls",
+        "url": "https://abktradingservice.com/en/b2c/categories/window-tint"
       },
       {
         "text": "Become a Dealer",
-        "desc1": "Distribute across the GCC",
+        "desc1": "Wholesale rates for workshops",
         "desc2": "Apply in one message",
         "url": "https://abktradingservice.com/en/b2b/become-a-dealer"
+      },
+      {
+        "text": "PPF Installation Doha",
+        "desc1": "Full body from QAR 3,999",
+        "desc2": "VTEK TPU film, 1-yr cover",
+        "url": "https://abktradingservice.com/en/b2c/ppf-installation"
       },
       {
         "text": "Paint Protection Film",
         "desc1": "VTEK PPF for the Qatar sun",
         "desc2": "Gloss, matte and prism",
-        "url": "https://abktradingservice.com/en/b2c/products?category=ppf"
+        "url": "https://abktradingservice.com/en/b2c/categories/paint-protection-film"
       },
       {
         "text": "Ceramic Coatings",
         "desc1": "Autotriz 3D Matrix and Ion",
         "desc2": "For detailers and owners",
-        "url": "https://abktradingservice.com/en/b2c/products?category=ceramic"
+        "url": "https://abktradingservice.com/en/b2c/categories/ceramic-coatings"
       },
       {
         "text": "Visit the Doha Store",
@@ -68,28 +74,34 @@
         "url": "https://abktradingservice.com/ar/b2c/products"
       },
       {
-        "text": "أسعار الجملة",
-        "desc1": "أسعار خاصة للورش والمحلات",
-        "desc2": "اطلب قائمة الأسعار",
-        "url": "https://abktradingservice.com/ar/b2b"
+        "text": "أفلام تظليل الزجاج",
+        "desc1": "تظليل VTEK نانو سيراميك",
+        "desc2": "عزل حراري لمناخ قطر",
+        "url": "https://abktradingservice.com/ar/b2c/categories/window-tint"
       },
       {
         "text": "كن موزعاً معنا",
-        "desc1": "التوزيع في قطر والخليج",
+        "desc1": "أسعار الجملة للورش والمحلات",
         "desc2": "قدّم طلبك برسالة واحدة",
         "url": "https://abktradingservice.com/ar/b2b/become-a-dealer"
+      },
+      {
+        "text": "تركيب PPF في الدوحة",
+        "desc1": "حماية كاملة من ٣,٩٩٩ ر.ق",
+        "desc2": "أفلام VTEK الأصلية مع ضمان",
+        "url": "https://abktradingservice.com/ar/b2c/ppf-installation"
       },
       {
         "text": "أفلام حماية الطلاء",
         "desc1": "أفلام VTEK لحماية طلاء سيارتك",
         "desc2": "لامع ومطفي وبريزم",
-        "url": "https://abktradingservice.com/ar/b2c/products?category=ppf"
+        "url": "https://abktradingservice.com/ar/b2c/categories/paint-protection-film"
       },
       {
         "text": "طلاء السيراميك",
         "desc1": "أوتوتريز ثري دي ماتريكس",
         "desc2": "للمحترفين وهواة العناية",
-        "url": "https://abktradingservice.com/ar/b2c/products?category=ceramic"
+        "url": "https://abktradingservice.com/ar/b2c/categories/ceramic-coatings"
       },
       {
         "text": "زوروا معرضنا في الدوحة",

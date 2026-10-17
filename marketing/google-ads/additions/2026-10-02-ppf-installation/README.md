@@ -58,3 +58,15 @@ Weekly (staff):
 3. **Download.** With the Ads import tab open: File → Download → Comma-separated values (.csv), current sheet.
 4. **Upload.** Google Ads → Goals → Conversions → Uploads → **+** → Source: Upload a file → choose the CSV → Preview → Apply. Upload conversions at least 24 hours after the click. Clicks older than 90 days are rejected.
 5. **Check the result** an hour later in Uploads (status and any row errors), and note the date of the last upload in the Sheet so the next week only adds new rows. Re-uploading a row Google already has is reported as a duplicate, not double-counted.
+
+## Changes made 2026-10-17 (traffic & conversion maximisation audit)
+
+| Change | Old value | New value | Revert |
+|---|---|---|---|
+| `ABK \| Search \| EN \| PPF Installation` (`24319728682`) bidding strategy | `Target impression share` (`Top of results page`, **18% impression share target**, `$1.92` max CPC limit — throttled delivery to 13 clicks/week and left 43% of `$7/day` budget unspent) | **`Maximise clicks`** with **`US$1.20` Maximum CPC bid limit** | Campaign settings → Bidding → Change bid strategy |
+| `ABK \| Search \| AR \| PPF Installation` (`24319728847`) bidding strategy | `Manual CPC` (`$1.10–$1.37`, `0 clicks` / `4 impressions`) | **`Maximise clicks`** with **`US$1.20` Maximum CPC bid limit** | Campaign settings → Bidding → Change bid strategy |
+| `Campaign #1` (`23896091195`) Networks | `Google Search Network`, `Search partners`, `Display Network` (leaking Search budget to low-intent Display placements) | **`Google Search Network` only** (unchecked Search partners & Display Network) | Campaign #1 → Settings → Networks |
+| `Campaign #1` (`23896091195`) Responsive Search Ad (`811210251979`) | Final URL `https://abktradingservice.com` (307 redirect to `/en`), blank display paths, 13/15 headlines with retired `"Vertek"` spelling | Final URL **`https://abktradingservice.com/en`** (`200 OK`), Path `Qatar/Car-Care`, **15/15 headlines & 4/4 descriptions** featuring `VTEK PPF From QAR 3,999`, `PPF Installation Doha`, `Autotriz 9H Ceramic Coating`, `Briller 20L Car Wash Shampoo`, `Mesaimeer Showroom Doha` | Campaign #1 → Ads → Edit RSA |
+| `Campaign #1` (`23896091195`) negative keywords | 6 negatives (`"car painting"`, `"paint job"`, `"car painters"`, `"car wash"`, `[car]`, `siota`) | Added **`[abk]`** (exact — bank searches), **`"window tint"`** (phrase), **`"car wrap"`** (phrase), **`wrap`** (broad). Kept `"near me"` & `installation` unblocked because `paint protection film near me` drives 52% of account clicks at `$0.41` CPC with conversions | Campaign #1 → Keywords → Negative keywords |
+| Conversion actions (`502-538-6770`) | Only `PPF booking request` (`J9TLCOe7n44dENiYz-ZD`) had a hardcoded fallback label in `src/lib/ads-conversions.ts` | Linked GA4 property `abk (554936266)` and hardcoded live conversion labels for `whatsapp_enquiry` (`G18eCPf7pJAdENiYz-ZD`), `begin_checkout` (`7H2JCLr-pJAdENiYz-ZD`), and `dealer_enquiry` (`0nbfCN2ApZAdENiYz-ZD`) | `src/lib/ads-conversions.ts` |
+
