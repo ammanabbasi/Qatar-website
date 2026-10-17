@@ -75,15 +75,34 @@ export function PpfInstallPromo({ locale }: { locale: "en" | "ar" }) {
             </figure>
 
             <div className="lg:col-start-1 lg:row-start-2 lg:self-end">
-              <p className="text-caption font-semibold uppercase tracking-[0.12em] text-white/55">
-                {t("fromLabel")}
-              </p>
-              <p className="mt-1 text-headline font-bold leading-none tabular-nums">
-                {formatQar(from, locale)}
-              </p>
-              <p className="mt-2 text-caption text-white/50">
-                {body.name[locale]} · {coverage.name[locale]}
-              </p>
+              <div className="grid grid-cols-2 gap-3 rounded-xl border border-white/12 bg-white/[0.04] p-3.5 sm:max-w-md">
+                <div>
+                  <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-(--color-brand)">
+                    {locale === "ar" ? "الهيكل الكامل (12 قطعة)" : "Full-Body (12 Panels)"}
+                  </p>
+                  <p className="mt-1 text-title font-bold leading-none tabular-nums text-white">
+                    {formatQar(fromPrice("full-body"), locale)}
+                  </p>
+                  <p className="mt-1 text-[11px] text-white/55">
+                    {locale === "ar"
+                      ? `${body.name[locale]} · SUV من ${formatQar(4799, locale)}`
+                      : `${body.name[locale]} · Mid SUV ${formatQar(4799, locale)}`}
+                  </p>
+                </div>
+                <div className="border-s border-white/12 ps-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-white/65">
+                    {locale === "ar" ? "باقات الواجهة" : "Front Packages"}
+                  </p>
+                  <p className="mt-1 text-title font-bold leading-none tabular-nums text-white">
+                    {formatQar(from, locale)}
+                  </p>
+                  <p className="mt-1 text-[11px] text-white/55">
+                    {locale === "ar"
+                      ? `واجهة أساسية · كاملة ${formatQar(fromPrice("full-front"), locale)}`
+                      : `Partial · Full Front ${formatQar(fromPrice("full-front"), locale)}`}
+                  </p>
+                </div>
+              </div>
               <Link
                 href={installHref()}
                 className="mt-5 inline-flex h-12 w-full items-center justify-center gap-2 whitespace-nowrap rounded-pill bg-(--color-brand) px-7 text-body font-bold text-black shadow-[0_4px_14px_rgba(245,166,35,0.3)] transition-colors duration-200 ease-soft hover:bg-(--color-brand-hover) sm:w-auto"

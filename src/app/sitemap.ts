@@ -27,9 +27,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // hreflang cluster for one path: both locales plus x-default → English,
   // mirroring `pageMeta()` so the sitemap and the page <head> never disagree.
   const languages = (path: string) => ({
-    ...Object.fromEntries(
-      routing.locales.map((l) => [l, `${base}/${l}${path}`]),
-    ),
+    en: `${base}/en${path}`,
+    "en-QA": `${base}/en${path}`,
+    ar: `${base}/ar${path}`,
+    "ar-QA": `${base}/ar${path}`,
     "x-default": `${base}/${routing.defaultLocale}${path}`,
   });
 

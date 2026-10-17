@@ -83,7 +83,9 @@ export function pageMeta(
       canonical,
       languages: {
         en: `${base}/en${pathWithoutLocale}`,
+        "en-QA": `${base}/en${pathWithoutLocale}`,
         ar: `${base}/ar${pathWithoutLocale}`,
+        "ar-QA": `${base}/ar${pathWithoutLocale}`,
         "x-default": `${base}/en${pathWithoutLocale}`,
       },
     },

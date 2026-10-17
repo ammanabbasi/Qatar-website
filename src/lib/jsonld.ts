@@ -165,15 +165,41 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
     currenciesAccepted: "QAR",
     parentOrganization: { "@id": IDS.organization },
     sameAs: [SITE.social.facebook, SITE.social.instagram, SITE.social.tiktok],
-    // Offer catalogue link — tells Google this business sells products,
-    // improving eligibility for "car care products Qatar" type queries.
+    // Offer catalogue link — tells Google & AI agents this business sells retail products,
+    // installed VTEK PPF packages, and wholesale trade supplies.
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name:
         locale === "ar"
-          ? "منتجات العناية بالسيارات"
-          : "Car Care Products Catalogue",
+          ? "منتجات العناية بالسيارات وتركيب أفلام حماية الطلاء VTEK"
+          : "Car Care Products, VTEK PPF Installation & Wholesale Supply",
       url: `${SITE.url}/${locale}/b2c/products`,
+      itemListElement: [
+        {
+          "@type": "OfferCatalog",
+          name:
+            locale === "ar"
+              ? "كتالوج منتجات العناية بالسيارات (58 منتجاً)"
+              : "Retail Car Care & Detailing Catalogue (58 SKUs)",
+          url: `${SITE.url}/${locale}/b2c/products`,
+        },
+        {
+          "@type": "OfferCatalog",
+          name:
+            locale === "ar"
+              ? "باقات تركيب أفلام حماية الطلاء VTEK PPF في الدوحة (الهيكل الكامل من 3,999 ر.ق)"
+              : "Installed VTEK PPF Packages in Doha (Full-Body from QAR 3,999, Front from QAR 899)",
+          url: `${SITE.url}/${locale}/b2c/ppf-installation`,
+        },
+        {
+          "@type": "OfferCatalog",
+          name:
+            locale === "ar"
+              ? "توريد الجملة للورش ومراكز التلميع في قطر والخليج"
+              : "B2B Wholesale Trade & Bulk Detailing Supply (Qatar & GCC)",
+          url: `${SITE.url}/${locale}/b2b/become-a-dealer`,
+        },
+      ],
     },
     // Topic expertise signals — helps Google/AI understand what ABK knows about.
     // Stocked brands belong HERE, not under `brand` (which would assert that
@@ -181,6 +207,7 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
     knowsAbout: [
       "Paint Protection Film",
       "PPF Installation",
+      "Full Body PPF Qatar",
       "Ceramic Coating",
       "Car Detailing",
       "Window Tinting",
@@ -198,7 +225,7 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
       "GrünesAuto",
       "GrünesAuto Detailing Pads",
     ],
-    paymentAccepted: ["Cash", "Credit Card", "Debit Card"],
+    paymentAccepted: ["Cash", "Credit Card", "Debit Card", "Bank Transfer"],
     // Price range indicator for Google Knowledge Panel
     priceRange: "$$",
   };
@@ -331,6 +358,16 @@ export function serviceJsonLd(opts: {
       BODY_TYPES.find((b) => b.key === p.body)?.name[opts.locale],
       `VTEK ${FILMS.find((f) => f.key === p.film)?.name[opts.locale]}`,
     ].join(" · ");
+  const mappedOffers = opts.prices.map((p) => ({
+    "@type": "Offer" as const,
+    name: label(p),
+    price: p.priceQar,
+    priceCurrency: "QAR",
+    availability: "https://schema.org/InStock",
+    url: `${opts.url}#prices`,
+    seller: { "@id": IDS.business },
+    areaServed: QATAR,
+  }));
   return {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -339,7 +376,10 @@ export function serviceJsonLd(opts: {
     description: opts.description,
     serviceType: opts.serviceType,
     url: opts.url,
-    image: [defaultSocialImage(opts.locale).url],
+    image: [
+      defaultSocialImage(opts.locale).url,
+      `${SITE.url}/products/vertek/vertek-landcruiser-installation.webp`,
+    ],
     brand: { "@type": "Brand", name: "VTEK" },
     provider: { "@id": IDS.business },
     areaServed: QATAR_SERVICE_AREA,
@@ -351,17 +391,13 @@ export function serviceJsonLd(opts: {
       lowPrice: opts.lowPriceQar,
       highPrice: opts.highPriceQar,
       offerCount: opts.prices.length,
+      availability: "https://schema.org/InStock",
+      offers: mappedOffers,
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: opts.name,
-      itemListElement: opts.prices.map((p) => ({
-        "@type": "Offer",
-        name: label(p),
-        price: p.priceQar,
-        priceCurrency: "QAR",
-        url: `${opts.url}#prices`,
-      })),
+      itemListElement: mappedOffers,
     },
   };
 }
