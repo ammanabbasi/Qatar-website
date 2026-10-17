@@ -25,7 +25,9 @@ import {
   PARTS,
   PART_KEYS,
   PRESET_PARTS,
+  isCoverage,
   isFilm,
+  isVehicleBodySelection,
   makeBookingRef,
   quotePpf,
   quotePpfRange,
@@ -36,6 +38,8 @@ import {
   type VehicleBodySelection,
 } from "@/data/ppfInstall";
 import {
+  POPULAR_QATAR_CARS,
+  QATAR_CARS,
   resolveCarModelName,
   searchQatarCars,
   splitCarQuery,
@@ -51,6 +55,7 @@ import { trackPpfBooking } from "@/lib/analytics";
 type L = "en" | "ar";
 type Step = 0 | 1 | 2 | 3;
 const STEP_KEYS = ["stepVehicle", "stepCoverage", "stepFilm", "stepDetails"] as const;
+const QUICK_YEARS = ["2026", "2025", "2024", "2023"] as const;
 
 type FieldKey = "make" | "model" | "year" | "name" | "mobile" | "email" | "preferredDate" | "consent";
 type Form = {
@@ -74,7 +79,7 @@ const DURATION: Record<CoverageKey, string> = {
   "front-end": "durationFrontEnd",
   "full-front": "durationFullFront",
   "full-body": "durationFullBody",
-  custom: "durationCustom",
+  "custom": "durationCustom",
 };
 /** Film packshots - the same images the product pages use. */
 const FILM_IMAGE: Record<FilmKey, string> = {
@@ -252,6 +257,9 @@ export function PpfConfigurator() {
   const [film, setFilm] = useState<FilmKey>("pro");
   const [carQuery, setCarQuery] = useState("");
   const [customStepError, setCustomStepError] = useState(false);
+  const [showPanels, setShowPanels] = useState(false);
+  const [showOptionalDetails, setShowOptionalDetails] = useState(false);
+  const [showStickyBar, setShowStickyBar] = useState(false);
   const [announce, setAnnounce] = useState("");
   const [form, setForm] = useState<Form>({
     make: "",
@@ -271,16 +279,49 @@ export function PpfConfigurator() {
   const [sending, setSending] = useState(false);
   const [result, setResult] = useState<Result | null>(null);
   const startedAt = useRef(0);
+  const launcherRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const customMakeRef = useRef<HTMLInputElement>(null);
+  const customPanelRef = useRef<HTMLDivElement>(null);
   const closeTimer = useRef(0);
   const drag = useRef<{ y: number; dy: number; t: number } | null>(null);
 
   useEffect(() => {
     startedAt.current = Date.now();
   }, []);
+
+  // Track when the hero launcher card has scrolled out of view on mobile to show a sticky bottom bar.
+  useEffect(() => {
+    const el = launcherRef.current;
+    if (!el) return;
+    let frame = 0;
+    const check = () => {
+      frame = 0;
+      setShowStickyBar(el.getBoundingClientRect().bottom < 0);
+    };
+    const schedule = () => {
+      if (!frame) frame = window.requestAnimationFrame(check);
+    };
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    schedule();
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  useEffect(() => {
+    const active = showStickyBar && !open;
+    if (active) document.documentElement.dataset.stickyCta = "on";
+    else delete document.documentElement.dataset.stickyCta;
+    return () => {
+      delete document.documentElement.dataset.stickyCta;
+    };
+  }, [showStickyBar, open]);
 
   // ── open / close ────────────────────────────────────────────────────────
   const finishClose = useCallback(() => {
@@ -348,15 +389,23 @@ export function PpfConfigurator() {
   }, [open, animateClose]);
 
   // Any "#quote" or "#quote-custom" link on the page opens the sheet;
-  // without JavaScript it still scrolls to the launcher.
+  // links in the price table carry data-ppf-body / data-ppf-coverage / data-ppf-film.
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       const a = (e.target as Element | null)?.closest?.('a[href="#quote"], a[href="#quote-custom"]');
       if (!a) return;
       e.preventDefault();
       const href = a.getAttribute("href");
+      const attrBody = a.getAttribute("data-ppf-body");
+      const attrCov = a.getAttribute("data-ppf-coverage");
+      let attrFilm = a.getAttribute("data-ppf-film");
+      if (attrFilm === "ultimate") attrFilm = "pro-plus";
+      if (isCoverage(attrCov)) setCoverage(attrCov);
+      if (isFilm(attrFilm)) setFilm(attrFilm);
       if (href === "#quote-custom") {
         openSheet("custom", 0);
+      } else if (isVehicleBodySelection(attrBody)) {
+        openSheet(attrBody, isFilm(attrFilm) ? 2 : 1);
       } else {
         openSheet();
       }
@@ -390,12 +439,15 @@ export function PpfConfigurator() {
     headingRef.current?.focus({ preventScroll: true });
   }, [viewKey, open]);
 
-  // Focus the Make input when selecting "Custom offer" in Step 0
+  // Scroll the Custom Offer panel into view smoothly when selected in Step 0
   useEffect(() => {
     if (open && step === 0 && body === "custom") {
       const id = window.setTimeout(() => {
-        customMakeRef.current?.focus({ preventScroll: true });
-      }, 120);
+        customPanelRef.current?.scrollIntoView({
+          behavior: prefersReducedMotion() ? "auto" : "smooth",
+          block: "nearest",
+        });
+      }, 80);
       return () => window.clearTimeout(id);
     }
   }, [open, step, body]);
@@ -445,14 +497,23 @@ export function PpfConfigurator() {
   // ── smart car search & custom offer helpers ─────────────────────────────
   const matchedCars = useMemo(() => searchQatarCars(carQuery, 5), [carQuery]);
 
+  const popularCars = useMemo(
+    () =>
+      POPULAR_QATAR_CARS.map((item) => {
+        const entry = QATAR_CARS.find((c) => c.id === item.entryId);
+        return entry ? { entry, label: item.shortLabel[locale] } : null;
+      }).filter((x): x is { entry: QatarCarEntry; label: string } => x !== null),
+    [locale],
+  );
+
   const detectedFromCustomForm = useMemo(() => {
     const combined = `${form.make} ${form.model}`.trim();
     if (combined.length < 2) return null;
     return searchQatarCars(combined, 1)[0] ?? null;
   }, [form.make, form.model]);
 
-  function selectMatchedCar(entry: QatarCarEntry) {
-    const resolved = resolveCarModelName(entry, carQuery, locale);
+  function selectMatchedCar(entry: QatarCarEntry, overrideModel?: string) {
+    const resolved = resolveCarModelName(entry, overrideModel ?? carQuery, locale);
     setForm((f) => ({ ...f, make: resolved.make, model: resolved.model }));
     setCarQuery("");
     setCustomStepError(false);
@@ -474,13 +535,13 @@ export function PpfConfigurator() {
     }));
     setCarQuery("");
     setCustomStepError(false);
-    const hasBoth = Boolean(make && model);
+    const hasCar = Boolean(make || model);
     if (open) {
       setBody("custom");
       setDir(1);
-      setStep(hasBoth ? 1 : 0);
+      setStep(hasCar ? 1 : 0);
     } else {
-      openSheet("custom", hasBoth ? 1 : 0);
+      openSheet("custom", hasCar ? 1 : 0);
     }
   }
 
@@ -538,10 +599,13 @@ export function PpfConfigurator() {
     const v = form;
     switch (k) {
       case "make":
+        return v.make.trim().length < 1 && v.model.trim().length < 1 ? t("errRequired") : undefined;
       case "model":
+        return v.model.trim().length < 1 && v.make.trim().length < 1 ? t("errRequired") : undefined;
       case "name":
-        return v[k].trim().length < (k === "name" ? 2 : 1) ? t("errRequired") : undefined;
+        return v.name.trim().length < 2 ? t("errRequired") : undefined;
       case "year": {
+        if (!v.year.trim()) return undefined;
         const y = Number(v.year);
         return !Number.isInteger(y) || y < 1990 || y > maxYear ? t("errYear", { max: maxYear }) : undefined;
       }
@@ -580,6 +644,7 @@ export function PpfConfigurator() {
     if (wasOn) next.delete(p);
     else next.add(p);
     setCoverage("custom");
+    setShowPanels(true);
     setParts(next);
     const name = PARTS.find((x) => x.key === p)?.name[locale] ?? p;
     setAnnounce(t(wasOn ? "partRemoved" : "partAdded", { part: name }));
@@ -587,12 +652,16 @@ export function PpfConfigurator() {
 
   function chooseCoverage(c: CoverageKey) {
     // "Choose parts" keeps whatever is lit, so the customer edits from there.
-    if (c === "custom") setParts(new Set(selectedParts));
+    if (c === "custom") {
+      setParts(new Set(selectedParts));
+      setShowPanels(true);
+    }
     setCoverage(c);
   }
 
   function setAllParts(all: boolean) {
     setCoverage("custom");
+    setShowPanels(true);
     setParts(all ? new Set(PART_KEYS) : new Set());
   }
 
@@ -601,9 +670,14 @@ export function PpfConfigurator() {
     setSubmitted(true);
     const firstBad = FORM_FIELDS.find((k) => errorFor(k));
     if (firstBad) {
-      const el = document.getElementById(`ppf-${firstBad}`);
-      el?.focus();
-      el?.scrollIntoView({ block: "center", behavior: prefersReducedMotion() ? "auto" : "smooth" });
+      if (firstBad === "email" || firstBad === "preferredDate") {
+        setShowOptionalDetails(true);
+      }
+      window.setTimeout(() => {
+        const el = document.getElementById(`ppf-${firstBad}`);
+        el?.focus();
+        el?.scrollIntoView({ block: "center", behavior: prefersReducedMotion() ? "auto" : "smooth" });
+      }, 40);
       return;
     }
     if (!body) return;
@@ -616,7 +690,7 @@ export function PpfConfigurator() {
       locale,
       ...form,
       existingFilm: t(form.existingFilm as (typeof EXISTING)[number]),
-      year: Number(form.year),
+      year: form.year.trim() ? Number(form.year) : "",
       startedAt: startedAt.current,
       ...readClickIds(),
     };
@@ -720,7 +794,7 @@ export function PpfConfigurator() {
 
   const fastOfferWhatsAppHref = buildPpfCustomOfferWhatsAppUrl({
     locale,
-    vehicle: fullCarName || carQuery.trim() || undefined,
+    vehicle: fullCarName || carQuery.trim() || bodyLabel || undefined,
     coverage: step >= 1 ? coverageInfo.name[locale] : undefined,
     parts: step >= 1 ? partNames : undefined,
     film: step >= 2 ? filmInfo.name[locale] : undefined,
@@ -747,18 +821,29 @@ export function PpfConfigurator() {
           <input
             id={inputId}
             type="search"
+            enterKeyHint="search"
             autoComplete="off"
             value={carQuery}
             onChange={(e) => setCarQuery(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && trimmed.length > 0) {
+                e.preventDefault();
+                if (matchedCars.length === 1) {
+                  selectMatchedCar(matchedCars[0]);
+                } else {
+                  selectCustomFromQuery(trimmed);
+                }
+              }
+            }}
             placeholder={t("carSearchPlaceholder")}
-            className="h-11 w-full rounded-xl border border-(--color-border) bg-(--color-bg) ps-10 pe-9 text-footnote text-(--color-text) transition-colors placeholder:text-(--color-text-subtle) hover:border-(--color-text-subtle) focus:bg-(--color-surface) focus-visible:border-(--color-brand-deep) focus-visible:outline-2 focus-visible:outline-offset-0"
+            className="h-11 w-full rounded-xl border border-(--color-border) bg-(--color-bg) ps-10 pe-9 text-base text-(--color-text) transition-colors placeholder:text-(--color-text-subtle) hover:border-(--color-text-subtle) focus:bg-(--color-surface) focus-visible:border-(--color-brand-deep) focus-visible:outline-2 focus-visible:outline-offset-0 sm:text-footnote"
           />
           {carQuery ? (
             <button
               type="button"
               onClick={() => setCarQuery("")}
               aria-label={t("carSearchClear")}
-              className="absolute end-2 inline-flex h-7 w-7 items-center justify-center rounded-full text-(--color-text-subtle) hover:bg-(--color-fill) hover:text-(--color-text)"
+              className="absolute end-2 inline-flex h-8 w-8 items-center justify-center rounded-full text-(--color-text-subtle) hover:bg-(--color-fill) hover:text-(--color-text)"
             >
               <svg viewBox="0 0 16 16" aria-hidden className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <path d="M4 4l8 8M12 4l-8 8" />
@@ -766,6 +851,35 @@ export function PpfConfigurator() {
             </button>
           ) : null}
         </div>
+
+        {/* 1-tap popular Qatar cars row when search is idle */}
+        {trimmed.length === 0 ? (
+          <div className="hide-scrollbar -mx-1 mt-2 flex items-center gap-1.5 overflow-x-auto px-1 pb-0.5">
+            <span className="shrink-0 text-[11px] font-medium text-(--color-text-subtle)">
+              {t("popularCarsLabel")}
+            </span>
+            {popularCars.map(({ entry, label }) => {
+              const isPicked =
+                shortCarName.toLowerCase().includes(label.toLowerCase()) &&
+                body === entry.body;
+              return (
+                <button
+                  key={entry.id}
+                  type="button"
+                  onClick={() => selectMatchedCar(entry, label)}
+                  className={`inline-flex h-7 shrink-0 items-center gap-1 rounded-pill border px-2.5 text-caption font-medium transition-colors active:scale-95 ${
+                    isPicked
+                      ? "border-(--color-brand) bg-(--color-brand)/20 text-(--color-ink)"
+                      : "border-(--color-border-soft) bg-(--color-bg) text-(--color-text-muted) hover:border-(--color-text-subtle) hover:text-(--color-text)"
+                  }`}
+                >
+                  {isPicked ? <CheckIcon className="h-3 w-3 text-(--color-brand-deep)" /> : null}
+                  {label}
+                </button>
+              );
+            })}
+          </div>
+        ) : null}
 
         {trimmed.length > 0 ? (
           <div className="mt-2 overflow-hidden rounded-xl border border-(--color-border) bg-(--color-surface) shadow-tile">
@@ -829,7 +943,7 @@ export function PpfConfigurator() {
       : t("launchStart");
 
   const launcher = (
-    <div className="rounded-hero bg-(--color-surface) p-4 text-(--color-text) sm:p-5">
+    <div ref={launcherRef} className="rounded-hero bg-(--color-surface) p-4 text-(--color-text) sm:p-5">
       <p className="px-2 text-footnote font-semibold">{t("bodyTitle")}</p>
 
       <div className="mt-2.5 px-1">
@@ -882,8 +996,15 @@ export function PpfConfigurator() {
               <CustomCarIcon className="h-7 w-7" />
             </span>
             <span className="min-w-0 flex-1">
-              <span className="block text-footnote font-semibold leading-tight text-(--color-text) sm:text-body">
-                {t("customCarOptionTitle")}
+              <span className="flex flex-wrap items-center gap-1.5">
+                <span className="text-footnote font-semibold leading-tight text-(--color-text) sm:text-body">
+                  {t("customCarOptionTitle")}
+                </span>
+                {body === "custom" && shortCarName ? (
+                  <span className="rounded-pill bg-(--color-brand)/20 px-2 py-0.5 text-caption font-semibold text-(--color-ink)">
+                    {shortCarName}
+                  </span>
+                ) : null}
               </span>
               <span className="mt-0.5 block text-caption text-(--color-text-muted)">
                 {t("customCarOptionSub")}
@@ -937,11 +1058,11 @@ export function PpfConfigurator() {
         <>
           {heading(t("bodyTitle"))}
 
-          <div className="mt-4">
+          <div className="mt-3">
             {renderCarSearchBox("ppf-sheet-car-search")}
           </div>
 
-          <div role="radiogroup" aria-label={t("bodyTitle")} className="mt-4 grid gap-3 sm:grid-cols-3">
+          <div role="radiogroup" aria-label={t("bodyTitle")} className="mt-4 grid gap-2.5 sm:grid-cols-3 sm:gap-3">
             {BODY_TYPES.map((b) => {
               const active = body === b.key;
               const from = quotePpf({ body: b.key, coverage: "front-end", parts: [], film: "pro" }).priceQar!;
@@ -956,15 +1077,22 @@ export function PpfConfigurator() {
                     setCustomStepError(false);
                     window.setTimeout(() => go(1), prefersReducedMotion() ? 0 : 220);
                   }}
-                  className={`${optionCls(active)} sm:flex-col sm:items-start sm:gap-3 sm:p-5`}
+                  className={`${optionCls(active)} py-3.5 sm:flex-col sm:items-start sm:gap-3 sm:p-5`}
                 >
-                  <span className="flex h-12 w-20 shrink-0 items-center justify-center text-(--color-text-muted) rtl:-scale-x-100 sm:h-14 sm:w-full sm:justify-start sm:rtl:justify-end">
+                  <span className="flex h-11 w-16 shrink-0 items-center justify-center text-(--color-text-muted) rtl:-scale-x-100 sm:h-14 sm:w-full sm:justify-start sm:rtl:justify-end">
                     <BodyIcon body={b.key} className="h-8 w-auto sm:h-11" />
                   </span>
                   <span className="min-w-0 flex-1">
-                    <span className="block text-body font-semibold">{b.name[locale]}</span>
+                    <span className="flex flex-wrap items-center gap-1.5">
+                      <span className="text-body font-semibold leading-tight">{b.name[locale]}</span>
+                      {active && shortCarName ? (
+                        <span className="rounded-pill bg-(--color-brand)/20 px-2 py-0.5 text-caption font-semibold text-(--color-ink)">
+                          {shortCarName}
+                        </span>
+                      ) : null}
+                    </span>
                     <span className="mt-0.5 block text-caption text-(--color-text-muted)">{b.examples[locale]}</span>
-                    <span className="mt-1.5 block text-footnote font-semibold tabular-nums">
+                    <span className="mt-1 block text-footnote font-semibold tabular-nums">
                       {t("priceFrom", { price: qar(from) })}
                     </span>
                   </span>
@@ -975,7 +1103,7 @@ export function PpfConfigurator() {
           </div>
 
           {/* 4th option card: Not sure of your car type? Enter Make & Model for a Custom Offer */}
-          <div className="mt-3">
+          <div className="mt-2.5 sm:mt-3">
             <button
               type="button"
               role="radio"
@@ -984,13 +1112,13 @@ export function PpfConfigurator() {
                 setBody("custom");
                 setCustomStepError(false);
               }}
-              className={optionCls(customActive)}
+              className={`${optionCls(customActive)} py-3.5`}
             >
               <span className="flex h-11 w-14 shrink-0 items-center justify-center rounded-xl bg-(--color-brand)/15 text-(--color-brand-deep)">
                 <CustomCarIcon className="h-7 w-7" />
               </span>
               <span className="min-w-0 flex-1">
-                <span className="block text-body font-semibold">{t("customCarOptionTitle")}</span>
+                <span className="block text-footnote font-semibold leading-tight sm:text-body">{t("customCarOptionTitle")}</span>
                 <span className="mt-0.5 block text-caption text-(--color-text-muted)">
                   {t("customCarOptionSub")}
                 </span>
@@ -1001,7 +1129,10 @@ export function PpfConfigurator() {
             </button>
 
             {customActive ? (
-              <div className="ppf-step-in mt-3 rounded-tile border border-(--color-border) bg-(--color-surface) p-4 sm:p-5">
+              <div
+                ref={customPanelRef}
+                className="ppf-step-in mt-3 rounded-tile border border-(--color-border) bg-(--color-surface) p-4 sm:p-5"
+              >
                 <p className="text-footnote font-semibold text-(--color-text)">
                   {t("customCarPanelTitle")}
                 </p>
@@ -1009,7 +1140,7 @@ export function PpfConfigurator() {
                   {t("customCarPanelDesc")}
                 </p>
 
-                <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                <div className="mt-3.5 grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3">
                   <Field id="ppf-step0-make" label={t("make")} required>
                     <input
                       ref={customMakeRef}
@@ -1039,16 +1170,36 @@ export function PpfConfigurator() {
                       className={`${inputCls} ${customStepError && !shortCarName ? "border-(--color-danger)" : plainBorder}`}
                     />
                   </Field>
-                  <Field id="ppf-step0-year" label={t("year")} optionalLabel={t("optional")}>
-                    <input
-                      id="ppf-step0-year"
-                      inputMode="numeric"
-                      placeholder={t("yearPlaceholder")}
-                      value={form.year}
-                      onChange={(e) => set("year", e.target.value.replace(/\D/g, "").slice(0, 4))}
-                      className={`${inputCls} ltr-nums ${plainBorder}`}
-                    />
-                  </Field>
+                  <div className="col-span-2 sm:col-span-1">
+                    <Field id="ppf-step0-year" label={t("year")} optionalLabel={t("optional")}>
+                      <div className="flex items-center gap-2">
+                        <input
+                          id="ppf-step0-year"
+                          inputMode="numeric"
+                          placeholder={t("yearPlaceholder")}
+                          value={form.year}
+                          onChange={(e) => set("year", e.target.value.replace(/\D/g, "").slice(0, 4))}
+                          className={`${inputCls} ltr-nums w-24 shrink-0 sm:w-full ${plainBorder}`}
+                        />
+                        <div className="hide-scrollbar flex items-center gap-1 overflow-x-auto sm:hidden">
+                          {QUICK_YEARS.map((yr) => (
+                            <button
+                              key={yr}
+                              type="button"
+                              onClick={() => set("year", yr)}
+                              className={`ltr-nums h-9 shrink-0 rounded-lg border px-2.5 text-caption font-semibold transition-colors ${
+                                form.year === yr
+                                  ? "border-(--color-brand) bg-(--color-brand)/20 text-(--color-ink)"
+                                  : "border-(--color-border-soft) bg-(--color-bg) text-(--color-text-muted)"
+                              }`}
+                            >
+                              {yr}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    </Field>
+                  </div>
                 </div>
 
                 {customStepError && !shortCarName ? (
@@ -1059,7 +1210,7 @@ export function PpfConfigurator() {
 
                 {/* If their typed Make + Model matches a known Qatar car, offer 1-tap instant fixed pricing */}
                 {detectedFromCustomForm && detectedCat && detectedFromPrice !== null ? (
-                  <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-(--color-brand)/40 bg-(--color-brand)/[0.08] px-3.5 py-2.5">
+                  <div className="mt-3.5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-(--color-brand)/40 bg-(--color-brand)/[0.08] px-3.5 py-2.5">
                     <p className="text-caption font-medium text-(--color-text)">
                       {t("customCarAutoDetected", {
                         car: `${detectedFromCustomForm.make[locale]} ${detectedFromCustomForm.model[locale]}`,
@@ -1077,27 +1228,16 @@ export function PpfConfigurator() {
                   </div>
                 ) : null}
 
-                <div className="mt-4 flex flex-wrap items-center gap-3 border-t border-(--color-border-soft) pt-4">
-                  <Button
-                    size="md"
-                    onClick={() => {
-                      if (!shortCarName) {
-                        setCustomStepError(true);
-                        customMakeRef.current?.focus();
-                        return;
-                      }
-                      go(1);
-                    }}
-                  >
-                    {t("customCarContinue")}
-                    <ChevronIcon className="h-3.5 w-3.5 rtl:-scale-x-100" />
-                  </Button>
+                <div className="mt-3.5 flex flex-wrap items-center justify-between gap-2.5 border-t border-(--color-border-soft) pt-3.5">
+                  <p className="text-caption text-(--color-text-muted)">
+                    {t("customOfferFastBar")}
+                  </p>
                   <a
                     href={fastOfferWhatsAppHref}
                     target="_blank"
                     rel="noopener noreferrer"
                     data-placement="ppf_custom_offer_fast"
-                    className={`plausible-event-name=whatsapp_click plausible-event-audience=b2c ${buttonClasses("secondary", "md")}`}
+                    className={`plausible-event-name=whatsapp_click plausible-event-audience=b2c ${buttonClasses("secondary", "sm")}`}
                   >
                     <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
                     {t("customCarWhatsAppFast")}
@@ -1112,34 +1252,49 @@ export function PpfConfigurator() {
 
     if (step === 1 && body) {
       const total = PARTS.length;
+      const panelsOpen = coverage === "custom" || showPanels;
       return (
         <>
+          <div className="mb-3 flex items-center justify-between gap-2 rounded-xl border border-(--color-border-soft) bg-(--color-surface) px-3.5 py-2">
+            <span className="min-w-0 truncate text-caption font-semibold text-(--color-text)">
+              {vehicleDisplay}
+            </span>
+            <button
+              type="button"
+              onClick={() => go(0)}
+              className="text-link shrink-0 text-caption font-semibold"
+            >
+              {t("recapChange")}
+            </button>
+          </div>
+
           {heading(t("coverageTitle"))}
-          <p className="mt-1.5 text-footnote text-(--color-text-muted)">{t("coverageTap")}</p>
+          <p className="mt-1 text-footnote text-(--color-text-muted)">{t("coverageTap")}</p>
           {/* Spoken confirmation of each tap on the diagram or the list. */}
           <p role="status" aria-live="polite" className="sr-only">
             {announce}
           </p>
 
-          <div className="mt-4 grid grid-cols-[9.5rem_minmax(0,1fr)] items-start gap-x-3 gap-y-4 sm:grid-cols-[minmax(0,15.5rem)_minmax(0,1fr)] sm:gap-x-6">
+          <div className="mt-3.5 grid grid-cols-[8.25rem_minmax(0,1fr)] items-start gap-x-2.5 gap-y-3.5 sm:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] sm:gap-x-6">
             {/* The diagram is the centrepiece: always tappable, beside the packages on phones too. */}
-            <div className="rounded-tile border border-(--color-border-soft) bg-(--color-surface) p-2 shadow-tile sm:row-span-3">
-              <p className="text-center text-caption text-(--color-text-muted)">{t("front")}</p>
-              <div className="my-1">
+            <div className="rounded-tile border border-(--color-border-soft) bg-(--color-surface) p-1.5 shadow-tile sm:row-span-3 sm:p-2">
+              <p className="text-center text-[11px] text-(--color-text-muted)">{t("front")}</p>
+              <div className="my-0.5">
                 <CarDiagram
                   selected={selectedParts}
                   frontEdge={coverage === "front-end"}
                   onTogglePart={togglePart}
                   label={t("diagramLabel")}
-                  className="h-64 sm:h-[340px]"
+                  className="h-60 sm:h-[340px]"
                 />
               </div>
-              <p className="text-center text-caption text-(--color-text-muted)">{t("rear")}</p>
+              <p className="text-center text-[11px] text-(--color-text-muted)">{t("rear")}</p>
             </div>
 
             <div role="radiogroup" aria-label={t("packagesTitle")} className="grid gap-2">
               {COVERAGES.map((c) => {
                 const active = coverage === c.key;
+                const isPopular = c.key === "full-front";
                 const p =
                   c.key === "custom"
                     ? null
@@ -1157,16 +1312,28 @@ export function PpfConfigurator() {
                     role="radio"
                     aria-checked={active}
                     onClick={() => chooseCoverage(c.key)}
-                    className={`${optionCls(active)} min-h-14 gap-2.5 px-3 py-2.5`}
+                    className={`${optionCls(active)} min-h-14 gap-2 px-3 py-2.5`}
                   >
                     <span className="min-w-0 flex-1">
-                      <span className="block text-footnote font-semibold leading-tight">{c.name[locale]}</span>
-                      <span className="mt-0.5 block text-caption tabular-nums text-(--color-text-muted)">
-                        {p !== null
-                          ? qar(p)
-                          : r !== null
-                            ? t("priceRange", { min: qar(r.minQar), max: qar(r.maxQar) })
-                            : t("packageCustomSub")}
+                      <span className="flex flex-wrap items-center justify-between gap-1">
+                        <span className="text-footnote font-semibold leading-tight">{c.name[locale]}</span>
+                        {isPopular ? (
+                          <span className="rounded-pill bg-(--color-brand)/20 px-2 py-0.5 text-[10px] font-bold text-(--color-brand-deep)">
+                            {t("popularBadge")}
+                          </span>
+                        ) : null}
+                      </span>
+                      <span className="mt-0.5 flex flex-wrap items-center justify-between gap-1 text-caption tabular-nums text-(--color-text-muted)">
+                        <span className="font-semibold text-(--color-text)">
+                          {p !== null
+                            ? qar(p)
+                            : r !== null
+                              ? t("priceRange", { min: qar(r.minQar), max: qar(r.maxQar) })
+                              : t("packageCustomSub")}
+                        </span>
+                        <span className="text-[11px] text-(--color-text-subtle)">
+                          {t(DURATION[c.key] as "durationFrontEnd")}
+                        </span>
                       </span>
                     </span>
                   </button>
@@ -1174,58 +1341,72 @@ export function PpfConfigurator() {
               })}
             </div>
 
-            <p key={coverage} className="ppf-step-in col-span-2 text-caption text-(--color-text-muted) sm:col-span-1 sm:col-start-2">
+            <p key={coverage} className="ppf-step-in col-span-2 rounded-xl bg-(--color-surface) px-3.5 py-2.5 text-caption text-(--color-text-muted) sm:col-span-1 sm:col-start-2">
               {coverageInfo.desc[locale]}
               {coverage === "front-end" ? ` ${t("frontEndNote")}` : ""}{" "}
-              {t("summaryDuration", { duration: t(DURATION[coverageInfo.key] as "durationFrontEnd") })}
+              <span className="font-medium text-(--color-text)">
+                {t("summaryDuration", { duration: t(DURATION[coverageInfo.key] as "durationFrontEnd") })}
+              </span>
             </p>
 
             <div role="group" aria-labelledby="ppf-parts-label" className="col-span-2 sm:col-span-1 sm:col-start-2">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <p id="ppf-parts-label" className="text-footnote font-semibold">
-                  {t("partsTitle")}{" "}
-                  <span className="font-normal text-(--color-text-muted)">
-                    {t("partsCount", {
-                      count: formatNumber(selectedParts.size, locale),
-                      total: formatNumber(total, locale),
-                    })}
+                <button
+                  type="button"
+                  id="ppf-parts-label"
+                  onClick={() => setShowPanels((v) => !v)}
+                  className="inline-flex items-center gap-1.5 text-footnote font-semibold text-(--color-link)"
+                >
+                  <span>
+                    {panelsOpen
+                      ? t("hidePanelsBtn")
+                      : t("customizePanelsBtn", {
+                          count: formatNumber(selectedParts.size, locale),
+                          total: formatNumber(total, locale),
+                        })}
                   </span>
-                </p>
-                <div className="flex gap-2">
-                  <Button size="sm" variant="secondary" onClick={() => setAllParts(true)} disabled={selectedParts.size === total}>
-                    {t("partsSelectAll")}
-                  </Button>
-                  <Button size="sm" variant="secondary" onClick={() => setAllParts(false)} disabled={selectedParts.size === 0}>
-                    {t("partsClear")}
-                  </Button>
+                  <ChevronIcon className={`h-3.5 w-3.5 transition-transform ${panelsOpen ? "-rotate-90" : "rotate-90"}`} />
+                </button>
+                {panelsOpen ? (
+                  <div className="flex gap-1.5">
+                    <Button size="sm" variant="secondary" onClick={() => setAllParts(true)} disabled={selectedParts.size === total}>
+                      {t("partsSelectAll")}
+                    </Button>
+                    <Button size="sm" variant="secondary" onClick={() => setAllParts(false)} disabled={selectedParts.size === 0}>
+                      {t("partsClear")}
+                    </Button>
+                  </div>
+                ) : null}
+              </div>
+
+              {panelsOpen ? (
+                <div className="ppf-step-in mt-2.5 flex flex-wrap gap-1.5 sm:gap-2">
+                  {PARTS.map((p) => {
+                    const on = selectedParts.has(p.key);
+                    return (
+                      <button
+                        key={p.key}
+                        type="button"
+                        aria-pressed={on}
+                        onClick={() => togglePart(p.key)}
+                        className={`inline-flex h-10 items-center gap-1.5 rounded-pill border px-3 text-caption font-medium transition-[background-color,border-color,color,transform] duration-150 ease-soft active:scale-95 sm:h-11 sm:px-3.5 sm:text-footnote ${
+                          on
+                            ? "border-(--color-brand) bg-(--color-brand) text-(--color-ink)"
+                            : "border-(--color-border) bg-(--color-surface) text-(--color-text) hover:border-(--color-text-subtle)"
+                        }`}
+                      >
+                        {on ? <CheckIcon className="h-3.5 w-3.5" /> : null}
+                        {p.name[locale]}
+                      </button>
+                    );
+                  })}
                 </div>
-              </div>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {PARTS.map((p) => {
-                  const on = selectedParts.has(p.key);
-                  return (
-                    <button
-                      key={p.key}
-                      type="button"
-                      aria-pressed={on}
-                      onClick={() => togglePart(p.key)}
-                      className={`inline-flex h-11 items-center gap-1.5 rounded-pill border px-3.5 text-footnote font-medium transition-[background-color,border-color,color,transform] duration-150 ease-soft active:scale-95 ${
-                        on
-                          ? "border-(--color-brand) bg-(--color-brand) text-(--color-ink)"
-                          : "border-(--color-border) bg-(--color-surface) text-(--color-text) hover:border-(--color-text-subtle)"
-                      }`}
-                    >
-                      {on ? <CheckIcon className="h-3.5 w-3.5" /> : null}
-                      {p.name[locale]}
-                    </button>
-                  );
-                })}
-              </div>
+              ) : null}
             </div>
           </div>
 
           {body === "custom" ? (
-            <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-(--color-border-soft) bg-(--color-surface) px-4 py-3">
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-(--color-border-soft) bg-(--color-surface) px-4 py-3">
               <p className="text-caption text-(--color-text-muted)">
                 {t("customOfferFastBar")}
               </p>
@@ -1248,8 +1429,21 @@ export function PpfConfigurator() {
     if (step === 2 && body)
       return (
         <>
+          <div className="mb-3 flex items-center justify-between gap-2 rounded-xl border border-(--color-border-soft) bg-(--color-surface) px-3.5 py-2">
+            <span className="min-w-0 truncate text-caption font-semibold text-(--color-text)">
+              {vehicleDisplay} · {coverageInfo.name[locale]}
+            </span>
+            <button
+              type="button"
+              onClick={() => go(1)}
+              className="text-link shrink-0 text-caption font-semibold"
+            >
+              {t("recapChange")}
+            </button>
+          </div>
+
           {heading(t("filmTitle"))}
-          <div role="radiogroup" aria-label={t("filmTitle")} className="mt-5 grid gap-3 sm:grid-cols-2">
+          <div role="radiogroup" aria-label={t("filmTitle")} className="mt-4 grid gap-3 sm:grid-cols-2">
             {FILMS.map((f) => {
               const active = film === f.key;
               const p = quotePpf({ body, coverage, parts: [...parts], film: f.key }).priceQar;
@@ -1259,50 +1453,65 @@ export function PpfConfigurator() {
                   ? quotePpfRange({ coverage, parts: [...parts], film: f.key })
                   : null;
               return (
-                <div key={f.key} className="relative">
+                <div
+                  key={f.key}
+                  className={`flex flex-col justify-between rounded-xl border bg-(--color-surface) p-3.5 transition-[border-color,background-color,box-shadow] duration-150 sm:p-4 ${
+                    active
+                      ? "border-(--color-brand) bg-(--color-brand)/[0.07] shadow-[inset_0_0_0_1px_var(--color-brand)]"
+                      : "border-(--color-border) hover:border-(--color-text-subtle)"
+                  }`}
+                >
                   <button
                     type="button"
                     role="radio"
                     aria-checked={active}
                     onClick={() => setFilm(f.key)}
-                    className={`${optionCls(active)} h-full items-start pb-14`}
+                    className="flex w-full items-start gap-3.5 text-start"
                   >
-                    <span className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-(--color-border-soft) bg-(--color-surface)">
+                    <span className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-(--color-border-soft) bg-(--color-surface) sm:h-20 sm:w-20">
                       <Image src={FILM_IMAGE[f.key]} alt="" width={160} height={160} sizes="80px" className="h-full w-full scale-125 object-contain" />
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="block text-body font-semibold">{f.name[locale]}</span>
-                      <span className="mt-0.5 block text-footnote font-semibold tabular-nums">
-                        {f.uplift === null
-                          ? t("filmQuote")
-                          : fRange !== null
-                            ? t("priceRange", { min: qar(fRange.minQar), max: qar(fRange.maxQar) })
-                            : f.uplift === 0
-                              ? t("filmIncluded")
-                              : p !== null && baseP !== null
-                                ? t("filmExtra", { amount: qar(p - baseP) })
+                      <span className="flex flex-wrap items-baseline justify-between gap-1">
+                        <span className="text-footnote font-semibold sm:text-body">{f.name[locale]}</span>
+                        <span className="text-footnote font-bold tabular-nums text-(--color-brand-deep)">
+                          {f.uplift === null
+                            ? t("filmQuote")
+                            : p !== null
+                              ? qar(p)
+                              : fRange !== null
+                                ? t("priceRange", { min: qar(fRange.minQar), max: qar(fRange.maxQar) })
                                 : ""}
+                        </span>
                       </span>
+                      {p !== null && baseP !== null && f.uplift !== null ? (
+                        <span className="mt-0.5 block text-caption font-medium text-(--color-text-muted)">
+                          {f.uplift === 0 ? t("filmIncluded") : t("filmExtra", { amount: qar(p - baseP) })}
+                        </span>
+                      ) : null}
                       <span className="mt-1 block text-caption text-(--color-text-muted)">{f.desc[locale]}</span>
-                      <span className="mt-1.5 block text-caption text-(--color-text-muted)">
-                        {t("filmWarranty", { years: f.warrantyYears, yearsText: formatNumber(f.warrantyYears, locale) })}
-                      </span>
                     </span>
                   </button>
-                  <Link
-                    href={`/b2c/products/${f.productSlug}`}
-                    target="_blank"
-                    className="text-link absolute bottom-1 end-4 min-h-11 text-caption"
-                  >
-                    {t("filmDetails")} ›
-                  </Link>
+
+                  <div className="mt-3 flex items-center justify-between gap-2 border-t border-(--color-border-soft) pt-2.5 text-caption">
+                    <span className="font-medium text-(--color-text-muted)">
+                      {t("filmWarranty", { years: f.warrantyYears, yearsText: formatNumber(f.warrantyYears, locale) })}
+                    </span>
+                    <Link
+                      href={`/b2c/products/${f.productSlug}`}
+                      target="_blank"
+                      className="text-link shrink-0 font-medium"
+                    >
+                      {t("filmDetails")} ›
+                    </Link>
+                  </div>
                 </div>
               );
             })}
           </div>
 
           {body === "custom" ? (
-            <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-(--color-border-soft) bg-(--color-surface) px-4 py-3">
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-(--color-border-soft) bg-(--color-surface) px-4 py-3">
               <p className="text-caption text-(--color-text-muted)">
                 {t("customOfferFastBar")}
               </p>
@@ -1321,38 +1530,47 @@ export function PpfConfigurator() {
         </>
       );
 
-    if (step === 3)
+    if (step === 3) {
+      const hasOptionalValues = Boolean(
+        form.preferredDate ||
+          form.email.trim() ||
+          form.notes.trim() ||
+          form.existingFilm !== "existingNone" ||
+          shownError("email") ||
+          shownError("preferredDate"),
+      );
+      const optionalOpen = showOptionalDetails || hasOptionalValues;
+
       return (
         <form id="ppf-form" noValidate onSubmit={onSubmit}>
           {heading(t("detailsTitle"))}
-          <div className="mt-3 flex items-center justify-between gap-3 rounded-xl border border-(--color-border-soft) bg-(--color-surface) py-1 ps-4 pe-2">
-            <p className="min-w-0 text-footnote text-(--color-text-muted)">{recap}</p>
+          <div className="mt-3 flex items-center justify-between gap-3 rounded-xl border border-(--color-border-soft) bg-(--color-surface) py-1.5 ps-3.5 pe-2">
+            <p className="min-w-0 text-footnote font-medium text-(--color-text)">{recap}</p>
             <button
               type="button"
               onClick={() => go(0)}
-              className="text-link min-h-11 shrink-0 px-2 text-footnote font-medium"
+              className="text-link min-h-10 shrink-0 px-2 text-footnote font-semibold"
             >
               {t("recapChange")}
             </button>
           </div>
 
-          {body === "custom" ? (
-            <div className="mt-3 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-(--color-brand)/35 bg-(--color-brand)/[0.07] px-4 py-2.5">
-              <p className="text-caption font-medium text-(--color-text)">
-                {t("customOfferFastBar")}
-              </p>
-              <a
-                href={fastOfferWhatsAppHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-placement="ppf_custom_offer_step3"
-                className={`plausible-event-name=whatsapp_click plausible-event-audience=b2c ${buttonClasses("secondary", "sm")}`}
-              >
-                <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
-                {t("customOfferFastCta")}
-              </a>
-            </div>
-          ) : null}
+          {/* 1-tap WhatsApp quote handoff available for all customers */}
+          <div className="mt-2.5 flex flex-wrap items-center justify-between gap-2.5 rounded-xl border border-(--color-brand)/35 bg-(--color-brand)/[0.07] px-3.5 py-2.5">
+            <p className="text-caption font-medium text-(--color-text)">
+              {body === "custom" ? t("customOfferFastBar") : t("directWhatsAppBar")}
+            </p>
+            <a
+              href={fastOfferWhatsAppHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-placement="ppf_custom_offer_step3"
+              className={`plausible-event-name=whatsapp_click plausible-event-audience=b2c ${buttonClasses("secondary", "sm")}`}
+            >
+              <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+              {body === "custom" ? t("customOfferFastCta") : t("directWhatsAppCta")}
+            </a>
+          </div>
 
           {submitted && FORM_FIELDS.some((k) => errorFor(k)) ? (
             <p role="alert" className="mt-4 flex items-center gap-2 rounded-xl bg-(--color-danger)/8 px-4 py-3 text-footnote font-medium text-(--color-danger)">
@@ -1360,7 +1578,8 @@ export function PpfConfigurator() {
               {t("errForm")}
             </p>
           ) : null}
-          <div role="group" aria-labelledby="ppf-group-car" className="mt-6 grid grid-cols-2 gap-x-3 gap-y-4 sm:gap-x-4">
+
+          <div role="group" aria-labelledby="ppf-group-car" className="mt-5 grid grid-cols-2 gap-x-3 gap-y-3.5 sm:gap-x-4">
             <p id="ppf-group-car" className="col-span-2 text-footnote font-semibold">
               {t("groupCar")}
             </p>
@@ -1370,24 +1589,32 @@ export function PpfConfigurator() {
             <Field id="ppf-model" label={t("model")} required error={shownError("model")}>
               <input id="ppf-model" autoComplete="off" placeholder={t("modelPlaceholder")} value={form.model} onChange={(e) => set("model", e.target.value)} onBlur={blur("model")} maxLength={60} className={`${inputCls} ${borderFor("model")}`} {...aria("model")} />
             </Field>
-            <div className="col-span-2 sm:col-span-1">
-              <Field id="ppf-year" label={t("year")} required error={shownError("year")}>
-                <input id="ppf-year" inputMode="numeric" placeholder={t("yearPlaceholder")} value={form.year} onChange={(e) => set("year", e.target.value.replace(/\D/g, "").slice(0, 4))} onBlur={blur("year")} className={`${inputCls} ltr-nums ${borderFor("year")}`} {...aria("year")} />
-              </Field>
-            </div>
-            <div className="col-span-2 sm:col-span-1">
-              <Field id="ppf-existing" label={t("existingFilm")}>
-                <select id="ppf-existing" value={form.existingFilm} onChange={(e) => set("existingFilm", e.target.value)} className={`${inputCls} ${plainBorder}`}>
-                  {EXISTING.map((k) => (
-                    <option key={k} value={k}>
-                      {t(k)}
-                    </option>
-                  ))}
-                </select>
+            <div className="col-span-2">
+              <Field id="ppf-year" label={t("year")} optionalLabel={t("optional")} error={shownError("year")}>
+                <div className="flex items-center gap-2">
+                  <input id="ppf-year" inputMode="numeric" placeholder={t("yearPlaceholder")} value={form.year} onChange={(e) => set("year", e.target.value.replace(/\D/g, "").slice(0, 4))} onBlur={blur("year")} className={`${inputCls} ltr-nums w-28 shrink-0 sm:w-40 ${borderFor("year")}`} {...aria("year")} />
+                  <div className="hide-scrollbar flex items-center gap-1.5 overflow-x-auto">
+                    {QUICK_YEARS.map((yr) => (
+                      <button
+                        key={yr}
+                        type="button"
+                        onClick={() => set("year", yr)}
+                        className={`ltr-nums h-10 shrink-0 rounded-xl border px-3 text-caption font-semibold transition-colors ${
+                          form.year === yr
+                            ? "border-(--color-brand) bg-(--color-brand)/20 text-(--color-ink)"
+                            : "border-(--color-border-soft) bg-(--color-surface) text-(--color-text-muted) hover:border-(--color-text-subtle)"
+                        }`}
+                      >
+                        {yr}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </Field>
             </div>
           </div>
-          <div role="group" aria-labelledby="ppf-group-details" className="mt-6 grid gap-4 sm:grid-cols-2 sm:gap-x-4">
+
+          <div role="group" aria-labelledby="ppf-group-details" className="mt-5 grid gap-3.5 sm:grid-cols-2 sm:gap-x-4">
             <p id="ppf-group-details" className="text-footnote font-semibold sm:col-span-2">
               {t("groupDetails")}
             </p>
@@ -1397,24 +1624,53 @@ export function PpfConfigurator() {
             <Field id="ppf-mobile" label={t("mobile")} required hint={t("mobileHint")} error={shownError("mobile")}>
               <input id="ppf-mobile" type="tel" autoComplete="tel" inputMode="tel" placeholder="5555 1234" value={form.mobile} onChange={(e) => set("mobile", e.target.value)} onBlur={blur("mobile")} maxLength={20} className={`${inputCls} ltr-nums ${borderFor("mobile")}`} {...aria("mobile", true)} />
             </Field>
-            <Field id="ppf-email" label={t("email")} optionalLabel={t("optional")} error={shownError("email")}>
-              <input id="ppf-email" type="email" autoComplete="email" value={form.email} onChange={(e) => set("email", e.target.value)} onBlur={blur("email")} maxLength={120} className={`${inputCls} ltr-nums ${borderFor("email")}`} {...aria("email")} />
-            </Field>
-            <Field id="ppf-preferredDate" label={t("preferredDate")} optionalLabel={t("optional")} hint={t("preferredDateHint")}>
-              <input id="ppf-preferredDate" type="date" min={todayPlus(2)} value={form.preferredDate} onChange={(e) => set("preferredDate", e.target.value)} className={`${inputCls} ${plainBorder}`} aria-describedby="ppf-preferredDate-hint" />
-            </Field>
+
+            {/* Progressive disclosure for optional details so mobile users see a clean 1-screen form */}
             <div className="sm:col-span-2">
-              <Field id="ppf-notes" label={t("notes")} optionalLabel={t("optional")}>
-                <textarea id="ppf-notes" rows={3} maxLength={500} value={form.notes} onChange={(e) => set("notes", e.target.value)} placeholder={t("notesPlaceholder")} className={`${inputCls} h-auto py-2.5 ${plainBorder}`} />
-              </Field>
+              <button
+                type="button"
+                onClick={() => setShowOptionalDetails((v) => !v)}
+                className="flex w-full items-center justify-between gap-2 rounded-xl border border-(--color-border-soft) bg-(--color-surface) px-3.5 py-2.5 text-start text-caption font-semibold text-(--color-link) transition-colors hover:bg-(--color-fill)/40"
+              >
+                <span>{t("optionalDetailsToggle")}</span>
+                <ChevronIcon className={`h-3.5 w-3.5 shrink-0 transition-transform ${optionalOpen ? "-rotate-90" : "rotate-90"}`} />
+              </button>
+
+              {optionalOpen ? (
+                <div className="ppf-step-in mt-3 grid gap-3.5 rounded-tile border border-(--color-border-soft) bg-(--color-surface) p-3.5 sm:grid-cols-2 sm:gap-x-4 sm:p-4">
+                  <Field id="ppf-preferredDate" label={t("preferredDate")} optionalLabel={t("optional")} hint={t("preferredDateHint")}>
+                    <input id="ppf-preferredDate" type="date" min={todayPlus(2)} value={form.preferredDate} onChange={(e) => set("preferredDate", e.target.value)} className={`${inputCls} ${plainBorder}`} aria-describedby="ppf-preferredDate-hint" />
+                  </Field>
+                  <Field id="ppf-existing" label={t("existingFilm")}>
+                    <select id="ppf-existing" value={form.existingFilm} onChange={(e) => set("existingFilm", e.target.value)} className={`${inputCls} ${plainBorder}`}>
+                      {EXISTING.map((k) => (
+                        <option key={k} value={k}>
+                          {t(k)}
+                        </option>
+                      ))}
+                    </select>
+                  </Field>
+                  <div className="sm:col-span-2">
+                    <Field id="ppf-email" label={t("email")} optionalLabel={t("optional")} error={shownError("email")}>
+                      <input id="ppf-email" type="email" autoComplete="email" value={form.email} onChange={(e) => set("email", e.target.value)} onBlur={blur("email")} maxLength={120} className={`${inputCls} ltr-nums ${borderFor("email")}`} {...aria("email")} />
+                    </Field>
+                  </div>
+                  <div className="sm:col-span-2">
+                    <Field id="ppf-notes" label={t("notes")} optionalLabel={t("optional")}>
+                      <textarea id="ppf-notes" rows={2} maxLength={500} value={form.notes} onChange={(e) => set("notes", e.target.value)} placeholder={t("notesPlaceholder")} className={`${inputCls} h-auto py-2.5 ${plainBorder}`} />
+                    </Field>
+                  </div>
+                </div>
+              ) : null}
             </div>
+
             {/* Honeypot — hidden from people and assistive tech, irresistible to bots. */}
             <div aria-hidden className="absolute -start-[9999px] h-px w-px overflow-hidden">
               <label htmlFor="ppf-website">Website</label>
               <input id="ppf-website" tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => set("website", e.target.value)} />
             </div>
             <div className="sm:col-span-2">
-              <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-(--color-border-soft) bg-(--color-surface) p-4 text-footnote text-(--color-text)">
+              <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-(--color-border-soft) bg-(--color-surface) p-3.5 text-footnote text-(--color-text) sm:p-4">
                 <input
                   id="ppf-consent"
                   type="checkbox"
@@ -1438,6 +1694,7 @@ export function PpfConfigurator() {
           </div>
         </form>
       );
+    }
     return null;
   })();
 
@@ -1576,7 +1833,7 @@ export function PpfConfigurator() {
 
           {/* Body: the step */}
           <div className="flex min-h-0 flex-1">
-            <div ref={scrollRef} className="min-w-0 flex-1 overflow-y-auto overscroll-contain px-4 py-5 sm:px-8 sm:py-7">
+            <div ref={scrollRef} className="min-w-0 flex-1 overflow-y-auto overscroll-contain px-4 py-4 sm:px-8 sm:py-7">
               <div key={result ? `r-${result.ref}` : step} className={result ? "ppf-step-in" : dir === 1 ? "ppf-slide-fwd" : "ppf-slide-back"}>
                 {result ? resultView : stepBody}
               </div>
@@ -1601,13 +1858,13 @@ export function PpfConfigurator() {
               </a>
             </div>
           ) : (
-            <div className="flex items-center gap-3 border-t border-(--color-border-soft) bg-(--color-surface) px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 sm:px-8">
+            <div className="flex items-center gap-3 border-t border-(--color-border-soft) bg-(--color-surface) px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-2.5 sm:px-8 sm:pt-3">
               <div className="min-w-0 flex-1">
                 <p className="truncate text-caption text-(--color-text-muted)">{priceLabel}</p>
-                <p className="text-title-sm font-semibold leading-tight tabular-nums" aria-live="polite">
+                <p className="text-body font-bold leading-tight tabular-nums sm:text-title-sm" aria-live="polite">
                   {priceText}
                 </p>
-                {body ? <p className="hidden truncate text-caption text-(--color-text-muted) sm:block">{recap}</p> : null}
+                {body ? <p className="truncate text-[11px] text-(--color-text-muted) sm:text-caption">{recap}</p> : null}
               </div>
               {step > 0 ? (
                 <button
@@ -1639,10 +1896,43 @@ export function PpfConfigurator() {
     </dialog>
   );
 
+  // Phone-only sticky bottom bar when the hero launcher has scrolled out of view.
+  const stickyMobileBar =
+    showStickyBar && !open ? (
+      <div className="cart-sticky fixed inset-x-0 bottom-0 z-30 border-t border-(--color-border-soft) bg-(--color-surface)/95 px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-2.5 text-(--color-text) backdrop-blur-md lg:hidden">
+        <div className="mx-auto flex max-w-xl items-center justify-between gap-2.5">
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-caption font-semibold text-(--color-text)">
+              {body ? vehicleDisplay : t("stickyTitle")}
+            </p>
+            <p className="truncate text-footnote font-bold tabular-nums text-(--color-brand-deep)">
+              {priceText}
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => openSheet("custom", 0)}
+            className="inline-flex h-10 shrink-0 items-center justify-center rounded-pill border border-(--color-border) bg-(--color-bg) px-3.5 text-caption font-semibold text-(--color-text) transition-colors active:bg-(--color-fill)"
+          >
+            {t("stickyCtaCustom")}
+          </button>
+          <button
+            type="button"
+            onClick={() => openSheet()}
+            className="inline-flex h-10 shrink-0 items-center justify-center gap-1 rounded-pill bg-(--color-brand) px-4 text-caption font-semibold text-(--color-ink) transition-colors hover:bg-(--color-brand-hover) active:scale-95"
+          >
+            {startedQuote ? t("launchResume") : t("stickyCtaQuote")}
+            <ChevronIcon className="h-3 w-3 rtl:-scale-x-100" />
+          </button>
+        </div>
+      </div>
+    ) : null;
+
   return (
     <div className="scroll-mt-24">
       {launcher}
       {sheet}
+      {stickyMobileBar}
     </div>
   );
 }

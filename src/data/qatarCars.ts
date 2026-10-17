@@ -204,6 +204,24 @@ export const QATAR_CARS: QatarCarEntry[] = [
   { id: "genesis-g", make: M.genesis, model: { en: "G90 / G80 / G70", ar: "G90 / G80 / G70" }, body: "sedan" },
 ];
 
+/**
+ * Most-searched vehicles in Qatar for 1-tap mobile selection chips.
+ */
+export const POPULAR_QATAR_CARS: Array<{
+  entryId: string;
+  shortLabel: LocalizedText;
+}> = [
+  { entryId: "toyota-land-cruiser", shortLabel: { en: "Land Cruiser", ar: "لاند كروزر" } },
+  { entryId: "nissan-patrol", shortLabel: { en: "Patrol", ar: "باترول" } },
+  { entryId: "jetour-t2", shortLabel: { en: "Jetour T2", ar: "جيتور T2" } },
+  { entryId: "lr-defender", shortLabel: { en: "Defender", ar: "ديفندر" } },
+  { entryId: "toyota-prado", shortLabel: { en: "Prado", ar: "برادو" } },
+  { entryId: "porsche-cayenne", shortLabel: { en: "Cayenne", ar: "كايين" } },
+  { entryId: "mb-g-class", shortLabel: { en: "G-Class", ar: "جي كلاس" } },
+  { entryId: "gmc-yukon", shortLabel: { en: "Yukon / Tahoe", ar: "يوكن / تاهو" } },
+  { entryId: "toyota-camry", shortLabel: { en: "Camry", ar: "كامري" } },
+];
+
 function normaliseSearch(s: string): string {
   return s
     .toLowerCase()
@@ -266,6 +284,11 @@ export function splitCarQuery(raw: string, locale: "en" | "ar" = "en"): { make: 
   const trimmed = raw.trim().replace(/\s+/g, " ");
   if (!trimmed) return { make: "", model: "" };
 
+  const matched = searchQatarCars(trimmed, 1);
+  if (matched.length === 1) {
+    return resolveCarModelName(matched[0], trimmed, locale);
+  }
+
   const norm = normaliseSearch(trimmed);
   for (const brand of Object.values(M)) {
     for (const candidate of [brand.en, brand.ar]) {
@@ -282,7 +305,7 @@ export function splitCarQuery(raw: string, locale: "en" | "ar" = "en"): { make: 
 
   const parts = trimmed.split(" ");
   if (parts.length === 1) {
-    return { make: "", model: parts[0] };
+    return { make: parts[0], model: "" };
   }
   return { make: parts[0], model: parts.slice(1).join(" ") };
 }

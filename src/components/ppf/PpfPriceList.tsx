@@ -85,16 +85,33 @@ export async function PpfPriceList({ locale }: { locale: "en" | "ar" }) {
                   </th>
                 </tr>
                 {BODY_TYPES.map((b) => (
-                  <tr key={b.key} className="border-t border-(--color-border-soft)">
+                  <tr key={b.key} className="border-t border-(--color-border-soft) transition-colors hover:bg-(--color-bg)/60">
                     <th scope="row" className="px-4 py-2.5 text-start font-normal sm:px-6">
-                      <span className="block font-medium text-(--color-text)">{b.name[locale]}</span>
-                      <span className="mt-0.5 block text-caption text-(--color-text-muted)">
-                        {b.examples[locale]}
-                      </span>
+                      <a
+                        href="#quote"
+                        data-ppf-body={b.key}
+                        data-ppf-coverage={c}
+                        className="group block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand-deep)"
+                      >
+                        <span className="block font-medium text-(--color-text) group-hover:text-(--color-brand-deep)">
+                          {b.name[locale]}
+                        </span>
+                        <span className="mt-0.5 block text-caption text-(--color-text-muted)">
+                          {b.examples[locale]}
+                        </span>
+                      </a>
                     </th>
                     {columns.map((col) => (
                       <td key={col.films[0]} className="px-4 py-2.5 text-end font-semibold whitespace-nowrap text-(--color-text) sm:px-6">
-                        {qar(price(c, b.key, col.films[0])!)}
+                        <a
+                          href="#quote"
+                          data-ppf-body={b.key}
+                          data-ppf-coverage={c}
+                          data-ppf-film={col.films[0]}
+                          className="-mx-2 -my-1 inline-flex items-center gap-1 rounded-lg px-2 py-1 font-semibold text-(--color-text) transition-colors hover:bg-(--color-brand)/15 hover:text-(--color-brand-deep) active:bg-(--color-brand)/25"
+                        >
+                          {qar(price(c, b.key, col.films[0])!)}
+                        </a>
                       </td>
                     ))}
                   </tr>

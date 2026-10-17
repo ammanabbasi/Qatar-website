@@ -76,16 +76,19 @@ export async function POST(request: Request) {
   const name = str(f.name, MAX.name);
   const mobile = normaliseQatarMobile(str(f.mobile, 30));
   const email = str(f.email, 120);
-  const year = Number(f.year);
+  const make = str(f.make, MAX.short);
+  const model = str(f.model, MAX.short);
+  const rawYear = f.year === "" || f.year === null || f.year === undefined ? 0 : Number(f.year);
   const thisYear = new Date().getFullYear();
   const preferredDate = str(f.preferredDate, 10);
   const errors: string[] = [];
   if (name.length < 2) errors.push("name");
   if (!mobile) errors.push("mobile");
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push("email");
-  if (!str(f.make, MAX.short)) errors.push("make");
-  if (!str(f.model, MAX.short)) errors.push("model");
-  if (!Number.isInteger(year) || year < 1990 || year > thisYear + 1) errors.push("year");
+  if (!make && !model) errors.push("make");
+  if (rawYear !== 0 && (!Number.isInteger(rawYear) || rawYear < 1990 || rawYear > thisYear + 1)) {
+    errors.push("year");
+  }
   if (preferredDate && !/^\d{4}-\d{2}-\d{2}$/.test(preferredDate)) errors.push("preferredDate");
   if (f.consent !== true) errors.push("consent");
   if (errors.length > 0) return json(422, { ok: false, error: "invalid_fields", fields: errors });
@@ -105,9 +108,9 @@ export async function POST(request: Request) {
     parts: coverage === "custom" ? parts : [],
     film,
     priceQar: quote.priceQar ?? "quote",
-    make: str(f.make, MAX.short),
-    model: str(f.model, MAX.short),
-    year,
+    make: make || model,
+    model: make ? model : "",
+    year: rawYear || "",
     existingFilm: str(f.existingFilm, MAX.short),
     preferredDate,
     name,

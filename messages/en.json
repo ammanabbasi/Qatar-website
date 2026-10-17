@@ -290,6 +290,8 @@
     "value3Desc": "Advice from people who actually use the products, not read-from-a-box product sheets.",
     "exploreTitle": "Continue exploring",
     "exploreProductsLabel": "Browse our PPF, ceramic coatings & detailing products",
+    "explorePpfLabel": "Book VTEK PPF installation in Doha with up to 10-year warranty",
+    "exploreBlogLabel": "Read our Qatar car care & PPF guides",
     "exploreDealerLabel": "Become a wholesale dealer in Qatar or the GCC",
     "heading": "About ABK."
   },
@@ -298,6 +300,8 @@
     "subtitle": "Visit our store, or reach us on WhatsApp. We reply fast.",
     "exploreTitle": "Before you reach out",
     "exploreProductsLabel": "Shop the full retail catalogue",
+    "explorePpfLabel": "See VTEK PPF installation packages & QAR pricing in Doha",
+    "exploreBlogLabel": "Read answers & guides on PPF, ceramic coatings & detailing in Qatar",
     "exploreDealerLabel": "See wholesale options for Qatar and the GCC",
     "address": "Address",
     "addressValue": "Showroom no. 2, Building 1306, Street 70, Zone 56, Mesaimeer, Doha, Qatar",
@@ -712,7 +716,17 @@
     "pricesUnsureTitle": "Not sure which category your car is considered?",
     "pricesUnsureBody": "Search your car's make & model to see its category instantly, or enter your vehicle details and we'll prepare a custom offer for your exact car.",
     "pricesUnsureCtaQuote": "Enter Make & Model for Custom Offer",
-    "pricesUnsureCtaWhatsApp": "Ask on WhatsApp"
+    "pricesUnsureCtaWhatsApp": "Ask on WhatsApp",
+    "popularCarsLabel": "Popular in Qatar:",
+    "popularBadge": "Most popular",
+    "customizePanelsBtn": "Customize individual panels ({count}/{total})",
+    "hidePanelsBtn": "Hide panel list",
+    "optionalDetailsToggle": "Add preferred date, paint condition or notes (optional)",
+    "directWhatsAppBar": "Prefer to confirm directly on WhatsApp?",
+    "directWhatsAppCta": "Send Quote on WhatsApp",
+    "stickyTitle": "VTEK PPF Installation",
+    "stickyCtaQuote": "Get Quote",
+    "stickyCtaCustom": "Custom Offer"
   },
   "DealerPage": {
     "tiersEyebrow": "PARTNERSHIP OPPORTUNITIES",

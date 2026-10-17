@@ -290,6 +290,8 @@
     "value3Desc": "نصائح من أشخاص يستخدمون هذه المنتجات بأنفسهم، لا مجرد قراءة من العلبة.",
     "exploreTitle": "تابع الاستكشاف",
     "exploreProductsLabel": "تصفح منتجات PPF والطلاءات السيراميكية ومستحضرات التلميع",
+    "explorePpfLabel": "احجز تركيب أفلام VTEK PPF في الدوحة بضمان يصل إلى ١٠ سنوات",
+    "exploreBlogLabel": "اقرأ أدلة العناية بالسيارات وحماية الطلاء في قطر",
     "exploreDealerLabel": "كن موزّع جملة في قطر أو دول الخليج",
     "heading": "عن ABK."
   },
@@ -298,6 +300,8 @@
     "subtitle": "زرنا في المتجر أو تواصل عبر واتساب — نردّ بسرعة.",
     "exploreTitle": "قبل أن تتواصل",
     "exploreProductsLabel": "تسوّق الكتالوج الكامل للتجزئة",
+    "explorePpfLabel": "اطّلع على باقات وأسعار تركيب VTEK PPF في الدوحة",
+    "exploreBlogLabel": "اقرأ أدلة PPF والطلاء السيراميكي والتلميع في قطر",
     "exploreDealerLabel": "اطّلع على خيارات الجملة في قطر والخليج",
     "address": "العنوان",
     "addressValue": "معرض رقم ٢، مبنى ١٣٠٦، شارع ٧٠، منطقة ٥٦، مسيمير، الدوحة، قطر",
@@ -712,7 +716,17 @@
     "pricesUnsureTitle": "لست متأكداً من الفئة التي تُحسب عليها سيارتك؟",
     "pricesUnsureBody": "ابحث عن نوع وطراز سيارتك لمعرفة فئتها فوراً، أو أدخل بيانات مركبتك وسنجهز لك عرض سعر مخصصاً لسيارتك.",
     "pricesUnsureCtaQuote": "أدخل نوع وطراز سيارتك لعرض مخصص",
-    "pricesUnsureCtaWhatsApp": "اسألنا عبر واتساب"
+    "pricesUnsureCtaWhatsApp": "اسألنا عبر واتساب",
+    "popularCarsLabel": "الأكثر شيوعاً في قطر:",
+    "popularBadge": "الأكثر طلباً",
+    "customizePanelsBtn": "تخصيص القطع الفردية ({count}/{total})",
+    "hidePanelsBtn": "إخفاء قائمة القطع",
+    "optionalDetailsToggle": "إضافة موعد مفضل أو حالة الطلاء أو ملاحظات (اختياري)",
+    "directWhatsAppBar": "تفضل التأكيد مباشرة عبر واتساب؟",
+    "directWhatsAppCta": "أرسل العرض عبر واتساب",
+    "stickyTitle": "تركيب حماية VTEK PPF",
+    "stickyCtaQuote": "احسب السعر",
+    "stickyCtaCustom": "عرض مخصص"
   },
   "DealerPage": {
     "tiersEyebrow": "فرص الشراكة والتعاون",
