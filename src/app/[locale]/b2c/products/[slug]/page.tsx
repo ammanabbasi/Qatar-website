@@ -5,7 +5,7 @@ import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
 import { ProductDetail } from "@/components/product/ProductDetail";
 import { getProductBySlug, getRelatedProducts, PRODUCTS } from "@/data/products";
-import { metaDescription, pageMeta, productSocialImage } from "@/lib/seo";
+import { metaDescription, pageMeta, productMetaTitle, productSocialImage } from "@/lib/seo";
 
 // Reject any slug not produced by generateStaticParams — b2b-only products
 // hit 404 under /b2c instead of rendering an orphan page no listing links to.
@@ -41,7 +41,7 @@ export async function generateMetadata({
       : "In stock at ABK, Doha, Qatar. WhatsApp to order.",
   );
   return {
-    title: product.name[l],
+    title: productMetaTitle(product.name[l], categoryLabel, l),
     description: desc,
     keywords: [
       product.name[l],

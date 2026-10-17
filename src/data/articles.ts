@@ -164,19 +164,36 @@ export const ARTICLES: Article[] = [
   {
     slug: "window-tinting-rules-qatar-guide",
     title: {
-      en: "Window Tinting in Qatar: Rules, Permits and Choosing the Right Film (2026 Guide)",
-      ar: "تظليل النوافذ في قطر: القوانين والتصاريح واختيار الفيلم المناسب (دليل 2026)",
+      en: "Window Tinting in Qatar: Rules, Metrash Permits & Choosing the Right Film (2026 Guide)",
+      ar: "تظليل النوافذ في قطر: القوانين وتصاريح مطراش واختيار الفيلم المناسب (دليل 2026)",
     },
     description: {
-      en: "What tint percentage is legal in Qatar? A practical 2026 guide to MOI tint rules, Metrash permits, fines, and choosing a heat-rejecting film for Doha's climate.",
-      ar: "ما نسبة التظليل القانونية في قطر؟ دليل عملي 2026 لقوانين وزارة الداخلية وتصاريح مطراش والغرامات واختيار فيلم عازل للحرارة.",
+      en: "What tint percentage is legal in Qatar? A practical 2026 guide to MOI tint limits (20% front side windows), how to apply for a tint permit in Metrash, QR 1,000 fines, Fahes inspection, and VTEK ceramic tint.",
+      ar: "ما نسبة التظليل القانونية في قطر؟ دليل عملي 2026 لقوانين وزارة الداخلية وتصاريح التظليل عبر مطراش والغرامات وفحص فاحص وأفلام VTEK العازلة للحرارة.",
     },
     date: "2026-06-12",
-    readingTime: 6,
+    updated: "2026-10-17",
+    readingTime: 7,
     category: "guide",
     keywords: {
-      en: ["window tinting Qatar", "car tint law Qatar", "tint percentage Qatar", "tint permit Metrash", "window tint Doha"],
-      ar: ["تظليل النوافذ قطر", "قانون تظليل السيارات قطر", "نسبة التظليل المسموحة قطر", "تظليل سيارات الدوحة"],
+      en: [
+        "window tinting Qatar",
+        "car tint law Qatar",
+        "tint percentage Qatar",
+        "tint allowed in Qatar",
+        "car tinting Qatar limits",
+        "how to apply car tint in Metrash Qatar",
+        "Qatar window tint fine penalty",
+        "window tint Doha",
+      ],
+      ar: [
+        "تظليل النوافذ قطر",
+        "قانون تظليل السيارات قطر",
+        "نسبة التظليل المسموحة قطر",
+        "تصريح تظليل مطراش قطر",
+        "غرامة التظليل في قطر",
+        "تظليل سيارات الدوحة",
+      ],
     },
     sections: [
       {
@@ -195,18 +212,28 @@ export const ARTICLES: Article[] = [
           ar: "ما درجات التظليل المسموحة في قطر؟",
         },
         body: {
-          en: "Qatar's Ministry of Interior regulates how dark vehicle glass may be. Under the rules as published in 2026, private vehicles are generally permitted around 20% tint darkness on the front side windows, only a light band on the windshield, and significantly darker film on rear side windows and the rear screen. Sports and two-door cars face stricter limits. Because the MOI updates these rules and enforcement details from time to time, always confirm the current limits through Metrash or the MOI website before installing — a reputable installer will know the in-force limits and refuse work that would put your registration at risk. At ABK we stock VTEK Solar Armor films in VLT grades that comply with the current Qatar regulations, and we advise every customer on what is legal for their specific vehicle type.",
-          ar: "تنظم وزارة الداخلية القطرية درجة قتامة زجاج المركبات. وفق القواعد المنشورة في 2026، يُسمح للمركبات الخاصة عموماً بحوالي 20% قتامة على النوافذ الجانبية الأمامية، وشريط خفيف فقط على الزجاج الأمامي، وفيلم أغمق بكثير على النوافذ الجانبية الخلفية والزجاج الخلفي. وتخضع السيارات الرياضية وذات البابين لقيود أشد. ولأن وزارة الداخلية تحدّث هذه القواعد وتفاصيل تطبيقها من وقت لآخر، تأكد دائماً من الحدود السارية عبر مطراش أو موقع الوزارة قبل التركيب — المركّب الموثوق يعرف الحدود المعمول بها ويرفض أي عمل يعرّض تسجيل سيارتك للخطر. في ABK نوفر أفلام VTEK Solar Armor بدرجات نفاذية ضوء متوافقة مع اللوائح القطرية الحالية، وننصح كل عميل بما هو قانوني لنوع سيارته تحديداً.",
+          en: "Qatar's Ministry of Interior (General Directorate of Traffic) regulates how dark vehicle glass may be. Under the rules in force in 2026, private family and sedan/SUV vehicles are generally permitted up to 20% tint darkness (80% VLT) on the front driver and passenger side windows, only a light top sun-strip on the front windshield (no full-windshield dark tint), and darker privacy shading on the rear passenger side windows and rear screen provided both side mirrors offer clear visibility. Sports cars and two-door coupes face stricter limits where dark rear or side tinting is restricted without a special permit. Reflective, mirrored, or metallic-finish films are strictly prohibited on all windows. At ABK we stock VTEK Solar Armor nano-ceramic films in VLT grades engineered to comply with Qatar's traffic regulations while blocking up to 95% of infrared heat.",
+          ar: "تنظم وزارة الداخلية القطرية (الإدارة العامة للمرور) درجة قتامة زجاج المركبات. وفق القواعد السارية في 2026، يُسمح للمركبات الخاصة العائلية والسيدان والدفع الرباعي عموماً بنسبة تظليل تصل إلى 20% قتامة (80% نفاذية ضوء VLT) على النوافذ الجانبية الأمامية للسائق والراكب، وشريط علوي خفيف فقط على الزجاج الأمامي، ودرجة أغمق للنوافذ الجانبية الخلفية والزجاج الخلفي بشرط وضوح الرؤية عبر المرايا الجانبية. وتخضع السيارات الرياضية وذات البابين لقيود أشد تمنع التظليل الغامق دون تصريح خاص، كما يُمنع التظليل العاكس أو المعدني كلياً. في ABK نوفر أفلام VTEK Solar Armor السيراميكية بدرجات نفاذية ضوء متوافقة مع اللوائح القطرية وتعزل حتى 95% من الأشعة تحت الحمراء.",
         },
       },
       {
         heading: {
-          en: "Permits, Fines and Inspections",
-          ar: "التصاريح والغرامات والفحص",
+          en: "How to Apply for a Car Tint Permit in Metrash (Step-by-Step)",
+          ar: "كيفية التقديم على تصريح تظليل السيارة عبر تطبيق مطراش (خطوة بخطوة)",
         },
         body: {
-          en: "Drivers who need darker tint than the standard limit — for example for documented medical reasons such as skin or eye conditions — can apply for a tint permit through Metrash with a supporting medical report. Driving with non-compliant tint without a permit risks a fine of around QR 1,000 and possible vehicle impoundment, and over-dark tint can also cause a vehicle to fail its annual Fahes inspection. The practical advice is simple: install compliant film from the start. Modern ceramic films achieve excellent heat rejection even at legal VLT levels, so you genuinely do not need illegal darkness to keep your cabin cool.",
-          ar: "يمكن للسائقين الذين يحتاجون تظليلاً أغمق من الحد القياسي — مثلاً لأسباب طبية موثقة كأمراض الجلد أو العيون — التقدم بطلب تصريح تظليل عبر مطراش مع تقرير طبي داعم. القيادة بتظليل مخالف دون تصريح تعرّضك لغرامة نحو 1,000 ريال قطري واحتمال حجز المركبة، كما قد يتسبب التظليل الزائد في رسوب السيارة في فحص فاحص السنوي. النصيحة العملية بسيطة: ركّب فيلماً متوافقاً من البداية. تحقق الأفلام السيراميكية الحديثة عزلاً حرارياً ممتازاً حتى عند درجات النفاذية القانونية، فلا تحتاج فعلياً إلى قتامة مخالفة لإبقاء مقصورتك باردة.",
+          en: "Drivers who require darker window tinting than the standard 20% front-side limit — most commonly for documented medical conditions such as lupus, severe photosensitivity, or ophthalmic disorders — must obtain an official MOI Window Tinting Permit before fitting dark film. To apply and pay in the Metrash app: (1) Obtain an official medical report from Hamad Medical Corporation (HMC) or an approved Ministry of Public Health clinic stating the medical necessity for UV/light protection; (2) Open the Metrash app and log in with your QID; (3) Navigate to Traffic → Vehicle Services → Issue/Renew Window Tinting Permit; (4) Enter the vehicle plate number, verify Istimara (registration) ownership, and upload the medical report; (5) Once reviewed and approved by the General Directorate of Traffic, pay the applicable permit fee directly inside Metrash using a debit or credit card. The electronic permit links to your vehicle plate so traffic patrols and Fahes inspectors can verify it automatically.",
+          ar: "يمكن للسائقين الذين يحتاجون نسبة تظليل أعلى من الحد القياسي (20% للنوافذ الأمامية) — وغالباً لأسباب طبية موثقة مثل الحساسية الضوئية الشديدة أو أمراض العيون والجلد — استخراج تصريح تظليل رسمي من وزارة الداخلية قبل تركيب الفيلم الغامق. للتقديم والدفع عبر تطبيق مطراش: (1) استخرج تقريراً طبياً معتمداً من مؤسسة حمد الطبية أو جهة صحية معتمدة من وزارة الصحة العامة يثبت الحاجة الطبية للوقاية من أشعة الشمس؛ (2) افتح تطبيق مطراش وسجّل الدخول بالبطاقة الشخصية؛ (3) انتقل إلى المرور ← خدمات المركبات ← إصدار/تجديد تصريح تظليل؛ (4) أدخل رقم لوحة المركبة وتأكد من سريان الاستمارة ثم أرفق التقرير الطبي؛ (5) بعد مراجعة الطلب والموافقة عليه من الإدارة العامة للمرور، سدد رسوم التصريح إلكترونياً داخل التطبيق ليُربط التصريح برقم المركبة تلقائياً لدى الدوريات وفحص فاحص.",
+        },
+      },
+      {
+        heading: {
+          en: "Illegal Tint Fines, Penalties and Fahes Inspection",
+          ar: "غرامات التظليل المخالف والعقوبات وفحص فاحص السنوي",
+        },
+        body: {
+          en: "Driving with non-compliant window tint in Qatar without a valid Metrash permit carries strict penalties under the Qatar Traffic Law: traffic violations for illegal window tinting typically result in a fine of QR 1,000 to QR 3,000 depending on the violation severity, mandatory removal of the non-compliant film, and potential vehicle impoundment. In addition, any vehicle with excessive front-side or windshield tint will automatically fail its annual Fahes (Woqod) technical inspection until the film is stripped and adhesive residue is cleaned. The smart alternative is installing legal-VLT nano-ceramic film from day one: because ceramic particles block invisible infrared heat rather than visible light, a legal 70%–80% VLT ceramic film keeps your cabin cooler than an illegal 5% dyed film without ever risking a traffic fine.",
+          ar: "القيادة بتظليل مخالف للحدود القانونية في قطر دون تصريح ساري المفعول عبر مطراش تعرض السائق لعقوبات مشددة وفق قانون المرور القطري؛ حيث تتراوح غرامة مخالفة التظليل عادةً بين 1,000 و3,000 ريال قطري بحسب نوع المخالفة، مع إلزامية إزالة الفيلم المخالف واحتمال حجز المركبة. وعلاوة على ذلك، ترسب أي مركبة تحمل تظليلاً زائداً على النوافذ الأمامية أو الزجاج الأمامي تلقائياً في الفحص الفني السنوي (فاحص / وقود) حتى يُزال الفيلم وتُنظف بقايا الصمغ. البديل الذكي هو تركيب فيلم نانو سيراميك بنفاذية ضوء قانونية من البداية؛ فحبيبات السيراميك تعزل الأشعة تحت الحمراء غير المرئية المسببة للحرارة، ما يمنحك مقصورة باردة واجتيازاً مضموناً لفحص فاحص دون أي غرامة.",
         },
       },
       {
@@ -215,8 +242,8 @@ export const ARTICLES: Article[] = [
           ar: "شرح نفاذية الضوء وعزل الأشعة تحت الحمراء وبقية الأرقام",
         },
         body: {
-          en: "Tint shopping comes with jargon. VLT (visible light transmission) is the percentage of visible light that passes through — a 70% VLT film is nearly clear, a 5% film is limousine-dark. Heat rejection numbers split into TSER (total solar energy rejected) and IR rejection (the infrared portion you feel as heat). A premium film can be light in appearance yet reject most infrared heat — this is why a legal-VLT ceramic film outperforms an illegal dark dyed film. UV rejection should be 99% or higher on any serious product. VTEK window tints, which ABK distributes in Qatar, publish these figures per grade so you can choose a film by performance rather than darkness alone.",
-          ar: "يأتي شراء التظليل مصحوباً بمصطلحات تقنية. نفاذية الضوء المرئي (VLT) هي نسبة الضوء المرئي الذي يمر عبر الفيلم — فيلم بنفاذية 70% يكاد يكون شفافاً، وفيلم 5% غامق كزجاج الليموزين. أما أرقام العزل الحراري فتنقسم إلى إجمالي الطاقة الشمسية المرفوضة (TSER) وعزل الأشعة تحت الحمراء (الجزء الذي تشعر به حرارةً). يمكن لفيلم فاخر أن يبدو فاتحاً ومع ذلك يعزل معظم حرارة الأشعة تحت الحمراء — ولهذا يتفوق فيلم سيراميكي بنفاذية قانونية على فيلم مصبوغ غامق مخالف. ويجب ألا يقل حجب الأشعة فوق البنفسجية عن 99% في أي منتج جاد. أفلام تظليل VTEK التي توزعها ABK في قطر تنشر هذه الأرقام لكل درجة، لتختار الفيلم حسب الأداء لا القتامة وحدها.",
+          en: "Tint shopping comes with jargon. VLT (visible light transmission) is the percentage of visible light that passes through — a 70%–80% VLT film is nearly clear and legal on front windows, whereas a 5% VLT film is limousine-dark. Heat rejection numbers split into TSER (total solar energy rejected) and IR rejection (the infrared portion you feel as burning skin heat). VTEK Solar Armor window films — available at ABK in three tiers: Solar Armor VUE, Solar Armor APEX, and flagship Solar Armor ICONIC — deliver 99%+ UV protection and up to 95% infrared heat rejection even in high-VLT legal shades.",
+          ar: "يأتي شراء التظليل مصحوباً بمصطلحات تقنية. نفاذية الضوء المرئي (VLT) هي نسبة الضوء المرئي الذي يمر عبر الفيلم — فيلم بنفاذية 70%–80% يكاد يكون شفافاً ومتوافقاً مع القانون للنوافذ الأمامية، بينما فيلم 5% غامق كزجاج الليموزين. أما أرقام العزل الحراري فتنقسم إلى إجمالي الطاقة الشمسية المرفوضة (TSER) وعزل الأشعة تحت الحمراء (IRR). توفر أفلام تظليل VTEK Solar Armor المتوفرة لدى ABK بثلاث فئات (Solar Armor VUE وSolar Armor APEX والفئة الرائدة Solar Armor ICONIC) حجباً للأشعة فوق البنفسجية بنسبة +99% وعزلاً للأشعة تحت الحمراء يصل إلى 95% حتى في الدرجات الفاتحة القانونية.",
         },
       },
       {
@@ -225,14 +252,15 @@ export const ARTICLES: Article[] = [
           ar: "أفلام ومستلزمات تركيب في مسيمير، الدوحة",
         },
         body: {
-          en: "A film is only as good as its installation. Dust trapped under the film, stretched edges, and bubbling are the marks of rushed work — and in Qatar's heat, poor installations fail fast. At ABK Trading and Service in Mesaimeer we supply VTEK window tints along with the pre-cut sizes and application tools a professional fitter needs to get that result. We will recommend the right VLT grade for each window of your vehicle so the result is both compliant and as cool as legally possible. Message us on WhatsApp at +974 30838355 for film options and pricing for your car model.",
-          ar: "جودة الفيلم من جودة تركيبه. الغبار المحتجز تحت الفيلم والحواف المشدودة والفقاعات علامات على عمل متسرّع — وفي حرارة قطر تفشل التركيبات الرديئة سريعاً. في ABK للتجارة والخدمات بمسيمير نوفر أفلام تظليل VTEK مع المقاسات وأدوات التطبيق التي يحتاجها المُركّب المحترف لبلوغ هذه النتيجة. وسنوصيك بدرجة النفاذية المناسبة لكل نافذة في سيارتك ليأتي التظليل متوافقاً مع القانون وبأقصى برودة ممكنة قانونياً. راسلنا على واتساب +974 30838355 لمعرفة خيارات الأفلام والأسعار لطراز سيارتك.",
+          en: "A film is only as good as its installation. Dust trapped under the film, stretched edges, and bubbling are the marks of rushed work — and in Qatar's heat, poor installations fail fast. At ABK Trading and Service in Mesaimeer we supply VTEK Solar Armor window tints along with PPF installation gels, glass cleaners, and application tools for workshops and car owners across Qatar. Message us on WhatsApp at +974 30838355 for VTEK Solar Armor roll specifications and VLT recommendations for your car model.",
+          ar: "جودة الفيلم من جودة تركيبه. الغبار المحتجز تحت الفيلم والحواف المشدودة والفقاعات علامات على عمل متسرّع — وفي حرارة قطر تفشل التركيبات الرديئة سريعاً. في ABK للتجارة والخدمات بمسيمير نوفر أفلام تظليل VTEK Solar Armor مع محاليل التركيب ومنظفات الزجاج وأدوات التطبيق للمراكز وملاك السيارات في قطر. راسلنا على واتساب +974 30838355 لمعرفة مواصفات رولات VTEK Solar Armor ودرجات النفاذية المناسبة لسيارتك.",
         },
       },
     ],
     relatedProducts: [
       "vtek-window-tints",
-      "vtek-ppf-weather-armor-ultimate",
+      "vtek-solar-armor-apex",
+      "vtek-solar-armor-iconic",
       "briller-glass-cleaner",
     ],
     cta: PPF_INSTALL_CTA,
@@ -240,19 +268,32 @@ export const ARTICLES: Article[] = [
   {
     slug: "ceramic-coating-cost-qatar",
     title: {
-      en: "How Much Does Ceramic Coating Cost in Qatar? (2026 Price Guide)",
-      ar: "كم تكلفة الطلاء السيراميكي في قطر؟ (دليل الأسعار 2026)",
+      en: "How Much Does Ceramic Coating Cost in Qatar? (2026 Price Guide for Sedans & SUVs)",
+      ar: "كم تكلفة الطلاء السيراميكي في قطر؟ (دليل أسعار 2026 للسيدان والدفع الرباعي)",
     },
     description: {
-      en: "Ceramic coating prices in Qatar explained — what drives the cost, typical Doha market ranges, professional vs DIY, and how to judge whether a quote is fair.",
-      ar: "شرح أسعار الطلاء السيراميكي في قطر — ما الذي يحدد التكلفة، ونطاقات الأسعار في الدوحة، والفرق بين التطبيق الاحترافي والمنزلي.",
+      en: "2026 ceramic coating prices in Qatar for sedans, medium SUVs and large 4x4s — Doha studio ranges (QAR 800–3,200), Autotriz 9H kit prices (QAR 250–280), and how to compare quotes.",
+      ar: "أسعار الطلاء السيراميكي في قطر لعام 2026 للسيدان وسيارات SUV المتوسطة والكبيرة — نطاقات الأسعار في الدوحة وأسعار أطقم Autotriz 9H الأصلية.",
     },
     date: "2026-06-11",
+    updated: "2026-10-17",
     readingTime: 6,
     category: "buying-guide",
     keywords: {
-      en: ["ceramic coating price Qatar", "ceramic coating cost Doha", "car ceramic Qatar", "nano ceramic Doha price"],
-      ar: ["سعر السيراميك للسيارات قطر", "تكلفة طلاء سيراميك الدوحة", "نانو سيراميك قطر"],
+      en: [
+        "ceramic coating price Qatar",
+        "ceramic coating cost Doha",
+        "ceramic coating price in Qatar for SUV medium size",
+        "car ceramic Qatar",
+        "nano ceramic Doha price",
+        "Autotriz ceramic coating Qatar",
+      ],
+      ar: [
+        "سعر السيراميك للسيارات قطر",
+        "تكلفة طلاء سيراميك الدوحة",
+        "سعر نانو سيراميك للدفع الرباعي قطر",
+        "نانو سيراميك قطر",
+      ],
     },
     sections: [
       {
@@ -261,28 +302,28 @@ export const ARTICLES: Article[] = [
           ar: "ما الذي يحدد السعر فعلياً",
         },
         body: {
-          en: "Ceramic coating quotes in Doha vary widely because the work behind them varies widely. The main cost drivers are: vehicle size (a Land Cruiser takes far more product and labour than a Yaris), paint condition (a new car may need only a light polish, while a sun-damaged daily driver needs multi-stage paint correction before any coating can be applied), the coating product itself (true 9H professional ceramics with multi-year durability cost more than consumer sprays), the number of layers, and what is included — many packages add wheel faces, glass, and interior surfaces. When two quotes differ sharply, the difference is almost always in the paint-correction stage, not the bottle.",
-          ar: "تتفاوت عروض أسعار السيراميك في الدوحة بشدة لأن العمل وراءها يتفاوت بشدة. أبرز محددات التكلفة: حجم المركبة (لاند كروزر يستهلك منتجاً وجهداً أكبر بكثير من يارس)، وحالة الطلاء (سيارة جديدة قد تكتفي بتلميع خفيف، بينما تحتاج سيارة متضررة من الشمس إلى تصحيح طلاء متعدد المراحل قبل أي طلاء)، وجودة منتج السيراميك نفسه (السيراميك الاحترافي الحقيقي بصلابة 9H ومتانة لسنوات أغلى من البخاخات الاستهلاكية)، وعدد الطبقات، وما يشمله العرض — كثير من الباقات تضيف وجوه الجنوط والزجاج والأسطح الداخلية. وعندما يختلف عرضان اختلافاً حاداً، فالفرق غالباً في مرحلة تصحيح الطلاء لا في العبوة.",
+          en: "Ceramic coating quotes in Doha vary widely because the work behind them varies widely. The main cost drivers are: vehicle size (a Land Cruiser or Patrol takes far more product and labour than a sedan or compact crossover), paint condition (a brand-new car may need only a single-stage gloss enhancement polish, while a sun-damaged daily driver needs multi-stage paint correction with cutting compounds before any coating can bond), the coating chemistry itself (true German 9H SiO2/3D-matrix professional ceramics with multi-year durability cost more than consumer spray sealants), the number of cured layers, and whether wheel faces, glass, and leather trim are included.",
+          ar: "تتفاوت عروض أسعار السيراميك في الدوحة بشدة لأن العمل وراءها يتفاوت بشدة. أبرز محددات التكلفة: حجم المركبة (لاند كروزر أو باترول يستهلك منتجاً وجهداً أكبر بكثير من السيدان أو الكروس أوفر)، وحالة الطلاء (سيارة جديدة قد تكتفي بتلميع خفيف بمرحلة واحدة، بينما تحتاج سيارة متضررة من الشمس إلى تصحيح طلاء متعدد المراحل قبل أي طلاء)، وكيمياء منتج السيراميك نفسه (السيراميك الألماني الاحترافي الحقيقي بصلابة 9H ومتانة لسنوات أغلى من البخاخات الاستهلاكية)، وعدد الطبقات، وما إذا كانت الباقة تشمل الجنوط والزجاج والجلد الداخلي.",
         },
       },
       {
         heading: {
-          en: "Typical Market Ranges in Doha",
-          ar: "نطاقات الأسعار المعتادة في الدوحة",
+          en: "Typical Ceramic Coating Prices in Doha by Vehicle Size (Sedan, Medium SUV & Large 4x4)",
+          ar: "متوسط أسعار الطلاء السيراميكي في الدوحة حسب حجم السيارة (سيدان، SUV متوسطة، دفع رباعي كبير)",
         },
         body: {
-          en: "As a general orientation — not a quote — professional ceramic coating packages in the Doha market typically start from several hundred riyals for an entry package on a small car with healthy paint, and run into the low thousands of riyals for a full package on a large SUV including multi-stage paint correction and multiple coating layers. Packages bundling ceramic on top of new PPF sit higher still. Be cautious at both extremes: a suspiciously cheap 'ceramic' offer is usually a silica spray sealant marketed as ceramic and will not survive a Qatari summer, while the most expensive quote is not automatically the best work. Ask any installer three questions: which product line and grade, how many correction stages are included, and what written durability warranty you receive.",
-          ar: "كتوجيه عام — وليس عرض سعر — تبدأ باقات السيراميك الاحترافية في سوق الدوحة عادةً من بضع مئات من الريالات لباقة أساسية على سيارة صغيرة بطلاء سليم، وتصل إلى آلاف قليلة من الريالات لباقة كاملة على دفع رباعي كبير تشمل تصحيح طلاء متعدد المراحل وطبقات متعددة. وتأتي الباقات التي تجمع السيراميك فوق PPF جديد أعلى من ذلك. احذر من الطرفين: العرض «السيراميكي» الرخيص بشكل مريب يكون عادةً مانع تسرب سيليكا يُسوَّق كسيراميك ولن يصمد أمام صيف قطر، في حين أن أغلى عرض ليس تلقائياً أفضل عمل. اسأل أي مركّب ثلاثة أسئلة: ما خط المنتج ودرجته، كم مرحلة تصحيح تشملها الباقة، وما الضمان المكتوب للمتانة.",
+          en: "Across reputable detailing studios in Doha, full ceramic coating packages (including decontamination wash, machine polish, and 9H nano-ceramic application) typically fall into three vehicle-size brackets: (1) Sedans, Hatchbacks & Coupes: QAR 800 to QAR 1,800 depending on single-stage vs two-stage paint correction and 1-year vs 3–5-year coating durability; (2) Medium SUVs & Crossovers (e.g., Toyota Prado, Jetour T2, Porsche Cayenne, Nissan X-Trail, Range Rover Sport): QAR 1,200 to QAR 2,500 for a full exterior 9H multi-layer package with single- or two-stage polish; (3) Large SUVs & Pickups (e.g., Toyota Land Cruiser 300, Nissan Patrol, Lexus LX, GMC Yukon, Ford F-150): QAR 1,600 to QAR 3,200+ due to the larger surface area and roof/panel prep time. If you are buying the genuine German ceramic coating kit directly to supply your detailer or apply yourself, ABK stocks Autotriz REVO +15 Ceramic Coating (50ml) at QAR 250, Autotriz ION+ +15 Ceramic Coating (50ml) at QAR 250, Autotriz 3D Matrix Hybrid (50ml kit) at QAR 280, and flagship Autotriz 3D Matrix Ultra (50ml kit) at QAR 280, plus Autotriz Leather & Vinyl Coating (50ml) at QAR 280.",
+          ar: "في مراكز التلميع المعتمدة في الدوحة، تنقسم أسعار باقات الطلاء السيراميكي الكاملة (شاملة الغسيل التفصيلي، والتلميع الآلي لتصحيح الطلاء، وتطبيق النانو سيراميك 9H) عادةً إلى ثلاث فئات حسب حجم المركبة: (1) سيارات السيدان والكوبيه والهاتشباك: من 800 إلى 1,800 ريال قطري بحسب مراحل تصحيح الطلاء ومدة ضمان السيراميك؛ (2) سيارات الدفع الرباعي المتوسطة والكروس أوفر (مثل تويوتا برادو، جيتور T2، بورش كايين، نيسان إكس تريل، رينج روفر سبورت): من 1,200 إلى 2,500 ريال قطري لباقة سيراميك 9H متعددة الطبقات مع تلميع؛ (3) سيارات الدفع الرباعي الكبيرة والبيك أب (مثل لاند كروزر، نيسان باترول، لكزس LX، جمسي يوكون): من 1,600 إلى 3,200+ ريال قطري نظراً لكبر المساحة السطحية. أما إذا رغبت بشراء أطقم السيراميك الألماني الأصلي مباشرة من الموزع لتزويد مركز التلميع أو للتطبيق الشخصي، فتوفر ABK في معرض مسيمير: Autotriz REVO +15 (عبوة 50 مل) بسعر 250 ر.ق، وAutotriz ION+ +15 (عبوة 50 مل) بسعر 250 ر.ق، وAutotriz 3D Matrix Hybrid (طقم 50 مل) بسعر 280 ر.ق، والفئة الرائدة Autotriz 3D Matrix Ultra (طقم 50 مل) بسعر 280 ر.ق.",
         },
       },
       {
         heading: {
-          en: "Professional Application vs DIY Kits",
-          ar: "التطبيق الاحترافي مقابل العدد المنزلية",
+          en: "Professional Application vs Buying Ceramic Kits Direct",
+          ar: "التطبيق الاحترافي مقابل شراء أطقم السيراميك مباشرة",
         },
         body: {
-          en: "Consumer ceramic kits exist, and for an enthusiast with a garage, patience, and a dual-action polisher they can deliver respectable results. But ceramic coating is unforgiving: it locks in whatever is underneath. If swirl marks and water-spot etching are not corrected first, you have sealed them under a glass-hard layer for years. Professional application buys you proper paint correction, dust-controlled curing conditions, and even coverage with no high spots. Products like Autotriz REVO and Autotriz Ion Plus that ABK supplies are professional-grade ceramics designed for trained application — and we supply them to detailers across Qatar from our Mesaimeer store.",
-          ar: "توجد عدد سيراميك استهلاكية، ويمكنها أن تعطي نتائج محترمة لهاوٍ يملك مرآباً وصبراً وآلة تلميع مزدوجة الحركة. لكن السيراميك لا يرحم: فهو يثبّت ما تحته كما هو. إن لم تُصحَّح علامات الدوائر وحفر بقع الماء أولاً، فقد ختمتها تحت طبقة بصلابة الزجاج لسنوات. التطبيق الاحترافي يشتري لك تصحيح طلاء سليماً وظروف معالجة محكومة الغبار وتغطية متساوية بلا بقع سميكة. منتجات مثل Autotriz REVO وAutotriz Ion Plus التي توفرها ABK سيراميك بدرجة احترافية مصمم لتطبيق مدرّب — ونحن نورّدها لمراكز التلميع في أنحاء قطر من متجرنا بمسيمير.",
+          en: "Consumer and professional ceramic kits can deliver outstanding results when paint is properly prepped with a dual-action polisher (using compounds like Autotriz Extreme Cut 801 or Power Cut 701 followed by Autotriz Ultimate Polish 302). Because ceramic coating locks in whatever is underneath, any swirl marks or hard-water etching must be levelled before coating. Many smart car owners in Qatar buy their genuine Autotriz 3D Matrix Ultra or REVO kit directly from ABK in Mesaimeer (QAR 250–280) so they know 100% authentic German 9H chemistry is going onto their paint, or pair it with installed VTEK PPF (from QAR 899 front-end / QAR 3,999 full body).",
+          ar: "تحقق أطقم السيراميك الاحترافية نتائج مذهلة عند تحضير الطلاء جيداً بآلة تلميع مزدوجة الحركة (باستخدام مركبات مثل Autotriz Extreme Cut 801 أو Power Cut 701 ثم ملمع التشطيب Autotriz Ultimate Polish 302). ولأن السيراميك يثبّت ما تحته، يجب إزالة دوائر الغسيل وبقع الماء قبل تطبيق الطبقة. يفضّل كثير من ملاك السيارات في قطر شراء طقم Autotriz 3D Matrix Ultra أو REVO الأصلي مباشرة من معرض ABK في مسيمير (250–280 ر.ق) لضمان استخدام منتج ألماني أصلي 100% بصلابة 9H، أو جمعه مع تركيب أفلام الحماية VTEK PPF (ابتداءً من 899 ر.ق للواجهة و3,999 ر.ق للهيكل الكامل).",
         },
       },
       {
@@ -297,12 +338,12 @@ export const ARTICLES: Article[] = [
       },
       {
         heading: {
-          en: "Get an Exact Price for Your Car",
-          ar: "احصل على سعر دقيق لسيارتك",
+          en: "Buy Genuine Autotriz Ceramic Coatings in Mesaimeer, Doha",
+          ar: "اشترِ أطقم سيراميك Autotriz الأصلية في مسيمير، الدوحة",
         },
         body: {
-          en: "Because paint condition drives the price, an honest quote needs to see your car — or at least clear photos. Message ABK on WhatsApp at +974 30838355 with your vehicle model, year, and a few photos in daylight, and we will recommend a package and give you a firm price for coating, correction, or a PPF-plus-ceramic combination. Visit us in Mesaimeer, Doha — Saturday to Thursday, 10:00–13:00 and 16:00–22:00.",
-          ar: "لأن حالة الطلاء هي ما يحدد السعر، يحتاج العرض الصادق إلى رؤية سيارتك — أو صور واضحة على الأقل. راسل ABK على واتساب +974 30838355 بطراز سيارتك وسنتها وبضع صور في ضوء النهار، وسنوصيك بالباقة المناسبة ونعطيك سعراً نهائياً للطلاء أو التصحيح أو باقة PPF مع سيراميك. وتفضل بزيارتنا في مسيمير، الدوحة — من السبت إلى الخميس، 10:00–13:00 و16:00–22:00.",
+          en: "ABK Trading & Service in Mesaimeer, Doha is the authorized Qatar distributor for Autotriz German nano-ceramic coatings, polishing compounds, and GrünesAuto pads. Order online or message us on WhatsApp at +974 30838355 with your vehicle model and year — we will recommend the right Autotriz ceramic kit (QAR 250–280) or quote an installed VTEK PPF package for your car. Visit our showroom Saturday to Thursday, 10:00–13:00 and 16:00–22:00.",
+          ar: "شركة ABK للتجارة والخدمات في مسيمير، الدوحة هي الموزع المعتمد في قطر لطلاءات النانو سيراميك الألمانية Autotriz ومركبات التلميع وإسفنجات GrünesAuto. اطلب عبر الموقع أو راسلنا على واتساب +974 30838355 بطراز سيارتك وسنوصيك بطقم السيراميك المناسب (250–280 ر.ق) أو بعرض سعر تركيب أفلام الحماية VTEK PPF. تفضل بزيارة معرضنا من السبت إلى الخميس، 10:00–13:00 و16:00–22:00.",
         },
       },
     ],
@@ -317,19 +358,26 @@ export const ARTICLES: Article[] = [
   {
     slug: "remove-hard-water-spots-car-qatar",
     title: {
-      en: "Hard Water Spots on Your Car in Qatar: How to Remove and Prevent Them",
-      ar: "بقع الماء العسر على سيارتك في قطر: كيف تزيلها وتمنعها",
+      en: "Hard Water Spots on Your Car in Qatar: How to Remove & Prevent Them (2026 Guide)",
+      ar: "بقع الماء العسر على سيارتك في قطر: كيف تزيلها وتمنعها (دليل 2026)",
     },
     description: {
-      en: "Why Doha's water leaves white spots on car paint and glass, how to remove fresh and etched water spots safely, and how to stop them coming back.",
-      ar: "لماذا يترك ماء الدوحة بقعاً بيضاء على طلاء السيارة وزجاجها، وكيف تزيل البقع الجديدة والمحفورة بأمان، وكيف تمنع عودتها.",
+      en: "Why Doha's desalinated water leaves white mineral spots on car paint and glass, how to remove fresh and etched water spots in Qatar, and how ceramic coating stops them.",
+      ar: "لماذا يترك ماء الدوحة بقعاً كلسية بيضاء على طلاء السيارة وزجاجها، وكيف تزيل البقع الجديدة والمحفورة بأمان في قطر، وكيف تمنع عودتها.",
     },
     date: "2026-06-10",
+    updated: "2026-10-17",
     readingTime: 5,
     category: "car-care",
     keywords: {
-      en: ["water spots car Qatar", "remove water spots car paint", "hard water marks Doha", "water spot remover Qatar"],
-      ar: ["بقع الماء على السيارة", "إزالة بقع الماء من طلاء السيارة", "علامات الماء العسر الدوحة"],
+      en: [
+        "water spots car Qatar",
+        "water spot remover car Qatar",
+        "remove water spots car paint",
+        "hard water marks Doha",
+        "water spot remover Qatar",
+      ],
+      ar: ["بقع الماء على السيارة", "إزالة بقع الماء من طلاء السيارة قطر", "علامات الماء العسر الدوحة"],
     },
     sections: [
       {
@@ -358,8 +406,8 @@ export const ARTICLES: Article[] = [
           ar: "إزالة البقع المحفورة: متى تحتاج إلى التلميع",
         },
         body: {
-          en: "If a spot remains after chemical cleaning, the mineral has etched a physical crater into the clear coat, and the only fix is mechanical: polishing levels the surrounding clear coat down to the depth of the etching. Light etching responds to a finishing polish like Autotriz Ultimate Polish 302 on a dual-action machine. Deeper damage needs a cutting compound such as Autotriz Power Cut 701 followed by a finishing pass. This is precision work — every polish removes a little clear coat, so it should be done as few times as possible and ideally by a trained hand. ABK's Mesaimeer store stocks the compounds, polishes and pads this work needs.",
-          ar: "إذا بقيت البقعة بعد التنظيف الكيميائي، فقد حفرت المعادن فوهة فعلية في طبقة الكلير، والحل الوحيد ميكانيكي: التلميع الذي يسوّي الكلير المحيط حتى عمق الحفر. الحفر الخفيف يستجيب لملمع تشطيب مثل Autotriz Ultimate Polish 302 على آلة مزدوجة الحركة. أما الضرر الأعمق فيحتاج مركب قطع مثل Autotriz Power Cut 701 تتبعه مرحلة تشطيب. هذا عمل دقيق — كل تلميع يزيل قليلاً من الكلير، لذا يجب أن يُجرى بأقل عدد ممكن من المرات وبيد مدربة. يوفر متجر ABK في مسيمير المركبات والملمعات والفرّاشات اللازمة لهذا العمل.",
+          en: "If a spot remains after chemical cleaning, the mineral has etched a physical crater into the clear coat, and the only fix is mechanical: polishing levels the surrounding clear coat down to the depth of the etching. Light etching responds to a finishing polish like Autotriz Ultimate Polish 302 (QAR 135) on a GrünesAuto German foam pad (QAR 30). Deeper mineral craters need a cutting compound such as Autotriz Extreme Cut 801 (1L: QAR 160) or Power Cut 701 (4L: QAR 280) followed by a finishing pass. ABK's Mesaimeer showroom stocks the full range of German compounds, polishes, and pads in ready stock.",
+          ar: "إذا بقيت البقعة بعد التنظيف الكيميائي، فقد حفرت المعادن فوهة فعلية في طبقة الكلير، والحل الوحيد ميكانيكي: التلميع الذي يسوّي الكلير المحيط حتى عمق الحفر. الحفر الخفيف يستجيب لملمع تشطيب مثل Autotriz Ultimate Polish 302 (بسعر 135 ر.ق) مع إسفنجة تلميع ألمانية GrünesAuto (بسعر 30 ر.ق). أما الضرر الأعمق فيحتاج مركب قطع مثل Autotriz Extreme Cut 801 (1 لتر: 160 ر.ق) أو Power Cut 701 (4 لتر: 280 ر.ق) تتبعه مرحلة تشطيب. يوفر معرض ABK في مسيمير كافة المركبات والملمعات والإسفنجات الألمانية للتسليم الفوري.",
         },
       },
       {
@@ -368,8 +416,8 @@ export const ARTICLES: Article[] = [
           ar: "الوقاية: امنع عودة البقع",
         },
         body: {
-          en: "Three habits eliminate most water spotting in Qatar. First, never let water dry on the car — towel-dry after every wash and avoid parking near irrigation sprinklers. Second, wash in the early morning or evening, in shade, so water does not flash-evaporate mid-wash. Third — and most effective — give the paint a sacrificial hydrophobic layer. A ceramic coating such as Autotriz REVO makes water bead and roll off before it can evaporate in place, and the slick surface releases any deposits that do form with a gentle wash. Owners who combine a ceramic coating with proper drying habits almost never see etched spots again.",
-          ar: "ثلاث عادات تقضي على معظم بقع الماء في قطر. أولاً، لا تدع الماء يجف على السيارة أبداً — جففها بالمنشفة بعد كل غسيل وتجنب الوقوف قرب مرشات الري. ثانياً، اغسل في الصباح الباكر أو المساء وفي الظل، حتى لا يتبخر الماء فوراً أثناء الغسيل. ثالثاً — وهو الأكثر فاعلية — امنح الطلاء طبقة حماية طاردة للماء. الطلاء السيراميكي مثل Autotriz REVO يجعل الماء يتكوّر وينزلق قبل أن يتبخر مكانه، والسطح الأملس يتخلى عن أي رواسب تتكون بغسلة لطيفة. الملاك الذين يجمعون بين السيراميك وعادات التجفيف الصحيحة لا يرون البقع المحفورة مجدداً تقريباً.",
+          en: "Three habits eliminate most water spotting in Qatar. First, never let water dry on the car — towel-dry after every wash and avoid parking near irrigation sprinklers. Second, wash in the early morning or evening, in shade, so water does not flash-evaporate mid-wash. Third — and most effective — give the paint a sacrificial hydrophobic layer. A ceramic coating such as Autotriz REVO +15 (QAR 250) makes water bead and roll off before it can evaporate in place, and the slick surface releases any deposits that do form with a gentle wash. Owners who combine a ceramic coating or VTEK PPF with proper drying habits almost never see etched spots again.",
+          ar: "ثلاث عادات تقضي على معظم بقع الماء في قطر. أولاً، لا تدع الماء يجف على السيارة أبداً — جففها بالمنشفة بعد كل غسيل وتجنب الوقوف قرب مرشات الري. ثانياً، اغسل في الصباح الباكر أو المساء وفي الظل، حتى لا يتبخر الماء فوراً أثناء الغسيل. ثالثاً — وهو الأكثر فاعلية — امنح الطلاء طبقة حماية طاردة للماء. الطلاء السيراميكي مثل Autotriz REVO +15 (بسعر 250 ر.ق) يجعل الماء يتكوّر وينزلق قبل أن يتبخر مكانه، والسطح الأملس يتخلى عن أي رواسب تتكون بغسلة لطيفة.",
         },
       },
       {
@@ -378,8 +426,8 @@ export const ARTICLES: Article[] = [
           ar: "كل ما تحتاجه في مكان واحد في الدوحة",
         },
         body: {
-          en: "ABK Trading and Service in Mesaimeer stocks the full chain of water-spot solutions: pH-balanced shampoos, glass cleaners, finishing polishes, cutting compounds, and professional ceramic coatings. Message us on WhatsApp at +974 30838355 with a photo of your paint and we will tell you honestly whether you need a product off the shelf or a correction session.",
-          ar: "يوفر ABK للتجارة والخدمات في مسيمير سلسلة الحلول الكاملة لبقع الماء: شامبوهات متوازنة الحموضة، ومنظفات زجاج، وملمعات تشطيب، ومركبات قطع، وطلاءات سيراميكية احترافية. راسلنا على واتساب +974 30838355 مع صورة لطلاء سيارتك وسنخبرك بصدق إن كنت تحتاج منتجاً من الرف أم جلسة تصحيح.",
+          en: "ABK Trading and Service in Mesaimeer stocks the full chain of water-spot solutions: pH-balanced shampoos, glass cleaners, finishing polishes, cutting compounds, PVA drying towels (QAR 18), and professional ceramic coatings. Message us on WhatsApp at +974 30838355 with a photo of your paint and we will recommend the exact product from our Doha stock.",
+          ar: "يوفر ABK للتجارة والخدمات في مسيمير سلسلة الحلول الكاملة لبقع الماء: شامبوهات متوازنة الحموضة، ومنظفات زجاج، وملمعات تشطيب، ومركبات قطع، ومناشف تجفيف PVA (بسعر 18 ر.ق)، وطلاءات سيراميكية احترافية. راسلنا على واتساب +974 30838355 مع صورة لطلاء سيارتك وسنوصيك بالمنتج المناسب فوراً.",
         },
       },
     ],
@@ -389,6 +437,7 @@ export const ARTICLES: Article[] = [
       "autotriz-ultimate-polish-302",
       "autotriz-revo-ceramic-coating",
     ],
+    cta: PPF_INSTALL_CTA,
   },
   {
     slug: "how-to-protect-car-from-qatar-heat",
@@ -527,47 +576,64 @@ export const ARTICLES: Article[] = [
   {
     slug: "complete-guide-car-care-products-qatar",
     title: {
-      en: "The Complete Guide to Car Care Products in Qatar",
-      ar: "الدليل الشامل لمنتجات العناية بالسيارات في قطر",
+      en: "The Complete Guide to Car Care & Detailing Products in Qatar (Retail & Wholesale)",
+      ar: "الدليل الشامل لمنتجات ومواد العناية وتلميع السيارات في قطر (تجزئة وجملة)",
     },
     description: {
-      en: "Everything you need to know about car care products available in Qatar — from car shampoos and polishes to PPF and ceramic coatings. A buyer's guide for Doha car owners.",
-      ar: "كل ما تحتاج معرفته عن منتجات العناية بالسيارات المتوفرة في قطر — من شامبوهات السيارات إلى أفلام الحماية والطلاءات السيراميكية.",
+      en: "Where to buy car care and detailing materials in Qatar — from pH-balanced 20L car wash drums and German polishing compounds to VTEK PPF and Autotriz 9H ceramic coatings in Doha.",
+      ar: "كل ما تحتاج معرفته عن منتجات ومواد العناية وتلميع السيارات في قطر — من شامبوهات الغسيل وبراميل 20 لتر للمغاسل إلى أفلام VTEK PPF وسيراميك Autotriz في الدوحة.",
     },
     date: "2026-05-05",
+    updated: "2026-10-17",
     readingTime: 7,
     category: "buying-guide",
     keywords: {
-      en: ["car care products Qatar", "car shampoo Doha", "car polish Qatar", "auto detailing products Qatar"],
-      ar: ["منتجات العناية بالسيارات قطر", "شامبو سيارات الدوحة", "ملمع سيارات قطر"],
+      en: [
+        "car care products Qatar",
+        "car detailing material suppliers in Qatar",
+        "car shampoo Doha",
+        "car polish Qatar",
+        "auto detailing products Qatar",
+        "wholesale car wash supplies Qatar",
+      ],
+      ar: [
+        "منتجات العناية بالسيارات قطر",
+        "موردي مواد تلميع السيارات في قطر",
+        "شامبو سيارات الدوحة",
+        "ملمع سيارات قطر",
+        "مواد غسيل السيارات بالجملة قطر",
+      ],
     },
     sections: [
       {
-        heading: { en: "Car Shampoos: The Foundation of Car Care", ar: "شامبوهات السيارات: أساس العناية" },
+        heading: { en: "Car Shampoos: The Foundation of Car Care", ar: "شامبوهات السيارات: أساس العناية الآمنة" },
         body: {
-          en: "A quality car shampoo is the most-used product in any detailing kit. In Qatar, you need a pH-balanced formula that cleans effectively without stripping wax, sealant, or ceramic coating protection. Autotriz Rich Foam Shampoo produces thick, lubricating foam that lifts sand and dirt safely — critical in a country where airborne sand can scratch paint during washing. Briller Wash and Wax combines cleaning and protection in one step, depositing a light wax layer as you wash. For convenience, Insta Finish Wash and Wax offers a similar all-in-one solution. All three are available at ABK Trading in Mesaimeer, Doha.",
-          ar: "شامبو السيارات عالي الجودة هو المنتج الأكثر استخداماً في أي مجموعة تلميع. في قطر، تحتاج تركيبة متوازنة الحموضة تنظف بفعالية دون إزالة الشمع أو الطلاء السيراميكي. شامبو Autotriz Rich Foam ينتج رغوة سميكة ترفع الرمل والأوساخ بأمان.",
+          en: "A quality car shampoo is the most-used product in any detailing kit. In Qatar, you need a pH-balanced formula that cleans effectively without stripping wax, sealant, or ceramic coating protection. Autotriz Rich Foam Shampoo (20L drum: QAR 450 promo) produces thick, lubricating snow foam that lifts sand and dirt safely — critical in a country where airborne sand can scratch paint during washing. Briller Wash and Wax (20L drum: QAR 350 promo) combines cleaning and protection in one step, depositing a gloss-enhancing wax layer as you wash. For high-volume touchless car washes, Grizzly Touchless Car Wash Powder (20 kg sack) cuts desert road film rapidly. All are stocked in Mesaimeer, Doha.",
+          ar: "شامبو السيارات عالي الجودة هو المنتج الأكثر استخداماً في أي مجموعة عناية أو مغسلة سيارات. في قطر، تحتاج إلى تركيبة متوازنة الحموضة (pH-neutral) تنظف بفعالية دون إزالة الشمع أو طبقة النانو سيراميك. ينتج شامبو Autotriz Rich Foam (برميل 20 لتر بسعر ترويجي 450 ر.ق) رغوة كثيفة ترفع الرمل والأتربة بأمان تام دون خدش الطلاء. ويجمع شامبو Briller Wash and Wax (برميل 20 لتر بسعر 350 ر.ق) بين التنظيف والتشميع في خطوة واحدة، كما يتوفر مسحوق الغسيل اللاتلامسي Grizzly بعبوة 20 كجم للمغاسل التجارية في معرض ABK بمسيمير.",
         },
       },
       {
-        heading: { en: "Polishing Compounds: Restoring Paint to Showroom Condition", ar: "مركبات التلميع: استعادة الطلاء لحالة المعرض" },
+        heading: { en: "Polishing Compounds: Restoring Paint to Showroom Condition", ar: "مركبات التلميع وإسفنجات القص: استعادة الطلاء لحالة المعرض" },
         body: {
-          en: "Qatar's sand and dust cause micro-scratches and swirl marks that dull paint over time. Polishing compounds remove these imperfections by levelling the clear coat. Autotriz Heavy Cut 901 is a professional-grade cutting compound that removes deep scratches, sanding marks, and severe oxidation. Autotriz Power Cut 701 handles medium defects. Autotriz Ultimate Polish 302 is the finishing step — a fine polish that restores mirror-like clarity and removes holograms left by cutting compounds. For best results, machine polishing by a trained detailer is recommended. ABK's Mesaimeer store supplies these products to detailers across Qatar.",
-          ar: "يتسبب رمل وغبار قطر في خدوش دقيقة وعلامات دوائر تُبهت الطلاء بمرور الوقت. مركبات التلميع تزيل هذه العيوب. Autotriz Heavy Cut 901 مركب قطع احترافي يزيل الخدوش العميقة. Autotriz Ultimate Polish 302 هو خطوة التشطيب التي تعيد اللمعان.",
+          en: "Qatar's sand and dust cause micro-scratches and swirl marks that dull paint over time. Polishing compounds remove these imperfections by levelling the clear coat. Autotriz Heavy Cut 901 and Extreme Cut 801 (1L: QAR 160) are professional German cutting compounds that remove deep scratches, sanding marks, and severe oxidation. Autotriz Power Cut 701 (4L: QAR 280) and One Step Polish (4L: QAR 265) handle medium defects, while Autotriz Ultimate Polish 302 (QAR 135) restores mirror-like clarity. Pair them with GrünesAuto 6-inch German foam pads (DA or Rotary Step 1, 2, 3 at QAR 30 each) or the Autotriz 8-inch Double-Sided Wool Pad (QAR 75).",
+          ar: "يتسبب رمل وغبار قطر في خدوش دقيقة ودوائر غسيل تُبهت لمعة الطلاء بمرور الوقت، وتزيل مركبات التلميع الاحترافية هذه العيوب عبر تسوية طبقة الكلير. يُعد Autotriz Heavy Cut 901 وExtreme Cut 801 (عبوة 1 لتر: 160 ر.ق) من أقوى مركبات القطع الألمانية لإزالة الخدوش العميقة والأكسدة، بينما يعالج Power Cut 701 (عبوة 4 لتر: 280 ر.ق) وOne Step Polish (عبوة 4 لتر: 265 ر.ق) العيوب المتوسطة، ويمنح ملمع التشطيب Autotriz Ultimate Polish 302 (بسعر 135 ر.ق) لمعاناً كالمرآة عند استخدامه مع إسفنجات GrünesAuto الألمانية مقاس 6 بوصة (30 ر.ق) أو صوف التلميع المزدوج من Autotriz (75 ر.ق).",
         },
       },
       {
-        heading: { en: "Tyre and Exterior Care", ar: "العناية بالإطارات والخارج" },
+        heading: { en: "Tyre, Wheel, Trim and Interior Care", ar: "العناية بالإطارات والجنوط والبلاستيك والمقصورة" },
         body: {
-          en: "Qatar's intense UV radiation degrades tyre rubber, causing dry rot and sidewall cracking. Regular application of tyre dressing like Briller Quick Tyre Shine or Smart Car Tyre Foam protects against UV damage and restores a deep black finish. For glass, Briller Glass Cleaner cuts through the film of dust and mineral deposits that accumulate on windshields in Doha. Getsun Tire Shine offers an aerosol alternative for quick tyre care. For engine bays, Getsun Foam Out Engine Degreaser safely removes oil and grime buildup accelerated by extreme heat.",
-          ar: "تُتلف الأشعة فوق البنفسجية الشديدة في قطر مطاط الإطارات مسببةً التشقق الجاف. التطبيق المنتظم لملمع الإطارات مثل Briller Quick Tyre Shine يحمي من أضرار الأشعة فوق البنفسجية ويعيد اللون الأسود العميق. لتنظيف الزجاج، Briller Glass Cleaner يزيل طبقة الغبار والرواسب المعدنية.",
+          en: "Qatar's intense UV radiation degrades tyre rubber and exterior plastic trim, causing grey fading and sidewall cracking. Regular application of Briller Quick Tyre Shine (20L: QAR 280) or Smart Car Tyre Foam protects rubber against UV damage, while ABK Rejuvenate Plastic Restorer (Made in France, from QAR 40 for 60ml up to QAR 280 for 500ml) permanently revives sun-bleached bumpers and trims. For wheels and engine bays, Briller Alloy Rim Cleaner (20L: QAR 250), Briller Heavy Duty Degreaser (20L: QAR 300), and Sitrett MX5 Heavy-Duty Degreaser dissolve baked-on brake dust and grease.",
+          ar: "تُتلف الأشعة فوق البنفسجية الشديدة في قطر مطاط الإطارات والأجزاء البلاستيكية الخارجية. يحمي ملمع الإطارات Briller Quick Tyre Shine (برميل 20 لتر: 280 ر.ق) الجوانب المطاطية من التشقق ويعيد اللون الأسود العميق، بينما يعيد مجدد البلاستيك الفرنسي ABK Rejuvenate (من 40 ر.ق لعبوة 60 مل حتى 280 ر.ق لعبوة 500 مل) اللون الأصلي للصدامات الباهتة. ولتنظيف الجنوط والمحركات، يزيل منظف الجنوط Briller Alloy Rim Cleaner (برميل 20 لتر: 250 ر.ق) ومزيل الشحوم Sitrett MX5 أصعب تراكمات غبار الفرامل والزيوت.",
         },
       },
       {
-        heading: { en: "Where to Buy Car Care Products in Doha", ar: "أين تشتري منتجات العناية بالسيارات في الدوحة" },
+        heading: {
+          en: "Car Detailing Material Suppliers in Qatar (Wholesale & Retail in Doha)",
+          ar: "موردو مواد ومستلزمات تلميع وغسيل السيارات في قطر (تجزئة وجملة)",
+        },
         body: {
-          en: "ABK Trading and Service in Mesaimeer, Doha is a one-stop shop for car care products in Qatar. We are the authorised distributor for VTEK (formerly Vertek) PPF, Autotriz detailing chemicals, Briller car care, and Insta Finish products. We stock everything from car shampoos and polishing compounds to ceramic coatings and paint protection film. Both retail customers and wholesale buyers (detailing shops, car washes, body shops) are welcome. Visit us Saturday to Thursday, 10:00 to 13:00 and 16:00 to 22:00, or reach us on WhatsApp at +974 30838355 for product availability and pricing.",
-          ar: "ABK للتجارة والخدمات في مسيمير، الدوحة هو متجرك الشامل لمنتجات العناية بالسيارات في قطر. نحن الموزع المعتمد لأفلام VTEK (المعروفة سابقاً بـ Vertek) وكيماويات Autotriz ومنتجات Briller وInsta Finish. نوفر كل شيء من شامبوهات السيارات إلى الطلاءات السيراميكية. زرنا أو تواصل عبر واتساب 30838355 974+.",
+          en: "Whether you are searching for car detailing material suppliers in Qatar to equip a commercial car wash, a detailing studio, or your own garage, ABK Trading & Service in Mesaimeer, Doha supplies 58 active SKUs directly from authorized brand supply chains. Commercial workshops can order 20L chemical drums (Briller and Autotriz shampoos, APCs, degreasers, glass cleaners, and dressings from QAR 250–450), 1.52m × 15m PPF master rolls (VTEK Weather Armor and Grizzly TPU PPF from QAR 1,200), high-pressure foam guns (QAR 180), microfibre towels (QAR 8–10), and masking tapes (QAR 2.5–3.5) with same-day dispatch across Doha, Al Rayyan, Lusail, Al Wakrah, and Al Khor. Visit our Mesaimeer showroom Saturday to Thursday (10:00–13:00 and 16:00–22:00) or message +974 3083 8355 on WhatsApp.",
+          ar: "سواء كنت تبحث عن موردي مواد تلميع وغسيل السيارات في قطر لتجهيز مغسلة سيارات تجارية أو مركز عناية وتلميع أو كراجك الخاص، توفر شركة ABK للتجارة والخدمات في مسيمير، الدوحة 58 صنفاً أصلياً مباشرة من المصانع العالمية. يمكن للمراكز والمغاسل طلب براميل 20 لتر الاقتصادية (شامبوهات ومنظفات ومزيلات شحوم وملمعات Briller وAutotriz من 250 إلى 450 ر.ق)، ورولات أفلام الحماية الكاملة 1.52×15 متر (VTEK وGrizzly TPU PPF ابتداءً من 1,200 ر.ق)، ومسدسات الرغوة (180 ر.ق)، ومناشف المايكروفايبر (8–10 ر.ق) مع توصيل في نفس اليوم لجميع مناطق الدوحة والريان ولوسيل والوكرة والخور. تفضل بزيارة معرضنا في مسيمير أو تواصل عبر واتساب 30838355 974+.",
         },
       },
     ],

@@ -116,3 +116,31 @@ export function metaDescription(body: string, tail: string, max = 158): string {
     .replace(/[\s.,;:—–-]+$/u, "");
   return `${cut}… ${tail}`;
 }
+
+/**
+ * Build a search-intent-optimised `<title>` stem for product pages.
+ * The root layout appends `" | ABK Trading"` (14 chars), so this helper keeps
+ * the stem between ~34 and ~54 characters while injecting local Doha/Qatar
+ * and category signals for shorter product names (resolving Bing Webmaster
+ * Tools' "page titles too short" diagnostic).
+ */
+export function productMetaTitle(
+  name: string,
+  categoryLabel: string,
+  locale: "en" | "ar",
+): string {
+  if (locale === "ar") {
+    if (name.includes("قطر") || name.includes("الدوحة")) return name;
+    if (name.length <= 28) return `${name} — ${categoryLabel} في الدوحة، قطر`;
+    if (name.length <= 42) return `${name} — متوفر في الدوحة، قطر`;
+    if (name.length <= 52) return `${name} في قطر`;
+    return name;
+  }
+  const lower = name.toLowerCase();
+  if (lower.includes("qatar") || lower.includes("doha")) return name;
+  if (name.length <= 28) return `${name} — ${categoryLabel} in Doha, Qatar`;
+  if (name.length <= 42) return `${name} — Buy in Doha, Qatar`;
+  if (name.length <= 52) return `${name} in Qatar`;
+  return name;
+}
+
