@@ -146,7 +146,7 @@ export default async function B2cProductsPage({
                     href={`/b2c/brands/${b.slug}`}
                     className="rounded-pill border border-(--color-border) bg-(--color-surface) px-3.5 py-1.5 text-caption font-medium text-(--color-text) transition-colors hover:border-(--color-brand) hover:text-(--color-brand-deep)"
                   >
-                    {b.name}
+                    {b.h1[l]}
                   </Link>
                 ))}
               </div>
