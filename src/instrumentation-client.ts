@@ -172,7 +172,16 @@ function onClick(event: MouseEvent) {
   // it reports as ppf_booking, not a generic WhatsApp click. Its order_ref is
   // the same booking ref trackPpfBooking sends as transaction_id, so a booking
   // that was saved AND sent still counts once.
-  if (key === "whatsapp" && anchor.dataset.placement === "ppf_booking") key = "ppf_booking";
+  if (key === "whatsapp" && anchor.dataset.placement === "ppf_booking") {
+    key = "ppf_booking";
+  } else if (
+    key === "whatsapp" &&
+    (anchor.dataset.placement === "cart" || anchor.dataset.placement === "quote-tray")
+  ) {
+    key = "cart_order";
+  } else if (key === "whatsapp" && anchor.dataset.placement === "dealer_enquiry") {
+    key = "dealer_enquiry";
+  }
 
   const params: TrackParams = {
     link_url: href.slice(0, 500),

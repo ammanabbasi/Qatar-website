@@ -65,19 +65,20 @@ To exercise tracking locally, build with `NEXT_PUBLIC_ADS_FORCE_TRACKING=1`.
 
 ## Events emitted
 
-| Interaction | Event name | Conversion key |
-|---|---|---|
-| `wa.me` link click (any WhatsApp CTA) | `whatsapp_enquiry` | `whatsapp` |
-| `tel:` link click | `phone_enquiry` | `phone` |
-| `mailto:` link click | `email_enquiry` | `email` |
-| `/catalogues/*.pdf` click | `catalogue_download` | `catalogue` — **currently dormant** |
+| Interaction | Event name | Conversion key | Google Ads Label |
+|---|---|---|---|
+| `wa.me` link click (general WhatsApp CTA) | `whatsapp_enquiry` | `whatsapp` | `fTHvCNXXr5MdENiYz-ZD` |
+| `wa.me` cart / quote-tray send (`data-placement="cart"` / `"quote-tray"`) | `cart_whatsapp_order` | `cart_order` | `K8OHCP_5-p8dENiYz-ZD` |
+| Wholesale Dealer Application submit (`/[locale]/b2b/dealer-application`) | `dealer_enquiry` | `dealer_enquiry` | `uuVJCKWd9J8dENiYz-ZD` |
+| Installed-PPF booking saved / WhatsApp hand-off (`/[locale]/b2c/ppf-installation`) | `ppf_booking_request` | `ppf_booking` | `J9TLCOe7n44dENiYz-ZD` |
+| `tel:` link click | `phone_enquiry` | `phone` | `0rdHCL7KqJMdENiYz-ZD` |
+| `mailto:` link click | `email_enquiry` | `email` | *(dataLayer only)* |
+| `/catalogues/*.pdf` click | `catalogue_download` | `catalogue` | *(dormant)* |
 
 > **The catalogue conversion is dormant as of 2026-09-01:** commit `1599418`
 > removed the catalogue download link from product pages, and no page links the
 > PDFs any more (the files still exist under `public/catalogues/`). The listener
-> stays in place and reactivates by itself if a catalogue link ever returns —
-> but you only need to create **three** conversion actions (WhatsApp, phone,
-> email), and can skip `NEXT_PUBLIC_ADS_LABEL_CATALOGUE` for now.
+> stays in place and reactivates by itself if a catalogue link ever returns.
 
 Each event carries `page_path`, `link_url`, `locale` (`en`/`ar`), and where the
 markup provides them, `audience` (`b2c`/`b2b`), `product`, and
@@ -85,14 +86,15 @@ markup provides them, `audience` (`b2c`/`b2b`), `product`, and
 the **existing Plausible class-name tags**, so both analytics tools share one
 source of truth.
 
-### Cart orders (added 2026-09-24)
+### Cart orders & Wholesale Dealer Applications (updated 2026-10-17)
 
-Retail shoppers now build a cart and send the whole order from
-`/[locale]/b2c/cart`; wholesale buyers send their quote tray from the drawer.
-Both send buttons are ordinary `wa.me` links, so they still report as
-`whatsapp_enquiry` through the same listener — nothing new to set up in Google
-Ads — but they also describe the order on `data-*` attributes, which the
-listener adds to the event and the Ads conversion:
+Retail shoppers build a cart and send the whole order from `/[locale]/b2c/cart`;
+wholesale buyers send their quote tray from the drawer. Both send buttons carry
+`data-placement="cart"` or `data-placement="quote-tray"`, which routes the click
+to the dedicated `cart_order` conversion key (`cart_whatsapp_order`, Google Ads
+action **ABK — WhatsApp Cart Order**, `AW-18200382552/K8OHCP_5-p8dENiYz-ZD`),
+preventing double-counting with generic `whatsapp_enquiry` while passing dynamic
+order value in QAR:
 
 | Param | Cart page (`placement: "cart"`) | Quote tray (`placement: "quote-tray"`) |
 |---|---|---|
@@ -100,15 +102,20 @@ listener adds to the event and the Ads conversion:
 | `item_count` | units in the cart | units in the tray |
 | `order_ref` | `ABK-XXXX`, also sent as the Ads `transaction_id` so a double-tapped send counts once | — |
 
-Plausible sees both sends as the `cart_whatsapp_send` goal (split by the
+Wholesale dealer applications submitted on `/[locale]/b2b/dealer-application`
+call `trackDealerEnquiry` in `src/lib/analytics.ts`, firing `dealer_enquiry` to
+GA4, Plausible, and the dedicated primary Google Ads conversion action
+**ABK — Wholesale Dealer Application** (`AW-18200382552/uuVJCKWd9J8dENiYz-ZD`).
+
+Plausible sees cart/tray sends as the `cart_whatsapp_send` goal (split by the
 `audience` prop). The cart page only renders the `wa.me` link once the
 checkout is valid — until then Send is a plain button that shows the missing
 field — so an incomplete form can never report a conversion.
 
-GA4 also receives the standard ecommerce events from `src/lib/analytics.ts`
-(retail only; same production-host gate, so localhost and previews stay
-silent). All carry `currency: "QAR"`, `value` (priced lines only) and `items[]`
-with `item_id` = slug and the English `item_name`:
+GA4 (`abk`, Property ID `554936266`, Measurement ID `G-TYPKQ6L3SB`) is linked
+directly to Google Ads (`502-538-6770`) with auto-tagging and personalised
+advertising enabled, and receives the standard ecommerce events from
+`src/lib/analytics.ts`:
 
 | Event | Fires when |
 |---|---|
@@ -116,11 +123,6 @@ with `item_id` = slug and the English `item_name`:
 | `remove_from_cart` | a line is removed from the drawer or cart page |
 | `view_cart` | the drawer opens, or the cart page loads |
 | `begin_checkout` | first interaction with the cart page's checkout form |
-
-Heads-up for bidding: the product page's main button now adds to the cart
-instead of opening WhatsApp, so expect fewer (but larger) `whatsapp_enquiry`
-conversions while Smart Bidding re-learns. Once `value` has flowed for a few
-weeks, "Maximize conversion value" becomes an option.
 
 ### Verified working
 
@@ -131,99 +133,34 @@ elements with navigation blocked, then reading `window.dataLayer`:
 ["event","whatsapp_enquiry",{"link_url":"https://wa.me/97430838355?text=…",
   "page_path":"/ar/b2c/products/vtek-ppf-weather-armor-ultimate",
   "audience":"b2c","locale":"ar"}]
-["event","catalogue_download",{"link_url":"/catalogues/vertek-ppf-catalogue.pdf",…}]
+["event","cart_whatsapp_order",{"link_url":"https://wa.me/97430838355?text=…",
+  "page_path":"/en/b2c/cart","value":280,"currency":"QAR","item_count":1,"order_ref":"ABK-4821","placement":"cart"}]
+["event","dealer_enquiry",{"company_name":"Doha Detailing Studio","business_type":"Detailing / PPF Studio","audience":"b2b","locale":"en","value":200,"currency":"QAR"}]
 ["event","phone_enquiry",{"link_url":"tel:+97430838355",…}]
-["event","email_enquiry",{"link_url":"mailto:sales@abktradingservice.com",…}]
 ```
 
-## What you must do in Google Ads
+## Status (2026-10-17 — All 5 Primary Conversion Loops Closed)
 
-The code is live but reports **no conversions yet**, because a conversion needs
-a *label* that only Google can issue. This is deliberate: the site ships and
-keeps measuring regardless, and the Ads conversion switches on the moment you
-paste the labels.
+GA4 property `abk (554936266)` is linked to Google Ads account `502-538-6770`
+(`Admin → Product links → Google Ads links`). All five primary website
+conversion actions are active and hardcoded in `src/lib/ads-conversions.ts`:
 
-### 1. Create three conversion actions
-
-Google Ads → **Goals → Conversions → New conversion action → Website**.
-When it asks for the tracking method choose **"Use Google tag"** (already
-installed), then set each up manually:
-
-| Name | Category | Value | Count | Primary? |
+| Conversion action | Category | Count | Label | Where it lives |
 |---|---|---|---|---|
-| WhatsApp enquiry | Contact | assign a value, e.g. 40 QAR | One | **Primary** |
-| Phone click | Contact | 40 QAR | One | **Primary** |
-| Email click | Contact | 20 QAR | One | Secondary |
-| Catalogue download | Other | 15 QAR | One | Secondary — **skip while dormant** (no page links the PDFs) |
+| **WhatsApp enquiry** (`whatsapp_enquiry`) | Contact (Primary) | One | `fTHvCNXXr5MdENiYz-ZD` | `src/lib/ads-conversions.ts` (`NEXT_PUBLIC_ADS_LABEL_WHATSAPP`) |
+| **Phone click** (`phone_enquiry`) | Contact (Primary) | One | `0rdHCL7KqJMdENiYz-ZD` | `src/lib/ads-conversions.ts` (`NEXT_PUBLIC_ADS_LABEL_PHONE`) |
+| **PPF booking request** (`ppf_booking_request`) | Submit lead form (Primary) | One | `J9TLCOe7n44dENiYz-ZD` | `src/lib/ads-conversions.ts` (`NEXT_PUBLIC_ADS_LABEL_PPF_BOOKING`) |
+| **ABK — WhatsApp Cart Order** (`cart_whatsapp_order`, `ctId=7851654399`) | Submit lead form (Primary) | One | `K8OHCP_5-p8dENiYz-ZD` | `src/lib/ads-conversions.ts` (`NEXT_PUBLIC_ADS_LABEL_CART_ORDER`) |
+| **ABK — Wholesale Dealer Application** (`dealer_enquiry`, `ctId=7851544229`) | Submit lead form (Primary) | One | `uuVJCKWd9J8dENiYz-ZD` | `src/lib/ads-conversions.ts` (`NEXT_PUBLIC_ADS_LABEL_DEALER_ENQUIRY`) |
 
-There is one more conversion that needs **no site code and no label**: **Calls
-from ads**. It counts calls placed from the call asset on the ad itself, not
-from the website, and Google creates the conversion action for you when the
-call asset is added with call reporting switched on (see the account-settings
-table in the README). Leave its default 60-second threshold and keep it
-*Primary*. It is the only conversion that reports from day one, before any
-label below is pasted — so if the account shows calls but no WhatsApp
-conversions, the labels are the gap, not the campaigns.
+Email and catalogue remain `dataLayer`-only (`""`).
 
-Set **Email** and **Catalogue** to *Secondary* so they are measured but do not
-drive bidding — they are far weaker buying signals than a WhatsApp message.
-
-The values are relative, not real revenue. They tell Smart Bidding that a
-WhatsApp enquiry is worth roughly twice a catalogue download. Adjust once you
-know your actual close rate.
-
-### 2. Copy each conversion label
-
-After creating an action, open it → **Tag setup → Use Google tag → See event
-snippet**. You will see:
-
-```js
-gtag('event', 'conversion', {'send_to': 'AW-18200382552/AbC-D_efGhIjKlMnOpQ'});
-```
-
-The part after the slash (`AbC-D_efGhIjKlMnOpQ`) is the label.
-
-### 3. Add the labels
-
-In **Vercel → Project → Settings → Environment Variables**, add:
-
-| Variable | Value |
-|---|---|
-| `NEXT_PUBLIC_ADS_LABEL_WHATSAPP` | label from *WhatsApp enquiry* |
-| `NEXT_PUBLIC_ADS_LABEL_PHONE` | label from *Phone click* |
-| `NEXT_PUBLIC_ADS_LABEL_EMAIL` | label from *Email click* |
-| `NEXT_PUBLIC_ADS_LABEL_CATALOGUE` | label from *Catalogue download* |
-
-`NEXT_PUBLIC_*` values are inlined at build time, so **redeploy** after adding
-them. (Alternatively paste them straight into the fallback strings in
-`src/lib/ads-conversions.ts` and push — same effect, one less place to look.)
-
-### 4. Verify
-
-Install the **Google Tag Assistant** Chrome extension, open
-`abktradingservice.com`, click the WhatsApp button, and confirm a `conversion`
-event fires with the right `send_to`. Conversions then appear in the Google Ads
-UI within ~3 hours (sometimes up to 24).
-
-## Status (2026-10-06)
-
-| Conversion action | Label | Where it lives |
-|---|---|---|
-| WhatsApp enquiry (Contact, Primary, default value US$11) | `fTHvCNXXr5MdENiYz-ZD` | fallback string in `src/lib/ads-conversions.ts` |
-| Phone click (Contact, Primary, default value US$11) | `0rdHCL7KqJMdENiYz-ZD` | fallback string in `src/lib/ads-conversions.ts` |
-| PPF booking request (Submit lead form, Primary, value from event) | `J9TLCOe7n44dENiYz-ZD` | fallback string in `src/lib/ads-conversions.ts` + Vercel env `NEXT_PUBLIC_ADS_LABEL_PPF_BOOKING` |
-
-Email and catalogue still have no action; their events stay dataLayer-only.
-
-**The PPF booking hand-off counts as the booking.** `/api/ppf-booking`
-returned `503 not_configured` on 2026-10-06: `PPF_BOOKING_WEBHOOK_URL` is not
-set, so no booking is saved and `trackPpfBooking` never fires. The "Send on
-WhatsApp" button on the configurator's result screen (`data-placement="ppf_booking"`)
-therefore reports as `ppf_booking_request` with the quoted price as value and the
-booking ref as `transaction_id` — not as a WhatsApp enquiry, so one booking is
-never counted by two primary actions, and a booking that was saved and then sent
-is deduplicated by the shared ref. Until the Sheet is connected, a customer who
-fills the form but never presses Send is a lost lead that nobody sees.
+**The PPF booking hand-off counts as the booking.** The "Send on WhatsApp"
+button on the configurator's result screen (`data-placement="ppf_booking"`)
+reports as `ppf_booking_request` with the quoted price as value and the booking
+ref as `transaction_id` — not as a WhatsApp enquiry, so one booking is never
+counted by two primary actions, and a booking that was saved and then sent is
+deduplicated by the shared ref.
 
 ## Known gap: WhatsApp clicks are not sales
 
@@ -236,3 +173,4 @@ overstate real enquiries. Two options once there is volume:
   back as offline conversions. More accurate, more setup.
 
 Start with the first.
+

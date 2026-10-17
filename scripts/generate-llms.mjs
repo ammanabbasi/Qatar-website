@@ -25,6 +25,9 @@ const { SITE } = await import(pathToFileURL(path.join(repoRoot, "src/lib/constan
 const { PRODUCTS, isTradePack } = await import(pathToFileURL(path.join(repoRoot, "src/data/products.ts")).href);
 const { ARTICLES } = await import(pathToFileURL(path.join(repoRoot, "src/data/articles.ts")).href);
 const { FAQ, PPF_INSTALL_FAQ } = await import(pathToFileURL(path.join(repoRoot, "src/data/faq.ts")).href);
+const { CATEGORY_LANDING_PAGES, BRAND_LANDING_PAGES } = await import(
+  pathToFileURL(path.join(repoRoot, "src/data/categoriesAndBrands.ts")).href
+);
 
 const CATEGORY_LABELS = {
   film: "Category 1: Paint Protection Films (PPF), Window Tint & Installation Aids",
@@ -122,6 +125,8 @@ Quote and booking: https://abktradingservice.com/en/b2c/ppf-installation (Arabic
 - Trade & Bulk Catalogue Filter: https://abktradingservice.com/en/b2c/products?pack=trade
 - Installed PPF (prices, quote & booking): https://abktradingservice.com/en/b2c/ppf-installation
 - Authorized Dealer Program (B2B): https://abktradingservice.com/en/b2b/become-a-dealer
+${CATEGORY_LANDING_PAGES.map((c) => `- Category — ${c.h1.en}: https://abktradingservice.com/en/b2c/categories/${c.slug}`).join("\n")}
+${BRAND_LANDING_PAGES.map((b) => `- Brand — ${b.h1.en}: https://abktradingservice.com/en/b2c/brands/${b.slug}`).join("\n")}
 - Car Care & PPF Guides Hub: https://abktradingservice.com/en/b2c/blog
 ${ARTICLES.map((a) => `- Guide — ${a.title.en}: https://abktradingservice.com/en/b2c/blog/${a.slug}`).join("\n")}
 - About & FAQ: https://abktradingservice.com/en/about

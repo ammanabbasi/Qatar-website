@@ -13,7 +13,7 @@ import { Link } from "@/i18n/navigation";
 import { ARTICLES, getArticleBySlug } from "@/data/articles";
 import { getProductBySlug } from "@/data/products";
 import { defaultSocialImage, pageMeta } from "@/lib/seo";
-import { breadcrumbJsonLd } from "@/lib/jsonld";
+import { breadcrumbJsonLd, faqJsonLd } from "@/lib/jsonld";
 import { SITE } from "@/lib/constants";
 
 export const dynamicParams = false;
@@ -101,6 +101,16 @@ export default async function ArticlePage({
     { name: article.title[l], url: `${SITE.url}/${l}/b2c/blog/${article.slug}` },
   ]);
 
+  const faqLd =
+    article.faqs && article.faqs.length > 0
+      ? faqJsonLd(
+          article.faqs.map((f) => ({
+            question: f.q[l],
+            answer: f.a[l],
+          })),
+        )
+      : null;
+
   // Resolve related products
   const relatedProducts = article.relatedProducts
     .map((s) => getProductBySlug(s))
@@ -112,6 +122,7 @@ export default async function ArticlePage({
     <Shell audience="b2c" locale={l}>
       <JsonLd id="ld-article" data={articleLd} />
       <JsonLd id="ld-article-crumb" data={crumbLd} />
+      {faqLd ? <JsonLd id="ld-article-faq" data={faqLd} /> : null}
       <PageHero
         eyebrow={t("eyebrow")}
         title={article.title[l]}
@@ -158,14 +169,73 @@ export default async function ArticlePage({
           {/* Article body */}
           <div className="flex max-w-3xl flex-col gap-10">
             {article.sections.map((section, i) => (
-              <section key={i}>
-                <h2 className="mb-3 text-title-sm font-semibold lg:text-title">
-                  {section.heading[l]}
-                </h2>
-                <p className="text-body text-(--color-text-muted)">
-                  {section.body[l]}
-                </p>
-              </section>
+              <div key={i} className="flex flex-col gap-10">
+                <section>
+                  <h2 className="mb-3 text-title-sm font-semibold lg:text-title">
+                    {section.heading[l]}
+                  </h2>
+                  <p className="text-body text-(--color-text-muted)">
+                    {section.body[l]}
+                  </p>
+                </section>
+                {i === 1 && article.inlineCta ? (
+                  <aside
+                    aria-label={article.inlineCta.title[l]}
+                    className="tile border border-(--color-brand)/35 bg-(--color-brand)/8 p-6 sm:p-7"
+                  >
+                    <span className="inline-block rounded-pill bg-(--color-brand)/20 px-3 py-1 text-caption font-bold uppercase tracking-wider text-(--color-brand-deep)">
+                      {article.inlineCta.badge[l]}
+                    </span>
+                    <h3 className="mt-3 text-title-sm font-bold text-(--color-text)">
+                      {article.inlineCta.title[l]}
+                    </h3>
+                    <p className="mt-2 text-footnote leading-relaxed text-(--color-text-muted)">
+                      {article.inlineCta.body[l]}
+                    </p>
+                    <div className="mt-5 flex flex-wrap items-center gap-3">
+                      {article.inlineCta.primaryExternal ? (
+                        <a
+                          href={article.inlineCta.primaryHref}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-placement="blog_inline_cta"
+                          className="plausible-event-audience=b2c inline-flex h-11 items-center justify-center rounded-pill bg-(--color-brand) px-6 text-footnote font-semibold text-(--color-ink) transition-colors duration-200 hover:bg-(--color-brand-hover)"
+                        >
+                          {article.inlineCta.primaryLabel[l]}
+                        </a>
+                      ) : (
+                        <Link
+                          href={article.inlineCta.primaryHref}
+                          className="inline-flex h-11 items-center justify-center rounded-pill bg-(--color-brand) px-6 text-footnote font-semibold text-(--color-ink) transition-colors duration-200 hover:bg-(--color-brand-hover)"
+                        >
+                          {article.inlineCta.primaryLabel[l]}
+                        </Link>
+                      )}
+                      {article.inlineCta.secondaryHref &&
+                      article.inlineCta.secondaryLabel ? (
+                        article.inlineCta.secondaryHref.startsWith("http") ? (
+                          <a
+                            href={article.inlineCta.secondaryHref}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            data-placement="blog_inline_cta"
+                            className="plausible-event-audience=b2c inline-flex h-11 items-center justify-center rounded-pill border border-(--color-border) bg-(--color-surface) px-5 text-footnote font-semibold text-(--color-text) transition-colors duration-200 hover:bg-(--color-fill)"
+                          >
+                            {article.inlineCta.secondaryLabel[l]}
+                          </a>
+                        ) : (
+                          <Link
+                            href={article.inlineCta.secondaryHref}
+                            className="inline-flex h-11 items-center justify-center rounded-pill border border-(--color-border) bg-(--color-surface) px-5 text-footnote font-semibold text-(--color-text) transition-colors duration-200 hover:bg-(--color-fill)"
+                          >
+                            {article.inlineCta.secondaryLabel[l]}
+                          </Link>
+                        )
+                      ) : null}
+                    </div>
+                  </aside>
+                ) : null}
+              </div>
             ))}
           </div>
 
@@ -182,6 +252,38 @@ export default async function ArticlePage({
                 {article.cta.action[l]}
               </Link>
             </aside>
+          )}
+
+          {/* Frequently Asked Questions */}
+          {article.faqs && article.faqs.length > 0 && (
+            <section
+              aria-labelledby="article-faq-heading"
+              className="mt-14 max-w-3xl border-t border-(--color-border-soft) pt-10"
+            >
+              <h2
+                id="article-faq-heading"
+                className="text-title-sm font-semibold text-(--color-text)"
+              >
+                {l === "ar" ? "الأسئلة الشائعة" : "Frequently Asked Questions"}
+              </h2>
+              <div className="mt-5 flex flex-col gap-3">
+                {article.faqs.map((faq, idx) => (
+                  <details
+                    key={idx}
+                    open={idx === 0}
+                    className="tile group p-5 transition-all"
+                  >
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-body font-semibold text-(--color-text)">
+                      <span>{faq.q[l]}</span>
+                      <ChevronIcon className="h-3.5 w-3.5 shrink-0 rotate-90 text-(--color-text-subtle) transition-transform group-open:-rotate-90" />
+                    </summary>
+                    <p className="mt-3 text-footnote leading-relaxed text-(--color-text-muted)">
+                      {faq.a[l]}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </section>
           )}
 
           {/* Related products */}

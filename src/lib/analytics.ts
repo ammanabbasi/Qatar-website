@@ -90,3 +90,49 @@ export function trackPpfBooking(opts: {
     props: { coverage: opts.coverage, film: opts.film, body_type: opts.body },
   });
 }
+
+/**
+ * Wholesale dealer application submitted on /[locale]/b2b/dealer-application.
+ * Reports `dealer_enquiry` to GA4, the primary Google Ads conversion action
+ * (`ABK — Wholesale Dealer Application`), and Plausible.
+ */
+export function trackDealerEnquiry(opts: {
+  companyName: string;
+  businessType: string;
+  location: string;
+  estimatedVolume: string;
+  priorityBrands: string[];
+  locale: string;
+}) {
+  if (typeof window === "undefined") return;
+  const params = {
+    company_name: opts.companyName.slice(0, 100),
+    business_type: opts.businessType,
+    location: opts.location.slice(0, 80),
+    estimated_volume: opts.estimatedVolume,
+    brands: opts.priorityBrands.join(", ").slice(0, 120),
+    audience: "b2b",
+    locale: opts.locale,
+    value: 200,
+    currency: "QAR",
+  };
+  const gtag = (window as WindowWithGtag).gtag;
+  if (typeof gtag === "function") {
+    gtag("event", CONVERSION_EVENT_NAMES.dealer_enquiry, params);
+    const target = sendTo("dealer_enquiry");
+    if (target) {
+      gtag("event", "conversion", {
+        send_to: target,
+        ...params,
+      });
+    }
+  }
+  (window as WindowWithPlausible).plausible?.("dealer_enquiry", {
+    props: {
+      business_type: opts.businessType,
+      estimated_volume: opts.estimatedVolume,
+      locale: opts.locale,
+    },
+  });
+}
+

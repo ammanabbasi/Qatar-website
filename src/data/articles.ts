@@ -38,6 +38,22 @@ export type Article = {
     body: { en: string; ar: string };
     action: { en: string; ar: string };
   };
+  /** Contextual mid-article conversion module rendered after section 2. */
+  inlineCta?: {
+    badge: { en: string; ar: string };
+    title: { en: string; ar: string };
+    body: { en: string; ar: string };
+    primaryHref: string;
+    primaryLabel: { en: string; ar: string };
+    primaryExternal?: boolean;
+    secondaryHref?: string;
+    secondaryLabel?: { en: string; ar: string };
+  };
+  /** Structured FAQ pairs rendered visibly at the bottom and emitted as FAQPage JSON-LD. */
+  faqs: Array<{
+    q: { en: string; ar: string };
+    a: { en: string; ar: string };
+  }>;
 };
 
 // Prices in the PPF articles are read from ppfInstall.ts, so the guide can
@@ -160,6 +176,53 @@ export const ARTICLES: Article[] = [
       "vtek-ppf-weather-armor-prism",
     ],
     cta: PPF_INSTALL_CTA,
+    inlineCta: {
+      badge: { en: "Instant Online Calculator", ar: "حاسبة الأسعار الفورية" },
+      title: {
+        en: "Calculate Your Exact Installed VTEK PPF Price in 30 Seconds",
+        ar: "احسب سعر تركيب فيلم VTEK الأصلي لسيارتك خلال 30 ثانية",
+      },
+      body: {
+        en: "Select your vehicle body type (Sedan, SUV, or Large 4x4), coverage tier, and VTEK film grade to see your fixed installed price in Doha with a 10–12 year factory warranty.",
+        ar: "اختر حجم سيارتك (سيدان، SUV، أو دفع رباعي كبير) ومستوى التغطية وفئة فيلم VTEK لمعرفة سعر التركيب الثابت في الدوحة مع ضمان مصنعي 10–12 سنة.",
+      },
+      primaryHref: "/b2c/ppf-installation",
+      primaryLabel: { en: "Open PPF Price Calculator", ar: "افتح حاسبة أسعار PPF" },
+      secondaryHref: "https://wa.me/97430838355?text=Hi%20ABK%2C%20I%20would%20like%20a%20VTEK%20PPF%20quote%20for%20my%20car.",
+      secondaryLabel: { en: "Ask on WhatsApp (+974 3083 8355)", ar: "استفسر عبر واتساب" },
+    },
+    faqs: [
+      {
+        q: {
+          en: "How much does full body PPF cost in Qatar in 2026?",
+          ar: "كم سعر تركيب PPF للهيكل الكامل في قطر لعام 2026؟",
+        },
+        a: {
+          en: `At ABK Trading & Service in Doha, installed full-body VTEK Weather Armor PRO PPF (10-year warranty) costs ${q(P["full-body"].sedan, "en")} for a sedan/coupe, ${q(P["full-body"].suv, "en")} for a medium SUV, and ${q(P["full-body"]["large-suv"], "en")} for a large SUV or pickup. Front-end packages start from ${q(fromPrice("front-end"), "en")} and full-front packages start from ${q(fromPrice("full-front"), "en")}.`,
+          ar: `في شركة ABK للتجارة والخدمات بالدوحة، يبلغ سعر تركيب فيلم VTEK Weather Armor PRO للهيكل الكامل (ضمان 10 سنوات) ${q(P["full-body"].sedan, "ar")} للسيدان والكوبيه، و${q(P["full-body"].suv, "ar")} لسيارات SUV المتوسطة، و${q(P["full-body"]["large-suv"], "ar")} لسيارات الدفع الرباعي الكبيرة والبيك أب. وتبدأ باقات الواجهة الأساسية من ${q(fromPrice("front-end"), "ar")} والواجهة الكاملة من ${q(fromPrice("full-front"), "ar")}.`,
+        },
+      },
+      {
+        q: {
+          en: "What is included in ABK's installed PPF price?",
+          ar: "ماذا يشمل سعر تركيب PPF لدى ABK؟",
+        },
+        a: {
+          en: "Every published price includes genuine 100% aliphatic TPU VTEK film from ABK's central stock, installation in a dust-controlled partner booth in Doha, VIN-registered VTEK manufacturer warranty (10 to 12 years), and ABK's 12-month workmanship cover against edge lifting or bubbling.",
+          ar: "يشمل كل سعر معلن فيلم VTEK الأصلي المصنوع من مادة TPU الأليفاتية 100% من مخزون ABK المركزي، والتركيب في كابينة معزولة معتمدة بالدوحة، وتسجيل ضمان المصنع برقم الشاصي لمدة 10–12 سنة، بالإضافة إلى ضمان ABK لجودة التركيب لمدة 12 شهراً.",
+        },
+      },
+      {
+        q: {
+          en: "Can I buy VTEK or Grizzly PPF rolls directly without installation?",
+          ar: "هل يمكنني شراء رولات PPF مباشرة بدون تركيب؟",
+        },
+        a: {
+          en: "Yes. ABK is the authorized Qatar distributor and supplies 1.52m × 15m master rolls of VTEK Weather Armor and Grizzly TPU PPF starting from QAR 1,200 directly from our Mesaimeer showroom.",
+          ar: "نعم، ABK هي الموزع المعتمد في قطر وتوفر رولات 1.52×15 متر من أفلام VTEK Weather Armor وGrizzly TPU PPF ابتداءً من 1,200 ر.ق مباشرة من معرضنا في مسيمير.",
+        },
+      },
+    ],
   },
   {
     slug: "window-tinting-rules-qatar-guide",
@@ -264,6 +327,54 @@ export const ARTICLES: Article[] = [
       "briller-glass-cleaner",
     ],
     cta: PPF_INSTALL_CTA,
+    inlineCta: {
+      badge: { en: "Qatar Legal-VLT Nano-Ceramic Tint", ar: "عازل حراري نانو سيراميك مطابق للمرور" },
+      title: {
+        en: "Block 95% of Qatar's Infrared Heat Without Risking a Traffic Fine",
+        ar: "اعزل 95% من حرارة شمس قطر بدرجات قانونية تجتاز فحص فاحص",
+      },
+      body: {
+        en: "ABK stocks genuine VTEK Solar Armor (VUE, APEX & ICONIC) nano-ceramic window tint rolls in Mesaimeer, Doha — engineered for high IR heat rejection in legal 70%–80% VLT front-window shades.",
+        ar: "توفر ABK أفلام تظليل النانو سيراميك الأصلية VTEK Solar Armor (VUE وAPEX وICONIC) في معرض مسيمير بالدوحة — عزل حراري فائق للأشعة تحت الحمراء بدرجات نفاذية قانونية (70%–80% VLT).",
+      },
+      primaryHref: "https://wa.me/97430838355?text=Hi%20ABK%2C%20I%20want%20to%20enquire%20about%20legal-VLT%20VTEK%20Solar%20Armor%20window%20tint%20in%20Qatar.",
+      primaryLabel: { en: "Enquire on WhatsApp (+974 3083 8355)", ar: "اطلب عبر واتساب (+974 3083 8355)" },
+      primaryExternal: true,
+      secondaryHref: "/b2c/categories/film",
+      secondaryLabel: { en: "Browse VTEK Window Tint & PPF", ar: "تصفح أفلام التظليل والحماية VTEK" },
+    },
+    faqs: [
+      {
+        q: {
+          en: "What percentage of car window tint is allowed in Qatar?",
+          ar: "ما هي نسبة تظليل السيارات المسموح بها في قطر؟",
+        },
+        a: {
+          en: "Under Qatar's Ministry of Interior (MOI) traffic rules, private sedans and SUVs are permitted up to 20% tint darkness (80% VLT) on the front driver and passenger side windows and a top sun-strip on the windshield. Rear passenger windows and the rear windshield can carry darker privacy shading on family vehicles provided side mirrors offer clear visibility. Reflective or metallic mirror tint is prohibited on all windows.",
+          ar: "وفق لوائح الإدارة العامة للمرور بوزارة الداخلية القطرية، يُسمح للسيارات الخاصة العائلية والسيدان والدفع الرباعي بنسبة تظليل تصل إلى 20% قتامة (80% نفاذية ضوء VLT) على النوافذ الأمامية الجانبية للسائق والراكب وشريط علوي خفيف على الزجاج الأمامي، مع السماح بدرجة أغمق للنوافذ الخلفية بشرط وضوح الرؤية عبر المرايا الجانبية، ويُمنع التظليل العاكس أو المعدني نهائياً.",
+        },
+      },
+      {
+        q: {
+          en: "How do I apply for and pay for a car window tint permit in Metrash?",
+          ar: "كيف أقدم على تصريح تظليل السيارة وأسدد الرسوم في تطبيق مطراش؟",
+        },
+        a: {
+          en: "Obtain an official medical report from Hamad Medical Corporation (HMC) or an MOPH-approved clinic confirming medical need for UV protection. Open the Metrash app, go to Traffic → Vehicle Services → Issue/Renew Window Tinting Permit, enter your plate number, upload the medical report, and once approved by the Traffic Department, pay the permit fee directly inside Metrash by card.",
+          ar: "استخرج تقريراً طبياً معتمداً من مؤسسة حمد الطبية أو جهة صحية معتمدة من وزارة الصحة العامة، ثم افتح تطبيق مطراش وانتقل إلى المرور ← خدمات المركبات ← إصدار/تجديد تصريح تظليل، وأدخل رقم اللوحة وأرفق التقرير الطبي، وبعد الموافقة سدد رسوم التصريح إلكترونياً داخل تطبيق مطراش.",
+        },
+      },
+      {
+        q: {
+          en: "What is the fine for illegal car window tinting in Qatar?",
+          ar: "كم مخالفة وغرامة التظليل غير القانوني في قطر؟",
+        },
+        a: {
+          en: "Driving with illegal window tinting in Qatar without an approved Metrash permit carries a traffic fine typically ranging from QR 1,000 to QR 3,000, mandatory removal of the non-compliant film, potential vehicle impoundment, and automatic failure at the annual Fahes (Woqod) inspection.",
+          ar: "تتراوح غرامة مخالفة تظليل النوافذ بدون تصريح مطراش في قطر عادةً بين 1,000 و3,000 ريال قطري مع إلزامية إزالة الفيلم المخالف واحتمال حجز المركبة والرسوب في الفحص الفني السنوي (فاحص).",
+        },
+      },
+    ],
   },
   {
     slug: "ceramic-coating-cost-qatar",
@@ -354,6 +465,54 @@ export const ARTICLES: Article[] = [
       "autotriz-3d-matrix-hybrid",
     ],
     cta: PPF_INSTALL_CTA,
+    inlineCta: {
+      badge: { en: "Genuine German 9H Ceramic Kits", ar: "أطقم سيراميك ألمانية أصلية 9H" },
+      title: {
+        en: "Buy Autotriz 9H Nano-Ceramic Kits Direct in Doha (QAR 250–280)",
+        ar: "اشترِ أطقم النانو سيراميك الألمانية Autotriz 9H مباشرة في الدوحة (250–280 ر.ق)",
+      },
+      body: {
+        en: "Whether you supply your own detailer or run a studio, get 100% genuine German Autotriz REVO +15 (QAR 250), ION+ +15 (QAR 250), or 3D Matrix Ultra/Hybrid (QAR 280) from ABK's Mesaimeer showroom.",
+        ar: "سواء كنت تزود مركز التلميع أو تطبق بنفسك، احصل على أطقم السيراميك الألمانية الأصلية Autotriz REVO +15 (250 ر.ق) و3D Matrix Ultra/Hybrid (280 ر.ق) مباشرة من معرض ABK في مسيمير.",
+      },
+      primaryHref: "https://wa.me/97430838355?text=Hi%20ABK%2C%20I%20would%20like%20to%20order%20an%20Autotriz%209H%20Ceramic%20Coating%20kit%20in%20Qatar.",
+      primaryLabel: { en: "Order Kit on WhatsApp (+974 3083 8355)", ar: "اطلب الطقم عبر واتساب" },
+      primaryExternal: true,
+      secondaryHref: "/b2c/categories/ceramic",
+      secondaryLabel: { en: "Browse All Ceramic Coatings", ar: "تصفح جميع أطقم السيراميك" },
+    },
+    faqs: [
+      {
+        q: {
+          en: "How much does ceramic coating cost in Qatar for a medium-size SUV?",
+          ar: "كم تكلفة الطلاء السيراميكي في قطر لسيارات الدفع الرباعي المتوسطة (SUV)؟",
+        },
+        a: {
+          en: "In Doha detailing studios, a full 9H ceramic coating package (including decontamination wash, machine polish, and multi-layer coating) for a medium SUV (such as a Toyota Prado, Jetour T2, Porsche Cayenne, or Range Rover Sport) typically costs QAR 1,200 to QAR 2,500. Sedans range from QAR 800 to QAR 1,800, and large 4x4s (Land Cruiser, Patrol, Yukon) range from QAR 1,600 to QAR 3,200+. If you buy the genuine German Autotriz 9H ceramic kit directly from ABK in Mesaimeer, 50ml kits cost QAR 250 to QAR 280.",
+          ar: "في مراكز التلميع بالدوحة، تتراوح تكلفة باقة النانو سيراميك 9H الكاملة (شاملة الغسيل التفصيلي والتلميع الآلي) لسيارة SUV متوسطة (مثل تويوتا برادو، جيتور T2، بورش كايين، أو رينج روفر سبورت) بين 1,200 و2,500 ريال قطري. وتتراوح للسيدان بين 800 و1,800 ر.ق، وللدفع الرباعي الكبير (لاند كروزر وباترول) بين 1,600 و3,200+ ر.ق. وعند شراء طقم السيراميك الألماني الأصلي Autotriz مباشرة من معرض ABK في مسيمير يبلغ سعر الطقم (50 مل) من 250 إلى 280 ر.ق.",
+        },
+      },
+      {
+        q: {
+          en: "Which Autotriz ceramic coating kit is best for Qatar's climate?",
+          ar: "أي طقم سيراميك من Autotriz هو الأفضل لمناخ قطر؟",
+        },
+        a: {
+          en: "Autotriz 3D Matrix Ultra (50ml kit: QAR 280) and Autotriz 3D Matrix Hybrid (50ml kit: QAR 280) offer the highest crosslinking density and chemical/UV resistance for 50°C Gulf summers, while Autotriz REVO +15 (50ml: QAR 250) and ION+ +15 (50ml: QAR 250) provide extreme hydrophobic water-beading to prevent hard-water mineral spots.",
+          ar: "يوفر كل من Autotriz 3D Matrix Ultra (طقم 50 مل: 280 ر.ق) وAutotriz 3D Matrix Hybrid (طقم 50 مل: 280 ر.ق) أعلى كثافة ترابط ومقاومة للأشعة فوق البنفسجية والحرارة، بينما يمنح Autotriz REVO +15 وION+ +15 (بسعر 250 ر.ق) عزلاً مائياً فائقاً يمنع تكون بقع الماء الكلسية.",
+        },
+      },
+      {
+        q: {
+          en: "How long does 9H ceramic coating last in Doha?",
+          ar: "كم يدوم الطلاء السيراميكي 9H في الدوحة؟",
+        },
+        a: {
+          en: "Genuine German 9H ceramic coatings like Autotriz last 2 to 5 years in Qatar when washed with pH-balanced car shampoo (such as Autotriz Rich Foam Shampoo) rather than harsh alkaline degreasers.",
+          ar: "يدوم الطلاء السيراميكي الألماني الأصلي بصلابة 9H مثل Autotriz من سنتين إلى 5 سنوات في قطر عند غسل السيارة بشامبو متوازن الحموضة (مثل Autotriz Rich Foam) وتجنب المواد الكيميائية القلوية الحارقة.",
+        },
+      },
+    ],
   },
   {
     slug: "remove-hard-water-spots-car-qatar",
@@ -438,6 +597,54 @@ export const ARTICLES: Article[] = [
       "autotriz-revo-ceramic-coating",
     ],
     cta: PPF_INSTALL_CTA,
+    inlineCta: {
+      badge: { en: "Water Spot Removal & Prevention", ar: "إزالة ومنع بقع الماء الكلسية" },
+      title: {
+        en: "Remove Mineral Rings & Seal Your Paint Against Doha's Hard Water",
+        ar: "أزل البقع الكلسية واحمِ طلاء سيارتك من ماء الدوحة العسر",
+      },
+      body: {
+        en: "Send us a photo of your water spots on WhatsApp — we will recommend the exact Autotriz polish (from QAR 135), GrünesAuto pad (QAR 30), or REVO 9H ceramic kit (QAR 250) in stock in Mesaimeer.",
+        ar: "أرسل صورة لبقع الماء على سيارتك عبر واتساب — وسنوصيك بملمع Autotriz المناسب (من 135 ر.ق) أو طقم سيراميك REVO 9H (بسعر 250 ر.ق) المتوفر في مسيمير.",
+      },
+      primaryHref: "https://wa.me/97430838355?text=Hi%20ABK%2C%20I%20need%20a%20water%20spot%20remover%20or%20polish%20recommendation%20for%20my%20car%20in%20Qatar.",
+      primaryLabel: { en: "Message Us on WhatsApp (+974 3083 8355)", ar: "تواصل عبر واتساب (+974 3083 8355)" },
+      primaryExternal: true,
+      secondaryHref: "/b2c/categories/polish",
+      secondaryLabel: { en: "Browse Polishes & Compounds", ar: "تصفح المركبات والملمعات" },
+    },
+    faqs: [
+      {
+        q: {
+          en: "How do I remove baked-on hard water spots from car paint in Qatar?",
+          ar: "كيف أزيل بقع الماء العسر المطبوعة على طلاء السيارة في قطر؟",
+        },
+        a: {
+          en: "Fresh mineral rings wash off with pH-balanced shampoo (Autotriz Rich Foam) or Briller Glass Cleaner on windows. If Qatar's sun has baked the minerals into the clear coat, level the etching mechanically using Autotriz Ultimate Polish 302 (QAR 135) with a GrünesAuto foam pad (QAR 30), or Autotriz Extreme Cut 801 (QAR 160) for deeper craters.",
+          ar: "البقع الحديثة تُزال بشامبو متوازن الحموضة (Autotriz Rich Foam) أو منظف الزجاج Briller للنوافذ. أما البقع المحفورة بفعل الشمس فتُعالج بالتلميع الآلي باستخدام Autotriz Ultimate Polish 302 (بسعر 135 ر.ق) مع إسفنجة GrünesAuto (بسعر 30 ر.ق)، أو مركب القطع Extreme Cut 801 (بسعر 160 ر.ق) للبقع العميقة.",
+        },
+      },
+      {
+        q: {
+          en: "Does ceramic coating prevent water spots in Doha?",
+          ar: "هل يمنع الطلاء السيراميكي تكون بقع الماء في الدوحة؟",
+        },
+        a: {
+          en: "Yes. Applying a hydrophobic 9H ceramic coating like Autotriz REVO +15 (QAR 250) causes rinse water to bead and roll off before evaporating, preventing mineral rings from bonding to the clear coat.",
+          ar: "نعم، تطبيق طبقة نانو سيراميك طاردة للماء بصلابة 9H مثل Autotriz REVO +15 (بسعر 250 ر.ق) يجعل قطرات الماء تتكوّر وتنزلق قبل تبخرها، مما يمنع التصاق الأملاح بطبقة الكلير.",
+        },
+      },
+      {
+        q: {
+          en: "What is the best towel for drying a car in Qatar without streaks?",
+          ar: "ما أفضل منشفة لتجفيف السيارة في قطر بدون ترك أثر؟",
+        },
+        a: {
+          en: "ABK stocks high-absorbency PVA Synthetic Chamois Drying Towels (QAR 18) and 40×40cm / 40×60cm 380 GSM microfibre towels (QAR 8–10) in Mesaimeer, Doha to absorb rinse water before it flash-dries.",
+          ar: "توفر ABK مناشف التجفيف فائقة الامتصاص PVA Chamois (بسعر 18 ر.ق) ومناشف المايكروفايبر الاحترافية 380 GSM (بسعر 8–10 ر.ق) في معرض مسيمير لتجفيف الماء فوراً قبل تبخره.",
+        },
+      },
+    ],
   },
   {
     slug: "how-to-protect-car-from-qatar-heat",
@@ -516,6 +723,53 @@ export const ARTICLES: Article[] = [
     ],
     updated: "2026-10-02",
     cta: PPF_INSTALL_CTA,
+    inlineCta: {
+      badge: { en: "Gulf Summer Protection Bundle", ar: "باقة الحماية الكاملة لصيف قطر" },
+      title: {
+        en: "Shield Your Car Against 50°C Heat, UV & Desert Sand in Doha",
+        ar: "احمِ سيارتك من حرارة 50°م والأشعة فوق البنفسجية ورمل الطرق في الدوحة",
+      },
+      body: {
+        en: "Combine installed VTEK self-healing PPF (from QAR 899), legal-VLT VTEK Solar Armor window tint, and Autotriz 9H ceramic coating (from QAR 250) at ABK Trading & Service.",
+        ar: "اجمع بين تركيب أفلام الحماية VTEK PPF ذاتية المعالجة (من 899 ر.ق) وتظليل VTEK Solar Armor القانوني وأطقم سيراميك Autotriz 9H (من 250 ر.ق) لدى ABK.",
+      },
+      primaryHref: "/b2c/ppf-installation",
+      primaryLabel: { en: "Get Installed PPF Quote", ar: "احسب سعر تركيب PPF" },
+      secondaryHref: "https://wa.me/97430838355?text=Hi%20ABK%2C%20I%20want%20recommendations%20to%20protect%20my%20car%20from%20Qatar%20summer%20heat.",
+      secondaryLabel: { en: "Ask on WhatsApp (+974 3083 8355)", ar: "تواصل عبر واتساب" },
+    },
+    faqs: [
+      {
+        q: {
+          en: "What is the best way to protect a new car from Qatar's 50°C summer heat?",
+          ar: "ما أفضل طريقة لحماية سيارة جديدة من حرارة صيف قطر التي تتجاوز 50°م؟",
+        },
+        a: {
+          en: "A three-layer defence works best in Doha: (1) VTEK Weather Armor aliphatic TPU PPF on the front end (from QAR 899) or full body (from QAR 3,999) to stop highway stone chips and sand abrasion; (2) Autotriz 9H nano-ceramic coating (kits from QAR 250) to prevent hard-water spots and UV oxidation; and (3) legal-VLT VTEK Solar Armor nano-ceramic window tint to block up to 95% of infrared cabin heat.",
+          ar: "أفضل حماية في الدوحة تعتمد على ثلاث طبقات: (1) تركيب فيلم VTEK PPF الأليفاتي على الواجهة (من 899 ر.ق) أو الهيكل الكامل (من 3,999 ر.ق) لمنع ضربات الحصى وسافي الرمل؛ (2) تطبيق النانو سيراميك الألماني Autotriz 9H (من 250 ر.ق للطقم) لمنع بقع الماء الكلسية؛ (3) تظليل النوافذ بفيلم VTEK Solar Armor القانوني لعزل 95% من الأشعة تحت الحمراء.",
+        },
+      },
+      {
+        q: {
+          en: "How often should I wash my car in Doha during summer?",
+          ar: "كل كم يوم يجب غسل السيارة في الدوحة خلال الصيف؟",
+        },
+        a: {
+          en: "Wash every 7 to 10 days in the shade during early morning or evening hours using a pH-balanced snow foam like Autotriz Rich Foam Shampoo, and towel-dry immediately with a PVA or 380 GSM microfibre towel so desalinated tap water never evaporates on hot paint.",
+          ar: "يُنصح بغسل السيارة كل 7 إلى 10 أيام في الظل صباحاً أو مساءً باستخدام شامبو متوازن الحموضة مثل Autotriz Rich Foam، مع التجفيف الفوري بمنشفة مايكروفايبر 380 GSM أو PVA لمنع تبخر الماء المالح على الطلاء الساخن.",
+        },
+      },
+      {
+        q: {
+          en: "How do I stop my tyres and plastic trim from fading in Qatar?",
+          ar: "كيف أمنع تشقق الإطارات وبهتان البلاستيك الخارجي في قطر؟",
+        },
+        a: {
+          en: "Apply a UV-blocking dressing like Briller Quick Tyre Shine after washing to keep rubber sidewalls supple, and use ABK Rejuvenate Plastic Restorer (Made in France, from QAR 40) to restore and seal faded exterior bumpers and trims.",
+          ar: "استخدم ملمع الإطارات الواقي من الأشعة فوق البنفسجية Briller Quick Tyre Shine بعد الغسيل لحماية المطاط من التشقق، واستخدم مجدد البلاستيك الفرنسي ABK Rejuvenate (ابتداءً من 40 ر.ق) لاستعادة وحماية الصدامات والأجزاء البلاستيكية.",
+        },
+      },
+    ],
   },
   {
     slug: "ppf-vs-ceramic-coating-qatar",
@@ -572,6 +826,53 @@ export const ARTICLES: Article[] = [
     ],
     updated: "2026-10-02",
     cta: PPF_INSTALL_CTA,
+    inlineCta: {
+      badge: { en: "Compare Installed PPF & German Ceramic", ar: "قارن بين تركيب PPF وأطقم السيراميك الألماني" },
+      title: {
+        en: "Get Front-End VTEK PPF (from QAR 899) + Autotriz 9H Ceramic (QAR 250)",
+        ar: "احصل على حماية مقدمة VTEK PPF (من 899 ر.ق) + سيراميك Autotriz 9H (250 ر.ق)",
+      },
+      body: {
+        en: "Can't decide between PPF and ceramic coating? The smartest value combo in Doha is installing VTEK PPF on high-impact front panels and coating the rest of the body with Autotriz 9H ceramic.",
+        ar: "محتار بين PPF والسيراميك؟ الخيار الأذكى في الدوحة هو تركيب VTEK PPF على الواجهة الأمامية المعرضة للحصى وتطبيق سيراميك Autotriz 9H على باقي الهيكل.",
+      },
+      primaryHref: "/b2c/ppf-installation",
+      primaryLabel: { en: "Build Installed PPF Quote", ar: "احسب سعر تركيب PPF" },
+      secondaryHref: "/b2c/categories/ceramic",
+      secondaryLabel: { en: "Shop Autotriz Ceramic Kits (QAR 250–280)", ar: "تصفح أطقم سيراميك Autotriz" },
+    },
+    faqs: [
+      {
+        q: {
+          en: "Is PPF or ceramic coating better for Qatar highways?",
+          ar: "أيهما أفضل لطرق قطر السريعة: PPF أم الطلاء السيراميكي؟",
+        },
+        a: {
+          en: "For physical protection against rock chips and blowing sand on highways like Al Shamal Road and Salwa Road, only Paint Protection Film (PPF) absorbs physical impacts. Ceramic coating does not stop stone chips, but it excels at preventing hard-water mineral spots, UV fading, and dust adhesion.",
+          ar: "للحماية الفيزيائية من ضربات الحصى وسافي الرمل على الطرق السريعة مثل طريق الشمال وطريق سلوى، وحده فيلم الحماية (PPF) يمتص الصدمات الفيزيائية. أما الطلاء السيراميكي فلا يمنع ضربات الحصى، لكنه يتفوق في منع بقع الماء الكلسية والأكسدة والتصاق الغبار.",
+        },
+      },
+      {
+        q: {
+          en: "Can you apply ceramic coating on top of PPF?",
+          ar: "هل يمكن تطبيق الطلاء السيراميكي فوق فيلم PPF؟",
+        },
+        a: {
+          en: "Yes. Applying an Autotriz 9H ceramic coating over VTEK PPF — or installing front-end PPF (from QAR 899) and ceramic-coating the remaining panels — gives you both self-healing impact resistance and ultra-hydrophobic water-spot protection.",
+          ar: "نعم، تطبيق سيراميك Autotriz 9H فوق فيلم VTEK PPF — أو تركيب PPF على الواجهة الأمامية (من 899 ر.ق) وطلاء باقي الهيكل بالسيراميك — يمنحك مقاومة الصدمات مع سهولة التنظيف ومنع بقع الماء.",
+        },
+      },
+      {
+        q: {
+          en: "How does the price of PPF compare to ceramic coating in Doha?",
+          ar: "كيف يقارن سعر PPF بسعر الطلاء السيراميكي في الدوحة؟",
+        },
+        a: {
+          en: "Installed VTEK PPF at ABK starts at QAR 899 for a front-end kit, QAR 1,599 for full front, and QAR 3,999 for full body (10-year warranty). Studio ceramic coating in Doha typically costs QAR 800–2,500, while genuine Autotriz 9H ceramic kits sold directly at ABK's Mesaimeer showroom cost QAR 250–280.",
+          ar: "يبدأ تركيب فيلم VTEK PPF لدى ABK من 899 ر.ق للواجهة الأساسية و1,599 ر.ق للواجهة الكاملة و3,999 ر.ق للهيكل الكامل (ضمان 10 سنوات). بينما يتراوح تطبيق السيراميك في المراكز بين 800 و2,500 ر.ق، وتُباع أطقم السيراميك الألماني الأصلي Autotriz مباشرة في معرض ABK بمسيمير بسعر 250–280 ر.ق.",
+        },
+      },
+    ],
   },
   {
     slug: "complete-guide-car-care-products-qatar",
@@ -644,6 +945,53 @@ export const ARTICLES: Article[] = [
       "briller-quick-tyre-shine",
     ],
     cta: PPF_INSTALL_CTA,
+    inlineCta: {
+      badge: { en: "Retail & Wholesale Supply in Doha", ar: "توريد تجزئة وجملة في الدوحة" },
+      title: {
+        en: "Order 20L Car Wash Drums, German Compounds & Detailing Supplies Direct",
+        ar: "اطلب براميل غسيل 20 لتر ومركبات التلميع الألمانية مباشرة من الموزع",
+      },
+      body: {
+        en: "Visit ABK's Mesaimeer showroom or order online with same-day dispatch across Doha — 58 active SKUs from VTEK, Autotriz, Briller, Grizzly, GrünesAuto, and Sitrett.",
+        ar: "تفضل بزيارة معرض ABK في مسيمير أو اطلب عبر الموقع مع توصيل في نفس اليوم بالدوحة — 58 منتجاً أصلياً من VTEK وAutotriz وBriller وGrizzly وGrünesAuto وSitrett.",
+      },
+      primaryHref: "/b2c/products",
+      primaryLabel: { en: "Browse 58 Detailing Products", ar: "تصفح 58 منتج عناية وتلميع" },
+      secondaryHref: "/b2b/dealer-application",
+      secondaryLabel: { en: "Apply for B2B Wholesale Account", ar: "تقدم بطلب حساب جملة B2B" },
+    },
+    faqs: [
+      {
+        q: {
+          en: "Where can I buy wholesale car detailing and car wash materials in Qatar?",
+          ar: "أين يمكنني شراء مواد تلميع وغسيل السيارات بالجملة في قطر؟",
+        },
+        a: {
+          en: "ABK Trading & Service in Mesaimeer, Doha (Barwa Commercial Avenue / Al Wataniya Petrol Station, +974 3083 8355) is a direct distributor supplying 58 retail and wholesale car care SKUs — including 20L Briller and Autotriz chemical drums (QAR 250–450), German polishing compounds, GrünesAuto foam pads, and VTEK/Grizzly PPF rolls.",
+          ar: "تُعد شركة ABK للتجارة والخدمات في مسيمير، الدوحة (قرب محطة بترول الوطنية، +974 3083 8355) موزعاً مباشراً يوفر 58 منتجاً للتجزئة والجملة — تشمل براميل 20 لتر من Briller وAutotriz (بسعر 250–450 ر.ق)، ومركبات التلميع الألمانية، وإسفنجات GrünesAuto، ورولات أفلام الحماية VTEK وGrizzly.",
+        },
+      },
+      {
+        q: {
+          en: "Do you deliver car care products across Doha and Qatar?",
+          ar: "هل يتوفر توصيل لمنتجات العناية بالسيارات في الدوحة وقطر؟",
+        },
+        a: {
+          en: "Yes. Retail orders over QAR 250 qualify for free delivery across Doha, Al Rayyan, Lusail, Al Wakrah, and Al Khor (QAR 25 flat delivery fee under QAR 250), or you can collect for free from our Mesaimeer showroom Saturday to Thursday.",
+          ar: "نعم، الطلبات التي تزيد عن 250 ر.ق تحصل على توصيل مجاني في الدوحة والريان ولوسيل والوكرة والخور (ورسوم توصيل 25 ر.ق للطلبات الأقل)، كما يتوفر الاستلام المجاني من معرضنا في مسيمير من السبت إلى الخميس.",
+        },
+      },
+      {
+        q: {
+          en: "What 20L bulk chemical drums are in stock for Qatar car washes?",
+          ar: "ما هي براميل 20 لتر المتوفرة للمغاسل ومراكز التلميع في قطر؟",
+        },
+        a: {
+          en: "ABK stocks 20L drums of Autotriz Rich Foam Shampoo (QAR 450 promo), Briller Wash & Wax (QAR 350 promo), Briller Multi Purpose Cleaner APC (QAR 250), Briller Heavy Duty Degreaser (QAR 300), Briller Alloy Rim Cleaner (QAR 250), Briller Glass Cleaner (QAR 250), Briller Quick Tyre Shine (QAR 280), and Briller All-In-One Interior Dressing (QAR 350).",
+          ar: "توفر ABK براميل 20 لتر من شامبو الرغوة Autotriz Rich Foam (بسعر 450 ر.ق)، وشامبو Briller Wash & Wax (بسعر 350 ر.ق)، ومنظف متعدد الاستخدامات APC (بسعر 250 ر.ق)، ومزيل الشحوم القوي (300 ر.ق)، ومنظف الجنوط (250 ر.ق)، ومنظف الزجاج (250 ر.ق)، وملمع الإطارات (280 ر.ق)، وملمع المقصورة الداخلية (350 ر.ق).",
+        },
+      },
+    ],
   },
   {
     slug: "best-ppf-installers-doha-qatar-guide",
@@ -721,6 +1069,53 @@ export const ARTICLES: Article[] = [
       "vtek-ppf-weather-armor-prism",
     ],
     cta: PPF_INSTALL_CTA,
+    inlineCta: {
+      badge: { en: "Authorized VTEK Installation in Doha", ar: "تركيب VTEK معتمد في الدوحة" },
+      title: {
+        en: "Book Dust-Free, Edge-Wrapped VTEK PPF Installation (From QAR 899)",
+        ar: "احجز تركيب VTEK PPF بلف الحواف داخل كابينة معزولة (من 899 ر.ق)",
+      },
+      body: {
+        en: "Every ABK installation uses 100% aliphatic TPU VTEK film from our own distributor stock, backed by a 10–12 year VIN-registered film warranty and a 12-month workmanship guarantee.",
+        ar: "يتم كل تركيب لدى ABK بفيلم VTEK الأصلي (TPU أليفاتي 100%) من مخزوننا المباشر، مع ضمان مصنعي 10–12 سنة مسجل برقم الشاصي وضمان تركيب لمدة 12 شهراً.",
+      },
+      primaryHref: "/b2c/ppf-installation",
+      primaryLabel: { en: "See Fixed Prices & Book Online", ar: "اعرف السعر الثابت واحجز أونلاين" },
+      secondaryHref: "https://wa.me/97430838355?text=Hi%20ABK%2C%20I%20would%20like%20to%20book%20VTEK%20PPF%20installation%20in%20Doha.",
+      secondaryLabel: { en: "Book via WhatsApp (+974 3083 8355)", ar: "احجز عبر واتساب" },
+    },
+    faqs: [
+      {
+        q: {
+          en: "How can I tell if a Doha PPF installer is using genuine TPU instead of cheap PVC/TPH?",
+          ar: "كيف أتأكد أن مركز تركيب PPF في الدوحة يستخدم TPU أصلي وليس PVC أو TPH رخيص؟",
+        },
+        a: {
+          en: "Ask to see the physical roll box and lot number before installation, verify that the shop is an authorized installer for the brand, and ensure the 10–12 year manufacturer warranty is registered to your car's VIN. At ABK Trading & Service, the VTEK Weather Armor film comes directly from our official Qatar distributor stock.",
+          ar: "اطلب رؤية صندوق الرول ورقم التشغيلة قبل التركيب، وتأكد من اعتماد المركز لدى العلامة التجارية وتسجيل الضمان المصنعي (10–12 سنة) برقم شاصي سيارتك. في ABK يأتي فيلم VTEK Weather Armor مباشرة من مخزوننا بصفتنا الموزع المعتمد في قطر.",
+        },
+      },
+      {
+        q: {
+          en: "Does ABK wrap PPF edges around panels?",
+          ar: "هل يتم لف حواف فيلم PPF للداخل عند التركيب لدى ABK؟",
+        },
+        a: {
+          en: "Yes. Where panel tolerances allow (such as bonnet seams, fender lips, and door edges), our VTEK-authorized installers extend and wrap edges so dust cannot collect along visible borders and high-pressure washes cannot lift the film.",
+          ar: "نعم، في جميع الحواف التي تسمح هندسياً بذلك (مثل حواف الكبوت والرفارف والأبواب)، يقوم الفنيون المعتمدون بلف حواف الفيلم للداخل لمنع تجمع الغبار أو ارتفاع الأطراف مع الغسيل بالضغط العالي.",
+        },
+      },
+      {
+        q: {
+          en: "What happens if an edge lifts after PPF installation?",
+          ar: "ماذا يحدث إذا ارتفعت حافة الفيلم بعد التركيب؟",
+        },
+        a: {
+          en: "Every ABK PPF installation includes a post-cure inspection and a written 12-month ABK workmanship cover on top of VTEK's 10 to 12-year film warranty. Any edge lifting or slip-solution bubble is rectified free of charge.",
+          ar: "يشمل كل تركيب لدى ABK فحصاً مجانياً بعد جفاف الفيلم وضمان تركيب كتابي لمدة 12 شهراً بالإضافة إلى ضمان المصنع (10–12 سنة)، وتُعالج أي ملاحظة في الحواف مجاناً.",
+        },
+      },
+    ],
   },
 ];
 

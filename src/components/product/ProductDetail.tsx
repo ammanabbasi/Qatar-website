@@ -10,6 +10,7 @@ import { ProductGallery } from "./ProductGallery";
 import { ProductPurchasePanel } from "./ProductPurchasePanel";
 import { PpfInstallBanner } from "@/components/ppf/PpfInstallBanner";
 import { Link } from "@/i18n/navigation";
+import { getBrandSlugForKey } from "@/data/categoriesAndBrands";
 import type { Product } from "@/data/products";
 import type { Audience, WALocale } from "@/lib/whatsapp";
 import { SITE } from "@/lib/constants";
@@ -29,6 +30,7 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
   const shortDesc = product.shortDesc[locale];
   const brandLabel = t(`Brands.${product.brand}`);
   const categoryLabel = t(`Categories.${product.category}`);
+  const brandSlug = getBrandSlugForKey(product.brand);
   const productUrl = `${SITE.url}/${locale}/b2c/products/${product.slug}`;
 
   const productLd = productJsonLd({
@@ -57,6 +59,10 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
       url: `${SITE.url}/${locale}`,
     },
     { name: t("Products.title"), url: `${SITE.url}/${locale}/b2c/products` },
+    {
+      name: categoryLabel,
+      url: `${SITE.url}/${locale}/b2c/categories/${product.category}`,
+    },
     { name, url: productUrl },
   ]);
 
@@ -94,7 +100,7 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
               </li>
               <li>
                 <Link
-                  href={`/b2c/products?category=${product.category}`}
+                  href={`/b2c/categories/${product.category}`}
                   className={crumb}
                 >
                   {categoryLabel}
@@ -117,6 +123,23 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
             <div className="flex flex-col gap-6">
 
               <p className="text-body text-(--color-text-muted)">{longDesc}</p>
+
+              <div className="flex flex-wrap gap-2">
+                <Link
+                  href={`/b2c/categories/${product.category}`}
+                  className="inline-flex h-8 items-center rounded-pill bg-(--color-surface) px-3.5 text-caption font-medium text-(--color-text) shadow-[0_0_0_1px_var(--color-border)] transition-colors hover:bg-(--color-fill)"
+                >
+                  {categoryLabel}
+                </Link>
+                {brandSlug ? (
+                  <Link
+                    href={`/b2c/brands/${brandSlug}`}
+                    className="inline-flex h-8 items-center rounded-pill bg-(--color-surface) px-3.5 text-caption font-medium text-(--color-text) shadow-[0_0_0_1px_var(--color-border)] transition-colors hover:bg-(--color-fill)"
+                  >
+                    {brandLabel}
+                  </Link>
+                ) : null}
+              </div>
 
               <ul className="flex flex-col gap-2 text-footnote text-(--color-text)">
                 <li className="flex items-center gap-2.5">

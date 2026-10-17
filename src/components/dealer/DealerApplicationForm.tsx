@@ -8,6 +8,7 @@ import {
   buildDealerApplicationWhatsAppUrl,
   type WALocale,
 } from "@/lib/whatsapp";
+import { trackDealerEnquiry } from "@/lib/analytics";
 
 type Props = {
   locale: WALocale;
@@ -57,6 +58,15 @@ export function DealerApplicationForm({ locale }: Props) {
       return;
     }
     setError("");
+
+    trackDealerEnquiry({
+      companyName,
+      businessType,
+      location,
+      estimatedVolume,
+      priorityBrands: selectedBrands,
+      locale,
+    });
 
     const url = buildDealerApplicationWhatsAppUrl({
       locale,

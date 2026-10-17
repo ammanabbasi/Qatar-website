@@ -63,7 +63,14 @@ export function isProductionHost(hostname: string): boolean {
  * It is the only key not fired by the click listener: the configurator reports
  * it once the server confirms the save (see trackPpfBooking in analytics.ts).
  */
-export type ConversionKey = "whatsapp" | "phone" | "email" | "catalogue" | "ppf_booking";
+export type ConversionKey =
+  | "whatsapp"
+  | "phone"
+  | "email"
+  | "catalogue"
+  | "ppf_booking"
+  | "cart_order"
+  | "dealer_enquiry";
 
 /**
  * Conversion LABELS are issued by Google Ads, one per conversion action
@@ -84,6 +91,8 @@ export const CONVERSION_LABELS: Record<ConversionKey, string> = {
   email: process.env.NEXT_PUBLIC_ADS_LABEL_EMAIL ?? "",
   catalogue: process.env.NEXT_PUBLIC_ADS_LABEL_CATALOGUE ?? "",
   ppf_booking: process.env.NEXT_PUBLIC_ADS_LABEL_PPF_BOOKING ?? "J9TLCOe7n44dENiYz-ZD",
+  cart_order: process.env.NEXT_PUBLIC_ADS_LABEL_CART_ORDER ?? "K8OHCP_5-p8dENiYz-ZD",
+  dealer_enquiry: process.env.NEXT_PUBLIC_ADS_LABEL_DEALER_ENQUIRY ?? "uuVJCKWd9J8dENiYz-ZD",
 };
 
 /** Event name reported to gtag/GA4 alongside the Ads conversion. */
@@ -93,6 +102,8 @@ export const CONVERSION_EVENT_NAMES: Record<ConversionKey, string> = {
   email: "email_enquiry",
   catalogue: "catalogue_download",
   ppf_booking: "ppf_booking_request",
+  cart_order: "cart_whatsapp_order",
+  dealer_enquiry: "dealer_enquiry",
 };
 
 /** `send_to` value for gtag, or null when the label has not been issued yet. */

@@ -1,6 +1,10 @@
 import type { MetadataRoute } from "next";
 import { PRODUCTS, PRODUCT_DEFAULT_UPDATED_AT } from "@/data/products";
 import { ARTICLES } from "@/data/articles";
+import {
+  BRAND_LANDING_PAGES,
+  CATEGORY_LANDING_PAGES,
+} from "@/data/categoriesAndBrands";
 import { SITE } from "@/lib/constants";
 import { routing } from "@/i18n/routing";
 
@@ -13,8 +17,8 @@ import { routing } from "@/i18n/routing";
 // 2026-09-22: B2C/B2B funnels redesign, WhatsApp order tray, dealer onboarding upgrade.
 // 2026-09-24: shop-first homepage order, catalogue search/sort, retail cart
 //             (the /b2c/cart checkout page is noindex and deliberately absent).
-// 2026-10-17: removed 308-redirecting /b2b and /b2b/products URLs; enriched
-//             internal links and structured data across static pages.
+// 2026-10-17: removed 308-redirecting /b2b and /b2b/products URLs; added
+//             dedicated SSG category and brand landing pages.
 const STATIC_PAGES_UPDATED_AT = "2026-10-17";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -62,6 +66,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
                 ? 0.3
                 : 0.7,
         alternates: { languages: languages(path) },
+      });
+    }
+    // Category landing pages (/b2c/categories/[category])
+    for (const cat of CATEGORY_LANDING_PAGES) {
+      const catPath = `/b2c/categories/${cat.slug}`;
+      entries.push({
+        url: `${base}/${locale}${catPath}`,
+        lastModified: staticLastMod,
+        changeFrequency: "weekly",
+        priority: 0.85,
+        alternates: { languages: languages(catPath) },
+      });
+    }
+    // Brand landing pages (/b2c/brands/[brand])
+    for (const brand of BRAND_LANDING_PAGES) {
+      const brandPath = `/b2c/brands/${brand.slug}`;
+      entries.push({
+        url: `${base}/${locale}${brandPath}`,
+        lastModified: staticLastMod,
+        changeFrequency: "weekly",
+        priority: 0.85,
+        alternates: { languages: languages(brandPath) },
       });
     }
     for (const p of PRODUCTS) {

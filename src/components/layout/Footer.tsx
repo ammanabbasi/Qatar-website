@@ -64,14 +64,14 @@ export function Footer({ audience }: { audience: Audience }) {
               <Link
                 key={c}
                 className={linkCls}
-                href={`/b2c/products?category=${c}`}
+                href={`/b2c/categories/${c}`}
               >
                 {t(`Categories.${c}`)}
               </Link>
             ))}
           </div>
 
-          {/* Company Column */}
+          {/* Company & Brands Column */}
           <div className="flex flex-col gap-3 md:col-span-3">
             <h3 className={headCls}>{t("Footer.company")}</h3>
             <Link className={linkCls} href="/">
@@ -88,6 +88,26 @@ export function Footer({ audience }: { audience: Audience }) {
             </Link>
             <Link className={linkCls} href="/b2b/become-a-dealer">
               {t("Nav.becomeDealer")}
+            </Link>
+
+            <h3 className={`${headCls} mt-4`}>{t("Products.filterBrand")}</h3>
+            <Link className={linkCls} href="/b2c/brands/vtek">
+              VTEK PPF & Window Tint
+            </Link>
+            <Link className={linkCls} href="/b2c/brands/autotriz">
+              Autotriz Germany
+            </Link>
+            <Link className={linkCls} href="/b2c/brands/briller">
+              Briller Car Care
+            </Link>
+            <Link className={linkCls} href="/b2c/brands/grizzly">
+              Grizzly PPF & Polish
+            </Link>
+            <Link className={linkCls} href="/b2c/brands/grunes-auto">
+              GrünesAuto Pads
+            </Link>
+            <Link className={linkCls} href="/b2c/brands/abk">
+              ABK Rejuvenate & Scents
             </Link>
           </div>
 
