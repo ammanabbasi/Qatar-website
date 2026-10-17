@@ -38,7 +38,10 @@ export async function generateMetadata({
     description: article.description[l],
     keywords: article.keywords[l],
     ...pageMeta(locale as Locale, `/b2c/blog/${article.slug}`, {
-      article: { publishedTime: article.date },
+      article: {
+        publishedTime: article.date,
+        modifiedTime: article.updated,
+      },
     }),
   };
 }
@@ -57,27 +60,38 @@ export default async function ArticlePage({
   const t = await getTranslations({ locale, namespace: "Blog" });
   const nav = await getTranslations({ locale, namespace: "Nav" });
 
+  const articleUrl = `${SITE.url}/${l}/b2c/blog/${article.slug}`;
   const articleLd = {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": `${articleUrl}#article`,
     headline: article.title[l],
     description: article.description[l],
     // `image` is recommended for Article rich results, ideally in several
     // aspect ratios: the 1.91:1 brand card plus the 1:1 product hero stand in
     // until posts get their own cover art.
     image: [defaultSocialImage(l).url, `${SITE.url}/og/abk-hero-1x1.jpg`],
-    url: `${SITE.url}/${l}/b2c/blog/${article.slug}`,
+    url: articleUrl,
     keywords: article.keywords[l].join(", "),
     articleSection: article.category,
     datePublished: article.date,
     dateModified: article.updated ?? article.date,
-    author: { "@type": "Organization", name: SITE.name, url: SITE.url },
+    author: {
+      "@type": "Organization",
+      "@id": `${SITE.url}#organization`,
+      name: SITE.name,
+      url: SITE.url,
+    },
     publisher: {
       "@type": "Organization",
+      "@id": `${SITE.url}#organization`,
       name: SITE.name,
       logo: { "@type": "ImageObject", url: `${SITE.url}/logo.webp` },
     },
-    mainEntityOfPage: `${SITE.url}/${l}/b2c/blog/${article.slug}`,
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": articleUrl,
+    },
     inLanguage: l === "ar" ? "ar-QA" : "en-QA",
   };
 

@@ -83,7 +83,7 @@ export const CONVERSION_LABELS: Record<ConversionKey, string> = {
   phone: process.env.NEXT_PUBLIC_ADS_LABEL_PHONE ?? "0rdHCL7KqJMdENiYz-ZD",
   email: process.env.NEXT_PUBLIC_ADS_LABEL_EMAIL ?? "",
   catalogue: process.env.NEXT_PUBLIC_ADS_LABEL_CATALOGUE ?? "",
-  ppf_booking: process.env.NEXT_PUBLIC_ADS_LABEL_PPF_BOOKING ?? "",
+  ppf_booking: process.env.NEXT_PUBLIC_ADS_LABEL_PPF_BOOKING ?? "J9TLCOe7n44dENiYz-ZD",
 };
 
 /** Event name reported to gtag/GA4 alongside the Ads conversion. */

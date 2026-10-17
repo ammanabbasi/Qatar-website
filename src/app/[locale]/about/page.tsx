@@ -12,7 +12,8 @@ import { BadgeIcon, TruckIcon, SparkleIcon } from "@/components/ui/Icons";
 import { FaqSection } from "@/components/home/FaqSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FAQ } from "@/data/faq";
-import { faqJsonLd } from "@/lib/jsonld";
+import { SITE } from "@/lib/constants";
+import { breadcrumbJsonLd, faqJsonLd } from "@/lib/jsonld";
 import { pageMeta } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -56,12 +57,17 @@ export default async function AboutPage({
   const faqLd = faqJsonLd(
     FAQ.map((entry) => ({ question: entry.q[l], answer: entry.a[l] })),
   );
+  const bcLd = breadcrumbJsonLd([
+    { name: l === "ar" ? "الرئيسية" : "Home", url: `${SITE.url}/${l}` },
+    { name: t("title"), url: `${SITE.url}/${l}/about` },
+  ]);
 
   return (
     <Shell audience={audience} locale={l}>
       {/* FAQPage schema must sit on the same page as the rendered Q/A or
           Google treats the mismatch as cloaking - see FaqSection. */}
       <JsonLd id="ld-faq" data={faqLd} />
+      <JsonLd id="ld-about-crumb" data={bcLd} />
       <PageHero
         eyebrow={eyebrows("about")}
         title={t("heading")}
@@ -126,8 +132,18 @@ export default async function AboutPage({
             <h2 className="text-title-sm font-semibold">{t("exploreTitle")}</h2>
             <ul className="mt-4 flex flex-col gap-3">
               <li>
-                <TextLink href={`/${audience}/products`}>
+                <TextLink href="/b2c/products">
                   {t("exploreProductsLabel")}
+                </TextLink>
+              </li>
+              <li>
+                <TextLink href="/b2c/ppf-installation">
+                  {t("explorePpfLabel")}
+                </TextLink>
+              </li>
+              <li>
+                <TextLink href="/b2c/blog">
+                  {t("exploreBlogLabel")}
                 </TextLink>
               </li>
               <li>

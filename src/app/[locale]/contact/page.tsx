@@ -12,7 +12,7 @@ import { TextLink } from "@/components/ui/TextLink";
 import { PinIcon, ClockIcon, PhoneIcon, MailIcon } from "@/components/ui/Icons";
 import { LazyMapEmbed } from "@/components/contact/LazyMapEmbed";
 import { SITE } from "@/lib/constants";
-import { localBusinessJsonLd } from "@/lib/jsonld";
+import { breadcrumbJsonLd, localBusinessJsonLd } from "@/lib/jsonld";
 import { pageMeta } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -47,11 +47,16 @@ export default async function ContactPage({
   // canonical source per-locale for address/phone/hours. Also on audience
   // homepages. Removed from every other page to reduce duplicate-schema noise.
   const jsonLd = localBusinessJsonLd(l);
+  const bcLd = breadcrumbJsonLd([
+    { name: l === "ar" ? "الرئيسية" : "Home", url: `${SITE.url}/${l}` },
+    { name: t("Contact.title"), url: `${SITE.url}/${l}/contact` },
+  ]);
   const waHref = `https://wa.me/${SITE.whatsapp}`;
 
   return (
     <Shell audience={audience} locale={l}>
       <JsonLd id="ld-localbusiness-contact" data={jsonLd} />
+      <JsonLd id="ld-contact-crumb" data={bcLd} />
 
       <PageHero
         eyebrow={t("Eyebrows.contact")}
@@ -168,8 +173,18 @@ export default async function ContactPage({
             <h2 className="text-title-sm font-semibold">{t("Contact.exploreTitle")}</h2>
             <ul className="mt-4 flex flex-col gap-3">
               <li>
-                <TextLink href={`/${audience}/products`}>
+                <TextLink href="/b2c/products">
                   {t("Contact.exploreProductsLabel")}
+                </TextLink>
+              </li>
+              <li>
+                <TextLink href="/b2c/ppf-installation">
+                  {t("Contact.explorePpfLabel")}
+                </TextLink>
+              </li>
+              <li>
+                <TextLink href="/b2c/blog">
+                  {t("Contact.exploreBlogLabel")}
                 </TextLink>
               </li>
               <li>

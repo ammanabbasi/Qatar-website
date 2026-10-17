@@ -1,11 +1,13 @@
 # ABK Trading & Service — Complete Machine-Readable Knowledge Base & Product Manifest
 
-> **Entity:** ABK Trading & Service (ABK Trading Service)  
-> **Headquarters:** Showroom no. 2, Building 1306, Street 70, Zone 56, Mesaimeer, Doha, State of Qatar  
-> **GPS Coordinates:** 25.2040478, 51.5029268 | Google Maps CID: 9860894303806767987  
+> **Entity:** ABK Trading & Service (ABK Trading Service / ABK للتجارة والخدمات)  
+> **Google Business Profile:** "ABK Trading and Service — Vertek & Autotriz"  
+> **Headquarters:** Showroom no. 2, Building 1306, Street 70, Zone 56, Mesaimeer, Doha, Qatar  
+> **GPS Coordinates:** 25.2040478, 51.5029268 | Google Maps: https://maps.google.com/?cid=9860894303806767987  
 > **Primary Communications:** WhatsApp / Sales: +974 3083 8355 | Mobile: +974 7779 0915 | Landline: +974 4451 4476  
 > **Email:** sales@abktradingservice.com  
 > **Website:** https://abktradingservice.com (English: /en, Arabic: /ar)  
+> **Last Synchronized:** 2026-10-17 (58 products, 8 guides)  
 > **Operational Mandate:** ABK is a product distributor, importer, and wholesale supplier. ABK supplies genuine products to detailing studios, workshops, commercial carwashes, dealerships, and retail DIY car owners. ABK is not a workshop. The one installed service ABK sells is VTEK paint protection film for car owners in Qatar: ABK quotes, books and guarantees the job, and the film is fitted at a VTEK-authorised partner centre in Doha (https://abktradingservice.com/en/b2c/ppf-installation — from QAR 899 front-end, QAR 1,599 full front, QAR 3,999 full body). ABK does not perform window tinting, ceramic coating application or detailing services.
 
 ---
@@ -14,308 +16,853 @@
 
 ### VTEK (formerly Vertek) — Paint Protection & Window Films
 - **Origin:** United States (Manufactured to high-performance GCC climate specifications)
-- **Product Range:** Thermoplastic Polyurethane (TPU) Paint Protection Films (PPF) and Nano-Ceramic Solar Heat Rejection Window Tint Films.
-- **Key Characteristics:** Polycarbonate-infused TPU, instant self-healing topcoat (activated by ambient heat or hot water), optical clarity, non-yellowing aliphatic resins, manufacturer warranties up to 15 years.
+- **Product Range:** Thermoplastic Polyurethane (TPU) Paint Protection Films (`Weather Armor PRO` 10-yr, `Weather Armor PRO PLUS` 12-yr, `Weather Armor MATTE` 5-yr, `Weather Armor PRISM` 5-yr) and Nano-Ceramic Solar Heat Rejection Window Tint Films (`Solar Armor VUE`, `Solar Armor APEX`, `Solar Armor ICONIC`).
+- **Key Characteristics:** Polycarbonate-infused aliphatic TPU, instant heat-activated self-healing topcoat, high optical clarity, non-yellowing aliphatic resins, manufacturer warranties up to 12 years.
 - **Target Channels:** Detailing studios, tint shops, luxury vehicle dealerships, and individual car owners seeking premium surface protection.
 
-### Autotriz Nano Ceramic Coatings & Polishing Systems
+### Autotriz Nano Ceramic Coatings, PPF Solutions & Polishing Systems
 - **Origin:** Germany / International
-- **Product Range:** Professional-grade nano ceramic coatings (V-9 3D Matrix 9H, Matrix Hybrid), specialised interior ceramic coatings (Leather, Vinyl, Textile), automotive compounds (Heavy Cut 901, Power Cut 701, Ultimate Polish 302, One Step Finish), and commercial wash chemicals (Rich Foam Shampoo 20L).
-- **Target Channels:** Professional detailing studios, body shops, commercial car washes, and certified coating applicators.
+- **Product Range:** Professional-grade nano ceramic coatings (`3D Matrix Ultra`, `3D Matrix Hybrid`, `REVO +15`, `ION+ +15`, `V-9 3D Matrix 9H`), specialized interior coatings (`Leather & Vinyl`, `Fabric & Textile Guard`), PPF installation & aftercare (`PPF Gel` 4L/20L, `PPF Refresh` 1L), automotive compounds (`Heavy Cut 901`, `Extreme Cut 801`, `Power Cut 701`, `One Step Polish`, `Ultimate Polish 302`), and commercial wash chemicals (`Rich Foam Shampoo` 20L, `Hyper Wheel Cleaner` 20L).
 
 ### Briller Car Care
 - **Origin:** Canada
-- **Product Range:** Automotive wash chemicals, detailing sprays, tyre dressings, and surface cleaners formulated for harsh weather conditions.
-- **Key Products:** Car Shampoo Wash & Wax, Tyre Foam, Tyre Shine, Crystal Clear Glass Cleaner, Multi-Purpose Cleaner (MPC).
+- **Product Range:** Automotive wash chemicals, detailing sprays, tyre dressings, wheel cleaners, and surface degreasers formulated with All-in-One CA Tech™ for harsh GCC weather conditions in 20L workshop drums and retail formats.
+- **Key Products:** Car Shampoo Wash & Wax (20L), Multi-Purpose Cleaner (20L), Quick Tyre Shine (20L), Crystal Clear Glass Cleaner (20L), Heavy Duty Degreaser (20L), Quick Dressing (20L), Alloy Rim Cleaner (20L), Tyre Foam.
 
 ### Grizzly & GrünesAuto
-- **Product Range:** Heavy-duty car care chemicals, 6-inch German-engineered foam polishing pads (Heavy Cut, Medium Cut, Finishing), plush microfiber towels (400–1200 GSM), and wash accessories.
+- **Product Range:** Grizzly Self-Healing TPU Paint Protection Film (7.5 mil, QAR 1,200/roll), Grizzly One Step Polish 3-in-1 (1L, QAR 115), Carnauba Paste Wax, Spray Wax, Rim Cleaner, Engine Cleaner, 20 kg Touchless Car Wash Powder; plus GrünesAuto 6-inch German-engineered foam polishing pads (DA & Rotary Step 1 Heavy Cut, Step 2 Medium Polish, Step 3 Finishing at QAR 30 each) and plush microfibre towels.
 
 ### ABK Proprietary Products
-- **ABK Rejuvenate Plastic Restorer:** Made in France. Multi-surface exterior trim restorer restoring deep black finish to faded, sun-damaged bumpers, trims, and mirrors with 6+ months durability.
-- **ABK Home & Car Fragrance Line:** Mashmom and Secret concentrated luxury scents formulated for Gulf luxury interiors.
+- **ABK Rejuvenate Plastic Restorer:** Made in France. Multi-surface exterior trim restorer restoring deep OEM satin-black finish to faded, sun-damaged bumpers, trims, and engine bays with 6+ months durability. Available in 60 ml (QAR 50), 250 ml (QAR 180), 350 ml (QAR 220), and 500 ml (QAR 280).
+- **ABK Home & Car Fragrance Line:** Mashmom and Secret concentrated luxury scents (250 ml, QAR 70) formulated for Gulf interiors and majlis spaces.
+
+### Insta Finish (USA), Getsun, Sitrett & Smart Car
+- **Product Range:** Insta Finish Butter Wet Wax, Clean N Shine, Super All Purpose Cleaner (APC), Maxi Suds Cherry Shampoo; Sitrett MX5 Heavy-Duty Multi-Surface Degreaser; Getsun Scratch Remover, Spray Polish, Leather & Tyre Wax; Smart Car Tyre Foam; Detainer Sticker & Adhesive Remover.
 
 ---
 
-## 2. Exhaustive Product Catalog & Technical Specifications
+## 2. Exhaustive Product Catalog & Technical Specifications (58 SKUs)
 
-### Category 1: Paint Protection Films (PPF)
+- **Main Catalogue (EN):** https://abktradingservice.com/en/b2c/products
+- **Main Catalogue (AR):** https://abktradingservice.com/ar/b2c/products
+- **Trade & Bulk View:** https://abktradingservice.com/en/b2c/products?pack=trade
 
-#### 1. VTEK PPF — Weather Armor ULTIMATE
+### Category 1: Paint Protection Films (PPF), Window Tint & Installation Aids (11 SKUs)
+
+#### 1. VTEK PPF — Weather Armor ULTIMATE (VTEK — فيلم حماية الطلاء Weather Armor ULTIMATE)
 - **SKU:** `vtek-ppf-weather-armor-ultimate`
-- **Material:** Optical-grade Polycarbonate Aliphatic TPU (Thermoplastic Polyurethane)
-- **Thickness:** 7.5 mil (190 microns)
-- **Topcoat:** Instant heat-activated self-healing clearcoat; hydrophobic water-contact angle > 105°
-- **Warranty:** 15-Year Manufacturer Warranty against yellowing, cracking, bubbling, and delamination.
-- **Roll Dimension:** 1.52m × 15m (60 inches × 49.2 feet)
-- **Applications:** Full-body vehicle wraps, high-impact front clips, rocker panels, mirrors.
-- **Audience:** B2B Detailing Studios (Master Roll Supply) & B2C Car Owners.
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/vtek-ppf-weather-armor-ultimate
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/vtek-ppf-weather-armor-ultimate
+- **Brand:** VTEK (formerly Vertek)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
+- **Price:** Trade / wholesale quote via WhatsApp (+974 3083 8355)
+- **Summary:** Flagship Polycarbonate TPU paint protection film with ultra-gloss clarity, instant self-healing, 7.5 mil thickness and 15-year warranty. Made in USA.
+- **Description:** VTEK® Weather Armor™ ULTIMATE represents the pinnacle of paint protection film technology. Engineered in the USA with Advanced Polycarbonate TPU at 7.5 mil thickness, it delivers exceptional optical clarity, superior stretchability, and extreme resistance against yellowing, chemical stains, desert sand abrasion, and rock chip impact. Designed for long-term durability under harsh Middle Eastern climate conditions, Ultimate offers an instant self-healing, ultra-gloss finish backed by a 15-year manufacturer warranty. Made in USA.
+- **Technical Specs:** Material: Advanced Polycarbonate TPU | Thickness: 7.5 mil (190 µm) | Finish: Ultra-Gloss High Depth | Technology: Instant Heat Self-Healing & Hydrophobic Top-Coat | Warranty: 15-Year Manufacturer Warranty | Resistance: Extreme UV, Desert Sand, Road Salts & Chemicals | Origin: Made in USA
 
-#### 2. VTEK PPF — Weather Armor PRO
+#### 2. VTEK PPF — Weather Armor PRO (VTEK — فيلم حماية الطلاء Weather Armor PRO)
 - **SKU:** `vtek-ppf-weather-armor-pro`
-- **Material:** Aliphatic TPU with self-healing topcoat
-- **Thickness:** 7.5 mil
-- **Warranty:** 10-Year Manufacturer Warranty.
-- **Roll Dimension:** 1.52m × 15m
-- **Audience:** High-volume commercial installers and tint shops.
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/vtek-ppf-weather-armor-pro
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/vtek-ppf-weather-armor-pro
+- **Brand:** VTEK (formerly Vertek)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
+- **Price:** Trade / wholesale quote via WhatsApp (+974 3083 8355)
+- **Summary:** Proven performance paint protection film with robust scratch resistance, high optical gloss and 10-year warranty.
+- **Description:** VTEK® Weather Armor™ PRO offers an excellent balance of protection, gloss, and flexibility. It provides robust resistance to scratches, stains, and weathering while maintaining outstanding optical transparency. Designed for professional installers seeking reliability and easy handling, PRO ensures long-lasting protection for both daily drivers and premium vehicles across Qatar. Backed by a 10-year warranty.
+- **Technical Specs:** Material: High-Grade Aliphatic TPU | Thickness: 7.5 mil (190 µm) | Finish: High Optical Clarity Gloss | Technology: Heat-Activated Self-Healing Nano-Coat | Warranty: 10-Year Warranty | Handling: Smooth installation with balanced flexibility
 
-#### 3. VTEK PPF — Weather Armor MATTE
+#### 3. VTEK PPF — Weather Armor PRO PLUS (VTEK — فيلم حماية الطلاء Weather Armor PRO PLUS)
+- **SKU:** `vtek-ppf-weather-armor-pro-plus`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/vtek-ppf-weather-armor-pro-plus
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/vtek-ppf-weather-armor-pro-plus
+- **Brand:** VTEK (formerly Vertek)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
+- **Price:** Trade / wholesale quote via WhatsApp (+974 3083 8355)
+- **Summary:** Advanced aliphatic TPU paint protection film with high-durability hydrophobic topcoat, extreme clarity and 12-year warranty.
+- **Description:** VTEK® Weather Armor™ PRO PLUS takes paint defense to the next tier. Engineered with high-density aliphatic TPU and a resilient heat-activated nano topcoat, PRO PLUS delivers superior stone chip resistance, enhanced chemical tolerance against road film and bird droppings, and an ultra-gloss finish that deepens factory paint color. Ideal for high-mileage luxury vehicles and daily drivers in Qatar, backed by a comprehensive 12-year warranty.
+- **Technical Specs:** Material: High-Grade Aliphatic TPU | Thickness: 8.0 mil (203 µm) | Finish: High Optical Clarity Gloss | Technology: Heat-Activated Self-Healing Nano-Coat | Warranty: 12-Year Warranty | Resistance: Extreme UV, Desert Sand & Chemical Stains
+
+#### 4. VTEK PPF — Weather Armor MATTE (VTEK — فيلم حماية الطلاء Weather Armor MATTE (مطفي))
 - **SKU:** `vtek-ppf-weather-armor-matte`
-- **Finish:** Satin / Matte conversion finish with self-healing properties
-- **Thickness:** 7.5 mil
-- **Warranty:** 10-Year Manufacturer Warranty.
-- **Roll Dimension:** 1.52m × 15m
-- **Audience:** Custom styling and luxury vehicle matte paint protection.
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/vtek-ppf-weather-armor-matte
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/vtek-ppf-weather-armor-matte
+- **Brand:** VTEK (formerly Vertek)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
+- **Price:** Trade / wholesale quote via WhatsApp (+974 3083 8355)
+- **Summary:** Stealth satin matte paint protection film for a bold non-reflective finish with a 5-year warranty.
+- **Description:** For a bold, non-reflective look, VTEK® Weather Armor™ MATTE provides stealthy protection without sacrificing durability. Its satin matte finish resists UV rays, desert sand abrasion, road salt, and environmental grime, keeping your vehicle looking pristine with minimal upkeep. MATTE transforms factory gloss finishes into a sleek satin surface while defending against rock chips and scratches. Backed by a 5-year warranty.
+- **Technical Specs:** Finish: Satin Matte Non-Reflective | Material: Aliphatic Matte TPU | Thickness: 8 mil (200 µm) | Technology: Self-Healing Satin Top-Coat & Grime Shield | Warranty: 5-Year Warranty | Maintenance: Low maintenance, easy wash
 
-#### 4. VTEK PPF — Weather Armor PRISM (Colour PPF)
+#### 5. VTEK PPF — Weather Armor PRISM (Color PPF) (VTEK — فيلم حماية الطلاء الملون Weather Armor PRISM)
 - **SKU:** `vtek-ppf-weather-armor-prism`
-- **Description:** True TPU-based colored protective film combining vibrant color-change aesthetics with genuine 7.5 mil rock-chip impact protection.
-- **Warranty:** 7-Year Manufacturer Warranty.
-- **Roll Dimension:** 1.52m × 15m
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/vtek-ppf-weather-armor-prism
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/vtek-ppf-weather-armor-prism
+- **Brand:** VTEK (formerly Vertek)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
+- **Price:** Trade / wholesale quote via WhatsApp (+974 3083 8355)
+- **Summary:** Premium colored paint protection film combining dynamic restyling with rock chip defense and color stability.
+- **Description:** VTEK® Weather Armor™ PRISM is a premium-grade colored paint protection film that offers top-notch defense against scratches, chips, and stains while adding dynamic color to your vehicle. Engineered with advanced Polycaprolactone Color TPU and high-performance adhesives, PRISM stays securely bonded without edge lifting even in extreme Middle Eastern heat. Choose from gloss and satin colors to customize your vehicle while preserving factory paint underneath. Backed by a 5-year warranty.
+- **Technical Specs:** Material: Polycaprolactone-based Color TPU | Thickness: 8.5 mil (215 µm) | Colors Available: Gloss Piano Black, Matte Black, Nardo Grey, Metallic Blue, Pearl White, Satin Metals | Adhesion: High-Stability Extreme Weather Adhesive | Warranty: 5-Year Warranty
 
-#### 5. Autotriz PPF Gel — Installation Aid (4L & 20L)
-- **SKU:** `autotriz-ppf-gel` (4L) / `autotriz-ppf-gel-20l` (20L)
-- **Pricing:** 4L: QAR 150 | 20L: QAR 500 (Bulk Value)
-- **Packaging:** 4L bottle and 20L bulk drum / retail purchase available
-- **Description:** Professional PPF & window tint installation gel. 1:1 dilution ratio, thick viscous formula preventing dripping and leaving zero residue. Made in Germany.
+#### 6. VTEK Solar Armor VUE — Nano-Ceramic Window Tint (VTEK Solar Armor VUE — فيلم تظليل النوافذ نانو سيراميك)
+- **SKU:** `vtek-window-tints`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/vtek-window-tints
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/vtek-window-tints
+- **Brand:** VTEK (formerly Vertek)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
+- **Price:** Trade / wholesale quote via WhatsApp (+974 3083 8355)
+- **Summary:** High-definition clarity and thermal shielding with denser GRX®-infused nano-ceramic particles. Cuts burning solar heat while maintaining razor-sharp optical visibility. 10-year e-warranty.
+- **Description:** The perfect balance of high-definition clarity and thermal shielding. Engineered with a higher density of GRX®-infused nano-ceramic particles, VUE targets the intense wavelengths of solar heat. It dramatically cuts down the burning sensation on your skin while maintaining a pristine, razor-sharp view from the inside looking out.
 
-#### 6. Autotriz PPF Refresh — Polish & Surface Restorer (1L)
+Key Features:
+• Advanced GRX® Layer: Denser nano-particles for a major step up in heat relief.
+• Pristine Optical View: Eliminates the "milky" haze common in lower-tier tints.
+• Blinding Glare Defense: Drastically cuts down harsh sunlight and oncoming headlights.
+• Premium Style: Adds a sleek, factory-tinted aesthetic with enhanced cabin privacy.
+- **Technical Specs:** Series: VUE Series (Solar Armor) | Technology: Advanced GRX® Nano-Ceramic | Optical Clarity: High-Definition Clarity & Anti-Glare | Compliance: Qatar Traffic Law & MOI Compliant Grades | Warranty: 10-Year e-Warranty
+
+#### 7. VTEK Solar Armor APEX — Ultra Nano-Ceramic Window Tint (VTEK Solar Armor APEX — فيلم تظليل النوافذ الترا نانو سيراميك)
+- **SKU:** `vtek-solar-armor-apex`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/vtek-solar-armor-apex
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/vtek-solar-armor-apex
+- **Brand:** VTEK (formerly Vertek)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
+- **Price:** Trade / wholesale quote via WhatsApp (+974 3083 8355)
+- **Summary:** Flagship multi-layer ceramic solar film delivering industry-leading 98% infrared heat rejection, maximum UV block, and 15-year e-warranty.
+- **Description:** VTEK® Solar Armor™ APEX is the ultimate high-performance window film engineered specifically for extreme Middle Eastern summers. Utilizing proprietary multi-layer ceramic sputtering technology, APEX repels up to 98% of infrared heat without interfering with GPS, cell signals, or keyless entry. Its optical-grade crystal matrix maintains pure clarity day and night while protecting occupants and vehicle interiors from damaging solar radiation. Backed by a comprehensive 15-year e-warranty.
+- **Technical Specs:** Series: APEX Flagship Series (Solar Armor) | Heat Rejection: Up to 98% Infrared Rejection (IRR) | UV Defense: 99.9% Ultraviolet (UV) Block | Signal Friendly: 100% Non-Metallic / Zero Signal Interference | Warranty: 15-Year e-Warranty
+
+#### 8. VTEK Solar Armor ICONIC — Carbon Ceramic Window Tint (VTEK Solar Armor ICONIC — فيلم تظليل النوافذ كربون سيراميك)
+- **SKU:** `vtek-solar-armor-iconic`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/vtek-solar-armor-iconic
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/vtek-solar-armor-iconic
+- **Brand:** VTEK (formerly Vertek)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
+- **Price:** Trade / wholesale quote via WhatsApp (+974 3083 8355)
+- **Summary:** High-performance carbon-ceramic hybrid window film engineered for deep fade-resistant color, superior heat reduction, and 10-year e-warranty.
+- **Description:** VTEK® Solar Armor™ ICONIC combines advanced carbon particles with nano-ceramic technology to produce a rich, non-fading charcoal finish that never turns purple. Engineered to handle intense Gulf solar exposure, ICONIC provides substantial heat dissipation, glare minimization, and passenger privacy while maintaining pristine interior clarity. Compliant with Qatar Traffic Law standards, backed by a 10-year e-warranty.
+- **Technical Specs:** Series: ICONIC Hybrid Series (Solar Armor) | Technology: Carbon-Ceramic Hybrid Matrix | Color Stability: Fade-Resistant Deep Charcoal / Never Turns Purple | Compliance: Qatar Traffic Law & MOI Compliant | Warranty: 10-Year e-Warranty
+
+#### 9. Autotriz PPF Gel — Installation Aid (Autotriz PPF Gel — مساعد تركيب أفلام الحماية والتظليل)
+- **SKU:** `autotriz-ppf-gel`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/autotriz-ppf-gel
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/autotriz-ppf-gel
+- **Brand:** Autotriz (Germany)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
+- **Price:** 4 L: QAR 150 | 20 L: QAR 500
+- **Summary:** Professional PPF & window tint installation gel in 4L and 20L sizes. 1:1 dilution ratio, thick viscous formula — prevents dripping, leaves zero residue. Made in Germany.
+- **Description:** AUTOTRIZ PPF Gel is a premium German-engineered installation aid designed for both paint protection film (PPF) and window tint applications. Available in 4 L (bottle) and 20 L (bulk drum) sizes. Engineered for a 1:1 dilution ratio with water, its thick viscous consistency allows smooth spraying without dripping off or evaporating quickly, ensuring optimal slip, tack, and precise film positioning. Easily cleans off with water with zero residue, even when fully dried.
+
+Key Highlights:
+• Sizes Available: 4 L bottle & 20 L bulk drum
+• Dilution: 1:1 with water
+• Dual Application: Suitable for both window tints & PPF installation
+• Origin: Made in Germany
+- **Technical Specs:** Price: 4 L: QAR 150 | 20 L: QAR 500 | Sizes: 4 L (Bottle) · 20 L (Drum) | Dilution: 1:1 with water | Application: Suitable for tints & PPF application | Origin: Made in Germany
+
+#### 10. Autotriz PPF Refresh (Autotriz — ملمع ومجدد أفلام الحماية PPF)
 - **SKU:** `autotriz-ppf-refresh-1l`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/autotriz-ppf-refresh-1l
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/autotriz-ppf-refresh-1l
+- **Brand:** Autotriz (Germany)
+- **Pack Tier:** Retail & Professional
 - **Price:** QAR 130
-- **Packaging:** 1 Liter (1000 ml) dispenser bottle / retail purchase available
-- **Origin:** Made in Germany
-- **Description:** Specialized paint protection film & vinyl wrap restoration polish removing minor scratches, fading, and water spots while reviving high-gloss clarity without yellowing.
+- **Summary:** Professional 1L PPF & vinyl film restoration polish. Refreshes top coat, eliminates minor scratches, fading, water spots and restores high-gloss clarity. Made in Germany.
+- **Description:** Autotriz PPF Refresh (1L) is a specialized paint protection film polish and surface restorer engineered in Germany for all types of gloss PPF and vinyl wraps. Formulated with ultra-fine precision micro-abrasives and advanced polymer conditioners to safely revive, clarify, and protect transparent films in one easy step.
+
+Key Highlights:
+• PPF & Vinyl Safe: Specifically formulated for polyurethane (TPU) and vinyl wrap top coats without causing yellowing, cloudiness, or swelling
+• Restores Top Coat Clarity: Eliminates fine swirl marks, light scratches, oxidation, and weather fading
+• Removes Tough Contaminants: Dissolves stubborn water spots, mineral stains, bird droppings, and insect etchings
+• High-Gloss Finish: Leaves an ultra-slick, high-gloss protective barrier that enhances optical depth
+• Body Shop Safe: Silicon-free formulation suitable for professional detailing and wrap installation bays
+• Volume: 1 Liter (1000 ml) dispenser bottle
+• Origin: Made in Germany (Autotriz Worldwide, Saarbrücken, Germany)
+- **Technical Specs:** Price: QAR 130 | Volume: 1 Liter (1000 ml) | Application: Paint Protection Film (PPF) & Vinyl Wraps | Function: Refreshes Top Coat · Removes Scratches & Fading | Safety: Body Shop Safe · Non-Yellowing | Origin: Made in Germany
+
+#### 11. Masking Tape — PPF / Paint Prep (شريط لاصق — لتركيب PPF والطلاء)
+- **SKU:** `fast-masking-tape`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/fast-masking-tape
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/fast-masking-tape
+- **Brand:** Workshop Consumables
+- **Pack Tier:** Retail & Professional
+- **Price:** 1 Inch (24 mm): QAR 2.5 | 2 Inch (48 mm): QAR 3.5
+- **Summary:** Professional-grade yellow masking tape for PPF installation, paint prep and detailing.
+- **Description:** Clean-edge yellow masking tape used for PPF installation, paint prep and detailing work. Peels cleanly without residue.
+- **Technical Specs:** Price: 1 Inch: QAR 2.5 | 2 Inch: QAR 3.5 | Sizes: 1 Inch (24 mm) · 2 Inch (48 mm) | Type: Yellow Masking Tape | Application: PPF installation · paint prep · detailing | Adhesive: Clean peel, zero residue
 
 ---
 
-### Category 2: Automotive Window Tint & Solar Control Films
+### Category 2: Nano Ceramic Coatings & Surface Sealants (4 SKUs)
 
-#### 1. VTEK Solar Armor Nano-Ceramic Window Tint
-- **SKU:** `vtek-solar-armor-window-tint`
-- **Technology:** Inorganic Nano-Ceramic particulate deposition (dye-free, metal-free)
-- **Heat Rejection (IRR):** Up to 95% Infrared Heat Rejection (900nm–1000nm)
-- **UV Rejection:** 99.9% Ultraviolet Rejection (prevents interior dashboard cracking and leather fading)
-- **VLT Options Available:** 05% (Limo), 20% (Dark), 30% (Medium), 50% (Light legal front side), 70% (Clear windscreen).
-- **Electronic Transparency:** 100% signal-safe (zero interference with GPS, 5G, RFID Salik/Karwa passes).
-- **Roll Dimensions:** 1.52m × 30m master rolls (installer trade packs).
-
----
-
-### Category 3: Nano Ceramic Coatings & Surface Sealants
-
-#### 1. Autotriz 3D Matrix Ultra Ceramic Coating (50ml Kit)
+#### 1. Autotriz 3D Matrix Ultra — Ceramic Coating (Autotriz 3D Matrix Ultra — طلاء سيراميك)
 - **SKU:** `autotriz-3d-matrix-ultra`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/autotriz-3d-matrix-ultra
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/autotriz-3d-matrix-ultra
+- **Brand:** Autotriz (Germany)
+- **Pack Tier:** Retail & Professional
 - **Price:** QAR 280
-- **Packaging:** 50 ml / 1.7 oz kit / retail purchase available
-- **Description:** Professional nano-technology ceramic coating providing deep gloss and long-term surface protection.
+- **Summary:** Professional nano-technology ceramic coating. Enhanced gloss and long-term paint protection.
+- **Description:** Autotriz 3D Matrix Ultra is a professional ceramic coating applied by trained detailers to protect and enhance automotive paint. Available from our Mesaimeer store. 50 ml kit. Full specifications available on request.
+- **Technical Specs:** Price: QAR 280 | Size: 50 ml / 1.7 oz | Technology: Nano-technology ceramic
 
-#### 2. Autotriz V-9 3D Matrix Nano Ceramic Coating
-- **SKU:** `autotriz-v9-3d-matrix`
-- **Hardness:** Certified 9H Pencil Hardness
-- **Chemical Resistance:** pH 2 to pH 13 (acid rain, bird droppings, harsh car wash detergents)
-- **Heat Resistance:** Withstands surface temperatures up to 600°C
-- **Pack Sizes:** 50ml studio bottle (treats 1–2 full-size SUVs)
-- **Durability:** Up to 5 years with scheduled maintenance washes.
-
-#### 3. Autotriz 3D Matrix Hybrid Ceramic Coating (50ml Kit)
+#### 2. Autotriz 3D Matrix Hybrid — Ceramic Coating (Autotriz 3D Matrix Hybrid — طلاء سيراميك)
 - **SKU:** `autotriz-3d-matrix-hybrid`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/autotriz-3d-matrix-hybrid
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/autotriz-3d-matrix-hybrid
+- **Brand:** Autotriz (Germany)
+- **Pack Tier:** Retail & Professional
 - **Price:** QAR 280
-- **Packaging:** 50 ml / 1.7 oz kit / retail purchase available
-- **Description:** High-gloss SiO2/siloxane hybrid protective coating designed for rapid curing and extreme hydrophobicity.
+- **Summary:** Professional nano-technology ceramic coating. Enhanced gloss and long-term paint protection.
+- **Description:** Autotriz 3D Matrix Hybrid is a professional ceramic coating applied by trained detailers to protect and enhance automotive paint. Available from our Mesaimeer store. 50 ml kit. Full specifications available on request.
+- **Technical Specs:** Price: QAR 280 | Size: 50 ml / 1.7 oz | Technology: Nano-technology ceramic
 
-#### 4. Autotriz REVO +15 — Ceramic Coating (50ml)
+#### 3. Autotriz REVO +15 — Ceramic Coating (Autotriz REVO +15 — طلاء سيراميك)
 - **SKU:** `autotriz-revo-ceramic-coating`
-- **Packaging:** 50 ml / 1.7 oz bottle / retail purchase available
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/autotriz-revo-ceramic-coating
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/autotriz-revo-ceramic-coating
+- **Brand:** Autotriz (Germany)
+- **Pack Tier:** Retail & Professional
 - **Price:** QAR 250
-- **Origin:** Made in Germany
-- **Description:** Cutting-edge nano ceramic coating that fills nanopores and establishes strong molecular bonds for next-level durability and gloss.
+- **Summary:** Cutting-edge nano ceramic coating with next-level durability and stability. Made in Germany.
+- **Description:** AUTOTRIZ REVO is a cutting-edge nano ceramic coating that amplifies the latest improvement in nano technology. Proven to stand out against the typical elements that deal harm to paintwork. It fills nanopores and establishes great molecular bonds to achieve next-level durability and stability. Professional application recommended.
+- **Technical Specs:** Price: QAR 250 | Size: 50 ml / 1.7 oz | Technology: Nano ceramic coating | Origin: Made in Germany
 
-#### 5. Autotriz ION+ +15 — Ceramic Coating (50ml)
+#### 4. Autotriz ION+ +15 — Ceramic Coating (Autotriz ION+ +15 — طلاء سيراميك)
 - **SKU:** `autotriz-ion-plus-ceramic-coating`
-- **Packaging:** 50 ml / 1.7 oz bottle / retail purchase available
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/autotriz-ion-plus-ceramic-coating
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/autotriz-ion-plus-ceramic-coating
+- **Brand:** Autotriz (Germany)
+- **Pack Tier:** Retail & Professional
 - **Price:** QAR 250
-- **Origin:** Made in Germany
-- **Description:** Advanced nano ceramic coating with surface ionized technology bringing supreme smoothness and slickness.
-
-#### 6. Autotriz Leather & Vinyl Nano Ceramic Coating (50ml)
-- **SKU:** `autotriz-leather-vinyl-coating`
-- **Packaging:** 50 ml / 1.7 oz bottle / retail purchase available
-- **Price:** QAR 280
-- **Description:** Flexible breathable interior coating preventing dye transfer (denim stains) and UV degradation on luxury leather upholstery.
-
-#### 7. Autotriz Fabric & Textile Guard (300ml)
-- **SKU:** `autotriz-fabric-textile-coating`
-- **Packaging:** 300 ml / 10.1 oz spray / retail purchase available
-- **Price:** QAR 280
-- **Description:** Superhydrophobic textile sealant causing liquid spills to bead up without staining cloth seats, floor mats, or soft-top convertibles.
+- **Summary:** Advanced nano ceramic coating with surface ionized technology. Supreme smoothness and slickness.
+- **Description:** AUTOTRIZ ION+ is a scientifically advanced nano ceramic coating with surface ionized technology that brings a high level of smoothness and slickness. Its surface ionized technology enkindles nano particles that are determined to bond perfectly on any surface such as paint, lacquer, and base coat. Professional application recommended.
+- **Technical Specs:** Price: QAR 250 | Size: 50 ml / 1.7 oz | Technology: Surface ionized nano ceramic | Origin: Made in Germany
 
 ---
 
-### Category 4: Commercial Wash Chemicals & Shampoos
+### Category 3: Car Wash Shampoos & Snow Foams (3 SKUs)
 
-#### 1. Autotriz Rich Foam Shampoo (20L Trade Pack)
-- **SKU:** `autotriz-rich-foam-shampoo`
-- **Packaging:** 20-Litre heavy-duty commercial drum / retail purchase available
-- **Price:** QAR 450 (Special promotional offer, was QAR 500)
-- **Dilution Ratio:** 1:80 for foam cannons and wash buckets (up to 1:400 for light maintenance)
-- **pH:** Balanced (pH 7.0) — safe for ceramic coatings, PPF, and sensitive chrome trims
-- **Audience:** Detailing centers, commercial car wash stations, luxury dealership preparation bays.
-
-#### 2. Briller Car Shampoo — Wash & Wax (All-in-One 20L)
+#### 1. Briller Wash & Wax (Briller — شامبو وشمع)
 - **SKU:** `briller-wash-and-wax`
-- **Packaging:** 20L bulk commercial drum / retail purchase available
-- **Price:** QAR 350 (Special promotional offer, was QAR 400)
-- **Description:** Carnauba-infused foaming shampoo leaving a protective gloss film with All-in-One CA Tech™. Made in Canada.
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/briller-wash-and-wax
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/briller-wash-and-wax
+- **Brand:** Briller Car Care (Canada)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
+- **Price:** QAR 350 (promotional price, was QAR 400)
+- **Summary:** Concentrated wash + wax car shampoo with All-in-One CA Tech™. High gloss, water-beading finish.
+- **Description:** Briller's All-in-One CA Tech™ formula cleans and waxes in a single wash. Produces thick, safe suds that lift dirt without scratching, then leaves a durable hydrophobic layer for a water-beading high-gloss finish. Available in 20L bulk in blue, red or green — ideal for car washes and detailing shops.
+- **Technical Specs:** Price: QAR 350 (Was QAR 400) | SKU: B505 | Size: 20 L | Dilution: 1:50 | Features: With wax | Colours: Blue, Red & Green | Origin: Made in Canada
 
-#### 3. Briller Crystal Clear Glass Cleaner (20L)
-- **SKU:** `briller-glass-cleaner`
-- **Packaging:** 20L commercial drum / retail purchase available
-- **Price:** QAR 265
-- **Formula:** Ammonia-free (100% tint-safe), streak-free formula cutting through desert dust and traffic film with All-in-One CA Tech™. Dilutes 1:1 or use direct. Made in Canada.
+#### 2. Autotriz Nano Rich Foam Shampoo (Autotriz — شامبو نانو رغوي غني)
+- **SKU:** `autotriz-rich-foam-shampoo`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/autotriz-rich-foam-shampoo
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/autotriz-rich-foam-shampoo
+- **Brand:** Autotriz (Germany)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
+- **Price:** QAR 450 (promotional price, was QAR 500)
+- **Summary:** Nano coating shampoo for PPF and coated cars — renews PPF top coat, pH-balanced thick foam with 1:80 dilution ratio in 20L bulk drum. Made in Germany.
+- **Description:** AUTOTRIZ Nano Rich Foam Shampoo is a German-engineered, professional nano-coating shampoo designed for PPF-wrapped and ceramic-coated vehicles. Formulated with advanced nano technology, it actively cleans while renewing and revitalizing the PPF top coat and hydrophobic ceramic layers.
 
-#### 4. Briller Multi-Purpose Cleaner (MPC, 20L)
-- **SKU:** `briller-multipurpose-cleaner`
-- **Packaging:** 20L commercial drum / retail purchase available
-- **Price:** QAR 350 (Special promotional offer, was QAR 400)
-- **Description:** Concentrated interior-safe foaming cleaner for fabric, plastic, leather, and carpet with All-in-One CA Tech™. Dilutes 1:5. Made in Canada.
+Produces thick, lubricating foam that safely lifts dirt and road grime without scratching or swirling. Features a highly economical 1:80 dilution ratio for foam cannons and wash buckets in high-volume detailing centers and car washes.
+- **Technical Specs:** Price: QAR 450 (Was QAR 500) | SKU: AT-CC-RFS-20 | Size: 20 L | Technology: Nano Coating & PPF Top Coat Renewer | Dilution: 1:80 with water | Application: Best for PPF & Ceramic Coated Cars | Origin: Made in Germany
 
-#### 5. Briller Quick Tyre Shine (20L)
-- **SKU:** `briller-quick-tyre-shine`
-- **Packaging:** 20L commercial drum / retail purchase available
-- **Price:** QAR 280
-- **Description:** Aqua-based tyre dressing providing peak shine inside and out, with long-lasting sling-free protection. Made in Canada.
-
-#### 6. Briller Heavy Duty Degreaser (20L)
-- **SKU:** `briller-heavy-duty-degreaser`
-- **Packaging:** 20L commercial drum / retail purchase available
-- **Price:** QAR 300
-- **Description:** Industrial-strength degreaser dissolving grease, engine oil buildup, road grime and rust with All-in-One CA Tech™. Dilutes 1:5. Made in Canada.
-
-#### 7. Autotriz Hyper Wheel Cleaner (20L)
-- **SKU:** `autotriz-hyper-wheel-cleaner`
-- **Packaging:** 20L bulk commercial drum / retail purchase available
-- **Price:** QAR 400
-- **Dilution Ratio:** 1:1 with water (economical concentrate)
-- **Compatibility:** Safe for chrome, clear-coated, and factory painted wheels. Non-caustic with built-in rust inhibitors. Made in Germany.
-
-#### 8. Briller Quick Dressing (20L)
-- **SKU:** `briller-quick-dressing`
-- **Packaging:** 20L bulk commercial drum / retail purchase available
-- **Price:** QAR 450
-- **Dilution Ratio:** 1:1 with water
-- **Description:** Aqua-based all-in-one dressing for interior trim, engine bays, and tyres delivering peak shine with All-in-One CA Tech™. Safe on plastic, rubber, and vinyl. Made in Canada.
+#### 3. Insta Finish Wash & Wax (Insta Finish — شامبو وغسيل وشمع)
+- **SKU:** `insta-finish-wash-and-wax`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/insta-finish-wash-and-wax
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/insta-finish-wash-and-wax
+- **Brand:** Insta Finish (USA)
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 45
+- **Summary:** Super concentrated car shampoo (473 ml). Mix with 20 litres water. Leaves a protective coating on top of paint. Made in USA.
+- **Description:** Insta Finish Wash N Wax is a super-concentrated exterior shampoo made in the USA. Formulated to mix effortlessly with 20 litres of water, it easily lifts heavy road film and dirt while depositing an authentic protective coating directly on top of the paintwork. Delivers water-beading performance and a durable high-gloss shine after every wash.
+- **Technical Specs:** Price: QAR 45 | Size: 16 fl oz (473 ml) | Origin: Made in USA | Dilution: Mix with 20 Litres of water | Protection: Leaves a protective coating on top of paint | Finish: Durable High-Gloss & Water-Beading Shine
 
 ---
 
-### Category 5: Polishing Compounds & Pads
+### Category 4: Polishing Compounds & German Foam/Wool Pads (12 SKUs)
 
-#### 1. Autotriz Heavy Cut 901
+#### 1. Autotriz Extreme Cut 801 (Autotriz Extreme Cut 801 — مركّب قطع قوي)
+- **SKU:** `autotriz-extreme-cut-801`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/autotriz-extreme-cut-801
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/autotriz-extreme-cut-801
+- **Brand:** Autotriz (Germany)
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 130
+- **Summary:** Strong-cut compound, low dusting and beginner friendly. Silicone-free and body-shop safe. 1 L. Made in Germany.
+- **Description:** Autotriz Extreme Cut 801 uses super-micro abrasive technology for a really good cut. It is suitable for all types of paint and quickly removes scratches, paint defects and heavy swirls. Low dusting, silicone-free and body-shop safe, it is easy to use and beginner friendly. Made in Germany.
+- **Technical Specs:** Price: QAR 130 | SKU: 801 | Size: 1 L | Cut Power: Strong cut — fast removal of scratches, paint defects & heavy swirls | Ease of Use: Easy to use · Beginner friendly | Formulation: Low Dusting, Silicone-Free, Body Shop Safe | Origin: Made in Germany
+
+#### 2. Autotriz Heavy Cut 901 (Autotriz Heavy Cut 901 — مركّب قطع ثقيل)
 - **SKU:** `autotriz-heavy-cut-901`
-- **Abrasive Type:** Diminishing micro-abrasives
-- **Performance:** Removes P1200–P1500 sanding marks and severe swirl marks without dusting. Silicone-free and body-shop safe.
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/autotriz-heavy-cut-901
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/autotriz-heavy-cut-901
+- **Brand:** Autotriz (Germany)
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 130
+- **Summary:** Heavy-cut compound. Effectively removes P1500 sanding marks, restores high gloss, hologram-free.
+- **Description:** Recommended for use on finish paint. Effectively removes P1500 sanding marks. Restores a high gloss finish. Hologram-free — delivers a clean cut without compensation passes.
+- **Technical Specs:** Price: QAR 130 | SKU: 901 | Cut Power: High Cut (Removes P1500 Sanding Marks) | Finish: High Gloss & Hologram-Free | Formulation: Silicone-Free, No Fillers, Body Shop Safe | Origin: Made in Germany
 
-#### 2. Autotriz Power Cut 701 (4L)
-- **SKU:** `autotriz-power-cut-701`
-- **Packaging:** 4L bulk jug / retail purchase available
-- **Price:** QAR 280
-- **Performance:** 2-in-1 compounding and finishing polish eliminating scratches, sanding marks (P1500–P2000), and moderate holograms. Made in Germany.
-
-#### 3. Autotriz Ultimate Polish 302
+#### 3. Autotriz Ultimate Polish 302 (Autotriz Ultimate Polish 302 — ملمّع نهائي)
 - **SKU:** `autotriz-ultimate-polish-302`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/autotriz-ultimate-polish-302
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/autotriz-ultimate-polish-302
+- **Brand:** Autotriz (Germany)
+- **Pack Tier:** Retail & Professional
 - **Price:** QAR 135
-- **Performance:** Ultra-fine finishing polish achieving high-gloss mirror reflections on soft European and Asian clearcoats. Body-shop safe and hologram-free. Made in Germany.
+- **Summary:** Finishing polish — deep rich wet look, excellent for dark paint, hologram-free, body-shop safe.
+- **Description:** Made from finest polishing oils. Adds a deep, rich, wet look to paint. Excellent for dark-coloured cars. Incredible gloss, hologram-free finish. Body-shop safe.
+- **Technical Specs:** Price: QAR 135 | SKU: 302 | Cut / Gloss: Cut 2/10 · Gloss 10/10 | Finish: Hologram-Free Mirror Finish | Safety: Body Shop Safe
 
-#### 4. Autotriz One Step Finish (4L)
+#### 4. Autotriz Power Cut 701 — 2-in-1 Polishing Compound (Autotriz Power Cut 701 — مركّب تلميع ٢ في ١)
+- **SKU:** `autotriz-power-cut-701`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/autotriz-power-cut-701
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/autotriz-power-cut-701
+- **Brand:** Autotriz (Germany)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
+- **Price:** QAR 280
+- **Summary:** 2-in-1 polishing compound — heavy cutting performance with a brilliant high-gloss finish in 4L bulk jug. Made in Germany.
+- **Description:** AUTOTRIZ Power Cut 701 is a premium 2-in-1 polishing compound engineered to deliver an extraordinary level of cutting performance while ensuring a superior gloss finish on automotive clear coats. Ideal for removing deep scratches, P1500–P2000 sanding marks, and heavy swirls in one efficient process. Body-shop safe, silicone-free formula. Works seamlessly with rotary and dual-action polishers.
+- **Technical Specs:** Price: QAR 280 | SKU: AT-PC-701 | Size: 4 L | Type: 2-in-1 Cut & Polish Compound | Compatibility: Rotary · Dual Action | Origin: Made in Germany
+
+#### 5. Autotriz One Step Finish (Autotriz One Step Finish — ملمّع خطوة واحدة)
 - **SKU:** `autotriz-one-step-finish`
-- **Packaging:** 4L bulk jug / retail purchase available
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/autotriz-one-step-finish
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/autotriz-one-step-finish
+- **Brand:** Autotriz (Germany)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
 - **Price:** QAR 265
-- **Performance:** All-in-one compounding and finishing polish removing light-to-moderate swirls, scratches, and defects while delivering a deep, glossy finish in a single step.
+- **Summary:** All-in-one polish — removes swirls and scratches while delivering a deep, glossy finish in a single step.
+- **Description:** Autotriz One Step Finish removes light to moderate swirls, scratches, and surface defects. Delivers a deep, glossy finish in a single step. Combines cutting power with fine polishing for flawless results. Easy to apply and remove, suitable for all paint finishes. Works effectively by hand or with a machine polisher.
+- **Technical Specs:** Price: QAR 265 | Size: 4 L | Step: Second step (one-step finish) | Compatibility: Rotary · DA · Hand
 
-#### 5. GrünesAuto 6-Inch Foam Polishing Pads (DA & Rotary)
-- **SKUs:** `grunes-auto-pad-step1-da-6in` (DA Heavy Cut Maroon), `grunes-auto-pad-step2-da-6in` (DA Medium Polish Yellow), `grunes-auto-pad-step3-da-6in` (DA Finishing Black), `grunes-auto-pad-step2-rotary-6in` (Rotary Polish Yellow)
-- **Price:** QAR 30 each
-- **Origin:** Made in Germany
-- **Grades:** Step 1 Heavy Cut (DA Maroon), Step 2 Medium Cut & Polish (DA Yellow & Rotary Yellow), Step 3 Ultra-Fine Finishing (DA Black). Hook-and-loop backing.
+#### 6. GrünesAuto 2nd Step Dual Action Polishing Pad (6 Inch) (GrünesAuto — وسادة تلميع الخطوة الثانية لأجهزة DA (٦ إنش))
+- **SKU:** `grunes-auto-pad-step2-da-6in`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/grunes-auto-pad-step2-da-6in
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/grunes-auto-pad-step2-da-6in
+- **Brand:** GrünesAuto (Germany)
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 30
+- **Summary:** Premium 6-inch Dual Action medium cut and polishing foam pad. True German engineering for swirl removal, paint leveling and high-gloss finishing. Made in Germany.
+- **Description:** The GrünesAuto 2nd Step Dual Action Polishing Pad (6 Inch) is a professional German-manufactured medium-cut and polishing foam pad engineered specifically for Dual Action (DA) orbital polishers. Ideal for the second step of paint correction to eliminate moderate swirl marks, compounding haze, and holograms while restoring deep optical clarity.
 
-#### 6. Premium Autotriz Spray Bottle (Empty)
-- **SKU:** `autotriz-spray-bottle`
-- **Packaging:** Chemical-resistant HDPE spray bottle with adjustable trigger nozzle / retail purchase available
-- **Price:** QAR 15
-- **Origin:** Made in Germany
-- **Description:** Professional-grade chemical-resistant empty spray bottle with adjustable nozzle (fine mist to stream) and dilution markings.
+Key Highlights:
+• Step 2 Correction & Polishing: Perfect balance of cutting and finishing capability to refine paint surfaces after heavy cutting
+• 6-Inch Dual Action Fit: Sized for 5" and 6" DA backing plates with precision center cooling/alignment hole
+• Hook & Loop Backing: Heavy-duty Velcro backing withstands high RPM and orbital heat without delaminating
+• Open-Cell Foam Technology: Disperses heat evenly and prevents compound clogging for extended pad life
+• Origin: Made in Germany (GrünesAuto — True German Product)
+- **Technical Specs:** Price: QAR 30 | Step / Grade: Step 2 — Medium Cut & Polish | Size: 6 Inch (150 mm) | Machine Type: Dual Action (DA) & Orbital Polishers | Backing: Hook & Loop with Center Cooling Hole | Origin: Made in Germany (GrünesAuto)
 
-#### 7. Autotriz High-Pressure Foam Gun
-- **SKU:** `autotriz-foam-gun`
-- **Packaging:** Solid stainless steel cannon with 1-litre wide-base bottle / retail purchase available
-- **Price:** QAR 180
-- **Origin:** Made in Germany
-- **Description:** Heavy-duty snow foam cannon with solid all-around stainless steel body core and 1/4" quick-connect inlet.
+#### 7. GrünesAuto 1st Step Dual Action Cutting Pad (6 Inch) (GrünesAuto — وسادة قص وتلميع خشن الخطوة الأولى لأجهزة DA (٦ إنش))
+- **SKU:** `grunes-auto-pad-step1-da-6in`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/grunes-auto-pad-step1-da-6in
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/grunes-auto-pad-step1-da-6in
+- **Brand:** GrünesAuto (Germany)
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 30
+- **Summary:** Heavy-cut 6-inch Dual Action foam polishing pad. Engineered in Germany for fast defect removal, deep scratch correction and oxidation leveling. Made in Germany.
+- **Description:** The GrünesAuto 1st Step Dual Action Cutting Pad (6 Inch) is a heavy-duty German-engineered cutting foam pad designed specifically for Dual Action (DA) orbital polishers. Engineered as the aggressive first step in multi-stage paint correction to rapidly level severe clear-coat defects, heavy swirls, sanding marks, water spots, and severe oxidation without scouring the paint.
 
-#### 8. Autotriz Wax & Polish Dispenser Bottle
-- **SKU:** `autotriz-wax-and-polish-bottle`
-- **Packaging:** Chemical-resistant squeeze dispenser bottle with pull-push spout / retail purchase available
-- **Price:** QAR 12
-- **Origin:** Made in Germany
-- **Description:** Professional detailing squeeze bottle for compounds, polishes, and waxes with pre-printed identification checkboxes ([ ] Cut, [ ] Polish, [ ] Wax).
+Key Highlights:
+• Step 1 Heavy Cut: High-density firm maroon foam provides powerful cutting power when paired with compounds
+• 6-Inch Dual Action Fit: Sized for 5" and 6" DA backing plates with precision center cooling/alignment hole
+• Hook & Loop Backing: Industrial-grade Velcro backing withstands high friction, heat, and lateral shear forces
+• Thermally Stable Open-Cell Foam: Retains firm cutting density across extended compounding passes without softening
+• Origin: Made in Germany (GrünesAuto — True German Product)
+- **Technical Specs:** Price: QAR 30 | Step / Grade: Step 1 — Heavy Cut & Defect Removal | Size: 6 Inch (150 mm) | Machine Type: Dual Action (DA) & Orbital Polishers | Backing: Hook & Loop with Center Cooling Hole | Origin: Made in Germany (GrünesAuto)
 
-#### 9. Masking Tape — PPF & Paint Prep (1" & 2")
-- **SKU:** `fast-masking-tape` (1") / `fast-masking-tape-2inch` (2")
-- **Pricing:** 1 Inch (24 mm): QAR 2.5 | 2 Inch (48 mm): QAR 3.5
-- **Packaging:** Rolls / retail and wholesale purchase available
-- **Description:** Professional-grade yellow masking tape for PPF installation, paint preparation, and detailing. Clean edge release with zero adhesive residue.
+#### 8. GrünesAuto 3rd Step Dual Action Finishing Pad (6 Inch) (GrünesAuto — وسادة التلميع النهائي والفينش الخطوة الثالثة لأجهزة DA (٦ إنش))
+- **SKU:** `grunes-auto-pad-step3-da-6in`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/grunes-auto-pad-step3-da-6in
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/grunes-auto-pad-step3-da-6in
+- **Brand:** GrünesAuto (Germany)
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 30
+- **Summary:** Ultra-soft 6-inch Dual Action finishing foam pad. Engineered in Germany for maximum gloss reflection, hologram elimination, and wax/sealant application. Made in Germany.
+- **Description:** The GrünesAuto 3rd Step Dual Action Finishing Pad (6 Inch) is an ultra-fine, open-cell German finishing foam pad engineered specifically for Dual Action (DA) orbital polishers. Designed as the ultimate final step in paint correction and gloss enhancement to eliminate micro-marring, ultrafine holograms, and buffer trails while leaving an ultra-deep, mirror-like wet reflection.
 
-#### 10. GrünesAuto Edgeless Microfibre Towel (40×40 cm)
-- **SKU:** `edgeless-microfiber-towel`
-- **Price:** QAR 10
-- **Origin:** Made in Germany
-- **Description:** Ultra-plush borderless laser-cut microfibre towel (40×40 cm) guaranteeing zero swirl marks or marring on sensitive clear coats, ceramic coatings, and glass.
+Key Highlights:
+• Step 3 Ultra-Gloss Finishing: Ultra-soft black foam creates zero cut and maximum gloss depth across all paint types
+• Wax & Sealant Application: Ideal for machine application of synthetic sealants, liquid carnauba waxes, and glaze coats
+• 6-Inch Dual Action Fit: Sized for 5" and 6" DA backing plates with precision center cooling/alignment hole
+• Hook & Loop Backing: Heavy-duty Velcro backing with reinforced bonding to prevent delamination during high-speed finishing
+• Origin: Made in Germany (GrünesAuto — True German Product)
+- **Technical Specs:** Price: QAR 30 | Step / Grade: Step 3 — Ultra-Fine Finishing & Waxing | Size: 6 Inch (150 mm) | Machine Type: Dual Action (DA) & Orbital Polishers | Backing: Hook & Loop with Center Cooling Hole | Origin: Made in Germany (GrünesAuto)
 
-#### 11. Premium Microfibre Towel (60×40 cm)
-- **SKU:** `premium-microfiber-towel-60x40`
-- **Price:** QAR 8
-- **Description:** Multi-purpose purple microfibre towel (60×40 cm) with reinforced stitched borders for car washing, streak-free glass, and interior detailing.
+#### 9. GrünesAuto 2nd Step Rotary Polishing Pad (6 Inch) (GrünesAuto — وسادة تلميع الخطوة الثانية لأجهزة الروتاري (٦ إنش))
+- **SKU:** `grunes-auto-pad-step2-rotary-6in`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/grunes-auto-pad-step2-rotary-6in
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/grunes-auto-pad-step2-rotary-6in
+- **Brand:** GrünesAuto (Germany)
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 28
+- **Summary:** Professional 6-inch rotary medium cut and polishing foam pad. Engineered in Germany for high-speed swirl removal, paint leveling and brilliant gloss. Made in Germany.
+- **Description:** The GrünesAuto 2nd Step Rotary Polishing Pad (6 Inch) is a professional German-engineered medium-cut polishing foam pad purpose-built for direct-drive Rotary polishers. Designed for fast, efficient second-step paint correction to eliminate buffer trails, medium swirls, and light compounding marks while building deep, high-gloss surface reflection.
 
-#### 12. Premium Chamois & Synthetic Leather Drying Towel (64×43 cm)
-- **SKU:** `premium-chamois-leather-towel`
-- **Price:** QAR 18
-- **Packaging:** Reusable cylindrical storage tube / retail purchase available
-- **Description:** High-tech synthetic PVA chamois drying towel (64×43 cm) with 3D concave-convex design for resistance-free gliding, rapid water absorption, and zero watermarks.
+Key Highlights:
+• Step 2 Rotary Polishing: Medium-cut yellow foam balances defect correction and high-gloss finishing under rotary torque
+• Solid Rotary Hook & Loop Backing: Continuous solid Velcro backing engineered for direct-drive rotary backing plates (no center hole needed)
+• Beveled Edge Design: Tapered foam edge protects adjacent body panels and emblems from backing plate contact
+• Thermal Resistance: Dense open-cell foam structure dissipates rotary friction heat rapidly
+• Origin: Made in Germany (GrünesAuto — True German Product)
+- **Technical Specs:** Price: QAR 28 | Step / Grade: Step 2 — Medium Cut & Rotary Polishing | Size: 6 Inch (150 mm) | Machine Type: Direct-Drive Rotary Polishers | Backing: Solid Hook & Loop (Velcro) | Origin: Made in Germany (GrünesAuto)
 
-#### 13. Jumbo Honeycomb Car Washing Sponge (Large Size)
-- **SKU:** `car-washing-sponge-large`
-- **Price:** QAR 10
-- **Description:** Extra-large high-density honeycomb wash sponge with ergonomic contour grip holding massive suds and trapping grit safely away from paintwork.
+#### 10. GrünesAuto 1st Step Rotary Polishing Pad (6 Inch) (GrünesAuto — وسادة تلميع الخطوة الأولى لأجهزة الروتاري (٦ إنش))
+- **SKU:** `grunes-auto-pad-step1-rotary-6in`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/grunes-auto-pad-step1-rotary-6in
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/grunes-auto-pad-step1-rotary-6in
+- **Brand:** GrünesAuto (Germany)
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 28
+- **Summary:** Professional 6-inch 1st-step rotary polishing pad for the first cutting pass. Made in Germany.
+- **Description:** The GrünesAuto 1st Step Rotary Polishing Pad (6 Inch) is a professional German-made foam pad for direct-drive rotary polishers, intended for the first cutting step of a paint-correction process. Pair it with the 2nd and 3rd step rotary pads for a complete cut, polish and finish sequence.
+- **Technical Specs:** Price: QAR 28 | Step / Grade: Step 1 — Heavy Cut & Rotary Polishing | Size: 6 Inch (150 mm) | Machine Type: Direct-Drive Rotary Polishers | Origin: Made in Germany (GrünesAuto)
 
-#### 14. Tire Polish & Dressing Applicator Sponge
-- **SKU:** `tire-polish-sponge`
-- **Price:** QAR 8
-- **Description:** Ergonomic contoured high-density foam sponge for even application of tyre shine, dressings, and gels along curved sidewalls without mess or sling.
+#### 11. GrünesAuto 3rd Step Rotary Polishing Pad (6 Inch) (GrünesAuto — وسادة تلميع الخطوة الثالثة لأجهزة الروتاري (٦ إنش))
+- **SKU:** `grunes-auto-pad-step3-rotary-6in`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/grunes-auto-pad-step3-rotary-6in
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/grunes-auto-pad-step3-rotary-6in
+- **Brand:** GrünesAuto (Germany)
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 28
+- **Summary:** Professional 6-inch 3rd-step rotary polishing pad for the final finishing pass. Made in Germany.
+- **Description:** The GrünesAuto 3rd Step Rotary Polishing Pad (6 Inch) is a professional German-made foam pad for direct-drive rotary polishers, intended for the final finishing step of a paint-correction process. Pair it with the 1st and 2nd step rotary pads for a complete cut, polish and finish sequence.
+- **Technical Specs:** Price: QAR 28 | Step / Grade: Step 3 — Finishing & Rotary Polishing | Size: 6 Inch (150 mm) | Machine Type: Direct-Drive Rotary Polishers | Origin: Made in Germany (GrünesAuto)
+
+#### 12. Autotriz 8 Inch Single-Sided Wool Pad (Autotriz — وسادة صوف أحادية الوجه (٨ إنش))
+- **SKU:** `autotriz-wool-pad-8in`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/autotriz-wool-pad-8in
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/autotriz-wool-pad-8in
+- **Brand:** Autotriz (Germany)
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 40
+- **Summary:** Premium-quality 8-inch single-sided wool polishing pad. Made in Germany.
+- **Description:** The Autotriz 8 Inch Single-Sided Wool Pad is a premium-quality wool polishing pad made in Germany, built for professional paint-correction and polishing work.
+- **Technical Specs:** Price: QAR 40 | Type: Single-sided wool pad | Size: 8 Inch | Quality: Premium | Origin: Made in Germany
 
 ---
 
-### Category 6: Exterior Trim Restorers & Fragrances
+### Category 5: Waxes, Dressings & Plastic Restorers (5 SKUs)
 
-#### 1. ABK Rejuvenate — Multi-Surface Plastic Restorer
+#### 1. Insta Finish Spray Wax (Insta Finish — شمع بخاخ Spray Wax)
+- **SKU:** `insta-finish-spray-wax`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/insta-finish-spray-wax
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/insta-finish-spray-wax
+- **Brand:** Insta Finish (USA)
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 45
+- **Summary:** High-gloss detail spray wax (473 ml). Use after car polish or car wash for an instant wet-shine look. Made in USA.
+- **Description:** Insta Finish Spray Wax is a premium high-gloss detail spray engineered and manufactured in the USA. Designed for fast, effortless application right after car polish or a car wash, it enhances paint depth and leaves a radiant wet-shine look while providing an extra layer of slick surface protection. Direct spray and wipe.
+- **Technical Specs:** Price: QAR 45 | Size: 16 fl oz (473 ml) | Origin: Made in USA | Usage: Apply after car polish or car wash | Application: Direct spray and wipe with clean microfibre | Finish: High-Gloss / Wet-Shine Look
+
+#### 2. Insta Finish Premium Blue Guard (Insta Finish — ملمّع الحماية الزرقاء Blue Guard (لمعان براق))
+- **SKU:** `insta-finish-premium-blue-guard`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/insta-finish-premium-blue-guard
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/insta-finish-premium-blue-guard
+- **Brand:** Insta Finish (USA)
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 45
+- **Summary:** Direct-use silicone polish (473 ml) for interior (leather, dashboard, steering wheel, plastic) & exterior trims. Glossy finish. Made in USA.
+- **Description:** Insta Finish Premium Blue Guard is a high-grade, ready-to-use silicone dressing formulated and manufactured in the USA. Designed for direct use without dilution, it revitalizes and conditions vehicle interiors — including leather seats, dashboard, steering wheel, and vinyl — as well as exterior plastics, bumpers, and rubber trims. Produces a durable, protective glossy finish that shields against sun fading and drying.
+- **Technical Specs:** Price: QAR 45 | Size: 16 fl oz (473 ml) | Origin: Made in USA | Usage: Direct use (no dilution required) | Scope: Interior (leather, dashboard, steering wheel, plastic) & exterior plastics & trims | Finish: Glossy Finish
+
+#### 3. Insta Finish Premium Dress All (Insta Finish — ملمّع شامل فاخر Dress All (مظهر مطفي أنيق))
+- **SKU:** `insta-finish-premium-dress-all`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/insta-finish-premium-dress-all
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/insta-finish-premium-dress-all
+- **Brand:** Insta Finish (USA)
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 45
+- **Summary:** Direct-use dressing (473 ml) for interior (leather, dashboard, steering wheel, plastic) & exterior trims. Elegant matte finish. Made in USA.
+- **Description:** Insta Finish Premium Dress All delivers a factory-fresh, sophisticated matte finish for drivers who prefer a clean, non-glare, non-greasy appearance. Formulated in the USA for direct application on interior surfaces (leather, dashboard, steering wheel, plastic) and exterior trim elements. Nourishes materials and provides long-lasting UV defense without artificial shine or greasy residue.
+- **Technical Specs:** Price: QAR 45 | Size: 16 fl oz (473 ml) | Origin: Made in USA | Usage: Direct use (no dilution required) | Scope: Interior (leather, dashboard, steering wheel, plastic) & exterior plastics & trims | Finish: Matte Finish (non-glare, non-greasy)
+
+#### 4. Briller Quick Dressing (Briller — ملمّع سريع)
+- **SKU:** `briller-quick-dressing`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/briller-quick-dressing
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/briller-quick-dressing
+- **Brand:** Briller Car Care (Canada)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
+- **Price:** QAR 450
+- **Summary:** Aqua-based, perfume-scented dressing for exterior plastic trims, leather, dashboard and interior trims. Satin finish. Ratio 1:1.
+- **Description:** Briller Quick Dressing is an aqua-based dressing with a perfume scent for exterior plastic trims, leather, dashboard and interior trims. Leaves a satin finish, safe on plastic, rubber and vinyl. Dilutes 1:1 for economical bulk detailing work. Available in 20 L — ideal for car washes and detail shops.
+- **Technical Specs:** Price: QAR 450 | SKU: B511 | Size: 20 L | Dilution: 1:1 | Finish: Satin | Base: Aqua-based · Perfume scent | Use on: Exterior plastic trims · Leather · Dashboard · Interior trims | Origin: Made in Canada
+
+#### 5. ABK Rejuvenate — Multi-Surface Plastic Restorer (ABK Rejuvenate — مجدد وملمّع البلاستيك والديكورات)
 - **SKU:** `abk-rejuvenate-plastic-restorer`
-- **Origin:** Made in France
-- **Pack Sizes:** 60 ml (QAR 50) | 250 ml (QAR 150)
-- **Durability:** 6 months+ resistance against extreme heat, salt, and pressure washing.
-- **Finish:** OEM factory satin finish (non-greasy, dust-repellent).
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/abk-rejuvenate-plastic-restorer
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/abk-rejuvenate-plastic-restorer
+- **Brand:** ABK
+- **Pack Tier:** Retail & Professional
+- **Price:** 60 ml: QAR 50 | 250 ml: QAR 180 | 350 ml: QAR 220 | 500 ml: QAR 280
+- **Summary:** Multi-surface trim restorer with 6 months durable gloss on faded plastic trims. Made in France. 60 ml, 250 ml, 350 ml & 500 ml (From QAR 50).
+- **Description:** Don't replace it... Rejuvenate it! ABK Rejuvenate Multi-Surface Plastic Restorer is our signature restorative formula engineered in France. It restores faded, sun-damaged exterior and interior plastic trims, rubber, and cladding back to deep OEM richness while delivering a resilient gloss barrier that lasts up to 6 months. Apply with a microfibre or sponge, allow to bond for 10–15 minutes, then wipe off with a new microfibre. Protect the surface for 6–7 hours during the healing period (driving not recommended).
+- **Technical Specs:** Price: 60 ml: QAR 50 | 250 ml: QAR 180 | 350 ml: QAR 220 | 500 ml: QAR 280 | Sizes: 60 ML, 250 ML, 350 ML & 500 ML | Origin: Made in France | Includes: 2 sponges + 1 premium microfibre | Durability: 6 Months Gloss on Plastic Trims | Application: Apply with microfibre or sponge, leave 10-15 mins, wipe with clean microfibre | Curing / Healing: Protect surface for 6 to 7 hours (do not drive during healing period)
 
-#### 2. ABK Mashmom & Secret Home/Car Scents
-- **SKU:** `abk-mashmom-home-fragrance`, `abk-secret-home-fragrance`
-- **Pack Sizes:** 250 ml luxury spray bottle (QAR 70)
-- **Profile:** Traditional and modern Gulf scents designed for long-lasting odor elimination in air-conditioned cabins and villas.
+---
+
+### Category 6: Wheel Cleaners & Tyre Care (6 SKUs)
+
+#### 1. Briller Quick Tyre Shine (Briller — ملمع الإطارات السريع)
+- **SKU:** `briller-quick-tyre-shine`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/briller-quick-tyre-shine
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/briller-quick-tyre-shine
+- **Brand:** Briller Car Care (Canada)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
+- **Price:** QAR 280
+- **Summary:** Aqua-based tyre shine with peak shine, inside and out.
+- **Description:** Aqua-Based Blend. Peak shine — inside and out. Long-lasting protection without sling-off.
+- **Technical Specs:** Price: QAR 280 | SKU: B503 | Size: 20 L | Origin: Made in Canada
+
+#### 2. Briller Alloy Rim Cleaner (Briller — منظف الجنوط الألمنيوم)
+- **SKU:** `briller-alloy-rim-cleaner`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/briller-alloy-rim-cleaner
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/briller-alloy-rim-cleaner
+- **Brand:** Briller Car Care (Canada)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
+- **Price:** QAR 300 (promotional price, was QAR 350)
+- **Summary:** Cleans well, safe on alloy rims and safe for chrome. All-in-One CA Tech™. 1:4 dilution. Made in Canada.
+- **Description:** Briller Alloy Rim Cleaner is a Canadian-made wheel cleaner powered by All-in-One CA Tech™. It cleans well while staying safe on alloy rims and safe for chrome. Cool the wheels, spray the formula evenly, let it dwell for 30 seconds to 2 minutes without drying, agitate with a soft brush if needed, and rinse thoroughly with water. Dilutes 1:4 for economical bulk use. Available in 20 L — ideal for car washes and detailing shops.
+- **Technical Specs:** Price: QAR 300 (Was QAR 350) | SKU: B506 | Size: 20 L | Dilution: 1:4 | Safe on: Alloy rims · Chrome | Technology: All-in-One CA Tech™ | Origin: Made in Canada
+
+#### 3. Autotriz Hyper Wheel Cleaner (Autotriz Hyper Wheel Cleaner — منظف العجلات والجنوط)
+- **SKU:** `autotriz-hyper-wheel-cleaner`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/autotriz-hyper-wheel-cleaner
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/autotriz-hyper-wheel-cleaner
+- **Brand:** Autotriz (Germany)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
+- **Price:** QAR 400
+- **Summary:** Professional heavy-duty wheel cleaner in 20L bulk drum. Safe for chrome, clear-coated, and factory painted wheels. 1:1 dilution ratio. Made in Germany.
+- **Description:** AUTOTRIZ Hyper Wheel Cleaner is a professional-grade, German-engineered wheel cleaner formulated for detailing centers, workshops, and high-volume car washes. Available in a 20 L bulk drum.
+
+Safe and effective on clear-coated, factory painted, and chrome wheels. Quickly dissolves and lifts stubborn brake dust, road grime, and iron deposits with little to no scrubbing required. Features a non-caustic, body shop safe formula with built-in rust inhibitors. Concentrated formulation can be diluted 1:1 with water for economical daily use.
+
+Key Highlights:
+• Safe for Chrome, Clear-Coated & Painted Wheels
+• Dilution: 1:1 with water (Economical concentrate)
+• Volume: 20 L Bulk Drum (SKU: AT-CC-HWC-20)
+• Non-caustic, body shop safe formula with rust inhibitors
+• Origin: Made in Germany
+- **Technical Specs:** Price: QAR 400 | Size: 20 L (Drum) | Compatibility: Safe for Chrome, Painted & Clear-Coated Wheels | Dilution: 1:1 with water | Formula: Non-caustic with rust inhibitors | Origin: Made in Germany
+
+#### 4. Getsun Tyre Shine (Getsun — بخاخ ملمع الإطارات Tire Shine)
+- **SKU:** `getsun-tire-shine`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/getsun-tire-shine
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/getsun-tire-shine
+- **Brand:** Getsun
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 15
+- **Summary:** Aerosol tyre shine (500 ml). Leaves ultimate gloss on tyres lasting 7 to 8 hours. Made in China.
+- **Description:** Getsun Tire Shine delivers an ultimate deep-wet gloss on car tyres with an easy aerosol application. Formulated to last 7 to 8 hours of road exposure. Recommended to apply directly onto clean tyres for maximum durability, UV protection, and a rich black finish without run-off or foaming.
+- **Technical Specs:** Price: QAR 15 | Size: 500 ml (17.6 fl oz) | Origin: Made in China | Durability: Lasts 7 to 8 hours | Application: Apply on clean tyre (recommended) | Finish: Ultimate High Gloss (no wiping, no run-off)
+
+#### 5. Smart Car Tyre Foam (Smart Car — رغوة ملمع الإطارات السريعة)
+- **SKU:** `smart-car-tyre-foam`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/smart-car-tyre-foam
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/smart-car-tyre-foam
+- **Brand:** Smart Car
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 15
+- **Summary:** Hands-free tyre cleaner & shine spray (500 ml / 650 ml). Lasts 7 to 8 hours with ultimate tyre gloss. Made in China.
+- **Description:** Smart Car Tire Foam Spray cleans, shines, and protects tyres in one simple step. Formulated to last 7 to 8 hours, it leaves an ultimate deep gloss on rubber surfaces. Simply spray evenly onto a clean tyre and walk away — no wiping or brushing needed.
+- **Technical Specs:** Price: QAR 15 | Size: 500 ml / 650 ml | Origin: Made in China | Durability: Lasts 7 to 8 hours | Application: Apply on clean tyre (recommended) — spray & walk away | Finish: Ultimate Gloss on Tires
+
+#### 6. Tyre Polish & Dressing Applicator Sponge (إسفنجة تلميع وتوزيع ملمع الإطارات)
+- **SKU:** `tire-polish-sponge`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/tire-polish-sponge
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/tire-polish-sponge
+- **Brand:** Workshop Consumables
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 8
+- **Summary:** Ergonomic contoured foam sponge for even application of tyre shine, dressings and gels without mess or sling.
+- **Description:** Ergonomically contoured high-density foam applicator sponge designed specifically for applying tire shine, tire gels, and protective dressings along curved rubber tire sidewalls.
+
+Key Highlights:
+• Curved Sidewall Contour: Conforms naturally to the curve of automotive tires for complete edge-to-edge coverage
+• Ergonomic Hourglass Grip: Keeps hands and fingertips clean and clear of tire dressings
+• Dense Micro-Cell Foam: Spreads tire dressings smoothly and evenly without absorbing excess product
+• Eliminates Dressing Sling: Ensures a uniform, non-greasy coat that stays on the rubber
+• Reusable & Easy to Clean: Washable with degreaser and water for long-term use
+- **Technical Specs:** Price: QAR 8 | Type: Contoured Tire Dressing Applicator | Shape: Curved Sidewall Profile & Hourglass Grip | Material: High-Density Micro-Cell Polyurethane Foam | Applications: Tire Shines · Rubber Dressings · Trim Conditioners | Features: Even coverage · Mess-free hand grip · Reusable
+
+---
+
+### Category 7: Interior, Leather & Glass Care (4 SKUs)
+
+#### 1. Briller Glass Cleaner (Briller — منظف الزجاج)
+- **SKU:** `briller-glass-cleaner`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/briller-glass-cleaner
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/briller-glass-cleaner
+- **Brand:** Briller Car Care (Canada)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
+- **Price:** QAR 265
+- **Summary:** Streak-free glass cleaner that gives car windows a new look. All-in-One CA Tech™.
+- **Description:** Professional streak-free glass cleaner. Lifts film, road grime and bug residue from windshields and side glass.
+- **Technical Specs:** Price: QAR 265 | SKU: B504 | Size: 20 L | Dilution: Direct (use as is) | Origin: Made in Canada
+
+#### 2. Autotriz Fabric & Textile Coating (Autotriz — طلاء حماية الأقمشة والمفروشات)
+- **SKU:** `autotriz-fabric-textile-coating`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/autotriz-fabric-textile-coating
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/autotriz-fabric-textile-coating
+- **Brand:** Autotriz (Germany)
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 280
+- **Summary:** Nano-technology fabric protector for upholstery, carpet and soft tops.
+- **Description:** Autotriz Fabric & Textile is a nano-technology fabric protector designed to help keep interior upholstery, carpet and soft tops looking fresh. 300 ml spray. Full specifications available on request.
+- **Technical Specs:** Price: QAR 280 | Size: 300 ml / 10.1 oz | Technology: Nano-technology fabric protector
+
+#### 3. Autotriz Leather & Vinyl — Ceramic Coating (Autotriz Leather & Vinyl — طلاء سيراميك للجلد والفينيل)
+- **SKU:** `autotriz-leather-and-vinyl`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/autotriz-leather-and-vinyl
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/autotriz-leather-and-vinyl
+- **Brand:** Autotriz (Germany)
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 280
+- **Summary:** Ceramic coating for leather, synthetic leather, vinyl and plastic. Long-lasting barrier, non-oily finish.
+- **Description:** Auto-triz Leather & Vinyl is suitable for all types of leather, synthetic leather/vinyl and plastic parts. It leaves a long-lasting barrier to protect the surface against permanent stains from dye of blue jeans, pen or marker. Unlike oil based or water-based leather dressings on the market that only leave a temporary dressing, Autotriz Leather & Vinyl preserves the natural feel of leather with its non-oily and non-slippery finish.
+- **Technical Specs:** Price: QAR 280 | Size: 50 ml / 1.7 oz | Surfaces: Leather · Synthetic leather · Vinyl · Plastic | Technology: Ceramic coating
+
+#### 4. Getsun Foam Spray Interior Cleaner (Getsun — رغوة تنظيف وتطهير المقصورة الداخلية)
+- **SKU:** `getsun-multi-purpose-foam-cleaner`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/getsun-multi-purpose-foam-cleaner
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/getsun-multi-purpose-foam-cleaner
+- **Brand:** Getsun
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 15
+- **Summary:** Multi-purpose interior cleaner (500 ml / 650 ml). Removes strong stains from seats, car plastics & carpets. Made in China.
+- **Description:** Getsun Foam Spray Interior Cleaner is a powerful active foam cleaner specially formulated to lift and dissolve stubborn stains from vehicle seats, dashboard plastics, door cards, and carpets. The integrated scrubber brush helps agitate the foam deeply into fabric textures, restoring an original clean appearance effortlessly.
+- **Technical Specs:** Price: QAR 15 | Size: 500 ml / 650 ml (22 fl oz) | Origin: Made in China | Surfaces: Seats (leather & fabric), car plastics, carpets | Action: Removes strong stains & deep cleans
+
+---
+
+### Category 8: Degreasers, Engine Cleaners & Adhesive Removers (4 SKUs)
+
+#### 1. Briller Multipurpose Cleaner (Briller — منظف متعدد الأغراض)
+- **SKU:** `briller-multipurpose-cleaner`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/briller-multipurpose-cleaner
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/briller-multipurpose-cleaner
+- **Brand:** Briller Car Care (Canada)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
+- **Price:** QAR 350 (promotional price, was QAR 400)
+- **Summary:** Lemon-scented foaming cleaner, safe on leather, fabric, plastic and interiors. All-in-One CA Tech™.
+- **Description:** Briller Multipurpose Cleaner lifts dirt from every interior surface — fabric, plastic, leather, carpet. Foaming action penetrates deep, elevates luxury feel with enhanced fabric softener results.
+- **Technical Specs:** Price: QAR 350 (Was QAR 400) | SKU: B502 | Size: 20 L | Dilution: 1:5 | Scent: Lemon | Safe on: Leather · Fabric · Plastic · Interior | Origin: Made in Canada
+
+#### 2. Briller Heavy Duty Degreaser (Briller — مزيل الشحوم عالي الفعالية)
+- **SKU:** `briller-heavy-duty-degreaser`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/briller-heavy-duty-degreaser
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/briller-heavy-duty-degreaser
+- **Brand:** Briller Car Care (Canada)
+- **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
+- **Price:** QAR 300
+- **Summary:** Professional heavy-duty degreaser with All-in-One CA Tech™. Formulated for tough stains, heavy grease, engine oil and rust. 1:5 dilution ratio. For exterior use only. Made in Canada.
+- **Description:** Briller Heavy Duty Degreaser is an industrial-strength, Canadian-engineered degreaser powered by All-in-One CA Tech™. Formulated for commercial detail shops, car washes, and fleet maintenance facilities. Available in a 20 L bulk drum.
+
+Engineered specifically to dissolve and lift the toughest contaminants — including baked-on grease, engine oil buildup, heavy road grime, industrial stains, and rust residue. Highly concentrated formula dilutes 1:5 with water for maximum cleaning efficiency and cost savings.
+
+Recommended for exterior use only.
+- **Technical Specs:** Price: QAR 300 | SKU: B507 | Size: 20 L | Dilution: 1:5 with water | Targets: Tough stains · Grease · Engine oil · Rust | Recommended use: Exterior use only | Technology: All-in-One CA Tech™ | Origin: Made in Canada
+
+#### 3. Getsun Engine Cleaner Foam Spray (Getsun Foam Out — رغوة تنظيف ومزيل شحوم المحرك)
+- **SKU:** `getsun-foam-out-engine-degreaser`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/getsun-foam-out-engine-degreaser
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/getsun-foam-out-engine-degreaser
+- **Brand:** Getsun
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 15
+- **Summary:** Engine foam degreaser (500 ml / 650 ml). Removes dirty grease and oil, leaving a clean matte finish on engine plastics. Made in China.
+- **Description:** Getsun Engine Cleaner Foam Spray (Foam Out) is a fast-acting degreaser formulated to dissolve thick grease, motor oil, and road grime from the engine bay. After spraying, let the foam penetrate, then simply wipe off with a clean microfibre cloth to leave engine plastics and hoses with an OEM matte finish.
+- **Technical Specs:** Price: QAR 15 | Size: 500 ml / 650 ml (22 fl oz) | Origin: Made in China | Action: Removes dirty grease, oil & grime | Directions: After spray, wipe off with clean microfibre | Finish: Matte finish to engine plastic
+
+#### 4. Detainer Sticker Remover (Detainer — بخاخ مزيل الملصقات والغراء)
+- **SKU:** `detainer-sticker-remover`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/detainer-sticker-remover
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/detainer-sticker-remover
+- **Brand:** Workshop Consumables
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 15
+- **Summary:** Adhesive & sticker remover (450 ml / 473 ml). Removes all kinds of glue from car paint and tinting residue. Made in China.
+- **Description:** Detainer Sticker Remover is a specialised adhesive dissolving spray manufactured in China. Specially engineered to safely remove all kinds of glue, tape residue, decals, stickers, and window tinting adhesive from car paint and glass surfaces without damaging the underlying finish.
+- **Technical Specs:** Price: QAR 15 | Size: 450 ml / 473 ml | Origin: Made in China | Action: Removes all kinds of glue from car paint & tinting glue/residue | Safe On: Car paint, glass, chrome and metal trims
+
+---
+
+### Category 9: Microfibre Towels, Sponges, Sprayers & Detailing Tools (7 SKUs)
+
+#### 1. Premium Autotriz Spray Bottle (Empty) (Autotriz — بخاخ كيميائي احترافي (فارغ))
+- **SKU:** `autotriz-spray-bottle`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/autotriz-spray-bottle
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/autotriz-spray-bottle
+- **Brand:** Autotriz (Germany)
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 15
+- **Summary:** Professional-grade chemical-resistant empty spray bottle. Heavy-duty adjustable trigger sprayer, dilution markings. Made in Germany.
+- **Description:** Premium German-engineered heavy-duty empty spray bottle designed specifically for automotive detailing chemicals, shampoos, wheel cleaners, degreasers, and surface preps. Features an industrial chemical-resistant adjustable trigger sprayer that transitions smoothly from a fine atomized mist to a powerful concentrated stream. High-density polyethylene (HDPE) bottle features printed dilution and volume fill guides with professional labeling space.
+
+Key Highlights:
+• Chemical-Resistant Construction: Safe for harsh detailing chemicals, wheel cleaners, and degreasers
+• Adjustable Spray Nozzle: Fine mist to concentrated stream
+• Dilution Markings: Accurate mixing ratios on bottle body
+• Ergonomic Trigger: Comfortable grip for extended detailing sessions
+• Origin: Made in Germany
+- **Technical Specs:** Price: QAR 15 | Type: Chemical-Resistant Empty Spray Bottle | Trigger: Adjustable Nozzle (Mist to Stream) | Material: High-Density Polyethylene (HDPE) | Compatibility: Suitable for all detailing chemicals | Origin: Made in Germany
+
+#### 2. Autotriz High-Pressure Foam Gun (Autotriz — مدفع رغوة عالي الضغط)
+- **SKU:** `autotriz-foam-gun`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/autotriz-foam-gun
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/autotriz-foam-gun
+- **Brand:** Autotriz (Germany)
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 180
+- **Summary:** Heavy-duty high-pressure foam cannon with all-around stainless steel body. Produces ultra-thick clinging snow foam. Made in Germany.
+- **Description:** The Autotriz High-Pressure Foam Gun is a professional-grade snow foam cannon engineered with a solid stainless steel internal body core and heavy-duty components for long-lasting commercial detailing performance.
+
+Key Highlights:
+• High-Pressure Compatibility: Handles extreme pressure washer psi for intense foaming
+• Ultra-Thick Clinging Snow Foam: Generates rich shaving-cream consistency foam that clings to paintwork to lift road grime before contact washing
+• Solid All-Steel Body: Heavy-duty stainless steel valve core resists chemical corrosion and wear
+• Precision Control: Top adjustable foam density dial and front fan spray nozzle angle adjustment
+• Wide-Base Anti-Tip Bottle: 1-liter bottle with molded wide rubber base prevents tipping on wet shop floors
+• Quick-Connect Fitting: Standard 1/4" stainless steel quick-connect inlet for instant pressure washer attachment
+• Origin: Made in Germany
+- **Technical Specs:** Price: QAR 180 | Type: High-Pressure Snow Foam Cannon | Body Core: All-Around Solid Stainless Steel | Foam Density: Adjustable Ultra-Thick Clinging Foam | Connection: 1/4" Quick-Connect Stainless Steel | Origin: Made in Germany
+
+#### 3. Autotriz Wax & Polish Dispenser Bottle (Autotriz — عبوة توزيع البولش والشمع)
+- **SKU:** `autotriz-wax-and-polish-bottle`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/autotriz-wax-and-polish-bottle
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/autotriz-wax-and-polish-bottle
+- **Brand:** Autotriz (Germany)
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 12
+- **Summary:** Professional detailing squeeze bottle for compounds, polishes and waxes. Precision pull-push dispensing spout with product identification checkboxes. Made in Germany.
+- **Description:** The Autotriz Wax & Polish Dispenser Bottle is a dedicated auto detailing squeeze bottle engineered for professional paint correction and finishing workflows. Made from flexible, durable chemical-resistant polyethylene that allows precise dosage control onto polishing pads without drips or waste.
+
+Key Highlights:
+• Precision Dispensing Spout: Controlled application directly onto foam, wool, or microfiber polishing pads
+• Content Identification Grid: Pre-printed checkboxes for [ ] CUT, [ ] POLISH, and [ ] WAX plus custom labeling area for product name and dilution date
+• Leak-Proof Screw Cap: Heavy-duty ribbed cap seals tightly to prevent drying or clogging
+• Ergonomic Squeeze Body: Comfortable in-hand grip for fast panel-by-panel correction
+• Origin: Made in Germany (AUTOTRIZ Innovative Surface Creation)
+- **Technical Specs:** Price: QAR 12 | Type: Squeeze Dispenser Bottle | Spout: Precision Pull-Push Dispensing Tip | Checkboxes: [ ] Cut · [ ] Polish · [ ] Wax | Material: Chemical-Resistant Polyethylene | Origin: Made in Germany
+
+#### 4. GrünesAuto Edgeless Microfibre Towel (40×40 cm) (GrünesAuto — منشفة مايكروفايبر بدون حواف — ٤٠×٤٠ سم)
+- **SKU:** `edgeless-microfiber-towel`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/edgeless-microfiber-towel
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/edgeless-microfiber-towel
+- **Brand:** GrünesAuto (Germany)
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 10
+- **Summary:** Ultra-plush edgeless microfibre towel (40×40 cm). Leaves zero marks or swirl marks. Ideal for polishing, ceramic coatings, drying & glass. Made in Germany.
+- **Description:** Professional German-engineered edgeless microfibre car cleaning towel (40×40 cm). Designed with an ultra-plush, borderless laser-cut construction that guarantees zero swirl marks, scratches, or lint residue on sensitive clear coats, ceramic coatings, and delicate glass surfaces.
+
+Multi-Purpose Applications:
+• Polishing & Compound Residue Removal: Buffs off paste, liquid waxes, and polish without marring paint.
+• Ceramic Coating Leveling: Essential tool for spreading and buffing ceramic, graphene, and sealant coatings.
+• High-Absorption Drying: Absorbs water quickly without streaks.
+• Crystal-Clear Glass Cleaning: Wipes glass and mirrors lint-free.
+
+Key Highlights:
+• Size: 40 × 40 cm
+• Edgeless Laser-Cut Design: 100% scratch-free & swirl-free
+• Origin: Made in Germany (GrünesAuto)
+• Reusable & Machine Washable
+- **Technical Specs:** Price: QAR 10 | Size: 40 × 40 cm | Design: Edgeless (Laser-Cut, Scratch-Free) | Applications: Polishing · Ceramic coating · Drying · Glass | Features: Leaves no marks or swirls · Ultra-absorbent | Origin: Made in Germany
+
+#### 5. Premium Microfibre Towel (60×40 cm) (منشفة مايكروفايبر فاخرة — ٦٠×٤٠ سم)
+- **SKU:** `premium-microfiber-towel-60x40`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/premium-microfiber-towel-60x40
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/premium-microfiber-towel-60x40
+- **Brand:** Workshop Consumables
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 8
+- **Summary:** Premium multi-purpose microfibre towel (60×40 cm). Specially crafted for car washing, crystal-clear glass, and interior detailing.
+- **Description:** Premium quality purple microfibre detailing towel (60×40 cm) with reinforced stitched edges for long-lasting durability. Ultra-soft and highly absorbent fibers safely capture dirt, dust, and moisture without scratching delicate paint or interior surfaces.
+
+Key Use Cases:
+• Car Washing & Exterior Detailing: Safely lifts road dirt with rich suds and protects against swirl marks.
+• Glass & Windshield Cleaning: Leaves a crystal-clear, streak-free, and lint-free finish.
+• Interior Leather & Trim Care: Perfect for wiping down dashboard, leather seats, vinyl, and console screens.
+
+Key Highlights:
+• Size: 60 × 40 cm
+• Premium stitched borders: Prevents fraying across hundreds of wash cycles
+• Multi-surface safe: Exterior, glass, and interior upholstery
+• Reusable & Machine Washable
+- **Technical Specs:** Price: QAR 8 | Size: 60 × 40 cm | Color: Purple | Applications: Car washing · Glass · Interior detailing | Edge Type: Reinforced Stitched Border | Features: High absorption · Lint-free · Scratch-free
+
+#### 6. Premium Chamois & Leather Towel (64×43 cm) (منشفة شامواه وجلد فاخرة — ٦٤×٤٣ سم)
+- **SKU:** `premium-chamois-leather-towel`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/premium-chamois-leather-towel
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/premium-chamois-leather-towel
+- **Brand:** Workshop Consumables
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 18
+- **Summary:** High-tech synthetic chamois leather drying towel (64×43 cm). 3D concave-convex design for resistance-free gliding. Leaves zero watermarks or dust.
+- **Description:** Premium 3D Chamois & Synthetic Leather Drying Towel (64×43 cm) engineered with advanced high-tech PVA material and a specialized concave-convex texture for effortless, resistance-free cleaning and rapid drying.
+
+Key Highlights:
+• 3D Concave-Convex Texture: Eliminates surface friction and drag during drying
+• Streak-Free & Lint-Free: Leaves zero watermarks, lint, or dust on paintwork and glass
+• Rapid Water Absorption: Instantly soaks up standing water with exceptional capillary action
+• Protective Storage Tube: Comes in a reusable cylindrical hard case to keep the chamois moist, soft, and ready to use
+• Multi-Surface Use: Ideal for automotive paint, windshields, mirrors, marine vessels, and household surfaces
+- **Technical Specs:** Price: QAR 18 | Size: 64 × 43 cm | Material: High-Tech Synthetic PVA Chamois | Design: 3D Concave-Convex Resistance-Free | Packaging: Reusable Storage Cylinder Tube | Features: Zero watermarks · Super dust cleaning · Ultra-absorbent
+
+#### 7. Car Washing Sponge (Large Size) (إسفنجة غسيل سيارات كبيرة الحجم)
+- **SKU:** `car-washing-sponge-large`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/car-washing-sponge-large
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/car-washing-sponge-large
+- **Brand:** Workshop Consumables
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 10
+- **Summary:** Extra-large high-density honeycomb car washing sponge. Ergonomic grip bone design holds massive suds and traps dirt safely.
+- **Description:** Extra-large premium honeycomb foam car washing sponge engineered for fast, efficient, and scratch-free vehicle washing. Designed with an ergonomic contoured waist for a secure, fatigue-free hand grip when wet.
+
+Key Highlights:
+• High Suds Retention: Open-cell honeycomb structure absorbs and holds maximum shampoo water and rich foam
+• Paint-Safe Dirt Trapping: Traps and pulls abrasive dirt and grit into deep internal pores away from paint surface
+• Large Coverage Area: Jumbo sizing covers large panels, roofs, and hoods quickly
+• Extra Durable: High-elastic polyurethane foam resists tearing and deformation across heavy daily car wash use
+• Reusable & Easy to Rinse: Rinses clean effortlessly in wash buckets
+- **Technical Specs:** Price: QAR 10 | Size: Extra Large Jumbo Size | Foam Structure: High-Density Honeycomb Foam | Shape: Ergonomic Easy-Grip Bone Design | Applications: Car washing · Trucks · SUVs · Commercial Fleets | Features: High suds retention · Scratch-free · Tear resistant
+
+---
+
+### Category 10: Luxury Car & Home Fragrances (2 SKUs)
+
+#### 1. ABK Mashmom — Car & Home Fragrance (ABK مشموم — معطر السيارة والمنزل الفاخر)
+- **SKU:** `abk-mashmom-home-fragrance`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/abk-mashmom-home-fragrance
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/abk-mashmom-home-fragrance
+- **Brand:** ABK
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 30
+- **Summary:** Artisanal fruity fragrance spray (250 ml). Lasts up to 8 to 9 hours. Safe for skin, clothes, and seats. Made in Qatar.
+- **Description:** ABK Mashmom Car & Home Fragrance is an artisanal Qatar-made fragrance spray featuring a rich, invigorating fruity aroma. Formulated to last up to 8 to 9 hours, it neutralises unwanted odours and creates a welcoming, premium ambiance. Certified safe for direct application on skin, clothing fabrics, and automotive seat upholstery (leather and cloth).
+- **Technical Specs:** Price: QAR 30 | Size: 250 ml | Origin: Made in Qatar | Scent Profile: Fruity Smell (Fresh & Uplifting) | Durability: Lasts up to 8 to 9 hours | Safety: Safe for skin, clothes, and car seats
+
+#### 2. ABK Secret — Car & Home Fragrance (ABK Secret — معطر السيارة والمنزل)
+- **SKU:** `abk-secret-home-fragrance`
+- **URL (EN):** https://abktradingservice.com/en/b2c/products/abk-secret-home-fragrance
+- **URL (AR):** https://abktradingservice.com/ar/b2c/products/abk-secret-home-fragrance
+- **Brand:** ABK
+- **Pack Tier:** Retail & Professional
+- **Price:** QAR 30
+- **Summary:** Best-selling strong fresh fragrance spray (250 ml). Lasts up to 8 to 9 hours. Safe for skin, clothes, and seats. Made in Qatar.
+- **Description:** ABK Secret Car & Home Fragrance is our #1 best-selling signature Qatar-crafted scent, engineered with a bold, sophisticated fresh bouquet. Delivers exceptional longevity lasting 8 to 9 hours, commanding any interior cabin with refined luxury. Tested and certified safe for contact with skin, fabrics, clothing, and all automotive interior seating.
+- **Technical Specs:** Price: QAR 30 | Size: 250 ml | Origin: Made in Qatar | Scent Profile: Strong Fresh Smell (Luxury Crisp) | Durability: Lasts up to 8 to 9 hours | Safety: Safe for skin, clothes, and car seats | Distinction: Best Seller
 
 ---
 
 ## 3. Qatar Climate Adaptation & Detailing Challenges
 
 Every chemical and film distributed by ABK is selected specifically to withstand the extreme environmental conditions of the Arabian Gulf:
-1. **Extreme Ambient Heat (45°C–50°C+):** Cheap PVC/TPH films turn brittle and melt adhesive into factory paint. VTEK aliphatic TPU withstands prolonged panel temperatures exceeding 80°C.
-2. **Desert Sandstorm Abrasion:** Sand micro-particles act as an abrasive grit at highway speeds (120 km/h). VTEK self-healing top-coats absorb micro-swirls, self-repairing under sunlight.
-3. **Hard Tap Water & Mineral Etching:** Doha desalinated tap water contains high concentrations of dissolved minerals (calcium/magnesium). Autotriz ceramic coatings provide hydrophobic contact angles (>110°), forcing water to slide off before droplets can bake into mineral rings.
-4. **Intense Solar UV Radiation:** High UV index causes clearcoat yellowing and interior leather shrinkage. VTEK and Autotriz incorporate advanced UV stabilizers.
+1. **Extreme Ambient Heat (45°C–50°C+):** Cheap PVC/TPH films turn brittle and melt adhesive into factory paint. VTEK and Grizzly aliphatic TPU films withstand prolonged panel temperatures exceeding 80°C.
+2. **Desert Sandstorm Abrasion:** Sand micro-particles act as an abrasive grit at highway speeds (120 km/h). VTEK self-healing top-coats absorb micro-swirls, self-repairing under ambient Doha sunlight.
+3. **Hard Tap Water & Mineral Etching:** Doha desalinated tap water contains dissolved minerals (calcium/magnesium). Autotriz ceramic coatings provide hydrophobic contact angles (>110°), helping water slide off before droplets bake into mineral rings.
+4. **Intense Solar UV Radiation:** High UV index causes clearcoat oxidation, plastic trim chalking, and interior leather shrinkage. VTEK Solar Armor window films block 99%+ UV and up to 95% infrared heat, while ABK Rejuvenate restores sun-faded exterior plastics.
 
 ---
 
@@ -325,8 +872,8 @@ Every chemical and film distributed by ABK is selected specifically to withstand
 - **Minimum Order Quantities (MOQ):**
   - PPF & Window Tint: Single master rolls (1.52m × 15m or 1.52m × 30m) eligible for tiered volume discounts.
   - Car Care Chemicals: Master cartons (12 or 24 units per box).
-  - Bulk Shampoos & Degreasers: 20-Litre drums.
-- **Trade Account Benefits:** Dedicated account manager, wholesale pricing tiers, free local delivery across Doha for qualified orders, marketing support, and product application training.
+  - Bulk Shampoos, Cleaners & Degreasers: 20-Litre drums and 20-kg sacks (also available for single-drum purchase online).
+- **Trade Account Benefits:** Dedicated account manager, wholesale pricing tiers, free local delivery across Doha for qualified orders, marketing support, and product application guidance.
 - **How to Apply:** Visit https://abktradingservice.com/en/b2b/become-a-dealer or message the Wholesale Trade Desk directly on WhatsApp at +974 3083 8355.
 
 ---
@@ -339,12 +886,12 @@ ABK sells installed VTEK paint protection film. ABK quotes, books, takes payment
 
 | Coverage | Film | Sedan / Coupe | SUV / Crossover | Large SUV / Pickup |
 |---|---|---|---|---|
-| Front-end kit | PRO | 899 | 1,049 | 1,199 |
-| Front-end kit | PRO PLUS or MATTE | 1,099 | 1,249 | 1,399 |
-| Full front | PRO | 1,599 | 1,899 | 2,199 |
-| Full front | PRO PLUS or MATTE | 1,899 | 2,299 | 2,599 |
-| Full body | PRO | 3,999 | 4,799 | 5,499 |
-| Full body | PRO PLUS or MATTE | 4,799 | 5,699 | 6,499 |
+| Front-end kit | PRO (7.5 mil · 10-yr warranty) | QAR 899 | QAR 1,049 | QAR 1,199 |
+| Front-end kit | PRO PLUS (8.0 mil · 12-yr) or MATTE (5-yr) | QAR 1,099 | QAR 1,249 | QAR 1,399 |
+| Full front | PRO (7.5 mil · 10-yr warranty) | QAR 1,599 | QAR 1,899 | QAR 2,199 |
+| Full front | PRO PLUS (8.0 mil · 12-yr) or MATTE (5-yr) | QAR 1,899 | QAR 2,299 | QAR 2,599 |
+| Full body | PRO (7.5 mil · 10-yr warranty) | QAR 3,999 | QAR 4,799 | QAR 5,499 |
+| Full body | PRO PLUS (8.0 mil · 12-yr) or MATTE (5-yr) | QAR 4,799 | QAR 5,699 | QAR 6,499 |
 
 - **Front-end kit:** front bumper, the leading ~40 cm of the bonnet and fenders, mirrors, headlights.
 - **Full front:** whole bonnet, front bumper, both front fenders, mirrors, headlights.
@@ -364,6 +911,182 @@ ABK sells installed VTEK paint protection film. ABK quotes, books, takes payment
 - Typical fitting time: front-end same day; full front 1 day; full body 2–3 days.
 - Payment: 100% by bank transfer or cash after ABK confirms the slot.
 - Cancellation: full refund up to 48 hours before the slot; one free reschedule.
-- Quote builder and booking: https://abktradingservice.com/en/b2c/ppf-installation (Arabic: /ar/b2c/ppf-installation). WhatsApp: +974 3083 8355.
-- Price guide: https://abktradingservice.com/en/b2c/blog/ppf-cost-qatar
-- Doha installer evaluation guide: https://abktradingservice.com/en/b2c/blog/best-ppf-installers-doha-qatar-guide
+- Quote builder and booking: https://abktradingservice.com/en/b2c/ppf-installation (Arabic: https://abktradingservice.com/ar/b2c/ppf-installation). WhatsApp: +974 3083 8355.
+
+---
+
+## 6. Qatar Car Care & PPF Editorial Guides (8 Bilingual Guides)
+
+- **Blog Hub (EN):** https://abktradingservice.com/en/b2c/blog
+- **Blog Hub (AR):** https://abktradingservice.com/ar/b2c/blog
+
+### 1. How Much Does PPF Cost in Qatar? (2026 Price Guide)
+- **Arabic Title:** كم تكلفة فيلم حماية الطلاء PPF في قطر؟ (دليل الأسعار 2026)
+- **URL (EN):** https://abktradingservice.com/en/b2c/blog/ppf-cost-qatar
+- **URL (AR):** https://abktradingservice.com/ar/b2c/blog/ppf-cost-qatar
+- **Published:** 2026-10-02
+- **Summary:** PPF prices in Qatar for 2026: installed VTEK film from QAR 899 (front-end), QAR 1,599 (full front) and QAR 3,999 (full body) — what drives the cost and how to compare quotes in Doha.
+- **Related Product SKUs:** `vtek-ppf-weather-armor-pro`, `vtek-ppf-weather-armor-pro-plus`, `vtek-ppf-weather-armor-matte`, `vtek-ppf-weather-armor-prism`
+
+### 2. Window Tinting in Qatar: Rules, Permits and Choosing the Right Film (2026 Guide)
+- **Arabic Title:** تظليل النوافذ في قطر: القوانين والتصاريح واختيار الفيلم المناسب (دليل 2026)
+- **URL (EN):** https://abktradingservice.com/en/b2c/blog/window-tinting-rules-qatar-guide
+- **URL (AR):** https://abktradingservice.com/ar/b2c/blog/window-tinting-rules-qatar-guide
+- **Published:** 2026-06-12
+- **Summary:** What tint percentage is legal in Qatar? A practical 2026 guide to MOI tint rules, Metrash permits, fines, and choosing a heat-rejecting film for Doha's climate.
+- **Related Product SKUs:** `vtek-window-tints`, `vtek-ppf-weather-armor-ultimate`, `briller-glass-cleaner`
+
+### 3. How Much Does Ceramic Coating Cost in Qatar? (2026 Price Guide)
+- **Arabic Title:** كم تكلفة الطلاء السيراميكي في قطر؟ (دليل الأسعار 2026)
+- **URL (EN):** https://abktradingservice.com/en/b2c/blog/ceramic-coating-cost-qatar
+- **URL (AR):** https://abktradingservice.com/ar/b2c/blog/ceramic-coating-cost-qatar
+- **Published:** 2026-06-11
+- **Summary:** Ceramic coating prices in Qatar explained — what drives the cost, typical Doha market ranges, professional vs DIY, and how to judge whether a quote is fair.
+- **Related Product SKUs:** `autotriz-revo-ceramic-coating`, `autotriz-ion-plus-ceramic-coating`, `autotriz-3d-matrix-ultra`, `autotriz-3d-matrix-hybrid`
+
+### 4. Hard Water Spots on Your Car in Qatar: How to Remove and Prevent Them
+- **Arabic Title:** بقع الماء العسر على سيارتك في قطر: كيف تزيلها وتمنعها
+- **URL (EN):** https://abktradingservice.com/en/b2c/blog/remove-hard-water-spots-car-qatar
+- **URL (AR):** https://abktradingservice.com/ar/b2c/blog/remove-hard-water-spots-car-qatar
+- **Published:** 2026-06-10
+- **Summary:** Why Doha's water leaves white spots on car paint and glass, how to remove fresh and etched water spots safely, and how to stop them coming back.
+- **Related Product SKUs:** `autotriz-rich-foam-shampoo`, `briller-glass-cleaner`, `autotriz-ultimate-polish-302`, `autotriz-revo-ceramic-coating`
+
+### 5. How to Protect Your Car from Qatar's Extreme Heat
+- **Arabic Title:** كيف تحمي سيارتك من حرارة قطر الشديدة
+- **URL (EN):** https://abktradingservice.com/en/b2c/blog/how-to-protect-car-from-qatar-heat
+- **URL (AR):** https://abktradingservice.com/ar/b2c/blog/how-to-protect-car-from-qatar-heat
+- **Published:** 2026-05-10 (Updated: 2026-10-02)
+- **Summary:** Practical tips for protecting your car's paint, interior and tyres from Doha's 50°C summers. Covers PPF, ceramic coating, window tinting and daily care routines.
+- **Related Product SKUs:** `vtek-ppf-weather-armor-ultimate`, `autotriz-3d-matrix-ultra`, `vtek-window-tints`, `briller-wash-and-wax`
+
+### 6. PPF vs Ceramic Coating: Which is Right for Your Car in Qatar?
+- **Arabic Title:** PPF مقابل الطلاء السيراميكي: أيهما يناسب سيارتك في قطر؟
+- **URL (EN):** https://abktradingservice.com/en/b2c/blog/ppf-vs-ceramic-coating-qatar
+- **URL (AR):** https://abktradingservice.com/ar/b2c/blog/ppf-vs-ceramic-coating-qatar
+- **Published:** 2026-05-08 (Updated: 2026-10-02)
+- **Summary:** A detailed comparison of paint protection film and ceramic coating for cars in Qatar. Learn which option protects best against sand, UV, and water spots in Doha's climate.
+- **Related Product SKUs:** `vtek-ppf-weather-armor-ultimate`, `autotriz-3d-matrix-ultra`, `autotriz-3d-matrix-hybrid`, `autotriz-ion-plus-ceramic-coating`
+
+### 7. The Complete Guide to Car Care Products in Qatar
+- **Arabic Title:** الدليل الشامل لمنتجات العناية بالسيارات في قطر
+- **URL (EN):** https://abktradingservice.com/en/b2c/blog/complete-guide-car-care-products-qatar
+- **URL (AR):** https://abktradingservice.com/ar/b2c/blog/complete-guide-car-care-products-qatar
+- **Published:** 2026-05-05
+- **Summary:** Everything you need to know about car care products available in Qatar — from car shampoos and polishes to PPF and ceramic coatings. A buyer's guide for Doha car owners.
+- **Related Product SKUs:** `autotriz-rich-foam-shampoo`, `briller-wash-and-wax`, `autotriz-heavy-cut-901`, `briller-quick-tyre-shine`
+
+### 8. Choosing the Best PPF Installer in Doha, Qatar: 2026 Standards & Price Guide
+- **Arabic Title:** دليل اختيار أفضل مركز تركيب أفلام حماية PPF في الدوحة، قطر: المعايير والأسعار 2026
+- **URL (EN):** https://abktradingservice.com/en/b2c/blog/best-ppf-installers-doha-qatar-guide
+- **URL (AR):** https://abktradingservice.com/ar/b2c/blog/best-ppf-installers-doha-qatar-guide
+- **Published:** 2026-10-04
+- **Summary:** How to evaluate PPF installers in Doha: dust-controlled clean booths, edge-wrapping vs pre-cut, genuine aliphatic TPU warranties, and 2026 price comparisons in Qatar.
+- **Related Product SKUs:** `vtek-ppf-weather-armor-pro`, `vtek-ppf-weather-armor-pro-plus`, `vtek-ppf-weather-armor-matte`, `vtek-ppf-weather-armor-prism`
+
+---
+
+## 7. Frequently Asked Questions (Store, Products & Wholesale)
+
+### Q1: How long does paint protection film last?
+Premium paint protection films like VTEK Weather Armor typically last 5–15 years under normal use, depending on the film grade, climate exposure and care. The self-healing top-coat regenerates light scratches with heat from the sun or warm water.
+
+### Q2: Do you supply car care products wholesale to other shops in Qatar?
+Yes. ABK supplies wholesale VTEK PPF, Autotriz and Briller products to detailing shops, body shops and car-wash businesses across Qatar and the GCC. Volume pricing is quoted per request on WhatsApp.
+
+### Q3: Do your window films meet Qatar tint regulations?
+Yes. We stock heat-rejecting window films in multiple VLT (visible light transmission) grades that meet Qatar's vehicle tint regulations. Tell us your vehicle and we will confirm the right grade before you buy.
+
+### Q4: What is the difference between PPF and ceramic coating?
+PPF is a thick urethane film that physically blocks rock chips, scratches and impacts. Ceramic coating is a thin chemical layer that adds gloss and water-repellency but does not stop physical damage. Many customers apply ceramic coating on top of PPF for both benefits.
+
+### Q5: Where is the ABK store located in Doha?
+ABK Trading & Service is at Showroom no. 2, Building 1306, Street 70, Zone 56, Mesaimeer, Doha, Qatar. Open Saturday to Thursday, 10:00–13:00 and 16:00–22:00. Closed Friday.
+
+### Q6: How much does paint protection film cost in Qatar?
+Installed VTEK PPF from ABK starts at QAR 899 for a front-end kit, QAR 1,599 for a full front and QAR 3,999 for a full body, depending on car size and film. Film by the roll is quoted on WhatsApp.
+
+### Q7: Which ceramic coating works best in Qatar's heat?
+Ceramic coatings rated for high-UV exposure (9H hardness, hydrophobic top-coat) perform best in Qatar's climate. Autotriz and Briller systems we carry are formulated for Gulf summers and resist water-spotting from hard tap water common in Doha.
+
+### Q8: Do you ship car care products from Qatar to UAE, Saudi Arabia or Kuwait?
+Yes — wholesale orders ship across the GCC. Lead time and freight depend on order volume and destination. WhatsApp +974 30838355 with your country, products and quantities for a delivered-price quote.
+
+### Q9: What is the minimum order quantity for wholesale car care products?
+Minimum order quantities vary by brand. Autotriz and Briller can be ordered by the case. VTEK PPF rolls are sold per roll. Detailing accessories are flexible. WhatsApp the brands and SKUs you want and we'll send the wholesale price sheet.
+
+### Q10: Is VTEK PPF covered by warranty?
+Yes. Genuine VTEK (formerly Vertek) PPF carries a 5 to 15-year manufacturer warranty, depending on the film, against yellowing, cracking and delamination when fitted by an authorised installer following VTEK's procedures. ABK is the authorised Qatar distributor and supplies the film with official warranty documentation.
+
+### Q11: Can PPF be removed without damaging the paint?
+Yes — quality PPF like VTEK Weather Armor is designed for clean removal by a trained technician using controlled heat. The original paint underneath is preserved, often in better condition than unprotected paint of the same age.
+
+### Q12: Where can I buy car care products in Qatar?
+ABK Trading and Service in Mesaimeer, Doha stocks a full range of car care products — car shampoos, polishing compounds, ceramic coatings, tyre shine, glass cleaners, paint protection film and more. Walk in Saturday to Thursday or order via WhatsApp at +974 30838355.
+
+### Q13: What is the best car shampoo for hot climates like Qatar?
+pH-balanced car shampoos that do not strip wax or coatings perform best in Gulf heat. Autotriz Rich Foam Shampoo and Briller Wash and Wax are formulated to clean safely without spotting even in direct sunlight. Both are available at ABK Trading in Doha.
+
+### Q14: How often should I wash my car in Doha?
+In Doha's dusty, humid climate most detailers recommend washing every 7 to 10 days. Cars with ceramic coating or PPF need less frequent washing because dust and water bead off the surface. Using a quality car shampoo prevents hard water spots common with Doha tap water.
+
+### Q15: What car detailing products do professionals use in Doha?
+Professional detailers in Doha typically use Autotriz cutting compounds and polishes for paint correction, Briller car shampoos for pre-wash, and Autotriz or Briller ceramic coatings for long-term protection. ABK Trading supplies these brands to workshops and individual detailers across Qatar.
+
+### Q16: Can car polish remove scratches from my car?
+Yes — polishing compounds like Autotriz Heavy Cut 901 remove sanding marks and deep swirls, while finishing polishes like Autotriz Ultimate Polish 302 restore a high-gloss, hologram-free finish. For best results, professional machine polishing is recommended. ABK stocks these compounds at our Mesaimeer store.
+
+### Q17: Can I buy single car care bottles for personal use or is ABK wholesale only?
+ABK serves both individual car owners and commercial businesses. You can purchase single bottles of car shampoos, waxes, plastic restorers, and accessories at our Mesaimeer store or order on WhatsApp with rapid Qatar delivery. Detailing studios and workshops receive tiered wholesale volume pricing.
+
+### Q18: How does the WhatsApp Order Tray work?
+The WhatsApp Order Tray lets you browse products, set quantities, and compile a single multi-item order or commercial quote request. When ready, tap 'Send Order via WhatsApp' to launch a pre-formatted message with item details, quantities, and direct links.
+
+---
+
+## 8. Frequently Asked Questions (Installed VTEK PPF in Doha)
+
+### PPF Q1: Who installs the film?
+A VTEK-authorised partner centre in Doha, booked and managed by ABK. ABK supplies the genuine film, confirms your slot, inspects the finished car and stays your single point of contact.
+
+### PPF Q2: How do I know the film is genuine and the fitting is done properly?
+ABK is VTEK's authorised distributor in Qatar and supplies the film for every job from its own stock, so it never comes from a third party. Only VTEK-authorised installers fit it; the car is photographed at drop-off, ABK inspects the finish before handover, and the VTEK warranty is registered to your car.
+
+### PPF Q3: Which VTEK film should I choose for Qatar's heat?
+Weather Armor PRO suits most daily drivers: 7.5 mil (190 µm) gloss TPU with heat-activated self-healing and a 10-year VTEK warranty. PRO PLUS is an 8.0 mil (203 µm) film with VTEK's ultra-gloss finish, a hydrophobic top coat and a 12-year warranty, for 18% more. MATTE gives a satin finish (5-year warranty) and PRISM changes the colour (5-year warranty).
+
+### PPF Q4: Is a full front enough, or should I get a full body?
+A full front covers the panels that take stone chips on Qatar's highways — bonnet, front bumper, fenders, mirrors and headlights — from QAR 1,599 on a sedan. A full body (from QAR 3,999) adds the doors, sides, roof and rear against sand abrasion, parking scuffs and wash swirls, and suits a new or high-value car you plan to keep.
+
+### PPF Q5: Can I protect only some panels?
+Yes. Pick "Choose parts" in the quote builder and tap the panels you want. The estimate updates as you go, starts at QAR 500 and never exceeds the full-body price for your car; we confirm the final price on WhatsApp.
+
+### PPF Q6: How long does PPF installation take?
+Typically the same day for a front-end kit, one day for a full front and two to three days for a full body, including curing time. We confirm the exact time with your slot.
+
+### PPF Q7: How do I pay, and can I cancel?
+Once we confirm your slot you pay in full by bank transfer or cash. Cancel up to 48 hours before for a full refund; one reschedule is free.
+
+### PPF Q8: What is the difference between the film warranty and the workmanship cover?
+VTEK's warranty covers the film itself against yellowing, cracking and delamination for 5 to 15 years depending on the film. ABK's 12-month workmanship cover handles the fitting: lifting, bubbles or edges letting go.
+
+### PPF Q9: My car already has old PPF or a wrap. Can you still do it?
+Yes. Tell us in the booking form; old film or wrap has to be removed first, and we include that in the confirmed price.
+
+### PPF Q10: Can VTEK PPF handle sandstorms and gravel on Qatar highways (Al Shamal and Salwa roads)?
+Yes. VTEK Weather Armor PRO and PRO PLUS use 7.5 to 8.0 mil (190–203 µm) aliphatic TPU. The elastomeric urethane absorbs high-speed gravel impacts and deflects abrasive desert sand without puncturing. Fine micro-scratches from dust storms automatically self-heal under Qatar's natural sun heat.
+
+### PPF Q11: How soon after PPF installation can I wash my car in Doha?
+Wait 48 to 72 hours before the first wash so the installation slip solution fully cures and edges bond firmly. After curing, hand wash with a pH-neutral car shampoo like Autotriz Rich Foam. Avoid holding high-pressure spray nozzles closer than 40 cm from film edges.
+
+### PPF Q12: What is the difference between genuine TPU and cheap PVC or TPH film?
+Genuine TPU (Thermoplastic Polyurethane) is an optically clear, self-healing polymer that does not yellow or crack in Qatar's 45°C+ summer heat, backed by a 10 to 12-year warranty. Cheap PVC or TPH films turn cloudy, yellow, and brittle within 6 to 12 months, and their harsh adhesives can damage clear coats upon removal. ABK is Qatar's authorized VTEK distributor, supplying only 100% genuine TPU.
+
+### PPF Q13: Can I combine PPF installation with ceramic coating?
+Yes. Applying a 9H ceramic coating (such as Autotriz 3D Matrix Ultra) over VTEK PPF is the gold standard for Qatar. The PPF provides impact defense against rock chips and sand abrasion, while the ceramic layer provides deep gloss, hydrophobicity, and protection against mineral water spots from Doha tap water.
+
+### PPF Q14: Where in Doha is the PPF installation performed?
+Installations are carried out in VTEK-authorized clean-booth partner studios in Doha equipped with dust filtration and climate control. Location and drop-off instructions are confirmed with your appointment slot, easily accessible from Mesaimeer, Al Rayyan, Lusail, West Bay, The Pearl, Al Wakrah, and Al Khor.
+
+### PPF Q15: I'm not sure which category my car falls under. How can I get an exact offer?
+Type your car's make and model in the quote builder search bar to automatically see its category and instant price. If your vehicle isn't listed or you prefer a tailored quote, select 'Not sure? Get a Custom Offer' and enter your make and model — our team will confirm the exact offer on WhatsApp.

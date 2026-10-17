@@ -222,10 +222,18 @@ export function productJsonLd(opts: {
   images: string[];
   url: string;
   priceQar?: number;
+  variants?: Array<{ key: string; label: string; priceQar: number }>;
+  specs?: Array<{ label: string; value: string }>;
 }) {
+  const hasVariants = opts.variants && opts.variants.length > 1;
+  const variantPrices = hasVariants
+    ? opts.variants!.map((v) => v.priceQar)
+    : [];
+
   return {
     "@context": "https://schema.org",
     "@type": "Product",
+    "@id": `${opts.url}#product`,
     name: opts.name,
     description: opts.description,
     sku: opts.sku,
@@ -234,17 +242,54 @@ export function productJsonLd(opts: {
     image: opts.images,
     url: opts.url,
     itemCondition: "https://schema.org/NewCondition",
-    ...(opts.priceQar
+    ...(opts.specs && opts.specs.length > 0
       ? {
-          offers: {
-            "@type": "Offer",
-            price: opts.priceQar,
-            priceCurrency: "QAR",
-            availability: "https://schema.org/InStock",
-            url: opts.url,
-          },
+          additionalProperty: opts.specs.map((s) => ({
+            "@type": "PropertyValue",
+            name: s.label,
+            value: s.value,
+          })),
         }
       : {}),
+    ...(hasVariants
+      ? {
+          offers: {
+            "@type": "AggregateOffer",
+            priceCurrency: "QAR",
+            lowPrice: Math.min(...variantPrices),
+            highPrice: Math.max(...variantPrices),
+            offerCount: opts.variants!.length,
+            availability: "https://schema.org/InStock",
+            url: opts.url,
+            seller: { "@id": IDS.business },
+            offers: opts.variants!.map((v) => ({
+              "@type": "Offer",
+              name: `${opts.name} (${v.label})`,
+              sku: `${opts.sku}-${v.key}`,
+              price: v.priceQar,
+              priceCurrency: "QAR",
+              availability: "https://schema.org/InStock",
+              itemCondition: "https://schema.org/NewCondition",
+              url: opts.url,
+              seller: { "@id": IDS.business },
+              areaServed: { "@type": "Country", name: "Qatar" },
+            })),
+          },
+        }
+      : opts.priceQar
+        ? {
+            offers: {
+              "@type": "Offer",
+              price: opts.priceQar,
+              priceCurrency: "QAR",
+              availability: "https://schema.org/InStock",
+              itemCondition: "https://schema.org/NewCondition",
+              url: opts.url,
+              seller: { "@id": IDS.business },
+              areaServed: { "@type": "Country", name: "Qatar" },
+            },
+          }
+        : {}),
   };
 }
 

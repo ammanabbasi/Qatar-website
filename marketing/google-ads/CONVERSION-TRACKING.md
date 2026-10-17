@@ -211,7 +211,7 @@ UI within ~3 hours (sometimes up to 24).
 |---|---|---|
 | WhatsApp enquiry (Contact, Primary, default value US$11) | `fTHvCNXXr5MdENiYz-ZD` | fallback string in `src/lib/ads-conversions.ts` |
 | Phone click (Contact, Primary, default value US$11) | `0rdHCL7KqJMdENiYz-ZD` | fallback string in `src/lib/ads-conversions.ts` |
-| PPF booking request (Submit lead form, Primary, value from event) | `J9TLCOe7n44dENiYz-ZD` | Vercel env `NEXT_PUBLIC_ADS_LABEL_PPF_BOOKING` |
+| PPF booking request (Submit lead form, Primary, value from event) | `J9TLCOe7n44dENiYz-ZD` | fallback string in `src/lib/ads-conversions.ts` + Vercel env `NEXT_PUBLIC_ADS_LABEL_PPF_BOOKING` |
 
 Email and catalogue still have no action; their events stay dataLayer-only.
 

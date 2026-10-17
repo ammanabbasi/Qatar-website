@@ -13,7 +13,9 @@ import { routing } from "@/i18n/routing";
 // 2026-09-22: B2C/B2B funnels redesign, WhatsApp order tray, dealer onboarding upgrade.
 // 2026-09-24: shop-first homepage order, catalogue search/sort, retail cart
 //             (the /b2c/cart checkout page is noindex and deliberately absent).
-const STATIC_PAGES_UPDATED_AT = "2026-10-04";
+// 2026-10-17: removed 308-redirecting /b2b and /b2b/products URLs; enriched
+//             internal links and structured data across static pages.
+const STATIC_PAGES_UPDATED_AT = "2026-10-17";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE.url;
@@ -29,13 +31,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // `""` is the locale root (`/en`, `/ar`) — the B2C homepage renders there
   // directly (it previously lived at `/b2c`, which now 308s to the root).
+  // Note: `/b2b` and `/b2b/products` permanently 308-redirect to `/b2c/products`
+  // (see next.config.ts), so they are deliberately excluded from the sitemap.
   const staticPaths = [
     "",
     "/b2c/products",
     "/b2c/ppf-installation",
     "/b2c/blog",
-    "/b2b",
-    "/b2b/products",
     "/b2b/become-a-dealer",
     "/about",
     "/contact",

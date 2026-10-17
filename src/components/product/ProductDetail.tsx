@@ -33,13 +33,22 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
 
   const productLd = productJsonLd({
     name,
-    description: shortDesc,
+    description: longDesc || shortDesc,
     brand: brandLabel,
     category: categoryLabel,
     sku: product.slug,
     images: product.images.map((src) => `${SITE.url}${src}`),
     url: productUrl,
     priceQar: product.priceQar,
+    variants: product.variants?.map((v) => ({
+      key: v.id,
+      label: v.size[locale],
+      priceQar: v.priceQar,
+    })),
+    specs: product.specs?.map((s) => ({
+      label: s.label[locale],
+      value: s.value[locale],
+    })),
   });
   const homeHref = "/";
   const bcLd = breadcrumbJsonLd([
