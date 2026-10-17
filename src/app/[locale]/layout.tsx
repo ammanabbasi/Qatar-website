@@ -113,9 +113,9 @@ export async function generateMetadata({
     // NEXT_PUBLIC_BING_SITE_VERIFICATION  → Bing Webmaster Tools
     // ⚠ Paste ONLY the content value (e.g. "abc123"), NOT the full <meta> tag.
     verification: {
-      ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
-        ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
-        : {}),
+      google:
+        process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ||
+        "DWgKK56ptNXhOa2sMpNN_d0C4H8823pSesM8bbARInM",
       other: {
         "msvalidate.01":
           process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION ||
