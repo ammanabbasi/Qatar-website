@@ -8,6 +8,9 @@ import { DealerPartnershipTiers } from "@/components/dealer/DealerPartnershipTie
 import { DealerLogistics } from "@/components/dealer/DealerLogistics";
 import { DealerApplicationForm } from "@/components/dealer/DealerApplicationForm";
 import { TrustBadges } from "@/components/home/TrustBadges";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { SITE } from "@/lib/constants";
+import { breadcrumbJsonLd } from "@/lib/jsonld";
 import { pageMeta } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -36,9 +39,17 @@ export default async function BecomeDealer({
   const l = locale as "en" | "ar";
   const home = await getTranslations({ locale, namespace: "Home" });
   const eyebrows = await getTranslations({ locale, namespace: "Eyebrows" });
+  const crumbLd = breadcrumbJsonLd([
+    { name: l === "ar" ? "الرئيسية" : "Home", url: `${SITE.url}/${l}` },
+    {
+      name: home("becomeDealerHeading"),
+      url: `${SITE.url}/${l}/b2b/become-a-dealer`,
+    },
+  ]);
 
   return (
     <Shell audience="b2b" locale={l}>
+      <JsonLd id="ld-dealer-crumb" data={crumbLd} />
       <PageHero
         eyebrow={eyebrows("partner")}
         title={home("becomeDealerHeading")}

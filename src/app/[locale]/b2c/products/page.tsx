@@ -10,9 +10,14 @@ import { PageHero } from "@/components/ui/PageHero";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { ProductGridView } from "@/components/product/ProductGridView";
 import { WhyQatar } from "@/components/home/WhyQatar";
+import { Link } from "@/i18n/navigation";
 import { pageMeta } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
-import { itemListJsonLd } from "@/lib/jsonld";
+import { breadcrumbJsonLd, itemListJsonLd } from "@/lib/jsonld";
+import {
+  BRAND_LANDING_PAGES,
+  CATEGORY_LANDING_PAGES,
+} from "@/data/categoriesAndBrands";
 import {
   PACKS,
   getBrandsFor,
@@ -63,10 +68,15 @@ export default async function B2cProductsPage({
       image: p.images[0] ? `${SITE.url}${p.images[0]}` : undefined,
     })),
   });
+  const crumbLd = breadcrumbJsonLd([
+    { name: l === "ar" ? "الرئيسية" : "Home", url: `${SITE.url}/${l}` },
+    { name: t("heading"), url: `${SITE.url}/${l}/b2c/products` },
+  ]);
 
   return (
     <Shell audience="b2c" locale={l}>
       <JsonLd id="ld-itemlist-b2c-products" data={itemListLd} />
+      <JsonLd id="ld-b2c-products-crumb" data={crumbLd} />
       <PageHero
         eyebrow={eyebrows("products")}
         title={t("heading")}
@@ -103,6 +113,44 @@ export default async function B2cProductsPage({
             >
               <ProductGrid audience="b2c" locale={l} />
             </Suspense>
+          </div>
+        </Container>
+      </section>
+      <section className="border-t border-(--color-border-soft) py-8">
+        <Container>
+          <div className="grid gap-6 lg:grid-cols-2">
+            <div>
+              <h2 className="text-footnote font-bold uppercase tracking-[0.08em] text-(--color-text-muted)">
+                {l === "ar" ? "تصفّح حسب الفئة في قطر" : "Browse by Category in Qatar"}
+              </h2>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {CATEGORY_LANDING_PAGES.map((c) => (
+                  <Link
+                    key={c.slug}
+                    href={`/b2c/categories/${c.slug}`}
+                    className="rounded-pill border border-(--color-border) bg-(--color-surface) px-3.5 py-1.5 text-caption font-medium text-(--color-text) transition-colors hover:border-(--color-brand) hover:text-(--color-brand-deep)"
+                  >
+                    {c.h1[l]}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h2 className="text-footnote font-bold uppercase tracking-[0.08em] text-(--color-text-muted)">
+                {l === "ar" ? "تصفّح حسب العلامة التجارية" : "Browse by Official Brand"}
+              </h2>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {BRAND_LANDING_PAGES.map((b) => (
+                  <Link
+                    key={b.slug}
+                    href={`/b2c/brands/${b.slug}`}
+                    className="rounded-pill border border-(--color-border) bg-(--color-surface) px-3.5 py-1.5 text-caption font-medium text-(--color-text) transition-colors hover:border-(--color-brand) hover:text-(--color-brand-deep)"
+                  >
+                    {b.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         </Container>
       </section>
