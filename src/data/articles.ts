@@ -68,7 +68,18 @@ const proPlusFullBodySedan = quotePpf({
   parts: [],
   film: "pro-plus",
 }).priceQar!;
-const upliftPct = Math.round((proPlus.uplift ?? 0) * 100);
+const proPlusFullBodySuv = quotePpf({
+  body: "suv",
+  coverage: "full-body",
+  parts: [],
+  film: "pro-plus",
+}).priceQar!;
+const proPlusFullBodyLargeSuv = quotePpf({
+  body: "large-suv",
+  coverage: "full-body",
+  parts: [],
+  film: "pro-plus",
+}).priceQar!;
 const pricesAsOf = (l: "en" | "ar") =>
   new Date(PRICES_UPDATED_AT).toLocaleDateString(l === "ar" ? "ar-QA" : "en-QA", {
     year: "numeric",
@@ -114,8 +125,8 @@ export const ARTICLES: Article[] = [
           ar: "أسعار PPF في قطر باختصار",
         },
         body: {
-          en: `These are ABK's fixed installed prices for genuine VTEK Weather Armor PRO film (${pro.warrantyYears}-year warranty), as of ${pricesAsOf("en")}. Front-end kit: ${q(P["front-end"].sedan, "en")} for a sedan or coupe, ${q(P["front-end"].suv, "en")} for an SUV and ${q(P["front-end"]["large-suv"], "en")} for a large SUV or pickup. Full front: ${q(P["full-front"].sedan, "en")}, ${q(P["full-front"].suv, "en")} and ${q(P["full-front"]["large-suv"], "en")}. Full body: ${q(P["full-body"].sedan, "en")}, ${q(P["full-body"].suv, "en")} and ${q(P["full-body"]["large-suv"], "en")}. PRO PLUS film (${proPlus.warrantyYears}-year warranty) and MATTE film cost ${upliftPct}% more — a full-body sedan in PRO PLUS is ${q(proPlusFullBodySedan, "en")}. PRISM colour film is priced per car. Every price includes the film, fitting at a VTEK-authorised centre in Doha, warranty registration and a 12-month ABK workmanship cover.`,
-          ar: `هذه أسعار التركيب الثابتة لدى ABK لفيلم VTEK Weather Armor PRO الأصلي (ضمان ${pro.warrantyYears} سنوات)، حتى ${pricesAsOf("ar")}. الواجهة الأساسية: ${q(P["front-end"].sedan, "ar")} للسيدان أو الكوبيه، و${q(P["front-end"].suv, "ar")} لسيارات SUV، و${q(P["front-end"]["large-suv"], "ar")} لسيارات SUV الكبيرة أو البيك أب. الواجهة الكاملة: ${q(P["full-front"].sedan, "ar")} و${q(P["full-front"].suv, "ar")} و${q(P["full-front"]["large-suv"], "ar")}. الهيكل بالكامل: ${q(P["full-body"].sedan, "ar")} و${q(P["full-body"].suv, "ar")} و${q(P["full-body"]["large-suv"], "ar")}. يكلّف فيلما PRO PLUS (ضمان ${proPlus.warrantyYears} سنة) وMATTE أكثر بنسبة ${upliftPct}% — فالهيكل بالكامل لسيارة سيدان بفيلم PRO PLUS بسعر ${q(proPlusFullBodySedan, "ar")}. ويُسعَّر فيلم PRISM الملوّن لكل سيارة. يشمل كل سعر الفيلم والتركيب في مركز معتمد من VTEK في الدوحة وتسجيل الضمان وضمان تركيب من ABK لمدة 12 شهراً.`,
+          en: `These are ABK's fixed installed prices for genuine VTEK Weather Armor PRO film (${pro.warrantyYears}-year warranty), as of ${pricesAsOf("en")}. Front-end kit: ${q(P["front-end"].sedan, "en")} for a sedan or coupe, ${q(P["front-end"].suv, "en")} for an SUV and ${q(P["front-end"]["large-suv"], "en")} for a large SUV or pickup. Full front: ${q(P["full-front"].sedan, "en")}, ${q(P["full-front"].suv, "en")} and ${q(P["full-front"]["large-suv"], "en")}. Full body: ${q(P["full-body"].sedan, "en")}, ${q(P["full-body"].suv, "en")} and ${q(P["full-body"]["large-suv"], "en")}. PRO PLUS film (${proPlus.warrantyYears}-year warranty, 8.0 mil ultra-gloss) and MATTE film (5-year warranty, 8.0 mil satin) have fixed full-body prices of ${q(proPlusFullBodySedan, "en")} (sedan), ${q(proPlusFullBodySuv, "en")} (Mid SUV), and ${q(proPlusFullBodyLargeSuv, "en")} (Large SUV). PRISM colour film is priced per car. Every price includes the film, fitting at a VTEK-authorised centre in Doha, VTEK NFC e-Warranty registration and a 12-month ABK workmanship cover.`,
+          ar: `هذه أسعار التركيب الثابتة لدى ABK لفيلم VTEK Weather Armor PRO الأصلي (ضمان ${pro.warrantyYears} سنوات)، حتى ${pricesAsOf("ar")}. الواجهة الأساسية: ${q(P["front-end"].sedan, "ar")} للسيدان أو الكوبيه، و${q(P["front-end"].suv, "ar")} لسيارات SUV، و${q(P["front-end"]["large-suv"], "ar")} لسيارات SUV الكبيرة أو البيك أب. الواجهة الكاملة: ${q(P["full-front"].sedan, "ar")} و${q(P["full-front"].suv, "ar")} و${q(P["full-front"]["large-suv"], "ar")}. الهيكل بالكامل: ${q(P["full-body"].sedan, "ar")} و${q(P["full-body"].suv, "ar")} و${q(P["full-body"]["large-suv"], "ar")}. وتبلغ أسعار الهيكل الكامل الثابتة لفيلمي PRO PLUS (ضمان ${proPlus.warrantyYears} سنة، لمعان فائق 8.0 مل) وMATTE (ضمان 5 سنوات، مطفي 8.0 مل): ${q(proPlusFullBodySedan, "ar")} للسيدان، و${q(proPlusFullBodySuv, "ar")} لـ SUV المتوسطة، و${q(proPlusFullBodyLargeSuv, "ar")} لـ SUV الكبيرة. ويُسعَّر فيلم PRISM الملوّن لكل سيارة. يشمل كل سعر الفيلم والتركيب في مركز معتمد من VTEK في الدوحة وتسجيل الضمان الإلكتروني NFC وضمان تركيب من ABK لمدة 12 شهراً.`,
         },
       },
       {

@@ -92,6 +92,115 @@ export function trackPpfBooking(opts: {
 }
 
 /**
+ * Funnel Stage 1 — Quote started (user opens the PPF quote sheet or selects a
+ * vehicle / package). Tracked separately from confirmed bookings (`ppf_booking_request`).
+ */
+export function trackPpfQuoteStart(opts: {
+  body: string;
+  coverage: string;
+  film: string;
+  entryPoint?: string;
+}) {
+  if (typeof window === "undefined") return;
+  const locale = window.location.pathname.split("/")[1] || "";
+  const params = {
+    body_type: opts.body,
+    coverage: opts.coverage,
+    film: opts.film,
+    entry_point: opts.entryPoint ?? "hero_launcher",
+    locale,
+  };
+  const gtag = (window as WindowWithGtag).gtag;
+  if (typeof gtag === "function") {
+    gtag("event", "ppf_quote_start", params);
+  }
+  (window as WindowWithPlausible).plausible?.("ppf_quote_start", {
+    props: {
+      body_type: opts.body,
+      coverage: opts.coverage,
+      film: opts.film,
+      entry_point: opts.entryPoint ?? "hero_launcher",
+    },
+  });
+}
+
+/**
+ * Funnel Stage 2 — Quote completed (user reaches Step 3 with a configured
+ * vehicle, coverage, film, and calculated price). Tracked separately from
+ * WhatsApp clicks and confirmed booking requests.
+ */
+export function trackPpfQuoteComplete(opts: {
+  body: string;
+  coverage: string;
+  film: string;
+  priceQar: number | null;
+  isEstimate: boolean;
+}) {
+  if (typeof window === "undefined") return;
+  const locale = window.location.pathname.split("/")[1] || "";
+  const params = {
+    body_type: opts.body,
+    coverage: opts.coverage,
+    film: opts.film,
+    quote_type: opts.isEstimate ? "estimate" : "fixed",
+    locale,
+    ...(opts.priceQar !== null ? { value: opts.priceQar, currency: "QAR" } : {}),
+  };
+  const gtag = (window as WindowWithGtag).gtag;
+  if (typeof gtag === "function") {
+    gtag("event", "ppf_quote_complete", params);
+  }
+  (window as WindowWithPlausible).plausible?.("ppf_quote_complete", {
+    props: {
+      body_type: opts.body,
+      coverage: opts.coverage,
+      film: opts.film,
+      price_qar: opts.priceQar !== null ? String(opts.priceQar) : "custom",
+    },
+  });
+}
+
+/**
+ * Funnel Stage 3 — WhatsApp quote handoff clicked inside the PPF configurator
+ * (fast quote handoff or post-booking WhatsApp send). Tracked as a distinct
+ * funnel event (`ppf_whatsapp_handoff`) so we can separate quote handoff clicks
+ * from saved booking requests (`ppf_booking_request`).
+ */
+export function trackPpfWhatsAppHandoff(opts: {
+  body: string;
+  coverage: string;
+  film: string;
+  priceQar: number | null;
+  placement: string;
+  ref?: string;
+}) {
+  if (typeof window === "undefined") return;
+  const locale = window.location.pathname.split("/")[1] || "";
+  const params = {
+    body_type: opts.body,
+    coverage: opts.coverage,
+    film: opts.film,
+    placement: opts.placement,
+    ...(opts.ref ? { booking_ref: opts.ref } : {}),
+    locale,
+    ...(opts.priceQar !== null ? { value: opts.priceQar, currency: "QAR" } : {}),
+  };
+  const gtag = (window as WindowWithGtag).gtag;
+  if (typeof gtag === "function") {
+    gtag("event", "ppf_whatsapp_handoff", params);
+  }
+  (window as WindowWithPlausible).plausible?.("ppf_whatsapp_handoff", {
+    props: {
+      body_type: opts.body,
+      coverage: opts.coverage,
+      film: opts.film,
+      placement: opts.placement,
+    },
+  });
+}
+
+
+/**
  * Wholesale dealer application submitted on /[locale]/b2b/dealer-application.
  * Reports `dealer_enquiry` to GA4, the primary Google Ads conversion action
  * (`ABK — Wholesale Dealer Application`), and Plausible.

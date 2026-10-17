@@ -17,6 +17,7 @@
 import {
   CUSTOM_MINIMUM_QAR,
   FILMS,
+  FILM_PRESET_PRICES_QAR,
   PRESET_PRICES_QAR,
   fromPrice,
 } from "./ppfInstall";
@@ -25,8 +26,6 @@ import { formatNumber, formatQar as qar } from "@/lib/pricing";
 // Prices and warranty years in the answers below are read from ppfInstall.ts,
 // so the FAQ text (and its FAQPage JSON-LD) can never quote a stale price.
 const film = (key: string) => FILMS.find((f) => f.key === key)!;
-const pct = (n: number, l: "en" | "ar") =>
-  l === "ar" ? `${formatNumber(Math.round(n * 100), "ar")}٪` : `${Math.round(n * 100)}%`;
 const yrs = (key: string, l: "en" | "ar") =>
   l === "ar" ? formatNumber(film(key).warrantyYears, "ar") : String(film(key).warrantyYears);
 // Arabic counted noun: 3–10 take the plural (سنوات), 11 and up the singular (سنة).
@@ -36,6 +35,7 @@ const arYears = (key: string) => {
 };
 const ff = PRESET_PRICES_QAR["full-front"];
 const fb = PRESET_PRICES_QAR["full-body"];
+const fbProPlus = FILM_PRESET_PRICES_QAR["pro-plus"]["full-body"];
 
 export type FaqEntry = {
   q: { en: string; ar: string };
@@ -238,6 +238,16 @@ export const FAQ: FaqEntry[] = [
 export const PPF_INSTALL_FAQ: FaqEntry[] = [
   {
     q: {
+      en: "Where can I get full-body PPF in Qatar for QAR 5,000?",
+      ar: "أين يمكنني تركيب حماية PPF للهيكل الكامل في قطر بسعر 5,000 ريال؟",
+    },
+    a: {
+      en: `ABK Trading & Service in Doha installs full-body 12-panel VTEK Weather Armor PRO PPF (7.5 mil aliphatic TPU, ${yrs("pro", "en")}-year VTEK NFC e-Warranty + 12-month ABK fitting guarantee) at ${qar(fb.sedan, "en")} for Sedans & Coupes and ${qar(fb.suv, "en")} for Midsize SUVs & Crossovers — both under QAR 5,000. Full-size 4x4s and Large SUVs (Land Cruiser, Patrol, Defender) are ${qar(fb["large-suv"], "en")}. Because ABK is VTEK's official Qatar distributor, film is supplied directly from central stock with zero reseller markup.`,
+      ar: `توفّر شركة ABK للتجارة والخدمات في الدوحة تركيب فيلم VTEK Weather Armor PRO الأصلي للهيكل الكامل 12 قطعة (مادة TPU أليفاتية بسماكة 7.5 مل، ضمان VTEK الإلكتروني NFC لمدة ${yrs("pro", "ar")} ${arYears("pro")} + ضمان تركيب سنة من ABK) بسعر ${qar(fb.sedan, "ar")} للسيدان والكوبيه و${qar(fb.suv, "ar")} لسيارات SUV المتوسطة — وكلاهما أقل من 5,000 ريال قطري. وتبلغ تكلفة سيارات الدفع الرباعي الكبيرة (لاندكروزر، باترول، ديفندر) ${qar(fb["large-suv"], "ar")}. وبصفتنا الموزع الرسمي لـ VTEK في قطر، نوفر الفيلم مباشرة من مخزوننا المركزي دون عمولات وسطاء.`,
+    },
+  },
+  {
+    q: {
       en: "Who installs the film?",
       ar: "من يقوم بتركيب الفيلم؟",
     },
@@ -252,8 +262,8 @@ export const PPF_INSTALL_FAQ: FaqEntry[] = [
       ar: "كيف أتأكد أن الفيلم أصلي وأن التركيب يتم بشكل صحيح؟",
     },
     a: {
-      en: "ABK is VTEK's authorised distributor in Qatar and supplies the film for every job from its own stock, so it never comes from a third party. Only VTEK-authorised installers fit it; the car is photographed at drop-off, ABK inspects the finish before handover, and the VTEK warranty is registered to your car.",
-      ar: "ABK هي الموزع المعتمد لأفلام VTEK في قطر وتوفّر الفيلم لكل عملية تركيب من مخزونها مباشرة، فلا يأتي من أي طرف آخر. لا يركّبه إلا مُركّبون معتمدون من VTEK؛ وتُصوَّر السيارة عند الاستلام، وتفحص ABK النتيجة قبل التسليم، ويُسجَّل ضمان VTEK باسم سيارتك.",
+      en: "ABK is VTEK's authorised distributor in Qatar and supplies the film for every job from its own stock, so it never comes from a third party. Only VTEK-authorised installers fit it; the car is photographed at drop-off, ABK inspects the finish before handover, and the VTEK NFC e-Warranty is registered to your car on nfc.vtekfilms.com/verify.",
+      ar: "ABK هي الموزع المعتمد لأفلام VTEK في قطر وتوفّر الفيلم لكل عملية تركيب من مخزونها مباشرة، فلا يأتي من أي طرف آخر. لا يركّبه إلا مُركّبون معتمدون من VTEK؛ وتُصوَّر السيارة عند الاستلام، وتفحص ABK النتيجة قبل التسليم، ويُسجَّل ضمان VTEK الإلكتروني NFC باسم سيارتك عبر nfc.vtekfilms.com/verify.",
     },
   },
   {
@@ -262,8 +272,8 @@ export const PPF_INSTALL_FAQ: FaqEntry[] = [
       ar: "أي فيلم من VTEK أختار لحرارة قطر؟",
     },
     a: {
-      en: `Weather Armor PRO suits most daily drivers: 7.5 mil (190 µm) gloss TPU with heat-activated self-healing and a ${yrs("pro", "en")}-year VTEK warranty. PRO PLUS is an 8.0 mil (203 µm) film with VTEK's ultra-gloss finish, a hydrophobic top coat and a ${yrs("pro-plus", "en")}-year warranty, for ${pct(film("pro-plus").uplift ?? 0, "en")} more. MATTE gives a satin finish (${yrs("matte", "en")}-year warranty) and PRISM changes the colour (${yrs("prism", "en")}-year warranty).`,
-      ar: `يناسب Weather Armor PRO معظم السيارات اليومية: فيلم TPU لامع بسماكة ٧.٥ مل (١٩٠ ميكرون) مع معالجة ذاتية بالحرارة وضمان VTEK لمدة ${yrs("pro", "ar")} ${arYears("pro")}. أما PRO PLUS فبسماكة ٨.٠ مل (٢٠٣ ميكرون) مع لمعان VTEK الفائق وطبقة علوية طاردة للماء وضمان ${yrs("pro-plus", "ar")} ${arYears("pro-plus")}، بزيادة ${pct(film("pro-plus").uplift ?? 0, "ar")}. ويمنح MATTE لمسة ساتان مطفية (ضمان ${yrs("matte", "ar")} ${arYears("matte")})، بينما يغيّر PRISM لون السيارة (ضمان ${yrs("prism", "ar")} ${arYears("prism")}).`,
+      en: `Weather Armor PRO suits most daily drivers: 7.5 mil (190 µm) gloss TPU with heat-activated self-healing and a ${yrs("pro", "en")}-year VTEK warranty (full-body from ${qar(fb.sedan, "en")}). PRO PLUS is an 8.0 mil (203 µm) film with VTEK's ultra-gloss finish, a hydrophobic top coat and a ${yrs("pro-plus", "en")}-year warranty (full-body ${qar(fbProPlus.sedan, "en")} Sedan, ${qar(fbProPlus.suv, "en")} Mid SUV, ${qar(fbProPlus["large-suv"], "en")} Large SUV). MATTE gives an 8.0 mil satin finish (${yrs("matte", "en")}-year warranty) and PRISM is an 8.5 mil colour-change TPU (${yrs("prism", "en")}-year warranty).`,
+      ar: `يناسب Weather Armor PRO معظم السيارات اليومية: فيلم TPU لامع بسماكة ٧.٥ مل (١٩٠ ميكرون) مع معالجة ذاتية بالحرارة وضمان VTEK لمدة ${yrs("pro", "ar")} ${arYears("pro")} (الهيكل الكامل من ${qar(fb.sedan, "ar")}). أما PRO PLUS فبسماكة ٨.٠ مل (٢٠٣ ميكرون) مع لمعان VTEK الفائق وطبقة علوية طاردة للماء وضمان ${yrs("pro-plus", "ar")} ${arYears("pro-plus")} (الهيكل الكامل ${qar(fbProPlus.sedan, "ar")} للسيدان، و${qar(fbProPlus.suv, "ar")} لـ SUV المتوسطة، و${qar(fbProPlus["large-suv"], "ar")} لـ SUV الكبيرة). ويمنح MATTE لمسة ساتان مطفية بسماكة ٨.٠ مل (ضمان ${yrs("matte", "ar")} ${arYears("matte")})، بينما يغيّر PRISM لون السيارة بسماكة ٨.٥ مل (ضمان ${yrs("prism", "ar")} ${arYears("prism")}).`,
     },
   },
   {
@@ -312,8 +322,8 @@ export const PPF_INSTALL_FAQ: FaqEntry[] = [
       ar: "ما الفرق بين ضمان الفيلم وضمان التركيب؟",
     },
     a: {
-      en: "VTEK's warranty covers the film itself against yellowing, cracking and delamination for 5 to 15 years depending on the film. ABK's 12-month workmanship cover handles the fitting: lifting, bubbles or edges letting go.",
-      ar: "يغطي ضمان VTEK الفيلم نفسه ضد الاصفرار والتشقق والانفصال لمدة من 5 إلى 15 سنة حسب نوع الفيلم. أما ضمان التركيب من ABK لمدة 12 شهراً فيغطي جودة التركيب: انفصال الفيلم أو الفقاعات أو ارتفاع الحواف.",
+      en: "VTEK's manufacturer NFC e-Warranty covers the film itself against yellowing, bubbling, cracking, peeling and delamination for 10 years on Weather Armor PRO, 12 years on PRO PLUS, and 5 years on MATTE and PRISM (15-year ULTIMATE available by special roll order), registered to your roll UID on nfc.vtekfilms.com/verify. ABK's separate 12-month workmanship guarantee covers the fitting in Doha: edge lifting, bubbling or alignment issues.",
+      ar: "يغطي ضمان VTEK المصنعي الإلكتروني (NFC) الفيلم نفسه ضد الاصفرار والفقاعات والتشقق والتقشّر والانفصال لمدة 10 سنوات لفئة Weather Armor PRO، و12 سنة لفئة PRO PLUS، و5 سنوات لفئتي MATTE وPRISM (مع توفر فئة ULTIMATE بضمان 15 سنة بالطلب الخاص للرول)، ويُسجَّل برقم الرول عبر nfc.vtekfilms.com/verify. أما ضمان التركيب المنفصل من ABK لمدة 12 شهراً فيغطي جودة التطبيق في الدوحة: ارتفاع الحواف أو الفقاعات أو الانفصال.",
     },
   },
   {

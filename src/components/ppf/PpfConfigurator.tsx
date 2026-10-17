@@ -50,7 +50,12 @@ import {
   buildPpfBookingWhatsAppUrl,
   buildPpfCustomOfferWhatsAppUrl,
 } from "@/lib/whatsapp";
-import { trackPpfBooking } from "@/lib/analytics";
+import {
+  trackPpfBooking,
+  trackPpfQuoteComplete,
+  trackPpfQuoteStart,
+  trackPpfWhatsAppHandoff,
+} from "@/lib/analytics";
 
 type L = "en" | "ar";
 type Step = 0 | 1 | 2 | 3;
@@ -249,10 +254,10 @@ export function PpfConfigurator() {
   const [step, setStep] = useState<Step>(0);
   const [dir, setDir] = useState<1 | -1>(1);
   const [body, setBody] = useState<VehicleBodySelection | null>(null);
-  // "Front-end" is the default coverage: it matches the "from" price, so the
-  // footer shows a real price and the diagram shows its zone from the first
-  // view. Every panel on the diagram stays tappable ("Choose parts" is last).
-  const [coverage, setCoverage] = useState<CoverageKey>("front-end");
+  // Default to "full-body" so high-intent full-body buyers immediately see
+  // the complete 12-zone package and full-body pricing, while the hero pill bar
+  // lets anyone switch to Full Front or Front-End in 1 tap.
+  const [coverage, setCoverage] = useState<CoverageKey>("full-body");
   const [parts, setParts] = useState<Set<PartKey>>(new Set());
   const [film, setFilm] = useState<FilmKey>("pro");
   const [carQuery, setCarQuery] = useState("");
@@ -279,6 +284,8 @@ export function PpfConfigurator() {
   const [sending, setSending] = useState(false);
   const [result, setResult] = useState<Result | null>(null);
   const startedAt = useRef(0);
+  const quoteStartTracked = useRef(false);
+  const quoteCompleteTrackedKey = useRef("");
   const launcherRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -341,17 +348,20 @@ export function PpfConfigurator() {
     }, prefersReducedMotion() ? 0 : CLOSE_MS);
   }, [finishClose]);
 
-  // Opening pushes a history entry so a phone's Back button closes the
-  // sheet instead of leaving the page; closing from the UI pops it again.
-  // (Next.js merges native pushState into its router — see its docs on the
-  // Native History API.)
   const requestClose = useCallback(() => {
     if ((window.history.state as { ppfSheet?: boolean } | null)?.ppfSheet) window.history.back();
     else animateClose();
   }, [animateClose]);
 
   const openSheet = useCallback(
-    (preset?: VehicleBodySelection, targetStep?: Step) => {
+    (
+      preset?: VehicleBodySelection,
+      targetStep?: Step,
+      presetCoverage?: CoverageKey,
+      entryPoint = "hero_launcher",
+    ) => {
+      const nextCoverage = presetCoverage ?? coverage;
+      if (presetCoverage) setCoverage(presetCoverage);
       if (preset && !result) {
         setBody(preset);
         setDir(1);
@@ -364,11 +374,20 @@ export function PpfConfigurator() {
           setStep(1);
         }
       }
+      if (!quoteStartTracked.current) {
+        quoteStartTracked.current = true;
+        trackPpfQuoteStart({
+          body: preset ?? body ?? "unselected",
+          coverage: nextCoverage,
+          film,
+          entryPoint,
+        });
+      }
       if (open) return;
       window.history.pushState({ ppfSheet: true }, "");
       setOpen(true);
     },
-    [open, result, form.make, form.model],
+    [open, result, form.make, form.model, coverage, body, film],
   );
 
   useEffect(() => {
@@ -400,14 +419,15 @@ export function PpfConfigurator() {
       const attrCov = a.getAttribute("data-ppf-coverage");
       let attrFilm = a.getAttribute("data-ppf-film");
       if (attrFilm === "ultimate") attrFilm = "pro-plus";
-      if (isCoverage(attrCov)) setCoverage(attrCov);
+      const validCov = isCoverage(attrCov) ? attrCov : undefined;
+      if (validCov) setCoverage(validCov);
       if (isFilm(attrFilm)) setFilm(attrFilm);
       if (href === "#quote-custom") {
-        openSheet("custom", 0);
+        openSheet("custom", 0, validCov, "page_custom_link");
       } else if (isVehicleBodySelection(attrBody)) {
-        openSheet(attrBody, isFilm(attrFilm) ? 2 : 1);
+        openSheet(attrBody, isFilm(attrFilm) ? 2 : 1, validCov, "price_table_cell");
       } else {
-        openSheet();
+        openSheet(undefined, undefined, validCov, "page_anchor");
       }
     };
     document.addEventListener("click", onClick);
@@ -720,12 +740,29 @@ export function PpfConfigurator() {
     setDir(-1);
     setStep(0);
     startedAt.current = Date.now();
+    quoteStartTracked.current = false;
+    quoteCompleteTrackedKey.current = "";
   }
 
-  // Before a coverage is chosen the footer shows the entry price instead of a dash.
+  // Track Funnel Stage 2 (Quote Completed) when customer reaches Step 3 with a configured quote
+  useEffect(() => {
+    if (!open || step !== 3 || !body || result) return;
+    const key = `${body}|${coverage}|${film}|${quote.priceQar ?? "custom"}`;
+    if (quoteCompleteTrackedKey.current === key) return;
+    quoteCompleteTrackedKey.current = key;
+    trackPpfQuoteComplete({
+      body,
+      coverage,
+      film,
+      priceQar: quote.priceQar,
+      isEstimate: quote.isEstimate,
+    });
+  }, [open, step, body, coverage, film, quote.priceQar, quote.isEstimate, result]);
+
+  // Before a vehicle is chosen, the footer shows the entry price for the active coverage preset.
   const entryPrice = quotePpf({
     body: body && body !== "custom" ? body : "sedan",
-    coverage: "front-end",
+    coverage: coverage === "custom" ? "full-body" : coverage,
     parts: [],
     film: "pro",
   }).priceQar!;
@@ -795,15 +832,15 @@ export function PpfConfigurator() {
   const fastOfferWhatsAppHref = buildPpfCustomOfferWhatsAppUrl({
     locale,
     vehicle: fullCarName || carQuery.trim() || bodyLabel || undefined,
-    coverage: step >= 1 ? coverageInfo.name[locale] : undefined,
-    parts: step >= 1 ? partNames : undefined,
-    film: step >= 2 ? filmInfo.name[locale] : undefined,
-    priceRange:
-      step >= 1
-        ? quote.priceQar !== null
-          ? qar(quote.priceQar)
-          : rangeText
+    coverage: coverageInfo.name[locale],
+    parts: partNames,
+    film: filmInfo.name[locale],
+    warrantyYears: filmInfo.warrantyYears,
+    fixedPrice:
+      body && body !== "custom" && quote.priceQar !== null
+        ? `${quote.isEstimate ? (locale === "ar" ? "تقديري " : "Est. ") : ""}${qar(quote.priceQar)}`
         : undefined,
+    priceRange: body === "custom" ? rangeText : undefined,
   });
 
   const startedQuote = body !== null && !result;
@@ -887,7 +924,8 @@ export function PpfConfigurator() {
               <ul className="divide-y divide-(--color-border-soft)">
                 {matchedCars.map((entry) => {
                   const cat = BODY_TYPES.find((b) => b.key === entry.body)!;
-                  const from = quotePpf({ body: entry.body, coverage: "front-end", parts: [], film: "pro" }).priceQar!;
+                  const fullBodyFrom = quotePpf({ body: entry.body, coverage: "full-body", parts: [], film: "pro" }).priceQar!;
+                  const frontEndFrom = quotePpf({ body: entry.body, coverage: "front-end", parts: [], film: "pro" }).priceQar!;
                   return (
                     <li key={entry.id}>
                       <button
@@ -904,8 +942,12 @@ export function PpfConfigurator() {
                           </span>
                         </span>
                         <span className="shrink-0 text-end">
-                          <span className="block text-caption text-(--color-text-muted)">{t("from")}</span>
-                          <span className="block text-footnote font-semibold tabular-nums">{qar(from)}</span>
+                          <span className="block text-caption font-semibold tabular-nums text-(--color-text)">
+                            {locale === "ar" ? `كامل: ${qar(fullBodyFrom)}` : `Full body: ${qar(fullBodyFrom)}`}
+                          </span>
+                          <span className="block text-[11px] tabular-nums text-(--color-text-muted)">
+                            {locale === "ar" ? `واجهة من ${qar(frontEndFrom)}` : `Front-end: ${qar(frontEndFrom)}`}
+                          </span>
                         </span>
                       </button>
                     </li>
@@ -942,23 +984,96 @@ export function PpfConfigurator() {
       ? `${t("launchResume")}${quote.priceQar !== null ? ` · ${qar(quote.priceQar)}` : rangeText ? ` · ${rangeText}` : ""}`
       : t("launchStart");
 
+  const heroPackages: Array<{
+    key: Exclude<CoverageKey, "custom">;
+    label: string;
+    sub: string;
+    badge?: string;
+  }> = [
+    {
+      key: "full-body",
+      label: locale === "ar" ? "الهيكل بالكامل (١٢ قطعة)" : "Full Body (All 12 Panels)",
+      sub: locale === "ar" ? `من ${qar(3999)}` : `From ${qar(3999)}`,
+      badge: locale === "ar" ? "أفضل قيمة" : "Best Value",
+    },
+    {
+      key: "full-front",
+      label: locale === "ar" ? "الواجهة الكاملة" : "Full Front",
+      sub: locale === "ar" ? `من ${qar(1599)}` : `From ${qar(1599)}`,
+    },
+    {
+      key: "front-end",
+      label: locale === "ar" ? "الواجهة الأساسية (جزئي)" : "Front-End Partial",
+      sub: locale === "ar" ? `من ${qar(899)}` : `From ${qar(899)}`,
+    },
+  ];
+
   const launcher = (
     <div ref={launcherRef} className="rounded-hero bg-(--color-surface) p-4 text-(--color-text) sm:p-5">
-      <p className="px-2 text-footnote font-semibold">{t("bodyTitle")}</p>
+      {/* Compact Package Comparison & 1-Tap Preselector */}
+      <div className="mb-3 rounded-xl border border-(--color-border-soft) bg-(--color-bg) p-2">
+        <div className="flex items-center justify-between gap-2 px-1.5 pb-1.5">
+          <span className="text-[11px] font-semibold tracking-wide text-(--color-text-muted) uppercase">
+            {locale === "ar" ? "١. اختر الباقة للمقارنة الفورية" : "1. Compare package prices (PRO 10-Yr TPU)"}
+          </span>
+          <a href="#prices" className="text-[11px] font-semibold text-(--color-link) hover:underline">
+            {locale === "ar" ? "جدول الأسعار الكامل ←" : "Full price table →"}
+          </a>
+        </div>
+        <div role="radiogroup" aria-label={t("packagesTitle")} className="grid grid-cols-3 gap-1.5">
+          {heroPackages.map((pkg) => {
+            const active = coverage === pkg.key;
+            return (
+              <button
+                key={pkg.key}
+                type="button"
+                role="radio"
+                aria-checked={active}
+                onClick={() => setCoverage(pkg.key)}
+                className={`flex flex-col items-start justify-between rounded-lg border px-2.5 py-2 text-start transition-all ${
+                  active
+                    ? "border-(--color-brand) bg-(--color-brand)/18 text-(--color-ink) shadow-[inset_0_0_0_1px_var(--color-brand)]"
+                    : "border-(--color-border-soft) bg-(--color-surface) text-(--color-text-muted) hover:border-(--color-text-subtle) hover:text-(--color-text)"
+                }`}
+              >
+                <span className="flex w-full flex-wrap items-center justify-between gap-1">
+                  <span className="text-[11px] font-semibold leading-tight text-(--color-text)">
+                    {pkg.label}
+                  </span>
+                  {pkg.badge ? (
+                    <span className="rounded-pill bg-(--color-brand) px-1.5 py-0.5 text-[9px] font-bold text-(--color-ink)">
+                      {pkg.badge}
+                    </span>
+                  ) : null}
+                </span>
+                <span className="mt-1 text-caption font-bold tabular-nums text-(--color-brand-deep)">
+                  {pkg.sub}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
-      <div className="mt-2.5 px-1">
+      <p className="px-2 text-footnote font-semibold">
+        {locale === "ar" ? "٢. اختر حجم سيارتك أو ابحث بالنوع والطراز" : `2. ${t("bodyTitle")}`}
+      </p>
+
+      <div className="mt-2 px-1">
         {renderCarSearchBox("ppf-hero-car-search")}
       </div>
 
       <ul className="mt-2 divide-y divide-(--color-border-soft)">
         {BODY_TYPES.map((b) => {
-          const from = quotePpf({ body: b.key, coverage: "front-end", parts: [], film: "pro" }).priceQar!;
+          const fullBodyPrice = quotePpf({ body: b.key, coverage: "full-body", parts: [], film: "pro" }).priceQar!;
+          const frontEndPrice = quotePpf({ body: b.key, coverage: "front-end", parts: [], film: "pro" }).priceQar!;
+          const fullFrontPrice = quotePpf({ body: b.key, coverage: "full-front", parts: [], film: "pro" }).priceQar!;
           const isSelectedTier = body === b.key && Boolean(shortCarName);
           return (
             <li key={b.key}>
               <button
                 type="button"
-                onClick={() => openSheet(b.key)}
+                onClick={() => openSheet(b.key, undefined, coverage, "hero_vehicle_row")}
                 className="group flex min-h-16 w-full items-center gap-3 rounded-xl px-2 py-2.5 text-start transition-colors duration-150 hover:bg-(--color-bg) focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-(--color-brand-deep) active:bg-(--color-fill)"
               >
                 <span className="flex h-10 w-14 shrink-0 items-center justify-center text-(--color-text-muted) transition-colors duration-150 group-hover:text-(--color-text) rtl:-scale-x-100">
@@ -976,8 +1091,18 @@ export function PpfConfigurator() {
                   <span className="mt-0.5 block text-caption text-(--color-text-muted)">{b.examples[locale]}</span>
                 </span>
                 <span className="shrink-0 text-end leading-tight">
-                  <span className="block text-caption text-(--color-text-muted)">{t("from")}</span>
-                  <span className="block text-footnote font-semibold tabular-nums">{qar(from)}</span>
+                  <span className="inline-flex items-center gap-1 rounded-md bg-(--color-brand)/18 px-2 py-0.5 text-caption font-bold tabular-nums text-(--color-ink)">
+                    {locale === "ar" ? `كامل: ${qar(fullBodyPrice)}` : `Full body: ${qar(fullBodyPrice)}`}
+                  </span>
+                  <span className="mt-1 block text-[11px] tabular-nums text-(--color-text-muted)">
+                    {coverage === "full-front"
+                      ? locale === "ar"
+                        ? `واجهة كاملة: ${qar(fullFrontPrice)}`
+                        : `Full front: ${qar(fullFrontPrice)}`
+                      : locale === "ar"
+                        ? `واجهة جزئية: ${qar(frontEndPrice)}`
+                        : `Front-end: ${qar(frontEndPrice)}`}
+                  </span>
                 </span>
                 <ChevronIcon className="hidden h-3.5 w-3.5 shrink-0 text-(--color-text-subtle) transition-transform duration-150 group-hover:translate-x-0.5 sm:block rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
               </button>
@@ -989,7 +1114,7 @@ export function PpfConfigurator() {
         <li>
           <button
             type="button"
-            onClick={() => openSheet("custom", 0)}
+            onClick={() => openSheet("custom", 0, coverage, "hero_custom_row")}
             className="group flex min-h-16 w-full items-center gap-3 rounded-xl px-2 py-2.5 text-start transition-colors duration-150 hover:bg-(--color-bg) focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-(--color-brand-deep) active:bg-(--color-fill)"
           >
             <span className="flex h-10 w-14 shrink-0 items-center justify-center text-(--color-brand-deep) transition-colors duration-150">
@@ -1021,7 +1146,7 @@ export function PpfConfigurator() {
       <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
         <button
           type="button"
-          onClick={() => openSheet()}
+          onClick={() => openSheet(undefined, undefined, coverage, "hero_primary_cta")}
           className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-pill bg-(--color-brand) px-7 text-body font-semibold text-(--color-ink) transition-[background-color,transform] duration-150 hover:bg-(--color-brand-hover) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand-deep) active:scale-[0.98] sm:w-auto"
         >
           {ctaLabel}
@@ -1033,6 +1158,26 @@ export function PpfConfigurator() {
         >
           {t("launchPrices")}
         </a>
+      </div>
+
+      {/* Visible credentials & warranty evidence right inside the hero launcher */}
+      <div className="mt-3.5 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-(--color-border-soft) pt-3 text-[11px] text-(--color-text-muted)">
+        <span className="inline-flex items-center gap-1 font-medium text-(--color-text)">
+          <CheckIcon className="h-3.5 w-3.5 text-(--color-brand-deep)" />
+          {locale === "ar" ? "الموزع الحصري لـ VTEK في قطر" : "Official Qatar VTEK Distributor"}
+        </span>
+        <span>·</span>
+        <span>
+          {locale === "ar"
+            ? "ضمان إلكتروني 5–12 سنة (nfc.vtekfilms.com)"
+            : "5–12 Yr VTEK NFC e-Warranty"}
+        </span>
+        <span>·</span>
+        <span>
+          {locale === "ar"
+            ? "ضمان تركيب 12 شهراً من ABK"
+            : "12-Mo ABK Fitting Guarantee"}
+        </span>
       </div>
     </div>
   );
@@ -1051,7 +1196,7 @@ export function PpfConfigurator() {
         ? BODY_TYPES.find((b) => b.key === detectedFromCustomForm.body)
         : null;
       const detectedFromPrice = detectedFromCustomForm
-        ? quotePpf({ body: detectedFromCustomForm.body, coverage: "front-end", parts: [], film: "pro" }).priceQar!
+        ? quotePpf({ body: detectedFromCustomForm.body, coverage: "full-body", parts: [], film: "pro" }).priceQar!
         : null;
 
       return (
@@ -1065,7 +1210,8 @@ export function PpfConfigurator() {
           <div role="radiogroup" aria-label={t("bodyTitle")} className="mt-4 grid gap-2.5 sm:grid-cols-3 sm:gap-3">
             {BODY_TYPES.map((b) => {
               const active = body === b.key;
-              const from = quotePpf({ body: b.key, coverage: "front-end", parts: [], film: "pro" }).priceQar!;
+              const fullBodyP = quotePpf({ body: b.key, coverage: "full-body", parts: [], film: "pro" }).priceQar!;
+              const frontEndP = quotePpf({ body: b.key, coverage: "front-end", parts: [], film: "pro" }).priceQar!;
               return (
                 <button
                   key={b.key}
@@ -1092,8 +1238,11 @@ export function PpfConfigurator() {
                       ) : null}
                     </span>
                     <span className="mt-0.5 block text-caption text-(--color-text-muted)">{b.examples[locale]}</span>
-                    <span className="mt-1 block text-footnote font-semibold tabular-nums">
-                      {t("priceFrom", { price: qar(from) })}
+                    <span className="mt-1.5 block text-footnote font-bold tabular-nums text-(--color-text)">
+                      {locale === "ar" ? `الهيكل بالكامل: ${qar(fullBodyP)}` : `Full body: ${qar(fullBodyP)}`}
+                    </span>
+                    <span className="mt-0.5 block text-caption tabular-nums text-(--color-text-muted)">
+                      {locale === "ar" ? `الواجهة من ${qar(frontEndP)}` : `Front-end from ${qar(frontEndP)}`}
                     </span>
                   </span>
                   <ChevronIcon className="h-3.5 w-3.5 shrink-0 text-(--color-text-subtle) rtl:-scale-x-100 sm:hidden" />
@@ -1215,7 +1364,7 @@ export function PpfConfigurator() {
                       {t("customCarAutoDetected", {
                         car: `${detectedFromCustomForm.make[locale]} ${detectedFromCustomForm.model[locale]}`,
                         category: detectedCat.name[locale],
-                        price: t("priceFrom", { price: qar(detectedFromPrice) }),
+                        price: locale === "ar" ? `كامل ${qar(detectedFromPrice)}` : `Full body ${qar(detectedFromPrice)}`,
                       })}
                     </p>
                     <button
@@ -1237,6 +1386,15 @@ export function PpfConfigurator() {
                     target="_blank"
                     rel="noopener noreferrer"
                     data-placement="ppf_custom_offer_fast"
+                    onClick={() =>
+                      trackPpfWhatsAppHandoff({
+                        body: body ?? "custom",
+                        coverage,
+                        film,
+                        priceQar: quote.priceQar,
+                        placement: "ppf_custom_offer_fast",
+                      })
+                    }
                     className={`plausible-event-name=whatsapp_click plausible-event-audience=b2c ${buttonClasses("secondary", "sm")}`}
                   >
                     <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
@@ -1294,6 +1452,7 @@ export function PpfConfigurator() {
             <div role="radiogroup" aria-label={t("packagesTitle")} className="grid gap-2">
               {COVERAGES.map((c) => {
                 const active = coverage === c.key;
+                const isBestValue = c.key === "full-body";
                 const isPopular = c.key === "full-front";
                 const p =
                   c.key === "custom"
@@ -1317,7 +1476,11 @@ export function PpfConfigurator() {
                     <span className="min-w-0 flex-1">
                       <span className="flex flex-wrap items-center justify-between gap-1">
                         <span className="text-footnote font-semibold leading-tight">{c.name[locale]}</span>
-                        {isPopular ? (
+                        {isBestValue ? (
+                          <span className="rounded-pill bg-(--color-brand) px-2 py-0.5 text-[10px] font-bold text-(--color-ink)">
+                            {locale === "ar" ? "أفضل قيمة · ١٢ قطعة" : "Best value · 12 panels"}
+                          </span>
+                        ) : isPopular ? (
                           <span className="rounded-pill bg-(--color-brand)/20 px-2 py-0.5 text-[10px] font-bold text-(--color-brand-deep)">
                             {t("popularBadge")}
                           </span>
@@ -1415,6 +1578,15 @@ export function PpfConfigurator() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-placement="ppf_custom_offer_step1"
+                onClick={() =>
+                  trackPpfWhatsAppHandoff({
+                    body,
+                    coverage,
+                    film,
+                    priceQar: quote.priceQar,
+                    placement: "ppf_custom_offer_step1",
+                  })
+                }
                 className={`plausible-event-name=whatsapp_click plausible-event-audience=b2c ${buttonClasses("secondary", "sm")}`}
               >
                 <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
@@ -1520,6 +1692,15 @@ export function PpfConfigurator() {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-placement="ppf_custom_offer_step2"
+                onClick={() =>
+                  trackPpfWhatsAppHandoff({
+                    body,
+                    coverage,
+                    film,
+                    priceQar: quote.priceQar,
+                    placement: "ppf_custom_offer_step2",
+                  })
+                }
                 className={`plausible-event-name=whatsapp_click plausible-event-audience=b2c ${buttonClasses("secondary", "sm")}`}
               >
                 <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
@@ -1565,11 +1746,48 @@ export function PpfConfigurator() {
               target="_blank"
               rel="noopener noreferrer"
               data-placement="ppf_custom_offer_step3"
+              onClick={() =>
+                trackPpfWhatsAppHandoff({
+                  body: body ?? "unselected",
+                  coverage,
+                  film,
+                  priceQar: quote.priceQar,
+                  placement: "ppf_custom_offer_step3",
+                })
+              }
               className={`plausible-event-name=whatsapp_click plausible-event-audience=b2c ${buttonClasses("secondary", "sm")}`}
             >
               <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
               {body === "custom" ? t("customOfferFastCta") : t("directWhatsAppCta")}
             </a>
+          </div>
+
+          {/* Decision-point credentials, warranty & booking terms summary */}
+          <div className="mt-3 rounded-xl border border-(--color-border-soft) bg-(--color-surface) p-3.5 text-caption text-(--color-text-muted)">
+            <div className="grid gap-2 sm:grid-cols-2">
+              <div className="flex items-start gap-2">
+                <CheckIcon className="mt-0.5 h-3.5 w-3.5 shrink-0 text-(--color-brand-deep)" />
+                <span>
+                  <strong className="font-semibold text-(--color-text)">
+                    {locale === "ar" ? "الضمان والاعتماد: " : "Dual written warranty: "}
+                  </strong>
+                  {locale === "ar"
+                    ? `ضمان VTEK الإلكتروني لمدة ${formatNumber(filmInfo.warrantyYears, "ar")} ${filmInfo.warrantyYears >= 3 && filmInfo.warrantyYears <= 10 ? "سنوات" : "سنة"} + ضمان تركيب ١٢ شهراً من ABK.`
+                    : `${filmInfo.warrantyYears}-year VTEK NFC e-Warranty + 12-month ABK fitting guarantee.`}
+                </span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckIcon className="mt-0.5 h-3.5 w-3.5 shrink-0 text-(--color-brand-deep)" />
+                <span>
+                  <strong className="font-semibold text-(--color-text)">
+                    {locale === "ar" ? "شروط الحجز والدفع: " : "Booking & cancellation: "}
+                  </strong>
+                  {locale === "ar"
+                    ? "تأكيد الموعد عبر واتساب خلال ساعات العمل · الدفع بعد تأكيد الموعد · إلغاء مجاني حتى ٤٨ ساعة قبل الموعد."
+                    : "Slot confirmed on WhatsApp during business hours · Pay after slot confirmation · Free cancellation up to 48h prior."}
+                </span>
+              </div>
+            </div>
           </div>
 
           {submitted && FORM_FIELDS.some((k) => errorFor(k)) ? (
@@ -1707,7 +1925,7 @@ export function PpfConfigurator() {
           {result.saved ? (
             <path d="M25 41 L35 51 L56 30" fill="none" stroke="var(--color-brand-deep)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="ppf-draw" style={{ ["--len" as string]: 46, animationDelay: "350ms" }} />
           ) : (
-            <path d="M40 24 V44 M40 54 V56" fill="none" stroke="var(--color-text)" strokeWidth="5" strokeLinecap="round" className="ppf-draw" style={{ ["--len" as string]: 34, animationDelay: "350ms" }} />
+            <path d="M40 24 V44 M40 54 V56" fill="none" stroke="var(--color-text)" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" className="ppf-draw" style={{ ["--len" as string]: 34, animationDelay: "350ms" }} />
           )}
         </svg>
       </div>
@@ -1851,6 +2069,16 @@ export function PpfConfigurator() {
                 data-placement="ppf_booking"
                 data-conversion-value={quote.priceQar ?? undefined}
                 data-conversion-currency="QAR"
+                onClick={() =>
+                  trackPpfWhatsAppHandoff({
+                    body: body ?? "unselected",
+                    coverage,
+                    film,
+                    priceQar: quote.priceQar,
+                    placement: "ppf_booking_confirmed",
+                    ref: result.ref,
+                  })
+                }
                 className={`plausible-event-name=whatsapp_click plausible-event-audience=b2c w-full ${buttonClasses("primary", "lg")}`}
               >
                 <WhatsAppIcon className="h-5 w-5" />

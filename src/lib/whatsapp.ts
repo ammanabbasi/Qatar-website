@@ -389,17 +389,60 @@ export type PpfCustomOfferMessageContext = {
   coverage?: string;
   parts?: string[];
   film?: string;
+  warrantyYears?: number;
+  fixedPrice?: string;
   priceRange?: string;
 };
 
 /**
- * Quick custom-offer WhatsApp message when a customer enters their car's
- * make & model (or isn't sure which size category their car belongs to).
+ * Quick WhatsApp handoff message from the PPF configurator:
+ * - When `fixedPrice` is present (customer selected Sedan / Mid SUV / Large SUV),
+ *   it sends the exact configured package, film warranty, and quoted QAR price
+ *   to confirm the installation slot.
+ * - When `fixedPrice` is absent (`body === "custom"`), it requests a tailored
+ *   offer for their Make & Model with the guide price range.
  */
 export function buildPpfCustomOfferWhatsAppMessage(c: PpfCustomOfferMessageContext): string {
   const ar = c.locale === "ar";
   const rlm = ar ? "‏" : "";
   const carText = c.vehicle?.trim() || (ar ? "يرجى تحديد نوع وطراز السيارة" : "please see my car details");
+  const warrantyNote = c.warrantyYears
+    ? ar
+      ? ` (ضمان VTEK لمدة ${formatNumber(c.warrantyYears, "ar")} ${c.warrantyYears >= 3 && c.warrantyYears <= 10 ? "سنوات" : "سنة"})`
+      : ` (${c.warrantyYears}-year VTEK e-warranty)`
+    : "";
+
+  if (c.fixedPrice) {
+    if (ar) {
+      const lines = [
+        `السلام عليكم ABK، أود تأكيد عرض السعر وحجز تركيب فيلم حماية الطلاء (PPF):`,
+        "",
+        `${rlm}• السيارة: ${carText}`,
+        ...(c.coverage
+          ? [`${rlm}• التغطية: ${c.coverage}${c.parts?.length ? ` — ${c.parts.join("، ")}` : ""}`]
+          : []),
+        ...(c.film ? [`${rlm}• الفيلم: ${c.film}${warrantyNote}`] : []),
+        `${rlm}• السعر شامل التركيب: ${c.fixedPrice} (شامل ضمان التركيب ١٢ شهراً من ABK)`,
+        "",
+        "يرجى تأكيد أقرب موعد متاح وتفاصيل الدفع. شكراً لكم!",
+      ];
+      return lines.join("\n");
+    }
+
+    const lines = [
+      `Hi ABK, I'd like to confirm this PPF installation quote and book a slot:`,
+      "",
+      `• Car: ${carText}`,
+      ...(c.coverage
+        ? [`• Coverage: ${c.coverage}${c.parts?.length ? ` — ${c.parts.join(", ")}` : ""}`]
+        : []),
+      ...(c.film ? [`• Film: ${c.film}${warrantyNote}`] : []),
+      `• Quoted installed price: ${c.fixedPrice} (incl. 12-month ABK fitting guarantee)`,
+      "",
+      "Please confirm the earliest available installation slot and payment details. Thank you!",
+    ];
+    return lines.join("\n");
+  }
 
   if (ar) {
     const lines = [
@@ -409,7 +452,7 @@ export function buildPpfCustomOfferWhatsAppMessage(c: PpfCustomOfferMessageConte
       ...(c.coverage
         ? [`${rlm}• التغطية المطلوبة: ${c.coverage}${c.parts?.length ? ` — ${c.parts.join("، ")}` : ""}`]
         : []),
-      ...(c.film ? [`${rlm}• الفيلم: ${c.film}`] : []),
+      ...(c.film ? [`${rlm}• الفيلم: ${c.film}${warrantyNote}`] : []),
       ...(c.priceRange ? [`${rlm}• النطاق السعري الاسترشادي: ${c.priceRange}`] : []),
       "",
       "يرجى إفادتي بالفئة المناسبة لسيارتي وتزويدي بالعرض النهائي. شكراً لكم!",
@@ -424,7 +467,7 @@ export function buildPpfCustomOfferWhatsAppMessage(c: PpfCustomOfferMessageConte
     ...(c.coverage
       ? [`• Coverage: ${c.coverage}${c.parts?.length ? ` — ${c.parts.join(", ")}` : ""}`]
       : []),
-    ...(c.film ? [`• Film: ${c.film}`] : []),
+    ...(c.film ? [`• Film: ${c.film}${warrantyNote}`] : []),
     ...(c.priceRange ? [`• Guide price range: ${c.priceRange}`] : []),
     "",
     "Could you confirm which category my car falls under and send me a custom offer? Thank you!",
