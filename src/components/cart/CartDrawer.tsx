@@ -328,7 +328,7 @@ function QuoteDrawer({ titleId, onClose }: { titleId: string; onClose: () => voi
     items: lines.map((l) => ({
       name: l.product.name[locale],
       quantity: l.qty,
-      url: `${SITE.url}/${locale}/b2b/products/${l.slug}`,
+      url: `${SITE.url}/${locale}/b2c/products/${l.slug}`,
     })),
     locale,
     companyName,

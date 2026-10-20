@@ -47,7 +47,28 @@ const nextConfig: NextConfig = {
     ];
   },
   async redirects() {
+    // Every rule below lands on its FINAL URL in one hop. Googlebot follows a
+    // chain, but each extra hop costs crawl budget and dilutes the signal, and
+    // the old rules produced two-hop chains (b2b → b2c/ with a trailing slash →
+    // b2c, and localeless → locale redirect by the next-intl middleware).
     return [
+      // The bare domain is the URL everyone links to (Google Business Profile,
+      // ads, cards, citations). next-intl answers it with a 307, which Google
+      // treats as temporary, so the canonical signal never settles on /en. Send
+      // everyone permanently to /en EXCEPT visitors who asked for Arabic (header
+      // or the NEXT_LOCALE cookie the language switch sets): those fall through
+      // to the middleware, which still negotiates /ar. `missing` items must ALL
+      // fail to match for the redirect to apply, so a crawler with no
+      // Accept-Language header gets the 308.
+      {
+        source: "/",
+        missing: [
+          { type: "header", key: "accept-language", value: ".*\\b[aA][rR]\\b.*" },
+          { type: "cookie", key: "NEXT_LOCALE", value: "ar" },
+        ],
+        destination: "/en",
+        permanent: true,
+      },
       // The B2C home moved from /{locale}/b2c to the locale root. 308
       // (permanent) so Google transfers any signals the old URL collected.
       // Config redirects run BEFORE the next-intl middleware, so this fires
@@ -58,15 +79,51 @@ const nextConfig: NextConfig = {
         destination: "/:locale",
         permanent: true,
       },
-      // Unified catalogue: redirect B2B wholesale routes to the main offerings catalogue
+      // Legacy Vertek PPF & Window Tint URLs → the VTEK product routes. These
+      // come BEFORE the generic b2b rules so a legacy /b2b/ URL is one hop, not
+      // two. Destination is always the b2c route (b2b product pages are gone).
       {
-        source: "/:locale(en|ar)/b2b/products/:slug*",
-        destination: "/:locale/b2c/products/:slug*",
+        source: "/:locale(en|ar)/:audience(b2c|b2b)/products/vertek-ppf-weather-armor",
+        destination: "/:locale/b2c/products/vtek-ppf-weather-armor-ultimate",
         permanent: true,
       },
       {
-        source: "/b2b/products/:slug*",
-        destination: "/b2c/products/:slug*",
+        source: "/:audience(b2c|b2b)/products/vertek-ppf-weather-armor",
+        destination: "/en/b2c/products/vtek-ppf-weather-armor-ultimate",
+        permanent: true,
+      },
+      {
+        source: "/:locale(en|ar)/:audience(b2c|b2b)/products/vertek-window-tints",
+        destination: "/:locale/b2c/products/vtek-window-tints",
+        permanent: true,
+      },
+      {
+        source: "/:audience(b2c|b2b)/products/vertek-window-tints",
+        destination: "/en/b2c/products/vtek-window-tints",
+        permanent: true,
+      },
+      // Unified catalogue: redirect B2B wholesale routes to the main offerings
+      // catalogue. `:slug+` (one or more) for detail pages and a separate exact
+      // rule for the listing: with `:slug*` an empty slug produced
+      // `/b2c/products/` and Next then 308'd again to drop the trailing slash.
+      {
+        source: "/:locale(en|ar)/b2b/products/:slug+",
+        destination: "/:locale/b2c/products/:slug+",
+        permanent: true,
+      },
+      {
+        source: "/:locale(en|ar)/b2b/products",
+        destination: "/:locale/b2c/products",
+        permanent: true,
+      },
+      {
+        source: "/b2b/products/:slug+",
+        destination: "/en/b2c/products/:slug+",
+        permanent: true,
+      },
+      {
+        source: "/b2b/products",
+        destination: "/en/b2c/products",
         permanent: true,
       },
       {
@@ -76,7 +133,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/b2b",
-        destination: "/b2c/products",
+        destination: "/en/b2c/products",
         permanent: true,
       },
       // /b2c/services was live and indexed before the services offering was
@@ -89,28 +146,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/b2c/services",
-        destination: "/b2c/products",
-        permanent: true,
-      },
-      // Legacy Vertek PPF & Window Tint redirects to new VTEK product routes
-      {
-        source: "/:locale(en|ar)/:audience(b2c|b2b)/products/vertek-ppf-weather-armor",
-        destination: "/:locale/:audience/products/vtek-ppf-weather-armor-ultimate",
-        permanent: true,
-      },
-      {
-        source: "/:audience(b2c|b2b)/products/vertek-ppf-weather-armor",
-        destination: "/:audience/products/vtek-ppf-weather-armor-ultimate",
-        permanent: true,
-      },
-      {
-        source: "/:locale(en|ar)/:audience(b2c|b2b)/products/vertek-window-tints",
-        destination: "/:locale/:audience/products/vtek-window-tints",
-        permanent: true,
-      },
-      {
-        source: "/:audience(b2c|b2b)/products/vertek-window-tints",
-        destination: "/:audience/products/vtek-window-tints",
+        destination: "/en/b2c/products",
         permanent: true,
       },
     ];
