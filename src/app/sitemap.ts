@@ -19,7 +19,9 @@ import { routing } from "@/i18n/routing";
 //             (the /b2c/cart checkout page is noindex and deliberately absent).
 // 2026-10-17: removed 308-redirecting /b2b and /b2b/products URLs; added
 //             dedicated SSG category and brand landing pages.
-const STATIC_PAGES_UPDATED_AT = "2026-10-17";
+// 2026-10-20: every title and meta description rewritten to fit the SERP;
+//             warranty copy reconciled (5-12 years by film).
+const STATIC_PAGES_UPDATED_AT = "2026-10-20";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE.url;

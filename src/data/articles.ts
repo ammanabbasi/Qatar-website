@@ -134,6 +134,7 @@ export const ARTICLES: Article[] = [
       ar: `أسعار فيلم حماية الطلاء في قطر لعام 2026: تركيب فيلم VTEK من ${q(fromPrice("front-end"), "ar")} للواجهة الأساسية و${q(fromPrice("full-front"), "ar")} للواجهة الكاملة و${q(fromPrice("full-body"), "ar")} للهيكل بالكامل — ما الذي يحدد التكلفة وكيف تقارن العروض في الدوحة.`,
     },
     date: "2026-10-02",
+    updated: "2026-10-20",
     readingTime: 5,
     category: "buying-guide",
     keywords: {
@@ -1061,6 +1062,7 @@ export const ARTICLES: Article[] = [
       ar: "كيف تقيّم مراكز تركيب أفلام الحماية في الدوحة: كبائن العمل المعزولة، لف الحواف، ضمان مادة TPU الأليفاتية، ومقارنة أسعار التركيب في قطر لعام 2026.",
     },
     date: "2026-10-04",
+    updated: "2026-10-20",
     readingTime: 6,
     category: "buying-guide",
     keywords: {
@@ -1114,8 +1116,8 @@ export const ARTICLES: Article[] = [
           ar: "الضمانات المكتوبة: ضمان خامة الفيلم مقابل ضمان جودة التركيب",
         },
         body: {
-          en: "A verbal warranty in the car care industry is unenforceable. When comparing installers, demand two separate written guarantees. First, the manufacturer film warranty: VTEK provides an NFC e-Warranty registered to your car (10 years on Weather Armor PRO, 12 on PRO PLUS, 5 on MATTE and PRISM) against yellowing, cracking, bubbling, or delamination. Second, an explicit installer workmanship guarantee. ABK backs every installation with its own 12-month workmanship cover: if an edge lifts, a corner peels, or a bubble develops from slip-solution trapping, ABK corrects it at zero cost. Every drop-off includes photographic intake documentation and an exhaustive handover inspection.",
-          ar: "الضمان الشفهي في قطاع العناية بالسيارات لا قيمة له عند حدوث مشكلة. عند مقارنة المراكز، اطلب ضمانين كتابيين منفصلين: الأول هو ضمان المصنع لخامة الفيلم؛ وتوفر VTEK ضماناً إلكترونياً NFC مسجلاً باسم سيارتك (10 سنوات لفيلم PRO و12 لـ PRO PLUS و5 لـ MATTE وPRISM) ضد الاصفرار والتشقق والفقاعات والانفصال. والضمان الثاني هو ضمان جودة التركيب؛ حيث تدعم ABK كل عملية تركيب بضمان تركيب خاص لمدة 12 شهراً: إذا ارتفعت أي حافة أو ظهرت فقاعة يعالجها المركز مجاناً. وتتضمن كل عملية تسليم توثيقاً فوتوغرافياً شاملاً لحالة السيارة عند الاستلام والتسليم.",
+          en: "A verbal warranty in the car care industry is unenforceable. When comparing installers, demand two separate written guarantees. First, the manufacturer film warranty: VTEK provides an NFC e-Warranty registered to your car (10 years on Weather Armor PRO, 12 on PRO PLUS, 5 on MATTE and PRISM) against defects such as bubbling, cracking, peeling and fading. Second, an explicit installer workmanship guarantee. ABK backs every installation with its own 12-month workmanship cover: if an edge lifts, a corner peels, or a bubble develops from slip-solution trapping, ABK corrects it at zero cost. Every drop-off includes photographic intake documentation and an exhaustive handover inspection.",
+          ar: "الضمان الشفهي في قطاع العناية بالسيارات لا قيمة له عند حدوث مشكلة. عند مقارنة المراكز، اطلب ضمانين كتابيين منفصلين: الأول هو ضمان المصنع لخامة الفيلم؛ وتوفر VTEK ضماناً إلكترونياً NFC مسجلاً باسم سيارتك (10 سنوات لفيلم PRO و12 لـ PRO PLUS و5 لـ MATTE وPRISM) ضد عيوب مثل الفقاعات والتشقق والتقشّر وبهتان اللون. والضمان الثاني هو ضمان جودة التركيب؛ حيث تدعم ABK كل عملية تركيب بضمان تركيب خاص لمدة 12 شهراً: إذا ارتفعت أي حافة أو ظهرت فقاعة يعالجها المركز مجاناً. وتتضمن كل عملية تسليم توثيقاً فوتوغرافياً شاملاً لحالة السيارة عند الاستلام والتسليم.",
         },
       },
     ],
@@ -1202,8 +1204,8 @@ export const ARTICLES: Article[] = [
           ar: "أسعار PPF المطفي والملوّن في قطر باختصار",
         },
         body: {
-          en: `These are ABK's fixed installed prices for genuine VTEK Weather Armor MATTE (8 mil satin aliphatic TPU, ${matte.warrantyYears}-year warranty), as of ${pricesAsOf("en")}: front-end kit from ${q(M["front-end"].sedan, "en")}, full front from ${q(M["full-front"].sedan, "en")} and full body from ${q(M["full-body"].sedan, "en")} for a sedan or coupe. Mid SUVs, large SUVs and pickups cost more (table below). Colour film — Weather Armor PRISM, ${prism.warrantyYears}-year warranty — is priced per car because colour, coverage and panel count vary: send the car and the colour on WhatsApp for a fixed quote. Every price includes the film, fitting at a VTEK-authorised centre in Doha, NFC e-Warranty registration and ABK's 12-month workmanship cover.`,
-          ar: `هذه أسعار التركيب الثابتة لدى ABK لفيلم VTEK Weather Armor MATTE الأصلي (TPU أليفاتي ساتان بسماكة 8 مل، ضمان ${matte.warrantyYears} سنوات)، حتى ${pricesAsOf("ar")}: الواجهة الأساسية من ${q(M["front-end"].sedan, "ar")} والواجهة الكاملة من ${q(M["full-front"].sedan, "ar")} والهيكل بالكامل من ${q(M["full-body"].sedan, "ar")} للسيدان والكوبيه، وتزيد الأسعار لسيارات SUV المتوسطة والكبيرة والبيك أب (انظر الجدول). أما الفيلم الملوّن Weather Armor PRISM (ضمان ${prism.warrantyYears} سنوات) فيُسعَّر لكل سيارة لأن اللون وحجم التغطية وعدد القطع تختلف — أرسل سيارتك واللون المطلوب عبر واتساب لتحصل على سعر ثابت. يشمل كل سعر الفيلم والتركيب في مركز معتمد من VTEK في الدوحة وتسجيل الضمان الإلكتروني NFC وضمان ABK للتركيب لمدة 12 شهراً.`,
+          en: `These are ABK's fixed installed prices for genuine VTEK Weather Armor MATTE (satin TPU, ${matte.warrantyYears}-year warranty), as of ${pricesAsOf("en")}: front-end kit from ${q(M["front-end"].sedan, "en")}, full front from ${q(M["full-front"].sedan, "en")} and full body from ${q(M["full-body"].sedan, "en")} for a sedan or coupe. Mid SUVs, large SUVs and pickups cost more (table below). Colour film — Weather Armor PRISM, ${prism.warrantyYears}-year warranty — is priced per car because colour, coverage and panel count vary: send the car and the colour on WhatsApp for a fixed quote. Every price includes the film, fitting at a VTEK-authorised centre in Doha, NFC e-Warranty registration and ABK's 12-month workmanship cover.`,
+          ar: `هذه أسعار التركيب الثابتة لدى ABK لفيلم VTEK Weather Armor MATTE الأصلي (TPU ساتان، ضمان ${matte.warrantyYears} سنوات)، حتى ${pricesAsOf("ar")}: الواجهة الأساسية من ${q(M["front-end"].sedan, "ar")} والواجهة الكاملة من ${q(M["full-front"].sedan, "ar")} والهيكل بالكامل من ${q(M["full-body"].sedan, "ar")} للسيدان والكوبيه، وتزيد الأسعار لسيارات SUV المتوسطة والكبيرة والبيك أب (انظر الجدول). أما الفيلم الملوّن Weather Armor PRISM (ضمان ${prism.warrantyYears} سنوات) فيُسعَّر لكل سيارة لأن اللون وحجم التغطية وعدد القطع تختلف — أرسل سيارتك واللون المطلوب عبر واتساب لتحصل على سعر ثابت. يشمل كل سعر الفيلم والتركيب في مركز معتمد من VTEK في الدوحة وتسجيل الضمان الإلكتروني NFC وضمان ABK للتركيب لمدة 12 شهراً.`,
         },
         table: {
           caption: {
@@ -1233,8 +1235,8 @@ export const ARTICLES: Article[] = [
           ar: "ماذا يفعل PPF المطفي وما حدوده",
         },
         body: {
-          en: `Matte PPF is a clear urethane film with a satin finish that sits over your paint. On gloss paint it turns the look satin without repainting or wrapping the car in vinyl, and it can be removed later to bring back the original gloss. On factory matte or frozen paint — which cannot be polished or corrected — it protects against the same stone chips, sand abrasion and wash marks that gloss film stops on gloss paint. VTEK MATTE has a self-healing satin top-coat that clears light scratches with heat, resists grime and keeps an even sheen. The limits are worth knowing: a matte surface cannot be polished or waxed for shine, it needs a matte-safe shampoo, and its ${matte.warrantyYears}-year warranty is shorter than gloss PRO (${pro.warrantyYears} years) or PRO PLUS (${proPlus.warrantyYears} years).`,
-          ar: `فيلم PPF المطفي طبقة يوريثان شفافة بتشطيب ساتان تُركَّب فوق طلاء السيارة. على الطلاء اللامع يحوّل المظهر إلى ساتان دون إعادة طلاء السيارة أو تغليفها بفينيل، ويمكن إزالته لاحقاً لاستعادة اللمعان الأصلي. وعلى الطلاء المطفي من المصنع — الذي لا يمكن تلميعه أو تصحيحه — يحميه من الحصى وخدوش الرمل وآثار الغسيل كما يفعل الفيلم اللامع للطلاء اللامع. يتميز VTEK MATTE بطبقة ساتان ذاتية الالتئام تعالج الخدوش الخفيفة بالحرارة وتقاوم الأوساخ وتحافظ على لمعان موحّد. وحدوده واضحة: لا يُلمَّع السطح المطفي ولا يُشمَّع لزيادة اللمعان، ويحتاج شامبو مناسباً للأسطح المطفية، وضمانه (${matte.warrantyYears} سنوات) أقصر من PRO اللامع (${pro.warrantyYears} سنوات) وPRO PLUS (${proPlus.warrantyYears} سنة).`,
+          en: `Matte PPF is a clear urethane film with a satin finish that sits over your paint. On gloss paint it turns the look satin without repainting or wrapping the car in vinyl, and it can be removed later to bring back the original gloss. On factory matte or frozen paint — which cannot be polished or corrected — it protects against the same stone chips, sand abrasion and wash marks that gloss film stops on gloss paint. VTEK MATTE has a self-healing satin top-coat that clears light scratches with heat, resists grime and keeps an even sheen. The limits are worth knowing: a matte surface cannot be polished or waxed for shine, it needs a matte-safe shampoo, and its ${matte.warrantyYears}-year warranty is shorter than the ${pro.warrantyYears}-year warranty on gloss PRO.`,
+          ar: `فيلم PPF المطفي طبقة يوريثان شفافة بتشطيب ساتان تُركَّب فوق طلاء السيارة. على الطلاء اللامع يحوّل المظهر إلى ساتان دون إعادة طلاء السيارة أو تغليفها بفينيل، ويمكن إزالته لاحقاً لاستعادة اللمعان الأصلي. وعلى الطلاء المطفي من المصنع — الذي لا يمكن تلميعه أو تصحيحه — يحميه من الحصى وخدوش الرمل وآثار الغسيل كما يفعل الفيلم اللامع للطلاء اللامع. يتميز VTEK MATTE بطبقة ساتان ذاتية الالتئام تعالج الخدوش الخفيفة بالحرارة وتقاوم الأوساخ وتحافظ على لمعان موحّد. وحدوده واضحة: لا يُلمَّع السطح المطفي ولا يُشمَّع لزيادة اللمعان، ويحتاج شامبو مناسباً للأسطح المطفية، وضمانه (${matte.warrantyYears} سنوات) أقصر من ضمان PRO اللامع (${pro.warrantyYears} سنوات).`,
         },
       },
       {
@@ -1243,8 +1245,8 @@ export const ARTICLES: Article[] = [
           ar: "الفيلم الملوّن (PRISM): حماية ولون جديد",
         },
         body: {
-          en: "PRISM is a coloured TPU film (polycaprolactone-based, 8.5 mil) that protects the paint like clear PPF while changing the colour. The range ABK lists is Gloss Piano Black, Matte Black, Nardo Grey, Metallic Blue, Pearl White and Satin Metals. Because it is a film and not paint, the factory finish stays underneath and the colour can be removed later. A colour change can affect the car's registration details, so check the Traffic Department's current rules (through Metrash) before you book — ABK cannot give legal advice. Clear film does not change the car's colour.",
-          ar: "PRISM فيلم TPU ملوّن (أساسه البوليكابرولاكتون بسماكة 8.5 مل) يحمي الطلاء مثل الفيلم الشفاف ويغيّر اللون في الوقت نفسه. الألوان المعروضة لدى ABK: أسود بيانو لامع، أسود مطفي، رمادي ناردو، أزرق ميتاليك، أبيض لؤلؤي ومعادن ساتان. وبما أنه فيلم وليس طلاءً، يبقى طلاء المصنع تحته ويمكن إزالة اللون لاحقاً. قد يؤثر تغيير لون السيارة على بيانات تسجيلها، فتأكد من أنظمة إدارة المرور الحالية (عبر مطراش) قبل الحجز، علماً أن ABK لا تقدم استشارات قانونية. أما الفيلم الشفاف فلا يغيّر لون السيارة.",
+          en: "PRISM is a coloured TPU film (polycaprolactone-based) that protects the paint like clear PPF while changing the colour. The range ABK lists is Gloss Piano Black, Matte Black, Nardo Grey, Metallic Blue, Pearl White and Satin Metals. Because it is a film and not paint, the factory finish stays underneath and the colour can be removed later. A colour change can affect the car's registration details, so check the Traffic Department's current rules (through Metrash) before you book — ABK cannot give legal advice. Clear film does not change the car's colour.",
+          ar: "PRISM فيلم TPU ملوّن (أساسه البوليكابرولاكتون) يحمي الطلاء مثل الفيلم الشفاف ويغيّر اللون في الوقت نفسه. الألوان المعروضة لدى ABK: أسود بيانو لامع، أسود مطفي، رمادي ناردو، أزرق ميتاليك، أبيض لؤلؤي ومعادن ساتان. وبما أنه فيلم وليس طلاءً، يبقى طلاء المصنع تحته ويمكن إزالة اللون لاحقاً. قد يؤثر تغيير لون السيارة على بيانات تسجيلها، فتأكد من أنظمة إدارة المرور الحالية (عبر مطراش) قبل الحجز، علماً أن ABK لا تقدم استشارات قانونية. أما الفيلم الشفاف فلا يغيّر لون السيارة.",
         },
       },
       {
@@ -1263,8 +1265,8 @@ export const ARTICLES: Article[] = [
           ar: "مطفي أم لامع أم ملوّن: أي فيلم تختار؟",
         },
         body: {
-          en: `Choose gloss PRO (${pro.warrantyYears}-year) or PRO PLUS (${proPlus.warrantyYears}-year) when you want the paint to look exactly as it does now, only better protected — they carry the longest warranties of the installed range. Choose MATTE when you want a satin look or your car has factory matte paint. Choose PRISM only when you want a new colour. On a tighter budget, start with a front-end or full-front kit: the front of the car takes most of the stone chips on Qatar's highways.`,
-          ar: `اختر PRO اللامع (${pro.warrantyYears} سنوات) أو PRO PLUS (${proPlus.warrantyYears} سنة) إذا أردت أن يبدو الطلاء كما هو الآن لكن بحماية أفضل — فهما الأطول ضماناً بين الأفلام المركَّبة. واختر MATTE إذا أردت مظهر الساتان أو كان طلاء سيارتك مطفياً من المصنع. واختر PRISM فقط إذا أردت لوناً جديداً. وإن كانت ميزانيتك محدودة فابدأ بالواجهة الأساسية أو الكاملة، إذ تتلقى مقدمة السيارة معظم ضربات الحصى على طرق قطر السريعة.`,
+          en: `Choose gloss PRO (${pro.warrantyYears}-year warranty) or PRO PLUS when you want the paint to look exactly as it does now, only better protected — the gloss films carry the longer warranties of the installed range. Choose MATTE when you want a satin look or your car has factory matte paint. Choose PRISM only when you want a new colour. On a tighter budget, start with a front-end or full-front kit: the front of the car takes most of the stone chips on Qatar's highways.`,
+          ar: `اختر PRO اللامع (ضمان ${pro.warrantyYears} سنوات) أو PRO PLUS إذا أردت أن يبدو الطلاء كما هو الآن لكن بحماية أفضل — فالأفلام اللامعة هي الأطول ضماناً بين الأفلام المركَّبة. واختر MATTE إذا أردت مظهر الساتان أو كان طلاء سيارتك مطفياً من المصنع. واختر PRISM فقط إذا أردت لوناً جديداً. وإن كانت ميزانيتك محدودة فابدأ بالواجهة الأساسية أو الكاملة، إذ تتلقى مقدمة السيارة معظم ضربات الحصى على طرق قطر السريعة.`,
         },
       },
       {
@@ -1328,8 +1330,8 @@ export const ARTICLES: Article[] = [
           ar: "كم يدوم PPF المطفي في قطر؟",
         },
         a: {
-          en: `VTEK MATTE carries a ${matte.warrantyYears}-year NFC e-Warranty against yellowing, bubbling, cracking, peeling and delamination when fitted by an authorised installer. Gloss PRO carries ${pro.warrantyYears} years and PRO PLUS ${proPlus.warrantyYears} years.`,
-          ar: `يحمل VTEK MATTE ضماناً إلكترونياً NFC لمدة ${matte.warrantyYears} سنوات ضد الاصفرار والفقاعات والتشقق والتقشر والانفصال عند تركيبه لدى مركز معتمد، بينما يحمل PRO اللامع ${pro.warrantyYears} سنوات وPRO PLUS ${proPlus.warrantyYears} سنة.`,
+          en: `VTEK MATTE carries a ${matte.warrantyYears}-year NFC e-Warranty against defects such as bubbling, cracking, peeling and fading (see vtekfilms.com/warranty) when fitted by an authorised installer. Gloss PRO carries ${pro.warrantyYears} years.`,
+          ar: `يحمل VTEK MATTE ضماناً إلكترونياً NFC لمدة ${matte.warrantyYears} سنوات ضد عيوب مثل الفقاعات والتشقق والتقشّر وبهتان اللون (راجع vtekfilms.com/warranty) عند تركيبه لدى مركز معتمد، بينما يحمل PRO اللامع ${pro.warrantyYears} سنوات.`,
         },
       },
       {
@@ -1360,6 +1362,215 @@ export const ARTICLES: Article[] = [
         a: {
           en: "Yes — ABK installs VTEK Weather Armor PRISM colour film. It is priced per car, so send the car and the colour you want on WhatsApp (+974 3083 8355) for a fixed quote. Check the Traffic Department's rules on colour changes before booking.",
           ar: "نعم — تركّب ABK فيلم VTEK Weather Armor PRISM الملوّن. ويُسعَّر لكل سيارة، فأرسل سيارتك واللون المطلوب عبر واتساب (+974 3083 8355) لتحصل على سعر ثابت. وتأكد من أنظمة إدارة المرور بشأن تغيير اللون قبل الحجز.",
+        },
+      },
+    ],
+  },
+  {
+    slug: "best-ppf-brands-qatar",
+    title: {
+      en: "Best PPF Brands in Qatar (2026): XPEL, 3M, STEK, SunTek, LLumar and VTEK Compared",
+      ar: "أفضل علامات PPF في قطر (2026): مقارنة XPEL و3M وSTEK وSunTek وLLumar وVTEK",
+    },
+    seoTitle: {
+      en: "Best PPF Brands in Qatar (2026): XPEL, 3M, STEK & More",
+      ar: "أفضل علامات PPF في قطر 2026: XPEL و3M وSTEK وVTEK",
+    },
+    description: {
+      en: "How the leading PPF brands compare for buyers in Qatar: warranty terms, installer requirements and what to ask — XPEL, 3M, STEK, SunTek, LLumar and VTEK, sourced from each manufacturer.",
+      ar: "كيف تقارن أبرز علامات فيلم حماية الطلاء لمشتري قطر: شروط الضمان واشتراطات المُركّب وما تسأل عنه — XPEL و3M وSTEK وSunTek وLLumar وVTEK، بالاستناد إلى كل شركة مصنِّعة.",
+    },
+    date: "2026-10-20",
+    readingTime: 6,
+    category: "buying-guide",
+    keywords: {
+      en: ["best PPF brands Qatar", "XPEL PPF Qatar", "3M PPF Qatar", "STEK PPF Qatar", "SunTek PPF Qatar", "LLumar PPF Qatar", "VTEK PPF", "PPF warranty comparison"],
+      ar: ["أفضل علامات PPF قطر", "XPEL قطر", "3M PPF قطر", "STEK قطر", "مقارنة ضمان فيلم حماية الطلاء"],
+    },
+    sections: [
+      {
+        heading: {
+          en: "How to Compare PPF Brands in Qatar",
+          ar: "كيف تقارن علامات PPF في قطر",
+        },
+        body: {
+          en: "Six brands dominate the conversation when Qatar car owners ask about paint protection film: XPEL, 3M, STEK, SunTek, LLumar and VTEK. A brand name alone does not tell you what you are buying. Compare four things in writing: the exact film line (each brand sells several), the warranty terms and what they cover, whether the warranty requires an authorised installer, and who will physically fit the film — installer skill decides edges, seams and cleanliness as much as the roll does. ABK distributes VTEK in Qatar, so we have an interest in this comparison; every figure below is taken from the manufacturer's own pages, with the source shown in the table.",
+          ar: "تتصدّر ستّ علامات حديث أصحاب السيارات في قطر عن فيلم حماية الطلاء: XPEL و3M وSTEK وSunTek وLLumar وVTEK. واسم العلامة وحده لا يخبرك بما تشتريه. قارن أربعة أمور كتابةً: خط الفيلم بدقة (فلكل علامة عدة خطوط)، وشروط الضمان وما يغطيه، وهل يشترط الضمان مُركّباً معتمداً، ومن سيركّب الفيلم فعلياً — فمهارة المُركّب تحدد جودة الحواف والوصلات والنظافة بقدر ما يحددها الفيلم نفسه. تُوزّع ABK علامة VTEK في قطر، لذا فلنا مصلحة في هذه المقارنة؛ وكل رقم أدناه مأخوذ من صفحات الشركة المصنِّعة نفسها مع ذكر المصدر في الجدول.",
+        },
+      },
+      {
+        heading: {
+          en: "Published Warranty Terms, Brand by Brand",
+          ar: "شروط الضمان المنشورة، علامةً بعلامة",
+        },
+        body: {
+          en: "The table lists the flagship gloss and matte lines as each manufacturer describes them on its own website, read on 20 October 2026. Manufacturers change terms and some publish different terms by region, so confirm the current wording with the installer before you pay.",
+          ar: "يعرض الجدول الخطوط الرئيسية اللامعة والمطفية كما تصفها كل شركة على موقعها، وقد قُرئت بتاريخ 20 أكتوبر 2026. تغيّر الشركات شروطها وبعضها ينشر شروطاً مختلفة حسب المنطقة، لذا تأكد من الصياغة الحالية مع المُركّب قبل الدفع.",
+        },
+        table: {
+          caption: {
+            en: "Manufacturer-published PPF warranty terms, read 20 October 2026.",
+            ar: "شروط ضمان PPF كما نشرتها الشركات المصنِّعة، قُرئت بتاريخ 20 أكتوبر 2026.",
+          },
+          head: [
+            { en: "Brand and film", ar: "العلامة والفيلم" },
+            { en: "Published warranty", ar: "الضمان المنشور" },
+            { en: "Installer requirement", ar: "اشتراط المُركّب" },
+            { en: "Source", ar: "المصدر" },
+          ],
+          rows: [
+            [
+              { en: "XPEL ULTIMATE PLUS (gloss), STEALTH (satin)", ar: "XPEL ULTIMATE PLUS (لامع) وSTEALTH (ساتان)" },
+              { en: "10 years — yellowing, cracking, blistering and delaminating", ar: "10 سنوات — الاصفرار والتشقق والانتفاخ والانفصال" },
+              { en: "Only on professionally installed film; claims go through the authorised installer", ar: "فقط على الفيلم المُركَّب باحتراف؛ وتمر المطالبات عبر المُركّب المعتمد" },
+              { en: "xpel.com/warranty-information", ar: "xpel.com/warranty-information" },
+            ],
+            [
+              { en: "3M Scotchgard Pro Series 200 (gloss and matte)", ar: "3M Scotchgard Pro Series 200 (لامع ومطفي)" },
+              { en: "10 years — yellowing, bubbling and cracking", ar: "10 سنوات — الاصفرار والفقاعات والتشقق" },
+              { en: "Qatar product page: professionally installed by 3M authorised installers", ar: "صفحة المنتج في قطر: تركيب احترافي لدى مُركّبين معتمدين من 3M" },
+              { en: "3M Pro Series 200 brochure; 3m.com.qa product page", ar: "كتيّب 3M Pro Series 200؛ صفحة المنتج على 3m.com.qa" },
+            ],
+            [
+              { en: "STEK DYNOshield, DYNOmatte", ar: "STEK DYNOshield وDYNOmatte" },
+              { en: "10 years on the US site; 12 years, with conditions, on the global site", ar: "10 سنوات على الموقع الأمريكي؛ و12 سنة بشروط على الموقع العالمي" },
+              { en: "Not stated; the global page says terms may vary by region", ar: "غير مذكور؛ وتذكر الصفحة العالمية أن الشروط قد تختلف حسب المنطقة" },
+              { en: "stek-usa.com; stekautomotive.com", ar: "stek-usa.com؛ stekautomotive.com" },
+            ],
+            [
+              { en: "SunTek Ultra, Ultra Matte; Reaction", ar: "SunTek Ultra وUltra Matte؛ وReaction" },
+              { en: "Ultra: 10 years against cracking, bubbling or yellowing. Reaction: 12-year limited warranty", ar: "Ultra: 10 سنوات ضد التشقق والفقاعات والاصفرار. Reaction: ضمان محدود 12 سنة" },
+              { en: "Sold and installed by professionals; “see dealer”", ar: "تُباع وتُركَّب عبر محترفين؛ «راجع الوكيل»" },
+              { en: "suntekfilms.com", ar: "suntekfilms.com" },
+            ],
+            [
+              { en: "LLumar Platinum; Valor", ar: "LLumar Platinum وValor" },
+              { en: "Platinum: 10 years. Valor: limited 12-year warranty", ar: "Platinum: 10 سنوات. Valor: ضمان محدود 12 سنة" },
+              { en: "“See dealer”", ar: "«راجع الوكيل»" },
+              { en: "llumar.com", ar: "llumar.com" },
+            ],
+            [
+              { en: "VTEK Weather Armor", ar: "VTEK Weather Armor" },
+              { en: "ULTIMATE 15 years, PRO 10, MATTE 5, PRISM 5", ar: "ULTIMATE: 15 سنة، PRO: 10، MATTE: 5، PRISM: 5" },
+              { en: "Film professionally installed by authorised installers; roll checked through the NFC e-Warranty portal", ar: "فيلم يُركَّب باحتراف لدى مُركّبين معتمدين؛ ويُتحقق من الرول عبر بوابة الضمان الإلكتروني NFC" },
+              { en: "vtekfilms.com/warranty", ar: "vtekfilms.com/warranty" },
+            ],
+          ],
+        },
+      },
+      {
+        heading: {
+          en: "What the Warranty Numbers Do and Don't Tell You",
+          ar: "ماذا تخبرك أرقام الضمان وماذا لا تخبرك",
+        },
+        body: {
+          en: "Ten years is the common flagship warranty: it is what XPEL, 3M, SunTek Ultra, LLumar Platinum and STEK's US site publish. A few lines go to 12 years (SunTek Reaction, LLumar Valor, STEK's global site with conditions). VTEK's ULTIMATE line, at 15 years, is the longest warranty any of the six publishes for a standard film line, while VTEK PRO's 10 years matches the flagship tier of the others. A warranty is a promise about defects in the film, not a forecast of how long it will look new: manufacturer warranties typically exclude impact damage, accidents and improper care, and SunTek notes that its warranty is void over repainted or aftermarket paint. Only some brands publish a thickness — XPEL and STEK quote 8 mil on their product pages and STEK's DYNOmight is 10 mil — so do not choose on a thickness number alone.",
+          ar: "عشر سنوات هي الضمان الشائع للخطوط الرئيسية: وهذا ما تنشره XPEL و3M وSunTek Ultra وLLumar Platinum وموقع STEK الأمريكي. وتصل بعض الخطوط إلى 12 سنة (SunTek Reaction وLLumar Valor وموقع STEK العالمي بشروط). أما خط VTEK ULTIMATE فبضمان 15 سنة هو الأطول بين ما تنشره العلامات الست لخط أفلام قياسي، بينما يطابق ضمان VTEK PRO البالغ 10 سنوات الفئة الرئيسية لدى الأخريات. والضمان وعدٌ بشأن عيوب في الفيلم لا توقّع لمدة بقائه جديداً: فضمانات الشركات المصنِّعة تستثني عادةً أضرار الصدمات والحوادث وسوء العناية، وتذكر SunTek أن ضمانها يسقط على الطلاء المعاد رشّه أو المعدَّل. ولا تنشر كل العلامات سماكة الفيلم — فـ XPEL وSTEK تذكران 8 مل في صفحات منتجاتهما وSTEK DYNOmight بسماكة 10 مل — لذا لا تختر بناءً على رقم السماكة وحده.",
+        },
+      },
+      {
+        heading: {
+          en: "Where to Find Authorised Installers in Qatar",
+          ar: "أين تجد مُركّبين معتمدين في قطر",
+        },
+        body: {
+          en: "XPEL publishes an installer locator that lists nine Doha shops (xpel.com/installers/Qatar/All/All, read 20 October 2026). 3M, STEK, SunTek and LLumar each run their own locator or distributor map on their websites. For VTEK, ABK is the Qatar distributor — VTEK's contact page lists ABK's Mesaimeer showroom (vtekfilms.com/contact-us) — and ABK arranges the fitting at a VTEK-authorised centre in Doha; any roll's e-Warranty can be checked on nfc.vtekfilms.com/verify.",
+          ar: "تنشر XPEL دليلاً للمُركّبين يضم تسعة مراكز في الدوحة (xpel.com/installers/Qatar/All/All، قُرئ بتاريخ 20 أكتوبر 2026). وتوفّر 3M وSTEK وSunTek وLLumar دليلاً أو خريطة موزعين على مواقعها. وبالنسبة إلى VTEK فإن ABK هي الموزع في قطر — وتُدرج صفحة التواصل لدى VTEK معرض ABK في مسيمير (vtekfilms.com/contact-us) — وترتّب ABK التركيب لدى مركز معتمد من VTEK في الدوحة؛ ويمكن التحقق من الضمان الإلكتروني لأي رول عبر nfc.vtekfilms.com/verify.",
+        },
+      },
+      {
+        heading: {
+          en: "Comparing Quotes Like for Like",
+          ar: "مقارنة العروض على أساس متكافئ",
+        },
+        body: {
+          en: `When you hold two quotes, line up the brand and exact film line, gloss or matte, the coverage (front end, full front or full body) and which edges are wrapped, the written warranty and who issues it, the installer's own workmanship guarantee, and whether film removal or paint preparation is included. A cheaper quote that names no film line is not comparable. ABK's fixed installed prices for genuine VTEK Weather Armor PRO start at ${q(fromPrice("front-end"), "en")} for a front-end kit and ${q(P["full-body"].sedan, "en")} for a full-body sedan, with a 12-month ABK workmanship cover on top of the film warranty.`,
+          ar: `عندما تحمل عرضين، قابِل بين العلامة وخط الفيلم بدقة، واللامع أو المطفي، والتغطية (واجهة أساسية أو كاملة أو هيكل كامل) وأي الحواف تُلَفّ، والضمان المكتوب ومن يُصدره، وضمان المُركّب لجودة عمله، وهل تُشمل إزالة الفيلم أو تجهيز الطلاء. والعرض الأرخص الذي لا يذكر خط الفيلم لا يصلح للمقارنة. تبدأ أسعار التركيب الثابتة لدى ABK لفيلم VTEK Weather Armor PRO الأصلي من ${q(fromPrice("front-end"), "ar")} للواجهة الأساسية و${q(P["full-body"].sedan, "ar")} للهيكل بالكامل (سيدان)، مع ضمان تركيب من ABK لمدة 12 شهراً فوق ضمان الفيلم.`,
+        },
+      },
+    ],
+    relatedProducts: [
+      "vtek-ppf-weather-armor-ultimate",
+      "vtek-ppf-weather-armor-pro",
+      "vtek-ppf-weather-armor-matte",
+      "vtek-ppf-weather-armor-prism",
+    ],
+    cta: PPF_INSTALL_CTA,
+    inlineCta: {
+      badge: { en: "Installed VTEK PPF", ar: "تركيب VTEK PPF" },
+      title: {
+        en: "See ABK's Fixed Installed Prices Before You Compare Quotes",
+        ar: "اطّلع على أسعار ABK الثابتة قبل مقارنة العروض",
+      },
+      body: {
+        en: "Pick your car size, coverage and film in the quote builder to see the exact installed price, then compare it with any other written quote.",
+        ar: "اختر حجم سيارتك والتغطية والفيلم في أداة التسعير لتعرف سعر التركيب بدقة، ثم قارنه بأي عرض مكتوب آخر.",
+      },
+      primaryHref: "/b2c/ppf-installation#quote",
+      primaryLabel: { en: "Open the PPF Price Calculator", ar: "افتح حاسبة أسعار PPF" },
+      secondaryHref:
+        "https://wa.me/97430838355?text=Hi%20ABK%2C%20I%20am%20comparing%20PPF%20brands%20and%20would%20like%20a%20VTEK%20quote%20for%20my%20car.",
+      secondaryLabel: { en: "Ask on WhatsApp (+974 3083 8355)", ar: "استفسر عبر واتساب" },
+    },
+    faqs: [
+      {
+        q: {
+          en: "Which PPF brand is best in Qatar?",
+          ar: "ما أفضل علامة PPF في قطر؟",
+        },
+        a: {
+          en: "There is no single best brand. XPEL, 3M, STEK, SunTek, LLumar and VTEK all publish a 10-year warranty on a flagship film. What separates one quote from another is the exact film line, the warranty conditions, who installs it and the installer's own guarantee, so compare those in writing. ABK sells and arranges installation of VTEK.",
+          ar: "لا توجد علامة واحدة هي الأفضل. فـ XPEL و3M وSTEK وSunTek وLLumar وVTEK تنشر جميعها ضمان 10 سنوات لفيلم رئيسي. وما يفرّق بين عرض وآخر هو خط الفيلم بدقة وشروط الضمان ومن يُركّب وضمان المُركّب نفسه، لذا قارن ذلك كتابةً. وتبيع ABK علامة VTEK وترتّب تركيبها.",
+        },
+      },
+      {
+        q: {
+          en: "How long does 3M PPF last?",
+          ar: "كم يدوم PPF من 3M؟",
+        },
+        a: {
+          en: "3M's published warranty for Scotchgard Pro Series 200 gloss and matte is 10 years against yellowing, bubbling and cracking when professionally installed (3M Pro Series 200 brochure, read 20 October 2026); 3M's terms can differ by market, so ask for the Qatar warranty card. How long the film actually looks new depends on care, parking and Qatar's heat and sand.",
+          ar: "ضمان 3M المنشور لفيلمي Scotchgard Pro Series 200 اللامع والمطفي هو 10 سنوات ضد الاصفرار والفقاعات والتشقق عند التركيب باحتراف (كتيّب 3M Pro Series 200، قُرئ بتاريخ 20 أكتوبر 2026)، وقد تختلف شروط 3M من سوق إلى آخر فاطلب بطاقة الضمان الخاصة بقطر. أما مدة بقاء الفيلم جديداً فعلياً فتعتمد على العناية ومكان الوقوف وحرارة قطر ورملها.",
+        },
+      },
+      {
+        q: {
+          en: "How long does XPEL ULTIMATE PLUS last?",
+          ar: "كم يدوم XPEL ULTIMATE PLUS؟",
+        },
+        a: {
+          en: "XPEL publishes a 10-year warranty on ULTIMATE PLUS covering yellowing, cracking, blistering and delaminating, valid only on professionally installed film (xpel.com/warranty-information, read 20 October 2026).",
+          ar: "تنشر XPEL ضمان 10 سنوات على ULTIMATE PLUS يغطي الاصفرار والتشقق والانتفاخ والانفصال، ويسري فقط على الفيلم المُركَّب باحتراف (xpel.com/warranty-information، قُرئ بتاريخ 20 أكتوبر 2026).",
+        },
+      },
+      {
+        q: {
+          en: "Is XPEL better than 3M?",
+          ar: "هل XPEL أفضل من 3M؟",
+        },
+        a: {
+          en: "Both publish a 10-year warranty on their flagship gloss film. A warranty number does not show which film will last longer on your car; installer skill and aftercare matter as much. Compare the written terms and the installer's workmanship guarantee rather than the brand name.",
+          ar: "تنشر الشركتان ضمان 10 سنوات على فيلمهما اللامع الرئيسي. ورقم الضمان لا يبيّن أي الفيلمين سيدوم أطول على سيارتك؛ فمهارة المُركّب والعناية اللاحقة لا تقلان أهمية. قارن الشروط المكتوبة وضمان المُركّب لجودة عمله بدل اسم العلامة.",
+        },
+      },
+      {
+        q: {
+          en: "What does a PPF warranty cover?",
+          ar: "ماذا يغطي ضمان PPF؟",
+        },
+        a: {
+          en: "Manufacturer warranties cover defects in the film itself, for example yellowing, cracking, bubbling, peeling or blistering, and the list differs by brand. They normally require professional installation and typically exclude impact damage, accidents and improper care. Workmanship, such as lifting edges, is covered separately by the installer's own guarantee.",
+          ar: "تغطي ضمانات الشركات المصنِّعة عيوباً في الفيلم نفسه، مثل الاصفرار والتشقق والفقاعات والتقشّر والانتفاخ، وتختلف القائمة من علامة إلى أخرى. وتشترط عادةً التركيب الاحترافي وتستثني غالباً أضرار الصدمات والحوادث وسوء العناية. أما جودة التركيب، كارتفاع الحواف، فيغطيها ضمان المُركّب نفسه بشكل منفصل.",
+        },
+      },
+      {
+        q: {
+          en: "Where can I find XPEL installers in Qatar?",
+          ar: "أين أجد مُركّبي XPEL في قطر؟",
+        },
+        a: {
+          en: "XPEL's installer locator lists nine Doha shops at xpel.com/installers/Qatar/All/All (read 20 October 2026). ABK does not sell XPEL; ABK distributes VTEK and arranges VTEK installation at an authorised centre in Doha.",
+          ar: "يضم دليل مُركّبي XPEL تسعة مراكز في الدوحة على xpel.com/installers/Qatar/All/All (قُرئ بتاريخ 20 أكتوبر 2026). ولا تبيع ABK علامة XPEL؛ فهي توزّع VTEK وترتّب تركيبها لدى مركز معتمد في الدوحة.",
         },
       },
     ],

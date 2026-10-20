@@ -1,9 +1,15 @@
 # Local Authority, Manufacturer Verification & Directory Playbook — PPF Installation Doha
 
-**Last Updated:** 17 October 2026  
+**Last Updated:** 20 October 2026 (corrected — see the audit note below)  
 **Target URLs:**
 - English: `https://abktradingservice.com/en/b2c/ppf-installation`
 - Arabic: `https://abktradingservice.com/ar/b2c/ppf-installation`
+
+> **Correction, 20 Oct 2026.** An earlier version of this file described the Google Business Profile with a different
+> name and coordinates than the live listing, named competitors as appearing in directory roundups, and gave VTEK
+> contact details that could not be verified (the old `vertekfilms.com` domain now redirects to `vtekfilms.com`).
+> Those statements are replaced below with what was actually observed. Current facts, the owner decisions that are
+> still open and the external actions in priority order are in `2026-10-20-traffic-audit-and-actions.md`.
 
 ---
 
@@ -11,10 +17,10 @@
 
 | Platform / Directory | Current Status | Key Finding / Gap | Impact on Search & AI (ChatGPT, Gemini, Perplexity, Copilot) |
 |---|---|---|---|
-| **Google Business Profile (`ABK TRADING SERVICE — Car Care Products`)** | Live & Verified (`25.2225364, 51.4910152`, Mesaimeer) | Primary category is retail/wholesale car care products. Installed VTEK PPF packages (`QAR 3,999 / 4,799 / 5,499`) were not listed as dedicated GBP Services/Products with direct links to `/en/b2c/ppf-installation`. | High — Google Local Pack and Gemini ground local service answers in GBP Service & Product entries. |
+| **Google Business Profile (`ABK Trading and Service — Vertek & Autotriz`)** | Live on Google Maps (CID `9860894303806767987`, pin `25.2040478, 51.5029268`, Mesaimeer), category *Car accessories store*, 4.9★ from 11 reviews (observed 20 Oct 2026). **Not manageable** from the two Chrome profiles available to the SEO tooling (Business Profile Manager shows 0 businesses). | The listed name carries the retired "Vertek" spelling and two brand names (name-stuffing risk). Installed VTEK PPF packages are not listed as Services/Products with links to `/en/b2c/ppf-installation`. | High — Google Local Pack and Gemini ground local service answers in GBP Service & Product entries. |
 | **VTEK Official Website (`vtekfilms.com`)** | `vtekfilms.com/weather-armor`, `vtekfilms.com/warranty`, `nfc.vtekfilms.com/verify`, and `vtekfilms.com/vpc` are live. | `https://www.vtekfilms.com/installer-locator` renders an interactive map widget without crawlable static HTML listing **ABK Trading & Service (Qatar Official Distributor)** or linking to `abktradingservice.com`. | Very High — AI models verify "authorised distributor/installer" claims by cross-checking manufacturer domains. |
 | **Bing Places for Business** | Synced with GBP | Service menu should explicitly include **VTEK Full-Body PPF Installation Doha (From QAR 3,999)** and **VTEK Front PPF Packages (From QAR 899)** to feed Microsoft Copilot and ChatGPT Search. | High — ChatGPT Search and Copilot rely heavily on Bing Places entity attributes. |
-| **Qatar Local Directories (`Qatar Living`, `Marhaba Qatar`, `Yellow Pages Qatar`)** | Competitors (`ProDip`, `Daman Protect`, `White Crown`, `Ozone`, `Topaz`) appear in directory roundups and service listings. | ABK was historically indexed only as a chemical/product supplier rather than a bookable fixed-price PPF installation provider. | Medium-High — Third-party citations reinforce entity association with *"PPF installation Doha"*. |
+| **Qatar Local Directories (`Qatar Living`, `Marhaba Qatar`, `Yellow Pages Qatar`)** | Not checked in the 20 Oct 2026 pass. | Confirm each listing exists and that name, address and phone match the website exactly (NAP consistency). | Medium-High — Third-party citations reinforce entity association with *"PPF installation Doha"*. |
 
 ---
 
@@ -61,7 +67,7 @@ Per owner policy (`src/data/ppfInstall.ts`, 2 October 2026), **partner installat
 
 ## 4. Manufacturer Outreach Draft — VTEK (`vtekfilms.com/installer-locator`)
 
-Send the following message to VTEK Regional HQ (`info@vertekfilms.com` / WhatsApp `+971 56 109 9961`) so search engines and AI crawlers can verify ABK's official Qatar status directly on `vtekfilms.com`:
+Send the following message to VTEK using the contact details shown on `https://www.vtekfilms.com/contact-us` (that page already lists ABK's Mesaimeer showroom in its Qatar block, which is the verifiable proof to build on). Ask for a crawlable text listing/link so search engines and AI crawlers can verify ABK's Qatar status on `vtekfilms.com`:
 
 > **Subject:** Official Qatar Distributor Listing & Backlink on `vtekfilms.com/installer-locator` — ABK Trading & Service
 >

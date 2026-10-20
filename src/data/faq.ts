@@ -139,8 +139,8 @@ export const FAQ: FaqEntry[] = [
       ar: "هل أفلام VTEK لحماية الطلاء مشمولة بضمان؟",
     },
     a: {
-      en: "Yes. Genuine VTEK (formerly Vertek) PPF carries a 5 to 15-year manufacturer warranty, depending on the film, against yellowing, cracking and delamination when fitted by an authorised installer following VTEK's procedures. ABK is the authorised Qatar distributor and supplies the film with official warranty documentation.",
-      ar: "نعم. تأتي أفلام VTEK (المعروفة سابقاً بـ Vertek) الأصلية بضمان مصنع لمدة 5 إلى 15 سنة حسب نوع الفيلم ضد الاصفرار والتشقق والانفصال عند التركيب من قِبل مُركّب معتمد وفق إجراءات VTEK. ABK هو الموزع المعتمد في قطر ويورّد الفيلم مع مستندات الضمان الرسمية.",
+      en: "Yes. Genuine VTEK (formerly Vertek) PPF carries a 5 to 15-year manufacturer warranty, depending on the film, against defects such as bubbling, cracking, peeling and fading when fitted by an authorised installer following VTEK's procedures. ABK is the authorised Qatar distributor and supplies the film with official warranty documentation.",
+      ar: "نعم. تأتي أفلام VTEK (المعروفة سابقاً بـ Vertek) الأصلية بضمان مصنع لمدة 5 إلى 15 سنة حسب نوع الفيلم ضد عيوب مثل الفقاعات والتشقق والتقشّر وبهتان اللون عند التركيب من قِبل مُركّب معتمد وفق إجراءات VTEK. ABK هو الموزع المعتمد في قطر ويورّد الفيلم مع مستندات الضمان الرسمية.",
     },
   },
   {
@@ -322,8 +322,8 @@ export const PPF_INSTALL_FAQ: FaqEntry[] = [
       ar: "ما الفرق بين ضمان الفيلم وضمان التركيب؟",
     },
     a: {
-      en: "VTEK's manufacturer NFC e-Warranty covers the film itself against yellowing, bubbling, cracking, peeling and delamination for 10 years on Weather Armor PRO, 12 years on PRO PLUS, and 5 years on MATTE and PRISM (15-year ULTIMATE available by special roll order), registered to your roll UID on nfc.vtekfilms.com/verify. ABK's separate 12-month workmanship guarantee covers the fitting in Doha: edge lifting, bubbling or alignment issues.",
-      ar: "يغطي ضمان VTEK المصنعي الإلكتروني (NFC) الفيلم نفسه ضد الاصفرار والفقاعات والتشقق والتقشّر والانفصال لمدة 10 سنوات لفئة Weather Armor PRO، و12 سنة لفئة PRO PLUS، و5 سنوات لفئتي MATTE وPRISM (مع توفر فئة ULTIMATE بضمان 15 سنة بالطلب الخاص للرول)، ويُسجَّل برقم الرول عبر nfc.vtekfilms.com/verify. أما ضمان التركيب المنفصل من ABK لمدة 12 شهراً فيغطي جودة التطبيق في الدوحة: ارتفاع الحواف أو الفقاعات أو الانفصال.",
+      en: "VTEK's manufacturer NFC e-Warranty covers the film itself against defects such as bubbling, cracking, peeling and fading (see vtekfilms.com/warranty) for 10 years on Weather Armor PRO, 12 years on PRO PLUS, and 5 years on MATTE and PRISM (15-year ULTIMATE available by special roll order), registered to your roll UID on nfc.vtekfilms.com/verify. ABK's separate 12-month workmanship guarantee covers the fitting in Doha: edge lifting, bubbling or alignment issues.",
+      ar: "يغطي ضمان VTEK المصنعي الإلكتروني (NFC) الفيلم نفسه ضد عيوب مثل الفقاعات والتشقق والتقشّر وبهتان اللون (راجع vtekfilms.com/warranty) لمدة 10 سنوات لفئة Weather Armor PRO، و12 سنة لفئة PRO PLUS، و5 سنوات لفئتي MATTE وPRISM (مع توفر فئة ULTIMATE بضمان 15 سنة بالطلب الخاص للرول)، ويُسجَّل برقم الرول عبر nfc.vtekfilms.com/verify. أما ضمان التركيب المنفصل من ABK لمدة 12 شهراً فيغطي جودة التطبيق في الدوحة: ارتفاع الحواف أو الفقاعات أو الانفصال.",
     },
   },
   {

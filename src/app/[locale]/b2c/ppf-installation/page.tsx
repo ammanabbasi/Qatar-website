@@ -329,6 +329,17 @@ export default async function PpfInstallationPage({
               >
                 {ar ? "بوابة التحقق من الضمان الإلكتروني NFC ↗" : "Verify NFC e-Warranty Portal ↗"}
               </a>
+              <span>·</span>
+              <a
+                href="https://www.vtekfilms.com/contact-us"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-(--color-link) hover:underline"
+              >
+                {ar
+                  ? "VTEK تُدرج معرض ABK في قطر (vtekfilms.com) ↗"
+                  : "VTEK lists ABK's Qatar showroom (vtekfilms.com) ↗"}
+              </a>
             </div>
           </div>
         </Container>
