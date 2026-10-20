@@ -10,7 +10,7 @@ import { ChevronIcon } from "@/components/ui/Icons";
 import { ProductCard } from "@/components/product/ProductCard";
 import { PpfInstallStrip } from "@/components/ppf/PpfInstallStrip";
 import { Link } from "@/i18n/navigation";
-import { pageMeta } from "@/lib/seo";
+import { clampDescription, fitTitle, pageMeta } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
 import { breadcrumbJsonLd, faqJsonLd, itemListJsonLd } from "@/lib/jsonld";
 import {
@@ -38,14 +38,9 @@ export async function generateMetadata({
   const data = getCategoryLanding(category);
   if (!data) return {};
   const l = (locale === "ar" ? "ar" : "en") as "en" | "ar";
-  const rawTitle = data.title[l];
-  const fullTitle = rawTitle.includes("ABK")
-    ? rawTitle
-    : `${rawTitle} | ABK Trading`;
-
   return {
-    title: { absolute: fullTitle },
-    description: data.description[l],
+    title: fitTitle(data.title[l]),
+    description: clampDescription(data.description[l]),
     keywords: data.keywords[l],
     ...pageMeta(locale as Locale, `/b2c/categories/${data.slug}`),
   };

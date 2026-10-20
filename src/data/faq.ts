@@ -362,8 +362,8 @@ export const PPF_INSTALL_FAQ: FaqEntry[] = [
       ar: "ما الفرق بين فيلم TPU الأصلي وأفلام PVC أو TPH الرخيصة؟",
     },
     a: {
-      en: "Genuine TPU (Thermoplastic Polyurethane) is an optically clear, self-healing polymer that does not yellow or crack in Qatar's 45°C+ summer heat, backed by a 10 to 12-year warranty. Cheap PVC or TPH films turn cloudy, yellow, and brittle within 6 to 12 months, and their harsh adhesives can damage clear coats upon removal. ABK is Qatar's authorized VTEK distributor, supplying only 100% genuine TPU.",
-      ar: "فيلم TPU الأصلي هو بوليمر مرن بصري فائق النقاء ومعالج ذاتياً، لا يصفرّ ولا يتشقق في حرارة صيف قطر (45°م+) مع ضمان من 10 إلى 12 سنة. أما أفلام PVC أو TPH الرخيصة فتصفرّ وتتصلب وتتلف خلال 6 إلى 12 شهراً، ومادتها اللاصقة الرديئة قد تؤذي طلاء الوكالة عند الإزالة. توفر ABK بصفتها الموزع المعتمد أفلام TPU الأصلية 100%.",
+      en: "Genuine TPU (Thermoplastic Polyurethane) is an optically clear, self-healing polymer that does not yellow or crack in Qatar's 45°C+ summer heat, backed by a 5 to 12-year VTEK warranty depending on the film. Cheap PVC or TPH films turn cloudy, yellow, and brittle within 6 to 12 months, and their harsh adhesives can damage clear coats upon removal. ABK is Qatar's authorized VTEK distributor, supplying only 100% genuine TPU.",
+      ar: "فيلم TPU الأصلي هو بوليمر مرن بصري فائق النقاء ومعالج ذاتياً، لا يصفرّ ولا يتشقق في حرارة صيف قطر (45°م+) مع ضمان VTEK من 5 إلى 12 سنة حسب الفيلم. أما أفلام PVC أو TPH الرخيصة فتصفرّ وتتصلب وتتلف خلال 6 إلى 12 شهراً، ومادتها اللاصقة الرديئة قد تؤذي طلاء الوكالة عند الإزالة. توفر ABK بصفتها الموزع المعتمد أفلام TPU الأصلية 100%.",
     },
   },
   {

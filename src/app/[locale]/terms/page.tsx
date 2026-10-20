@@ -8,7 +8,7 @@ import { Shell } from "@/components/layout/Shell";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { LegalSection } from "@/components/legal/LegalSection";
-import { pageMeta } from "@/lib/seo";
+import { clampDescription, fitTitle, pageMeta } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
 import { SITE } from "@/lib/constants";
 
@@ -21,14 +21,16 @@ export async function generateMetadata({
   if (!hasLocale(routing.locales, locale)) return {};
   const l = locale === "ar" ? "ar" : "en";
   return {
-    title:
+    title: fitTitle(
       l === "ar"
         ? "شروط الاستخدام والضمان — التجزئة والجملة وتركيب PPF في قطر"
         : "Terms of Use & Warranty — Retail, Wholesale & PPF in Qatar",
-    description:
+    ),
+    description: clampDescription(
       l === "ar"
         ? "شروط الاستخدام والطلب عبر واتساب وضمان تركيب أفلام الحماية VTEK PPF لمدة 12 شهراً لدى ABK للتجارة والخدمات في مسيمير، الدوحة، قطر."
         : "Terms of Use for ABK Trading & Service in Doha, Qatar — covering retail orders, wholesale trade accounts, VTEK PPF installation bookings, and warranties.",
+    ),
     ...pageMeta(locale as Locale, "/terms"),
   };
 }

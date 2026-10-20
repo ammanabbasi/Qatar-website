@@ -1,6 +1,9 @@
 import {
+  BODY_TYPES,
+  COVERAGES,
   CUSTOM_MINIMUM_QAR,
   FILMS,
+  FILM_PRESET_PRICES_QAR,
   PRESET_PRICES_QAR,
   PRICES_UPDATED_AT,
   fromPrice,
@@ -15,9 +18,24 @@ import { formatQar } from "@/lib/pricing";
  * and internal links back to products/services.
  */
 
+/** A crawlable comparison table rendered under a section's paragraph. */
+export type ArticleTable = {
+  caption: { en: string; ar: string };
+  head: Array<{ en: string; ar: string }>;
+  /** One row per item; each cell is localised text. */
+  rows: Array<Array<{ en: string; ar: string }>>;
+  /** Where the figures come from, e.g. "Official brand pages, checked 20 Oct 2026". */
+  source?: { en: string; ar: string };
+};
+
 export type Article = {
   slug: string;
   title: { en: string; ar: string };
+  /**
+   * `<title>` / og:title when the on-page H1 is too long for a SERP. Google
+   * shows ~60 characters, so the keyword-bearing part must fit in that.
+   */
+  seoTitle?: { en: string; ar: string };
   description: { en: string; ar: string };
   date: string; // ISO date
   readingTime: number; // minutes
@@ -26,6 +44,7 @@ export type Article = {
   sections: Array<{
     heading: { en: string; ar: string };
     body: { en: string; ar: string };
+    table?: ArticleTable;
   }>;
   /** Product slugs to cross-link at the bottom */
   relatedProducts: string[];
@@ -62,6 +81,9 @@ const q = (n: number, l: "en" | "ar") => formatQar(n, l);
 const P = PRESET_PRICES_QAR;
 const pro = FILMS.find((f) => f.key === "pro")!;
 const proPlus = FILMS.find((f) => f.key === "pro-plus")!;
+const matte = FILMS.find((f) => f.key === "matte")!;
+const prism = FILMS.find((f) => f.key === "prism")!;
+const M = FILM_PRESET_PRICES_QAR.matte;
 const proPlusFullBodySedan = quotePpf({
   body: "sedan",
   coverage: "full-body",
@@ -194,8 +216,8 @@ export const ARTICLES: Article[] = [
         ar: "احسب سعر تركيب فيلم VTEK الأصلي لسيارتك خلال 30 ثانية",
       },
       body: {
-        en: "Select your vehicle body type (Sedan, SUV, or Large 4x4), coverage tier, and VTEK film grade to see your fixed installed price in Doha with a 10–12 year factory warranty.",
-        ar: "اختر حجم سيارتك (سيدان، SUV، أو دفع رباعي كبير) ومستوى التغطية وفئة فيلم VTEK لمعرفة سعر التركيب الثابت في الدوحة مع ضمان مصنعي 10–12 سنة.",
+        en: "Select your vehicle body type (Sedan, SUV, or Large 4x4), coverage tier, and VTEK film grade to see your fixed installed price in Doha with a 5–12 year film warranty.",
+        ar: "اختر حجم سيارتك (سيدان، SUV، أو دفع رباعي كبير) ومستوى التغطية وفئة فيلم VTEK لمعرفة سعر التركيب الثابت في الدوحة مع ضمان للفيلم من 5 إلى 12 سنة.",
       },
       primaryHref: "/b2c/ppf-installation",
       primaryLabel: { en: "Open PPF Price Calculator", ar: "افتح حاسبة أسعار PPF" },
@@ -219,8 +241,8 @@ export const ARTICLES: Article[] = [
           ar: "ماذا يشمل سعر تركيب PPF لدى ABK؟",
         },
         a: {
-          en: "Every published price includes genuine 100% aliphatic TPU VTEK film from ABK's central stock, installation in a dust-controlled partner booth in Doha, VIN-registered VTEK manufacturer warranty (10 to 12 years), and ABK's 12-month workmanship cover against edge lifting or bubbling.",
-          ar: "يشمل كل سعر معلن فيلم VTEK الأصلي المصنوع من مادة TPU الأليفاتية 100% من مخزون ABK المركزي، والتركيب في كابينة معزولة معتمدة بالدوحة، وتسجيل ضمان المصنع برقم الشاصي لمدة 10–12 سنة، بالإضافة إلى ضمان ABK لجودة التركيب لمدة 12 شهراً.",
+          en: "Every published price includes genuine 100% aliphatic TPU VTEK film from ABK's central stock, installation in a dust-controlled partner booth in Doha, VTEK NFC e-Warranty registered to your car (10 years on PRO, 12 on PRO PLUS, 5 on MATTE and PRISM), and ABK's 12-month workmanship cover against edge lifting or bubbling.",
+          ar: "يشمل كل سعر معلن فيلم VTEK الأصلي المصنوع من مادة TPU الأليفاتية 100% من مخزون ABK المركزي، والتركيب في كابينة معزولة معتمدة بالدوحة، وتسجيل ضمان VTEK الإلكتروني NFC باسم سيارتك (10 سنوات لـ PRO و12 لـ PRO PLUS و5 لـ MATTE وPRISM)، بالإضافة إلى ضمان ABK لجودة التركيب لمدة 12 شهراً.",
         },
       },
       {
@@ -240,6 +262,10 @@ export const ARTICLES: Article[] = [
     title: {
       en: "Window Tinting in Qatar: Rules, Metrash Permits & Choosing the Right Film (2026 Guide)",
       ar: "تظليل النوافذ في قطر: القوانين وتصاريح مطراش واختيار الفيلم المناسب (دليل 2026)",
+    },
+    seoTitle: {
+      en: "Car Window Tinting Rules in Qatar (2026): Limits & Permits",
+      ar: "قوانين تظليل السيارات في قطر 2026: النسب المسموحة والتصاريح",
     },
     description: {
       en: "What tint percentage is legal in Qatar? A practical 2026 guide to MOI tint limits (20% front side windows), how to apply for a tint permit in Metrash, QR 1,000 fines, Fahes inspection, and VTEK ceramic tint.",
@@ -393,6 +419,10 @@ export const ARTICLES: Article[] = [
       en: "How Much Does Ceramic Coating Cost in Qatar? (2026 Price Guide for Sedans & SUVs)",
       ar: "كم تكلفة الطلاء السيراميكي في قطر؟ (دليل أسعار 2026 للسيدان والدفع الرباعي)",
     },
+    seoTitle: {
+      en: "How Much Does Ceramic Coating Cost in Qatar? (2026)",
+      ar: "كم تكلفة الطلاء السيراميكي في قطر؟ (دليل أسعار 2026)",
+    },
     description: {
       en: "2026 ceramic coating prices in Qatar for sedans, medium SUVs and large 4x4s — Doha studio ranges (QAR 800–3,200), Autotriz 9H kit prices (QAR 250–280), and how to compare quotes.",
       ar: "أسعار الطلاء السيراميكي في قطر لعام 2026 للسيدان وسيارات SUV المتوسطة والكبيرة — نطاقات الأسعار في الدوحة وأسعار أطقم Autotriz 9H الأصلية.",
@@ -530,6 +560,10 @@ export const ARTICLES: Article[] = [
     title: {
       en: "Hard Water Spots on Your Car in Qatar: How to Remove & Prevent Them (2026 Guide)",
       ar: "بقع الماء العسر على سيارتك في قطر: كيف تزيلها وتمنعها (دليل 2026)",
+    },
+    seoTitle: {
+      en: "Remove Hard Water Spots from Your Car in Qatar (2026)",
+      ar: "إزالة بقع الماء العسر من سيارتك في قطر (دليل 2026)",
     },
     description: {
       en: "Why Doha's desalinated water leaves white mineral spots on car paint and glass, how to remove fresh and etched water spots in Qatar, and how ceramic coating stops them.",
@@ -788,9 +822,13 @@ export const ARTICLES: Article[] = [
       en: "PPF vs Ceramic Coating: Which is Right for Your Car in Qatar?",
       ar: "PPF مقابل الطلاء السيراميكي: أيهما يناسب سيارتك في قطر؟",
     },
+    seoTitle: {
+      en: "PPF vs Ceramic Coating in Qatar: Which Is Better?",
+      ar: "PPF مقابل الطلاء السيراميكي: أيهما يناسب سيارتك في قطر؟",
+    },
     description: {
       en: "A detailed comparison of paint protection film and ceramic coating for cars in Qatar. Learn which option protects best against sand, UV, and water spots in Doha's climate.",
-      ar: "مقارنة تفصيلية بين فيلم حماية الطلاء والطلاء السيراميكي للسيارات في قطر.",
+      ar: "مقارنة تفصيلية بين فيلم حماية الطلاء PPF والطلاء السيراميكي في قطر: أيهما يحمي أفضل من الرمل والأشعة فوق البنفسجية وبقع الماء في مناخ الدوحة، وكم يكلف كل منهما.",
     },
     date: "2026-05-08",
     readingTime: 5,
@@ -890,6 +928,10 @@ export const ARTICLES: Article[] = [
     title: {
       en: "The Complete Guide to Car Care & Detailing Products in Qatar (Retail & Wholesale)",
       ar: "الدليل الشامل لمنتجات ومواد العناية وتلميع السيارات في قطر (تجزئة وجملة)",
+    },
+    seoTitle: {
+      en: "Car Care & Detailing Products in Qatar: 2026 Guide",
+      ar: "دليل منتجات العناية بالسيارات والتلميع في قطر 2026",
     },
     description: {
       en: "Where to buy car care and detailing materials in Qatar — from pH-balanced 20L car wash drums and German polishing compounds to VTEK PPF and Autotriz 9H ceramic coatings in Doha.",
@@ -1010,6 +1052,10 @@ export const ARTICLES: Article[] = [
       en: "Choosing the Best PPF Installer in Doha, Qatar: 2026 Standards & Price Guide",
       ar: "دليل اختيار أفضل مركز تركيب أفلام حماية PPF في الدوحة، قطر: المعايير والأسعار 2026",
     },
+    seoTitle: {
+      en: "How to Choose the Best PPF Installer in Doha (2026)",
+      ar: "كيف تختار أفضل مركز تركيب PPF في الدوحة (دليل 2026)",
+    },
     description: {
       en: "How to evaluate PPF installers in Doha: dust-controlled clean booths, edge-wrapping vs pre-cut, genuine aliphatic TPU warranties, and 2026 price comparisons in Qatar.",
       ar: "كيف تقيّم مراكز تركيب أفلام الحماية في الدوحة: كبائن العمل المعزولة، لف الحواف، ضمان مادة TPU الأليفاتية، ومقارنة أسعار التركيب في قطر لعام 2026.",
@@ -1068,8 +1114,8 @@ export const ARTICLES: Article[] = [
           ar: "الضمانات المكتوبة: ضمان خامة الفيلم مقابل ضمان جودة التركيب",
         },
         body: {
-          en: "A verbal warranty in the car care industry is unenforceable. When comparing installers, demand two separate written guarantees. First, the manufacturer film warranty: VTEK provides a 10 to 12-year factory warranty registered to your vehicle's VIN against yellowing, cracking, bubbling, or delamination. Second, an explicit installer workmanship guarantee. ABK backs every installation with its own 12-month workmanship cover: if an edge lifts, a corner peels, or a bubble develops from slip-solution trapping, ABK corrects it at zero cost. Every drop-off includes photographic intake documentation and an exhaustive handover inspection.",
-          ar: "الضمان الشفهي في قطاع العناية بالسيارات لا قيمة له عند حدوث مشكلة. عند مقارنة المراكز، اطلب ضمانين كتابيين منفصلين: الأول هو ضمان المصنع لخامة الفيلم؛ وتوفر VTEK ضماناً مصنعياً مسجلاً برقم هيكل سيارتك (VIN) لمدة من 10 إلى 12 سنة ضد الاصفرار والتشقق والفقاعات والانفصال. والضمان الثاني هو ضمان جودة التركيب؛ حيث تدعم ABK كل عملية تركيب بضمان تركيب خاص لمدة 12 شهراً: إذا ارتفعت أي حافة أو ظهرت فقاعة يعالجها المركز مجاناً. وتتضمن كل عملية تسليم توثيقاً فوتوغرافياً شاملاً لحالة السيارة عند الاستلام والتسليم.",
+          en: "A verbal warranty in the car care industry is unenforceable. When comparing installers, demand two separate written guarantees. First, the manufacturer film warranty: VTEK provides an NFC e-Warranty registered to your car (10 years on Weather Armor PRO, 12 on PRO PLUS, 5 on MATTE and PRISM) against yellowing, cracking, bubbling, or delamination. Second, an explicit installer workmanship guarantee. ABK backs every installation with its own 12-month workmanship cover: if an edge lifts, a corner peels, or a bubble develops from slip-solution trapping, ABK corrects it at zero cost. Every drop-off includes photographic intake documentation and an exhaustive handover inspection.",
+          ar: "الضمان الشفهي في قطاع العناية بالسيارات لا قيمة له عند حدوث مشكلة. عند مقارنة المراكز، اطلب ضمانين كتابيين منفصلين: الأول هو ضمان المصنع لخامة الفيلم؛ وتوفر VTEK ضماناً إلكترونياً NFC مسجلاً باسم سيارتك (10 سنوات لفيلم PRO و12 لـ PRO PLUS و5 لـ MATTE وPRISM) ضد الاصفرار والتشقق والفقاعات والانفصال. والضمان الثاني هو ضمان جودة التركيب؛ حيث تدعم ABK كل عملية تركيب بضمان تركيب خاص لمدة 12 شهراً: إذا ارتفعت أي حافة أو ظهرت فقاعة يعالجها المركز مجاناً. وتتضمن كل عملية تسليم توثيقاً فوتوغرافياً شاملاً لحالة السيارة عند الاستلام والتسليم.",
         },
       },
     ],
@@ -1087,8 +1133,8 @@ export const ARTICLES: Article[] = [
         ar: "احجز تركيب VTEK PPF بلف الحواف داخل كابينة معزولة (من 899 ر.ق)",
       },
       body: {
-        en: "Every ABK installation uses 100% aliphatic TPU VTEK film from our own distributor stock, backed by a 10–12 year VIN-registered film warranty and a 12-month workmanship guarantee.",
-        ar: "يتم كل تركيب لدى ABK بفيلم VTEK الأصلي (TPU أليفاتي 100%) من مخزوننا المباشر، مع ضمان مصنعي 10–12 سنة مسجل برقم الشاصي وضمان تركيب لمدة 12 شهراً.",
+        en: "Every ABK installation uses 100% aliphatic TPU VTEK film from our own distributor stock, backed by a 5–12 year VTEK NFC e-Warranty (by film) and a 12-month workmanship guarantee.",
+        ar: "يتم كل تركيب لدى ABK بفيلم VTEK الأصلي (TPU أليفاتي 100%) من مخزوننا المباشر، مع ضمان VTEK الإلكتروني NFC من 5 إلى 12 سنة حسب الفيلم وضمان تركيب لمدة 12 شهراً.",
       },
       primaryHref: "/b2c/ppf-installation",
       primaryLabel: { en: "See Fixed Prices & Book Online", ar: "اعرف السعر الثابت واحجز أونلاين" },
@@ -1102,8 +1148,8 @@ export const ARTICLES: Article[] = [
           ar: "كيف أتأكد أن مركز تركيب PPF في الدوحة يستخدم TPU أصلي وليس PVC أو TPH رخيص؟",
         },
         a: {
-          en: "Ask to see the physical roll box and lot number before installation, verify that the shop is an authorized installer for the brand, and ensure the 10–12 year manufacturer warranty is registered to your car's VIN. At ABK Trading & Service, the VTEK Weather Armor film comes directly from our official Qatar distributor stock.",
-          ar: "اطلب رؤية صندوق الرول ورقم التشغيلة قبل التركيب، وتأكد من اعتماد المركز لدى العلامة التجارية وتسجيل الضمان المصنعي (10–12 سنة) برقم شاصي سيارتك. في ABK يأتي فيلم VTEK Weather Armor مباشرة من مخزوننا بصفتنا الموزع المعتمد في قطر.",
+          en: "Ask to see the physical roll box and lot number before installation, verify that the shop is an authorized installer for the brand, and ensure the manufacturer warranty (5 to 12 years depending on the film) is registered to your car. At ABK Trading & Service, the VTEK Weather Armor film comes directly from our official Qatar distributor stock.",
+          ar: "اطلب رؤية صندوق الرول ورقم التشغيلة قبل التركيب، وتأكد من اعتماد المركز لدى العلامة التجارية وتسجيل الضمان المصنعي (من 5 إلى 12 سنة حسب الفيلم) باسم سيارتك. في ABK يأتي فيلم VTEK Weather Armor مباشرة من مخزوننا بصفتنا الموزع المعتمد في قطر.",
         },
       },
       {
@@ -1122,8 +1168,198 @@ export const ARTICLES: Article[] = [
           ar: "ماذا يحدث إذا ارتفعت حافة الفيلم بعد التركيب؟",
         },
         a: {
-          en: "Every ABK PPF installation includes a post-cure inspection and a written 12-month ABK workmanship cover on top of VTEK's 10 to 12-year film warranty. Any edge lifting or slip-solution bubble is rectified free of charge.",
-          ar: "يشمل كل تركيب لدى ABK فحصاً مجانياً بعد جفاف الفيلم وضمان تركيب كتابي لمدة 12 شهراً بالإضافة إلى ضمان المصنع (10–12 سنة)، وتُعالج أي ملاحظة في الحواف مجاناً.",
+          en: "Every ABK PPF installation includes a post-cure inspection and a written 12-month ABK workmanship cover on top of VTEK's 5 to 12-year film warranty (by film). Any edge lifting or slip-solution bubble is rectified free of charge.",
+          ar: "يشمل كل تركيب لدى ABK فحصاً مجانياً بعد جفاف الفيلم وضمان تركيب كتابي لمدة 12 شهراً بالإضافة إلى ضمان المصنع (من 5 إلى 12 سنة حسب الفيلم)، وتُعالج أي ملاحظة في الحواف مجاناً.",
+        },
+      },
+    ],
+  },
+  {
+    slug: "matte-colored-ppf-qatar",
+    title: {
+      en: "Matte & Colored PPF in Qatar: Prices, Finishes and Care (2026 Guide)",
+      ar: "فيلم PPF المطفي والملوّن في قطر: الأسعار والتشطيبات والعناية (دليل 2026)",
+    },
+    seoTitle: {
+      en: "Matte & Colored PPF in Qatar: Prices & Finishes (2026)",
+      ar: "PPF مطفي وملوّن في قطر: الأسعار والتشطيبات (2026)",
+    },
+    description: {
+      en: `Matte (satin) and colored PPF in Qatar: installed VTEK MATTE from ${q(M["front-end"].sedan, "en")} (front end) to ${q(M["full-body"].sedan, "en")} (full-body sedan), PRISM colour film priced per car, care and warranty.`,
+      ar: `فيلم حماية الطلاء المطفي والملوّن في قطر: تركيب VTEK MATTE من ${q(M["front-end"].sedan, "ar")} للواجهة الأساسية إلى ${q(M["full-body"].sedan, "ar")} للهيكل بالكامل (سيدان)، وفيلم PRISM الملوّن بسعر لكل سيارة، مع العناية والضمان.`,
+    },
+    date: "2026-10-20",
+    readingTime: 5,
+    category: "buying-guide",
+    keywords: {
+      en: ["matte PPF Qatar", "colored PPF Qatar", "satin PPF Doha", "matte paint protection film price Qatar", "VTEK MATTE", "VTEK PRISM", "color PPF Doha"],
+      ar: ["PPF مطفي قطر", "PPF ملون قطر", "سعر حماية الطلاء المطفي الدوحة", "فيلم ساتان للسيارات قطر"],
+    },
+    sections: [
+      {
+        heading: {
+          en: "Matte and Colored PPF Prices in Qatar at a Glance",
+          ar: "أسعار PPF المطفي والملوّن في قطر باختصار",
+        },
+        body: {
+          en: `These are ABK's fixed installed prices for genuine VTEK Weather Armor MATTE (8 mil satin aliphatic TPU, ${matte.warrantyYears}-year warranty), as of ${pricesAsOf("en")}: front-end kit from ${q(M["front-end"].sedan, "en")}, full front from ${q(M["full-front"].sedan, "en")} and full body from ${q(M["full-body"].sedan, "en")} for a sedan or coupe. Mid SUVs, large SUVs and pickups cost more (table below). Colour film — Weather Armor PRISM, ${prism.warrantyYears}-year warranty — is priced per car because colour, coverage and panel count vary: send the car and the colour on WhatsApp for a fixed quote. Every price includes the film, fitting at a VTEK-authorised centre in Doha, NFC e-Warranty registration and ABK's 12-month workmanship cover.`,
+          ar: `هذه أسعار التركيب الثابتة لدى ABK لفيلم VTEK Weather Armor MATTE الأصلي (TPU أليفاتي ساتان بسماكة 8 مل، ضمان ${matte.warrantyYears} سنوات)، حتى ${pricesAsOf("ar")}: الواجهة الأساسية من ${q(M["front-end"].sedan, "ar")} والواجهة الكاملة من ${q(M["full-front"].sedan, "ar")} والهيكل بالكامل من ${q(M["full-body"].sedan, "ar")} للسيدان والكوبيه، وتزيد الأسعار لسيارات SUV المتوسطة والكبيرة والبيك أب (انظر الجدول). أما الفيلم الملوّن Weather Armor PRISM (ضمان ${prism.warrantyYears} سنوات) فيُسعَّر لكل سيارة لأن اللون وحجم التغطية وعدد القطع تختلف — أرسل سيارتك واللون المطلوب عبر واتساب لتحصل على سعر ثابت. يشمل كل سعر الفيلم والتركيب في مركز معتمد من VTEK في الدوحة وتسجيل الضمان الإلكتروني NFC وضمان ABK للتركيب لمدة 12 شهراً.`,
+        },
+        table: {
+          caption: {
+            en: "Installed VTEK Weather Armor MATTE prices (QAR).",
+            ar: "أسعار تركيب فيلم VTEK Weather Armor MATTE (بالريال القطري).",
+          },
+          head: [
+            { en: "Coverage", ar: "التغطية" },
+            ...BODY_TYPES.map((b) => b.name),
+          ],
+          rows: (["front-end", "full-front", "full-body"] as const).map((cov) => [
+            COVERAGES.find((c) => c.key === cov)!.name,
+            ...BODY_TYPES.map((b) => ({
+              en: q(M[cov][b.key], "en"),
+              ar: q(M[cov][b.key], "ar"),
+            })),
+          ]),
+          source: {
+            en: `Source: ABK fixed price list, updated ${pricesAsOf("en")}.`,
+            ar: `المصدر: قائمة أسعار ABK الثابتة، آخر تحديث ${pricesAsOf("ar")}.`,
+          },
+        },
+      },
+      {
+        heading: {
+          en: "What Matte PPF Does (and Doesn't Do)",
+          ar: "ماذا يفعل PPF المطفي وما حدوده",
+        },
+        body: {
+          en: `Matte PPF is a clear urethane film with a satin finish that sits over your paint. On gloss paint it turns the look satin without repainting or wrapping the car in vinyl, and it can be removed later to bring back the original gloss. On factory matte or frozen paint — which cannot be polished or corrected — it protects against the same stone chips, sand abrasion and wash marks that gloss film stops on gloss paint. VTEK MATTE has a self-healing satin top-coat that clears light scratches with heat, resists grime and keeps an even sheen. The limits are worth knowing: a matte surface cannot be polished or waxed for shine, it needs a matte-safe shampoo, and its ${matte.warrantyYears}-year warranty is shorter than gloss PRO (${pro.warrantyYears} years) or PRO PLUS (${proPlus.warrantyYears} years).`,
+          ar: `فيلم PPF المطفي طبقة يوريثان شفافة بتشطيب ساتان تُركَّب فوق طلاء السيارة. على الطلاء اللامع يحوّل المظهر إلى ساتان دون إعادة طلاء السيارة أو تغليفها بفينيل، ويمكن إزالته لاحقاً لاستعادة اللمعان الأصلي. وعلى الطلاء المطفي من المصنع — الذي لا يمكن تلميعه أو تصحيحه — يحميه من الحصى وخدوش الرمل وآثار الغسيل كما يفعل الفيلم اللامع للطلاء اللامع. يتميز VTEK MATTE بطبقة ساتان ذاتية الالتئام تعالج الخدوش الخفيفة بالحرارة وتقاوم الأوساخ وتحافظ على لمعان موحّد. وحدوده واضحة: لا يُلمَّع السطح المطفي ولا يُشمَّع لزيادة اللمعان، ويحتاج شامبو مناسباً للأسطح المطفية، وضمانه (${matte.warrantyYears} سنوات) أقصر من PRO اللامع (${pro.warrantyYears} سنوات) وPRO PLUS (${proPlus.warrantyYears} سنة).`,
+        },
+      },
+      {
+        heading: {
+          en: "Colored PPF (PRISM): Protection Plus a New Colour",
+          ar: "الفيلم الملوّن (PRISM): حماية ولون جديد",
+        },
+        body: {
+          en: "PRISM is a coloured TPU film (polycaprolactone-based, 8.5 mil) that protects the paint like clear PPF while changing the colour. The range ABK lists is Gloss Piano Black, Matte Black, Nardo Grey, Metallic Blue, Pearl White and Satin Metals. Because it is a film and not paint, the factory finish stays underneath and the colour can be removed later. A colour change can affect the car's registration details, so check the Traffic Department's current rules (through Metrash) before you book — ABK cannot give legal advice. Clear film does not change the car's colour.",
+          ar: "PRISM فيلم TPU ملوّن (أساسه البوليكابرولاكتون بسماكة 8.5 مل) يحمي الطلاء مثل الفيلم الشفاف ويغيّر اللون في الوقت نفسه. الألوان المعروضة لدى ABK: أسود بيانو لامع، أسود مطفي، رمادي ناردو، أزرق ميتاليك، أبيض لؤلؤي ومعادن ساتان. وبما أنه فيلم وليس طلاءً، يبقى طلاء المصنع تحته ويمكن إزالة اللون لاحقاً. قد يؤثر تغيير لون السيارة على بيانات تسجيلها، فتأكد من أنظمة إدارة المرور الحالية (عبر مطراش) قبل الحجز، علماً أن ABK لا تقدم استشارات قانونية. أما الفيلم الشفاف فلا يغيّر لون السيارة.",
+        },
+      },
+      {
+        heading: {
+          en: "Caring for Matte PPF in Qatar's Heat and Dust",
+          ar: "العناية بالفيلم المطفي في حرارة قطر وغبارها",
+        },
+        body: {
+          en: "Hand-wash with a pH-neutral, wax-free shampoo and a clean microfibre mitt, in the shade and on a cool panel rather than in direct sun. Rinse sand off before the mitt touches the surface. Avoid brush car washes, abrasive compounds, wax and gloss sprays — they leave shiny patches on a matte film. Remove bird droppings and fuel splashes quickly with water and a soft cloth. With a pressure washer, keep the nozzle away from the film edges. Follow the care sheet you receive at handover.",
+          ar: "اغسل السيارة يدوياً بشامبو متعادل الحموضة وخالٍ من الشمع ومنشفة مايكروفايبر نظيفة، في الظل وعلى سطح بارد وليس تحت الشمس المباشرة. اشطف الرمل عن السطح قبل أن تلمسه المنشفة. تجنّب مغاسل الفرش الآلية والمعاجين الكاشطة والشمع وبخاخات اللمعان لأنها تترك بقعاً لامعة على الفيلم المطفي. أزل فضلات الطيور وتناثر الوقود سريعاً بالماء وقطعة قماش ناعمة. وعند الغسيل بالضغط العالي ابقَ بالفوهة بعيداً عن حواف الفيلم. واتبع ورقة العناية التي تُسلَّم لك عند الاستلام.",
+        },
+      },
+      {
+        heading: {
+          en: "Matte, Gloss or Colour: Which Film Should You Choose?",
+          ar: "مطفي أم لامع أم ملوّن: أي فيلم تختار؟",
+        },
+        body: {
+          en: `Choose gloss PRO (${pro.warrantyYears}-year) or PRO PLUS (${proPlus.warrantyYears}-year) when you want the paint to look exactly as it does now, only better protected — they carry the longest warranties of the installed range. Choose MATTE when you want a satin look or your car has factory matte paint. Choose PRISM only when you want a new colour. On a tighter budget, start with a front-end or full-front kit: the front of the car takes most of the stone chips on Qatar's highways.`,
+          ar: `اختر PRO اللامع (${pro.warrantyYears} سنوات) أو PRO PLUS (${proPlus.warrantyYears} سنة) إذا أردت أن يبدو الطلاء كما هو الآن لكن بحماية أفضل — فهما الأطول ضماناً بين الأفلام المركَّبة. واختر MATTE إذا أردت مظهر الساتان أو كان طلاء سيارتك مطفياً من المصنع. واختر PRISM فقط إذا أردت لوناً جديداً. وإن كانت ميزانيتك محدودة فابدأ بالواجهة الأساسية أو الكاملة، إذ تتلقى مقدمة السيارة معظم ضربات الحصى على طرق قطر السريعة.`,
+        },
+      },
+      {
+        heading: {
+          en: "Get a Fixed Matte PPF Price for Your Car",
+          ar: "احصل على سعر ثابت للفيلم المطفي لسيارتك",
+        },
+        body: {
+          en: "Use the quote builder on the PPF installation page, choose the MATTE film and your car size, and the installed price appears instantly. Or send the car and the finish you want on WhatsApp (+974 3083 8355). Payment is in full by bank transfer or cash once the slot is confirmed, with a full refund if you cancel at least 48 hours before.",
+          ar: "استخدم أداة التسعير في صفحة تركيب أفلام الحماية، واختر فيلم MATTE وحجم سيارتك ليظهر سعر التركيب فوراً. أو أرسل سيارتك والتشطيب المطلوب عبر واتساب (+974 3083 8355). يتم الدفع كاملاً بتحويل بنكي أو نقداً بعد تأكيد الموعد، مع استرداد كامل عند الإلغاء قبل 48 ساعة على الأقل.",
+        },
+      },
+    ],
+    relatedProducts: [
+      "vtek-ppf-weather-armor-matte",
+      "vtek-ppf-weather-armor-prism",
+      "vtek-ppf-weather-armor-pro",
+      "vtek-ppf-weather-armor-pro-plus",
+    ],
+    cta: PPF_INSTALL_CTA,
+    inlineCta: {
+      badge: { en: "Matte PPF Price Calculator", ar: "حاسبة أسعار PPF المطفي" },
+      title: {
+        en: "See the Installed Price of VTEK MATTE for Your Car",
+        ar: "اعرف سعر تركيب VTEK MATTE لسيارتك",
+      },
+      body: {
+        en: "Pick your car size and coverage and the fixed installed price for the matte film appears instantly — no waiting for a callback.",
+        ar: "اختر حجم سيارتك ومستوى التغطية ليظهر سعر التركيب الثابت للفيلم المطفي فوراً — دون انتظار اتصال.",
+      },
+      primaryHref: "/b2c/ppf-installation?film=matte#quote",
+      primaryLabel: { en: "Open the Matte PPF Calculator", ar: "افتح حاسبة PPF المطفي" },
+      secondaryHref:
+        "https://wa.me/97430838355?text=Hi%20ABK%2C%20I%20would%20like%20a%20matte%20or%20colour%20PPF%20quote%20for%20my%20car.",
+      secondaryLabel: { en: "Ask on WhatsApp (+974 3083 8355)", ar: "استفسر عبر واتساب" },
+    },
+    faqs: [
+      {
+        q: {
+          en: "How much does matte PPF cost in Qatar?",
+          ar: "كم سعر PPF المطفي في قطر؟",
+        },
+        a: {
+          en: `At ABK, installed VTEK Weather Armor MATTE costs ${q(M["full-body"].sedan, "en")} for a full-body sedan or coupe, ${q(M["full-body"].suv, "en")} for a mid SUV and ${q(M["full-body"]["large-suv"], "en")} for a large SUV or pickup. Full-front kits start at ${q(M["full-front"].sedan, "en")} and front-end kits at ${q(M["front-end"].sedan, "en")}.`,
+          ar: `لدى ABK يبلغ سعر تركيب VTEK Weather Armor MATTE للهيكل بالكامل ${q(M["full-body"].sedan, "ar")} للسيدان والكوبيه، و${q(M["full-body"].suv, "ar")} لسيارات SUV المتوسطة، و${q(M["full-body"]["large-suv"], "ar")} لسيارات SUV الكبيرة والبيك أب. وتبدأ الواجهة الكاملة من ${q(M["full-front"].sedan, "ar")} والواجهة الأساسية من ${q(M["front-end"].sedan, "ar")}.`,
+        },
+      },
+      {
+        q: {
+          en: "Is matte PPF the same as a matte vinyl wrap?",
+          ar: "هل PPF المطفي هو نفسه تغليف الفينيل المطفي؟",
+        },
+        a: {
+          en: "No. A vinyl wrap is mainly cosmetic. Matte PPF is a thicker, self-healing urethane film built to take stone chips, sand abrasion and light scratches while giving a satin finish.",
+          ar: "لا. تغليف الفينيل تجميلي في الأساس، أما PPF المطفي فهو فيلم يوريثان أسمك وذاتي الالتئام صُمم لتحمّل الحصى وخدوش الرمل والخدوش الخفيفة مع منحك تشطيب ساتان.",
+        },
+      },
+      {
+        q: {
+          en: "How long does matte PPF last in Qatar?",
+          ar: "كم يدوم PPF المطفي في قطر؟",
+        },
+        a: {
+          en: `VTEK MATTE carries a ${matte.warrantyYears}-year NFC e-Warranty against yellowing, bubbling, cracking, peeling and delamination when fitted by an authorised installer. Gloss PRO carries ${pro.warrantyYears} years and PRO PLUS ${proPlus.warrantyYears} years.`,
+          ar: `يحمل VTEK MATTE ضماناً إلكترونياً NFC لمدة ${matte.warrantyYears} سنوات ضد الاصفرار والفقاعات والتشقق والتقشر والانفصال عند تركيبه لدى مركز معتمد، بينما يحمل PRO اللامع ${pro.warrantyYears} سنوات وPRO PLUS ${proPlus.warrantyYears} سنة.`,
+        },
+      },
+      {
+        q: {
+          en: "Can I put matte PPF on a gloss car and remove it later?",
+          ar: "هل يمكن تركيب PPF مطفي على سيارة لامعة ثم إزالته لاحقاً؟",
+        },
+        a: {
+          en: "Yes. Fitted over sound factory paint, the film can be removed by a professional to bring back the original gloss. Repainted panels or paint with a weak bond can lift when film is removed, so tell the installer if any panel has been resprayed.",
+          ar: "نعم. عند تركيبه على طلاء المصنع السليم يمكن إزالته على يد مختص لاستعادة اللمعان الأصلي. أما الألواح المعاد طلاؤها أو الطلاء ضعيف الالتصاق فقد يرتفع عند إزالة الفيلم، لذا أخبر الفني إن كان أي لوح قد أُعيد رشّه.",
+        },
+      },
+      {
+        q: {
+          en: "How do I wash a car with matte PPF?",
+          ar: "كيف أغسل سيارة عليها PPF مطفي؟",
+        },
+        a: {
+          en: "Hand-wash in the shade with a pH-neutral, wax-free shampoo and a clean microfibre mitt, rinse sand off first, and avoid wax, polish, gloss sprays, abrasive compounds and brush washes, which leave shiny patches on a matte finish.",
+          ar: "اغسلها يدوياً في الظل بشامبو متعادل الحموضة وخالٍ من الشمع ومنشفة مايكروفايبر نظيفة، واشطف الرمل أولاً، وتجنّب الشمع والملمّعات وبخاخات اللمعان والمعاجين الكاشطة ومغاسل الفرش لأنها تترك بقعاً لامعة على التشطيب المطفي.",
+        },
+      },
+      {
+        q: {
+          en: "Can I get colored PPF in Qatar and what does it cost?",
+          ar: "هل يتوفر PPF ملوّن في قطر وكم سعره؟",
+        },
+        a: {
+          en: "Yes — ABK installs VTEK Weather Armor PRISM colour film. It is priced per car, so send the car and the colour you want on WhatsApp (+974 3083 8355) for a fixed quote. Check the Traffic Department's rules on colour changes before booking.",
+          ar: "نعم — تركّب ABK فيلم VTEK Weather Armor PRISM الملوّن. ويُسعَّر لكل سيارة، فأرسل سيارتك واللون المطلوب عبر واتساب (+974 3083 8355) لتحصل على سعر ثابت. وتأكد من أنظمة إدارة المرور بشأن تغيير اللون قبل الحجز.",
         },
       },
     ],

@@ -8,7 +8,7 @@ import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { ArticleCard } from "@/components/blog/ArticleCard";
 import { ARTICLES } from "@/data/articles";
-import { pageMeta } from "@/lib/seo";
+import { clampDescription, fitTitle, pageMeta } from "@/lib/seo";
 import { itemListJsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
 import { SITE } from "@/lib/constants";
 
@@ -21,8 +21,8 @@ export async function generateMetadata({
   if (!hasLocale(routing.locales, locale)) return {};
   const t = await getTranslations({ locale, namespace: "Blog" });
   return {
-    title: t("metaTitle"),
-    description: t("metaDescription"),
+    title: fitTitle(t("metaTitle")),
+    description: clampDescription(t("metaDescription")),
     ...pageMeta(locale as Locale, "/b2c/blog"),
   };
 }

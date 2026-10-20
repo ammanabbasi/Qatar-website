@@ -13,7 +13,7 @@ import { PinIcon, ClockIcon, PhoneIcon, MailIcon } from "@/components/ui/Icons";
 import { LazyMapEmbed } from "@/components/contact/LazyMapEmbed";
 import { SITE } from "@/lib/constants";
 import { breadcrumbJsonLd, localBusinessJsonLd } from "@/lib/jsonld";
-import { pageMeta } from "@/lib/seo";
+import { clampDescription, fitTitle, pageMeta } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -24,8 +24,8 @@ export async function generateMetadata({
   if (!hasLocale(routing.locales, locale)) return {};
   const meta = await getTranslations({ locale, namespace: "Meta" });
   return {
-    title: meta("contactTitle"),
-    description: meta("contactDescription"),
+    title: fitTitle(meta("contactTitle")),
+    description: clampDescription(meta("contactDescription")),
     ...pageMeta(locale as Locale, "/contact"),
   };
 }

@@ -148,8 +148,8 @@ export async function PpfPriceList({ locale }: { locale: "en" | "ar" }) {
         ? "VTEK Weather Armor أصلي (7.5–8.0 mil TPU أليفاتي معالج ذاتياً)"
         : "Genuine VTEK Weather Armor (7.5–8.0 mil Aliphatic TPU, self-healing)",
       warranty: ar
-        ? "١٠–١٢ سنة ضمان إلكتروني NFC + ١٢ شهراً ضمان تركيب من ABK"
-        : "10–12 Yr VTEK NFC e-Warranty + 12-Mo ABK Fitting Guarantee",
+        ? "ضمان إلكتروني NFC: PRO ١٠ سنوات، PRO PLUS ١٢ سنة (MATTE وPRISM ٥ سنوات) + ١٢ شهراً ضمان تركيب من ABK"
+        : "VTEK NFC e-Warranty: PRO 10 yr, PRO PLUS 12 yr (MATTE & PRISM 5 yr) + 12-Mo ABK Fitting Guarantee",
       highlight: true,
     },
     {

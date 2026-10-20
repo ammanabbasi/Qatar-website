@@ -120,29 +120,67 @@ export function metaDescription(body: string, tail: string, max = 158): string {
 }
 
 /**
- * Build a search-intent-optimised `<title>` stem for product pages.
- * The root layout appends `" | ABK Trading"` (14 chars), so this helper keeps
- * the stem between ~34 and ~54 characters while injecting local Doha/Qatar
- * and category signals for shorter product names (resolving Bing Webmaster
- * Tools' "page titles too short" diagnostic).
+ * Google shows roughly the first 60 characters of a title (about 600px) and
+ * rewrites the rest away, usually dropping the brand first. Titles that run
+ * past that were being cut mid-phrase in the SERP, so every title below is
+ * built to fit: the keyword-bearing part comes first and the brand suffix is
+ * only appended while the whole thing still fits.
+ */
+export const TITLE_MAX = 62;
+const BRAND_SUFFIX = " | ABK Trading";
+
+/**
+ * Full `<title>` for a page, as `{ absolute }` so the layout template never
+ * adds a second suffix. The brand is appended only when the result still fits
+ * `TITLE_MAX`; the domain and the WebSite name already identify ABK in the SERP.
+ * Stems that already carry the brand ("… | ABK") are left alone.
+ */
+export function fitTitle(stem: string, max = TITLE_MAX): { absolute: string } {
+  if (/ABK/i.test(stem)) return { absolute: stem };
+  const withBrand = `${stem}${BRAND_SUFFIX}`;
+  return { absolute: withBrand.length <= max ? withBrand : stem };
+}
+
+/**
+ * Meta description clamped at a word boundary. Google's desktop snippet is
+ * ~155–160 characters and mobile ~120, so anything longer gets cut mid-sentence.
+ */
+export function clampDescription(text: string, max = 158): string {
+  if (text.length <= max) return text;
+  const head = text.slice(0, max - 1);
+  const cut = head.slice(0, Math.max(head.lastIndexOf(" "), 0));
+  return `${cut.replace(/[\s.,;:—–-]+$/u, "")}…`;
+}
+
+/**
+ * Search-intent `<title>` for product pages. Tries the richest local-intent
+ * tail first (category + Doha, then "Buy in Doha", then "in Qatar") and takes
+ * the first one that still leaves room for the brand suffix; failing that, the
+ * richest tail that fits on its own. Product names are never truncated.
  */
 export function productMetaTitle(
   name: string,
   categoryLabel: string,
   locale: "en" | "ar",
-): string {
-  if (locale === "ar") {
-    if (name.includes("قطر") || name.includes("الدوحة")) return name;
-    if (name.length <= 28) return `${name} — ${categoryLabel} في الدوحة، قطر`;
-    if (name.length <= 42) return `${name} — متوفر في الدوحة، قطر`;
-    if (name.length <= 52) return `${name} في قطر`;
-    return name;
-  }
+): { absolute: string } {
+  const ar = locale === "ar";
   const lower = name.toLowerCase();
-  if (lower.includes("qatar") || lower.includes("doha")) return name;
-  if (name.length <= 28) return `${name} — ${categoryLabel} in Doha, Qatar`;
-  if (name.length <= 42) return `${name} — Buy in Doha, Qatar`;
-  if (name.length <= 52) return `${name} in Qatar`;
-  return name;
+  const hasPlace = ar
+    ? name.includes("قطر") || name.includes("الدوحة")
+    : lower.includes("qatar") || lower.includes("doha");
+  const tails = hasPlace
+    ? [""]
+    : ar
+      ? [` — ${categoryLabel} في الدوحة، قطر`, " — متوفر في الدوحة، قطر", " في قطر", ""]
+      : [` — ${categoryLabel} in Doha, Qatar`, " — Buy in Doha, Qatar", " in Qatar", ""];
+  for (const tail of tails) {
+    const stem = `${name}${tail}`;
+    if (`${stem}${BRAND_SUFFIX}`.length <= TITLE_MAX) return { absolute: `${stem}${BRAND_SUFFIX}` };
+  }
+  for (const tail of tails) {
+    const stem = `${name}${tail}`;
+    if (stem.length <= TITLE_MAX) return { absolute: stem };
+  }
+  return { absolute: name };
 }
 

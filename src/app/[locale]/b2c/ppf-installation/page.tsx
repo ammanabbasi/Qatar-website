@@ -19,7 +19,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { PPF_INSTALL_FAQ } from "@/data/faq";
 import { PRESET_PRICES_QAR, presetPriceList, quotePpf } from "@/data/ppfInstall";
 import { breadcrumbJsonLd, faqJsonLd, localBusinessJsonLd, serviceJsonLd } from "@/lib/jsonld";
-import { pageMeta } from "@/lib/seo";
+import { clampDescription, fitTitle, pageMeta } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
 import { formatNumber, formatQar } from "@/lib/pricing";
 import { buildPpfEnquiryWhatsAppUrl } from "@/lib/whatsapp";
@@ -35,8 +35,8 @@ export async function generateMetadata({
   if (!hasLocale(routing.locales, locale)) return {};
   const meta = await getTranslations({ locale, namespace: "Meta" });
   return {
-    title: meta("ppfInstallTitle"),
-    description: meta("ppfInstallDescription"),
+    title: fitTitle(meta("ppfInstallTitle")),
+    description: clampDescription(meta("ppfInstallDescription")),
     ...pageMeta(locale as Locale, PATH),
   };
 }

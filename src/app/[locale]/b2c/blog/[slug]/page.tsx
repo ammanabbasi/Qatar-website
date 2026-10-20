@@ -12,7 +12,7 @@ import { ChevronIcon } from "@/components/ui/Icons";
 import { Link } from "@/i18n/navigation";
 import { ARTICLES, getArticleBySlug } from "@/data/articles";
 import { getProductBySlug } from "@/data/products";
-import { defaultSocialImage, pageMeta } from "@/lib/seo";
+import { clampDescription, defaultSocialImage, fitTitle, pageMeta } from "@/lib/seo";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/jsonld";
 import { SITE } from "@/lib/constants";
 
@@ -34,8 +34,8 @@ export async function generateMetadata({
   if (!article) return {};
   const l = (locale === "ar" ? "ar" : "en") as "en" | "ar";
   return {
-    title: article.title[l],
-    description: article.description[l],
+    title: fitTitle(article.seoTitle?.[l] ?? article.title[l]),
+    description: clampDescription(article.description[l]),
     keywords: article.keywords[l],
     ...pageMeta(locale as Locale, `/b2c/blog/${article.slug}`, {
       article: {
@@ -177,6 +177,53 @@ export default async function ArticlePage({
                   <p className="text-body text-(--color-text-muted)">
                     {section.body[l]}
                   </p>
+                  {section.table ? (
+                    <div className="mt-5 overflow-x-auto rounded-tile border border-(--color-border) bg-(--color-surface)">
+                      <table className="w-full min-w-[34rem] border-collapse text-start text-caption">
+                        <caption className="px-4 py-3 text-start text-caption text-(--color-text-muted)">
+                          {section.table.caption[l]}
+                          {section.table.source ? ` ${section.table.source[l]}` : ""}
+                        </caption>
+                        <thead>
+                          <tr className="border-y border-(--color-border) bg-(--color-bg)/60">
+                            {section.table.head.map((h, hi) => (
+                              <th
+                                key={hi}
+                                scope="col"
+                                className="px-4 py-3 text-start font-semibold"
+                              >
+                                {h[l]}
+                              </th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-(--color-border-soft)">
+                          {section.table.rows.map((row, ri) => (
+                            <tr key={ri} className="hover:bg-(--color-bg)/50">
+                              {row.map((cell, ci) =>
+                                ci === 0 ? (
+                                  <th
+                                    key={ci}
+                                    scope="row"
+                                    className="px-4 py-3 text-start font-semibold text-(--color-text)"
+                                  >
+                                    {cell[l]}
+                                  </th>
+                                ) : (
+                                  <td
+                                    key={ci}
+                                    className="px-4 py-3 text-start text-(--color-text-muted)"
+                                  >
+                                    {cell[l]}
+                                  </td>
+                                ),
+                              )}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  ) : null}
                 </section>
                 {i === 1 && article.inlineCta ? (
                   <aside

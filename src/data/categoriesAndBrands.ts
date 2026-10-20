@@ -927,7 +927,7 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
       ar: "الموزع الرسمي والحصري في قطر",
     },
     title: {
-      en: "VTEK PPF & Solar Armor Window Tint in Doha, Qatar | Official Distributor",
+      en: "VTEK PPF & Window Tint in Qatar — Official Distributor",
       ar: "أفلام حماية الطلاء VTEK وتظليل Solar Armor في قطر | الموزع الحصري",
     },
     description: {
@@ -1020,8 +1020,8 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
       ar: "الموزع المعتمد في قطر",
     },
     title: {
-      en: "Autotriz Germany Ceramic Coatings & Polishes in Doha, Qatar | ABK",
-      ar: "منتجات أوتوتريز الألمانية Autotriz للنانو سيراميك والتلميع في قطر | ABK",
+      en: "Autotriz Ceramic Coatings & Polishes in Doha, Qatar | ABK",
+      ar: "منتجات Autotriz للنانو سيراميك والتلميع في قطر | ABK",
     },
     description: {
       en: "Buy genuine German Autotriz 9H nano ceramic coatings (3D Matrix, REVO +15, ION+), compounds (901, 801, 701, 302), PPF gel & 20L foam shampoo in Doha, Qatar.",
@@ -1113,7 +1113,7 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
       ar: "الموزع المعتمد في قطر",
     },
     title: {
-      en: "Briller Car Care (Canada) 20L Wash & Detailing Drums in Qatar | ABK",
+      en: "Briller Car Care 20L Wash & Detailing Drums in Qatar | ABK",
       ar: "منتجات بريلر الكندية Briller Car Care وعبوات 20 لتر في قطر | ABK",
     },
     description: {
@@ -1206,8 +1206,8 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
       ar: "الموزع المعتمد في قطر",
     },
     title: {
-      en: "Grizzly PPF Rolls (QAR 1,200), One-Step Polish & Car Care in Qatar",
-      ar: "أفلام حماية الطلاء Grizzly PPF (1,200 ر.ق) ومنتجات العناية الأمريكية في قطر",
+      en: "Grizzly PPF Rolls (QAR 1,200) & Car Care in Qatar | ABK",
+      ar: "أفلام Grizzly PPF (1,200 ر.ق) ومنتجات العناية بالسيارات في قطر",
     },
     description: {
       en: "Shop Grizzly Self-Healing TPU PPF rolls (QAR 1,200), One Step Polish 3-in-1 (QAR 115), Carnauba Wax, Spray Wax, Rim/Engine Cleaners & 20kg Touchless Powder in Doha.",
@@ -1298,8 +1298,8 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
       ar: "المورد المعتمد في قطر",
     },
     title: {
-      en: "GrünesAuto German 6-Inch Foam Polishing Pads in Doha, Qatar (QAR 30)",
-      ar: "وسائد وإسفنجات التلميع الألمانية GrünesAuto مقاس 6 إنش في قطر (30 ر.ق)",
+      en: "GrünesAuto 6-Inch Foam Polishing Pads in Qatar (QAR 30)",
+      ar: "وسائد تلميع GrünesAuto الألمانية مقاس 6 إنش في قطر (30 ر.ق)",
     },
     description: {
       en: "Buy German-engineered GrünesAuto 6-inch DA (Dual Action) & Rotary foam polishing pads in Doha, Qatar — Step 1 Heavy Cut, Step 2 Medium & Step 3 Finishing at QAR 30.",
@@ -1389,7 +1389,7 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
       ar: "علامة ABK الخاصة",
     },
     title: {
-      en: "ABK Rejuvenate Plastic Restorer & Luxury Car Fragrances in Qatar",
+      en: "ABK Rejuvenate Plastic Restorer & Car Fragrances in Qatar",
       ar: "مجدد البلاستيك الفرنسي ABK Rejuvenate ومعطرات ABK الفاخرة في قطر",
     },
     description: {
@@ -1480,7 +1480,7 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
       ar: "المورد المعتمد في قطر",
     },
     title: {
-      en: "Insta Finish (USA) Butter Wet Wax, Super APC & Shampoo in Qatar",
+      en: "Insta Finish Butter Wet Wax, Super APC & Shampoo in Qatar",
       ar: "منتجات إنستا فينش الأمريكية Insta Finish للسيارات في الدوحة، قطر",
     },
     description: {
@@ -1571,7 +1571,7 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
       ar: "موزع تجزئة وجملة معتمد في قطر",
     },
     title: {
-      en: "Getsun Scratch Remover, Spray Polish & Leather Wax in Doha, Qatar",
+      en: "Getsun Scratch Remover, Spray Polish & Wax in Doha, Qatar",
       ar: "منتجات جيتسون Getsun لإزالة الخدوش وتلميع السيارات في الدوحة، قطر",
     },
     description: {
@@ -1661,7 +1661,7 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
       ar: "المورد المعتمد في قطر",
     },
     title: {
-      en: "Sitrett MX5 Heavy-Duty Multi-Surface Degreaser in Doha, Qatar | ABK",
+      en: "Sitrett MX5 Heavy-Duty Degreaser in Doha, Qatar | ABK",
       ar: "منظف ومزيل الشحوم القوي سيتريت Sitrett MX5 في الدوحة، قطر | ABK",
     },
     description: {

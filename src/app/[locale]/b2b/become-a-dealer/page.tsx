@@ -11,7 +11,7 @@ import { TrustBadges } from "@/components/home/TrustBadges";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SITE } from "@/lib/constants";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
-import { pageMeta } from "@/lib/seo";
+import { clampDescription, fitTitle, pageMeta } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -22,8 +22,8 @@ export async function generateMetadata({
   if (!hasLocale(routing.locales, locale)) return {};
   const meta = await getTranslations({ locale, namespace: "Meta" });
   return {
-    title: meta("becomeDealerTitle"),
-    description: meta("becomeDealerDescription"),
+    title: fitTitle(meta("becomeDealerTitle")),
+    description: clampDescription(meta("becomeDealerDescription")),
     ...pageMeta(locale as Locale, "/b2b/become-a-dealer"),
   };
 }

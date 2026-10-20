@@ -8,7 +8,7 @@ import { Shell } from "@/components/layout/Shell";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { LegalSection } from "@/components/legal/LegalSection";
-import { pageMeta } from "@/lib/seo";
+import { clampDescription, fitTitle, pageMeta } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
 import { SITE } from "@/lib/constants";
 
@@ -21,14 +21,16 @@ export async function generateMetadata({
   if (!hasLocale(routing.locales, locale)) return {};
   const l = locale === "ar" ? "ar" : "en";
   return {
-    title:
+    title: fitTitle(
       l === "ar"
         ? "سياسة الخصوصية وحماية البيانات الشخصية في قطر"
         : "Privacy Policy — Data Protection in Doha, Qatar",
-    description:
+    ),
+    description: clampDescription(
       l === "ar"
         ? "كيف تتعامل ABK للتجارة والخدمات في مسيمير، الدوحة مع بياناتك الشخصية وطلبات واتساب وحجوزات تركيب أفلام الحماية وفق قانون حماية خصوصية البيانات القطري."
         : "How ABK Trading & Service in Mesaimeer, Doha handles customer data, WhatsApp orders, and PPF booking requests under Qatar's Personal Data Privacy Law.",
+    ),
     ...pageMeta(locale as Locale, "/privacy"),
   };
 }
