@@ -69,6 +69,8 @@ export default async function TermsPage({
             {sections.map((i) => (
               <LegalSection
                 key={i}
+                // Section 4 is the PPF installation terms; the PPF page links here.
+                id={i === 4 ? "ppf-bookings" : undefined}
                 title={t(`section${i}Title`)}
                 body={t(`section${i}Body`)}
               />

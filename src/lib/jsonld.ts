@@ -26,6 +26,17 @@ const QATAR_SERVICE_AREA = [
   ),
 ];
 
+// Saturday to Thursday, two sittings (SITE.hours). Shared by the storefront node
+// and the PPF Service's WhatsApp channel so the two can never disagree.
+const OPENING_HOURS = [
+  { opens: "10:00", closes: "13:00" },
+  { opens: "16:00", closes: "22:00" },
+].map((h) => ({
+  "@type": "OpeningHoursSpecification" as const,
+  dayOfWeek: ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+  ...h,
+}));
+
 /**
  * Top-level Organization for brand identity in the Knowledge Graph.
  * Distinct from `localBusinessJsonLd` (AutoPartsStore) — they live at
@@ -133,34 +144,7 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
       addressRegion: "Doha",
       addressCountry: SITE.address.countryCode,
     },
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: [
-          "Saturday",
-          "Sunday",
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-        ],
-        opens: "10:00",
-        closes: "13:00",
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: [
-          "Saturday",
-          "Sunday",
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-        ],
-        opens: "16:00",
-        closes: "22:00",
-      },
-    ],
+    openingHoursSpecification: OPENING_HOURS,
     areaServed: QATAR_SERVICE_AREA,
     currenciesAccepted: "QAR",
     parentOrganization: { "@id": IDS.organization },
@@ -376,15 +360,29 @@ export function serviceJsonLd(opts: {
     description: opts.description,
     serviceType: opts.serviceType,
     url: opts.url,
-    image: [
-      defaultSocialImage(opts.locale).url,
-      `${SITE.url}/products/vertek/vertek-landcruiser-installation.webp`,
-    ],
+    image: [defaultSocialImage(opts.locale).url],
     brand: { "@type": "Brand", name: "VTEK" },
     provider: { "@id": IDS.business },
     areaServed: QATAR_SERVICE_AREA,
     audience: { "@type": "Audience", audienceType: "Car owners in Qatar" },
     termsOfService: opts.termsUrl,
+    // Booking is a WhatsApp conversation: say so in machine-readable form.
+    availableChannel: [
+      {
+        "@type": "ServiceChannel",
+        name: opts.locale === "ar" ? "الحجز عبر واتساب" : "Book on WhatsApp",
+        serviceUrl: `https://wa.me/${SITE.whatsapp}`,
+        availableLanguage: ["en", "ar"],
+        servicePhone: {
+          "@type": "ContactPoint",
+          telephone: SITE.phoneE164,
+          contactType: "reservations",
+          areaServed: "QA",
+          availableLanguage: ["en", "ar"],
+        },
+      },
+    ],
+    hoursAvailable: OPENING_HOURS,
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "QAR",
@@ -399,6 +397,40 @@ export function serviceJsonLd(opts: {
       name: opts.name,
       itemListElement: mappedOffers,
     },
+  };
+}
+
+/**
+ * WebPage node for the installation page. It ties the page to the Service it
+ * describes and carries the freshness dates AI answer engines weigh:
+ * `dateModified` is the newest of the price and evidence dates, `lastReviewed`
+ * the day the VTEK and Google sources were last read (src/data/ppfEvidence.ts).
+ */
+export function webPageJsonLd(opts: {
+  name: string;
+  description: string;
+  url: string;
+  locale: "en" | "ar";
+  dateModified: string;
+  lastReviewed: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${opts.url}#webpage`,
+    url: opts.url,
+    name: opts.name,
+    description: opts.description,
+    inLanguage: opts.locale === "ar" ? "ar-QA" : "en-QA",
+    isPartOf: { "@id": IDS.website },
+    about: { "@id": `${opts.url}#service` },
+    mainEntity: { "@id": `${opts.url}#service` },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: defaultSocialImage(opts.locale).url,
+    },
+    dateModified: opts.dateModified,
+    lastReviewed: opts.lastReviewed,
   };
 }
 

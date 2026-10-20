@@ -8,6 +8,8 @@ type Props = {
   subtitle?: string;
   /** Defaults to the site FAQ; the installation page passes its own. */
   items?: FaqEntry[];
+  /** Tighter rows on phones, for long lists. */
+  compact?: boolean;
 };
 
 /**
@@ -16,7 +18,7 @@ type Props = {
  * here MUST match what's emitted in the FAQPage JSON-LD on the same page,
  * or Google flags it as cloaking. Styled as Apple's hairline accordion.
  */
-export function FaqSection({ locale, title, subtitle, items = FAQ }: Props) {
+export function FaqSection({ locale, title, subtitle, items = FAQ, compact = false }: Props) {
   return (
     <section className="py-10 lg:py-14">
       <Container>
@@ -27,7 +29,11 @@ export function FaqSection({ locale, title, subtitle, items = FAQ }: Props) {
         <div className="mt-8 max-w-3xl divide-y divide-(--color-border) border-y border-(--color-border)">
           {items.map((item, i) => (
             <details key={i} className="group">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-body font-semibold text-(--color-text) [&::-webkit-details-marker]:hidden">
+              <summary
+                className={`flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-body font-semibold text-(--color-text) [&::-webkit-details-marker]:hidden ${
+                  compact ? "max-sm:gap-4 max-sm:py-3.5 max-sm:text-footnote" : ""
+                }`}
+              >
                 <span>{item.q[locale]}</span>
                 <span
                   aria-hidden
@@ -38,7 +44,13 @@ export function FaqSection({ locale, title, subtitle, items = FAQ }: Props) {
                   </svg>
                 </span>
               </summary>
-              <p className="pb-6 pe-12 text-body text-(--color-text-muted)">{item.a[locale]}</p>
+              <p
+                className={`pb-6 pe-12 text-body text-(--color-text-muted) ${
+                  compact ? "max-sm:pb-4 max-sm:pe-2 max-sm:text-footnote" : ""
+                }`}
+              >
+                {item.a[locale]}
+              </p>
             </details>
           ))}
         </div>

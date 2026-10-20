@@ -49,6 +49,7 @@ import { formatNumber, formatQar } from "@/lib/pricing";
 import {
   buildPpfBookingWhatsAppUrl,
   buildPpfCustomOfferWhatsAppUrl,
+  buildPpfEnquiryWhatsAppUrl,
 } from "@/lib/whatsapp";
 import {
   trackPpfBooking,
@@ -892,7 +893,7 @@ export function PpfConfigurator() {
         {/* 1-tap popular Qatar cars row when search is idle */}
         {trimmed.length === 0 ? (
           <div className="hide-scrollbar -mx-1 mt-2 flex items-center gap-1.5 overflow-x-auto px-1 pb-0.5">
-            <span className="shrink-0 text-[11px] font-medium text-(--color-text-subtle)">
+            <span className="shrink-0 text-[11px] font-medium text-(--color-text-muted)">
               {t("popularCarsLabel")}
             </span>
             {popularCars.map(({ entry, label }) => {
@@ -1014,7 +1015,7 @@ export function PpfConfigurator() {
       <div className="mb-3 rounded-xl border border-(--color-border-soft) bg-(--color-bg) p-2">
         <div className="flex items-center justify-between gap-2 px-1.5 pb-1.5">
           <span className="text-[11px] font-semibold tracking-wide text-(--color-text-muted) uppercase">
-            {locale === "ar" ? "١. اختر الباقة للمقارنة الفورية" : "1. Compare package prices (PRO 10-Yr TPU)"}
+            {locale === "ar" ? "١. اختر الباقة للمقارنة الفورية" : "1. Compare package prices (PRO film)"}
           </span>
           <a href="#prices" className="text-[11px] font-semibold text-(--color-link) hover:underline">
             {locale === "ar" ? "جدول الأسعار الكامل ←" : "Full price table →"}
@@ -1046,7 +1047,7 @@ export function PpfConfigurator() {
                     </span>
                   ) : null}
                 </span>
-                <span className="mt-1 text-caption font-bold tabular-nums text-(--color-brand-deep)">
+                <span className={`mt-1 text-caption font-bold tabular-nums ${active ? "text-(--color-ink)" : "text-(--color-brand-deep)"}`}>
                   {pkg.sub}
                 </span>
               </button>
@@ -1135,7 +1136,7 @@ export function PpfConfigurator() {
                 {t("customCarOptionSub")}
               </span>
             </span>
-            <span className="shrink-0 rounded-pill bg-(--color-brand)/15 px-2.5 py-1 text-caption font-semibold text-(--color-brand-deep)">
+            <span className="shrink-0 rounded-pill bg-(--color-brand)/15 px-2.5 py-1 text-caption font-semibold text-(--color-ink)">
               {t("customCarBadge")}
             </span>
             <ChevronIcon className="hidden h-3.5 w-3.5 shrink-0 text-(--color-text-subtle) transition-transform duration-150 group-hover:translate-x-0.5 sm:block rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
@@ -1143,7 +1144,7 @@ export function PpfConfigurator() {
         </li>
       </ul>
 
-      <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
+      <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4 sm:gap-y-3">
         <button
           type="button"
           onClick={() => openSheet(undefined, undefined, coverage, "hero_primary_cta")}
@@ -1152,6 +1153,17 @@ export function PpfConfigurator() {
           {ctaLabel}
           <ChevronIcon className="h-3.5 w-3.5 rtl:-scale-x-100" />
         </button>
+        {/* Direct chat for people who would rather talk than fill in a form. */}
+        <a
+          href={buildPpfEnquiryWhatsAppUrl(locale)}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-placement="hero_whatsapp"
+          className="plausible-event-name=whatsapp_click plausible-event-audience=b2c inline-flex h-12 w-full items-center justify-center gap-2 rounded-pill border border-(--color-border) bg-(--color-surface) px-6 text-body font-semibold text-(--color-text) transition-[background-color,transform] duration-150 hover:bg-(--color-bg) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand-deep) active:scale-[0.98] sm:w-auto"
+        >
+          <WhatsAppIcon className="h-5 w-5 text-[#25D366]" />
+          {t("heroWhatsApp")}
+        </a>
         <a
           href="#prices"
           className="text-center text-footnote text-(--color-link) underline-offset-4 transition-colors hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-brand-deep) sm:text-start"
@@ -1160,23 +1172,19 @@ export function PpfConfigurator() {
         </a>
       </div>
 
-      {/* Visible credentials & warranty evidence right inside the hero launcher */}
+      {/* Short evidence line inside the launcher; the proofs themselves sit right below the hero. */}
       <div className="mt-3.5 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-(--color-border-soft) pt-3 text-[11px] text-(--color-text-muted)">
         <span className="inline-flex items-center gap-1 font-medium text-(--color-text)">
           <CheckIcon className="h-3.5 w-3.5 text-(--color-brand-deep)" />
-          {locale === "ar" ? "الموزع الحصري لـ VTEK في قطر" : "Official Qatar VTEK Distributor"}
+          {locale === "ar" ? "الموزع المعتمد لـ VTEK في قطر" : "Authorised VTEK distributor in Qatar"}
         </span>
         <span>·</span>
-        <span>
-          {locale === "ar"
-            ? "ضمان إلكتروني 5–12 سنة (nfc.vtekfilms.com)"
-            : "5–12 Yr VTEK NFC e-Warranty"}
-        </span>
+        <span>{locale === "ar" ? "ضمان VTEK الإلكتروني NFC" : "VTEK NFC e-Warranty"}</span>
         <span>·</span>
         <span>
           {locale === "ar"
             ? "ضمان تركيب 12 شهراً من ABK"
-            : "12-Mo ABK Fitting Guarantee"}
+            : "12-month ABK fitting guarantee"}
         </span>
       </div>
     </div>
@@ -1272,7 +1280,7 @@ export function PpfConfigurator() {
                   {t("customCarOptionSub")}
                 </span>
               </span>
-              <span className="shrink-0 rounded-pill bg-(--color-brand)/15 px-3 py-1 text-caption font-semibold text-(--color-brand-deep)">
+              <span className="shrink-0 rounded-pill bg-(--color-brand)/15 px-3 py-1 text-caption font-semibold text-(--color-ink)">
                 {t("customCarBadge")}
               </span>
             </button>
@@ -1481,7 +1489,7 @@ export function PpfConfigurator() {
                             {locale === "ar" ? "أفضل قيمة · ١٢ قطعة" : "Best value · 12 panels"}
                           </span>
                         ) : isPopular ? (
-                          <span className="rounded-pill bg-(--color-brand)/20 px-2 py-0.5 text-[10px] font-bold text-(--color-brand-deep)">
+                          <span className="rounded-pill bg-(--color-brand)/20 px-2 py-0.5 text-[10px] font-bold text-(--color-ink)">
                             {t("popularBadge")}
                           </span>
                         ) : null}

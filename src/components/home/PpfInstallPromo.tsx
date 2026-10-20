@@ -38,7 +38,11 @@ export function PpfInstallPromo({ locale }: { locale: "en" | "ar" }) {
       }),
     },
     {
-      title: t("fact3Title", { min: n(warranty.min), max: n(warranty.max) }),
+      // Equal ends (PRO and PRO PLUS both 10 years) must not read "10–10-year".
+      title:
+        warranty.min === warranty.max
+          ? t("fact3TitleSingle", { years: warranty.min, text: n(warranty.min) })
+          : t("fact3Title", { min: n(warranty.min), max: n(warranty.max) }),
       body: t("fact3Body", { months: n(WORKMANSHIP_COVER_MONTHS) }),
     },
   ];

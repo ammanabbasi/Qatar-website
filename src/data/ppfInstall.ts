@@ -150,7 +150,8 @@ export const PRESET_PARTS: Record<Exclude<CoverageKey, "custom">, PartKey[]> = {
 /**
  * Films offered for installation. `uplift` is the price increase over PRO;
  * `null` means the job is quoted individually (PRISM colour change).
- * Warranty years follow the official VTEK e-warranty chart.
+ * Warranty years follow the official VTEK e-warranty chart
+ * (vtekfilms.com/warranty).
  */
 export const FILMS: Array<{
   key: FilmKey;
@@ -165,8 +166,8 @@ export const FILMS: Array<{
     productSlug: "vtek-ppf-weather-armor-pro",
     name: { en: "Weather Armor PRO", ar: "Weather Armor PRO" },
     desc: {
-      en: "High-clarity gloss, heat-activated self-healing. The best value for daily drivers.",
-      ar: "لمعان عالي الوضوح مع معالجة ذاتية بالحرارة. أفضل قيمة للاستخدام اليومي.",
+      en: "High-clarity gloss with a self-healing top layer. The best value for daily drivers.",
+      ar: "لمعان عالي الوضوح مع طبقة علوية ذاتية الإصلاح. أفضل قيمة للاستخدام اليومي.",
     },
     warrantyYears: 10,
     uplift: 0,
@@ -176,10 +177,15 @@ export const FILMS: Array<{
     productSlug: "vtek-ppf-weather-armor-pro-plus",
     name: { en: "Weather Armor PRO PLUS", ar: "Weather Armor PRO PLUS" },
     desc: {
-      en: "Advanced high-density aliphatic TPU with extreme optical clarity, resilient self-healing and 12-year warranty.",
-      ar: "فيلم TPU أليفاتي متطور عالي الكثافة بنقاء بصري فائق ومعالجة ذاتية مرنة وضمان ١٢ سنة.",
+      en: "The step-up gloss grade, priced above PRO. Ask on WhatsApp if you're unsure which suits your car.",
+      ar: "فئة اللمعان الأعلى، بسعر أعلى من PRO. اسألنا عبر واتساب إن لم تكن متأكداً أيهما يناسب سيارتك.",
     },
-    warrantyYears: 12,
+    // 10 years: the longest term VTEK publishes for its PRO / PRO+ gloss film
+    // (vtekfilms.com/warranty and /weather-armor, read 2026-10-20). VTEK's
+    // site lists no 12-year film. Raise this ONLY with a VTEK document that
+    // names PRO PLUS and its term — customers can look the term up on
+    // nfc.vtekfilms.com/verify, so an overstated number is found out there.
+    warrantyYears: 10,
     uplift: 0.18,
   },
   {
@@ -208,6 +214,12 @@ export const FILMS: Array<{
 
 /** ABK's own cover on the fitting (lifting, bubbles, edges) — separate from the film warranty. */
 export const WORKMANSHIP_COVER_MONTHS = 12;
+
+/**
+ * VTEK's flagship gloss film. Not in the quote builder: ABK supplies it by
+ * special roll order only. Term per the VTEK e-warranty chart.
+ */
+export const ULTIMATE_WARRANTY_YEARS = 15;
 
 export type PpfSelection = {
   body: VehicleBodySelection;
