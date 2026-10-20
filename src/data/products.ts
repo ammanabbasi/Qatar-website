@@ -243,12 +243,12 @@ export const PRODUCTS: Product[] = [
       ar: "VTEK — فيلم حماية الطلاء Weather Armor PRO PLUS",
     },
     shortDesc: {
-      en: "Advanced aliphatic TPU paint protection film with high-durability hydrophobic topcoat, extreme clarity and 12-year warranty.",
-      ar: "فيلم حماية طلاء متطور من TPU الأليفاتي مع طبقة نانوية طاردة للماء، لمعان فائق وضمان ١٢ سنة.",
+      en: "Advanced aliphatic TPU paint protection film with high-durability hydrophobic topcoat, extreme clarity and 10-year warranty.",
+      ar: "فيلم حماية طلاء متطور من TPU الأليفاتي مع طبقة نانوية طاردة للماء، لمعان فائق وضمان ١٠ سنوات.",
     },
     longDesc: {
-      en: "VTEK® Weather Armor™ PRO PLUS takes paint defense to the next tier. Engineered with high-density aliphatic TPU and a resilient heat-activated nano topcoat, PRO PLUS delivers superior stone chip resistance, enhanced chemical tolerance against road film and bird droppings, and an ultra-gloss finish that deepens factory paint color. Ideal for high-mileage luxury vehicles and daily drivers in Qatar, backed by a comprehensive 12-year warranty.",
-      ar: "يرتقي فيلم VTEK® Weather Armor™ PRO PLUS بمستوى حماية الطلاء إلى درجات متقدمة. صُنع من مادة TPU الأليفاتية عالية الكثافة مع طبقة نانوية فائقة تنشط بالحرارة للإصلاح الذاتي، ليمنح مقاومة استثنائية لضربات الحصى والتأثيرات البيئية والمواد الكيميائية مع لمعان بصري عميق يعزز نقاء لون طلاء الوكالة، ومدعوم بضمان رسمي شامل لمدة ١٢ سنة.",
+      en: "VTEK® Weather Armor™ PRO PLUS takes paint defense to the next tier. Engineered with high-density aliphatic TPU and a resilient heat-activated nano topcoat, PRO PLUS delivers superior stone chip resistance, enhanced chemical tolerance against road film and bird droppings, and an ultra-gloss finish that deepens factory paint color. Ideal for high-mileage luxury vehicles and daily drivers in Qatar, backed by a comprehensive 10-year warranty.",
+      ar: "يرتقي فيلم VTEK® Weather Armor™ PRO PLUS بمستوى حماية الطلاء إلى درجات متقدمة. صُنع من مادة TPU الأليفاتية عالية الكثافة مع طبقة نانوية فائقة تنشط بالحرارة للإصلاح الذاتي، ليمنح مقاومة استثنائية لضربات الحصى والتأثيرات البيئية والمواد الكيميائية مع لمعان بصري عميق يعزز نقاء لون طلاء الوكالة، ومدعوم بضمان رسمي شامل لمدة ١٠ سنوات.",
     },
     images: [
       "/products/vtek/vtek-weather-armor-pro-plus.webp",
@@ -275,7 +275,7 @@ export const PRODUCTS: Product[] = [
       },
       {
         label: { en: "Warranty", ar: "الضمان" },
-        value: { en: "12-Year Warranty", ar: "ضمان ١٢ سنة" },
+        value: { en: "10-Year Warranty", ar: "ضمان ١٠ سنوات" },
       },
       {
         label: { en: "Resistance", ar: "المقاومة" },
@@ -288,7 +288,7 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-10-06",
+    updatedAt: "2026-10-20",
   },
   {
     slug: "vtek-ppf-weather-armor-matte",

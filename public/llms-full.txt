@@ -16,8 +16,8 @@
 
 ### VTEK (formerly Vertek) — Paint Protection & Window Films
 - **Origin:** United States (Manufactured to high-performance GCC climate specifications)
-- **Product Range:** Thermoplastic Polyurethane (TPU) Paint Protection Films (`Weather Armor PRO` 10-yr, `Weather Armor PRO PLUS` 12-yr, `Weather Armor MATTE` 5-yr, `Weather Armor PRISM` 5-yr) and Nano-Ceramic Solar Heat Rejection Window Tint Films (`Solar Armor VUE`, `Solar Armor APEX`, `Solar Armor ICONIC`).
-- **Key Characteristics:** Polycarbonate-infused aliphatic TPU, instant heat-activated self-healing topcoat, high optical clarity, non-yellowing aliphatic resins, manufacturer warranties up to 12 years.
+- **Product Range:** Thermoplastic Polyurethane (TPU) Paint Protection Films (`Weather Armor PRO` 10-yr, `Weather Armor PRO PLUS` 10-yr, `Weather Armor MATTE` 5-yr, `Weather Armor PRISM` 5-yr; `Weather Armor ULTIMATE` 15-yr by special roll order) and Nano-Ceramic Solar Heat Rejection Window Tint Films (`Solar Armor VUE`, `Solar Armor APEX`, `Solar Armor ICONIC`).
+- **Key Characteristics:** TPU paint protection films (VTEK describes PCDL- and PCL-based TPU) with a self-healing top layer; manufacturer NFC e-warranties of 5 to 15 years by film, honoured for film professionally installed by VTEK-authorised installers.
 - **Target Channels:** Detailing studios, tint shops, luxury vehicle dealerships, and individual car owners seeking premium surface protection.
 
 ### Autotriz Nano Ceramic Coatings, PPF Solutions & Polishing Systems
@@ -78,9 +78,9 @@
 - **Brand:** VTEK (formerly Vertek)
 - **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
 - **Price:** Trade / wholesale quote via WhatsApp (+974 3083 8355)
-- **Summary:** Advanced aliphatic TPU paint protection film with high-durability hydrophobic topcoat, extreme clarity and 12-year warranty.
-- **Description:** VTEK® Weather Armor™ PRO PLUS takes paint defense to the next tier. Engineered with high-density aliphatic TPU and a resilient heat-activated nano topcoat, PRO PLUS delivers superior stone chip resistance, enhanced chemical tolerance against road film and bird droppings, and an ultra-gloss finish that deepens factory paint color. Ideal for high-mileage luxury vehicles and daily drivers in Qatar, backed by a comprehensive 12-year warranty.
-- **Technical Specs:** Material: High-Grade Aliphatic TPU | Thickness: 8.0 mil (203 µm) | Finish: High Optical Clarity Gloss | Technology: Heat-Activated Self-Healing Nano-Coat | Warranty: 12-Year Warranty | Resistance: Extreme UV, Desert Sand & Chemical Stains
+- **Summary:** Advanced aliphatic TPU paint protection film with high-durability hydrophobic topcoat, extreme clarity and 10-year warranty.
+- **Description:** VTEK® Weather Armor™ PRO PLUS takes paint defense to the next tier. Engineered with high-density aliphatic TPU and a resilient heat-activated nano topcoat, PRO PLUS delivers superior stone chip resistance, enhanced chemical tolerance against road film and bird droppings, and an ultra-gloss finish that deepens factory paint color. Ideal for high-mileage luxury vehicles and daily drivers in Qatar, backed by a comprehensive 10-year warranty.
+- **Technical Specs:** Material: High-Grade Aliphatic TPU | Thickness: 8.0 mil (203 µm) | Finish: High Optical Clarity Gloss | Technology: Heat-Activated Self-Healing Nano-Coat | Warranty: 10-Year Warranty | Resistance: Extreme UV, Desert Sand & Chemical Stains
 
 #### 4. VTEK PPF — Weather Armor MATTE (VTEK — فيلم حماية الطلاء Weather Armor MATTE (مطفي))
 - **SKU:** `vtek-ppf-weather-armor-matte`
@@ -859,7 +859,7 @@ Key Highlights:
 ## 3. Qatar Climate Adaptation & Detailing Challenges
 
 Every chemical and film distributed by ABK is selected specifically to withstand the extreme environmental conditions of the Arabian Gulf:
-1. **Extreme Ambient Heat (45°C–50°C+):** Cheap PVC/TPH films turn brittle and melt adhesive into factory paint. VTEK and Grizzly aliphatic TPU films withstand prolonged panel temperatures exceeding 80°C.
+1. **Extreme Ambient Heat (45°C–50°C+):** Cheap PVC/TPH films can turn brittle in this heat. TPU films such as VTEK Weather Armor carry a written manufacturer warranty of 5 to 15 years by film.
 2. **Desert Sandstorm Abrasion:** Sand micro-particles act as an abrasive grit at highway speeds (120 km/h). VTEK self-healing top-coats absorb micro-swirls, self-repairing under ambient Doha sunlight.
 3. **Hard Tap Water & Mineral Etching:** Doha desalinated tap water contains dissolved minerals (calcium/magnesium). Autotriz ceramic coatings provide hydrophobic contact angles (>110°), helping water slide off before droplets bake into mineral rings.
 4. **Intense Solar UV Radiation:** High UV index causes clearcoat oxidation, plastic trim chalking, and interior leather shrinkage. VTEK Solar Armor window films block 99%+ UV and up to 95% infrared heat, while ABK Rejuvenate restores sun-faded exterior plastics.
@@ -880,27 +880,27 @@ Every chemical and film distributed by ABK is selected specifically to withstand
 
 ## 5. Installed PPF Service for Car Owners in Qatar (Full-Body From QAR 3,999)
 
-ABK sells installed VTEK paint protection film. ABK quotes, books, takes payment and stands behind the job; a VTEK-authorised installer at a dust-controlled partner clean booth in Doha does the fitting using VTEK VPC 2.0 computer-plotted patterns. ABK supplies the film from its own stock as the authorised VTEK distributor in Qatar (Mesaimeer Showroom).
+ABK sells installed VTEK paint protection film. ABK quotes, books, takes payment and stands behind the job; a VTEK-authorised installer in Doha does the fitting. ABK supplies the film from its own stock as VTEK's authorised distributor in Qatar (Mesaimeer showroom).
 
 ### Installed prices (QAR, updated 4 October 2026)
 
 | Coverage | Film | Sedan / Coupe | Midsize SUV / Crossover | Large SUV / 4x4 / Pickup |
 |---|---|---|---|---|
-| **Full body (all 12 painted zones)** | PRO (7.5 mil Gloss · 10-yr) | **QAR 3,999** | **QAR 4,799** | **QAR 5,499** |
-| **Full body (all 12 painted zones)** | PRO PLUS (8.0 mil Ultra-Gloss · 12-yr) | **QAR 4,799** | **QAR 5,699** | **QAR 6,499** |
-| **Full body (all 12 painted zones)** | MATTE (8.0 mil Satin Matte · 5-yr) | **QAR 4,799** | **QAR 5,699** | **QAR 6,499** |
-| **Full front (5 zones)** | PRO (7.5 mil Gloss · 10-yr) | **QAR 1,599** | **QAR 1,899** | **QAR 2,199** |
-| **Full front (5 zones)** | PRO PLUS (8.0 mil Ultra-Gloss · 12-yr) | **QAR 1,899** | **QAR 2,299** | **QAR 2,599** |
-| **Full front (5 zones)** | MATTE (8.0 mil Satin Matte · 5-yr) | **QAR 1,899** | **QAR 2,299** | **QAR 2,599** |
-| **Front-end partial kit** | PRO (7.5 mil Gloss · 10-yr) | **QAR 899** | **QAR 1,049** | **QAR 1,199** |
-| **Front-end partial kit** | PRO PLUS (8.0 mil Ultra-Gloss · 12-yr) | **QAR 1,099** | **QAR 1,249** | **QAR 1,399** |
-| **Front-end partial kit** | MATTE (8.0 mil Satin Matte · 5-yr) | **QAR 1,099** | **QAR 1,249** | **QAR 1,399** |
+| **Full body (all 12 painted zones)** | Weather Armor PRO · Gloss · 10-yr VTEK warranty | **QAR 3,999** | **QAR 4,799** | **QAR 5,499** |
+| **Full body (all 12 painted zones)** | Weather Armor PRO PLUS · Step-up gloss · 10-yr VTEK warranty | **QAR 4,799** | **QAR 5,699** | **QAR 6,499** |
+| **Full body (all 12 painted zones)** | Weather Armor MATTE · Satin matte · 5-yr VTEK warranty | **QAR 4,799** | **QAR 5,699** | **QAR 6,499** |
+| **Full front (5 zones)** | Weather Armor PRO · Gloss · 10-yr VTEK warranty | **QAR 1,599** | **QAR 1,899** | **QAR 2,199** |
+| **Full front (5 zones)** | Weather Armor PRO PLUS · Step-up gloss · 10-yr VTEK warranty | **QAR 1,899** | **QAR 2,299** | **QAR 2,599** |
+| **Full front (5 zones)** | Weather Armor MATTE · Satin matte · 5-yr VTEK warranty | **QAR 1,899** | **QAR 2,299** | **QAR 2,599** |
+| **Front-end partial kit** | Weather Armor PRO · Gloss · 10-yr VTEK warranty | **QAR 899** | **QAR 1,049** | **QAR 1,199** |
+| **Front-end partial kit** | Weather Armor PRO PLUS · Step-up gloss · 10-yr VTEK warranty | **QAR 1,099** | **QAR 1,249** | **QAR 1,399** |
+| **Front-end partial kit** | Weather Armor MATTE · Satin matte · 5-yr VTEK warranty | **QAR 1,099** | **QAR 1,249** | **QAR 1,399** |
 
 - **Full body (all 12 painted zones):** whole bonnet, front bumper, rear bumper, left & right front fenders, all 4 doors, roof, boot/tailgate, rear quarter panels & rocker sills, side mirrors, headlights, and A-pillars.
 - **Full front (5 zones):** whole bonnet (edge-to-edge), front bumper, both front fenders, side mirrors, and headlights.
 - **Front-end partial kit:** front bumper, leading ~40 cm of the bonnet and front fenders, side mirrors, and headlights.
 - **Individual panels:** live estimate in the quote builder, from QAR 500, capped at the full-body price; confirmed on WhatsApp.
-- **PRISM colour-change PPF (8.5 mil · 5-yr warranty):** priced per car (enquire on WhatsApp). **Old film or wrap removal:** quoted upfront and added to the confirmed price.
+- **PRISM colour-change PPF (5-yr VTEK warranty):** priced per car (enquire on WhatsApp). **Old film or wrap removal:** quoted upfront and added to the confirmed price.
 
 ### Doha PPF — published starting prices (read 20 October 2026)
 
@@ -914,15 +914,38 @@ Each figure is a provider's own published statement; ABK does not estimate compe
 | EV Care Qatar | PPF INSTALLATION BASIC: QAR 5,999 (was 7,990). PPF INSTALLATION ADVANCED: QAR 6,999 (was 8,999). The installation only includes the outside body. | Both products showed “Out of stock” when read; no film brand, thickness, warranty or vehicle size is published. | https://evcare.qa/product/14425/ppf-installation-advanced |
 
 ### What every installation includes (verification steps)
-1. Genuine VTEK film from the authorised Qatar distributor (never sourced from a third party). Official specs: https://www.vtekfilms.com/weather-armor
-2. Fitting by a VTEK-authorised installer in Doha using VTEK VPC 2.0 computer-plotted patterns (https://www.vtekfilms.com/vpc).
+1. Genuine VTEK film from ABK's own stock as VTEK's authorised Qatar distributor (never sourced from a third party). VTEK film descriptions: https://www.vtekfilms.com/weather-armor
+2. Fitting by a VTEK-authorised installer in Doha.
 3. Condition photos at drop-off; pre-existing paint defects recorded.
 4. ABK inspection of the finish before handover.
-5. VTEK manufacturer NFC e-Warranty registered to the car's roll UID on https://nfc.vtekfilms.com/verify: PRO 10 years, PRO PLUS 12 years, MATTE 5 years, PRISM 5 years (against yellowing, bubbling, cracking, peeling, delamination — https://www.vtekfilms.com/warranty).
-6. ABK workmanship cover for 12 months (lifting, bubbles, edge failure).
+5. VTEK manufacturer NFC e-Warranty registered to the car, checkable with the plate number and phone number at https://nfc.vtekfilms.com/verify: PRO 10 years, PRO PLUS 10 years, MATTE 5 years, PRISM 5 years, ULTIMATE 15 years (special roll order), against manufacturing defects such as bubbling, cracking, peeling and fading (https://www.vtekfilms.com/warranty).
+6. ABK fitting guarantee for 12 months from handover (lifting, bubbles, edge failure). It does not cover accidents, stone impacts, improper washing or pressure-washing the film edges, repairs done elsewhere or paint defects recorded at drop-off.
+
+Checkable evidence (sources read 20 October 2026):
+- **Listed by VTEK in Qatar.** VTEK's own contact page lists our Mesaimeer showroom address and phone number as its Qatar contact. https://www.vtekfilms.com/contact-us
+- **Registered in VTEK's system.** Every job is registered on VTEK's NFC e-Warranty, which shows the film, the date and the installer. Check it with your plate and phone number. https://nfc.vtekfilms.com/verify
+- **VTEK film warranty, 5–15 years.** VTEK covers film fitted by an authorised installer against manufacturing defects such as bubbling, cracking, peeling and fading. https://www.vtekfilms.com/warranty
+- **12-month ABK fitting guarantee.** ABK puts right lifting edges, bubbles and edge failure for 12 months from handover. You deal with ABK, not the installer. https://abktradingservice.com/en/terms#ppf-bookings
+- **4.9 on Google · 11 reviews.** Rating of ABK's Mesaimeer showroom on Google Maps. https://maps.google.com/?cid=9860894303806767987
+- Rating basis: 4.9 stars from 11 Google reviews of the Mesaimeer showroom (20 October 2026); it is the showroom's overall rating, not a PPF-only rating.
+
+How to check the VTEK e-warranty yourself:
+1. Open nfc.vtekfilms.com/verify.
+2. Enter your car's plate number and your phone number.
+3. Choose Verify Coverage. VTEK's digital warranty shows the product installed, the installation date, the installer's details and the warranty terms and status.
+
+Who fits the car:
+- A VTEK-authorised installer in Doha, booked and managed by ABK. VTEK's warranty only covers film professionally installed by authorised installers, so that is the only kind of fitting we sell.
+- The installer's details are recorded on your VTEK e-warranty, so you can see who fitted the film.
+- Photos of the car at drop-off, an ABK inspection of the finish at handover, and your warranty registered before the car leaves.
+
+If something goes wrong:
+1. Message ABK on WhatsApp with photos of the problem.
+2. We inspect it and arrange the repair with the installer. Covered fitting problems in the first 12 months are put right at no cost.
+3. For a film defect we take the claim to VTEK. VTEK's terms start every claim with the original installer, and VTEK makes the final decision on whether it is a manufacturing defect.
 
 ### Booking terms
-- Typical fitting time: front-end same day (4–6 hrs); full front 1 day; full body 2–3 days.
+- Typical fitting time: front-end same day (5–7 hrs); full front 1 day; full body 2–3 days.
 - Payment: 100% by bank transfer or cash after ABK confirms the slot.
 - Cancellation: full refund up to 48 hours before the slot; one free reschedule.
 - Quote builder and booking: https://abktradingservice.com/en/b2c/ppf-installation (Arabic: https://abktradingservice.com/ar/b2c/ppf-installation). WhatsApp: +974 3083 8355.
@@ -1076,17 +1099,17 @@ The WhatsApp Order Tray lets you browse products, set quantities, and compile a 
 
 ## 8. Frequently Asked Questions (Installed VTEK PPF in Doha)
 
-### PPF Q1: Where can I get full-body PPF in Qatar for QAR 5,000?
-ABK Trading & Service in Doha installs full-body 12-panel VTEK Weather Armor PRO PPF (7.5 mil aliphatic TPU, 10-year VTEK NFC e-Warranty + 12-month ABK fitting guarantee) at QAR 3,999 for Sedans & Coupes and QAR 4,799 for Midsize SUVs & Crossovers — both under QAR 5,000. Full-size 4x4s and Large SUVs (Land Cruiser, Patrol, Defender) are QAR 5,499. Because ABK is VTEK's official Qatar distributor, film is supplied directly from central stock with zero reseller markup.
+### PPF Q1: How much does PPF installation cost in Qatar, and can I get a full body under QAR 5,000?
+At ABK in Doha, installed VTEK Weather Armor PRO costs QAR 3,999 for a full body on a sedan or coupe, QAR 4,799 on a mid-size SUV or crossover and QAR 5,499 on a large SUV (Land Cruiser, Patrol, Defender), so sedans and mid-size SUVs are both under QAR 5,000. A full front starts at QAR 1,599 and a front-end kit at QAR 899. Prices include the film, the fitting, the 10 years VTEK film warranty and ABK's 12-month fitting guarantee. PRO PLUS and MATTE cost more and PRISM colour change is priced per car; every price is in the table on this page.
 
 ### PPF Q2: Who installs the film?
-A VTEK-authorised partner centre in Doha, booked and managed by ABK. ABK supplies the genuine film, confirms your slot, inspects the finished car and stays your single point of contact.
+A VTEK-authorised installer in Doha, booked and managed by ABK. VTEK's warranty only covers film professionally installed by authorised installers. ABK supplies the genuine film, confirms your slot, photographs the car at drop-off, inspects the finish at handover and stays your single point of contact. The installer's details are recorded on your VTEK e-warranty.
 
 ### PPF Q3: How do I know the film is genuine and the fitting is done properly?
-ABK is VTEK's authorised distributor in Qatar and supplies the film for every job from its own stock, so it never comes from a third party. Only VTEK-authorised installers fit it; the car is photographed at drop-off, ABK inspects the finish before handover, and the VTEK NFC e-Warranty is registered to your car on nfc.vtekfilms.com/verify.
+Check it in VTEK's own system. Every job is registered on VTEK's NFC e-Warranty, and on nfc.vtekfilms.com/verify you enter your plate number and phone number to see the product installed, the installation date, the installer's details and the warranty terms. VTEK's own contact page also lists our Mesaimeer showroom as its Qatar contact. ABK supplies the film from its own stock, photographs the car at drop-off and inspects the finish before handover.
 
-### PPF Q4: Which VTEK film should I choose for Qatar's heat?
-Weather Armor PRO suits most daily drivers: 7.5 mil (190 µm) gloss TPU with heat-activated self-healing and a 10-year VTEK warranty (full-body from QAR 3,999). PRO PLUS is an 8.0 mil (203 µm) film with VTEK's ultra-gloss finish, a hydrophobic top coat and a 12-year warranty (full-body QAR 4,799 Sedan, QAR 5,699 Mid SUV, QAR 6,499 Large SUV). MATTE gives an 8.0 mil satin finish (5-year warranty) and PRISM is an 8.5 mil colour-change TPU (5-year warranty).
+### PPF Q4: Which VTEK film should I choose?
+Weather Armor PRO suits most daily drivers: gloss finish, 10 years VTEK warranty, full body from QAR 3,999. PRO PLUS is the step-up gloss grade (10 years VTEK warranty) from QAR 4,799; ask us on WhatsApp what it adds for your car. MATTE gives a satin finish (5 years warranty) from QAR 4,799, and PRISM changes the colour (5 years warranty) and is priced per car. ULTIMATE, VTEK's flagship gloss film with a 15 years warranty, is available by special roll order.
 
 ### PPF Q5: Is a full front enough, or should I get a full body?
 A full front covers the panels that take stone chips on Qatar's highways — bonnet, front bumper, fenders, mirrors and headlights — from QAR 1,599 on a sedan. A full body (from QAR 3,999) adds the doors, sides, roof and rear against sand abrasion, parking scuffs and wash swirls, and suits a new or high-value car you plan to keep.
@@ -1097,29 +1120,41 @@ Yes. Pick "Choose parts" in the quote builder and tap the panels you want. The e
 ### PPF Q7: How long does PPF installation take?
 Typically the same day for a front-end kit, one day for a full front and two to three days for a full body, including curing time. We confirm the exact time with your slot.
 
-### PPF Q8: How do I pay, and can I cancel?
+### PPF Q8: How do I book PPF installation in Doha?
+Tap "Get my instant quote" on this page, choose your car, coverage and film, and send the quote on WhatsApp. We confirm film stock, your slot and the final price during opening hours (Saturday to Thursday, 10:00 – 13:00 and 16:00 – 22:00). You pay in full by bank transfer or cash once the slot is confirmed, drop the car at the confirmed Doha location, and collect it after our handover inspection.
+
+### PPF Q9: How do I pay, and can I cancel?
 Once we confirm your slot you pay in full by bank transfer or cash. Cancel up to 48 hours before for a full refund; one reschedule is free.
 
-### PPF Q9: What is the difference between the film warranty and the workmanship cover?
-VTEK's manufacturer NFC e-Warranty covers the film itself against defects such as bubbling, cracking, peeling and fading (see vtekfilms.com/warranty) for 10 years on Weather Armor PRO, 12 years on PRO PLUS, and 5 years on MATTE and PRISM (15-year ULTIMATE available by special roll order), registered to your roll UID on nfc.vtekfilms.com/verify. ABK's separate 12-month workmanship guarantee covers the fitting in Doha: edge lifting, bubbling or alignment issues.
+### PPF Q10: What is the difference between the film warranty and the workmanship cover?
+VTEK's film warranty covers the film itself against manufacturing defects such as bubbling, cracking, peeling and fading when an authorised installer fits it: PRO 10 years, PRO PLUS 10 years, MATTE and PRISM 5 years, and ULTIMATE 15 years (special roll order), as listed on vtekfilms.com/warranty. ABK's separate 12-month fitting guarantee covers the installation itself: edge lifting, bubbles or misalignment. It does not cover accidents, stone impacts, improper washing or pressure-washing the film edges, repairs done elsewhere or paint defects recorded at drop-off.
 
-### PPF Q10: My car already has old PPF or a wrap. Can you still do it?
+### PPF Q11: What if something goes wrong with the film or the fitting?
+Message ABK on WhatsApp with photos. We inspect it and arrange the repair with the installer; covered fitting problems in the first 12 months are put right at no cost. For a film defect we take the claim to VTEK: its terms start every claim with the original installer, and VTEK makes the final decision on whether it is a manufacturing defect. VTEK also says its warranty can be transferred to a new owner with proof of purchase.
+
+### PPF Q12: My car already has old PPF or a wrap. Can you still do it?
 Yes. Tell us in the booking form; old film or wrap has to be removed first, and we include that in the confirmed price.
 
-### PPF Q11: Can VTEK PPF handle sandstorms and gravel on Qatar highways (Al Shamal and Salwa roads)?
-Yes. VTEK Weather Armor PRO and PRO PLUS use 7.5 to 8.0 mil (190–203 µm) aliphatic TPU. The elastomeric urethane absorbs high-speed gravel impacts and deflects abrasive desert sand without puncturing. Fine micro-scratches from dust storms automatically self-heal under Qatar's natural sun heat.
+### PPF Q13: Can I fit PPF on a new car, or after a repaint?
+Yes on a new car: VTEK says factory paint is fully cured when the car leaves the assembly line. After a respray VTEK recommends waiting about 2 months so the paint cures fully. Tell us in the booking form if the car was recently repainted.
 
-### PPF Q12: How soon after PPF installation can I wash my car in Doha?
-Wait 48 to 72 hours before the first wash so the installation slip solution fully cures and edges bond firmly. After curing, hand wash with a pH-neutral car shampoo like Autotriz Rich Foam. Avoid holding high-pressure spray nozzles closer than 40 cm from film edges.
+### PPF Q14: Can PPF handle sandstorms and gravel on Qatar highways (Al Shamal and Salwa roads)?
+PPF takes the hit instead of your paint. The transparent polyurethane layer absorbs stone chips and sand abrasion on roads like Al Shamal and Salwa, and its self-healing top layer closes light swirl marks from washing and dust. No film makes paint chip-proof, and VTEK notes that a scratch cutting all the way through the self-healing layer will not heal, which is why highway drivers should cover at least the full front.
 
-### PPF Q13: What is the difference between genuine TPU and cheap PVC or TPH film?
-Genuine TPU (Thermoplastic Polyurethane) is an optically clear, self-healing polymer that does not yellow or crack in Qatar's 45°C+ summer heat, backed by a 5 to 12-year VTEK warranty depending on the film. Cheap PVC or TPH films turn cloudy, yellow, and brittle within 6 to 12 months, and their harsh adhesives can damage clear coats upon removal. ABK is Qatar's authorized VTEK distributor, supplying only 100% genuine TPU.
+### PPF Q15: How soon after PPF installation can I wash my car in Doha?
+VTEK says to wait about 7 days before an automatic car wash or pressure washing so the film dries completely, and to keep the pressure jet away from the film edges. Use ordinary car shampoo or detail spray, and avoid wax and sealants on the film. VTEK recommends a PPF-specific coating, such as Autotriz PPF & Vinyl Wrap Coating, once a year.
 
-### PPF Q14: Can I combine PPF installation with ceramic coating?
-Yes. Applying a 9H ceramic coating (such as Autotriz 3D Matrix Ultra) over VTEK PPF is the gold standard for Qatar. The PPF provides impact defense against rock chips and sand abrasion, while the ceramic layer provides deep gloss, hydrophobicity, and protection against mineral water spots from Doha tap water.
+### PPF Q16: Can PPF damage my paint when it is removed?
+VTEK says it is highly unlikely, because factory paint bonds to the panel far more strongly than the film bonds to the paint. It still recommends having the film removed by a professional following its published guidelines, and old film on a car we are fitting is removed first.
 
-### PPF Q15: Where in Doha is the PPF installation performed?
-Installations are carried out in VTEK-authorized clean-booth partner studios in Doha equipped with dust filtration and climate control. Location and drop-off instructions are confirmed with your appointment slot, easily accessible from Mesaimeer, Al Rayyan, Lusail, West Bay, The Pearl, Al Wakrah, and Al Khor.
+### PPF Q17: What is the difference between genuine TPU and cheap PVC or TPH film?
+Paint protection film should be made of TPU, thermoplastic polyurethane. VTEK Weather Armor is TPU-based, and VTEK backs it with a written 5 to 15 year warranty that you can look up in its e-warranty system. Be careful with films sold without a named manufacturer, a stated warranty term or a way to verify the installation, and ask any installer which film they use and where its warranty can be checked.
 
-### PPF Q16: I'm not sure which category my car falls under. How can I get an exact offer?
+### PPF Q18: Can I combine PPF installation with ceramic coating?
+Yes, but the order matters. VTEK advises against putting a wax, sealant or ceramic coating on the paint before the film, because it lowers the film's grip on the paint; any coating goes on after installation. On top of the film VTEK recommends only a PPF-specific coating such as Autotriz PPF & Vinyl Wrap Coating, because most nano ceramic coatings are silicone-based and do not bond well to the film.
+
+### PPF Q19: Where in Doha is the PPF installation performed?
+At a VTEK-authorised installer's centre in Doha, chosen by ABK. We confirm the location and drop-off instructions with your appointment slot. It is convenient from Mesaimeer, Al Rayyan, Lusail, West Bay, The Pearl, Al Wakrah and Al Khor.
+
+### PPF Q20: I'm not sure which category my car falls under. How can I get an exact offer?
 Type your car's make and model in the quote builder search bar to automatically see its category and instant price. If your vehicle isn't listed or you prefer a tailored quote, select 'Not sure? Get a Custom Offer' and enter your make and model — our team will confirm the exact offer on WhatsApp.

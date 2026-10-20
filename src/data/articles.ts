@@ -148,8 +148,8 @@ export const ARTICLES: Article[] = [
           ar: "أسعار PPF في قطر باختصار",
         },
         body: {
-          en: `These are ABK's fixed installed prices for genuine VTEK Weather Armor PRO film (${pro.warrantyYears}-year warranty), as of ${pricesAsOf("en")}. Front-end kit: ${q(P["front-end"].sedan, "en")} for a sedan or coupe, ${q(P["front-end"].suv, "en")} for an SUV and ${q(P["front-end"]["large-suv"], "en")} for a large SUV or pickup. Full front: ${q(P["full-front"].sedan, "en")}, ${q(P["full-front"].suv, "en")} and ${q(P["full-front"]["large-suv"], "en")}. Full body: ${q(P["full-body"].sedan, "en")}, ${q(P["full-body"].suv, "en")} and ${q(P["full-body"]["large-suv"], "en")}. PRO PLUS film (${proPlus.warrantyYears}-year warranty, 8.0 mil ultra-gloss) and MATTE film (5-year warranty, 8.0 mil satin) have fixed full-body prices of ${q(proPlusFullBodySedan, "en")} (sedan), ${q(proPlusFullBodySuv, "en")} (Mid SUV), and ${q(proPlusFullBodyLargeSuv, "en")} (Large SUV). PRISM colour film is priced per car. Every price includes the film, fitting at a VTEK-authorised centre in Doha, VTEK NFC e-Warranty registration and a 12-month ABK workmanship cover.`,
-          ar: `هذه أسعار التركيب الثابتة لدى ABK لفيلم VTEK Weather Armor PRO الأصلي (ضمان ${pro.warrantyYears} سنوات)، حتى ${pricesAsOf("ar")}. الواجهة الأساسية: ${q(P["front-end"].sedan, "ar")} للسيدان أو الكوبيه، و${q(P["front-end"].suv, "ar")} لسيارات SUV، و${q(P["front-end"]["large-suv"], "ar")} لسيارات SUV الكبيرة أو البيك أب. الواجهة الكاملة: ${q(P["full-front"].sedan, "ar")} و${q(P["full-front"].suv, "ar")} و${q(P["full-front"]["large-suv"], "ar")}. الهيكل بالكامل: ${q(P["full-body"].sedan, "ar")} و${q(P["full-body"].suv, "ar")} و${q(P["full-body"]["large-suv"], "ar")}. وتبلغ أسعار الهيكل الكامل الثابتة لفيلمي PRO PLUS (ضمان ${proPlus.warrantyYears} سنة، لمعان فائق 8.0 مل) وMATTE (ضمان 5 سنوات، مطفي 8.0 مل): ${q(proPlusFullBodySedan, "ar")} للسيدان، و${q(proPlusFullBodySuv, "ar")} لـ SUV المتوسطة، و${q(proPlusFullBodyLargeSuv, "ar")} لـ SUV الكبيرة. ويُسعَّر فيلم PRISM الملوّن لكل سيارة. يشمل كل سعر الفيلم والتركيب في مركز معتمد من VTEK في الدوحة وتسجيل الضمان الإلكتروني NFC وضمان تركيب من ABK لمدة 12 شهراً.`,
+          en: `These are ABK's fixed installed prices for genuine VTEK Weather Armor PRO film (${pro.warrantyYears}-year warranty), as of ${pricesAsOf("en")}. Front-end kit: ${q(P["front-end"].sedan, "en")} for a sedan or coupe, ${q(P["front-end"].suv, "en")} for an SUV and ${q(P["front-end"]["large-suv"], "en")} for a large SUV or pickup. Full front: ${q(P["full-front"].sedan, "en")}, ${q(P["full-front"].suv, "en")} and ${q(P["full-front"]["large-suv"], "en")}. Full body: ${q(P["full-body"].sedan, "en")}, ${q(P["full-body"].suv, "en")} and ${q(P["full-body"]["large-suv"], "en")}. PRO PLUS film (${proPlus.warrantyYears}-year warranty) and MATTE film (5-year warranty) have fixed full-body prices of ${q(proPlusFullBodySedan, "en")} (sedan), ${q(proPlusFullBodySuv, "en")} (Mid SUV), and ${q(proPlusFullBodyLargeSuv, "en")} (Large SUV). PRISM colour film is priced per car. Every price includes the film, fitting at a VTEK-authorised centre in Doha, VTEK NFC e-Warranty registration and a 12-month ABK workmanship cover.`,
+          ar: `هذه أسعار التركيب الثابتة لدى ABK لفيلم VTEK Weather Armor PRO الأصلي (ضمان ${pro.warrantyYears} سنوات)، حتى ${pricesAsOf("ar")}. الواجهة الأساسية: ${q(P["front-end"].sedan, "ar")} للسيدان أو الكوبيه، و${q(P["front-end"].suv, "ar")} لسيارات SUV، و${q(P["front-end"]["large-suv"], "ar")} لسيارات SUV الكبيرة أو البيك أب. الواجهة الكاملة: ${q(P["full-front"].sedan, "ar")} و${q(P["full-front"].suv, "ar")} و${q(P["full-front"]["large-suv"], "ar")}. الهيكل بالكامل: ${q(P["full-body"].sedan, "ar")} و${q(P["full-body"].suv, "ar")} و${q(P["full-body"]["large-suv"], "ar")}. وتبلغ أسعار الهيكل الكامل الثابتة لفيلمي PRO PLUS (ضمان ${proPlus.warrantyYears} ${proPlus.warrantyYears <= 10 ? "سنوات" : "سنة"}) وMATTE (ضمان 5 سنوات): ${q(proPlusFullBodySedan, "ar")} للسيدان، و${q(proPlusFullBodySuv, "ar")} لـ SUV المتوسطة، و${q(proPlusFullBodyLargeSuv, "ar")} لـ SUV الكبيرة. ويُسعَّر فيلم PRISM الملوّن لكل سيارة. يشمل كل سعر الفيلم والتركيب في مركز معتمد من VTEK في الدوحة وتسجيل الضمان الإلكتروني NFC وضمان تركيب من ABK لمدة 12 شهراً.`,
         },
       },
       {
@@ -217,8 +217,8 @@ export const ARTICLES: Article[] = [
         ar: "احسب سعر تركيب فيلم VTEK الأصلي لسيارتك خلال 30 ثانية",
       },
       body: {
-        en: "Select your vehicle body type (Sedan, SUV, or Large 4x4), coverage tier, and VTEK film grade to see your fixed installed price in Doha with a 5–12 year film warranty.",
-        ar: "اختر حجم سيارتك (سيدان، SUV، أو دفع رباعي كبير) ومستوى التغطية وفئة فيلم VTEK لمعرفة سعر التركيب الثابت في الدوحة مع ضمان للفيلم من 5 إلى 12 سنة.",
+        en: "Select your vehicle body type (Sedan, SUV, or Large 4x4), coverage tier, and VTEK film grade to see your fixed installed price in Doha with a 5–15 year film warranty.",
+        ar: "اختر حجم سيارتك (سيدان، SUV، أو دفع رباعي كبير) ومستوى التغطية وفئة فيلم VTEK لمعرفة سعر التركيب الثابت في الدوحة مع ضمان للفيلم من 5 إلى 15 سنة.",
       },
       primaryHref: "/b2c/ppf-installation",
       primaryLabel: { en: "Open PPF Price Calculator", ar: "افتح حاسبة أسعار PPF" },
@@ -242,8 +242,8 @@ export const ARTICLES: Article[] = [
           ar: "ماذا يشمل سعر تركيب PPF لدى ABK؟",
         },
         a: {
-          en: "Every published price includes genuine 100% aliphatic TPU VTEK film from ABK's central stock, installation in a dust-controlled partner booth in Doha, VTEK NFC e-Warranty registered to your car (10 years on PRO, 12 on PRO PLUS, 5 on MATTE and PRISM), and ABK's 12-month workmanship cover against edge lifting or bubbling.",
-          ar: "يشمل كل سعر معلن فيلم VTEK الأصلي المصنوع من مادة TPU الأليفاتية 100% من مخزون ABK المركزي، والتركيب في كابينة معزولة معتمدة بالدوحة، وتسجيل ضمان VTEK الإلكتروني NFC باسم سيارتك (10 سنوات لـ PRO و12 لـ PRO PLUS و5 لـ MATTE وPRISM)، بالإضافة إلى ضمان ABK لجودة التركيب لمدة 12 شهراً.",
+          en: "Every published price includes genuine VTEK Weather Armor film from ABK's own stock, installation by a VTEK-authorised installer in Doha, VTEK NFC e-Warranty registered to your car (10 years on PRO and PRO PLUS, 5 on MATTE and PRISM), and ABK's 12-month fitting guarantee against edge lifting or bubbling.",
+          ar: "يشمل كل سعر معلن فيلم VTEK Weather Armor الأصلي من مخزون ABK، والتركيب لدى مُركّب معتمد من VTEK في الدوحة، وتسجيل ضمان VTEK الإلكتروني NFC باسم سيارتك (10 سنوات لـ PRO وPRO PLUS و5 لـ MATTE وPRISM)، بالإضافة إلى ضمان ABK لجودة التركيب لمدة 12 شهراً.",
         },
       },
       {
@@ -1096,8 +1096,8 @@ export const ARTICLES: Article[] = [
           ar: "كيمياء المواد: بوليمر TPU الأليفاتي مقابل TPH وPVC الرخيص",
         },
         body: {
-          en: "Not all paint protection films survive a Gulf summer. Cheap films made from PVC (polyvinyl chloride) or TPH (hybridized PVC) use volatile plasticizers that degrade rapidly when exposed to Doha's 45°C+ temperatures and UV Index 11+. Within 6 to 12 months, PVC films turn yellow, lose their elasticity, become brittle, and can cause catastrophic paint damage when their low-grade adhesive bakes onto your clear coat. Genuine premium PPF, such as VTEK Weather Armor PRO and PRO PLUS, is manufactured exclusively from 100% optical-grade aliphatic thermoplastic polyurethane (TPU). Aliphatic TPU never yellows, absorbs severe gravel impacts on highways like Salwa Road and Al Shamal Road, and features heat-activated self-healing topcoats that erase swirl marks under ambient sunlight.",
-          ar: "ليست كل أفلام حماية الطلاء قادرة على الصمود أمام صيف الخليج. الأفلام الرخيصة المصنوعة من PVC أو TPH تستخدم ملدنات كيميائية تتطاير وتتحلل سريعاً تحت حرارة صيف الدوحة التي تتجاوز 45°م ومؤشر الأشعة فوق البنفسجية 11+. وخلال 6 إلى 12 شهراً تصفرّ هذه الأفلام وتفقد مرونتها وتتصلب، وقد تسبب ضرراً جسيماً لطلاء السيارة عند إزالتها بسبب تفاعل المادة اللاصقة الرديئة مع اللك. في المقابل، تُصنع أفلام VTEK Weather Armor PRO وPRO PLUS حصرياً من مادة TPU الأليفاتية البصرية 100%؛ وهي مادة لا تصفرّ إطلاقاً وتمتص صدمات الحصى العنيفة على طرق قطر السريعة وتتميز بمعالجة ذاتية فورية تزيل الخدوش بحرارة الشمس الطبيعية.",
+          en: "Not all paint protection films survive a Gulf summer. Cheap films made from PVC (polyvinyl chloride) or TPH (hybridized PVC) use volatile plasticizers that degrade rapidly when exposed to Doha's 45°C+ temperatures and UV Index 11+. Within 6 to 12 months, PVC films turn yellow, lose their elasticity, become brittle, and can cause catastrophic paint damage when their low-grade adhesive bakes onto your clear coat. Genuine premium PPF, such as VTEK Weather Armor, is made from thermoplastic polyurethane (TPU), and VTEK backs it with a written warranty against bubbling, cracking, peeling and fading. TPU is built to absorb gravel impacts on highways like Salwa Road and Al Shamal Road, and VTEK describes a self-healing top layer that closes light swirl marks.",
+          ar: "ليست كل أفلام حماية الطلاء قادرة على الصمود أمام صيف الخليج. الأفلام الرخيصة المصنوعة من PVC أو TPH تستخدم ملدنات كيميائية تتطاير وتتحلل سريعاً تحت حرارة صيف الدوحة التي تتجاوز 45°م ومؤشر الأشعة فوق البنفسجية 11+. وخلال 6 إلى 12 شهراً تصفرّ هذه الأفلام وتفقد مرونتها وتتصلب، وقد تسبب ضرراً جسيماً لطلاء السيارة عند إزالتها بسبب تفاعل المادة اللاصقة الرديئة مع اللك. في المقابل، يُصنع فيلم VTEK Weather Armor من مادة TPU (البولي يوريثان الحراري) وتدعمه VTEK بضمان مكتوب ضد الفقاعات والتشقق والتقشّر وبهتان اللون. وصُممت مادة TPU لامتصاص ضربات الحصى على طرق قطر السريعة مثل سلوى والشمال، وتصف VTEK طبقة علوية ذاتية الإصلاح تعالج الخدوش الخفيفة.",
         },
       },
       {
@@ -1116,8 +1116,8 @@ export const ARTICLES: Article[] = [
           ar: "الضمانات المكتوبة: ضمان خامة الفيلم مقابل ضمان جودة التركيب",
         },
         body: {
-          en: "A verbal warranty in the car care industry is unenforceable. When comparing installers, demand two separate written guarantees. First, the manufacturer film warranty: VTEK provides an NFC e-Warranty registered to your car (10 years on Weather Armor PRO, 12 on PRO PLUS, 5 on MATTE and PRISM) against defects such as bubbling, cracking, peeling and fading. Second, an explicit installer workmanship guarantee. ABK backs every installation with its own 12-month workmanship cover: if an edge lifts, a corner peels, or a bubble develops from slip-solution trapping, ABK corrects it at zero cost. Every drop-off includes photographic intake documentation and an exhaustive handover inspection.",
-          ar: "الضمان الشفهي في قطاع العناية بالسيارات لا قيمة له عند حدوث مشكلة. عند مقارنة المراكز، اطلب ضمانين كتابيين منفصلين: الأول هو ضمان المصنع لخامة الفيلم؛ وتوفر VTEK ضماناً إلكترونياً NFC مسجلاً باسم سيارتك (10 سنوات لفيلم PRO و12 لـ PRO PLUS و5 لـ MATTE وPRISM) ضد عيوب مثل الفقاعات والتشقق والتقشّر وبهتان اللون. والضمان الثاني هو ضمان جودة التركيب؛ حيث تدعم ABK كل عملية تركيب بضمان تركيب خاص لمدة 12 شهراً: إذا ارتفعت أي حافة أو ظهرت فقاعة يعالجها المركز مجاناً. وتتضمن كل عملية تسليم توثيقاً فوتوغرافياً شاملاً لحالة السيارة عند الاستلام والتسليم.",
+          en: "A verbal warranty in the car care industry is unenforceable. When comparing installers, demand two separate written guarantees. First, the manufacturer film warranty: VTEK provides an NFC e-Warranty registered to your car (10 years on Weather Armor PRO and PRO PLUS, 5 on MATTE and PRISM) against defects such as bubbling, cracking, peeling and fading. Second, an explicit installer workmanship guarantee. ABK backs every installation with its own 12-month workmanship cover: if an edge lifts, a corner peels, or a bubble develops from slip-solution trapping, ABK corrects it at zero cost. Every drop-off includes photographic intake documentation and an exhaustive handover inspection.",
+          ar: "الضمان الشفهي في قطاع العناية بالسيارات لا قيمة له عند حدوث مشكلة. عند مقارنة المراكز، اطلب ضمانين كتابيين منفصلين: الأول هو ضمان المصنع لخامة الفيلم؛ وتوفر VTEK ضماناً إلكترونياً NFC مسجلاً باسم سيارتك (10 سنوات لفيلمي PRO وPRO PLUS و5 لـ MATTE وPRISM) ضد عيوب مثل الفقاعات والتشقق والتقشّر وبهتان اللون. والضمان الثاني هو ضمان جودة التركيب؛ حيث تدعم ABK كل عملية تركيب بضمان تركيب خاص لمدة 12 شهراً: إذا ارتفعت أي حافة أو ظهرت فقاعة يعالجها المركز مجاناً. وتتضمن كل عملية تسليم توثيقاً فوتوغرافياً شاملاً لحالة السيارة عند الاستلام والتسليم.",
         },
       },
     ],
@@ -1131,12 +1131,12 @@ export const ARTICLES: Article[] = [
     inlineCta: {
       badge: { en: "Authorized VTEK Installation in Doha", ar: "تركيب VTEK معتمد في الدوحة" },
       title: {
-        en: "Book Dust-Free, Edge-Wrapped VTEK PPF Installation (From QAR 899)",
-        ar: "احجز تركيب VTEK PPF بلف الحواف داخل كابينة معزولة (من 899 ر.ق)",
+        en: "Book Fixed-Price VTEK PPF Installation (From QAR 899)",
+        ar: "احجز تركيب VTEK PPF بسعر ثابت (من 899 ر.ق)",
       },
       body: {
-        en: "Every ABK installation uses 100% aliphatic TPU VTEK film from our own distributor stock, backed by a 5–12 year VTEK NFC e-Warranty (by film) and a 12-month workmanship guarantee.",
-        ar: "يتم كل تركيب لدى ABK بفيلم VTEK الأصلي (TPU أليفاتي 100%) من مخزوننا المباشر، مع ضمان VTEK الإلكتروني NFC من 5 إلى 12 سنة حسب الفيلم وضمان تركيب لمدة 12 شهراً.",
+        en: "Every ABK installation uses genuine VTEK Weather Armor film from our own distributor stock, backed by a 5–15 year VTEK NFC e-Warranty (by film) and a 12-month fitting guarantee.",
+        ar: "يتم كل تركيب لدى ABK بفيلم VTEK Weather Armor الأصلي من مخزوننا المباشر، مع ضمان VTEK الإلكتروني NFC من 5 إلى 15 سنة حسب الفيلم وضمان تركيب لمدة 12 شهراً.",
       },
       primaryHref: "/b2c/ppf-installation",
       primaryLabel: { en: "See Fixed Prices & Book Online", ar: "اعرف السعر الثابت واحجز أونلاين" },
@@ -1150,8 +1150,8 @@ export const ARTICLES: Article[] = [
           ar: "كيف أتأكد أن مركز تركيب PPF في الدوحة يستخدم TPU أصلي وليس PVC أو TPH رخيص؟",
         },
         a: {
-          en: "Ask to see the physical roll box and lot number before installation, verify that the shop is an authorized installer for the brand, and ensure the manufacturer warranty (5 to 12 years depending on the film) is registered to your car. At ABK Trading & Service, the VTEK Weather Armor film comes directly from our official Qatar distributor stock.",
-          ar: "اطلب رؤية صندوق الرول ورقم التشغيلة قبل التركيب، وتأكد من اعتماد المركز لدى العلامة التجارية وتسجيل الضمان المصنعي (من 5 إلى 12 سنة حسب الفيلم) باسم سيارتك. في ABK يأتي فيلم VTEK Weather Armor مباشرة من مخزوننا بصفتنا الموزع المعتمد في قطر.",
+          en: "Ask to see the physical roll box and lot number before installation, verify that the shop is an authorized installer for the brand, and ensure the manufacturer warranty (5 to 15 years depending on the film) is registered to your car. At ABK Trading & Service, the VTEK Weather Armor film comes directly from our own stock as VTEK's authorised Qatar distributor.",
+          ar: "اطلب رؤية صندوق الرول ورقم التشغيلة قبل التركيب، وتأكد من اعتماد المركز لدى العلامة التجارية وتسجيل الضمان المصنعي (من 5 إلى 15 سنة حسب الفيلم) باسم سيارتك. في ABK يأتي فيلم VTEK Weather Armor مباشرة من مخزوننا بصفتنا الموزع المعتمد في قطر.",
         },
       },
       {
@@ -1170,8 +1170,8 @@ export const ARTICLES: Article[] = [
           ar: "ماذا يحدث إذا ارتفعت حافة الفيلم بعد التركيب؟",
         },
         a: {
-          en: "Every ABK PPF installation includes a post-cure inspection and a written 12-month ABK workmanship cover on top of VTEK's 5 to 12-year film warranty (by film). Any edge lifting or slip-solution bubble is rectified free of charge.",
-          ar: "يشمل كل تركيب لدى ABK فحصاً مجانياً بعد جفاف الفيلم وضمان تركيب كتابي لمدة 12 شهراً بالإضافة إلى ضمان المصنع (من 5 إلى 12 سنة حسب الفيلم)، وتُعالج أي ملاحظة في الحواف مجاناً.",
+          en: "Every ABK PPF installation includes an ABK inspection at handover and a written 12-month ABK fitting guarantee on top of VTEK's 5 to 15-year film warranty (by film). Any edge lifting or slip-solution bubble is rectified free of charge.",
+          ar: "يشمل كل تركيب لدى ABK فحصاً من ABK عند التسليم وضمان تركيب كتابي لمدة 12 شهراً بالإضافة إلى ضمان المصنع (من 5 إلى 15 سنة حسب الفيلم)، وتُعالج أي ملاحظة في الحواف مجاناً.",
         },
       },
     ],

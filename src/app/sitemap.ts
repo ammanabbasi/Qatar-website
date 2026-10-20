@@ -21,6 +21,9 @@ import { routing } from "@/i18n/routing";
 //             dedicated SSG category and brand landing pages.
 // 2026-10-20: every title and meta description rewritten to fit the SERP;
 //             warranty copy reconciled (5-12 years by film).
+// 2026-10-20: PPF installation page rebuilt around checkable evidence (VTEK
+//             pages, e-warranty check, Google rating); PRO PLUS term aligned to
+//             VTEK's chart (10 years). See marketing/seo/PPF-CLAIMS-EVIDENCE.md.
 const STATIC_PAGES_UPDATED_AT = "2026-10-20";
 
 export default function sitemap(): MetadataRoute.Sitemap {
