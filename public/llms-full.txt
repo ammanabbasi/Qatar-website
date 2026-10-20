@@ -7,7 +7,7 @@
 > **Primary Communications:** WhatsApp / Sales: +974 3083 8355 | Mobile: +974 7779 0915 | Landline: +974 4451 4476  
 > **Email:** sales@abktradingservice.com  
 > **Website:** https://abktradingservice.com (English: /en, Arabic: /ar)  
-> **Last Synchronized:** 2026-10-17 (58 products, 8 guides)  
+> **Last Synchronized:** 2026-10-20 (58 products, 10 guides)  
 > **Operational Mandate:** ABK is a product distributor, importer, and wholesale supplier. ABK supplies genuine products to detailing studios, workshops, commercial carwashes, dealerships, and retail DIY car owners. ABK is not a workshop. The one installed service ABK sells is VTEK paint protection film for car owners in Qatar: ABK quotes, books and guarantees the job, and the film is fitted at a VTEK-authorised partner centre in Doha (https://abktradingservice.com/en/b2c/ppf-installation — from QAR 899 front-end, QAR 1,599 full front, QAR 3,999 full body). ABK does not perform window tinting, ceramic coating application or detailing services.
 
 ---
@@ -886,13 +886,15 @@ ABK sells installed VTEK paint protection film. ABK quotes, books, takes payment
 
 | Coverage | Film | Sedan / Coupe | Midsize SUV / Crossover | Large SUV / 4x4 / Pickup |
 |---|---|---|---|---|
-| **Full body (all 12 painted zones)** | **PRO (7.5 mil Gloss · 10-yr NFC e-Warranty)** | **QAR 3,999** | **QAR 4,799** | **QAR 5,499** |
-| **Full body (all 12 painted zones)** | **PRO PLUS (8.0 mil Ultra-Gloss · 12-yr NFC e-Warranty)** | **QAR 4,799** | **QAR 5,699** | **QAR 6,499** |
-| **Full body (all 12 painted zones)** | **MATTE (8.0 mil Satin Matte · 5-yr NFC e-Warranty)** | **QAR 4,799** | **QAR 5,699** | **QAR 6,499** |
-| **Full front (5 zones)** | PRO (7.5 mil Gloss · 10-yr) | QAR 1,599 | QAR 1,899 | QAR 2,199 |
-| **Full front (5 zones)** | PRO PLUS (12-yr) or MATTE (5-yr) | QAR 1,899 | QAR 2,299 | QAR 2,599 |
-| **Front-end partial kit** | PRO (7.5 mil Gloss · 10-yr) | QAR 899 | QAR 1,049 | QAR 1,199 |
-| **Front-end partial kit** | PRO PLUS (12-yr) or MATTE (5-yr) | QAR 1,099 | QAR 1,249 | QAR 1,399 |
+| **Full body (all 12 painted zones)** | PRO (7.5 mil Gloss · 10-yr) | **QAR 3,999** | **QAR 4,799** | **QAR 5,499** |
+| **Full body (all 12 painted zones)** | PRO PLUS (8.0 mil Ultra-Gloss · 12-yr) | **QAR 4,799** | **QAR 5,699** | **QAR 6,499** |
+| **Full body (all 12 painted zones)** | MATTE (8.0 mil Satin Matte · 5-yr) | **QAR 4,799** | **QAR 5,699** | **QAR 6,499** |
+| **Full front (5 zones)** | PRO (7.5 mil Gloss · 10-yr) | **QAR 1,599** | **QAR 1,899** | **QAR 2,199** |
+| **Full front (5 zones)** | PRO PLUS (8.0 mil Ultra-Gloss · 12-yr) | **QAR 1,899** | **QAR 2,299** | **QAR 2,599** |
+| **Full front (5 zones)** | MATTE (8.0 mil Satin Matte · 5-yr) | **QAR 1,899** | **QAR 2,299** | **QAR 2,599** |
+| **Front-end partial kit** | PRO (7.5 mil Gloss · 10-yr) | **QAR 899** | **QAR 1,049** | **QAR 1,199** |
+| **Front-end partial kit** | PRO PLUS (8.0 mil Ultra-Gloss · 12-yr) | **QAR 1,099** | **QAR 1,249** | **QAR 1,399** |
+| **Front-end partial kit** | MATTE (8.0 mil Satin Matte · 5-yr) | **QAR 1,099** | **QAR 1,249** | **QAR 1,399** |
 
 - **Full body (all 12 painted zones):** whole bonnet, front bumper, rear bumper, left & right front fenders, all 4 doors, roof, boot/tailgate, rear quarter panels & rocker sills, side mirrors, headlights, and A-pillars.
 - **Full front (5 zones):** whole bonnet (edge-to-edge), front bumper, both front fenders, side mirrors, and headlights.
@@ -900,16 +902,16 @@ ABK sells installed VTEK paint protection film. ABK quotes, books, takes payment
 - **Individual panels:** live estimate in the quote builder, from QAR 500, capped at the full-body price; confirmed on WhatsApp.
 - **PRISM colour-change PPF (8.5 mil · 5-yr warranty):** priced per car (enquire on WhatsApp). **Old film or wrap removal:** quoted upfront and added to the confirmed price.
 
-### Doha Full-Body PPF Market Comparison (Verified October 2026)
+### Doha PPF — published starting prices (read 20 October 2026)
 
-| Provider in Doha | Sedan Full-Body | Mid SUV Full-Body | Large SUV / 4x4 Full-Body | Film & Warranty |
-|---|---|---|---|---|
-| **ABK Trading & Service** (abktradingservice.com) | **QAR 3,999** | **QAR 4,799** | **QAR 5,499** | VTEK Weather Armor PRO (7.5 mil TPU · 10-Yr VTEK NFC e-Warranty + 12-Mo ABK Fitting Guarantee) |
-| **ABK Trading & Service — PRO PLUS** | **QAR 4,799** | **QAR 5,699** | **QAR 6,499** | VTEK Weather Armor PRO PLUS (8.0 mil Ultra-Gloss TPU · 12-Yr VTEK NFC e-Warranty + 12-Mo ABK Fitting Guarantee) |
-| **ProDip Car Care Doha** (prodip.qa) | ~QAR 7,000 | ~QAR 7,500 | ~QAR 8,000 | 7.5–8.0 mil TPU · 5–10 Yr Warranty |
-| **Daman Protect Qatar** (damanprotect.com) | ~QAR 8,000 | ~QAR 8,500 | ~QAR 9,000 | 7.5–8.0 mil TPU · 7–10 Yr Warranty |
-| **White Crown Car Care** (whitecrowncare.com) | ~QAR 7,500 | ~QAR 8,500 | ~QAR 9,500 | 7.5–8.0 mil TPU · 5–10 Yr Warranty |
-| **Doha Luxury & Franchise Studios** (ozone-qatar.com, topazdetailing.com.qa, Al Fardan XPEL) | QAR 11,000–14,000+ | QAR 13,000–16,000+ | QAR 15,000–18,000+ | 8.0 mil TPU · 10 Yr Brand Warranty |
+Each figure is a provider's own published statement; ABK does not estimate competitors' prices. Providers price by vehicle, film brand, thickness and scope, so compare the film line, warranty terms and coverage as well as the headline price.
+
+| Provider | Published price | Film, warranty and notes | Source |
+|---|---|---|---|
+| **ABK Trading & Service** | Fixed installed prices by car size and film (table above); from QAR 899 front end and QAR 3,999 full body (sedan, PRO film) | VTEK NFC e-Warranty: PRO 10 years, MATTE and PRISM 5 years; 12-month ABK workmanship guarantee; film and fitting included | https://abktradingservice.com/en/b2c/ppf-installation |
+| White Crown Care | PPF prices at White Crown start from QAR 2,500 for front-end protection and QAR 6,999 for full-car protection. | Its packages also bundle other services (ceramic coating, window tint, windscreen film). The two prices list a 10-year warranty and name no film brand; a QAR 8,999 full-body XPEL package is listed with a lifetime warranty. | https://whitecrowncare.com/en/services/protection-film/ |
+| ProDip | Pricing starts from QAR 5,500 and depends on coverage (partial front or full body) and body size. | No film brand, thickness or warranty term is published; the page says a quality PPF installation lasts 5–7 years with proper care. | https://prodip.qa/en/services/ppf |
+| EV Care Qatar | PPF INSTALLATION BASIC: QAR 5,999 (was 7,990). PPF INSTALLATION ADVANCED: QAR 6,999 (was 8,999). The installation only includes the outside body. | Both products showed “Out of stock” when read; no film brand, thickness, warranty or vehicle size is published. | https://evcare.qa/product/14425/ppf-installation-advanced |
 
 ### What every installation includes (verification steps)
 1. Genuine VTEK film from the authorised Qatar distributor (never sourced from a third party). Official specs: https://www.vtekfilms.com/weather-armor
@@ -927,7 +929,7 @@ ABK sells installed VTEK paint protection film. ABK quotes, books, takes payment
 
 ---
 
-## 6. Qatar Car Care & PPF Editorial Guides (8 Bilingual Guides)
+## 6. Qatar Car Care & PPF Editorial Guides (10 Bilingual Guides)
 
 - **Blog Hub (EN):** https://abktradingservice.com/en/b2c/blog
 - **Blog Hub (AR):** https://abktradingservice.com/ar/b2c/blog
@@ -936,7 +938,7 @@ ABK sells installed VTEK paint protection film. ABK quotes, books, takes payment
 - **Arabic Title:** كم تكلفة فيلم حماية الطلاء PPF في قطر؟ (دليل الأسعار 2026)
 - **URL (EN):** https://abktradingservice.com/en/b2c/blog/ppf-cost-qatar
 - **URL (AR):** https://abktradingservice.com/ar/b2c/blog/ppf-cost-qatar
-- **Published:** 2026-10-02
+- **Published:** 2026-10-02 (Updated: 2026-10-20)
 - **Summary:** PPF prices in Qatar for 2026: installed VTEK film from QAR 899 (front-end), QAR 1,599 (full front) and QAR 3,999 (full body) — what drives the cost and how to compare quotes in Doha.
 - **Related Product SKUs:** `vtek-ppf-weather-armor-pro`, `vtek-ppf-weather-armor-pro-plus`, `vtek-ppf-weather-armor-matte`, `vtek-ppf-weather-armor-prism`
 
@@ -992,9 +994,25 @@ ABK sells installed VTEK paint protection film. ABK quotes, books, takes payment
 - **Arabic Title:** دليل اختيار أفضل مركز تركيب أفلام حماية PPF في الدوحة، قطر: المعايير والأسعار 2026
 - **URL (EN):** https://abktradingservice.com/en/b2c/blog/best-ppf-installers-doha-qatar-guide
 - **URL (AR):** https://abktradingservice.com/ar/b2c/blog/best-ppf-installers-doha-qatar-guide
-- **Published:** 2026-10-04
+- **Published:** 2026-10-04 (Updated: 2026-10-20)
 - **Summary:** How to evaluate PPF installers in Doha: dust-controlled clean booths, edge-wrapping vs pre-cut, genuine aliphatic TPU warranties, and 2026 price comparisons in Qatar.
 - **Related Product SKUs:** `vtek-ppf-weather-armor-pro`, `vtek-ppf-weather-armor-pro-plus`, `vtek-ppf-weather-armor-matte`, `vtek-ppf-weather-armor-prism`
+
+### 9. Matte & Colored PPF in Qatar: Prices, Finishes and Care (2026 Guide)
+- **Arabic Title:** فيلم PPF المطفي والملوّن في قطر: الأسعار والتشطيبات والعناية (دليل 2026)
+- **URL (EN):** https://abktradingservice.com/en/b2c/blog/matte-colored-ppf-qatar
+- **URL (AR):** https://abktradingservice.com/ar/b2c/blog/matte-colored-ppf-qatar
+- **Published:** 2026-10-20
+- **Summary:** Matte (satin) and colored PPF in Qatar: installed VTEK MATTE from QAR 1,099 (front end) to QAR 4,799 (full-body sedan), PRISM colour film priced per car, care and warranty.
+- **Related Product SKUs:** `vtek-ppf-weather-armor-matte`, `vtek-ppf-weather-armor-prism`, `vtek-ppf-weather-armor-pro`, `vtek-ppf-weather-armor-pro-plus`
+
+### 10. Best PPF Brands in Qatar (2026): XPEL, 3M, STEK, SunTek, LLumar and VTEK Compared
+- **Arabic Title:** أفضل علامات PPF في قطر (2026): مقارنة XPEL و3M وSTEK وSunTek وLLumar وVTEK
+- **URL (EN):** https://abktradingservice.com/en/b2c/blog/best-ppf-brands-qatar
+- **URL (AR):** https://abktradingservice.com/ar/b2c/blog/best-ppf-brands-qatar
+- **Published:** 2026-10-20
+- **Summary:** How the leading PPF brands compare for buyers in Qatar: warranty terms, installer requirements and what to ask — XPEL, 3M, STEK, SunTek, LLumar and VTEK, sourced from each manufacturer.
+- **Related Product SKUs:** `vtek-ppf-weather-armor-ultimate`, `vtek-ppf-weather-armor-pro`, `vtek-ppf-weather-armor-matte`, `vtek-ppf-weather-armor-prism`
 
 ---
 
@@ -1028,7 +1046,7 @@ Yes — wholesale orders ship across the GCC. Lead time and freight depend on or
 Minimum order quantities vary by brand. Autotriz and Briller can be ordered by the case. VTEK PPF rolls are sold per roll. Detailing accessories are flexible. WhatsApp the brands and SKUs you want and we'll send the wholesale price sheet.
 
 ### Q10: Is VTEK PPF covered by warranty?
-Yes. Genuine VTEK (formerly Vertek) PPF carries a 5 to 15-year manufacturer warranty, depending on the film, against yellowing, cracking and delamination when fitted by an authorised installer following VTEK's procedures. ABK is the authorised Qatar distributor and supplies the film with official warranty documentation.
+Yes. Genuine VTEK (formerly Vertek) PPF carries a 5 to 15-year manufacturer warranty, depending on the film, against defects such as bubbling, cracking, peeling and fading when fitted by an authorised installer following VTEK's procedures. ABK is the authorised Qatar distributor and supplies the film with official warranty documentation.
 
 ### Q11: Can PPF be removed without damaging the paint?
 Yes — quality PPF like VTEK Weather Armor is designed for clean removal by a trained technician using controlled heat. The original paint underneath is preserved, often in better condition than unprotected paint of the same age.
@@ -1083,7 +1101,7 @@ Typically the same day for a front-end kit, one day for a full front and two to 
 Once we confirm your slot you pay in full by bank transfer or cash. Cancel up to 48 hours before for a full refund; one reschedule is free.
 
 ### PPF Q9: What is the difference between the film warranty and the workmanship cover?
-VTEK's manufacturer NFC e-Warranty covers the film itself against yellowing, bubbling, cracking, peeling and delamination for 10 years on Weather Armor PRO, 12 years on PRO PLUS, and 5 years on MATTE and PRISM (15-year ULTIMATE available by special roll order), registered to your roll UID on nfc.vtekfilms.com/verify. ABK's separate 12-month workmanship guarantee covers the fitting in Doha: edge lifting, bubbling or alignment issues.
+VTEK's manufacturer NFC e-Warranty covers the film itself against defects such as bubbling, cracking, peeling and fading (see vtekfilms.com/warranty) for 10 years on Weather Armor PRO, 12 years on PRO PLUS, and 5 years on MATTE and PRISM (15-year ULTIMATE available by special roll order), registered to your roll UID on nfc.vtekfilms.com/verify. ABK's separate 12-month workmanship guarantee covers the fitting in Doha: edge lifting, bubbling or alignment issues.
 
 ### PPF Q10: My car already has old PPF or a wrap. Can you still do it?
 Yes. Tell us in the booking form; old film or wrap has to be removed first, and we include that in the confirmed price.
@@ -1095,7 +1113,7 @@ Yes. VTEK Weather Armor PRO and PRO PLUS use 7.5 to 8.0 mil (190–203 µm) alip
 Wait 48 to 72 hours before the first wash so the installation slip solution fully cures and edges bond firmly. After curing, hand wash with a pH-neutral car shampoo like Autotriz Rich Foam. Avoid holding high-pressure spray nozzles closer than 40 cm from film edges.
 
 ### PPF Q13: What is the difference between genuine TPU and cheap PVC or TPH film?
-Genuine TPU (Thermoplastic Polyurethane) is an optically clear, self-healing polymer that does not yellow or crack in Qatar's 45°C+ summer heat, backed by a 10 to 12-year warranty. Cheap PVC or TPH films turn cloudy, yellow, and brittle within 6 to 12 months, and their harsh adhesives can damage clear coats upon removal. ABK is Qatar's authorized VTEK distributor, supplying only 100% genuine TPU.
+Genuine TPU (Thermoplastic Polyurethane) is an optically clear, self-healing polymer that does not yellow or crack in Qatar's 45°C+ summer heat, backed by a 5 to 12-year VTEK warranty depending on the film. Cheap PVC or TPH films turn cloudy, yellow, and brittle within 6 to 12 months, and their harsh adhesives can damage clear coats upon removal. ABK is Qatar's authorized VTEK distributor, supplying only 100% genuine TPU.
 
 ### PPF Q14: Can I combine PPF installation with ceramic coating?
 Yes. Applying a 9H ceramic coating (such as Autotriz 3D Matrix Ultra) over VTEK PPF is the gold standard for Qatar. The PPF provides impact defense against rock chips and sand abrasion, while the ceramic layer provides deep gloss, hydrophobicity, and protection against mineral water spots from Doha tap water.

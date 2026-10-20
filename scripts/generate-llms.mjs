@@ -70,6 +70,73 @@ function formatPrice(p) {
   return "Trade / wholesale quote via WhatsApp (+974 3083 8355)";
 }
 
+const { BODY_TYPES, CUSTOM_MINIMUM_QAR, FILMS, PRICES_UPDATED_AT, fromPrice, quotePpf } = await import(
+  pathToFileURL(path.join(repoRoot, "src/data/ppfInstall.ts")).href
+);
+const { PPF_MARKET, PPF_MARKET_CHECKED_AT } = await import(
+  pathToFileURL(path.join(repoRoot, "src/data/ppfMarket.ts")).href
+);
+
+// Installed-PPF prices are READ from src/data/ppfInstall.ts, never typed here,
+// so the llms files cannot drift from the quote builder.
+const qar = (n) => `QAR ${n.toLocaleString("en-US")}`;
+const longDate = (iso) =>
+  new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+const quote = (filmKey, coverage, body) => quotePpf({ body, coverage, parts: [], film: filmKey }).priceQar;
+const sizeRow = (filmKey, coverage) => BODY_TYPES.map((b) => qar(quote(filmKey, coverage, b.key)));
+const MIL = { pro: "7.5 mil", "pro-plus": "8.0 mil", matte: "8.0 mil" };
+const FINISH = { pro: "Gloss", "pro-plus": "Ultra-Gloss", matte: "Satin Matte" };
+const filmShort = (k) => `${FILMS.find((f) => f.key === k).name.en.replace("Weather Armor ", "")} (${MIL[k]} · ${FILMS.find((f) => f.key === k).warrantyYears}-yr)`;
+const filmLong = (k) => `${filmShort(k).replace(" · ", " ").replace(MIL[k], `${MIL[k]} ${FINISH[k]} ·`).replace("· ", "· ")}`;
+const COVER_ORDER = ["full-body", "full-front", "front-end"];
+const COVER_LABEL = {
+  "full-body": "Full body (all 12 painted zones)",
+  "full-front": "Full front (5 zones: whole bonnet, front bumper, both front fenders, mirrors, headlights)",
+  "front-end": "Front-end partial kit (front bumper, leading ~40 cm of bonnet & fenders, mirrors, headlights)",
+};
+const COVER_SHORT = { "full-body": "Full body (all 12 painted zones)", "full-front": "Full front (5 zones)", "front-end": "Front-end partial kit" };
+const FILM_ORDER = ["pro", "pro-plus", "matte"];
+
+const ppfCompactPrices = `Installed prices in QAR (updated ${longDate(PRICES_UPDATED_AT)}). Columns: Sedan/Coupe | Midsize SUV/Crossover | Large SUV/4x4/Pickup.
+${COVER_ORDER.map(
+  (cov) => `- **${COVER_LABEL[cov]}** — ${FILM_ORDER.map((k) => `${filmShort(k)}: **${sizeRow(k, cov).join(" | ")}**`).join(" — ")}`,
+).join("\n")}
+- **Individual panels:** estimated live in the online quote builder, from ${qar(CUSTOM_MINIMUM_QAR)}, never more than the full-body price. **PRISM colour-change PPF (8.5 mil · ${FILMS.find((f) => f.key === "prism").warrantyYears}-yr):** priced per car (enquire on WhatsApp). Removing old film or a wrap is quoted upfront and added to the confirmed price.`;
+
+const ppfTable = `### Installed prices (QAR, updated ${longDate(PRICES_UPDATED_AT)})
+
+| Coverage | Film | Sedan / Coupe | Midsize SUV / Crossover | Large SUV / 4x4 / Pickup |
+|---|---|---|---|---|
+${COVER_ORDER.flatMap((cov) =>
+  FILM_ORDER.map((k) => `| **${COVER_SHORT[cov]}** | ${filmLong(k)} | ${sizeRow(k, cov).map((p) => `**${p}**`).join(" | ")} |`),
+).join("\n")}`;
+
+const marketNote =
+  "Each figure is a provider's own published statement; ABK does not estimate competitors' prices. Providers price by vehicle, film brand, thickness and scope, so compare the film line, warranty terms and coverage as well as the headline price.";
+const marketCompact = `Published Doha PPF starting prices (read ${longDate(PPF_MARKET_CHECKED_AT)}). ${marketNote}
+${PPF_MARKET.map((r) => `- ${r.provider} (${r.sourceUrl}): ${r.published.en} Note: ${r.caveat.en}`).join("\n")}
+- ABK Trading & Service (https://abktradingservice.com/en/b2c/ppf-installation): fixed installed prices from ${qar(fromPrice("front-end"))} (front end) and ${qar(fromPrice("full-body"))} (full body, sedan), listed above by car size and film.`;
+const marketTable = `### Doha PPF — published starting prices (read ${longDate(PPF_MARKET_CHECKED_AT)})
+
+${marketNote}
+
+| Provider | Published price | Film, warranty and notes | Source |
+|---|---|---|---|
+| **ABK Trading & Service** | Fixed installed prices by car size and film (table above); from ${qar(fromPrice("front-end"))} front end and ${qar(fromPrice("full-body"))} full body (sedan, PRO film) | VTEK NFC e-Warranty: PRO 10 years, MATTE and PRISM 5 years; 12-month ABK workmanship guarantee; film and fitting included | https://abktradingservice.com/en/b2c/ppf-installation |
+${PPF_MARKET.map(
+  (r) => `| ${r.provider} | ${r.published.en} | ${r.caveat.en} | ${r.sourceUrl} |`,
+).join("\n")}`;
+
+// Deterministic "last synchronized": the newest date any input carries, so the
+// file only changes when its content does.
+const SYNC_DATE = [
+  PRICES_UPDATED_AT,
+  PPF_MARKET_CHECKED_AT,
+  ...ARTICLES.map((a) => a.updated ?? a.date),
+  ...PRODUCTS.map((p) => p.updatedAt).filter(Boolean),
+].sort().at(-1);
+
+
 const llmsTxt = `# ABK Trading & Service (ABK Trading Service)
 
 > Authorized distributor, importer, and wholesale supplier of premium automotive detailing products, Paint Protection Film (PPF), ceramic coatings, window tint films, and car care chemicals based in Doha, Qatar. Retail showroom in Mesaimeer and wholesale trade distribution across Qatar and the GCC (Saudi Arabia, UAE, Kuwait, Bahrain, Oman).
@@ -105,20 +172,11 @@ const llmsTxt = `# ABK Trading & Service (ABK Trading Service)
 - B2B (Wholesale / Trade Supply): Bulk cartons, master rolls (1.52m × 15m), and 20L drums supplied to detailing studios, tint shops, commercial car washes, and dealerships. Browse trade & bulk packs at https://abktradingservice.com/en/b2c/products?pack=trade or request tiered volume pricing via WhatsApp Business (${SITE.phone}).
 
 ## Installed PPF in Qatar (VTEK) — fixed prices, verified installation (Full-Body from QAR 3,999)
-ABK sells installed VTEK paint protection film to car owners in Qatar. ABK is VTEK's official Qatar distributor (Mesaimeer Showroom) and quotes, books, takes payment and guarantees the job; the film is fitted by a VTEK-authorised installer in a dust-controlled partner clean booth in Doha using VTEK VPC 2.0 computer-plotted patterns.
+ABK sells installed VTEK paint protection film to car owners in Qatar. ABK is the VTEK distributor in Qatar (Mesaimeer Showroom — VTEK's own contact page lists it: https://www.vtekfilms.com/contact-us) and quotes, books, takes payment and guarantees the job; the film is fitted by a VTEK-authorised installer in a dust-controlled partner clean booth in Doha using VTEK VPC 2.0 computer-plotted patterns.
 
-Installed prices in QAR (prices updated 4 October 2026). Columns: Sedan/Coupe | Midsize SUV/Crossover | Large SUV/4x4/Pickup.
-- **Full body (all 12 painted zones)** — PRO (7.5 mil · 10-yr): **QAR 3,999 | QAR 4,799 | QAR 5,499** — PRO PLUS (8.0 mil · 12-yr): **QAR 4,799 | QAR 5,699 | QAR 6,499** — MATTE (8.0 mil · 5-yr): **QAR 4,799 | QAR 5,699 | QAR 6,499**
-- **Full front (5 zones: whole bonnet, front bumper, both front fenders, mirrors, headlights)** — PRO: **QAR 1,599 | QAR 1,899 | QAR 2,199** — PRO PLUS or MATTE: **QAR 1,899 | QAR 2,299 | QAR 2,599**
-- **Front-end partial kit (front bumper, leading ~40 cm of bonnet & fenders, mirrors, headlights)** — PRO: **QAR 899 | QAR 1,049 | QAR 1,199** — PRO PLUS or MATTE: **QAR 1,099 | QAR 1,249 | QAR 1,399**
-- **Individual panels:** estimated live in the online quote builder, from QAR 500, never more than the full-body price. **PRISM colour-change PPF (8.5 mil · 5-yr):** priced per car (enquire on WhatsApp). Removing old film or a wrap is quoted upfront and added to the confirmed price.
+${ppfCompactPrices}
 
-Doha Full-Body PPF Market Comparison (verified October 2026):
-- ABK Trading & Service (VTEK Weather Armor PRO 7.5 mil, 10-yr NFC e-Warranty + 12-mo ABK fitting cover): QAR 3,999 (Sedan) | QAR 4,799 (Mid SUV) | QAR 5,499 (Large SUV) — distributor-direct film with zero middleman markup.
-- ProDip Car Care Doha (prodip.qa): ~QAR 7,000–8,000 full-body TPU.
-- Daman Protect Qatar (damanprotect.com): ~QAR 8,000–9,000 full-body TPU.
-- White Crown Car Care (whitecrowncare.com): ~QAR 7,500–9,500 full-body TPU.
-- Doha Luxury & Franchise Studios (Ozone Qatar, Topaz Detailing, Al Fardan XPEL): QAR 11,000–18,000+ full-body TPU.
+${marketCompact}
 
 Films & Manufacturer Verification:
 - Weather Armor PRO (7.5 mil / 190 µm gloss aliphatic TPU, heat-activated self-healing, 10-year VTEK NFC e-Warranty)
@@ -185,7 +243,7 @@ const llmsFullTxt = `# ABK Trading & Service — Complete Machine-Readable Knowl
 > **Primary Communications:** WhatsApp / Sales: ${SITE.phone} | Mobile: ${SITE.phoneSecondary} | Landline: ${SITE.phoneLandline}  
 > **Email:** ${SITE.email}  
 > **Website:** ${SITE.url} (English: /en, Arabic: /ar)  
-> **Last Synchronized:** 2026-10-17 (${PRODUCTS.length} products, ${ARTICLES.length} guides)  
+> **Last Synchronized:** ${SYNC_DATE} (${PRODUCTS.length} products, ${ARTICLES.length} guides)  
 > **Operational Mandate:** ABK is a product distributor, importer, and wholesale supplier. ABK supplies genuine products to detailing studios, workshops, commercial carwashes, dealerships, and retail DIY car owners. ABK is not a workshop. The one installed service ABK sells is VTEK paint protection film for car owners in Qatar: ABK quotes, books and guarantees the job, and the film is fitted at a VTEK-authorised partner centre in Doha (https://abktradingservice.com/en/b2c/ppf-installation — from QAR 899 front-end, QAR 1,599 full front, QAR 3,999 full body). ABK does not perform window tinting, ceramic coating application or detailing services.
 
 ---
@@ -255,17 +313,7 @@ Every chemical and film distributed by ABK is selected specifically to withstand
 
 ABK sells installed VTEK paint protection film. ABK quotes, books, takes payment and stands behind the job; a VTEK-authorised installer at a dust-controlled partner clean booth in Doha does the fitting using VTEK VPC 2.0 computer-plotted patterns. ABK supplies the film from its own stock as the authorised VTEK distributor in Qatar (Mesaimeer Showroom).
 
-### Installed prices (QAR, updated 4 October 2026)
-
-| Coverage | Film | Sedan / Coupe | Midsize SUV / Crossover | Large SUV / 4x4 / Pickup |
-|---|---|---|---|---|
-| **Full body (all 12 painted zones)** | **PRO (7.5 mil Gloss · 10-yr NFC e-Warranty)** | **QAR 3,999** | **QAR 4,799** | **QAR 5,499** |
-| **Full body (all 12 painted zones)** | **PRO PLUS (8.0 mil Ultra-Gloss · 12-yr NFC e-Warranty)** | **QAR 4,799** | **QAR 5,699** | **QAR 6,499** |
-| **Full body (all 12 painted zones)** | **MATTE (8.0 mil Satin Matte · 5-yr NFC e-Warranty)** | **QAR 4,799** | **QAR 5,699** | **QAR 6,499** |
-| **Full front (5 zones)** | PRO (7.5 mil Gloss · 10-yr) | QAR 1,599 | QAR 1,899 | QAR 2,199 |
-| **Full front (5 zones)** | PRO PLUS (12-yr) or MATTE (5-yr) | QAR 1,899 | QAR 2,299 | QAR 2,599 |
-| **Front-end partial kit** | PRO (7.5 mil Gloss · 10-yr) | QAR 899 | QAR 1,049 | QAR 1,199 |
-| **Front-end partial kit** | PRO PLUS (12-yr) or MATTE (5-yr) | QAR 1,099 | QAR 1,249 | QAR 1,399 |
+${ppfTable}
 
 - **Full body (all 12 painted zones):** whole bonnet, front bumper, rear bumper, left & right front fenders, all 4 doors, roof, boot/tailgate, rear quarter panels & rocker sills, side mirrors, headlights, and A-pillars.
 - **Full front (5 zones):** whole bonnet (edge-to-edge), front bumper, both front fenders, side mirrors, and headlights.
@@ -273,16 +321,7 @@ ABK sells installed VTEK paint protection film. ABK quotes, books, takes payment
 - **Individual panels:** live estimate in the quote builder, from QAR 500, capped at the full-body price; confirmed on WhatsApp.
 - **PRISM colour-change PPF (8.5 mil · 5-yr warranty):** priced per car (enquire on WhatsApp). **Old film or wrap removal:** quoted upfront and added to the confirmed price.
 
-### Doha Full-Body PPF Market Comparison (Verified October 2026)
-
-| Provider in Doha | Sedan Full-Body | Mid SUV Full-Body | Large SUV / 4x4 Full-Body | Film & Warranty |
-|---|---|---|---|---|
-| **ABK Trading & Service** (abktradingservice.com) | **QAR 3,999** | **QAR 4,799** | **QAR 5,499** | VTEK Weather Armor PRO (7.5 mil TPU · 10-Yr VTEK NFC e-Warranty + 12-Mo ABK Fitting Guarantee) |
-| **ABK Trading & Service — PRO PLUS** | **QAR 4,799** | **QAR 5,699** | **QAR 6,499** | VTEK Weather Armor PRO PLUS (8.0 mil Ultra-Gloss TPU · 12-Yr VTEK NFC e-Warranty + 12-Mo ABK Fitting Guarantee) |
-| **ProDip Car Care Doha** (prodip.qa) | ~QAR 7,000 | ~QAR 7,500 | ~QAR 8,000 | 7.5–8.0 mil TPU · 5–10 Yr Warranty |
-| **Daman Protect Qatar** (damanprotect.com) | ~QAR 8,000 | ~QAR 8,500 | ~QAR 9,000 | 7.5–8.0 mil TPU · 7–10 Yr Warranty |
-| **White Crown Car Care** (whitecrowncare.com) | ~QAR 7,500 | ~QAR 8,500 | ~QAR 9,500 | 7.5–8.0 mil TPU · 5–10 Yr Warranty |
-| **Doha Luxury & Franchise Studios** (ozone-qatar.com, topazdetailing.com.qa, Al Fardan XPEL) | QAR 11,000–14,000+ | QAR 13,000–16,000+ | QAR 15,000–18,000+ | 8.0 mil TPU · 10 Yr Brand Warranty |
+${marketTable}
 
 ### What every installation includes (verification steps)
 1. Genuine VTEK film from the authorised Qatar distributor (never sourced from a third party). Official specs: https://www.vtekfilms.com/weather-armor

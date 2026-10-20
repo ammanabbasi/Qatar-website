@@ -9,11 +9,13 @@ import {
   COVERAGES,
   CUSTOM_MINIMUM_QAR,
   FILMS,
+  PRESET_PRICES_QAR,
   PRICES_UPDATED_AT,
   WORKMANSHIP_COVER_MONTHS,
   presetPriceList,
   type PresetCoverage,
 } from "@/data/ppfInstall";
+import { PPF_MARKET, PPF_MARKET_CHECKED_AT } from "@/data/ppfMarket";
 import { formatQar } from "@/lib/pricing";
 import { buildPpfCustomOfferWhatsAppUrl } from "@/lib/whatsapp";
 
@@ -135,72 +137,25 @@ export async function PpfPriceList({ locale }: { locale: "en" | "ar" }) {
     },
   ];
 
-  const competitors = [
-    {
-      provider: ar
-        ? "ABK للتجارة والخدمات (توريد مباشر من الموزع المعتمد لـ VTEK + تركيب في مركز شريك معتمد بالدوحة)"
-        : "ABK Trading & Service (Official Qatar VTEK Distributor + Authorised Doha Partner Studio)",
-      sedanFull: ar ? `${qar(3999)} (PRO) · ${qar(4799)} (PRO+)` : `${qar(3999)} (PRO) · ${qar(4799)} (PRO+)`,
-      suvFull: ar ? `${qar(4799)} (PRO) · ${qar(5699)} (PRO+)` : `${qar(4799)} (PRO) · ${qar(5699)} (PRO+)`,
-      largeSuvFull: ar ? `${qar(5499)} (PRO) · ${qar(6499)} (PRO+)` : `${qar(5499)} (PRO) · ${qar(6499)} (PRO+)`,
-      frontRange: ar ? `${qar(899)} – ${qar(2199)}` : `${qar(899)} – ${qar(2199)}`,
-      filmSpecs: ar
-        ? "VTEK Weather Armor أصلي (7.5–8.0 mil TPU أليفاتي معالج ذاتياً)"
-        : "Genuine VTEK Weather Armor (7.5–8.0 mil Aliphatic TPU, self-healing)",
-      warranty: ar
-        ? "ضمان إلكتروني NFC: PRO ١٠ سنوات، PRO PLUS ١٢ سنة (MATTE وPRISM ٥ سنوات) + ١٢ شهراً ضمان تركيب من ABK"
-        : "VTEK NFC e-Warranty: PRO 10 yr, PRO PLUS 12 yr (MATTE & PRISM 5 yr) + 12-Mo ABK Fitting Guarantee",
-      highlight: true,
-    },
-    {
-      provider: ar
-        ? "ProDip Car Care (الدوحة — قائمة الأسعار المعلنة أكتوبر ٢٠٢٦)"
-        : "ProDip Car Care (prodip.qa, Doha — public rate card Oct 2026)",
-      sedanFull: ar ? "من 5,500 ر.ق" : "From QAR 5,500",
-      suvFull: ar ? "5,500 – 6,500 ر.ق" : "QAR 5,500 – 6,500",
-      largeSuvFull: ar ? "6,500+ ر.ق" : "QAR 6,500+",
-      frontRange: ar ? "1,800 – 2,800 ر.ق" : "QAR 1,800 – 2,800",
-      filmSpecs: ar ? "TPU معالج ذاتياً بالحرارة" : "Self-healing gloss TPU",
-      warranty: ar ? "٥–١٠ سنوات" : "5–10 years",
-      highlight: false,
-    },
-    {
-      provider: ar
-        ? "Daman Protect / استوديوهات الفئة المتوسطة في الدوحة (أكتوبر ٢٠٢٦)"
-        : "Daman Protect / Mid-Tier Doha Studios (damanprotect.com — Oct 2026)",
-      sedanFull: ar ? "4,500 – 5,500 ر.ق" : "QAR 4,500 – 5,500",
-      suvFull: ar ? "5,500 – 6,500 ر.ق" : "QAR 5,500 – 6,500",
-      largeSuvFull: ar ? "6,500 – 7,500+ ر.ق" : "QAR 6,500 – 7,500+",
-      frontRange: ar ? "1,800 – 3,000 ر.ق" : "QAR 1,800 – 3,000",
-      filmSpecs: ar ? "TPU قياسي (يُسعَّر حسب الفئة بالاستفسار)" : "Standard TPU (quote-gated by vehicle)",
-      warranty: ar ? "٥–١٠ سنوات" : "5–10 years",
-      highlight: false,
-    },
-    {
-      provider: ar
-        ? "White Crown Car Care (اللقطة / الصناعية — باقات XPEL المعلنة أكتوبر ٢٠٢٦)"
-        : "White Crown Car Care (whitecrowncare.com, Doha — XPEL rates Oct 2026)",
-      sedanFull: ar ? "من 6,999+ ر.ق" : "From QAR 6,999+",
-      suvFull: ar ? "7,500 – 8,500+ ر.ق" : "QAR 7,500 – 8,500+",
-      largeSuvFull: ar ? "8,500 – 10,500+ ر.ق" : "QAR 8,500 – 10,500+",
-      frontRange: ar ? "من 2,500 ر.ق" : "From QAR 2,500",
-      filmSpecs: ar ? "XPEL TPU (7.5–8.0 mil)" : "XPEL Aliphatic TPU (7.5–8.0 mil)",
-      warranty: ar ? "١٠ سنوات" : "10 years",
-      highlight: false,
-    },
-    {
-      provider: ar
-        ? "الوكالات والمراكز الفاخرة (Ozone LLumar / Topaz / Al Fardan XPEL — أكتوبر ٢٠٢٦)"
-        : "Franchise & Luxury Studios (Ozone LLumar / Topaz / Al Fardan — Oct 2026)",
-      sedanFull: ar ? "8,000 – 11,000+ ر.ق" : "QAR 8,000 – 11,000+",
-      suvFull: ar ? "9,500 – 13,000+ ر.ق" : "QAR 9,500 – 13,000+",
-      largeSuvFull: ar ? "11,000 – 15,000+ ر.ق" : "QAR 11,000 – 15,000+",
-      frontRange: ar ? "3,500 – 5,500+ ر.ق" : "QAR 3,500 – 5,500+",
-      filmSpecs: ar ? "LLumar / XPEL / تفصيل خاص (تتطلب زيارة للتسعير)" : "LLumar / XPEL / bespoke (in-person quote only)",
-      warranty: ar ? "١٠–١٢ سنة" : "10–12 years",
-      highlight: false,
-    },
-  ];
+  // ABK's own row is read from ppfInstall.ts; every other row is a statement the
+  // provider publishes itself (src/data/ppfMarket.ts). Nothing here is estimated.
+  const proFilm = FILMS.find((f) => f.key === "pro")!;
+  const matteFilm = FILMS.find((f) => f.key === "matte")!;
+  const sizes = (coverage: PresetCoverage) =>
+    BODY_TYPES.map((b) => qar(PRESET_PRICES_QAR[coverage][b.key])).join(" · ");
+  const checkedOn = new Date(PPF_MARKET_CHECKED_AT).toLocaleDateString(
+    ar ? "ar-QA" : "en-QA",
+    { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" },
+  );
+  const abkRow = {
+    provider: "ABK Trading & Service",
+    published: ar
+      ? `أسعار تركيب ثابتة حسب حجم السيارة (سيدان · SUV متوسطة · SUV كبيرة)، فيلم PRO: الواجهة الأساسية ${sizes("front-end")}؛ الواجهة الكاملة ${sizes("full-front")}؛ الهيكل بالكامل ${sizes("full-body")}.`
+      : `Fixed installed prices by car size (sedan · mid SUV · large SUV), PRO film: front end ${sizes("front-end")}; full front ${sizes("full-front")}; full body ${sizes("full-body")}.`,
+    caveat: ar
+      ? `فيلم VTEK Weather Armor الأصلي بتركيب في مركز معتمد من VTEK في الدوحة. الضمان الإلكتروني NFC من VTEK: PRO ${proFilm.warrantyYears} سنوات، وMATTE وPRISM ${matteFilm.warrantyYears} سنوات؛ إضافة إلى ضمان تركيب من ABK لمدة ${WORKMANSHIP_COVER_MONTHS} شهراً. يشمل السعر الفيلم والتركيب.`
+      : `Genuine VTEK Weather Armor, fitted at a VTEK-authorised centre in Doha. VTEK NFC e-Warranty: PRO ${proFilm.warrantyYears} years, MATTE and PRISM ${matteFilm.warrantyYears} years; plus a ${WORKMANSHIP_COVER_MONTHS}-month ABK workmanship guarantee. Prices include the film and fitting.`,
+  };
 
   return (
     <section id="prices" className="scroll-mt-16 py-8 lg:py-12">
@@ -480,78 +435,73 @@ export async function PpfPriceList({ locale }: { locale: "en" | "ar" }) {
           </div>
         </div>
 
-        {/* Substantiated Doha PPF Market Comparison Table */}
+        {/* Doha PPF — published starting prices. Provider-published statements only. */}
         <div id="market-comparison" className="mt-12 scroll-mt-16 border-t border-(--color-border) pt-10">
           <SectionHeading
             title={
               ar
-                ? "مقارنة أسعار تركيب PPF للهيكل الكامل في الدوحة، قطر (أكتوبر ٢٠٢٦)"
-                : "Doha Full-Body PPF Price & Specification Comparison (October 2026)"
+                ? `أسعار PPF المعلنة في الدوحة، قطر (قُرئت في ${checkedOn})`
+                : `Doha PPF: Published Starting Prices (read ${checkedOn})`
             }
             subtitle={
               ar
-                ? "مقارنة موثقة لنفس فئات حجم السيارات وتغطية الهيكل الكامل بفيلم TPU أليفاتي معالج ذاتياً."
-                : "Apples-to-apples comparison across vehicle sizes, full-body coverage, aliphatic TPU specifications, and warranties in Qatar."
+                ? "كل رقم هو ما تنشره الجهة نفسها؛ ولا تقدّر ABK أسعار غيرها."
+                : "Each figure is the provider's own published statement; ABK does not estimate anyone else's prices."
             }
           />
 
           <div className="mt-6 overflow-x-auto rounded-tile border border-(--color-border) bg-(--color-surface)">
-            <table className="w-full min-w-[46rem] border-collapse text-start text-caption tabular-nums">
+            <table className="w-full min-w-[40rem] border-collapse text-start text-caption">
               <caption className="px-4 py-3 text-start text-caption text-(--color-text-muted) sm:px-6">
                 {ar
-                  ? "المصادر وتاريخ التوثيق: قوائم الأسعار والعروض المعلنة لمراكز العناية بالسيارات في الدوحة كما في أكتوبر ٢٠٢٦. جميع المقارنات لأفلام TPU الأليفاتية (7.5–8.0 mil) مع التركيب الكامل."
-                  : "Recorded sources & verification date: Publicly listed rate cards and published Doha installer packages verified October 2026 for equivalent 7.5–8.0 mil self-healing aliphatic TPU."}
+                  ? `المصدر: الموقع الإلكتروني لكل جهة، قُرئ في ${checkedOn}. الجهات التي لا تنشر سعراً لـ PPF لا تُدرج هنا. تُسعّر الجهات حسب السيارة والفيلم ونطاق العمل، فقارن خط الفيلم والضمان وما يشمله السعر وليس الرقم الأول فقط. نصوص الجهات الأخرى مترجمة من الإنجليزية.`
+                  : `Source: each provider's own website, read ${checkedOn}. Providers that publish no PPF price are not listed. Providers price by vehicle, film and scope, so compare the film line, warranty and what is included, not only the headline number.`}
               </caption>
               <thead>
                 <tr className="border-y border-(--color-border) bg-(--color-bg)/60">
                   <th scope="col" className="px-4 py-3 text-start font-semibold sm:px-5">
-                    {ar ? "مزود الخدمة في الدوحة" : "Doha Provider / Tier"}
-                  </th>
-                  <th scope="col" className="px-3 py-3 text-end font-semibold">
-                    {ar ? "هيكل كامل: سيدان" : "Full-Body: Sedan"}
-                  </th>
-                  <th scope="col" className="px-3 py-3 text-end font-semibold">
-                    {ar ? "هيكل كامل: SUV متوسطة" : "Full-Body: Mid SUV"}
-                  </th>
-                  <th scope="col" className="px-3 py-3 text-end font-semibold">
-                    {ar ? "هيكل كامل: SUV كبيرة" : "Full-Body: Large SUV"}
-                  </th>
-                  <th scope="col" className="px-3 py-3 text-end font-semibold">
-                    {ar ? "الواجهة (جزئي / كامل)" : "Front Packages"}
+                    {ar ? "الجهة" : "Provider"}
                   </th>
                   <th scope="col" className="px-3 py-3 text-start font-semibold">
-                    {ar ? "نوع الفيلم والضمان" : "Film Spec & Warranty"}
+                    {ar ? "السعر المنشور" : "Published price"}
+                  </th>
+                  <th scope="col" className="px-3 py-3 text-start font-semibold">
+                    {ar ? "الفيلم والضمان وملاحظات" : "Film, warranty and notes"}
+                  </th>
+                  <th scope="col" className="px-3 py-3 text-start font-semibold">
+                    {ar ? "المصدر" : "Source"}
                   </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-(--color-border-soft)">
-                {competitors.map((row) => (
-                  <tr
-                    key={row.provider}
-                    className={
-                      row.highlight
-                        ? "bg-(--color-brand)/[0.09] font-medium"
-                        : "hover:bg-(--color-bg)/50"
-                    }
-                  >
+                <tr className="bg-(--color-brand)/[0.09]">
+                  <th scope="row" className="px-4 py-3 text-start font-semibold text-(--color-text) sm:px-5">
+                    {abkRow.provider}
+                  </th>
+                  <td className="px-3 py-3 text-start font-medium text-(--color-text)">{abkRow.published}</td>
+                  <td className="px-3 py-3 text-start text-(--color-text-muted)">{abkRow.caveat}</td>
+                  <td className="px-3 py-3 text-start text-(--color-text-muted)">
+                    <a href="#prices" className="text-(--color-link) hover:underline">
+                      {ar ? "هذه الصفحة" : "This page"}
+                    </a>
+                  </td>
+                </tr>
+                {PPF_MARKET.map((row) => (
+                  <tr key={row.provider} className="hover:bg-(--color-bg)/50">
                     <th scope="row" className="px-4 py-3 text-start font-semibold text-(--color-text) sm:px-5">
                       {row.provider}
                     </th>
-                    <td className="px-3 py-3 text-end font-bold whitespace-nowrap text-(--color-text)">
-                      {row.sedanFull}
-                    </td>
-                    <td className="px-3 py-3 text-end font-bold whitespace-nowrap text-(--color-text)">
-                      {row.suvFull}
-                    </td>
-                    <td className="px-3 py-3 text-end font-bold whitespace-nowrap text-(--color-text)">
-                      {row.largeSuvFull}
-                    </td>
-                    <td className="px-3 py-3 text-end whitespace-nowrap text-(--color-text-muted)">
-                      {row.frontRange}
-                    </td>
-                    <td className="px-3 py-3 text-start text-(--color-text-muted)">
-                      <span className="block font-medium text-(--color-text)">{row.filmSpecs}</span>
-                      <span className="mt-0.5 block text-[11px]">{row.warranty}</span>
+                    <td className="px-3 py-3 text-start font-medium text-(--color-text)">{row.published[locale]}</td>
+                    <td className="px-3 py-3 text-start text-(--color-text-muted)">{row.caveat[locale]}</td>
+                    <td className="px-3 py-3 text-start">
+                      <a
+                        href={row.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer nofollow"
+                        className="break-all text-(--color-link) hover:underline"
+                      >
+                        {new URL(row.sourceUrl).host} ↗
+                      </a>
                     </td>
                   </tr>
                 ))}
