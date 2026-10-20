@@ -66,7 +66,11 @@ means the copy goes. Update `GOOGLE_REVIEWS` from the Maps listing at the same t
 4. **Process the new copy now promises.** The page says every job is registered on VTEK's e-warranty before the car
    leaves, that the installer's details appear on it, and that you can check it with plate number and phone number.
    Make sure the centre registers each job with the customer's plate and mobile.
-5. **Still on other pages (not changed here).** Product pages and the VTEK brand hub still carry thickness, "aliphatic" and
-   hydrophobic-coat claims; the brand hub says "exclusive authorized distributor" and "climate-controlled warehouse",
-   and the Arabic gateway says "الموزع الحصري". See section 3 for why these are unsupported.
+5. **Other pages (updated 20 Oct, second pass).** The five VTEK PPF product pages, the film category page and the
+   VTEK brand hub now follow the same rule: no thickness, "aliphatic", nano-coat or "Made in USA" claims; "authorised
+   distributor" with the VTEK contact listing instead of "official & exclusive"; warranty registration on VTEK's NFC
+   e-Warranty. The Arabic gateway no longer says "exclusive" where the English does not. **Not changed:** the home
+   page's "Official & Exclusive Distributor" badge (your own wording since launch, covering VTEK, Autotriz, Briller and
+   Grizzly — keep it only if you hold exclusivity agreements), Grizzly's own roll specs, and the Solar Armor
+   "99% UV / 95% IR" figures (window film, not checked here).
 6. **Google Business Profile.** The listing name still carries "Vertek & Autotriz" (see the 20 Oct traffic audit).

@@ -309,7 +309,7 @@ export function Footer({ audience }: { audience: Audience }) {
             <span aria-hidden className="text-white/20">
               |
             </span>
-            <span className="text-white/40">{t("Footer.builtBy")}</span>
+            <span className="text-white/60">{t("Footer.builtBy")}</span>
           </div>
         </div>
       </Container>

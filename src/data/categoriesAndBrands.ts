@@ -90,8 +90,8 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
       ar: "أفلام حماية الطلاء (PPF) وتظليل النوافذ النانو سيراميك في قطر",
     },
     subtitle: {
-      en: "Genuine VTEK Weather Armor aliphatic TPU rolls, Solar Armor heat-rejection window films, Grizzly PPF, and Autotriz installation solutions — stocked in Mesaimeer, Doha.",
-      ar: "رولات أفلام حماية الطلاء الأليفاتية VTEK Weather Armor، وأفلام العزل الحراري Solar Armor، ورولات Grizzly ومحلول التركيب Autotriz — متوفرة في معرضنا بمسيمير، الدوحة.",
+      en: "Genuine VTEK Weather Armor TPU rolls, Solar Armor heat-rejection window films, Grizzly PPF, and Autotriz installation solutions — stocked in Mesaimeer, Doha.",
+      ar: "رولات أفلام حماية الطلاء VTEK Weather Armor، وأفلام العزل الحراري Solar Armor، ورولات Grizzly ومحلول التركيب Autotriz — متوفرة في معرضنا بمسيمير، الدوحة.",
     },
     guideTitle: {
       en: "Choosing PPF & Window Tint Films for Qatar's 50°C Climate",
@@ -99,11 +99,11 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
     },
     guideParagraphs: {
       en: [
-        "In Doha's extreme summer heat (45°C–50°C+) and UV index 11+ sun, low-grade PVC or TPH films oxidize, yellow, and delaminate within 12 to 18 months. ABK Trading & Service exclusively stocks 100% aliphatic Thermoplastic Polyurethane (TPU) films from VTEK (Weather Armor PRO 7.5 mil, PRO PLUS 8.0 mil, MATTE, PRISM, and ULTIMATE) and Grizzly (7.5 mil self-healing TPU at QAR 1,200 per 1.52m × 15m master roll). Every VTEK film features heat-activated self-healing topcoats and non-yellowing optical adhesives backed by 5- to 15-year warranties.",
+        "In Doha's extreme summer heat (45°C–50°C+) and UV index 11+ sun, low-grade PVC or TPH films can yellow, crack and lose adhesion. ABK Trading & Service stocks Thermoplastic Polyurethane (TPU) films from VTEK (Weather Armor PRO, PRO PLUS, MATTE, PRISM and ULTIMATE) and Grizzly (self-healing TPU at QAR 1,200 per 1.52m × 15m master roll). VTEK Weather Armor films have a self-healing top layer and a written VTEK warranty of 5 to 15 years by film, registered on VTEK's NFC e-Warranty.",
         "For cabin heat rejection that complies with Qatar Traffic Department (Metrash2) VLT rules, VTEK Solar Armor window film rolls (VUE, APEX, and ICONIC) block over 99% of UV radiation and up to 95% of infrared solar heat without metallic signal interference. Looking for turn-key installation? Car owners can also book fixed-price VTEK PPF installation in Doha (starting from QAR 899 front-end and QAR 3,999 full body) directly through our online quote builder.",
       ],
       ar: [
-        "في ظل حرارة صيف الدوحة التي تتجاوز 45–50 درجة مئوية ومؤشر الأشعة فوق البنفسجية المرتفع، تتعرض الأفلام التجارية الرخيصة (PVC أو TPH) للاصفرار والتشقق وتلف اللاصق خلال عام واحد. لذلك توفر ABK للتجارة والخدمات حصرياً أفلام البولي يوريثان الأليفاتية الأصلية (Aliphatic TPU) من علامتَي VTEK الأمريكية (Weather Armor PRO بسماكة 7.5 ميل، وPRO PLUS بسماكة 8.0 ميل، والمطفي MATTE، والملون PRISM) وGrizzly (رول 1.52م × 15م بسعر 1,200 ر.ق) مع خاصية المعالجة الذاتية للخدوش بالحرارة.",
+        "في ظل حرارة صيف الدوحة التي تتجاوز 45–50 درجة مئوية ومؤشر الأشعة فوق البنفسجية المرتفع، قد تتعرض الأفلام التجارية الرخيصة (PVC أو TPH) للاصفرار والتشقق وتلف اللاصق. لذلك توفر ABK للتجارة والخدمات أفلام البولي يوريثان الحراري (TPU) من علامتَي VTEK (Weather Armor PRO وPRO PLUS والمطفي MATTE والملون PRISM وULTIMATE) وGrizzly (رول 1.52م × 15م بسعر 1,200 ر.ق). وتتميز أفلام VTEK Weather Armor بطبقة علوية ذاتية الإصلاح وضمان VTEK مكتوب من 5 إلى 15 سنة حسب الفيلم، يُسجَّل في ضمان VTEK الإلكتروني NFC.",
         "وللعزل الحراري المتوافق مع اشتراطات الإدارة العامة للمرور في قطر، توفر أفلام تظليل النوافذ VTEK Solar Armor (فئات VUE وAPEX وICONIC) عزلاً للأشعة فوق البنفسجية بنسبة تتجاوز 99% وعزلاً للأشعة تحت الحمراء حتى 95% دون التأثير على إشارات الجوال أو الملاحة. كما يمكن لملاك السيارات في قطر حجز باقات تركيب أفلام VTEK PPF بأسعار ثابتة ومعلنة (تبدأ من 899 ر.ق للواجهة و3,999 ر.ق لكامل السيارة) عبر حاسبة الأسعار الفورية.",
       ],
     },
@@ -923,16 +923,16 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
     matchBrandKeys: ["VTEK", "Vertek"],
     origin: { en: "United States", ar: "الولايات المتحدة الأمريكية" },
     roleBadge: {
-      en: "Official & Exclusive Qatar Distributor",
-      ar: "الموزع الرسمي والحصري في قطر",
+      en: "Authorised Qatar Distributor",
+      ar: "الموزع المعتمد في قطر",
     },
     title: {
-      en: "VTEK PPF & Window Tint in Qatar — Official Distributor",
-      ar: "أفلام حماية الطلاء VTEK وتظليل Solar Armor في قطر | الموزع الحصري",
+      en: "VTEK PPF & Window Tint in Qatar — Authorised Distributor",
+      ar: "أفلام حماية الطلاء VTEK وتظليل Solar Armor في قطر | الموزع المعتمد",
     },
     description: {
-      en: "ABK Trading is the official Qatar distributor for VTEK (Vertek) Weather Armor TPU PPF & Solar Armor nano-ceramic window tint. Buy rolls or book Doha installation.",
-      ar: "شركة ABK هي الموزع الرسمي والحصري لأفلام حماية الطلاء VTEK Weather Armor وتظليل النوافذ Solar Armor في قطر. اشترِ الرولات أو احجز التركيب في الدوحة.",
+      en: "ABK Trading is the authorised Qatar distributor for VTEK (Vertek) Weather Armor TPU PPF & Solar Armor nano-ceramic window tint. Buy rolls or book Doha installation.",
+      ar: "شركة ABK هي الموزع المعتمد لأفلام حماية الطلاء VTEK Weather Armor وتظليل النوافذ Solar Armor في قطر. اشترِ الرولات أو احجز التركيب في الدوحة.",
     },
     keywords: {
       en: [
@@ -952,16 +952,16 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
       ],
     },
     eyebrow: {
-      en: "Official Qatar Distributor · USA",
-      ar: "الموزع الرسمي والحصري في قطر · أمريكا",
+      en: "Authorised Qatar Distributor",
+      ar: "الموزع المعتمد في قطر",
     },
     h1: {
       en: "VTEK (Vertek) Paint Protection Film & Solar Armor Window Tint in Qatar",
       ar: "أفلام حماية الطلاء VTEK Weather Armor وتظليل النوافذ Solar Armor في قطر",
     },
     subtitle: {
-      en: "100% aliphatic polycarbonate-infused TPU paint protection films (5 to 15-year warranties) and nano-ceramic solar window films — distributed and installed by ABK in Doha.",
-      ar: "أفلام حماية الطلاء الأمريكية المصنوعة من البولي يوريثان الأليفاتي (بضمان 5 إلى 15 سنة) وأفلام العزل الحراري النانو سيراميك — توزيع وتركيب معتمد لدى ABK في الدوحة.",
+      en: "TPU paint protection films with VTEK warranties of 5 to 15 years by film, and nano-ceramic solar window films — distributed and installed by ABK in Doha.",
+      ar: "أفلام حماية الطلاء من البولي يوريثان الحراري TPU بضمان VTEK من 5 إلى 15 سنة حسب الفيلم، وأفلام العزل الحراري النانو سيراميك — توزيع وتركيب معتمد لدى ABK في الدوحة.",
     },
     guideTitle: {
       en: "VTEK Weather Armor PPF & Solar Armor Window Tint Lineup in Qatar",
@@ -969,11 +969,11 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
     },
     guideParagraphs: {
       en: [
-        "As the exclusive authorized distributor of VTEK (formerly Vertek) in Qatar, ABK Trading & Service supplies the complete Weather Armor TPU Paint Protection Film range directly from our climate-controlled Mesaimeer warehouse: Weather Armor PRO (7.5 mil gloss TPU, 10-year warranty), Weather Armor PRO PLUS (8.0 mil ultra-gloss hydrophobic TPU, 10-year warranty), Weather Armor MATTE (8.0 mil satin stealth conversion, 5-year warranty), Weather Armor PRISM (8.5 mil colour-change TPU, 5-year warranty), and flagship Weather Armor ULTIMATE (polycarbonate-infused TPU, 15-year warranty).",
+        "As VTEK's authorised distributor in Qatar (VTEK's own contact page lists our Mesaimeer showroom as its Qatar contact), ABK Trading & Service supplies the Weather Armor TPU paint protection film range from its Mesaimeer showroom: Weather Armor PRO (gloss, 10-year warranty), Weather Armor PRO PLUS (step-up gloss grade, 10-year warranty), Weather Armor MATTE (satin matte, 5-year warranty), Weather Armor PRISM (colour change, 5-year warranty), and flagship Weather Armor ULTIMATE (Polycarbonate Diol-based TPU, 15-year warranty, special roll order). Every installation is registered on VTEK's NFC e-Warranty.",
         "Alongside PPF, VTEK's Solar Armor window film series — VUE, APEX, and ICONIC — utilizes non-metallized nano-ceramic technology to reject up to 95% of infrared solar heat and 99%+ of UV rays in legal Qatar VLT shades. Want VTEK PPF installed on your vehicle? Use our online quote builder to book installed VTEK PPF packages in Doha starting from QAR 899 (front-end) and QAR 3,999 (full body), backed by both the registered VTEK manufacturer warranty and ABK's 12-month workmanship guarantee.",
       ],
       ar: [
-        "بصفتها الموزع الرسمي والحصري لعلامة VTEK (المعروفة سابقاً بـ Vertek) في دولة قطر، توفر شركة ABK للتجارة والخدمات التشكيلة الكاملة من أفلام حماية الطلاء Weather Armor TPU مباشرة من مستودعاتنا المبردة في مسيمير: فيلم Weather Armor PRO (سماكة 7.5 ميل، ضمان 10 سنوات)، وفيلم Weather Armor PRO PLUS (سماكة 8.0 ميل فائق اللمعان، ضمان 10 سنوات)، وفيلم Weather Armor MATTE المطفي (سماكة 8.0 ميل، ضمان 5 سنوات)، وفيلم Weather Armor PRISM الملون (سماكة 8.5 ميل، ضمان 5 سنوات)، والفئة العليا Weather Armor ULTIMATE (بضمان 15 سنة).",
+        "بصفتها الموزع المعتمد لعلامة VTEK (المعروفة سابقاً بـ Vertek) في قطر — وتُدرج صفحة التواصل لدى VTEK معرضنا في مسيمير كجهة التواصل الخاصة بها في قطر — توفر شركة ABK للتجارة والخدمات تشكيلة أفلام حماية الطلاء Weather Armor TPU من معرضها في مسيمير: فيلم Weather Armor PRO (لامع، ضمان 10 سنوات)، وفيلم Weather Armor PRO PLUS (فئة لمعان أعلى، ضمان 10 سنوات)، وفيلم Weather Armor MATTE المطفي (ضمان 5 سنوات)، وفيلم Weather Armor PRISM الملون (ضمان 5 سنوات)، والفئة العليا Weather Armor ULTIMATE (بضمان 15 سنة، بالطلب الخاص للرول). ويُسجَّل كل تركيب في ضمان VTEK الإلكتروني NFC.",
         "وإلى جانب أفلام الحماية، تقدم سلسلة تظليل النوافذ VTEK Solar Armor (بفئاتها VUE وAPEX وICONIC) تقنية النانو سيراميك غير المعدنية لعزل ما يصل إلى 95% من الأشعة تحت الحمراء وأكثر من 99% من الأشعة فوق البنفسجية بدرجات شفافية متوافقة مع قانون المرور القطري. كما يمكن لملاك السيارات حجز باقات تركيب VTEK PPF الشاملة في الدوحة بأسعار ثابتة تبدأ من 899 ر.ق للواجهة و3,999 ر.ق لكامل السيارة.",
       ],
     },
@@ -984,8 +984,8 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
           ar: "هل علامة VTEK هي نفسها Vertek PPF؟",
         },
         a: {
-          en: "Yes. Vertek rebranded globally to VTEK while keeping the exact same American aliphatic TPU formulations (Weather Armor PRO, PRO PLUS, MATTE, PRISM, ULTIMATE) and Solar Armor nano-ceramic window films. ABK Trading & Service is the official Qatar distributor.",
-          ar: "نعم، تم تحديث الاسم التجاري عالمياً من Vertek إلى VTEK مع الاحتفاظ بنفس التركيبات الأمريكية الأصلية لأفلام Weather Armor وتظليل Solar Armor، وشركة ABK هي الموزع الرسمي المعتمد في قطر.",
+          en: "Yes. Vertek rebranded to VTEK; VTEK's own FAQ still answers under the VERTEK name, and the Weather Armor PPF and Solar Armor window film lines carry on under VTEK. ABK Trading & Service is VTEK's authorised Qatar distributor.",
+          ar: "نعم، تغيّر الاسم التجاري من Vertek إلى VTEK، وما زالت الأسئلة الشائعة لدى VTEK تجيب باسم VERTEK، واستمرت أفلام Weather Armor وتظليل Solar Armor تحت اسم VTEK. وشركة ABK هي الموزع المعتمد لـ VTEK في قطر.",
         },
       },
       {
