@@ -6,8 +6,10 @@
 import {
   DELIVERY,
   formatNumber,
+  formatPercent,
   formatQar,
   quoteDelivery,
+  quoteDiscount,
   type Fulfilment,
 } from "./pricing";
 
@@ -163,6 +165,7 @@ export function buildCartWhatsAppMessage({
     { pricedSubtotal, pricedLines, fromPricedLines, unpricedLines, units: 0 },
     fulfilment,
   );
+  const discount = quoteDiscount({ pricedSubtotal });
   const qar = (n: number) => formatQar(n, locale);
   const num = (n: number) => formatNumber(n, locale);
   const threshold = qar(DELIVERY.freeThresholdQar);
@@ -186,6 +189,15 @@ export function buildCartWhatsAppMessage({
       ar
         ? `المجموع الفرعي للمنتجات المسعّرة (${num(pricedLines)}): ${qar(pricedSubtotal)}`
         : `Subtotal (${pricedLines} priced item${pricedLines === 1 ? "" : "s"}): ${qar(pricedSubtotal)}`,
+    );
+  }
+  if (discount) {
+    const pct = formatPercent(discount.percent, locale);
+    const min = qar(discount.minSubtotalQar);
+    summary.push(
+      ar
+        ? `خصم ${pct} (للطلبات بقيمة ${min} فأكثر): −${qar(discount.amountQar)}`
+        : `Discount ${pct} (orders of ${min} or more): −${qar(discount.amountQar)}`,
     );
   }
   if (unpricedLines > 0) {
@@ -227,10 +239,11 @@ export function buildCartWhatsAppMessage({
   // A firm total only exists when nothing is waiting to be priced or sized.
   if (unpricedLines === 0 && fromPricedLines === 0 && pricedLines > 0) {
     const fee = quote.kind === "fee" ? quote.feeQar : 0;
+    const total = pricedSubtotal - (discount?.amountQar ?? 0) + fee;
     summary.push(
       ar
-        ? `الإجمالي: ${qar(pricedSubtotal + fee)}${fee > 0 ? " شامل التوصيل" : ""}`
-        : `Total: ${qar(pricedSubtotal + fee)}${fee > 0 ? " incl. delivery" : ""}`,
+        ? `الإجمالي: ${qar(total)}${fee > 0 ? " شامل التوصيل" : ""}`
+        : `Total: ${qar(total)}${fee > 0 ? " incl. delivery" : ""}`,
     );
   }
 

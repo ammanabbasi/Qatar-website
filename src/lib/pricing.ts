@@ -18,6 +18,18 @@ export const DELIVERY = {
   feeQar: 25,
 } as const;
 
+/**
+ * Owner-set order discount (2026-10-21): 10% off once the priced subtotal
+ * reaches QAR 500, 15% off from QAR 700. Retail cart only — wholesale is
+ * quoted on WhatsApp. Taken off the goods, never the delivery fee (any order
+ * that qualifies already has free delivery). Highest tier first. Change the
+ * numbers here — nowhere else.
+ */
+export const DISCOUNT_TIERS = [
+  { minSubtotalQar: 700, percent: 15 },
+  { minSubtotalQar: 500, percent: 10 },
+] as const;
+
 export type PriceLocale = "en" | "ar";
 
 /**
@@ -29,6 +41,11 @@ export function formatQar(amount: number, locale: PriceLocale): string {
   return locale === "ar"
     ? `${formatNumber(amount, "ar")} ر.ق`
     : `QAR ${formatNumber(amount, "en")}`;
+}
+
+/** "10%" / "١٠٪" — Intl's Arabic percent style appends an ALM mark, so build it. */
+export function formatPercent(percent: number, locale: PriceLocale): string {
+  return `${formatNumber(percent, locale)}${locale === "ar" ? "٪" : "%"}`;
 }
 
 /** Plain number — Arabic-Indic digits for Arabic, matching the price strings. */
@@ -147,4 +164,45 @@ export function quoteDelivery(
  */
 export function estimatedFee(quote: DeliveryQuote): number {
   return quote.kind === "fee" || quote.kind === "provisional" ? quote.feeQar : 0;
+}
+
+export type DiscountQuote = {
+  percent: number;
+  minSubtotalQar: number;
+  /** Rounded to the dirham (two decimals). */
+  amountQar: number;
+};
+
+/**
+ * Discount earned by the priced subtotal. Unpriced and "from"-priced lines can
+ * only raise the subtotal once staff confirm them, so this is a floor: the
+ * order never ends up with less discount than the cart shows.
+ */
+export function quoteDiscount(totals: Pick<CartTotals, "pricedSubtotal">): DiscountQuote | null {
+  const tier = DISCOUNT_TIERS.find((t) => totals.pricedSubtotal >= t.minSubtotalQar);
+  if (!tier) return null;
+  return {
+    percent: tier.percent,
+    minSubtotalQar: tier.minSubtotalQar,
+    amountQar: Math.round(totals.pricedSubtotal * tier.percent) / 100,
+  };
+}
+
+/** The next tier above the current subtotal, and how far away it is. */
+export function nextDiscountTier(
+  totals: Pick<CartTotals, "pricedSubtotal">,
+): { percent: number; minSubtotalQar: number; remainingQar: number } | null {
+  const above = DISCOUNT_TIERS.filter((t) => totals.pricedSubtotal < t.minSubtotalQar);
+  const next = above[above.length - 1];
+  if (!next) return null;
+  return {
+    percent: next.percent,
+    minSubtotalQar: next.minSubtotalQar,
+    remainingQar: next.minSubtotalQar - totals.pricedSubtotal,
+  };
+}
+
+/** Discount amount, or 0 — for totals that subtract it. */
+export function discountAmount(totals: Pick<CartTotals, "pricedSubtotal">): number {
+  return quoteDiscount(totals)?.amountQar ?? 0;
 }

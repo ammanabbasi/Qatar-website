@@ -15,12 +15,19 @@ import {
   useCheckoutDetails,
   useQuoteDetails,
 } from "@/lib/cart";
-import { cartTotals, findProduct, formatQar, resolveCartLines } from "@/lib/pricing";
+import {
+  cartTotals,
+  findProduct,
+  formatPercent,
+  formatQar,
+  quoteDiscount,
+  resolveCartLines,
+} from "@/lib/pricing";
 import { buildQuoteTrayWhatsAppUrl } from "@/lib/whatsapp";
 import { SITE } from "@/lib/constants";
 import { useCartUi } from "./CartProvider";
 import { CartLineItem } from "./CartLineItem";
-import { DeliveryProgress } from "./DeliveryProgress";
+import { CartProgress } from "./DiscountProgress";
 import { RemovedNotice, useRemoveWithUndo } from "./useRemoveWithUndo";
 
 /**
@@ -189,6 +196,7 @@ function RetailDrawer({ titleId, onClose }: { titleId: string; onClose: () => vo
   const { removed, remove, undo, setPaused } = useRemoveWithUndo("b2c");
   const lines = resolveCartLines(cart.lines, catalogue);
   const totals = cartTotals(lines);
+  const discount = quoteDiscount(totals);
   const removedName = removed ? findProduct(catalogue, removed.slug)?.name[locale] : undefined;
 
   return (
@@ -283,14 +291,22 @@ function RetailDrawer({ titleId, onClose }: { titleId: string; onClose: () => vo
               </span>
             </div>
           ) : null}
+          {discount ? (
+            <div className="flex items-baseline justify-between gap-3">
+              <span className="text-footnote text-(--color-text-muted)">
+                {t("discount", { percent: formatPercent(discount.percent, locale) })}
+              </span>
+              <span className="text-body font-semibold tabular-nums text-(--color-brand-deep)">
+                −{formatQar(discount.amountQar, locale)}
+              </span>
+            </div>
+          ) : null}
           {totals.unpricedLines > 0 ? (
             <p className="text-caption text-(--color-text-muted)">
               {t("unpricedNote", { count: totals.unpricedLines })}
             </p>
           ) : null}
-          {details.fulfilment === "delivery" ? (
-            <DeliveryProgress totals={totals} locale={locale} />
-          ) : null}
+          <CartProgress totals={totals} locale={locale} fulfilment={details.fulfilment} />
           <Link
             href="/b2c/cart"
             onClick={onClose}

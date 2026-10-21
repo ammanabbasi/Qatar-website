@@ -17,9 +17,11 @@ import {
 import {
   estimatedFee,
   formatNumber,
+  formatPercent,
   formatQar,
   isFromPrice,
   quoteDelivery,
+  quoteDiscount,
   type CartTotals,
   type Fulfilment,
   type ResolvedLine,
@@ -28,7 +30,7 @@ import { buildCartWhatsAppUrl } from "@/lib/whatsapp";
 import { gaItem, trackCartEvent } from "@/lib/analytics";
 import { SITE } from "@/lib/constants";
 import { useCartUi } from "./CartProvider";
-import { DeliveryProgress } from "./DeliveryProgress";
+import { CartProgress } from "./DiscountProgress";
 
 type Errors = { area?: true; areaOther?: true };
 
@@ -84,6 +86,9 @@ export function CheckoutPanel({
   );
 
   const quote = quoteDelivery(totals, details.fulfilment);
+  const discount = quoteDiscount(totals);
+  // What the customer pays for the goods — the conversion value too.
+  const orderValue = totals.pricedSubtotal - (discount?.amountQar ?? 0);
   const errors = validate(details);
   const valid = !errors.area && !errors.areaOther;
   const showAreaError = Boolean(errors.area && (touched.area || attempted));
@@ -239,6 +244,16 @@ export function CheckoutPanel({
               </span>
             </div>
           ) : null}
+          {discount ? (
+            <div className="flex items-baseline justify-between gap-3">
+              <span className="text-(--color-text-muted)">
+                {t("discount", { percent: formatPercent(discount.percent, locale) })}
+              </span>
+              <span className="font-semibold tabular-nums text-(--color-brand-deep)">
+                −{formatQar(discount.amountQar, locale)}
+              </span>
+            </div>
+          ) : null}
           <div className="flex items-baseline justify-between gap-3">
             <span className="text-(--color-text-muted)">
               {details.fulfilment === "pickup" ? t("pickupLabel") : t("delivery")}
@@ -261,7 +276,7 @@ export function CheckoutPanel({
                   : t("total")}
               </span>
               <span className="text-title-sm font-bold tabular-nums text-(--color-text)">
-                {formatQar(totals.pricedSubtotal + estimatedFee(quote), locale)}
+                {formatQar(orderValue + estimatedFee(quote), locale)}
               </span>
             </div>
             {totals.unpricedLines > 0 ? (
@@ -270,9 +285,7 @@ export function CheckoutPanel({
           </div>
         ) : null}
 
-        {details.fulfilment === "delivery" ? (
-          <DeliveryProgress totals={totals} locale={locale} />
-        ) : null}
+        <CartProgress totals={totals} locale={locale} fulfilment={details.fulfilment} />
 
         <fieldset className="flex flex-col gap-2.5">
           <legend className="mb-2.5 text-footnote font-semibold text-(--color-text)">
@@ -408,7 +421,7 @@ export function CheckoutPanel({
               target="_blank"
               rel="noopener noreferrer"
               onClick={onSend}
-              data-conversion-value={totals.pricedSubtotal > 0 ? totals.pricedSubtotal : undefined}
+              data-conversion-value={orderValue > 0 ? orderValue : undefined}
               data-conversion-currency={totals.pricedSubtotal > 0 ? "QAR" : undefined}
               data-item-count={totals.units}
               data-order-ref={orderRef}
