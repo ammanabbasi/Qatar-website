@@ -1,4 +1,10 @@
 import { PRODUCTS, type BrandKey, type CategoryKey, type Product } from "./products";
+import { DELIVERY, DISCOUNT_ENTRY, DISCOUNT_TOP, formatNumber } from "@/lib/pricing";
+
+// Delivery and discount figures in the copy below come from pricing.ts, the
+// rules the cart applies, so the two can never disagree. Western digits in
+// both languages, matching the surrounding text.
+const n = (value: number) => formatNumber(value, "en");
 
 export type LocalizedText = {
   en: string;
@@ -1170,8 +1176,8 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
           ar: "هل يمكنني طلب مجموعة كاملة من براميل Briller سعة 20 لتر مع التوصيل في الدوحة؟",
         },
         a: {
-          en: "Yes! All seven Briller 20L drums are stocked at our Mesaimeer warehouse. Orders over QAR 250 qualify for free delivery across Doha, Lusail, Al Rayyan, and Al Wakrah.",
-          ar: "نعم! جميع براميل Briller السبعة سعة 20 لتر متوفرة في مستودعنا بمسيمير، والطلبات التي تزيد عن 250 ر.ق تحصل على توصيل مجاني في الدوحة ولوسيل والريان والوكرة.",
+          en: `Yes! All seven Briller 20L drums are stocked at our Mesaimeer warehouse. Retail orders of QAR ${n(DELIVERY.freeThresholdQar)} or more get free delivery across Doha, Lusail, Al Rayyan and Al Wakrah (QAR ${n(DELIVERY.feeQar)} below that), and the website cart takes ${DISCOUNT_ENTRY.percent}% off orders of QAR ${n(DISCOUNT_ENTRY.minSubtotalQar)} or more and ${DISCOUNT_TOP.percent}% off from QAR ${n(DISCOUNT_TOP.minSubtotalQar)} — so a full set of drums gets ${DISCOUNT_TOP.percent}% off.`,
+          ar: `نعم! جميع براميل Briller السبعة سعة 20 لتر متوفرة في مستودعنا بمسيمير. تحصل طلبات التجزئة بقيمة ${n(DELIVERY.freeThresholdQar)} ر.ق فأكثر على توصيل مجاني في الدوحة ولوسيل والريان والوكرة (ورسوم ${n(DELIVERY.feeQar)} ر.ق لما دون ذلك)، وتخصم سلة الموقع ${DISCOUNT_ENTRY.percent}% على الطلبات بقيمة ${n(DISCOUNT_ENTRY.minSubtotalQar)} ر.ق فأكثر و${DISCOUNT_TOP.percent}% من ${n(DISCOUNT_TOP.minSubtotalQar)} ر.ق — أي أن المجموعة الكاملة من البراميل تحصل على خصم ${DISCOUNT_TOP.percent}%.`,
         },
       },
       {

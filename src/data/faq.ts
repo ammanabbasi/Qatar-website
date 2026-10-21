@@ -24,7 +24,13 @@ import {
 } from "./ppfInstall";
 import { yearsPhrase } from "./ppfEvidence";
 import { SITE } from "@/lib/constants";
-import { formatQar as qar } from "@/lib/pricing";
+import {
+  DELIVERY,
+  DISCOUNT_ENTRY,
+  DISCOUNT_TOP,
+  formatPercent as pct,
+  formatQar as qar,
+} from "@/lib/pricing";
 
 // Prices and warranty years in the answers below are read from ppfInstall.ts,
 // so the FAQ text (and its FAQPage JSON-LD) can never quote a stale price.
@@ -224,6 +230,17 @@ export const FAQ: FaqEntry[] = [
     a: {
       en: "The WhatsApp Order Tray lets you browse products, set quantities, and compile a single multi-item order or commercial quote request. When ready, tap 'Send Order via WhatsApp' to launch a pre-formatted message with item details, quantities, and direct links.",
       ar: "تتيح لك سلة الطلب تصفح المنتجات وتحديد الكميات وجمع طلبك أو طلب التسعير التجاري في رسالة موحدة واحدة، ثم إرسالها مباشرة لفريق المبيعات عبر واتساب بضغطة زر واحدة تشمل تفاصيل المنتجات وروابطها.",
+    },
+  },
+  {
+    // Figures come from pricing.ts — the same rules the cart applies.
+    q: {
+      en: "Do you offer discounts or free delivery on retail orders?",
+      ar: "هل توجد خصومات أو توصيل مجاني على طلبات التجزئة؟",
+    },
+    a: {
+      en: `Yes. Orders placed through the website cart get ${pct(DISCOUNT_ENTRY.percent, "en")} off from ${qar(DISCOUNT_ENTRY.minSubtotalQar, "en")} and ${pct(DISCOUNT_TOP.percent, "en")} off from ${qar(DISCOUNT_TOP.minSubtotalQar, "en")}, applied automatically to the products. Delivery is free from ${qar(DELIVERY.freeThresholdQar, "en")} (otherwise ${qar(DELIVERY.feeQar, "en")}), and pickup from our Mesaimeer showroom is always free.`,
+      ar: `نعم، تحصل الطلبات عبر سلة الموقع على خصم ${pct(DISCOUNT_ENTRY.percent, "ar")} ابتداءً من ${qar(DISCOUNT_ENTRY.minSubtotalQar, "ar")} وخصم ${pct(DISCOUNT_TOP.percent, "ar")} ابتداءً من ${qar(DISCOUNT_TOP.minSubtotalQar, "ar")}، ويُطبَّق تلقائياً على المنتجات. والتوصيل مجاني ابتداءً من ${qar(DELIVERY.freeThresholdQar, "ar")} (وإلا فرسومه ${qar(DELIVERY.feeQar, "ar")})، والاستلام من معرضنا في مسيمير مجاني دائماً.`,
     },
   },
 ];

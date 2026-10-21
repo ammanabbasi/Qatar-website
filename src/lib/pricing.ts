@@ -30,6 +30,10 @@ export const DISCOUNT_TIERS = [
   { minSubtotalQar: 500, percent: 10 },
 ] as const;
 
+/** Lowest and highest tiers — for copy that states the offer. */
+export const DISCOUNT_ENTRY = DISCOUNT_TIERS[DISCOUNT_TIERS.length - 1];
+export const DISCOUNT_TOP = DISCOUNT_TIERS[0];
+
 export type PriceLocale = "en" | "ar";
 
 /**

@@ -431,7 +431,9 @@
     "section7Title": "Governing law",
     "section7Body": "These terms are governed by the laws of the State of Qatar. Any dispute arising from your use of the website shall be subject to the exclusive jurisdiction of the courts of Qatar.",
     "section8Title": "Contact",
-    "section8Body": "Questions about these terms: WhatsApp +974 30838355 · Email sales@abktradingservice.com."
+    "section8Body": "Questions about these terms: WhatsApp +974 30838355 · Email sales@abktradingservice.com.",
+    "section9Title": "Retail orders, delivery & discounts",
+    "section9Body": "Orders placed through the website cart are sent to us on WhatsApp; we confirm availability, the total and the delivery time before anything is charged, and you pay on delivery or pickup. Delivery is free on orders of {freeAmount} or more, otherwise {fee}; pickup from our Mesaimeer showroom is always free. Retail orders of {lowAmount} or more get {low} off the products, and orders of {highAmount} or more get {high} off. The discount is worked out on the product subtotal before delivery, applies to retail orders only (not wholesale quotes), and is confirmed with your total on WhatsApp. Items priced on WhatsApp count toward the discount once they are priced."
   },
   "Shelf": {
     "prev": "Scroll back",
@@ -510,6 +512,7 @@
     "discountNextTier": "{current} off unlocked — add {amount} more for {percent} off",
     "discountUnlocked": "You’ve unlocked {percent} off your order",
     "discountPending": "Items priced on WhatsApp may bring you to a bigger discount — we’ll confirm.",
+    "discountAutoApplied": "Applied automatically in your cart.",
     "storageBlocked": "Your browser isn’t saving this cart. Refreshing or closing this tab will empty it, so send your order before you leave.",
     "orderRef": "Order ref",
     "summaryTitle": "Order summary",

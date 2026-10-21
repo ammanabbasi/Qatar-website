@@ -4,7 +4,8 @@ import { useTranslations } from "next-intl";
 import { CheckIcon, SparkleIcon } from "@/components/ui/Icons";
 import {
   DELIVERY,
-  DISCOUNT_TIERS,
+  DISCOUNT_ENTRY,
+  DISCOUNT_TOP,
   formatPercent,
   formatQar,
   nextDiscountTier,
@@ -14,6 +15,16 @@ import {
   type PriceLocale,
 } from "@/lib/pricing";
 import { DeliveryProgress } from "./DeliveryProgress";
+
+/** ICU values for `Cart.discountRule` ("10% off orders of QAR 500 or more…"). */
+export function discountRuleValues(locale: PriceLocale) {
+  return {
+    low: formatPercent(DISCOUNT_ENTRY.percent, locale),
+    lowAmount: formatQar(DISCOUNT_ENTRY.minSubtotalQar, locale),
+    high: formatPercent(DISCOUNT_TOP.percent, locale),
+    highAmount: formatQar(DISCOUNT_TOP.minSubtotalQar, locale),
+  };
+}
 
 /**
  * Order-discount nudge: progress toward the next tier, or the tier unlocked.
@@ -32,17 +43,11 @@ export function DiscountProgress({
   const pct = (n: number) => formatPercent(n, locale);
 
   if (totals.pricedLines === 0) {
-    const [high, low] = DISCOUNT_TIERS;
     return (
       <div className="flex items-start gap-2.5 rounded-xl bg-(--color-fill) px-3.5 py-3 text-caption text-(--color-text-muted)">
         <SparkleIcon className="mt-px h-4 w-4 shrink-0 text-(--color-brand-deep)" />
         <p className="font-semibold text-(--color-text)">
-          {t("discountRule", {
-            low: pct(low.percent),
-            lowAmount: formatQar(low.minSubtotalQar, locale),
-            high: pct(high.percent),
-            highAmount: formatQar(high.minSubtotalQar, locale),
-          })}
+          {t("discountRule", discountRuleValues(locale))}
         </p>
       </div>
     );

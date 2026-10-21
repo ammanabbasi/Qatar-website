@@ -4,11 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { buildWhatsAppUrl, type Audience, type WALocale } from "@/lib/whatsapp";
 import { WhatsAppIcon } from "@/components/cta/WhatsAppIcon";
-import { BagIcon, CheckIcon } from "@/components/ui/Icons";
+import { BagIcon, CheckIcon, SparkleIcon } from "@/components/ui/Icons";
 import { buttonClasses } from "@/components/ui/Button";
 import { useCartUi } from "@/components/cart/CartProvider";
 import { MAX_QTY } from "@/lib/cart";
 import { QuantityStepper } from "@/components/cart/QuantityStepper";
+import { discountRuleValues } from "@/components/cart/DiscountProgress";
 import { StickyAddToCart } from "./StickyAddToCart";
 import type { CategoryKey, Product, UseKey } from "@/data/products";
 
@@ -224,6 +225,19 @@ export function ProductPurchasePanel({
         <span className="h-2.5 w-2.5 shrink-0 animate-pulse rounded-full bg-emerald-500" />
         <span>{t("stockAvailable")}</span>
       </div>
+
+      {/* Retail order discount — the cart applies it, so only priced items show it */}
+      {!isB2b && currentPriceDisplay ? (
+        <div className="flex items-start gap-2.5 rounded-xl bg-(--color-brand)/10 px-3.5 py-2.5 text-footnote">
+          <SparkleIcon className="mt-0.5 h-4 w-4 shrink-0 text-(--color-brand-deep)" />
+          <p>
+            <span className="font-semibold text-(--color-text)">
+              {tc("discountRule", discountRuleValues(locale))}
+            </span>{" "}
+            <span className="text-(--color-text-muted)">{tc("discountAutoApplied")}</span>
+          </p>
+        </div>
+      ) : null}
 
       {/* DIY Application Tip (for retail items) */}
       {currentPriceDisplay && (

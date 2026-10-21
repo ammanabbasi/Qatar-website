@@ -11,6 +11,13 @@ import { LegalSection } from "@/components/legal/LegalSection";
 import { clampDescription, fitTitle, pageMeta } from "@/lib/seo";
 import { breadcrumbJsonLd } from "@/lib/jsonld";
 import { SITE } from "@/lib/constants";
+import {
+  DELIVERY,
+  DISCOUNT_ENTRY,
+  DISCOUNT_TOP,
+  formatPercent,
+  formatQar,
+} from "@/lib/pricing";
 
 export async function generateMetadata({
   params,
@@ -49,7 +56,17 @@ export default async function TermsPage({
   const t = await getTranslations({ locale, namespace: "Terms" });
   const eyebrows = await getTranslations({ locale, namespace: "Eyebrows" });
 
-  const sections = [1, 2, 3, 4, 5, 6, 7, 8] as const;
+  // Section 9 (retail orders) came later; it reads best after product
+  // information, and renumbering would move the PPF terms' anchor.
+  const sections = [1, 2, 9, 3, 4, 5, 6, 7, 8] as const;
+  const offer = {
+    freeAmount: formatQar(DELIVERY.freeThresholdQar, l),
+    fee: formatQar(DELIVERY.feeQar, l),
+    low: formatPercent(DISCOUNT_ENTRY.percent, l),
+    lowAmount: formatQar(DISCOUNT_ENTRY.minSubtotalQar, l),
+    high: formatPercent(DISCOUNT_TOP.percent, l),
+    highAmount: formatQar(DISCOUNT_TOP.minSubtotalQar, l),
+  };
 
   const crumbLd = breadcrumbJsonLd([
     { name: l === "ar" ? "الرئيسية" : "Home", url: `${SITE.url}/${l}` },
@@ -70,9 +87,9 @@ export default async function TermsPage({
               <LegalSection
                 key={i}
                 // Section 4 is the PPF installation terms; the PPF page links here.
-                id={i === 4 ? "ppf-bookings" : undefined}
+                id={i === 4 ? "ppf-bookings" : i === 9 ? "retail-orders" : undefined}
                 title={t(`section${i}Title`)}
-                body={t(`section${i}Body`)}
+                body={t(`section${i}Body`, offer)}
               />
             ))}
           </article>

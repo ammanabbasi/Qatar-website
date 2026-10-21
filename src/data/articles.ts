@@ -9,7 +9,13 @@ import {
   fromPrice,
   quotePpf,
 } from "./ppfInstall";
-import { formatQar } from "@/lib/pricing";
+import {
+  DELIVERY,
+  DISCOUNT_ENTRY,
+  DISCOUNT_TOP,
+  formatNumber,
+  formatQar,
+} from "@/lib/pricing";
 
 /**
  * Blog article data — SEO-targeted content hub.
@@ -939,7 +945,7 @@ export const ARTICLES: Article[] = [
       ar: "كل ما تحتاج معرفته عن منتجات ومواد العناية وتلميع السيارات في قطر — من شامبوهات الغسيل وبراميل 20 لتر للمغاسل إلى أفلام VTEK PPF وسيراميك Autotriz في الدوحة.",
     },
     date: "2026-05-05",
-    updated: "2026-10-17",
+    updated: "2026-10-21",
     readingTime: 7,
     category: "buying-guide",
     keywords: {
@@ -1031,8 +1037,8 @@ export const ARTICLES: Article[] = [
           ar: "هل يتوفر توصيل لمنتجات العناية بالسيارات في الدوحة وقطر؟",
         },
         a: {
-          en: "Yes. Retail orders over QAR 250 qualify for free delivery across Doha, Al Rayyan, Lusail, Al Wakrah, and Al Khor (QAR 25 flat delivery fee under QAR 250), or you can collect for free from our Mesaimeer showroom Saturday to Thursday.",
-          ar: "نعم، الطلبات التي تزيد عن 250 ر.ق تحصل على توصيل مجاني في الدوحة والريان ولوسيل والوكرة والخور (ورسوم توصيل 25 ر.ق للطلبات الأقل)، كما يتوفر الاستلام المجاني من معرضنا في مسيمير من السبت إلى الخميس.",
+          en: `Yes. Retail orders of ${formatQar(DELIVERY.freeThresholdQar, "en")} or more get free delivery across Doha, Al Rayyan, Lusail, Al Wakrah and Al Khor (a flat ${formatQar(DELIVERY.feeQar, "en")} below that). Orders of ${formatQar(DISCOUNT_ENTRY.minSubtotalQar, "en")} or more get ${DISCOUNT_ENTRY.percent}% off and orders of ${formatQar(DISCOUNT_TOP.minSubtotalQar, "en")} or more get ${DISCOUNT_TOP.percent}% off, applied automatically in the website cart. You can also collect for free from our Mesaimeer showroom Saturday to Thursday.`,
+          ar: `نعم، تحصل طلبات التجزئة بقيمة ${formatNumber(DELIVERY.freeThresholdQar, "en")} ر.ق فأكثر على توصيل مجاني في الدوحة والريان ولوسيل والوكرة والخور (ورسوم توصيل ثابتة ${formatNumber(DELIVERY.feeQar, "en")} ر.ق لما دون ذلك). وتحصل الطلبات بقيمة ${formatNumber(DISCOUNT_ENTRY.minSubtotalQar, "en")} ر.ق فأكثر على خصم ${DISCOUNT_ENTRY.percent}% والطلبات بقيمة ${formatNumber(DISCOUNT_TOP.minSubtotalQar, "en")} ر.ق فأكثر على خصم ${DISCOUNT_TOP.percent}%، ويُطبَّق الخصم تلقائياً في سلة الموقع. كما يتوفر الاستلام المجاني من معرضنا في مسيمير من السبت إلى الخميس.`,
         },
       },
       {
