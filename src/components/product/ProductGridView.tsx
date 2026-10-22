@@ -104,8 +104,11 @@ export function ProductGridView({
     filters.pack !== "all" ||
     Boolean(retailTools?.pricedOnly);
   const filtered = chipsActive || query !== "";
-  // Filters that live behind the "Filters" pill on phones.
+  // Filters that live behind the "Filters" pill on phones. Use has its own
+  // shelf under the bar too, but that scrolls away: counting it here keeps a
+  // chosen use visible in the stuck bar's badge.
   const refineCount =
+    Number(filters.use !== "all") +
     Number(filters.brand !== "all") +
     Number(filters.pack !== "all") +
     Number(Boolean(retailTools?.pricedOnly));
@@ -150,8 +153,21 @@ export function ProductGridView({
               onReset={onResetRefine}
               onClosed={onSheetClose}
             >
-              {/* Price first: it is one 56px row, so on a short phone it can
-                  never be the section left under the footer. */}
+              {/* Use leads (it narrows the chosen category), then price: one
+                  56px row, so on a short phone it is never the section left
+                  under the footer. */}
+              {uses.length > 0 ? (
+                <SheetSection id="sheet-use" title={t("Products.filterUse")}>
+                  <FacetChips
+                    options={uses}
+                    selected={filters.use}
+                    label={(u) => t(`Uses.${u}`)}
+                    onPick={pickUse}
+                    locale={locale}
+                    showCounts
+                  />
+                </SheetSection>
+              ) : null}
               {retailTools ? (
                 <SheetSection id="sheet-price" title={t("Products.filterPrice")} stack>
                   <SwitchRow
@@ -262,6 +278,7 @@ export function ProductGridView({
           <AppliedFilters
             filters={filters}
             pricedOnly={Boolean(retailTools?.pricedOnly)}
+            onUse={onUse}
             onBrand={onBrand}
             onPack={onPack}
             onPricedOnly={retailTools?.onPricedOnly}
@@ -559,13 +576,15 @@ function SwitchRow({
 }
 
 /**
- * Phone-only row of the brand / pack / priced filters in force, each removable
- * in one tap, plus "Clear filters" (everything). Focus moves to the Filters
- * pill after a removal, because the chip that had it is gone.
+ * Phone-only row of the use / brand / pack / priced filters in force, each
+ * removable in one tap, plus "Clear filters" (everything). The category is not
+ * repeated here: its chip is already selected in the sticky bar. Focus moves
+ * to the Filters pill after a removal, because the chip that had it is gone.
  */
 function AppliedFilters({
   filters,
   pricedOnly,
+  onUse,
   onBrand,
   onPack,
   onPricedOnly,
@@ -573,6 +592,7 @@ function AppliedFilters({
 }: {
   filters: GridFilters;
   pricedOnly: boolean;
+  onUse?: (u: UseKey | "all") => void;
   onBrand?: (b: BrandKey | "all") => void;
   onPack?: (p: PackKey | "all") => void;
   onPricedOnly?: (on: boolean) => void;
@@ -580,6 +600,13 @@ function AppliedFilters({
 }) {
   const t = useTranslations();
   const items: { key: string; label: string; remove?: () => void }[] = [];
+  if (filters.use !== "all") {
+    items.push({
+      key: "use",
+      label: t(`Uses.${filters.use}`),
+      remove: onUse ? () => onUse("all") : undefined,
+    });
+  }
   if (filters.brand !== "all") {
     items.push({
       key: "brand",

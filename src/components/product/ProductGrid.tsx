@@ -332,7 +332,7 @@ export function ProductGrid({ audience, locale }: Props) {
       onCategory={(c) => updateUrl({ category: c === "all" ? null : c, use: null })}
       onUse={(u) => updateUrl({ use: u === "all" ? null : u })}
       onPack={(k) => updateUrl({ pack: k === "all" ? null : k })}
-      onResetRefine={() => updateUrl({ brand: null, pack: null, priced: null })}
+      onResetRefine={() => updateUrl({ use: null, brand: null, pack: null, priced: null })}
       onSheetClose={revealResults}
       onClear={() => {
         setQuery("");
