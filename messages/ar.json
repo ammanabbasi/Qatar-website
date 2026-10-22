@@ -827,6 +827,12 @@
     "formNotesPlaceholder": "أخبرنا بالمنتجات المحددة أو عدد الرولات المطلوبة...",
     "formSubmit": "إرسال طلب الاعتماد عبر واتساب"
   },
+  "Promo": {
+    "label": "العرض الحالي",
+    "short": "خصم {low} من {lowAmount} · وخصم {high} من {highAmount}",
+    "long": "خصم {low} على الطلبات بقيمة {lowAmount} فأكثر، وخصم {high} من {highAmount}، يُطبَّق تلقائياً · توصيل مجاني من {freeAmount}",
+    "shop": "تسوّق الآن"
+  },
   "PpfPromo": {
     "newTag": "جديد",
     "menuEyebrow": "تركيب احترافي",

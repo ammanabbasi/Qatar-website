@@ -827,6 +827,12 @@
     "formNotesPlaceholder": "Tell us about specific products, roll requirements, or timeline...",
     "formSubmit": "Submit Dealer Application via WhatsApp"
   },
+  "Promo": {
+    "label": "Current offer",
+    "short": "{low} off orders of {lowAmount}+ · {high} off {highAmount}+",
+    "long": "{low} off orders of {lowAmount} or more, {high} off from {highAmount}, applied automatically · Free delivery from {freeAmount}",
+    "shop": "Shop now"
+  },
   "PpfPromo": {
     "newTag": "New",
     "menuEyebrow": "Professional installation",

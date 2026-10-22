@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { PromoBar } from "./PromoBar";
 import { FloatingWhatsApp } from "@/components/cta/FloatingWhatsApp";
 import { CartProvider } from "@/components/cart/CartProvider";
 import { CartDrawer } from "@/components/cart/CartDrawer";
@@ -32,6 +33,7 @@ export function Shell({
     // The slim catalogue projection is built here, on the server, so the cart
     // never pulls the full products.ts into the browser bundle.
     <CartProvider audience={audience} locale={locale} catalogue={getCartCatalogue()}>
+      {audience === "b2c" ? <PromoBar locale={locale} /> : null}
       <Header audience={audience} tone={headerTone} />
       <main id="main" className="flex-1">
         {children}
