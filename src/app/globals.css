@@ -93,6 +93,12 @@
   --ease-sheet: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
+/* Sticky site header height: Header.tsx inner bar h-12 (48px) + 1px border-b.
+   The catalogue's sticky filter bar sits directly under it. */
+:root {
+  --header-h: 49px;
+}
+
 html {
   background: var(--color-bg);
   color: var(--color-text);
@@ -310,6 +316,41 @@ html[dir="rtl"] body * {
     }
   }
 
+  /* Catalogue filter sheet: native <dialog>, bottom sheet. Phones only
+     (FilterSheet closes itself when the viewport crosses 40rem).
+     display is set ONLY on [open] so a closed dialog stays display:none. */
+  .filter-sheet {
+    position: fixed;
+    inset: auto 0 0 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    max-height: min(88dvh, 44rem);
+    overflow: hidden;
+    border-radius: 24px 24px 0 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.2);
+  }
+  .filter-sheet[open] {
+    display: flex;
+    flex-direction: column;
+    animation: ppf-sheet-up 420ms var(--ease-sheet) backwards;
+  }
+  .filter-sheet[open][data-closing] {
+    animation: ppf-sheet-down 240ms var(--ease-soft) forwards;
+  }
+  .filter-sheet::backdrop {
+    background: rgb(10 10 13 / 0.45);
+    animation: ppf-fade-in 300ms var(--ease-soft) both;
+  }
+  .filter-sheet[data-closing]::backdrop {
+    animation: ppf-fade-out 240ms var(--ease-soft) forwards;
+  }
+
   /* Step changes slide in from the side you are heading to. */
   .ppf-slide-fwd {
     animation: ppf-slide-fwd 380ms var(--ease-sheet) both;
@@ -518,6 +559,10 @@ html[dir="rtl"] body * {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+  }
+  /* `*` does not reach ::backdrop, so the filter sheet's scrim is listed here. */
+  .filter-sheet::backdrop {
+    animation-duration: 0.01ms !important;
   }
 }
 

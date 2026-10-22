@@ -68,7 +68,20 @@ export function AddToCartButton({
       } ${className}`}
     >
       {added ? <CheckIcon className="h-4 w-4" /> : <PlusIcon className="h-4 w-4" />}
-      <span>{added ? t("addedShort") : t("addToCart")}</span>
+      {variant === "card" ? (
+        <>
+          {/* Catalogue cards are ~150px wide on phones and share the row with a
+              44px WhatsApp button: "+ Add" fits at 360px in both languages, and
+              the added state shows only the check (the name stays "Added", so
+              the longer Arabic "تمت الإضافة" can never overflow). */}
+          <span className="max-sm:hidden">{added ? t("addedShort") : t("addToCart")}</span>
+          <span className={added ? "sr-only sm:hidden" : "sm:hidden"}>
+            {added ? t("addedShort") : t("addShort")}
+          </span>
+        </>
+      ) : (
+        <span>{added ? t("addedShort") : t("addToCart")}</span>
+      )}
       {/* Visible label first, product second — keeps "label in name" intact
           for voice control while telling screen readers which card this is. */}
       <span className="sr-only"> — {product.name[locale]}</span>

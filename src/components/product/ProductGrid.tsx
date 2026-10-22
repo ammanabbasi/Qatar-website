@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import {
@@ -173,6 +173,27 @@ function updateUrl(patch: Record<string, string | null>) {
   }
 }
 
+/**
+ * After a filter change made from the stuck bar, bring the results head back
+ * under it. A no-op on sm+ (the bar is static there) and when the results row
+ * is already below the bar's stuck position.
+ *
+ * The target is the bar's *stuck* bottom edge (its `top` offset + its height),
+ * not its live rect: when the list has just become shorter than the scroll
+ * position, the bar is parked at the end of the short grid, far off screen, and
+ * its live rect would send the results row somewhere unreachable.
+ */
+function revealResults() {
+  const bar = document.getElementById("catalogue-bar");
+  const anchor = document.getElementById("catalogue-results");
+  if (!bar || !anchor) return;
+  const style = getComputedStyle(bar);
+  if (style.position !== "sticky") return;
+  const stuckBottom = (parseFloat(style.top) || 0) + bar.offsetHeight;
+  const top = anchor.getBoundingClientRect().top;
+  if (top < stuckBottom) window.scrollBy({ top: top - stuckBottom, behavior: "auto" });
+}
+
 /** Price sort keeps price-on-request products last, in their catalogue order. */
 function byPrice(products: Product[], direction: 1 | -1): Product[] {
   const priced = products.filter((p) => p.priceQar !== undefined);
@@ -221,6 +242,23 @@ export function ProductGrid({ audience, locale }: Props) {
       updateUrl({ category: canonicalCategory, use: canonicalUse });
     }
   }, [rawCategory, rawUse, category, use]);
+
+  // A filter changed while the shopper is deep in the grid: the list just got
+  // shorter or longer under the stuck bar, so put the results head back in view.
+  // Not on first render, and not while the Filters sheet is open (it calls
+  // revealResults itself once it closes).
+  const refineKey = [category, use, brand, pack, pricedOnly, sort].join("|");
+  const seenRefineKey = useRef<string | null>(null);
+  useEffect(() => {
+    if (seenRefineKey.current === null) {
+      seenRefineKey.current = refineKey;
+      return;
+    }
+    if (seenRefineKey.current === refineKey) return;
+    seenRefineKey.current = refineKey;
+    if (document.querySelector("dialog.filter-sheet[open]")) return;
+    revealResults();
+  }, [refineKey]);
 
   const categories = useMemo(() => getCategoriesFor(audience), [audience]);
   const baseProducts = useMemo(() => getProductsFor(audience), [audience]);
@@ -294,6 +332,8 @@ export function ProductGrid({ audience, locale }: Props) {
       onCategory={(c) => updateUrl({ category: c === "all" ? null : c, use: null })}
       onUse={(u) => updateUrl({ use: u === "all" ? null : u })}
       onPack={(k) => updateUrl({ pack: k === "all" ? null : k })}
+      onResetRefine={() => updateUrl({ brand: null, pack: null, priced: null })}
+      onSheetClose={revealResults}
       onClear={() => {
         setQuery("");
         updateUrl({

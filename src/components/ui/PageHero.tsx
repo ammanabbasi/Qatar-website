@@ -10,6 +10,13 @@ type Props = {
   breadcrumb?: ReactNode;
   /** Extra rows under the subtitle (meta lines, dates). */
   children?: ReactNode;
+  /**
+   * Phone-only compaction for catalogue pages that want the products above
+   * the fold: tighter padding, a smaller title, and the subtitle visually
+   * hidden (it stays in the DOM for SEO and screen readers). sm+ is
+   * identical to the default hero.
+   */
+  compact?: boolean;
 };
 
 /**
@@ -19,7 +26,14 @@ type Props = {
  * tone — the glass bar dissolves into this band exactly as it does into
  * the home hero.
  */
-export function PageHero({ eyebrow, title, subtitle, breadcrumb, children }: Props) {
+export function PageHero({
+  eyebrow,
+  title,
+  subtitle,
+  breadcrumb,
+  children,
+  compact = false,
+}: Props) {
   return (
     <section className="relative isolate overflow-hidden bg-(--color-hero-dark) text-white">
       {/* Soft top-centre gold halo — echoes the showroom lighting of the
@@ -28,7 +42,13 @@ export function PageHero({ eyebrow, title, subtitle, breadcrumb, children }: Pro
         aria-hidden
         className="absolute inset-0 -z-10 bg-[radial-gradient(110%_130%_at_50%_-30%,rgba(245,166,35,0.14),transparent_60%)]"
       />
-      <Container className="pt-8 pb-10 sm:pt-10 sm:pb-12 lg:pt-14 lg:pb-16">
+      <Container
+        className={
+          compact
+            ? "pt-4 pb-4 sm:pt-10 sm:pb-12 lg:pt-14 lg:pb-16"
+            : "pt-8 pb-10 sm:pt-10 sm:pb-12 lg:pt-14 lg:pb-16"
+        }
+      >
         {breadcrumb}
         <p
           className={`text-caption font-bold uppercase tracking-[0.16em] text-(--color-brand) ${
@@ -37,11 +57,26 @@ export function PageHero({ eyebrow, title, subtitle, breadcrumb, children }: Pro
         >
           {eyebrow}
         </p>
-        <h1 className="mt-3 max-w-3xl text-headline font-bold tracking-tight text-balance sm:text-display">
+        <h1
+          className={
+            compact
+              ? "mt-1 max-w-3xl text-title font-bold tracking-tight text-balance sm:mt-3 sm:text-display"
+              : "mt-3 max-w-3xl text-headline font-bold tracking-tight text-balance sm:text-display"
+          }
+        >
           {title}
         </h1>
+        {/* Whole-string class alternatives, never a class glued to a template
+            expression: Tailwind's scanner would read "sm:text-body-lg$" and drop
+            the utility on every PageHero page. */}
         {subtitle ? (
-          <p className="mt-4 max-w-[56ch] text-body text-white/70 sm:text-body-lg">
+          <p
+            className={
+              compact
+                ? "mt-4 max-w-[56ch] text-body text-white/70 max-sm:sr-only sm:text-body-lg"
+                : "mt-4 max-w-[56ch] text-body text-white/70 sm:text-body-lg"
+            }
+          >
             {subtitle}
           </p>
         ) : null}

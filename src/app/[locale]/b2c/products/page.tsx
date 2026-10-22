@@ -78,11 +78,12 @@ export default async function B2cProductsPage({
       <JsonLd id="ld-itemlist-b2c-products" data={itemListLd} />
       <JsonLd id="ld-b2c-products-crumb" data={crumbLd} />
       <PageHero
+        compact
         eyebrow={eyebrows("products")}
         title={t("heading")}
         subtitle={t("subtitleB2c")}
       />
-      <section className="pb-8 pt-8 sm:pt-10">
+      <section className="pb-8 pt-3 sm:pt-10">
         <Container>
           <div>
             {/* The grid reads its filters from the URL (useSearchParams), which

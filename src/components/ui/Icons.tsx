@@ -532,6 +532,43 @@ export function SearchIcon({ className = "" }: IconProps) {
   );
 }
 
+/** Two sliders: the "Filters" glyph. Symmetric, so it needs no RTL mirroring. */
+export function SlidersIcon({ className = "" }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+    >
+      <path d="M4 7h9M17 7h3M4 17h3M11 17h9" />
+      <circle cx="15" cy="7" r="2" />
+      <circle cx="9" cy="17" r="2" />
+    </svg>
+  );
+}
+
+/** Up and down arrows: the "Sort" glyph. Symmetric, so it needs no RTL mirroring. */
+export function SortIcon({ className = "" }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M8 5v14M5 8l3-3 3 3M16 19V5M13 16l3 3 3-3" />
+    </svg>
+  );
+}
+
 export function AlertIcon({ className = "" }: IconProps) {
   return (
     <svg
