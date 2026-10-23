@@ -33,6 +33,26 @@ the Google Ads search-terms report and the code. No private cost data belongs he
    fitted at the Mesaimeer address. It is now `AutoPartsStore` only, matching the Business Profile category.
 6. **Duplicate meta descriptions.** Autotriz 3D Matrix Ultra and Hybrid shared one description in both languages.
 
+### Deployed and verified (23 Oct 2026, commit 2e22404)
+
+- Live crawl after deploy: 192/192 URLs 200, self-canonical, hreflang identical to the sitemap, one H1, valid JSON-LD,
+  0 duplicate descriptions, no internal link to a URL outside the sitemap. Every guide now has 9–53 internal links per
+  locale. validator.schema.org: 0 errors / 0 warnings on the homepage and a product page.
+- IndexNow: all 192 sitemap URLs submitted, HTTP 200.
+- Search Console URL Inspection: the ten guides spot-checked (EN and AR), `/en/b2c/categories/polish` and the AR
+  shampoo and fragrance hubs are already indexed (the Pages report lags). `/en/b2c/categories/film` was crawled on
+  23 Oct but not indexed; indexing was requested and it is in the priority crawl queue.
+- Lab Web Vitals on production (iPhone 13 profile, no throttling, median of 3): LCP 1.4–1.7 s, CLS 0.000 on `/en`,
+  `/en/b2c/ppf-installation`, `/en/b2c/products`, a product page and an AR guide. PageSpeed Insights' key-less API quota
+  was exhausted all day, so there is no Lighthouse score in this record.
+- Static pages are served from Vercel's `bom1` edge cache (`X-Vercel-Cache: HIT`). `/about`, `/contact`, `/privacy`
+  and `/terms` are rendered per request in `iad1` (US East, `Cache-Control: private, no-store`) because they read the
+  `abk_audience` cookie to pick the header variant: ~1.0–1.3 s TTFB from Qatar. Rendering them statically with the B2C
+  header (and letting the client switch the header) would fix it; that is a product call because B2B visitors see a
+  different header and cart today.
+- Bing AI Performance: 20 Copilot citations in the last 30 days and no grounding-query rows yet; the 3- and 6-month
+  views returned Bing's "momentary issue" error.
+
 ## 3. Open owner decisions (not changed in code)
 
 - **Retail return policy.** Google asks for `hasMerchantReturnPolicy`; the site publishes none. Decide the policy
