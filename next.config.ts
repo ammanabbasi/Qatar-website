@@ -149,6 +149,22 @@ const nextConfig: NextConfig = {
         destination: "/en/b2c/products",
         permanent: true,
       },
+      // Localeless page URLs (/privacy, /contact, /b2c/products/…) otherwise
+      // reach the next-intl middleware, which answers with a 307. Google keeps
+      // the source URL of a temporary redirect, and Search Console showed
+      // `/privacy` itself collecting impressions. Same rule as the bare domain:
+      // permanent to English unless the visitor asked for Arabic, who still
+      // falls through to the middleware's /ar negotiation. Listed after the
+      // specific legacy rules above so those keep their one-hop targets.
+      {
+        source: "/:path(about|contact|privacy|terms|b2c/.+|b2b/become-a-dealer)",
+        missing: [
+          { type: "header", key: "accept-language", value: ".*\\b[aA][rR]\\b.*" },
+          { type: "cookie", key: "NEXT_LOCALE", value: "ar" },
+        ],
+        destination: "/en/:path",
+        permanent: true,
+      },
     ];
   },
 };

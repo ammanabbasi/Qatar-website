@@ -25,10 +25,15 @@ import { routing } from "@/i18n/routing";
 //             pages, e-warranty check, Google rating); PRO PLUS term aligned to
 //             VTEK's chart (10 years). See marketing/seo/PPF-CLAIMS-EVIDENCE.md.
 const STATIC_PAGES_UPDATED_AT = "2026-10-20";
+// Category and brand hubs change on their own schedule; keep their lastmod
+// separate so a hub edit doesn't claim the legal pages changed too.
+// 2026-10-23: every hub gained a related-guides section.
+const HUB_PAGES_UPDATED_AT = "2026-10-23";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE.url;
   const staticLastMod = new Date(STATIC_PAGES_UPDATED_AT);
+  const hubLastMod = new Date(HUB_PAGES_UPDATED_AT);
   // hreflang cluster for one path: both locales plus x-default → English,
   // mirroring `pageMeta()` so the sitemap and the page <head> never disagree.
   const languages = (path: string) => ({
@@ -79,7 +84,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const catPath = `/b2c/categories/${cat.slug}`;
       entries.push({
         url: `${base}/${locale}${catPath}`,
-        lastModified: staticLastMod,
+        lastModified: hubLastMod,
         changeFrequency: "weekly",
         priority: 0.85,
         alternates: { languages: languages(catPath) },
@@ -90,7 +95,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const brandPath = `/b2c/brands/${brand.slug}`;
       entries.push({
         url: `${base}/${locale}${brandPath}`,
-        lastModified: staticLastMod,
+        lastModified: hubLastMod,
         changeFrequency: "weekly",
         priority: 0.85,
         alternates: { languages: languages(brandPath) },

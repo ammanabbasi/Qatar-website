@@ -11,6 +11,8 @@ import { ProductPurchasePanel } from "./ProductPurchasePanel";
 import { PpfInstallBanner } from "@/components/ppf/PpfInstallBanner";
 import { Link } from "@/i18n/navigation";
 import { getBrandSlugForKey } from "@/data/categoriesAndBrands";
+import { relatedGuides } from "@/data/articles";
+import { RelatedGuides } from "@/components/blog/RelatedGuides";
 import type { Product } from "@/data/products";
 import type { Audience, WALocale } from "@/lib/whatsapp";
 import { SITE } from "@/lib/constants";
@@ -203,6 +205,17 @@ export function ProductDetail({ product, related, audience, locale }: Props) {
           </Shelf>
         </section>
       )}
+
+      <Container>
+        <RelatedGuides
+          guides={relatedGuides({
+            products: [product.slug],
+            categories: [product.category],
+          })}
+          locale={locale}
+          className="border-t border-(--color-border-soft) py-10 sm:py-12"
+        />
+      </Container>
     </>
   );
 }

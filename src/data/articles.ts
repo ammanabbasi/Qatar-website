@@ -16,6 +16,7 @@ import {
   formatNumber,
   formatQar,
 } from "@/lib/pricing";
+import type { CategoryKey } from "./products";
 
 /**
  * Blog article data — SEO-targeted content hub.
@@ -46,6 +47,12 @@ export type Article = {
   date: string; // ISO date
   readingTime: number; // minutes
   category: string;
+  /**
+   * Catalogue categories the guide is genuinely useful for. Drives the
+   * "Guides" strip on category, brand and product pages (see `relatedGuides`),
+   * which is how each guide earns internal links beyond the blog index.
+   */
+  topics: CategoryKey[];
   keywords: { en: string[]; ar: string[] };
   sections: Array<{
     heading: { en: string; ar: string };
@@ -143,6 +150,7 @@ export const ARTICLES: Article[] = [
     updated: "2026-10-20",
     readingTime: 5,
     category: "buying-guide",
+    topics: ["film"],
     keywords: {
       en: ["PPF price Qatar", "PPF cost Doha", "paint protection film price Qatar", "full body PPF price Qatar", "VTEK PPF price", "PPF installation Doha"],
       ar: ["سعر PPF قطر", "تكلفة فيلم حماية الطلاء الدوحة", "سعر حماية الطلاء للسيارات قطر", "سعر تركيب PPF الدوحة"],
@@ -282,6 +290,7 @@ export const ARTICLES: Article[] = [
     updated: "2026-10-17",
     readingTime: 7,
     category: "guide",
+    topics: ["film", "interior"],
     keywords: {
       en: [
         "window tinting Qatar",
@@ -438,6 +447,7 @@ export const ARTICLES: Article[] = [
     updated: "2026-10-17",
     readingTime: 6,
     category: "buying-guide",
+    topics: ["ceramic", "polish"],
     keywords: {
       en: [
         "ceramic coating price Qatar",
@@ -580,6 +590,7 @@ export const ARTICLES: Article[] = [
     updated: "2026-10-17",
     readingTime: 5,
     category: "car-care",
+    topics: ["shampoo", "polish", "ceramic", "interior"],
     keywords: {
       en: [
         "water spots car Qatar",
@@ -711,6 +722,7 @@ export const ARTICLES: Article[] = [
     date: "2026-05-10",
     readingTime: 6,
     category: "car-care",
+    topics: ["film", "ceramic", "dressing", "interior"],
     keywords: {
       en: ["car protection Qatar", "protect car from heat Doha", "car care tips Qatar", "sun damage car Qatar"],
       ar: ["حماية السيارة قطر", "حماية السيارة من الحرارة", "نصائح العناية بالسيارات"],
@@ -840,6 +852,7 @@ export const ARTICLES: Article[] = [
     date: "2026-05-08",
     readingTime: 5,
     category: "comparison",
+    topics: ["film", "ceramic"],
     keywords: {
       en: ["PPF vs ceramic coating", "PPF Doha", "ceramic coating Qatar", "paint protection Qatar"],
       ar: ["PPF مقابل سيراميك", "حماية الطلاء قطر", "سيراميك سيارات قطر"],
@@ -948,6 +961,7 @@ export const ARTICLES: Article[] = [
     updated: "2026-10-21",
     readingTime: 7,
     category: "buying-guide",
+    topics: ["shampoo", "polish", "tyre", "tools", "cleaners", "dressing"],
     keywords: {
       en: [
         "car care products Qatar",
@@ -1017,7 +1031,7 @@ export const ARTICLES: Article[] = [
       },
       primaryHref: "/b2c/products",
       primaryLabel: { en: "Browse 58 Detailing Products", ar: "تصفح 58 منتج عناية وتلميع" },
-      secondaryHref: "/b2b/dealer-application",
+      secondaryHref: "/b2b/become-a-dealer",
       secondaryLabel: { en: "Apply for B2B Wholesale Account", ar: "تقدم بطلب حساب جملة B2B" },
     },
     faqs: [
@@ -1071,6 +1085,7 @@ export const ARTICLES: Article[] = [
     updated: "2026-10-20",
     readingTime: 6,
     category: "buying-guide",
+    topics: ["film"],
     keywords: {
       en: ["best PPF installer Doha", "PPF Qatar", "paint protection film Doha", "VTEK PPF price Qatar", "car PPF installation Qatar", "edge wrapping PPF Doha"],
       ar: ["أفضل تركيب حماية سيارات الدوحة", "مركز حماية سيارات قطر", "سعر تركيب PPF قطر", "أفلام حماية الطلاء الدوحة"],
@@ -1199,6 +1214,7 @@ export const ARTICLES: Article[] = [
     date: "2026-10-20",
     readingTime: 5,
     category: "buying-guide",
+    topics: ["film"],
     keywords: {
       en: ["matte PPF Qatar", "colored PPF Qatar", "satin PPF Doha", "matte paint protection film price Qatar", "VTEK MATTE", "VTEK PRISM", "color PPF Doha"],
       ar: ["PPF مطفي قطر", "PPF ملون قطر", "سعر حماية الطلاء المطفي الدوحة", "فيلم ساتان للسيارات قطر"],
@@ -1389,6 +1405,7 @@ export const ARTICLES: Article[] = [
     date: "2026-10-20",
     readingTime: 6,
     category: "buying-guide",
+    topics: ["film"],
     keywords: {
       en: ["best PPF brands Qatar", "XPEL PPF Qatar", "3M PPF Qatar", "STEK PPF Qatar", "SunTek PPF Qatar", "LLumar PPF Qatar", "VTEK PPF", "PPF warranty comparison"],
       ar: ["أفضل علامات PPF قطر", "XPEL قطر", "3M PPF قطر", "STEK قطر", "مقارنة ضمان فيلم حماية الطلاء"],
@@ -1585,4 +1602,36 @@ export const ARTICLES: Article[] = [
 
 export function getArticleBySlug(slug: string): Article | undefined {
   return ARTICLES.find((a) => a.slug === slug);
+}
+
+/**
+ * Guides for a page, most relevant first. A guide that names one of the
+ * page's products outranks one that only shares a category (2 points per
+ * product, 1 per category); ties go to the most recently updated guide.
+ * Guides with no overlap are left out: an unrelated link earns no click and
+ * tells crawlers nothing.
+ */
+export function relatedGuides(opts: {
+  products?: readonly string[];
+  categories?: readonly CategoryKey[];
+  excludeSlug?: string;
+  limit?: number;
+}): Article[] {
+  const products = new Set(opts.products ?? []);
+  const categories = new Set(opts.categories ?? []);
+  return ARTICLES.filter((a) => a.slug !== opts.excludeSlug)
+    .map((a) => ({
+      a,
+      score:
+        2 * a.relatedProducts.filter((s) => products.has(s)).length +
+        a.topics.filter((c) => categories.has(c)).length,
+    }))
+    .filter((x) => x.score > 0)
+    .sort(
+      (x, y) =>
+        y.score - x.score ||
+        (y.a.updated ?? y.a.date).localeCompare(x.a.updated ?? x.a.date),
+    )
+    .slice(0, opts.limit ?? 3)
+    .map((x) => x.a);
 }

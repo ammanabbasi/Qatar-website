@@ -907,8 +907,8 @@ export const PRODUCTS: Product[] = [
       ar: "Autotriz 3D Matrix Ultra — طلاء سيراميك",
     },
     shortDesc: {
-      en: "Professional nano-technology ceramic coating. Enhanced gloss and long-term paint protection.",
-      ar: "طلاء سيراميك احترافي بتقنية النانو. لمعان معزّز وحماية طويلة الأمد للطلاء.",
+      en: "Autotriz 3D Matrix Ultra: a 50 ml professional nano-technology ceramic coating kit for enhanced gloss and long-term paint protection.",
+      ar: "Autotriz 3D Matrix Ultra: عبوة طلاء سيراميك احترافي بتقنية النانو سعة 50 مل، للمعان معزّز وحماية طويلة الأمد للطلاء.",
     },
     longDesc: {
       en: "Autotriz 3D Matrix Ultra is a professional ceramic coating applied by trained detailers to protect and enhance automotive paint. Available from our Mesaimeer store. 50 ml kit. Full specifications available on request.",
@@ -926,7 +926,7 @@ export const PRODUCTS: Product[] = [
     priceQar: 280,
     audience: "both",
     volumesMl: [50],
-    updatedAt: "2026-10-05",
+    updatedAt: "2026-10-23",
   },
   {
     slug: "autotriz-3d-matrix-hybrid",
@@ -937,8 +937,8 @@ export const PRODUCTS: Product[] = [
       ar: "Autotriz 3D Matrix Hybrid — طلاء سيراميك",
     },
     shortDesc: {
-      en: "Professional nano-technology ceramic coating. Enhanced gloss and long-term paint protection.",
-      ar: "طلاء سيراميك احترافي بتقنية النانو. لمعان معزّز وحماية طويلة الأمد للطلاء.",
+      en: "Autotriz 3D Matrix Hybrid: a 50 ml professional nano-technology ceramic coating kit for enhanced gloss and long-term paint protection.",
+      ar: "Autotriz 3D Matrix Hybrid: عبوة طلاء سيراميك احترافي بتقنية النانو سعة 50 مل، للمعان معزّز وحماية طويلة الأمد للطلاء.",
     },
     longDesc: {
       en: "Autotriz 3D Matrix Hybrid is a professional ceramic coating applied by trained detailers to protect and enhance automotive paint. Available from our Mesaimeer store. 50 ml kit. Full specifications available on request.",
@@ -957,7 +957,7 @@ export const PRODUCTS: Product[] = [
     priceQar: 280,
     audience: "both",
     volumesMl: [50],
-    updatedAt: "2026-10-05",
+    updatedAt: "2026-10-23",
   },
   {
     slug: "autotriz-fabric-textile-coating",

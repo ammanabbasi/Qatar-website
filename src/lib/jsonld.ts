@@ -1,6 +1,7 @@
 import { SITE } from "./constants";
 import { defaultSocialImage } from "./seo";
 import { BODY_TYPES, COVERAGES, FILMS, type PresetPrice } from "@/data/ppfInstall";
+import { DELIVERY } from "./pricing";
 
 /**
  * Single source of truth for the @id values used to link nodes together.
@@ -13,6 +14,50 @@ const IDS = {
   organization: `${SITE.url}#organization`,
   business: `${SITE.url}#business`,
   website: `${SITE.url}#website`,
+  shipping: `${SITE.url}#shipping`,
+} as const;
+
+/**
+ * Retail delivery terms (src/lib/pricing.ts) as Google's organization-level
+ * shipping policy: one ShippingConditions per order-value band, both for
+ * Qatar. Offers point at it by @id, which is what clears Search Console's
+ * "Missing field 'shippingDetails'" merchant-listing warning without
+ * restating the policy on every product. Delivery times are left out on
+ * purpose: they are confirmed per order on WhatsApp, never promised.
+ */
+function shippingServiceJsonLd() {
+  const destination = { "@type": "DefinedRegion", addressCountry: SITE.address.countryCode };
+  const qar = (fields: Record<string, number>) => ({
+    "@type": "MonetaryAmount",
+    currency: "QAR",
+    ...fields,
+  });
+  return {
+    "@type": "ShippingService",
+    "@id": IDS.shipping,
+    name: "Delivery in Qatar",
+    description: `Free delivery on orders of QAR ${DELIVERY.freeThresholdQar} or more, otherwise QAR ${DELIVERY.feeQar}. Showroom pickup in Mesaimeer is free.`,
+    fulfillmentType: "https://schema.org/FulfillmentTypeDelivery",
+    shippingConditions: [
+      {
+        "@type": "ShippingConditions",
+        shippingDestination: destination,
+        orderValue: qar({ maxValue: DELIVERY.freeThresholdQar - 0.01 }),
+        shippingRate: qar({ value: DELIVERY.feeQar }),
+      },
+      {
+        "@type": "ShippingConditions",
+        shippingDestination: destination,
+        orderValue: qar({ minValue: DELIVERY.freeThresholdQar }),
+        shippingRate: qar({ value: 0 }),
+      },
+    ],
+  };
+}
+
+const OFFER_SHIPPING = {
+  "@type": "OfferShippingDetails",
+  hasShippingService: { "@id": IDS.shipping },
 } as const;
 
 // Service area for the storefront + workshop nodes: Doha first, then Qatar's
@@ -82,6 +127,7 @@ export function organizationJsonLd() {
         availableLanguage: ["en", "ar"],
       },
     ],
+    hasShippingService: shippingServiceJsonLd(),
   };
 }
 
@@ -109,11 +155,16 @@ export function websiteJsonLd(locale: "en" | "ar" = "en") {
  * store") and is itself both a Store and an AutomotiveBusiness. `geo` and
  * `hasMap` come from the GBP pin (src/lib/constants.ts) so Search, Maps and
  * the website agree on one location.
+ *
+ * Deliberately NOT also `AutoRepair`: nothing is fitted at this address (the
+ * installed PPF is applied at a partner centre, see llms.txt), and a repair-
+ * shop type here contradicts the GBP category and the site's own copy, which
+ * is exactly the kind of disagreement AI answer engines resolve against us.
  */
 export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
   return {
     "@context": "https://schema.org",
-    "@type": ["AutoPartsStore", "AutoRepair"],
+    "@type": "AutoPartsStore",
     "@id": IDS.business,
     name: SITE.name,
     // Second alternateName matches the Google Business Profile listing name
@@ -216,13 +267,12 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
 }
 
 /**
- * Product schema. NOTE on offers: ABK quotes pricing per-WhatsApp inquiry,
- * and Google treats an Offer WITHOUT `price` as a structured-data ERROR
- * ("Missing field 'price'"), so no Offer is emitted at all. Lacking
- * offers/review/aggregateRating only makes the page ineligible for the
- * product-snippet rich result (Search Console shows a warning, not an error)
- * while the Product node still feeds Knowledge Graph and AI shopping surfaces.
- * Add an Offer with a real `price` if/when a public price catalogue ships.
+ * Product schema. An Offer is emitted only for products with a published
+ * QAR price: Google treats an Offer WITHOUT `price` as a structured-data
+ * ERROR, while a product with no offer at all is merely ineligible for the
+ * product snippet. Price-on-request products therefore carry no `offers`.
+ * There is no `hasMerchantReturnPolicy`: the site publishes no return policy
+ * for retail goods, and inventing one would be a claim the shop must honour.
  */
 export function productJsonLd(opts: {
   name: string;
@@ -284,6 +334,7 @@ export function productJsonLd(opts: {
               url: opts.url,
               seller: { "@id": IDS.business },
               areaServed: { "@type": "Country", name: "Qatar" },
+              shippingDetails: OFFER_SHIPPING,
             })),
           },
         }
@@ -298,6 +349,7 @@ export function productJsonLd(opts: {
               url: opts.url,
               seller: { "@id": IDS.business },
               areaServed: { "@type": "Country", name: "Qatar" },
+              shippingDetails: OFFER_SHIPPING,
             },
           }
         : {}),

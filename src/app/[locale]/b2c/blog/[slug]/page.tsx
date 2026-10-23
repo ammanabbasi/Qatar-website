@@ -10,7 +10,8 @@ import { PageHero } from "@/components/ui/PageHero";
 import { TextLink } from "@/components/ui/TextLink";
 import { ChevronIcon } from "@/components/ui/Icons";
 import { Link } from "@/i18n/navigation";
-import { ARTICLES, getArticleBySlug } from "@/data/articles";
+import { ARTICLES, getArticleBySlug, relatedGuides } from "@/data/articles";
+import { RelatedGuides } from "@/components/blog/RelatedGuides";
 import { getProductBySlug } from "@/data/products";
 import { clampDescription, defaultSocialImage, fitTitle, pageMeta } from "@/lib/seo";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/jsonld";
@@ -373,6 +374,17 @@ export default async function ArticlePage({
               </ul>
             </aside>
           )}
+
+          <RelatedGuides
+            guides={relatedGuides({
+              products: article.relatedProducts,
+              categories: article.topics,
+              excludeSlug: article.slug,
+            })}
+            locale={l}
+            title={l === "ar" ? "أدلة ذات صلة" : "Related guides"}
+            className="mt-16 border-t border-(--color-border-soft) pt-10"
+          />
 
           {/* Back to blog */}
           <div className="mt-12">

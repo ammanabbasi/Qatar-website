@@ -9,6 +9,8 @@ import { PageHero } from "@/components/ui/PageHero";
 import { ChevronIcon } from "@/components/ui/Icons";
 import { ProductCard } from "@/components/product/ProductCard";
 import { PpfInstallStrip } from "@/components/ppf/PpfInstallStrip";
+import { RelatedGuides } from "@/components/blog/RelatedGuides";
+import { relatedGuides } from "@/data/articles";
 import { Link } from "@/i18n/navigation";
 import { clampDescription, fitTitle, pageMeta } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
@@ -257,6 +259,17 @@ export default async function CategoryLandingPage({
               </div>
             </div>
           </div>
+
+          <RelatedGuides
+            guides={relatedGuides({
+              products: products.map((p) => p.slug),
+              categories: [data.slug],
+              // Hubs index their topic: up to two rows of guides, not three cards.
+              limit: 6,
+            })}
+            locale={l}
+            className="mt-12 border-t border-(--color-border-soft) pt-8"
+          />
 
           {/* Shop by Brand Cross-Links */}
           <div className="mt-12 border-t border-(--color-border-soft) pt-8">

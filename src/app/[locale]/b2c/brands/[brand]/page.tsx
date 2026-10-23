@@ -9,6 +9,8 @@ import { PageHero } from "@/components/ui/PageHero";
 import { ChevronIcon } from "@/components/ui/Icons";
 import { ProductCard } from "@/components/product/ProductCard";
 import { PpfInstallStrip } from "@/components/ppf/PpfInstallStrip";
+import { RelatedGuides } from "@/components/blog/RelatedGuides";
+import { relatedGuides } from "@/data/articles";
 import { Link } from "@/i18n/navigation";
 import { clampDescription, fitTitle, pageMeta } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
@@ -269,6 +271,18 @@ export default async function BrandLandingPage({
               </div>
             </div>
           </div>
+
+          <RelatedGuides
+            guides={relatedGuides({
+              products: products.map((p) => p.slug),
+              categories: [...new Set(products.map((p) => p.category))],
+              // Hubs index their topic, so they list every matching guide (two
+              // rows) — with three, VTEK's PPF guides crowded out the tint guide.
+              limit: 6,
+            })}
+            locale={l}
+            className="mt-12 border-t border-(--color-border-soft) pt-8"
+          />
 
           {/* Shop by Category Cross-Links */}
           <div className="mt-12 border-t border-(--color-border-soft) pt-8">
