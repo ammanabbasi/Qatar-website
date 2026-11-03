@@ -1,110 +1,108 @@
-# Local Authority, Manufacturer Verification & Directory Playbook — PPF Installation Doha
+# Local authority, business profiles and outreach — ready to paste
 
-**Last Updated:** 20 October 2026 (corrected — see the audit note below)  
-**Target URLs:**
-- English: `https://abktradingservice.com/en/b2c/ppf-installation`
-- Arabic: `https://abktradingservice.com/ar/b2c/ppf-installation`
+**Last updated:** 3 November 2026. Replaces the 20 Oct version, whose drafts still carried claims the site had dropped
+(`aliphatic`, `7.5 mil`, `clean booth`, `VPC 2.0`, `official distributor`) and a phone number and email that do not
+match the website. Do not reuse text from older copies of this file.
 
-> **Correction, 20 Oct 2026.** An earlier version of this file described the Google Business Profile with a different
-> name and coordinates than the live listing, named competitors as appearing in directory roundups, and gave VTEK
-> contact details that could not be verified (the old `vertekfilms.com` domain now redirects to `vtekfilms.com`).
-> Those statements are replaced below with what was actually observed. Current facts, the owner decisions that are
-> still open and the external actions in priority order are in `2026-10-20-traffic-audit-and-actions.md`.
+**Rule for everything below:** say only what the website says and a source can back up. AI assistants copy these listings
+and compare them, so one inflated directory entry can come back as a wrong answer about ABK. Partner centres stay unnamed.
 
----
+## 1. One set of business details (use these exactly)
 
-## 1. External Presence & Local Authority Audit (October 2026)
+| Field | Value | Checked against |
+|---|---|---|
+| Name | ABK Trading & Service (Arabic: ABK للتجارة والخدمات) | Website |
+| Address | Showroom no. 2, Building 1306, Street 70, Zone 56, Mesaimeer, Doha, Qatar | Website, Google Maps, VTEK contact page (all agree, 3 Nov 2026) |
+| Phone / WhatsApp | +974 3083 8355 | Website, Google Maps, VTEK contact page |
+| Second mobile | +974 7779 0915 | Website only |
+| Landline | +974 4451 4476 | Website only |
+| Email | sales@abktradingservice.com | Website only |
+| Website | https://abktradingservice.com/en | Google Maps shows the bare domain |
+| Hours | Saturday to Thursday, 10:00–13:00 and 16:00–22:00. Friday closed | Website. **Check:** Google Maps showed "Closed" at about 21:00 on Tuesday 3 Nov, when the site says open until 22:00 |
+| Map pin | 25.2040478, 51.5029268 (plus code 6G33+J5) | Google Maps |
 
-| Platform / Directory | Current Status | Key Finding / Gap | Impact on Search & AI (ChatGPT, Gemini, Perplexity, Copilot) |
-|---|---|---|---|
-| **Google Business Profile (`ABK Trading and Service — Vertek & Autotriz`)** | Live on Google Maps (CID `9860894303806767987`, pin `25.2040478, 51.5029268`, Mesaimeer), category *Car accessories store*, 4.9★ from 11 reviews (observed 20 Oct 2026). **Not manageable** from the two Chrome profiles available to the SEO tooling (Business Profile Manager shows 0 businesses). | The listed name carries the retired "Vertek" spelling and two brand names (name-stuffing risk). Installed VTEK PPF packages are not listed as Services/Products with links to `/en/b2c/ppf-installation`. | High — Google Local Pack and Gemini ground local service answers in GBP Service & Product entries. |
-| **VTEK Official Website (`vtekfilms.com`)** | `vtekfilms.com/weather-armor`, `vtekfilms.com/warranty`, `nfc.vtekfilms.com/verify`, and `vtekfilms.com/vpc` are live. | `https://www.vtekfilms.com/installer-locator` renders an interactive map widget without crawlable static HTML listing **ABK Trading & Service (Qatar Official Distributor)** or linking to `abktradingservice.com`. | Very High — AI models verify "authorised distributor/installer" claims by cross-checking manufacturer domains. |
-| **Bing Places for Business** | Synced with GBP | Service menu should explicitly include **VTEK Full-Body PPF Installation Doha (From QAR 3,999)** and **VTEK Front PPF Packages (From QAR 899)** to feed Microsoft Copilot and ChatGPT Search. | High — ChatGPT Search and Copilot rely heavily on Bing Places entity attributes. |
-| **Qatar Local Directories (`Qatar Living`, `Marhaba Qatar`, `Yellow Pages Qatar`)** | Not checked in the 20 Oct 2026 pass. | Confirm each listing exists and that name, address and phone match the website exactly (NAP consistency). | Medium-High — Third-party citations reinforce entity association with *"PPF installation Doha"*. |
+## 2. Where ABK stands (3 November 2026)
 
----
+| Platform | Status | What to do |
+|---|---|---|
+| Google Business Profile | Live: "ABK Trading and Service — Vertek & Autotriz", 4.9★ from 11 reviews, *Car accessories store*. **Not manageable from ceo.abktrading@gmail.com** (Business Profile Manager shows 0 businesses). | Find the owning account or request ownership on the Maps listing. Then see section 3. |
+| Google AI Mode ("best place to get PPF in Doha") | ABK is not mentioned. The answer lists Maps businesses by rating and review count (53 to 1,100 reviews). It quotes QAR 8,000–12,000+ for a full body. | Reviews and a complete profile are what enter this answer. |
+| Google AI Mode (brand questions) | Cites abktradingservice.com accurately on what ABK sells, but repeats old wording (12-year warranty, clean booths, "exclusive"). Older copies should refresh as Google recrawls. | Keep the listings below consistent. Re-test in a month. |
+| ChatGPT | The only AI assistant sending visits: 93 sessions in 28 days, 8.6% key-event rate, the best of any channel. | Keep pages crawlable and factual. |
+| Bing | 170 URLs indexed, 24 AI citations in 39 days, **no backlinks known to Bing**. | Section 4. |
+| VTEK contact page | Lists ABK's address and phone in its Qatar block and links ABK's Facebook and Instagram. Does not name ABK or use "distributor". | Section 5. |
+| Equipment10 directory | Lists "Street 1306, Building 70" (the two numbers are swapped). | Ask them to correct it. |
 
-## 2. Showroom vs. Partner Installation Studio Distinction (Compliance Policy)
+## 3. Google Business Profile, once you have access
 
-Per owner policy (`src/data/ppfInstall.ts`, 2 October 2026), **partner installation studios are deliberately not named publicly**. All external profiles must maintain this exact, transparent distinction:
-- **ABK Mesaimeer Showroom & Central Warehouse (`Barwa Village / Mesaimeer, Doha`):** Official VTEK Qatar distributor headquarters. Customers can inspect physical VTEK TPU film samples (`PRO`, `PRO PLUS`, `MATTE`, `PRISM`), verify roll serial numbers, and consult in person.
-- **VTEK-Authorised Partner Clean Booths (Doha):** Physical film application takes place in dust-controlled, climate-regulated partner bays in Doha using VTEK VPC 2.0 computer-plotted templates. Exact bay drop-off coordinates are sent on WhatsApp once the booking slot is confirmed.
+**Name.** Change it to the real-world name, **ABK Trading & Service**. Google's guidelines do not allow extra keywords in the
+business name, and this one carries the old "Vertek" spelling. Do this first: it can trigger re-verification.
 
----
+**Website.** `https://abktradingservice.com/en`
 
-## 3. Ready-to-Paste Google Business Profile (GBP) & Bing Places Updates
+**Hours.** Match section 1.
 
-### A. GBP "Services" Menu Entries (Add under Car Care / Auto Film Services)
+**Services** (each links to `https://abktradingservice.com/en/b2c/ppf-installation`; these are the live prices, re-check them
+against that page before pasting):
 
-1. **Service Name:** Full-Body VTEK PPF Installation (Sedan / Coupe) — 10-Yr Warranty  
-   **Price:** Fixed — `QAR 3,999`  
-   **Description:** Complete 12-panel installed VTEK Weather Armor PRO aliphatic TPU (7.5 mil / 190 µm, heat self-healing, non-yellowing). Supplied from ABK's official Qatar distributor stock and fitted in a VTEK-authorised Doha clean booth. Includes 10-year VTEK NFC e-Warranty (`nfc.vtekfilms.com/verify`) + 12-month ABK fitting guarantee.  
+| Service | Price | Description |
+|---|---|---|
+| Full-body VTEK PPF, sedan or coupe | QAR 3,999 | Every painted panel in VTEK Weather Armor PRO. Fitted at a VTEK-authorised centre in Doha. 10-year VTEK e-warranty, 12-month ABK fitting guarantee. |
+| Full-body VTEK PPF, mid-size SUV | QAR 4,799 | Same cover and warranties for mid-size SUVs. |
+| Full-body VTEK PPF, large SUV or 4x4 | QAR 5,499 | Same cover and warranties for large SUVs and 4x4s. |
+| Full-front VTEK PPF | From QAR 1,599 | Whole bonnet, front bumper, front fenders, mirrors and headlights. |
+| Front-end VTEK PPF kit | From QAR 899 | Front bumper, leading edge of bonnet and fenders, mirrors and headlights. |
 
-2. **Service Name:** Full-Body VTEK PPF Installation (Midsize SUV / Crossover) — 10-Yr Warranty  
-   **Price:** Fixed — `QAR 4,799`  
-   **Description:** Complete 12-panel installed VTEK Weather Armor PRO aliphatic TPU (7.5 mil) for Prado, Cayenne, X5, GLC, Jetour T2, and midsize SUVs. Fitted in a VTEK-authorised Doha clean booth with 10-year VTEK NFC e-Warranty + 12-month ABK fitting guarantee.
+**Products:** add your top sellers with a link to each product page (Briller Wash & Wax 20L, Autotriz 3D Matrix Ultra, VTEK
+Weather Armor, Grizzly PPF roll).
 
-3. **Service Name:** Full-Body VTEK PPF Installation (Large SUV / 4x4 / Pickup) — 10-Yr Warranty  
-   **Price:** Fixed — `QAR 5,499`  
-   **Description:** Complete 12-panel installed VTEK Weather Armor PRO aliphatic TPU (7.5 mil) for Land Cruiser 300, Nissan Patrol, Defender 110/130, LX600, G-Class, Tahoe, and Sierra. Includes 10-year VTEK NFC e-Warranty + 12-month ABK fitting guarantee.
+**Photos:** real photos of the showroom, stock and handovers. These double as proof for the website, which has none proven real.
 
-4. **Service Name:** Full-Front VTEK PPF Package (5 Zones) — 10-Yr Warranty  
-   **Price:** From `QAR 1,599`  
-   **Description:** Whole bonnet (edge-to-edge), front bumper, both front fenders, side mirrors, and headlights in VTEK Weather Armor PRO 7.5 mil TPU (`QAR 1,599` Sedan · `QAR 1,899` Mid SUV · `QAR 2,199` Large SUV). 1-day turnaround in Doha.
+**Reviews, every time, with no incentive** (Google prohibits paying for or conditioning reviews). Send after handover:
 
-5. **Service Name:** Front-End VTEK PPF Highway Kit — 10-Yr Warranty  
-   **Price:** From `QAR 899`  
-   **Description:** Front bumper, leading ~40 cm of bonnet & fenders, side mirrors, and headlights (`QAR 899` Sedan · `QAR 1,049` Mid SUV · `QAR 1,199` Large SUV). Same-day turnaround in Doha.
+- EN: "Thank you for choosing ABK Trading & Service. If you're happy with your order, a short Google review takes 30 seconds and
+  helps other drivers in Qatar find us: <review link from the profile>"
+- AR: "شكراً لاختيارك ABK للتجارة والخدمات. إن كنت راضياً عن طلبك فتقييم قصير على Google يستغرق 30 ثانية ويساعد سائقين آخرين في
+  قطر على إيجادنا: <رابط التقييم>"
 
-### B. GBP "Products" Showcase Entry (High-Visibility Card on Google Maps & Search)
-- **Product Name:** Installed Full-Body VTEK PPF (Doha, Qatar) — From QAR 3,999
-- **Category:** Paint Protection Film (PPF) Installation
-- **Price:** `QAR 3,999`
-- **Product Landing Page URL:** `https://abktradingservice.com/en/b2c/ppf-installation`
-- **Description:** Looking for full-body PPF in Qatar under QAR 5,000? ABK Trading & Service (Qatar's official VTEK distributor) offers fixed-price Full-Body 12-panel VTEK Weather Armor PRO TPU at QAR 3,999 (Sedan), QAR 4,799 (Mid SUV), and QAR 5,499 (Large 4x4). Fitted in VTEK-authorised Doha clean booths with a 10-year VTEK NFC e-Warranty and 12-month ABK fitting cover.
+## 4. Directory listings (Bing Places, Qatar Living, Yellow Pages Qatar, Marhaba)
 
----
+Claim these yourself: each needs an account in your name. Use section 1 for the details and this text:
 
-## 4. Manufacturer Outreach Draft — VTEK (`vtekfilms.com/installer-locator`)
+**English**
 
-Send the following message to VTEK using the contact details shown on `https://www.vtekfilms.com/contact-us` (that page already lists ABK's Mesaimeer showroom in its Qatar block, which is the verifiable proof to build on). Ask for a crawlable text listing/link so search engines and AI crawlers can verify ABK's Qatar status on `vtekfilms.com`:
+> ABK Trading & Service is a car care and paint protection film supplier in Mesaimeer, Doha, selling to drivers and to
+> detailing shops. We stock VTEK Weather Armor and Solar Armor film, Grizzly PPF, Autotriz ceramic coatings and polishes,
+> Briller wash chemicals and detailing tools, with 58 products listed online. We also sell installed VTEK PPF at published
+> fixed prices, fitted at VTEK-authorised centres in Doha: front-end kits from QAR 899, full front from QAR 1,599 and full
+> body from QAR 3,999, with VTEK's e-warranty and a 12-month ABK fitting guarantee. Prices and guides:
+> https://abktradingservice.com/en
 
-> **Subject:** Official Qatar Distributor Listing & Backlink on `vtekfilms.com/installer-locator` — ABK Trading & Service
+**Arabic**
+
+> ABK للتجارة والخدمات مورّد لمنتجات العناية بالسيارات وأفلام حماية الطلاء في مسيمير بالدوحة، للأفراد ومراكز التلميع. نوفر أفلام VTEK
+> Weather Armor وSolar Armor وأفلام Grizzly وطلاءات وملمعات Autotriz ومنظفات Briller وأدوات التلميع، مع 58 منتجاً معروضاً على الموقع.
+> كما نبيع تركيب أفلام VTEK PPF بأسعار ثابتة ومعلنة في مراكز معتمدة من VTEK في الدوحة: الواجهة الأساسية من 899 ر.ق، والواجهة الكاملة
+> من 1,599 ر.ق، والهيكل الكامل من 3,999 ر.ق، مع ضمان VTEK الإلكتروني وضمان تركيب من ABK لمدة 12 شهراً. الأسعار والأدلة:
+> https://abktradingservice.com/ar
+
+## 5. Ask the brands for a link
+
+Bing knows of no site linking to ABK, and links are what make Google crawl a small site more. A link from a brand you sell is the
+most credible one available. Send from the address VTEK and the other brands already know you by.
+
+**VTEK** (via https://www.vtekfilms.com/contact-us):
+
+> Subject: Listing ABK Trading & Service by name on your Qatar contact entry
 >
-> Hi VTEK Team,
->
-> Could you please add/update our official Qatar Distributor & Authorised Installation Booking entry on `https://www.vtekfilms.com/installer-locator` in static crawlable text (so Google, Bing, and AI assistants can verify our official Qatar status)?
->
-> **Listing Details for Qatar:**
-> - **Company Name:** ABK Trading & Service (ABK للتجارة والخدمات)
-> - **Role:** Official VTEK Distributor & Authorised Installation Booking Center — State of Qatar
-> - **Showroom & Warehouse Address:** Mesaimeer (near Barwa Village), Doha, Qatar
-> - **Phone / WhatsApp:** +974 3083 8355 / +974 7105 9790
-> - **Email:** info@abktradingservice.com
-> - **Website (PPF Installation & Online Quote Builder):** https://abktradingservice.com/en/b2c/ppf-installation
-> - **VTEK Brand Catalog (Qatar):** https://abktradingservice.com/en/b2c/brands/vtek
->
-> Having a crawlable text link from `vtekfilms.com/installer-locator` to `https://abktradingservice.com/en/b2c/ppf-installation` helps customers in Doha verify genuine VTEK Weather Armor installations and NFC e-Warranty coverage.
->
-> Thank you!  
-> **ABK Trading & Service — Doha, Qatar**
+> Hello, your contact page already lists our showroom (Zone 56, Shop 2, Building 1306, Street 70, Mesaimeer) and +974 3083 8355 as
+> the Qatar contact, without a company name. Could you add "ABK Trading & Service" and a link to
+> https://abktradingservice.com/en/b2c/brands/vtek in plain text, and list us on the installer locator in a form search engines can
+> read? Customers and AI assistants use your site to check who sells genuine VTEK film in Qatar.
+> Could you also confirm in writing our status in Qatar (distributor, and whether exclusive) and the warranty term for PRO PLUS?
+> Your chart shows PRO+ at 10 years while our pack artwork shows 12.
 
----
+**Autotriz, Briller, Grizzly, Getsun, Insta Finish:** the same request, pointing at `/en/b2c/brands/<brand>`.
 
-## 5. Qatar Directory & Citation Copy (Consistent Bilingual Descriptions)
-
-Use these exact descriptions when updating **Qatar Living Services**, **Marhaba Qatar Business Directory**, and **Yellow Pages Qatar**:
-
-- **English Summary (160–220 words):**  
-  **ABK Trading & Service** is Qatar's official distributor of **VTEK Paint Protection Film (PPF)**, **Grizzly PPF**, **Autotriz Germany** ceramic coatings, and **Briller Canada** car care products, headquartered in Mesaimeer, Doha (`+974 3083 8355`). In addition to retail and wholesale trade supply, ABK offers fixed-price **installed VTEK Weather Armor TPU PPF packages** fitted in VTEK-authorised Doha partner clean booths:
-  - **Full-Body 12-Panel PPF (10-Yr VTEK NFC e-Warranty):** `QAR 3,999` (Sedan/Coupe) · `QAR 4,799` (Midsize SUV) · `QAR 5,499` (Large SUV / 4x4)
-  - **Full-Front 5-Zone PPF:** `QAR 1,599` (Sedan) · `QAR 1,899` (Mid SUV) · `QAR 2,199` (Large SUV)
-  - **Front-End Highway Kit:** `QAR 899` (Sedan) · `QAR 1,049` (Mid SUV) · `QAR 1,199` (Large SUV)
-  Every installation includes computer-plotted VTEK VPC 2.0 patterns, drop-off condition photos, ABK handover inspection, a 12-month ABK workmanship guarantee, and official VTEK NFC e-Warranty registration (`nfc.vtekfilms.com/verify`). Compare packages and build an instant quote at `https://abktradingservice.com/en/b2c/ppf-installation`.
-
-- **Arabic Summary:**  
-  **شركة ABK للتجارة والخدمات** هي الموزع الرسمي لأفلام حماية الطلاء **VTEK PPF** ومنتجات العناية بالسيارات في الدوحة، قطر (معرض مسيمير — `+974 3083 8355`). نوفر خدمة تركيب أفلام حماية الطلاء الأصلية **VTEK Weather Armor TPU** بأسعار ثابتة ومعلنة في كبائن نظيفة معتمدة بالدوحة:
-  - **حماية الهيكل الكامل (12 قطعة — ضمان إلكتروني NFC لمدة 10 سنوات):** `3,999 ر.ق` (سيدان/كوبيه) · `4,799 ر.ق` (SUV متوسطة) · `5,499 ر.ق` (دفع رباعي كبير 4×4)
-  - **باقة الواجهة الكاملة (5 مناطق):** تبدأ من `1,599 ر.ق`
-  - **باقة الواجهة الأساسية:** تبدأ من `899 ر.ق`
-  احسب سعرك الفوري واحجز موعدك عبر `https://abktradingservice.com/ar/b2c/ppf-installation`.
+**Community:** Reddit threads (r/qatar) rank on page one for "ppf qatar" and tint rules. Answer genuinely, say you work for ABK, and
+link a guide only where it answers the question. The tint rules guide, with its legal sources, is the most useful one to share.

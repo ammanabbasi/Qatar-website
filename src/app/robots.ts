@@ -62,6 +62,5 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [rule("*"), ...SEARCH_BOTS.map(rule), ...AI_BOTS.map(rule)],
     sitemap: `${SITE.url}/sitemap.xml`,
-    host: SITE.url,
   };
 }

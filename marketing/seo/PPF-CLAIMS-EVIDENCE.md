@@ -1,4 +1,4 @@
-# PPF installation page — claims and evidence (read 20 October 2026)
+# PPF installation page — claims and evidence (read 20 October 2026, re-read 3 November 2026: no changes at the sources)
 
 Page: `/en|ar/b2c/ppf-installation`. Code: `src/data/ppfEvidence.ts` (sources and copy), `src/data/ppfInstall.ts`
 (prices, warranty terms), `src/components/ppf/Ppf{TrustStrip,FilmChoice,Warranty,PriceList}.tsx`.
