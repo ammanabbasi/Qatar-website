@@ -36,7 +36,7 @@ Yes for Qatar, but not because of search. GA4, 27 Oct–2 Nov against 20–26 Oc
 | **Crawl waste** | Crawl stats: 71% of Googlebot's 2,150 requests were "other file type", overwhelmingly `?_rsc=` Next.js prefetch payloads (each page rendered triggers 15–37). HTML was 13%, discovery 3%, about 8–15 HTML pages a day, and about 10% of those were catalogue filter URLs that canonicalise elsewhere. |
 | **Indexing** | 106 indexed, 106 not. 94 are *Discovered, currently not indexed* (report dated 22 Oct). URL Inspection confirmed `/en/b2c/categories/ceramic` is still not crawled on 3 Nov. That hub ranks nowhere in the top 8 for "ceramic coating qatar". |
 | Rendering | About, Contact, Privacy and Terms were rendered per request in US East because they read one cookie. |
-| Core Web Vitals | No field data in Search Console (not enough traffic). PageSpeed's anonymous API was out of quota (HTTP 429). |
+| **Core Web Vitals** | Search Console shows no data, but PageSpeed has real-user data for `/en` on mobile: **fails** (LCP 2.9 s, FCP 2.9 s, **TTFB 1.4 s**, CLS 0, INP n/a). Lighthouse mobile: performance 65, SEO 100, accessibility 100. Desktop: 98. Causes found: the locale proxy ran on every page view (TTFB 1.09 s from Bangalore, 0.2 s from New York), and the home `<head>` preloaded 16 images and 5 fonts, including 4 Arabic fonts on English pages and below-the-fold shelf images. |
 | Rich results | Product snippets 4 valid, merchant listings 2 valid, breadcrumbs 24 valid, 0 invalid. |
 
 ### Content and accuracy
@@ -96,6 +96,7 @@ Search Console has data only since 17 Oct. Bing's session had expired and works 
 - robots.txt blocks `_rsc`, catalogue filter URLs and `/api/` in all 24 user-agent groups, following Google's faceted-navigation guidance.
 - Internal links: homepage guide section, footer guide list, PPF page guide block, three more brand hubs in the footer, homepage brand cards to hubs.
 - Static rendering for the four trust pages. Alt text on shelf tiles and gallery thumbnails. Sitemap `lastmod` per changed page.
+- Speed: the locale proxy no longer runs on `/en` and `/ar` pages (313333c). Functions moved to Mumbai, the nearest Vercel region to Qatar (9cd162c). Home preloads 2 images and 1 font instead of 16 and 5 (b4c4f6e).
 - Corrections in section 2, with visible updated dates, an author line and linked sources on guides.
 
 **Reasonable but unproven for AI visibility** (Google says AI Overviews and AI Mode need no special markup or files)
@@ -115,6 +116,21 @@ Live on production, 3 Nov 2026 (commit 5a19db7):
 - Pages with an image missing alt text: 2 (the decorative home hero, EN and AR), was 30.
 - Homepage shows 58 products, 9 brands, QAR 200 free delivery, 4.9★ (11 reviews). `llms.txt` carries the Art. 75 rule.
 - All tested search and AI crawlers get 200. IndexNow: all URLs with a 3 Nov lastmod submitted, HTTP 200.
+- validator.schema.org on the tint guide: 0 errors, 0 warnings.
+- Routing, production: 29 cases pass (localeless paths, Arabic negotiation, language cookie, legacy redirects, 404s, assets). The language switch still sets `NEXT_LOCALE` and `/` honours it. Page responses no longer set a cookie.
+- Search Console: indexing requested and confirmed for the tint guide (EN, AR), `/categories/ceramic`, `/categories/shampoo`, `ppf-vs-ceramic-coating-qatar`, `best-ppf-installers`, `/b2b/become-a-dealer` and `/en`. `/brands/autotriz` and `/about` were sent in a batch whose confirmation was lost, and the daily quota then ran out: repeat them. robots.txt recrawl requested.
+
+TTFB on `/en` (KeyCDN; no Qatar test point exists, Bangalore is the closest):
+
+| From | Before, with proxy | After, warm edge | After, cold edge |
+|---|---|---|---|
+| Bangalore | 1,090 ms | 301 ms | 598 ms |
+| Singapore | 1,230 ms | 328 ms | 778 ms |
+| Sydney | 1,100 ms | 282 ms | 1,420 ms |
+| Frankfurt | 738 ms | 174 ms | 742 ms |
+| New York | 225 ms | 109 ms | 424 ms |
+
+Cold figures were taken on a different page right after the Mumbai deploy, so they are indicative. Lighthouse mobile performance read 65 before and 68–71 after: too noisy to claim a precise gain, and its simulated LCP (about 8 s) is far above the 2.9 s real users report. Real-user data updates over 28 days.
 
 Not measurable yet: rankings, crawl share and indexing respond over days to weeks (section 7).
 
@@ -129,10 +145,13 @@ Not measurable yet: rankings, crawl share and indexing respond over days to week
 7. **PRO PLUS 12 vs 10 years**, real photos and a retail return policy remain open from earlier audits.
 8. **Commercial registration number** on the site, if you are willing to publish it: a strong, checkable identity signal in Qatar.
 
+Smaller items left alone: unknown URLs get Next's bare default 404 rather than the branded page; every page's HTML carries all translation strings (about 57 KB raw), worth splitting by namespace; the Google tag loads at startup and could wait for page load, but it feeds Ads conversions, so change it only with a before-and-after check.
+
 ## 7. Re-check on 17 November 2026
 
 - Search Console → Settings → Crawl stats: `_rsc` share should fall sharply; HTML share should rise.
 - Search Console → Pages: indexed count (baseline 106) and *Discovered* (baseline 94).
 - Google with `gl=qa`: "ceramic coating qatar" (baseline: not in top 8), "ppf qatar" (baseline: first organic result).
 - AI Mode: the brand question should stop saying 12-year warranty and clean booths. Tint questions should reflect Art. 75.
+- PageSpeed real-user data for `/en` on mobile: TTFB (baseline 1.4 s), LCP (baseline 2.9 s). Full effect after 28 days.
 - GA4 with a Qatar comparison: organic (baseline 39 users a week), AI assistants (25), direct (8), paid (33).
