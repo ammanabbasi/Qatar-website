@@ -194,7 +194,7 @@ export default async function CategoryLandingPage({
                   product={p}
                   locale={l}
                   audience="b2c"
-                  eager={i < 4}
+                  eager={i < 2}
                   as="h2"
                 />
               ))}

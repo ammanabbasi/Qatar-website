@@ -106,8 +106,8 @@ export function Header({
             <Image
               src="/logo-dark.webp"
               alt="ABK Trading & Service — Car Care & PPF Qatar"
-              width={452}
-              height={305}
+              width={42}
+              height={28}
               loading="eager"
               className="h-7 w-auto"
             />

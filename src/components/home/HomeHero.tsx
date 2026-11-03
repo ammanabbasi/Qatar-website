@@ -36,8 +36,6 @@ export function HomeHero({ audience, locale }: Props) {
           alt=""
           fill
           preload
-          loading="eager"
-          fetchPriority="high"
           sizes="100vw"
           className="object-cover object-[70%_42%] brightness-[1.14] saturate-[1.03]"
         />

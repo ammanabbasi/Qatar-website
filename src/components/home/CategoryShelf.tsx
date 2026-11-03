@@ -16,7 +16,7 @@ export function CategoryShelf({ audience }: { audience: Audience }) {
     <section className="py-4 lg:py-6">
       <h2 className="sr-only">{t("Home.categoriesTitle")}</h2>
       <Shelf ariaLabel={t("Home.categoriesTitle")}>
-        {categories.map((c, i) => (
+        {categories.map((c) => (
           <Link
             key={c}
             href={`/b2c/categories/${c}`}
@@ -28,7 +28,6 @@ export function CategoryShelf({ audience }: { audience: Audience }) {
                 alt=""
                 fill
                 sizes="120px"
-                loading={i < 6 ? "eager" : undefined}
                 className="object-cover transition-transform duration-500 ease-soft group-hover:scale-105"
               />
             </span>

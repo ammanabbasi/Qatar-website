@@ -28,13 +28,12 @@ export function StarProducts({
         />
       </Container>
       <Shelf ariaLabel={t("Home.starProductsTitle")}>
-        {products.map((p, i) => (
+        {products.map((p) => (
           <ProductTile
             key={p.slug}
             product={p}
             locale={locale}
             audience={audience}
-            eager={i < 3}
           />
         ))}
         <Link
