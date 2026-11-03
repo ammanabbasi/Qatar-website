@@ -73,8 +73,8 @@ export const FAQ: FaqEntry[] = [
       ar: "هل أفلام التظليل لديكم متوافقة مع قوانين قطر؟",
     },
     a: {
-      en: "Yes. We stock heat-rejecting window films in multiple VLT (visible light transmission) grades that meet Qatar's vehicle tint regulations. Tell us your vehicle and we will confirm the right grade before you buy.",
-      ar: "نعم. نوفر أفلام تظليل عازلة للحرارة بدرجات نفاذية ضوئية متعددة متوافقة مع قوانين قطر. أخبرنا بموديل سيارتك ونُحدّد لك الدرجة المناسبة قبل الشراء.",
+      en: "Qatar's published regulation allows shaded, non-reflective film on the rear side door glass with a written Traffic Department permit (QR 20 on Metrash), and gives no percentage. Our heat-rejecting films come in several VLT (visible light transmission) grades. Tell us your vehicle and what your permit covers and we will help you pick a grade.",
+      ar: "تجيز اللائحة المنشورة في قطر فيلماً مظللاً غير عاكس على زجاج الأبواب الخلفية الجانبية بتصريح كتابي من إدارة المرور (20 ريالاً عبر مطراش) ولا تذكر نسبة محددة. وتتوفر أفلامنا العازلة للحرارة بدرجات نفاذية ضوئية متعددة. أخبرنا بسيارتك وما يشمله تصريحك وسنساعدك في اختيار الدرجة.",
     },
   },
   {

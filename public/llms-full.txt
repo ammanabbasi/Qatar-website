@@ -7,7 +7,7 @@
 > **Primary Communications:** WhatsApp / Sales: +974 3083 8355 | Mobile: +974 7779 0915 | Landline: +974 4451 4476  
 > **Email:** sales@abktradingservice.com  
 > **Website:** https://abktradingservice.com (English: /en, Arabic: /ar)  
-> **Last Synchronized:** 2026-10-23 (58 products, 10 guides)  
+> **Last Synchronized:** 2026-11-03 (58 products, 10 guides)  
 > **Operational Mandate:** ABK is a product distributor, importer, and wholesale supplier. ABK supplies genuine products to detailing studios, workshops, commercial carwashes, dealerships, and retail DIY car owners. ABK is not a workshop. The one installed service ABK sells is VTEK paint protection film for car owners in Qatar: ABK quotes, books and guarantees the job, and the film is fitted at a VTEK-authorised partner centre in Doha (https://abktradingservice.com/en/b2c/ppf-installation — from QAR 899 front-end, QAR 1,599 full front, QAR 3,999 full body). ABK does not perform window tinting, ceramic coating application or detailing services.
 
 ---
@@ -119,7 +119,7 @@ Key Features:
 • Pristine Optical View: Eliminates the "milky" haze common in lower-tier tints.
 • Blinding Glare Defense: Drastically cuts down harsh sunlight and oncoming headlights.
 • Premium Style: Adds a sleek, factory-tinted aesthetic with enhanced cabin privacy.
-- **Technical Specs:** Series: VUE Series (Solar Armor) | Technology: Advanced GRX® Nano-Ceramic | Optical Clarity: High-Definition Clarity & Anti-Glare | Compliance: Qatar Traffic Law & MOI Compliant Grades | Warranty: 10-Year e-Warranty
+- **Technical Specs:** Series: VUE Series (Solar Armor) | Technology: Advanced GRX® Nano-Ceramic | Optical Clarity: High-Definition Clarity & Anti-Glare | Fitting in Qatar: Rear side doors, with a Traffic Department permit | Warranty: 10-Year e-Warranty
 
 #### 7. VTEK Solar Armor APEX — Ultra Nano-Ceramic Window Tint (VTEK Solar Armor APEX — فيلم تظليل النوافذ الترا نانو سيراميك)
 - **SKU:** `vtek-solar-armor-apex`
@@ -140,8 +140,8 @@ Key Features:
 - **Pack Tier:** Trade / Workshop Bulk (also available for individual purchase)
 - **Price:** Trade / wholesale quote via WhatsApp (+974 3083 8355)
 - **Summary:** High-performance carbon-ceramic hybrid window film engineered for deep fade-resistant color, superior heat reduction, and 10-year e-warranty.
-- **Description:** VTEK® Solar Armor™ ICONIC combines advanced carbon particles with nano-ceramic technology to produce a rich, non-fading charcoal finish that never turns purple. Engineered to handle intense Gulf solar exposure, ICONIC provides substantial heat dissipation, glare minimization, and passenger privacy while maintaining pristine interior clarity. Compliant with Qatar Traffic Law standards, backed by a 10-year e-warranty.
-- **Technical Specs:** Series: ICONIC Hybrid Series (Solar Armor) | Technology: Carbon-Ceramic Hybrid Matrix | Color Stability: Fade-Resistant Deep Charcoal / Never Turns Purple | Compliance: Qatar Traffic Law & MOI Compliant | Warranty: 10-Year e-Warranty
+- **Description:** VTEK® Solar Armor™ ICONIC combines advanced carbon particles with nano-ceramic technology to produce a rich, non-fading charcoal finish that never turns purple. Engineered to handle intense Gulf solar exposure, ICONIC provides substantial heat dissipation, glare minimization, and passenger privacy while maintaining pristine interior clarity. Backed by a 10-year e-warranty.
+- **Technical Specs:** Series: ICONIC Hybrid Series (Solar Armor) | Technology: Carbon-Ceramic Hybrid Matrix | Color Stability: Fade-Resistant Deep Charcoal / Never Turns Purple | Fitting in Qatar: Rear side doors, with a Traffic Department permit | Warranty: 10-Year e-Warranty
 
 #### 9. Autotriz PPF Gel — Installation Aid (Autotriz PPF Gel — مساعد تركيب أفلام الحماية والتظليل)
 - **SKU:** `autotriz-ppf-gel`
@@ -902,7 +902,7 @@ ABK sells installed VTEK paint protection film. ABK quotes, books, takes payment
 - **Individual panels:** live estimate in the quote builder, from QAR 500, capped at the full-body price; confirmed on WhatsApp.
 - **PRISM colour-change PPF (5-yr VTEK warranty):** priced per car (enquire on WhatsApp). **Old film or wrap removal:** quoted upfront and added to the confirmed price.
 
-### Doha PPF — published starting prices (read 20 October 2026)
+### Doha PPF — published starting prices (read 3 November 2026)
 
 Each figure is a provider's own published statement; ABK does not estimate competitors' prices. Providers price by vehicle, film brand, thickness and scope, so compare the film line, warranty terms and coverage as well as the headline price.
 
@@ -921,13 +921,13 @@ Each figure is a provider's own published statement; ABK does not estimate compe
 5. VTEK manufacturer NFC e-Warranty registered to the car, checkable with the plate number and phone number at https://nfc.vtekfilms.com/verify: PRO 10 years, PRO PLUS 10 years, MATTE 5 years, PRISM 5 years, ULTIMATE 15 years (special roll order), against manufacturing defects such as bubbling, cracking, peeling and fading (https://www.vtekfilms.com/warranty).
 6. ABK fitting guarantee for 12 months from handover (lifting, bubbles, edge failure). It does not cover accidents, stone impacts, improper washing or pressure-washing the film edges, repairs done elsewhere or paint defects recorded at drop-off.
 
-Checkable evidence (sources read 20 October 2026):
+Checkable evidence (sources read 3 November 2026):
 - **Listed by VTEK in Qatar.** VTEK's own contact page lists our Mesaimeer showroom address and phone number as its Qatar contact. https://www.vtekfilms.com/contact-us
 - **Registered in VTEK's system.** Every job is registered on VTEK's NFC e-Warranty, which shows the film, the date and the installer. Check it with your plate and phone number. https://nfc.vtekfilms.com/verify
 - **VTEK film warranty, 5–15 years.** VTEK covers film fitted by an authorised installer against manufacturing defects such as bubbling, cracking, peeling and fading. https://www.vtekfilms.com/warranty
 - **12-month ABK fitting guarantee.** ABK puts right lifting edges, bubbles and edge failure for 12 months from handover. You deal with ABK, not the installer. https://abktradingservice.com/en/terms#ppf-bookings
 - **4.9 on Google · 11 reviews.** Rating of ABK's Mesaimeer showroom on Google Maps. https://maps.google.com/?cid=9860894303806767987
-- Rating basis: 4.9 stars from 11 Google reviews of the Mesaimeer showroom (20 October 2026); it is the showroom's overall rating, not a PPF-only rating.
+- Rating basis: 4.9 stars from 11 Google reviews of the Mesaimeer showroom (3 November 2026); it is the showroom's overall rating, not a PPF-only rating.
 
 How to check the VTEK e-warranty yourself:
 1. Open nfc.vtekfilms.com/verify.
@@ -969,16 +969,16 @@ If something goes wrong:
 - **Arabic Title:** تظليل النوافذ في قطر: القوانين وتصاريح مطراش واختيار الفيلم المناسب (دليل 2026)
 - **URL (EN):** https://abktradingservice.com/en/b2c/blog/window-tinting-rules-qatar-guide
 - **URL (AR):** https://abktradingservice.com/ar/b2c/blog/window-tinting-rules-qatar-guide
-- **Published:** 2026-06-12 (Updated: 2026-10-17)
-- **Summary:** What tint percentage is legal in Qatar? A practical 2026 guide to MOI tint limits (20% front side windows), how to apply for a tint permit in Metrash, QR 1,000 fines, Fahes inspection, and VTEK ceramic tint.
+- **Published:** 2026-06-12 (Updated: 2026-11-03)
+- **Summary:** What Qatar's traffic regulation says about car tint: rear side doors with a QR 20 permit, no reflective film, and why quoted percentages don't match the law.
 - **Related Product SKUs:** `vtek-window-tints`, `vtek-solar-armor-apex`, `vtek-solar-armor-iconic`, `briller-glass-cleaner`
 
 ### 3. How Much Does Ceramic Coating Cost in Qatar? (2026 Price Guide for Sedans & SUVs)
 - **Arabic Title:** كم تكلفة الطلاء السيراميكي في قطر؟ (دليل أسعار 2026 للسيدان والدفع الرباعي)
 - **URL (EN):** https://abktradingservice.com/en/b2c/blog/ceramic-coating-cost-qatar
 - **URL (AR):** https://abktradingservice.com/ar/b2c/blog/ceramic-coating-cost-qatar
-- **Published:** 2026-06-11 (Updated: 2026-10-17)
-- **Summary:** 2026 ceramic coating prices in Qatar for sedans, medium SUVs and large 4x4s — Doha studio ranges (QAR 800–3,200), Autotriz 9H kit prices (QAR 250–280), and how to compare quotes.
+- **Published:** 2026-06-11 (Updated: 2026-11-03)
+- **Summary:** 2026 ceramic coating prices in Qatar for sedans, medium SUVs and large 4x4s — estimated Doha studio ranges (QAR 800–3,200), Autotriz 9H kit prices (QAR 250–280), and how to compare quotes.
 - **Related Product SKUs:** `autotriz-revo-ceramic-coating`, `autotriz-ion-plus-ceramic-coating`, `autotriz-3d-matrix-ultra`, `autotriz-3d-matrix-hybrid`
 
 ### 4. Hard Water Spots on Your Car in Qatar: How to Remove & Prevent Them (2026 Guide)
@@ -993,7 +993,7 @@ If something goes wrong:
 - **Arabic Title:** كيف تحمي سيارتك من حرارة قطر الشديدة
 - **URL (EN):** https://abktradingservice.com/en/b2c/blog/how-to-protect-car-from-qatar-heat
 - **URL (AR):** https://abktradingservice.com/ar/b2c/blog/how-to-protect-car-from-qatar-heat
-- **Published:** 2026-05-10 (Updated: 2026-10-02)
+- **Published:** 2026-05-10 (Updated: 2026-11-03)
 - **Summary:** Practical tips for protecting your car's paint, interior and tyres from Doha's 50°C summers. Covers PPF, ceramic coating, window tinting and daily care routines.
 - **Related Product SKUs:** `vtek-ppf-weather-armor-ultimate`, `autotriz-3d-matrix-ultra`, `vtek-window-tints`, `briller-wash-and-wax`
 
@@ -1001,7 +1001,7 @@ If something goes wrong:
 - **Arabic Title:** PPF مقابل الطلاء السيراميكي: أيهما يناسب سيارتك في قطر؟
 - **URL (EN):** https://abktradingservice.com/en/b2c/blog/ppf-vs-ceramic-coating-qatar
 - **URL (AR):** https://abktradingservice.com/ar/b2c/blog/ppf-vs-ceramic-coating-qatar
-- **Published:** 2026-05-08 (Updated: 2026-10-02)
+- **Published:** 2026-05-08 (Updated: 2026-11-03)
 - **Summary:** A detailed comparison of paint protection film and ceramic coating for cars in Qatar. Learn which option protects best against sand, UV, and water spots in Doha's climate.
 - **Related Product SKUs:** `vtek-ppf-weather-armor-ultimate`, `autotriz-3d-matrix-ultra`, `autotriz-3d-matrix-hybrid`, `autotriz-ion-plus-ceramic-coating`
 
@@ -1009,7 +1009,7 @@ If something goes wrong:
 - **Arabic Title:** الدليل الشامل لمنتجات ومواد العناية وتلميع السيارات في قطر (تجزئة وجملة)
 - **URL (EN):** https://abktradingservice.com/en/b2c/blog/complete-guide-car-care-products-qatar
 - **URL (AR):** https://abktradingservice.com/ar/b2c/blog/complete-guide-car-care-products-qatar
-- **Published:** 2026-05-05 (Updated: 2026-10-21)
+- **Published:** 2026-05-05 (Updated: 2026-11-03)
 - **Summary:** Where to buy car care and detailing materials in Qatar — from pH-balanced 20L car wash drums and German polishing compounds to VTEK PPF and Autotriz 9H ceramic coatings in Doha.
 - **Related Product SKUs:** `autotriz-rich-foam-shampoo`, `briller-wash-and-wax`, `autotriz-heavy-cut-901`, `briller-quick-tyre-shine`
 
@@ -1017,8 +1017,8 @@ If something goes wrong:
 - **Arabic Title:** دليل اختيار أفضل مركز تركيب أفلام حماية PPF في الدوحة، قطر: المعايير والأسعار 2026
 - **URL (EN):** https://abktradingservice.com/en/b2c/blog/best-ppf-installers-doha-qatar-guide
 - **URL (AR):** https://abktradingservice.com/ar/b2c/blog/best-ppf-installers-doha-qatar-guide
-- **Published:** 2026-10-04 (Updated: 2026-10-20)
-- **Summary:** How to evaluate PPF installers in Doha: dust-controlled clean booths, edge-wrapping vs pre-cut, genuine aliphatic TPU warranties, and 2026 price comparisons in Qatar.
+- **Published:** 2026-10-04 (Updated: 2026-11-03)
+- **Summary:** How to evaluate PPF installers in Doha: the fitting bay, edge wrapping vs pre-cut, film and warranty proof, and the prices Doha installers actually publish in 2026.
 - **Related Product SKUs:** `vtek-ppf-weather-armor-pro`, `vtek-ppf-weather-armor-pro-plus`, `vtek-ppf-weather-armor-matte`, `vtek-ppf-weather-armor-prism`
 
 ### 9. Matte & Colored PPF in Qatar: Prices, Finishes and Care (2026 Guide)
@@ -1048,7 +1048,7 @@ Premium paint protection films like VTEK Weather Armor typically last 5–15 yea
 Yes. ABK supplies wholesale VTEK PPF, Autotriz and Briller products to detailing shops, body shops and car-wash businesses across Qatar and the GCC. Volume pricing is quoted per request on WhatsApp.
 
 ### Q3: Do your window films meet Qatar tint regulations?
-Yes. We stock heat-rejecting window films in multiple VLT (visible light transmission) grades that meet Qatar's vehicle tint regulations. Tell us your vehicle and we will confirm the right grade before you buy.
+Qatar's published regulation allows shaded, non-reflective film on the rear side door glass with a written Traffic Department permit (QR 20 on Metrash), and gives no percentage. Our heat-rejecting films come in several VLT (visible light transmission) grades. Tell us your vehicle and what your permit covers and we will help you pick a grade.
 
 ### Q4: What is the difference between PPF and ceramic coating?
 PPF is a thick urethane film that physically blocks rock chips, scratches and impacts. Ceramic coating is a thin chemical layer that adds gloss and water-repellency but does not stop physical damage. Many customers apply ceramic coating on top of PPF for both benefits.

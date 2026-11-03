@@ -1,8 +1,11 @@
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
+import { PRODUCTS } from "@/data/products";
+import { formatNumber } from "@/lib/pricing";
 
 export function DealerLogistics() {
   const t = useTranslations("DealerPage");
+  const locale = useLocale() === "ar" ? "ar" : "en";
 
   return (
     <section className="bg-(--color-ink) py-14 sm:py-20 text-white">
@@ -21,7 +24,7 @@ export function DealerLogistics() {
 
             <div className="mt-8 grid grid-cols-2 gap-4 border-t border-white/10 pt-8 sm:grid-cols-3">
               <div>
-                <p className="text-display-sm font-bold text-(--color-brand)">{t("logisticsStat1Number")}</p>
+                <p className="text-display-sm font-bold text-(--color-brand)">{formatNumber(PRODUCTS.length, locale)}</p>
                 <p className="mt-0.5 text-footnote text-white/60">{t("logisticsStat1Label")}</p>
               </div>
               <div>

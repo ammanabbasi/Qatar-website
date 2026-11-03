@@ -24,7 +24,7 @@ import { SITE } from "@/lib/constants";
 import { formatNumber } from "@/lib/pricing";
 
 /** Date the VTEK pages and the Google listing below were last read. */
-export const EVIDENCE_CHECKED_AT = "2026-10-20";
+export const EVIDENCE_CHECKED_AT = "2026-11-03";
 
 export const VTEK_URLS = {
   /** Warranty period per film, coverage wording, claim process. */

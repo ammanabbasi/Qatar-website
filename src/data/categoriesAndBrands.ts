@@ -106,11 +106,11 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
     guideParagraphs: {
       en: [
         "In Doha's extreme summer heat (45°C–50°C+) and UV index 11+ sun, low-grade PVC or TPH films can yellow, crack and lose adhesion. ABK Trading & Service stocks Thermoplastic Polyurethane (TPU) films from VTEK (Weather Armor PRO, PRO PLUS, MATTE, PRISM and ULTIMATE) and Grizzly (self-healing TPU at QAR 1,200 per 1.52m × 15m master roll). VTEK Weather Armor films have a self-healing top layer and a written VTEK warranty of 5 to 15 years by film, registered on VTEK's NFC e-Warranty.",
-        "For cabin heat rejection that complies with Qatar Traffic Department (Metrash2) VLT rules, VTEK Solar Armor window film rolls (VUE, APEX, and ICONIC) block over 99% of UV radiation and up to 95% of infrared solar heat without metallic signal interference. Looking for turn-key installation? Car owners can also book fixed-price VTEK PPF installation in Doha (starting from QAR 899 front-end and QAR 3,999 full body) directly through our online quote builder.",
+        "For cabin heat rejection, VTEK Solar Armor window film rolls (VUE, APEX, and ICONIC) block over 99% of UV radiation and up to 95% of infrared solar heat without metallic signal interference. Qatar's published regulation limits tint film to the rear side doors with a Traffic Department permit, so read our window tinting rules guide before fitting. Looking for turn-key installation? Car owners can also book fixed-price VTEK PPF installation in Doha (starting from QAR 899 front-end and QAR 3,999 full body) directly through our online quote builder.",
       ],
       ar: [
         "في ظل حرارة صيف الدوحة التي تتجاوز 45–50 درجة مئوية ومؤشر الأشعة فوق البنفسجية المرتفع، قد تتعرض الأفلام التجارية الرخيصة (PVC أو TPH) للاصفرار والتشقق وتلف اللاصق. لذلك توفر ABK للتجارة والخدمات أفلام البولي يوريثان الحراري (TPU) من علامتَي VTEK (Weather Armor PRO وPRO PLUS والمطفي MATTE والملون PRISM وULTIMATE) وGrizzly (رول 1.52م × 15م بسعر 1,200 ر.ق). وتتميز أفلام VTEK Weather Armor بطبقة علوية ذاتية الإصلاح وضمان VTEK مكتوب من 5 إلى 15 سنة حسب الفيلم، يُسجَّل في ضمان VTEK الإلكتروني NFC.",
-        "وللعزل الحراري المتوافق مع اشتراطات الإدارة العامة للمرور في قطر، توفر أفلام تظليل النوافذ VTEK Solar Armor (فئات VUE وAPEX وICONIC) عزلاً للأشعة فوق البنفسجية بنسبة تتجاوز 99% وعزلاً للأشعة تحت الحمراء حتى 95% دون التأثير على إشارات الجوال أو الملاحة. كما يمكن لملاك السيارات في قطر حجز باقات تركيب أفلام VTEK PPF بأسعار ثابتة ومعلنة (تبدأ من 899 ر.ق للواجهة و3,999 ر.ق لكامل السيارة) عبر حاسبة الأسعار الفورية.",
+        "وللعزل الحراري، توفر أفلام تظليل النوافذ VTEK Solar Armor (فئات VUE وAPEX وICONIC) عزلاً للأشعة فوق البنفسجية بنسبة تتجاوز 99% وعزلاً للأشعة تحت الحمراء حتى 95% دون التأثير على إشارات الجوال أو الملاحة. وتقصر اللائحة المنشورة في قطر فيلم التظليل على الأبواب الخلفية الجانبية بتصريح من إدارة المرور، فاقرأ دليل قوانين التظليل قبل التركيب. كما يمكن لملاك السيارات في قطر حجز باقات تركيب أفلام VTEK PPF بأسعار ثابتة ومعلنة (تبدأ من 899 ر.ق للواجهة و3,999 ر.ق لكامل السيارة) عبر حاسبة الأسعار الفورية.",
       ],
     },
     faqs: [
@@ -292,7 +292,7 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
           ar: "هل شامبوهات السيارات لديكم آمنة على أفلام الحماية PPF والنانو سيراميك؟",
         },
         a: {
-          en: "Yes. Autotriz Rich Foam Shampoo, Briller Wash & Wax, and Insta Finish Maxi Suds are formulated to clean thoroughly without degrading aliphatic TPU self-healing topcoats or stripping SiO2 ceramic coatings.",
+          en: "Yes. Autotriz Rich Foam Shampoo, Briller Wash & Wax, and Insta Finish Maxi Suds are formulated to clean thoroughly without degrading PPF self-healing topcoats or stripping SiO2 ceramic coatings.",
           ar: "نعم، تم تطوير شامبو Autotriz Rich Foam وشامبو Briller وInsta Finish Maxi Suds لتنظيف الطلاء بعمق وأمان دون التأثير على الطبقة العلوية لأفلام الحماية PPF أو إضعاف عزل النانو سيراميك.",
         },
       },
@@ -976,11 +976,11 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
     guideParagraphs: {
       en: [
         "As VTEK's authorised distributor in Qatar (VTEK's own contact page lists our Mesaimeer showroom as its Qatar contact), ABK Trading & Service supplies the Weather Armor TPU paint protection film range from its Mesaimeer showroom: Weather Armor PRO (gloss, 10-year warranty), Weather Armor PRO PLUS (step-up gloss grade, 10-year warranty), Weather Armor MATTE (satin matte, 5-year warranty), Weather Armor PRISM (colour change, 5-year warranty), and flagship Weather Armor ULTIMATE (Polycarbonate Diol-based TPU, 15-year warranty, special roll order). Every installation is registered on VTEK's NFC e-Warranty.",
-        "Alongside PPF, VTEK's Solar Armor window film series — VUE, APEX, and ICONIC — utilizes non-metallized nano-ceramic technology to reject up to 95% of infrared solar heat and 99%+ of UV rays in legal Qatar VLT shades. Want VTEK PPF installed on your vehicle? Use our online quote builder to book installed VTEK PPF packages in Doha starting from QAR 899 (front-end) and QAR 3,999 (full body), backed by both the registered VTEK manufacturer warranty and ABK's 12-month workmanship guarantee.",
+        "Alongside PPF, VTEK's Solar Armor window film series — VUE, APEX, and ICONIC — utilizes non-metallized nano-ceramic technology to reject up to 95% of infrared solar heat and 99%+ of UV rays. Want VTEK PPF installed on your vehicle? Use our online quote builder to book installed VTEK PPF packages in Doha starting from QAR 899 (front-end) and QAR 3,999 (full body), backed by both the registered VTEK manufacturer warranty and ABK's 12-month workmanship guarantee.",
       ],
       ar: [
         "بصفتها الموزع المعتمد لعلامة VTEK (المعروفة سابقاً بـ Vertek) في قطر — وتُدرج صفحة التواصل لدى VTEK معرضنا في مسيمير كجهة التواصل الخاصة بها في قطر — توفر شركة ABK للتجارة والخدمات تشكيلة أفلام حماية الطلاء Weather Armor TPU من معرضها في مسيمير: فيلم Weather Armor PRO (لامع، ضمان 10 سنوات)، وفيلم Weather Armor PRO PLUS (فئة لمعان أعلى، ضمان 10 سنوات)، وفيلم Weather Armor MATTE المطفي (ضمان 5 سنوات)، وفيلم Weather Armor PRISM الملون (ضمان 5 سنوات)، والفئة العليا Weather Armor ULTIMATE (بضمان 15 سنة، بالطلب الخاص للرول). ويُسجَّل كل تركيب في ضمان VTEK الإلكتروني NFC.",
-        "وإلى جانب أفلام الحماية، تقدم سلسلة تظليل النوافذ VTEK Solar Armor (بفئاتها VUE وAPEX وICONIC) تقنية النانو سيراميك غير المعدنية لعزل ما يصل إلى 95% من الأشعة تحت الحمراء وأكثر من 99% من الأشعة فوق البنفسجية بدرجات شفافية متوافقة مع قانون المرور القطري. كما يمكن لملاك السيارات حجز باقات تركيب VTEK PPF الشاملة في الدوحة بأسعار ثابتة تبدأ من 899 ر.ق للواجهة و3,999 ر.ق لكامل السيارة.",
+        "وإلى جانب أفلام الحماية، تقدم سلسلة تظليل النوافذ VTEK Solar Armor (بفئاتها VUE وAPEX وICONIC) تقنية النانو سيراميك غير المعدنية لعزل ما يصل إلى 95% من الأشعة تحت الحمراء وأكثر من 99% من الأشعة فوق البنفسجية. كما يمكن لملاك السيارات حجز باقات تركيب VTEK PPF الشاملة في الدوحة بأسعار ثابتة تبدأ من 899 ر.ق للواجهة و3,999 ر.ق لكامل السيارة.",
       ],
     },
     faqs: [
@@ -1253,7 +1253,7 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
     },
     guideParagraphs: {
       en: [
-        "Grizzly combines American performance engineering with accessible retail and workshop pricing. Its standout product in Qatar is the Grizzly Self-Healing TPU Paint Protection Film (190 microns / 7.5 mil thickness, 1.52m × 15m full master roll) at a published price of QAR 1,200 — making genuine aliphatic TPU protection accessible to independent installers, body shops, and car owners.",
+        "Grizzly combines American performance engineering with accessible retail and workshop pricing. Its standout product in Qatar is the Grizzly Self-Healing TPU Paint Protection Film (190 microns / 7.5 mil thickness, 1.52m × 15m full master roll) at a published price of QAR 1,200 — making TPU protection accessible to independent installers, body shops, and car owners.",
         "In the polishing and maintenance bay, Grizzly One Step Polish 3-in-1 (1L: QAR 115) cuts swirls, polishes to a mirror gloss, and leaves a protective seal in a single pass. Round out your kit with Grizzly Carnauba Paste Wax, Spray Wax, Rim Cleaner, Engine Cleaner, and 20 kg Touchless Car Wash Powder sacks for commercial tunnel and pressure-wash bays.",
       ],
       ar: [

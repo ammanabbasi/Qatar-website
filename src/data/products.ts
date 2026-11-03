@@ -398,8 +398,8 @@ export const PRODUCTS: Product[] = [
         value: { en: "High-Definition Clarity & Anti-Glare", ar: "وضوح فائق الدقة ومقاومة الوهج" },
       },
       {
-        label: { en: "Compliance", ar: "المطابقة" },
-        value: { en: "Qatar Traffic Law & MOI Compliant Grades", ar: "درجات مطابقة لقانون المرور ووزارة الداخلية في قطر" },
+        label: { en: "Fitting in Qatar", ar: "التركيب في قطر" },
+        value: { en: "Rear side doors, with a Traffic Department permit", ar: "الأبواب الخلفية الجانبية بتصريح من إدارة المرور" },
       },
       {
         label: { en: "Warranty", ar: "الضمان" },
@@ -409,7 +409,7 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-10-06",
+    updatedAt: "2026-11-03",
   },
   {
     slug: "vtek-solar-armor-apex",
@@ -473,8 +473,8 @@ export const PRODUCTS: Product[] = [
       ar: "فيلم تظليل نوافذ هجين من الكربون والسيراميك عالي الأداء بلون عميق مقاوم للبهتان، عزل حراري متميز وضمان إلكتروني 10 سنوات.",
     },
     longDesc: {
-      en: "VTEK® Solar Armor™ ICONIC combines advanced carbon particles with nano-ceramic technology to produce a rich, non-fading charcoal finish that never turns purple. Engineered to handle intense Gulf solar exposure, ICONIC provides substantial heat dissipation, glare minimization, and passenger privacy while maintaining pristine interior clarity. Compliant with Qatar Traffic Law standards, backed by a 10-year e-warranty.",
-      ar: "يجمع VTEK® Solar Armor™ ICONIC بين جزيئات الكربون المتقدمة وتقنية النانو سيراميك لمنح لون فحمي عميق وثابت لا يتغير لونه أبداً مع مرور السنين. صُمم لمقاومة أشعة الشمس الشديدة في الخليج مع توفير عزل حراري ممتاز وتخفيف للوهج وتعزيز الخصوصية مع وضوح الرؤية من الداخل. متوافق مع معايير المرور في قطر ومدعوم بضمان إلكتروني لمدة 10 سنوات.",
+      en: "VTEK® Solar Armor™ ICONIC combines advanced carbon particles with nano-ceramic technology to produce a rich, non-fading charcoal finish that never turns purple. Engineered to handle intense Gulf solar exposure, ICONIC provides substantial heat dissipation, glare minimization, and passenger privacy while maintaining pristine interior clarity. Backed by a 10-year e-warranty.",
+      ar: "يجمع VTEK® Solar Armor™ ICONIC بين جزيئات الكربون المتقدمة وتقنية النانو سيراميك لمنح لون فحمي عميق وثابت لا يتغير لونه أبداً مع مرور السنين. صُمم لمقاومة أشعة الشمس الشديدة في الخليج مع توفير عزل حراري ممتاز وتخفيف للوهج وتعزيز الخصوصية مع وضوح الرؤية من الداخل. وهو مدعوم بضمان إلكتروني لمدة 10 سنوات.",
     },
     images: [
       "/products/vtek/vtek-solar-armor-iconic.webp",
@@ -494,8 +494,8 @@ export const PRODUCTS: Product[] = [
         value: { en: "Fade-Resistant Deep Charcoal / Never Turns Purple", ar: "لون فحمي فاخر مقاوم للبهتان ولا يتحول للبنفسجي" },
       },
       {
-        label: { en: "Compliance", ar: "المطابقة" },
-        value: { en: "Qatar Traffic Law & MOI Compliant", ar: "مطابق لقانون المرور ووزارة الداخلية في قطر" },
+        label: { en: "Fitting in Qatar", ar: "التركيب في قطر" },
+        value: { en: "Rear side doors, with a Traffic Department permit", ar: "الأبواب الخلفية الجانبية بتصريح من إدارة المرور" },
       },
       {
         label: { en: "Warranty", ar: "الضمان" },
@@ -505,7 +505,7 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     featured: true,
     highlight: "vertek-premium",
-    updatedAt: "2026-10-06",
+    updatedAt: "2026-11-03",
   },
 
   // ───── Briller Car Care (STAR — line of colored car-wash products)

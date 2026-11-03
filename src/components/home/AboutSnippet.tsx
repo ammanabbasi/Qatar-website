@@ -1,15 +1,20 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
 import { ArrowRightIcon } from "@/components/ui/Icons";
 import { Link } from "@/i18n/navigation";
+import { BRAND_LANDING_PAGES } from "@/data/categoriesAndBrands";
+import { GOOGLE_REVIEWS } from "@/data/ppfEvidence";
+import { PRODUCTS } from "@/data/products";
+import { DELIVERY, formatNumber, formatQar } from "@/lib/pricing";
 
 export function AboutSnippet() {
   const t = useTranslations("HomeAbout");
+  const locale = useLocale() === "ar" ? "ar" : "en";
 
   const stats = [
     {
-      value: t("statProducts"),
+      value: formatNumber(PRODUCTS.length, locale),
       label: t("statProductsLabel"),
       icon: (
         <svg
@@ -29,7 +34,7 @@ export function AboutSnippet() {
       ),
     },
     {
-      value: t("statBrands"),
+      value: formatNumber(BRAND_LANDING_PAGES.length, locale),
       label: t("statBrandsLabel"),
       icon: (
         <svg
@@ -49,8 +54,8 @@ export function AboutSnippet() {
       ),
     },
     {
-      value: t("statClients"),
-      label: t("statClientsLabel"),
+      value: formatQar(DELIVERY.freeThresholdQar, locale),
+      label: t("statDeliveryLabel"),
       icon: (
         <svg
           aria-hidden="true"
@@ -58,19 +63,19 @@ export function AboutSnippet() {
           fill="none"
           stroke="currentColor"
           strokeWidth={1.5}
+          strokeLinecap="round"
+          strokeLinejoin="round"
           viewBox="0 0 24 24"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"
-          />
+          <path d="M1.5 5.25h12.75v10.5H1.5zM14.25 9h4.5l3.75 3.75v3h-8.25z" />
+          <circle cx="6" cy="17.25" r="1.75" />
+          <circle cx="17.25" cy="17.25" r="1.75" />
         </svg>
       ),
     },
     {
-      value: t("statRating"),
-      label: t("statRatingLabel"),
+      value: `${formatNumber(GOOGLE_REVIEWS.rating, locale)}★`,
+      label: t("statRatingLabel", { count: formatNumber(GOOGLE_REVIEWS.count, locale) }),
       icon: (
         <svg
           aria-hidden="true"

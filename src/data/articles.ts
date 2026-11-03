@@ -86,6 +86,11 @@ export type Article = {
     q: { en: string; ar: string };
     a: { en: string; ar: string };
   }>;
+  /** Where the guide's facts come from: rendered as links and emitted as schema.org `citation`. */
+  sources?: Array<{
+    label: { en: string; ar: string };
+    url: string;
+  }>;
 };
 
 // Prices in the PPF articles are read from ppfInstall.ts, so the guide can
@@ -283,11 +288,11 @@ export const ARTICLES: Article[] = [
       ar: "قوانين تظليل السيارات في قطر 2026: النسب المسموحة والتصاريح",
     },
     description: {
-      en: "What tint percentage is legal in Qatar? A practical 2026 guide to MOI tint limits (20% front side windows), how to apply for a tint permit in Metrash, QR 1,000 fines, Fahes inspection, and VTEK ceramic tint.",
-      ar: "ما نسبة التظليل القانونية في قطر؟ دليل عملي 2026 لقوانين وزارة الداخلية وتصاريح التظليل عبر مطراش والغرامات وفحص فاحص وأفلام VTEK العازلة للحرارة.",
+      en: "What Qatar's traffic regulation says about car tint: rear side doors with a QR 20 permit, no reflective film, and why quoted percentages don't match the law.",
+      ar: "ما تنص عليه لائحة المرور في قطر عن تظليل السيارات: الأبواب الخلفية الجانبية بتصريح رسومه 20 ريالاً، دون أفلام عاكسة، ولماذا لا تطابق النسب المتداولة النص.",
     },
     date: "2026-06-12",
-    updated: "2026-10-17",
+    updated: "2026-11-03",
     readingTime: 7,
     category: "guide",
     topics: ["film", "interior"],
@@ -324,32 +329,115 @@ export const ARTICLES: Article[] = [
       },
       {
         heading: {
-          en: "What Tint Levels Does Qatar Allow?",
-          ar: "ما درجات التظليل المسموحة في قطر؟",
+          en: "What Qatar's Traffic Regulation Actually Says",
+          ar: "ما الذي تنص عليه لائحة المرور في قطر فعلاً",
         },
         body: {
-          en: "Qatar's Ministry of Interior (General Directorate of Traffic) regulates how dark vehicle glass may be. Under the rules in force in 2026, private family and sedan/SUV vehicles are generally permitted up to 20% tint darkness (80% VLT) on the front driver and passenger side windows, only a light top sun-strip on the front windshield (no full-windshield dark tint), and darker privacy shading on the rear passenger side windows and rear screen provided both side mirrors offer clear visibility. Sports cars and two-door coupes face stricter limits where dark rear or side tinting is restricted without a special permit. Reflective, mirrored, or metallic-finish films are strictly prohibited on all windows. At ABK we stock VTEK Solar Armor nano-ceramic films in VLT grades engineered to comply with Qatar's traffic regulations while blocking up to 95% of infrared heat.",
-          ar: "تنظم وزارة الداخلية القطرية (الإدارة العامة للمرور) درجة قتامة زجاج المركبات. وفق القواعد السارية في 2026، يُسمح للمركبات الخاصة العائلية والسيدان والدفع الرباعي عموماً بنسبة تظليل تصل إلى 20% قتامة (80% نفاذية ضوء VLT) على النوافذ الجانبية الأمامية للسائق والراكب، وشريط علوي خفيف فقط على الزجاج الأمامي، ودرجة أغمق للنوافذ الجانبية الخلفية والزجاج الخلفي بشرط وضوح الرؤية عبر المرايا الجانبية. وتخضع السيارات الرياضية وذات البابين لقيود أشد تمنع التظليل الغامق دون تصريح خاص، كما يُمنع التظليل العاكس أو المعدني كلياً. في ABK نوفر أفلام VTEK Solar Armor السيراميكية بدرجات نفاذية ضوء متوافقة مع اللوائح القطرية وتعزل حتى 95% من الأشعة تحت الحمراء.",
+          en: "Two published texts govern window tint, and both are on Al Meezan, Qatar's official legal portal. Article 69 of the Traffic Law (Decree-Law 19 of 2007) bans any means of concealing a vehicle's glass without a written permit from the licensing authority. Article 75 of the law's Executive Regulations (Minister of Interior Decision 6 of 2010) sets the rule: the Traffic Department may permit an owner to fit tint film once the fee is paid, the film must be the shaded type and not reflective, and it is limited to the glass of the rear side doors. The front side doors, the windscreen and the rear screen are excluded. Article 76 allows film on all of a vehicle's glass, again with a written permit, in only two cases: a medical report from the competent medical authority (for the period it sets, and personal to the applicant), or vehicles of certain ministries, government bodies and diplomatic missions. Neither text states a percentage or a VLT figure.",
+          ar: "ينظم تظليل زجاج المركبات نصان منشوران، وكلاهما متاح على بوابة الميزان القانونية القطرية الرسمية. تحظر المادة 69 من قانون المرور (المرسوم بقانون رقم 19 لسنة 2007) استعمال أي وسيلة لإخفاء زجاج المركبة دون تصريح كتابي من السلطة المرخصة. وتحدد المادة 75 من اللائحة التنفيذية للقانون (قرار وزير الداخلية رقم 6 لسنة 2010) القاعدة: يجوز لإدارة المرور التصريح كتابةً لمالك المركبة بتركيب المخفي بعد سداد الرسم المقرر، على أن يكون من النوع المظلل وليس العاكس، وأن يقتصر التركيب على زجاج الأبواب الخلفية الجانبية، دون زجاج الأبواب الجانبية الأمامية والزجاج الأمامي والخلفي. وتجيز المادة 76، بتصريح مكتوب أيضاً، تركيب المخفي على كامل زجاج المركبة في حالتين فقط: تقرير طبي من الجهة الطبية المختصة (في حدود المدة المقررة طبياً، ويكون التصريح شخصياً لطالبه)، أو مركبات بعض الوزارات والجهات الحكومية والهيئات الدبلوماسية. ولا يذكر أي من النصين نسبة مئوية أو رقماً لنفاذية الضوء.",
+        },
+        table: {
+          caption: {
+            en: "Where film may go under the published text.",
+            ar: "أين يجوز تركيب الفيلم وفق النص المنشور.",
+          },
+          head: [
+            { en: "Glass", ar: "الزجاج" },
+            { en: "Published rule", ar: "القاعدة المنشورة" },
+            { en: "Text", ar: "النص" },
+          ],
+          rows: [
+            [
+              { en: "Rear side doors", ar: "الأبواب الخلفية الجانبية" },
+              { en: "Allowed with a written permit; shaded film, not reflective", ar: "مسموح بتصريح كتابي؛ فيلم مظلل وليس عاكساً" },
+              { en: "Decision 6/2010, Art. 75", ar: "قرار 6/2010، المادة 75" },
+            ],
+            [
+              { en: "Front side doors", ar: "الأبواب الأمامية الجانبية" },
+              { en: "Excluded, unless an Article 76 exception applies", ar: "مستثناة، ما لم تنطبق إحدى حالتي المادة 76" },
+              { en: "Art. 75 and 76", ar: "المادتان 75 و76" },
+            ],
+            [
+              { en: "Windscreen", ar: "الزجاج الأمامي" },
+              { en: "Excluded, unless an Article 76 exception applies", ar: "مستثنى، ما لم تنطبق إحدى حالتي المادة 76" },
+              { en: "Art. 75 and 76", ar: "المادتان 75 و76" },
+            ],
+            [
+              { en: "Rear screen", ar: "الزجاج الخلفي" },
+              { en: "Excluded, unless an Article 76 exception applies", ar: "مستثنى، ما لم تنطبق إحدى حالتي المادة 76" },
+              { en: "Art. 75 and 76", ar: "المادتان 75 و76" },
+            ],
+          ],
+          source: {
+            en: "Read on almeezan.qa, 3 November 2026.",
+            ar: "قُرئ على almeezan.qa في 3 نوفمبر 2026.",
+          },
         },
       },
       {
         heading: {
-          en: "How to Apply for a Car Tint Permit in Metrash (Step-by-Step)",
-          ar: "كيفية التقديم على تصريح تظليل السيارة عبر تطبيق مطراش (خطوة بخطوة)",
+          en: "Why Everyone Quotes a Different Percentage",
+          ar: "لماذا تختلف النسب التي يذكرها الجميع",
         },
         body: {
-          en: "Drivers who require darker window tinting than the standard 20% front-side limit — most commonly for documented medical conditions such as lupus, severe photosensitivity, or ophthalmic disorders — must obtain an official MOI Window Tinting Permit before fitting dark film. To apply and pay in the Metrash app: (1) Obtain an official medical report from Hamad Medical Corporation (HMC) or an approved Ministry of Public Health clinic stating the medical necessity for UV/light protection; (2) Open the Metrash app and log in with your QID; (3) Navigate to Traffic → Vehicle Services → Issue/Renew Window Tinting Permit; (4) Enter the vehicle plate number, verify Istimara (registration) ownership, and upload the medical report; (5) Once reviewed and approved by the General Directorate of Traffic, pay the applicable permit fee directly inside Metrash using a debit or credit card. The electronic permit links to your vehicle plate so traffic patrols and Fahes inspectors can verify it automatically.",
-          ar: "يمكن للسائقين الذين يحتاجون نسبة تظليل أعلى من الحد القياسي (20% للنوافذ الأمامية) — وغالباً لأسباب طبية موثقة مثل الحساسية الضوئية الشديدة أو أمراض العيون والجلد — استخراج تصريح تظليل رسمي من وزارة الداخلية قبل تركيب الفيلم الغامق. للتقديم والدفع عبر تطبيق مطراش: (1) استخرج تقريراً طبياً معتمداً من مؤسسة حمد الطبية أو جهة صحية معتمدة من وزارة الصحة العامة يثبت الحاجة الطبية للوقاية من أشعة الشمس؛ (2) افتح تطبيق مطراش وسجّل الدخول بالبطاقة الشخصية؛ (3) انتقل إلى المرور ← خدمات المركبات ← إصدار/تجديد تصريح تظليل؛ (4) أدخل رقم لوحة المركبة وتأكد من سريان الاستمارة ثم أرفق التقرير الطبي؛ (5) بعد مراجعة الطلب والموافقة عليه من الإدارة العامة للمرور، سدد رسوم التصريح إلكترونياً داخل التطبيق ليُربط التصريح برقم المركبة تلقائياً لدى الدوريات وفحص فاحص.",
+          en: "Ask around Doha and you will hear 10%, 20%, 30% or 50%. Those numbers are not in the published regulation, and the guides that quote them disagree with each other. Some mean darkness and others mean light passing through (VLT), so the same number can describe opposite films. We found no Ministry of Interior page that publishes a percentage, although enforcement practice or a later instruction may exist that is not published. So treat any figure, including one from a tint shop, as unverified until the Traffic Department or Metrash confirms it for your vehicle. An earlier version of this guide quoted 20% (80% VLT) for front windows and fines of QR 1,000 to 3,000; we removed both on 3 November 2026 because we could not trace them to a published text.",
+          ar: "إذا سألت في الدوحة فستسمع 10% أو 20% أو 30% أو 50%. هذه الأرقام غير موجودة في اللائحة المنشورة، والأدلة التي تذكرها تختلف فيما بينها. بعضها يقصد درجة القتامة وبعضها نفاذية الضوء (VLT)، فقد يصف الرقم نفسه فيلمين متعاكسين. لم نجد صفحة لوزارة الداخلية تنشر نسبة محددة، وقد توجد ممارسة ميدانية أو تعليمات لاحقة غير منشورة. لذلك تعامل مع أي رقم، حتى لو جاء من مركز تظليل، على أنه غير مؤكد حتى تؤكده إدارة المرور أو تطبيق مطراش لسيارتك. وكانت نسخة سابقة من هذا الدليل تذكر 20% (نفاذية ضوء 80%) للنوافذ الأمامية وغرامة من 1,000 إلى 3,000 ريال؛ وقد حذفناهما في 3 نوفمبر 2026 لأننا لم نجد لهما أصلاً في نص منشور.",
+        },
+        table: {
+          caption: {
+            en: "What unofficial sources say. These are not official figures.",
+            ar: "ما تذكره المصادر غير الرسمية. هذه ليست أرقاماً رسمية.",
+          },
+          head: [
+            { en: "Source", ar: "المصدر" },
+            { en: "Front side windows", ar: "النوافذ الأمامية الجانبية" },
+            { en: "Rear side windows", ar: "النوافذ الخلفية الجانبية" },
+            { en: "Date", ar: "التاريخ" },
+          ],
+          rows: [
+            [
+              { en: "ILoveQatar.net", ar: "ILoveQatar.net" },
+              { en: "20%", ar: "20%" },
+              { en: "Up to 100%", ar: "حتى 100%" },
+              { en: "July 2021", ar: "يوليو 2021" },
+            ],
+            [
+              { en: "YallaMotor", ar: "YallaMotor" },
+              { en: "50% VLT", ar: "نفاذية ضوء 50%" },
+              { en: "30% VLT", ar: "نفاذية ضوء 30%" },
+              { en: "2026", ar: "2026" },
+            ],
+            [
+              { en: "Saaed Service", ar: "Saaed Service" },
+              { en: "At least 70% VLT", ar: "نفاذية ضوء 70% على الأقل" },
+              { en: "Up to 70% VLT reduction", ar: "خفض حتى 70% من نفاذية الضوء" },
+              { en: "Undated", ar: "غير مؤرخ" },
+            ],
+          ],
+          source: {
+            en: "Read 3 November 2026.",
+            ar: "قُرئت في 3 نوفمبر 2026.",
+          },
         },
       },
       {
         heading: {
-          en: "Illegal Tint Fines, Penalties and Fahes Inspection",
-          ar: "غرامات التظليل المخالف والعقوبات وفحص فاحص السنوي",
+          en: "How to Get the Permit (QR 20 on MOI or Metrash)",
+          ar: "كيف تستخرج التصريح (20 ريالاً عبر وزارة الداخلية أو مطراش)",
         },
         body: {
-          en: "Driving with non-compliant window tint in Qatar without a valid Metrash permit carries strict penalties under the Qatar Traffic Law: traffic violations for illegal window tinting typically result in a fine of QR 1,000 to QR 3,000 depending on the violation severity, mandatory removal of the non-compliant film, and potential vehicle impoundment. In addition, any vehicle with excessive front-side or windshield tint will automatically fail its annual Fahes (Woqod) technical inspection until the film is stripped and adhesive residue is cleaned. The smart alternative is installing legal-VLT nano-ceramic film from day one: because ceramic particles block invisible infrared heat rather than visible light, a legal 70%–80% VLT ceramic film keeps your cabin cooler than an illegal 5% dyed film without ever risking a traffic fine.",
-          ar: "القيادة بتظليل مخالف للحدود القانونية في قطر دون تصريح ساري المفعول عبر مطراش تعرض السائق لعقوبات مشددة وفق قانون المرور القطري؛ حيث تتراوح غرامة مخالفة التظليل عادةً بين 1,000 و3,000 ريال قطري بحسب نوع المخالفة، مع إلزامية إزالة الفيلم المخالف واحتمال حجز المركبة. وعلاوة على ذلك، ترسب أي مركبة تحمل تظليلاً زائداً على النوافذ الأمامية أو الزجاج الأمامي تلقائياً في الفحص الفني السنوي (فاحص / وقود) حتى يُزال الفيلم وتُنظف بقايا الصمغ. البديل الذكي هو تركيب فيلم نانو سيراميك بنفاذية ضوء قانونية من البداية؛ فحبيبات السيراميك تعزل الأشعة تحت الحمراء غير المرئية المسببة للحرارة، ما يمنحك مقصورة باردة واجتيازاً مضموناً لفحص فاحص دون أي غرامة.",
+          en: "Hukoomi, the government services portal, lists this as the Glass Tinting Permit for Vehicles. On the Ministry of Interior e-services portal: log in with your smart card, choose a personal or company transaction, then open Traffic Services, Vehicles, Glass Tinting Permit. Pick your vehicle from the list or enter the plate number and vehicle type, choose collection from the Traffic Department or delivery by Qatar Post, then pay by card. The service fee is QR 20, Qatar Post delivery costs extra, and Hukoomi says the service runs immediately and is also available in the Metrash app (page last updated January 2021). The permit comes as a new vehicle permit that includes the tint permission. If you need film beyond the rear side doors on medical grounds, Article 76 asks for a report from the competent medical authority; ask the Traffic Department how to submit it before fitting anything.",
+          ar: "تدرج بوابة حكومي خدمة طلب تصريح تظليل زجاج المركبات. عبر بوابة الخدمات الإلكترونية لوزارة الداخلية: سجّل الدخول بالبطاقة الذكية، واختر نوع المعاملة (شخصية أو باسم الشركة)، ثم افتح خدمات المرور ← المركبات ← تصريح تظليل الزجاج. اختر مركبتك من القائمة أو أدخل رقم اللوحة ونوع المركبة، وحدد الاستلام من إدارة المرور أو التوصيل عبر بريد قطر، ثم ادفع بالبطاقة. رسوم الخدمة 20 ريالاً، والتوصيل عبر بريد قطر برسوم إضافية، وتذكر بوابة حكومي أن الخدمة فورية ومتاحة أيضاً في تطبيق مطراش (آخر تحديث للصفحة يناير 2021). ويصدر التصريح ضمن رخصة مركبة جديدة تتضمن تصريح التظليل. وإذا احتجت إلى فيلم خارج الأبواب الخلفية الجانبية لأسباب طبية، فالمادة 76 تشترط تقريراً من الجهة الطبية المختصة؛ اسأل إدارة المرور عن طريقة تقديمه قبل تركيب أي فيلم.",
+        },
+      },
+      {
+        heading: {
+          en: "Penalties: What the Law Says",
+          ar: "العقوبات: ما ينص عليه القانون",
+        },
+        body: {
+          en: "Article 95 of the Traffic Law (amended in 2015) sets imprisonment of one week to one year, a fine of QR 3,000 to QR 10,000, or either, for breaches of the articles it lists, and Article 69 is on that list. Article 88 lets the Director of Traffic order a vehicle held for up to 90 days when any means is used to conceal its glass without a written permit. Some guides quote lower fines (QR 500 to QR 1,000), which may reflect what is applied in practice; we could not verify them. A FAHES official said in 2016 that tinting the windscreen and the rear screen is not allowed (The Peninsula). This is a summary by a car care supplier, not legal advice: check Metrash or the Traffic Department before you fit film.",
+          ar: "تنص المادة 95 من قانون المرور (المعدلة في 2015) على الحبس من أسبوع إلى سنة، والغرامة من 3,000 إلى 10,000 ريال، أو إحدى هاتين العقوبتين، لمخالفة المواد التي تعددها ومنها المادة 69. وتجيز المادة 88 لمدير إدارة المرور حجز المركبة مدة لا تتجاوز 90 يوماً عند استعمال أي وسيلة لإخفاء زجاجها دون تصريح كتابي. وتذكر بعض الأدلة غرامات أقل (من 500 إلى 1,000 ريال) قد تعكس ما يُطبَّق عملياً، لكننا لم نتمكن من التحقق منها. وقال مسؤول في فاحص عام 2016 إن تظليل الزجاج الأمامي والخلفي غير مسموح (ذا بينينسولا). هذا ملخص من مورّد منتجات عناية بالسيارات وليس استشارة قانونية: تحقق عبر مطراش أو إدارة المرور قبل تركيب الفيلم.",
         },
       },
       {
@@ -358,8 +446,8 @@ export const ARTICLES: Article[] = [
           ar: "شرح نفاذية الضوء وعزل الأشعة تحت الحمراء وبقية الأرقام",
         },
         body: {
-          en: "Tint shopping comes with jargon. VLT (visible light transmission) is the percentage of visible light that passes through — a 70%–80% VLT film is nearly clear and legal on front windows, whereas a 5% VLT film is limousine-dark. Heat rejection numbers split into TSER (total solar energy rejected) and IR rejection (the infrared portion you feel as burning skin heat). VTEK Solar Armor window films — available at ABK in three tiers: Solar Armor VUE, Solar Armor APEX, and flagship Solar Armor ICONIC — deliver 99%+ UV protection and up to 95% infrared heat rejection even in high-VLT legal shades.",
-          ar: "يأتي شراء التظليل مصحوباً بمصطلحات تقنية. نفاذية الضوء المرئي (VLT) هي نسبة الضوء المرئي الذي يمر عبر الفيلم — فيلم بنفاذية 70%–80% يكاد يكون شفافاً ومتوافقاً مع القانون للنوافذ الأمامية، بينما فيلم 5% غامق كزجاج الليموزين. أما أرقام العزل الحراري فتنقسم إلى إجمالي الطاقة الشمسية المرفوضة (TSER) وعزل الأشعة تحت الحمراء (IRR). توفر أفلام تظليل VTEK Solar Armor المتوفرة لدى ABK بثلاث فئات (Solar Armor VUE وSolar Armor APEX والفئة الرائدة Solar Armor ICONIC) حجباً للأشعة فوق البنفسجية بنسبة +99% وعزلاً للأشعة تحت الحمراء يصل إلى 95% حتى في الدرجات الفاتحة القانونية.",
+          en: "Tint shopping comes with jargon. VLT (visible light transmission) is the percentage of visible light that passes through: a 70%–80% VLT film is nearly clear, whereas a 5% VLT film is limousine-dark. Heat rejection numbers split into TSER (total solar energy rejected) and IR rejection (the infrared portion you feel as burning skin heat). Because ceramic particles target infrared rather than visible light, a lighter ceramic film can still reject a lot of heat, so a darker film is not automatically a cooler one. VTEK Solar Armor window films, available at ABK as Solar Armor VUE, APEX and ICONIC, are listed with 99%+ UV protection and up to 95% infrared heat rejection.",
+          ar: "يأتي شراء التظليل مصحوباً بمصطلحات تقنية. نفاذية الضوء المرئي (VLT) هي نسبة الضوء المرئي الذي يمر عبر الفيلم: فيلم بنفاذية 70%–80% يكاد يكون شفافاً، بينما فيلم 5% غامق كزجاج الليموزين. أما أرقام العزل الحراري فتنقسم إلى إجمالي الطاقة الشمسية المرفوضة (TSER) وعزل الأشعة تحت الحمراء (IRR). ولأن حبيبات السيراميك تستهدف الأشعة تحت الحمراء لا الضوء المرئي، يمكن لفيلم سيراميكي أفتح أن يعزل حرارة كبيرة، فالفيلم الأغمق ليس بالضرورة أبرد. وتُدرج أفلام VTEK Solar Armor المتوفرة لدى ABK (فئات VUE وAPEX وICONIC) بحجب +99% من الأشعة فوق البنفسجية وعزل يصل إلى 95% من الأشعة تحت الحمراء.",
         },
       },
       {
@@ -381,16 +469,16 @@ export const ARTICLES: Article[] = [
     ],
     cta: PPF_INSTALL_CTA,
     inlineCta: {
-      badge: { en: "Qatar Legal-VLT Nano-Ceramic Tint", ar: "عازل حراري نانو سيراميك مطابق للمرور" },
+      badge: { en: "Nano-Ceramic Window Film in Doha", ar: "فيلم تظليل نانو سيراميك في الدوحة" },
       title: {
-        en: "Block 95% of Qatar's Infrared Heat Without Risking a Traffic Fine",
-        ar: "اعزل 95% من حرارة شمس قطر بدرجات قانونية تجتاز فحص فاحص",
+        en: "VTEK Solar Armor Film, Stocked in Mesaimeer",
+        ar: "أفلام VTEK Solar Armor متوفرة في مسيمير",
       },
       body: {
-        en: "ABK stocks genuine VTEK Solar Armor (VUE, APEX & ICONIC) nano-ceramic window tint rolls in Mesaimeer, Doha — engineered for high IR heat rejection in legal 70%–80% VLT front-window shades.",
-        ar: "توفر ABK أفلام تظليل النانو سيراميك الأصلية VTEK Solar Armor (VUE وAPEX وICONIC) في معرض مسيمير بالدوحة — عزل حراري فائق للأشعة تحت الحمراء بدرجات نفاذية قانونية (70%–80% VLT).",
+        en: "ABK stocks genuine VTEK Solar Armor (VUE, APEX & ICONIC) nano-ceramic window film rolls in Mesaimeer, Doha. Tell us which windows your permit covers and we will help you pick a film.",
+        ar: "توفر ABK رولات أفلام التظليل النانو سيراميك الأصلية VTEK Solar Armor (فئات VUE وAPEX وICONIC) في مسيمير بالدوحة. أخبرنا بالنوافذ التي يشملها تصريحك وسنساعدك في اختيار الفيلم.",
       },
-      primaryHref: "https://wa.me/97430838355?text=Hi%20ABK%2C%20I%20want%20to%20enquire%20about%20legal-VLT%20VTEK%20Solar%20Armor%20window%20tint%20in%20Qatar.",
+      primaryHref: "https://wa.me/97430838355?text=Hi%20ABK%2C%20I%20want%20to%20enquire%20about%20VTEK%20Solar%20Armor%20window%20film%20in%20Qatar.",
       primaryLabel: { en: "Enquire on WhatsApp (+974 3083 8355)", ar: "اطلب عبر واتساب (+974 3083 8355)" },
       primaryExternal: true,
       secondaryHref: "/b2c/categories/film",
@@ -403,8 +491,18 @@ export const ARTICLES: Article[] = [
           ar: "ما هي نسبة تظليل السيارات المسموح بها في قطر؟",
         },
         a: {
-          en: "Under Qatar's Ministry of Interior (MOI) traffic rules, private sedans and SUVs are permitted up to 20% tint darkness (80% VLT) on the front driver and passenger side windows and a top sun-strip on the windshield. Rear passenger windows and the rear windshield can carry darker privacy shading on family vehicles provided side mirrors offer clear visibility. Reflective or metallic mirror tint is prohibited on all windows.",
-          ar: "وفق لوائح الإدارة العامة للمرور بوزارة الداخلية القطرية، يُسمح للسيارات الخاصة العائلية والسيدان والدفع الرباعي بنسبة تظليل تصل إلى 20% قتامة (80% نفاذية ضوء VLT) على النوافذ الأمامية الجانبية للسائق والراكب وشريط علوي خفيف على الزجاج الأمامي، مع السماح بدرجة أغمق للنوافذ الخلفية بشرط وضوح الرؤية عبر المرايا الجانبية، ويُمنع التظليل العاكس أو المعدني نهائياً.",
+          en: "The published regulation gives no percentage. Article 75 of Minister of Interior Decision 6 of 2010 allows shaded, non-reflective film on the rear side door glass with a written Traffic Department permit, and excludes the front side doors, windscreen and rear screen. Figures of 10%, 20%, 30% or 50% come from shops and guides and disagree with each other, so confirm with the Traffic Department or Metrash for your vehicle.",
+          ar: "لا تذكر اللائحة المنشورة أي نسبة. تجيز المادة 75 من قرار وزير الداخلية رقم 6 لسنة 2010 تركيب فيلم مظلل غير عاكس على زجاج الأبواب الخلفية الجانبية بتصريح كتابي من إدارة المرور، وتستثني الأبواب الأمامية الجانبية والزجاج الأمامي والخلفي. أما نسب 10% أو 20% أو 30% أو 50% فمصدرها المراكز والأدلة وهي تختلف فيما بينها، لذا تأكد من إدارة المرور أو مطراش لسيارتك.",
+        },
+      },
+      {
+        q: {
+          en: "Can I tint my front windows in Qatar?",
+          ar: "هل يمكنني تظليل النوافذ الأمامية في قطر؟",
+        },
+        a: {
+          en: "Under the published text, only with an Article 76 exception: a medical report from the competent medical authority, or certain government and diplomatic vehicles, and always with a written Traffic Department permit. If a shop tells you light film on front windows is fine, ask the Traffic Department to confirm it before you fit it.",
+          ar: "وفق النص المنشور، فقط ضمن استثناء المادة 76: تقرير طبي من الجهة الطبية المختصة، أو مركبات حكومية ودبلوماسية معينة، وبتصريح كتابي من إدارة المرور دائماً. وإذا أخبرك مركز بأن الفيلم الخفيف على النوافذ الأمامية مسموح، فاطلب تأكيد ذلك من إدارة المرور قبل التركيب.",
         },
       },
       {
@@ -413,8 +511,8 @@ export const ARTICLES: Article[] = [
           ar: "كيف أقدم على تصريح تظليل السيارة وأسدد الرسوم في تطبيق مطراش؟",
         },
         a: {
-          en: "Obtain an official medical report from Hamad Medical Corporation (HMC) or an MOPH-approved clinic confirming medical need for UV protection. Open the Metrash app, go to Traffic → Vehicle Services → Issue/Renew Window Tinting Permit, enter your plate number, upload the medical report, and once approved by the Traffic Department, pay the permit fee directly inside Metrash by card.",
-          ar: "استخرج تقريراً طبياً معتمداً من مؤسسة حمد الطبية أو جهة صحية معتمدة من وزارة الصحة العامة، ثم افتح تطبيق مطراش وانتقل إلى المرور ← خدمات المركبات ← إصدار/تجديد تصريح تظليل، وأدخل رقم اللوحة وأرفق التقرير الطبي، وبعد الموافقة سدد رسوم التصريح إلكترونياً داخل تطبيق مطراش.",
+          en: "Hukoomi lists the Glass Tinting Permit for Vehicles at QR 20, available immediately through Ministry of Interior e-services (Traffic Services, Vehicles, Glass Tinting Permit) and in the Metrash app. Select your vehicle, choose collection from the Traffic Department or Qatar Post delivery (extra fee), and pay by card.",
+          ar: "تدرج بوابة حكومي تصريح تظليل زجاج المركبات برسوم 20 ريالاً، وهو فوري عبر الخدمات الإلكترونية لوزارة الداخلية (خدمات المرور ← المركبات ← تصريح تظليل الزجاج) وفي تطبيق مطراش. اختر مركبتك، وحدد الاستلام من إدارة المرور أو التوصيل عبر بريد قطر (برسوم إضافية)، ثم ادفع بالبطاقة.",
         },
       },
       {
@@ -423,9 +521,39 @@ export const ARTICLES: Article[] = [
           ar: "كم مخالفة وغرامة التظليل غير القانوني في قطر؟",
         },
         a: {
-          en: "Driving with illegal window tinting in Qatar without an approved Metrash permit carries a traffic fine typically ranging from QR 1,000 to QR 3,000, mandatory removal of the non-compliant film, potential vehicle impoundment, and automatic failure at the annual Fahes (Woqod) inspection.",
-          ar: "تتراوح غرامة مخالفة تظليل النوافذ بدون تصريح مطراش في قطر عادةً بين 1,000 و3,000 ريال قطري مع إلزامية إزالة الفيلم المخالف واحتمال حجز المركبة والرسوب في الفحص الفني السنوي (فاحص).",
+          en: "Article 95 of the Traffic Law sets one week to one year in prison, a fine of QR 3,000 to QR 10,000, or either, for breaching Article 69 (concealing glass without a written permit). Article 88 also allows the vehicle to be held for up to 90 days. Some guides quote lower fines of QR 500 to QR 1,000, which we could not verify.",
+          ar: "تنص المادة 95 من قانون المرور على الحبس من أسبوع إلى سنة، والغرامة من 3,000 إلى 10,000 ريال، أو إحداهما، لمخالفة المادة 69 (إخفاء الزجاج دون تصريح كتابي). كما تجيز المادة 88 حجز المركبة مدة تصل إلى 90 يوماً. وتذكر بعض الأدلة غرامات أقل من 500 إلى 1,000 ريال لم نتمكن من التحقق منها.",
         },
+      },
+    ],
+    sources: [
+      {
+        label: { en: "Al Meezan: Minister of Interior Decision 6 of 2010 (Articles 74–76)", ar: "الميزان: قرار وزير الداخلية رقم 6 لسنة 2010 (المواد 74–76)" },
+        url: "https://almeezan.qa/legislations/ministerial-decision/2010/6/general",
+      },
+      {
+        label: { en: "Al Meezan: Traffic Law, Decree-Law 19 of 2007 (Articles 69, 88, 95)", ar: "الميزان: قانون المرور، المرسوم بقانون رقم 19 لسنة 2007 (المواد 69 و88 و95)" },
+        url: "https://almeezan.qa/legislations/decree-law/2007/19/general",
+      },
+      {
+        label: { en: "Hukoomi: Request Glass Tinting Permit for Vehicles", ar: "حكومي: طلب تصريح تظليل زجاج المركبات" },
+        url: "https://hukoomi.gov.qa/en/categories/transportation/request-glass-tinting-permit-for-vehicles",
+      },
+      {
+        label: { en: "The Peninsula: More queries about tinted glasses (19 March 2016)", ar: "ذا بينينسولا: More queries about tinted glasses (19 مارس 2016)" },
+        url: "https://s.thepeninsula.qa/article/19/03/2016/More-queries-about-tinted-glasses",
+      },
+      {
+        label: { en: "ILoveQatar.net: How to tint your car in Qatar", ar: "ILoveQatar.net: How to tint your car in Qatar" },
+        url: "https://www.iloveqatar.net/guide/transportation/how-to-tint-car-windows-metrash-permit-qatar",
+      },
+      {
+        label: { en: "YallaMotor: GCC window tinting laws 2026", ar: "YallaMotor: GCC window tinting laws 2026" },
+        url: "https://www.yallamotor.com/news/new-gcc-window-tinting-laws-2026-best-vlt-50c-heat-55420",
+      },
+      {
+        label: { en: "Saaed Service: Car window tinting in Qatar", ar: "Saaed Service: تظليل زجاج السيارات في قطر" },
+        url: "https://saaedservice.com/car-window-tinting-qatar",
       },
     ],
   },
@@ -440,11 +568,11 @@ export const ARTICLES: Article[] = [
       ar: "كم تكلفة الطلاء السيراميكي في قطر؟ (دليل أسعار 2026)",
     },
     description: {
-      en: "2026 ceramic coating prices in Qatar for sedans, medium SUVs and large 4x4s — Doha studio ranges (QAR 800–3,200), Autotriz 9H kit prices (QAR 250–280), and how to compare quotes.",
+      en: "2026 ceramic coating prices in Qatar for sedans, medium SUVs and large 4x4s — estimated Doha studio ranges (QAR 800–3,200), Autotriz 9H kit prices (QAR 250–280), and how to compare quotes.",
       ar: "أسعار الطلاء السيراميكي في قطر لعام 2026 للسيدان وسيارات SUV المتوسطة والكبيرة — نطاقات الأسعار في الدوحة وأسعار أطقم Autotriz 9H الأصلية.",
     },
     date: "2026-06-11",
-    updated: "2026-10-17",
+    updated: "2026-11-03",
     readingTime: 6,
     category: "buying-guide",
     topics: ["ceramic", "polish"],
@@ -481,8 +609,8 @@ export const ARTICLES: Article[] = [
           ar: "متوسط أسعار الطلاء السيراميكي في الدوحة حسب حجم السيارة (سيدان، SUV متوسطة، دفع رباعي كبير)",
         },
         body: {
-          en: "Across reputable detailing studios in Doha, full ceramic coating packages (including decontamination wash, machine polish, and 9H nano-ceramic application) typically fall into three vehicle-size brackets: (1) Sedans, Hatchbacks & Coupes: QAR 800 to QAR 1,800 depending on single-stage vs two-stage paint correction and 1-year vs 3–5-year coating durability; (2) Medium SUVs & Crossovers (e.g., Toyota Prado, Jetour T2, Porsche Cayenne, Nissan X-Trail, Range Rover Sport): QAR 1,200 to QAR 2,500 for a full exterior 9H multi-layer package with single- or two-stage polish; (3) Large SUVs & Pickups (e.g., Toyota Land Cruiser 300, Nissan Patrol, Lexus LX, GMC Yukon, Ford F-150): QAR 1,600 to QAR 3,200+ due to the larger surface area and roof/panel prep time. If you are buying the genuine German ceramic coating kit directly to supply your detailer or apply yourself, ABK stocks Autotriz REVO +15 Ceramic Coating (50ml) at QAR 250, Autotriz ION+ +15 Ceramic Coating (50ml) at QAR 250, Autotriz 3D Matrix Hybrid (50ml kit) at QAR 280, and flagship Autotriz 3D Matrix Ultra (50ml kit) at QAR 280, plus Autotriz Leather & Vinyl Coating (50ml) at QAR 280.",
-          ar: "في مراكز التلميع المعتمدة في الدوحة، تنقسم أسعار باقات الطلاء السيراميكي الكاملة (شاملة الغسيل التفصيلي، والتلميع الآلي لتصحيح الطلاء، وتطبيق النانو سيراميك 9H) عادةً إلى ثلاث فئات حسب حجم المركبة: (1) سيارات السيدان والكوبيه والهاتشباك: من 800 إلى 1,800 ريال قطري بحسب مراحل تصحيح الطلاء ومدة ضمان السيراميك؛ (2) سيارات الدفع الرباعي المتوسطة والكروس أوفر (مثل تويوتا برادو، جيتور T2، بورش كايين، نيسان إكس تريل، رينج روفر سبورت): من 1,200 إلى 2,500 ريال قطري لباقة سيراميك 9H متعددة الطبقات مع تلميع؛ (3) سيارات الدفع الرباعي الكبيرة والبيك أب (مثل لاند كروزر، نيسان باترول، لكزس LX، جمسي يوكون): من 1,600 إلى 3,200+ ريال قطري نظراً لكبر المساحة السطحية. أما إذا رغبت بشراء أطقم السيراميك الألماني الأصلي مباشرة من الموزع لتزويد مركز التلميع أو للتطبيق الشخصي، فتوفر ABK في معرض مسيمير: Autotriz REVO +15 (عبوة 50 مل) بسعر 250 ر.ق، وAutotriz ION+ +15 (عبوة 50 مل) بسعر 250 ر.ق، وAutotriz 3D Matrix Hybrid (طقم 50 مل) بسعر 280 ر.ق، والفئة الرائدة Autotriz 3D Matrix Ultra (طقم 50 مل) بسعر 280 ر.ق.",
+          en: "Few Doha studios publish ceramic prices, so these brackets are ABK's own estimate of typical quotes, not a price list. Full ceramic coating packages (including decontamination wash, machine polish, and 9H nano-ceramic application) typically fall into three vehicle-size brackets: (1) Sedans, Hatchbacks & Coupes: QAR 800 to QAR 1,800 depending on single-stage vs two-stage paint correction and 1-year vs 3–5-year coating durability; (2) Medium SUVs & Crossovers (e.g., Toyota Prado, Jetour T2, Porsche Cayenne, Nissan X-Trail, Range Rover Sport): QAR 1,200 to QAR 2,500 for a full exterior 9H multi-layer package with single- or two-stage polish; (3) Large SUVs & Pickups (e.g., Toyota Land Cruiser 300, Nissan Patrol, Lexus LX, GMC Yukon, Ford F-150): QAR 1,600 to QAR 3,200+ due to the larger surface area and roof/panel prep time. ProDip is one studio that publishes a figure: QAR 1,500 with a 5-year warranty (read 3 November 2026). If you are buying the genuine German ceramic coating kit directly to supply your detailer or apply yourself, ABK stocks Autotriz REVO +15 Ceramic Coating (50ml) at QAR 250, Autotriz ION+ +15 Ceramic Coating (50ml) at QAR 250, Autotriz 3D Matrix Hybrid (50ml kit) at QAR 280, and flagship Autotriz 3D Matrix Ultra (50ml kit) at QAR 280, plus Autotriz Leather & Vinyl Coating (50ml) at QAR 280.",
+          ar: "قليل من مراكز الدوحة ينشر أسعار السيراميك، لذا فهذه الفئات تقدير من ABK للأسعار المعتادة وليست قائمة أسعار. تنقسم أسعار باقات الطلاء السيراميكي الكاملة (شاملة الغسيل التفصيلي، والتلميع الآلي لتصحيح الطلاء، وتطبيق النانو سيراميك 9H) عادةً إلى ثلاث فئات حسب حجم المركبة: (1) سيارات السيدان والكوبيه والهاتشباك: من 800 إلى 1,800 ريال قطري بحسب مراحل تصحيح الطلاء ومدة ضمان السيراميك؛ (2) سيارات الدفع الرباعي المتوسطة والكروس أوفر (مثل تويوتا برادو، جيتور T2، بورش كايين، نيسان إكس تريل، رينج روفر سبورت): من 1,200 إلى 2,500 ريال قطري لباقة سيراميك 9H متعددة الطبقات مع تلميع؛ (3) سيارات الدفع الرباعي الكبيرة والبيك أب (مثل لاند كروزر، نيسان باترول، لكزس LX، جمسي يوكون): من 1,600 إلى 3,200+ ريال قطري نظراً لكبر المساحة السطحية. وتنشر ProDip سعراً واحداً: 1,500 ر.ق مع ضمان 5 سنوات (قُرئ في 3 نوفمبر 2026). أما إذا رغبت بشراء أطقم السيراميك الألماني الأصلي مباشرة من الموزع لتزويد مركز التلميع أو للتطبيق الشخصي، فتوفر ABK في معرض مسيمير: Autotriz REVO +15 (عبوة 50 مل) بسعر 250 ر.ق، وAutotriz ION+ +15 (عبوة 50 مل) بسعر 250 ر.ق، وAutotriz 3D Matrix Hybrid (طقم 50 مل) بسعر 280 ر.ق، والفئة الرائدة Autotriz 3D Matrix Ultra (طقم 50 مل) بسعر 280 ر.ق.",
         },
       },
       {
@@ -546,8 +674,8 @@ export const ARTICLES: Article[] = [
           ar: "كم تكلفة الطلاء السيراميكي في قطر لسيارات الدفع الرباعي المتوسطة (SUV)؟",
         },
         a: {
-          en: "In Doha detailing studios, a full 9H ceramic coating package (including decontamination wash, machine polish, and multi-layer coating) for a medium SUV (such as a Toyota Prado, Jetour T2, Porsche Cayenne, or Range Rover Sport) typically costs QAR 1,200 to QAR 2,500. Sedans range from QAR 800 to QAR 1,800, and large 4x4s (Land Cruiser, Patrol, Yukon) range from QAR 1,600 to QAR 3,200+. If you buy the genuine German Autotriz 9H ceramic kit directly from ABK in Mesaimeer, 50ml kits cost QAR 250 to QAR 280.",
-          ar: "في مراكز التلميع بالدوحة، تتراوح تكلفة باقة النانو سيراميك 9H الكاملة (شاملة الغسيل التفصيلي والتلميع الآلي) لسيارة SUV متوسطة (مثل تويوتا برادو، جيتور T2، بورش كايين، أو رينج روفر سبورت) بين 1,200 و2,500 ريال قطري. وتتراوح للسيدان بين 800 و1,800 ر.ق، وللدفع الرباعي الكبير (لاند كروزر وباترول) بين 1,600 و3,200+ ر.ق. وعند شراء طقم السيراميك الألماني الأصلي Autotriz مباشرة من معرض ABK في مسيمير يبلغ سعر الطقم (50 مل) من 250 إلى 280 ر.ق.",
+          en: "By ABK's estimate of Doha studio quotes, a full 9H ceramic coating package (including decontamination wash, machine polish, and multi-layer coating) for a medium SUV (such as a Toyota Prado, Jetour T2, Porsche Cayenne, or Range Rover Sport) typically costs QAR 1,200 to QAR 2,500. Sedans range from QAR 800 to QAR 1,800, and large 4x4s (Land Cruiser, Patrol, Yukon) range from QAR 1,600 to QAR 3,200+. If you buy the genuine German Autotriz 9H ceramic kit directly from ABK in Mesaimeer, 50ml kits cost QAR 250 to QAR 280.",
+          ar: "بحسب تقدير ABK لأسعار مراكز الدوحة، تتراوح تكلفة باقة النانو سيراميك 9H الكاملة (شاملة الغسيل التفصيلي والتلميع الآلي) لسيارة SUV متوسطة (مثل تويوتا برادو، جيتور T2، بورش كايين، أو رينج روفر سبورت) بين 1,200 و2,500 ريال قطري. وتتراوح للسيدان بين 800 و1,800 ر.ق، وللدفع الرباعي الكبير (لاند كروزر وباترول) بين 1,600 و3,200+ ر.ق. وعند شراء طقم السيراميك الألماني الأصلي Autotriz مباشرة من معرض ABK في مسيمير يبلغ سعر الطقم (50 مل) من 250 إلى 280 ر.ق.",
         },
       },
       {
@@ -764,8 +892,8 @@ export const ARTICLES: Article[] = [
           ar: "تظليل النوافذ: رفض الحرارة وحجب الأشعة فوق البنفسجية",
         },
         body: {
-          en: "Quality window tint films reject up to 60% of solar heat, keeping your car's interior significantly cooler and reducing air conditioning load. In Qatar, this means your leather seats and dashboard last longer, and your fuel consumption decreases. VTEK Solar Armor window tints are available in multiple VLT (visible light transmission) grades that comply with Qatar's vehicle regulations. Fitted well by a professional, a quality film gives a bubble-free, precision-cut finish that lasts the life of the vehicle — ABK supplies the film and the tools to do it properly.",
-          ar: "ترفض أفلام تظليل النوافذ عالية الجودة ما يصل إلى 60% من الحرارة الشمسية، مما يبقي مقصورة سيارتك أبرد بكثير ويقلل حمل التكييف. في قطر، هذا يعني أن مقاعدك الجلدية ولوحة القيادة تدوم أطول واستهلاك الوقود ينخفض. تتوفر أفلام تظليل VTEK Solar Armor بدرجات متعددة من نفاذية الضوء المرئي (VLT) متوافقة مع قوانين المركبات في قطر. التركيب الاحترافي لفيلم عالي الجودة — من الأفلام التي تورّدها ABK — يضمن تطبيقاً دقيقاً بدون فقاعات يدوم طوال عمر السيارة.",
+          en: "Quality window tint films reject up to 60% of solar heat, keeping your car's interior significantly cooler and reducing air conditioning load. In Qatar, this means your leather seats and dashboard last longer, and your fuel consumption decreases. VTEK Solar Armor window films come in several VLT (visible light transmission) grades; Qatar's regulation limits tint film to the rear side doors with a permit, so check our window tinting rules guide before fitting. Fitted well by a professional, a quality film gives a bubble-free, precision-cut finish that lasts the life of the vehicle — ABK supplies the film and the tools to do it properly.",
+          ar: "ترفض أفلام تظليل النوافذ عالية الجودة ما يصل إلى 60% من الحرارة الشمسية، مما يبقي مقصورة سيارتك أبرد بكثير ويقلل حمل التكييف. في قطر، هذا يعني أن مقاعدك الجلدية ولوحة القيادة تدوم أطول واستهلاك الوقود ينخفض. وتتوفر أفلام VTEK Solar Armor بدرجات متعددة من نفاذية الضوء المرئي (VLT)؛ وتقصر اللائحة في قطر فيلم التظليل على الأبواب الخلفية الجانبية بتصريح، فراجع دليل قوانين التظليل قبل التركيب. التركيب الاحترافي لفيلم عالي الجودة — من الأفلام التي تورّدها ABK — يضمن تطبيقاً دقيقاً بدون فقاعات يدوم طوال عمر السيارة.",
         },
       },
       {
@@ -785,7 +913,7 @@ export const ARTICLES: Article[] = [
       "vtek-window-tints",
       "briller-wash-and-wax",
     ],
-    updated: "2026-10-02",
+    updated: "2026-11-03",
     cta: PPF_INSTALL_CTA,
     inlineCta: {
       badge: { en: "Gulf Summer Protection Bundle", ar: "باقة الحماية الكاملة لصيف قطر" },
@@ -794,8 +922,8 @@ export const ARTICLES: Article[] = [
         ar: "احمِ سيارتك من حرارة 50°م والأشعة فوق البنفسجية ورمل الطرق في الدوحة",
       },
       body: {
-        en: "Combine installed VTEK self-healing PPF (from QAR 899), legal-VLT VTEK Solar Armor window tint, and Autotriz 9H ceramic coating (from QAR 250) at ABK Trading & Service.",
-        ar: "اجمع بين تركيب أفلام الحماية VTEK PPF ذاتية المعالجة (من 899 ر.ق) وتظليل VTEK Solar Armor القانوني وأطقم سيراميك Autotriz 9H (من 250 ر.ق) لدى ABK.",
+        en: "Combine installed VTEK self-healing PPF (from QAR 899), VTEK Solar Armor window film, and Autotriz 9H ceramic coating (from QAR 250) at ABK Trading & Service.",
+        ar: "اجمع بين تركيب أفلام الحماية VTEK PPF ذاتية المعالجة (من 899 ر.ق) وأفلام تظليل VTEK Solar Armor وأطقم سيراميك Autotriz 9H (من 250 ر.ق) لدى ABK.",
       },
       primaryHref: "/b2c/ppf-installation",
       primaryLabel: { en: "Get Installed PPF Quote", ar: "احسب سعر تركيب PPF" },
@@ -809,8 +937,8 @@ export const ARTICLES: Article[] = [
           ar: "ما أفضل طريقة لحماية سيارة جديدة من حرارة صيف قطر التي تتجاوز 50°م؟",
         },
         a: {
-          en: "A three-layer defence works best in Doha: (1) VTEK Weather Armor aliphatic TPU PPF on the front end (from QAR 899) or full body (from QAR 3,999) to stop highway stone chips and sand abrasion; (2) Autotriz 9H nano-ceramic coating (kits from QAR 250) to prevent hard-water spots and UV oxidation; and (3) legal-VLT VTEK Solar Armor nano-ceramic window tint to block up to 95% of infrared cabin heat.",
-          ar: "أفضل حماية في الدوحة تعتمد على ثلاث طبقات: (1) تركيب فيلم VTEK PPF الأليفاتي على الواجهة (من 899 ر.ق) أو الهيكل الكامل (من 3,999 ر.ق) لمنع ضربات الحصى وسافي الرمل؛ (2) تطبيق النانو سيراميك الألماني Autotriz 9H (من 250 ر.ق للطقم) لمنع بقع الماء الكلسية؛ (3) تظليل النوافذ بفيلم VTEK Solar Armor القانوني لعزل 95% من الأشعة تحت الحمراء.",
+          en: "A three-layer defence works best in Doha: (1) VTEK Weather Armor TPU PPF on the front end (from QAR 899) or full body (from QAR 3,999) to stop highway stone chips and sand abrasion; (2) Autotriz 9H nano-ceramic coating (kits from QAR 250) to prevent hard-water spots and UV oxidation; and (3) VTEK Solar Armor nano-ceramic window film on the rear side doors, with the QR 20 Traffic Department permit, to block up to 95% of infrared cabin heat.",
+          ar: "أفضل حماية في الدوحة تعتمد على ثلاث طبقات: (1) تركيب فيلم VTEK PPF على الواجهة (من 899 ر.ق) أو الهيكل الكامل (من 3,999 ر.ق) لمنع ضربات الحصى وسافي الرمل؛ (2) تطبيق النانو سيراميك الألماني Autotriz 9H (من 250 ر.ق للطقم) لمنع بقع الماء الكلسية؛ (3) فيلم VTEK Solar Armor على الأبواب الخلفية الجانبية بتصريح إدارة المرور (20 ريالاً) لعزل حتى 95% من الأشعة تحت الحمراء.",
         },
       },
       {
@@ -893,7 +1021,7 @@ export const ARTICLES: Article[] = [
       "autotriz-3d-matrix-hybrid",
       "autotriz-ion-plus-ceramic-coating",
     ],
-    updated: "2026-10-02",
+    updated: "2026-11-03",
     cta: PPF_INSTALL_CTA,
     inlineCta: {
       badge: { en: "Compare Installed PPF & German Ceramic", ar: "قارن بين تركيب PPF وأطقم السيراميك الألماني" },
@@ -937,8 +1065,8 @@ export const ARTICLES: Article[] = [
           ar: "كيف يقارن سعر PPF بسعر الطلاء السيراميكي في الدوحة؟",
         },
         a: {
-          en: "Installed VTEK PPF at ABK starts at QAR 899 for a front-end kit, QAR 1,599 for full front, and QAR 3,999 for full body (10-year warranty). Studio ceramic coating in Doha typically costs QAR 800–2,500, while genuine Autotriz 9H ceramic kits sold directly at ABK's Mesaimeer showroom cost QAR 250–280.",
-          ar: "يبدأ تركيب فيلم VTEK PPF لدى ABK من 899 ر.ق للواجهة الأساسية و1,599 ر.ق للواجهة الكاملة و3,999 ر.ق للهيكل الكامل (ضمان 10 سنوات). بينما يتراوح تطبيق السيراميك في المراكز بين 800 و2,500 ر.ق، وتُباع أطقم السيراميك الألماني الأصلي Autotriz مباشرة في معرض ABK بمسيمير بسعر 250–280 ر.ق.",
+          en: "Installed VTEK PPF at ABK starts at QAR 899 for a front-end kit, QAR 1,599 for full front, and QAR 3,999 for full body (10-year warranty). By ABK's estimate, studio ceramic coating in Doha costs QAR 800–2,500, while genuine Autotriz 9H ceramic kits sold directly at ABK's Mesaimeer showroom cost QAR 250–280.",
+          ar: "يبدأ تركيب فيلم VTEK PPF لدى ABK من 899 ر.ق للواجهة الأساسية و1,599 ر.ق للواجهة الكاملة و3,999 ر.ق للهيكل الكامل (ضمان 10 سنوات). بينما يتراوح تطبيق السيراميك في المراكز بحسب تقدير ABK بين 800 و2,500 ر.ق، وتُباع أطقم السيراميك الألماني الأصلي Autotriz مباشرة في معرض ABK بمسيمير بسعر 250–280 ر.ق.",
         },
       },
     ],
@@ -958,7 +1086,7 @@ export const ARTICLES: Article[] = [
       ar: "كل ما تحتاج معرفته عن منتجات ومواد العناية وتلميع السيارات في قطر — من شامبوهات الغسيل وبراميل 20 لتر للمغاسل إلى أفلام VTEK PPF وسيراميك Autotriz في الدوحة.",
     },
     date: "2026-05-05",
-    updated: "2026-10-21",
+    updated: "2026-11-03",
     readingTime: 7,
     category: "buying-guide",
     topics: ["shampoo", "polish", "tyre", "tools", "cleaners", "dressing"],
@@ -1041,8 +1169,8 @@ export const ARTICLES: Article[] = [
           ar: "أين يمكنني شراء مواد تلميع وغسيل السيارات بالجملة في قطر؟",
         },
         a: {
-          en: "ABK Trading & Service in Mesaimeer, Doha (Barwa Commercial Avenue / Al Wataniya Petrol Station, +974 3083 8355) is a direct distributor supplying 58 retail and wholesale car care SKUs — including 20L Briller and Autotriz chemical drums (QAR 250–450), German polishing compounds, GrünesAuto foam pads, and VTEK/Grizzly PPF rolls.",
-          ar: "تُعد شركة ABK للتجارة والخدمات في مسيمير، الدوحة (قرب محطة بترول الوطنية، +974 3083 8355) موزعاً مباشراً يوفر 58 منتجاً للتجزئة والجملة — تشمل براميل 20 لتر من Briller وAutotriz (بسعر 250–450 ر.ق)، ومركبات التلميع الألمانية، وإسفنجات GrünesAuto، ورولات أفلام الحماية VTEK وGrizzly.",
+          en: "ABK Trading & Service in Mesaimeer, Doha (Building 1306, Street 70, Zone 56, +974 3083 8355) is a distributor supplying 58 retail and wholesale car care SKUs — including 20L Briller and Autotriz chemical drums (QAR 250–450), German polishing compounds, GrünesAuto foam pads, and VTEK/Grizzly PPF rolls.",
+          ar: "تُعد شركة ABK للتجارة والخدمات في مسيمير، الدوحة (مبنى 1306، شارع 70، منطقة 56، +974 3083 8355) موزعاً يوفر 58 منتجاً للتجزئة والجملة — تشمل براميل 20 لتر من Briller وAutotriz (بسعر 250–450 ر.ق)، ومركبات التلميع الألمانية، وإسفنجات GrünesAuto، ورولات أفلام الحماية VTEK وGrizzly.",
         },
       },
       {
@@ -1078,11 +1206,11 @@ export const ARTICLES: Article[] = [
       ar: "كيف تختار أفضل مركز تركيب PPF في الدوحة (دليل 2026)",
     },
     description: {
-      en: "How to evaluate PPF installers in Doha: dust-controlled clean booths, edge-wrapping vs pre-cut, genuine aliphatic TPU warranties, and 2026 price comparisons in Qatar.",
-      ar: "كيف تقيّم مراكز تركيب أفلام الحماية في الدوحة: كبائن العمل المعزولة، لف الحواف، ضمان مادة TPU الأليفاتية، ومقارنة أسعار التركيب في قطر لعام 2026.",
+      en: "How to evaluate PPF installers in Doha: the fitting bay, edge wrapping vs pre-cut, film and warranty proof, and the prices Doha installers actually publish in 2026.",
+      ar: "كيف تقيّم مراكز تركيب أفلام الحماية في الدوحة: مكان التركيب، لف الحواف مقابل القوالب الجاهزة، إثبات الفيلم والضمان، والأسعار التي تنشرها المراكز فعلياً في 2026.",
     },
     date: "2026-10-04",
-    updated: "2026-10-20",
+    updated: "2026-11-03",
     readingTime: 6,
     category: "buying-guide",
     topics: ["film"],
@@ -1093,12 +1221,12 @@ export const ARTICLES: Article[] = [
     sections: [
       {
         heading: {
-          en: "Clean-Room Environment: Why Shop Conditions Matter in Qatar",
-          ar: "بيئة العمل المعزولة: لماذا تعد ظروف المركز حاسمة في قطر",
+          en: "Fitting Environment: Why the Bay Matters in Qatar",
+          ar: "بيئة التركيب: لماذا يهم مكان العمل في قطر",
         },
         body: {
-          en: "In Qatar's desert climate, airborne sand and fine dust are constant. Applying paint protection film in an open bay or a semi-sealed workshop inevitably traps microscopic dust specks under the clear urethane, creating permanent bubbles and unsightly blemishes that ruin optical clarity. The best PPF installers in Doha operate sealed, climate-controlled, positive-pressure clean booths with medical-grade air filtration and multi-angle LED inspection lighting. This controlled environment ensures the mounting slip solution dries crystal clear, with zero dust contamination between your factory clear coat and the film.",
-          ar: "في مناخ قطر الصحراوي، يتطاير الغبار الناعم والرمل في الهواء باستمرار. تركيب فيلم حماية الطلاء في كبائن مفتوحة أو ورش غير محكمة الإغلاق يؤدي حتماً إلى احتجاز ذرات غبار مجهرية تحت طبقة اليوريثان الشفافة، مما يخلق فقاعات وبقعاً تشوّه نقاء الطلاء. أفضل مراكز تركيب PPF في الدوحة تعمل داخل كبائن معزولة ومكيفة بنظام ضغط هواء إيجابي وفلاتر ترشيح دقيقة وإضاءة LED فحصية متعددة الزوايا. تضمن هذه البيئة المحكومة جفاف محلول التثبيت بنقاء تام دون أي تلوث غباري بين طلاء الوكالة والفيلم.",
+          en: "In Qatar's desert climate, airborne sand and fine dust are constant, and any speck trapped under the film stays there as a visible blemish. Applying film in an open bay makes that far more likely. Before you book, ask to see where your car will be fitted: an enclosed, clean, well-lit bay is a better sign than any marketing term. Ask to see recent work under strong light too, because dust specks and uneven edges show up there.",
+          ar: "في مناخ قطر الصحراوي يتطاير الرمل والغبار الناعم باستمرار، وأي ذرة تُحتجز تحت الفيلم تبقى عيباً ظاهراً. وتركيب الفيلم في مكان مفتوح يزيد هذا الاحتمال كثيراً. قبل الحجز، اطلب رؤية المكان الذي ستُركَّب فيه سيارتك: المكان المغلق والنظيف والجيد الإضاءة علامة أفضل من أي عبارة تسويقية. واطلب أيضاً رؤية أعمال حديثة تحت إضاءة قوية، فذرات الغبار والحواف غير المنتظمة تظهر هناك.",
         },
       },
       {
@@ -1107,28 +1235,28 @@ export const ARTICLES: Article[] = [
           ar: "تقنية القص ولف الحواف: حماية فواصل الألواح",
         },
         body: {
-          en: "There are two fundamental installation techniques in Doha: standard pre-cut kits and custom edge-wrapped installations. Low-cost shops often use generic plotter templates that stop 2–3 mm short of each panel's edge. Over time, these exposed borders accumulate dirt, turn dark, and become vulnerable to lifting when hit by high-pressure car wash sprays. Superior installers use advanced software (such as VTEK's computerized design suite) configured with extended borders, allowing technicians to wrap the film around bonnet seams, fender lips, and door edges. Furthermore, computer-plotted templates ensure no razor blades ever touch your vehicle's factory paint.",
-          ar: "هناك أسلوبان أساسيان للتركيب في الدوحة: القوالب الجاهزة القياسية والتركيب الاحترافي بلف الحواف. الورش منخفضة التكلفة تستخدم قوالب تقف قبل حافة اللوح بنحو 2 إلى 3 ملم، مما يترك خطاً مكشوفاً يجمع الأوساخ بمرور الوقت ويكون عرضة للانفصال عند غسيل السيارة بضغط ماء عالٍ. أما المراكز المتقدمة فتعتمد برمجيات قص متطورة (مثل منظومة VTEK الرقمية) مبرمجة بزيادات خاصة تتيح للفنيين لف الفيلم حول حواف الكبوت وفواصل الرفارف والأبواب بالكامل. والأهم من ذلك أن القوالب المقصوصة بالكمبيوتر تضمن عدم اقتراب شفرات القطع اليدوية من طلاء المصنع إطلاقاً.",
+          en: "There are two common approaches in Doha: pre-cut kits and hand-finished, wrapped edges. Pre-cut patterns usually stop a little short of each panel's edge, which leaves a visible line that can collect dirt. Wrapping the film around an edge hides that line where the panel shape allows it, but it takes more skill and more film. Ask which method the installer uses on each panel, and whether any cutting is done on the car, since a blade on the panel puts your paint at risk.",
+          ar: "هناك أسلوبان شائعان في الدوحة: القوالب الجاهزة ولف الحواف يدوياً. القوالب الجاهزة تتوقف عادةً قبل حافة اللوح بقليل، ما يترك خطاً ظاهراً قد يجمع الأوساخ. أما لف الفيلم حول الحافة فيخفي هذا الخط حيث يسمح شكل اللوح، لكنه يحتاج مهارة أكبر وفيلماً أكثر. اسأل المركز عن الأسلوب المستخدم لكل لوح، وهل يتم أي قص على السيارة نفسها، لأن الشفرة على اللوح تعرّض الطلاء للخطر.",
         },
       },
       {
         heading: {
-          en: "Material Chemistry: Aliphatic TPU vs Cheap TPH & PVC",
-          ar: "كيمياء المواد: بوليمر TPU الأليفاتي مقابل TPH وPVC الرخيص",
+          en: "Film Material: TPU vs Cheap PVC and TPH",
+          ar: "مادة الفيلم: TPU مقابل PVC وTPH الرخيصة",
         },
         body: {
-          en: "Not all paint protection films survive a Gulf summer. Cheap films made from PVC (polyvinyl chloride) or TPH (hybridized PVC) use volatile plasticizers that degrade rapidly when exposed to Doha's 45°C+ temperatures and UV Index 11+. Within 6 to 12 months, PVC films turn yellow, lose their elasticity, become brittle, and can cause catastrophic paint damage when their low-grade adhesive bakes onto your clear coat. Genuine premium PPF, such as VTEK Weather Armor, is made from thermoplastic polyurethane (TPU), and VTEK backs it with a written warranty against bubbling, cracking, peeling and fading. TPU is built to absorb gravel impacts on highways like Salwa Road and Al Shamal Road, and VTEK describes a self-healing top layer that closes light swirl marks.",
-          ar: "ليست كل أفلام حماية الطلاء قادرة على الصمود أمام صيف الخليج. الأفلام الرخيصة المصنوعة من PVC أو TPH تستخدم ملدنات كيميائية تتطاير وتتحلل سريعاً تحت حرارة صيف الدوحة التي تتجاوز 45°م ومؤشر الأشعة فوق البنفسجية 11+. وخلال 6 إلى 12 شهراً تصفرّ هذه الأفلام وتفقد مرونتها وتتصلب، وقد تسبب ضرراً جسيماً لطلاء السيارة عند إزالتها بسبب تفاعل المادة اللاصقة الرديئة مع اللك. في المقابل، يُصنع فيلم VTEK Weather Armor من مادة TPU (البولي يوريثان الحراري) وتدعمه VTEK بضمان مكتوب ضد الفقاعات والتشقق والتقشّر وبهتان اللون. وصُممت مادة TPU لامتصاص ضربات الحصى على طرق قطر السريعة مثل سلوى والشمال، وتصف VTEK طبقة علوية ذاتية الإصلاح تعالج الخدوش الخفيفة.",
+          en: "Not all paint protection films survive a Gulf summer. Cheap films made from PVC or hybrid TPH can yellow, harden and leave adhesive behind far sooner in Doha's heat, which makes removal risky for your paint. VTEK Weather Armor is a thermoplastic polyurethane (TPU) film, and VTEK backs it with a written warranty against manufacturing defects such as bubbling, cracking, peeling and fading. TPU is built to absorb gravel impacts on highways like Salwa Road and Al Shamal Road, and VTEK describes a self-healing top layer that closes light swirl marks. Ask any installer to name the film and show the warranty it comes with.",
+          ar: "ليست كل أفلام حماية الطلاء قادرة على الصمود أمام صيف الخليج. الأفلام الرخيصة المصنوعة من PVC أو TPH قد تصفرّ وتتصلب وتترك بقايا لاصق في وقت أقرب بكثير تحت حرارة الدوحة، ما يجعل إزالتها خطراً على الطلاء. أما VTEK Weather Armor فهو فيلم من البولي يوريثان الحراري (TPU) وتدعمه VTEK بضمان مكتوب ضد عيوب التصنيع مثل الفقاعات والتشقق والتقشّر وبهتان اللون. وصُممت مادة TPU لامتصاص ضربات الحصى على طرق مثل سلوى والشمال، وتصف VTEK طبقة علوية ذاتية الإصلاح تعالج الخدوش الدائرية الخفيفة. اطلب من أي مركز أن يسمّي الفيلم ويعرض لك ضمانه.",
         },
       },
       {
         heading: {
-          en: "Pricing & Direct-Distributor Value in Doha",
-          ar: "الأسعار وقيمة التوريد المباشر من الموزع في الدوحة",
+          en: "Pricing: What Doha Installers Publish",
+          ar: "الأسعار: ما تنشره مراكز التركيب في الدوحة",
         },
         body: {
-          en: "PPF quotes in Doha vary dramatically, typically ranging from QAR 4,000 to QAR 7,500+ for full-body coverage, often with opaque 'call for price' policies. Much of this variance comes from middlemen markups: independent workshops buy rolls from local importers with added distributor margins. ABK Trading & Service operates on a transparent, distributor-direct model. As the authorized Qatar distributor of VTEK, ABK provides fixed, published pricing from its own central stock: front-end kits from QAR 899, full front from QAR 1,599, and full body from QAR 3,999 for sedans, fitted by authorized partner studios. Vehicle owners get genuine top-tier American-standard TPU film at honest, published rates with no hidden surcharges.",
-          ar: "تتفاوت عروض أسعار PPF في الدوحة بشدة؛ حيث تتراوح عادةً بين 4,000 و7,500+ ريال قطري للهيكل الكامل، وتكتفي معظم الورش بسياسة «اتصل لمعرفة السعر». يعود جزء كبير من هذا الفارق إلى هوامش الوسطاء حيث تشتري الورش الرولات من الموزعين بأسعار مضافة. تعمل ABK للتجارة والخدمات بنموذج التوريد المباشر من الموزع المعتمد؛ وبصفتها الموزع المعتمد لأفلام VTEK في قطر، تعلن ABK أسعاراً ثابتة وشفافة من مخزونها المركزي: باقة الواجهة من 899 ر.ق، والواجهة الكاملة من 1,599 ر.ق، والهيكل كاملاً من 3,999 ر.ق للسيدان، وتُركَّب في استوديوهات شريكة معتمدة دون أي تكاليف خفية.",
+          en: `Few Doha installers publish PPF prices. White Crown Care lists PPF from QAR 2,500 for the front end and QAR 6,999 for the full car, bundled with other services. ProDip starts from QAR 5,500 depending on coverage and body size (both read 3 November 2026). ABK publishes fixed installed prices for VTEK film: ${q(fromPrice("front-end"), "en")} for a front-end kit, ${q(fromPrice("full-front"), "en")} for a full front and ${q(fromPrice("full-body"), "en")} for a full-body sedan, supplied from ABK's stock and fitted by a VTEK-authorised partner centre in Doha. Compare what is included (film brand, warranty term, coverage, extras) rather than the headline figure.`,
+          ar: `قليل من مراكز التركيب في الدوحة ينشر أسعار PPF. تذكر White Crown Care أسعاراً تبدأ من 2,500 ر.ق للواجهة الأمامية ومن 6,999 ر.ق للسيارة كاملة ضمن باقات تشمل خدمات أخرى. وتبدأ أسعار ProDip من 5,500 ر.ق بحسب التغطية وحجم السيارة (قُرئت في 3 نوفمبر 2026). وتنشر ABK أسعاراً ثابتة للتركيب بفيلم VTEK: ${q(fromPrice("front-end"), "ar")} للواجهة الأساسية و${q(fromPrice("full-front"), "ar")} للواجهة الكاملة و${q(fromPrice("full-body"), "ar")} للهيكل الكامل لسيارة السيدان، من مخزون ABK وبتركيب في مركز شريك معتمد من VTEK في الدوحة. قارن ما تتضمنه الباقة (علامة الفيلم ومدة الضمان والتغطية والإضافات) لا الرقم الأول فقط.`,
         },
       },
       {
@@ -1137,8 +1265,8 @@ export const ARTICLES: Article[] = [
           ar: "الضمانات المكتوبة: ضمان خامة الفيلم مقابل ضمان جودة التركيب",
         },
         body: {
-          en: "A verbal warranty in the car care industry is unenforceable. When comparing installers, demand two separate written guarantees. First, the manufacturer film warranty: VTEK provides an NFC e-Warranty registered to your car (10 years on Weather Armor PRO and PRO PLUS, 5 on MATTE and PRISM) against defects such as bubbling, cracking, peeling and fading. Second, an explicit installer workmanship guarantee. ABK backs every installation with its own 12-month workmanship cover: if an edge lifts, a corner peels, or a bubble develops from slip-solution trapping, ABK corrects it at zero cost. Every drop-off includes photographic intake documentation and an exhaustive handover inspection.",
-          ar: "الضمان الشفهي في قطاع العناية بالسيارات لا قيمة له عند حدوث مشكلة. عند مقارنة المراكز، اطلب ضمانين كتابيين منفصلين: الأول هو ضمان المصنع لخامة الفيلم؛ وتوفر VTEK ضماناً إلكترونياً NFC مسجلاً باسم سيارتك (10 سنوات لفيلمي PRO وPRO PLUS و5 لـ MATTE وPRISM) ضد عيوب مثل الفقاعات والتشقق والتقشّر وبهتان اللون. والضمان الثاني هو ضمان جودة التركيب؛ حيث تدعم ABK كل عملية تركيب بضمان تركيب خاص لمدة 12 شهراً: إذا ارتفعت أي حافة أو ظهرت فقاعة يعالجها المركز مجاناً. وتتضمن كل عملية تسليم توثيقاً فوتوغرافياً شاملاً لحالة السيارة عند الاستلام والتسليم.",
+          en: "A verbal warranty in the car care industry is unenforceable. When comparing installers, demand two separate written guarantees. First, the manufacturer film warranty: VTEK provides an NFC e-Warranty registered to your car (10 years on Weather Armor PRO and PRO PLUS, 5 on MATTE and PRISM) against defects such as bubbling, cracking, peeling and fading. Second, an explicit installer workmanship guarantee. ABK backs every installation with its own 12-month workmanship cover: if an edge lifts, a corner peels, or a bubble develops from slip-solution trapping, ABK corrects it at zero cost. Every job includes photos at drop-off and an ABK inspection at handover.",
+          ar: "الضمان الشفهي في قطاع العناية بالسيارات لا قيمة له عند حدوث مشكلة. عند مقارنة المراكز، اطلب ضمانين كتابيين منفصلين: الأول هو ضمان المصنع لخامة الفيلم؛ وتوفر VTEK ضماناً إلكترونياً NFC مسجلاً باسم سيارتك (10 سنوات لفيلمي PRO وPRO PLUS و5 لـ MATTE وPRISM) ضد عيوب مثل الفقاعات والتشقق والتقشّر وبهتان اللون. والضمان الثاني هو ضمان جودة التركيب؛ حيث تدعم ABK كل عملية تركيب بضمان تركيب خاص لمدة 12 شهراً: إذا ارتفعت أي حافة أو ظهرت فقاعة يعالجها المركز مجاناً. ويشمل كل تركيب صوراً للسيارة عند الاستلام وفحصاً من ABK عند التسليم.",
         },
       },
     ],
@@ -1181,8 +1309,8 @@ export const ARTICLES: Article[] = [
           ar: "هل يتم لف حواف فيلم PPF للداخل عند التركيب لدى ABK؟",
         },
         a: {
-          en: "Yes. Where panel tolerances allow (such as bonnet seams, fender lips, and door edges), our VTEK-authorized installers extend and wrap edges so dust cannot collect along visible borders and high-pressure washes cannot lift the film.",
-          ar: "نعم، في جميع الحواف التي تسمح هندسياً بذلك (مثل حواف الكبوت والرفارف والأبواب)، يقوم الفنيون المعتمدون بلف حواف الفيلم للداخل لمنع تجمع الغبار أو ارتفاع الأطراف مع الغسيل بالضغط العالي.",
+          en: "Full-body packages cover every painted panel edge to edge. Where a panel's shape allows it, film can be wrapped around the edge; ask us on WhatsApp how your car's panels will be handled before you book.",
+          ar: "تغطي باقات الهيكل الكامل كل لوح مطلي من الحافة إلى الحافة. وحيث يسمح شكل اللوح يمكن لف الفيلم حول الحافة؛ راسلنا على واتساب لمعرفة كيفية التعامل مع ألواح سيارتك قبل الحجز.",
         },
       },
       {
@@ -1194,6 +1322,20 @@ export const ARTICLES: Article[] = [
           en: "Every ABK PPF installation includes an ABK inspection at handover and a written 12-month ABK fitting guarantee on top of VTEK's 5 to 15-year film warranty (by film). Any edge lifting or slip-solution bubble is rectified free of charge.",
           ar: "يشمل كل تركيب لدى ABK فحصاً من ABK عند التسليم وضمان تركيب كتابي لمدة 12 شهراً بالإضافة إلى ضمان المصنع (من 5 إلى 15 سنة حسب الفيلم)، وتُعالج أي ملاحظة في الحواف مجاناً.",
         },
+      },
+    ],
+    sources: [
+      {
+        label: { en: "VTEK: warranty terms by film", ar: "VTEK: شروط الضمان حسب الفيلم" },
+        url: "https://www.vtekfilms.com/warranty",
+      },
+      {
+        label: { en: "White Crown Care: protection film prices", ar: "White Crown Care: أسعار أفلام الحماية" },
+        url: "https://whitecrowncare.com/en/services/protection-film/",
+      },
+      {
+        label: { en: "ProDip: PPF service and pricing", ar: "ProDip: خدمة PPF وأسعارها" },
+        url: "https://prodip.qa/en/services/ppf",
       },
     ],
   },
@@ -1611,6 +1753,20 @@ export function getArticleBySlug(slug: string): Article | undefined {
  * Guides with no overlap are left out: an unrelated link earns no click and
  * tells crawlers nothing.
  */
+/** The guides that answer buying questions, for the homepage and the PPF page. */
+export function buyingGuides(
+  slugs: readonly string[] = [
+    "ppf-cost-qatar",
+    "ceramic-coating-cost-qatar",
+    "ppf-vs-ceramic-coating-qatar",
+    "best-ppf-brands-qatar",
+    "window-tinting-rules-qatar-guide",
+    "how-to-protect-car-from-qatar-heat",
+  ],
+): Article[] {
+  return slugs.flatMap((s) => ARTICLES.find((a) => a.slug === s) ?? []);
+}
+
 export function relatedGuides(opts: {
   products?: readonly string[];
   categories?: readonly CategoryKey[];

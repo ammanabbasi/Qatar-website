@@ -18,7 +18,7 @@
 import type { LocalizedText } from "./products";
 
 /** Date every row below was last read from the provider's own page. */
-export const PPF_MARKET_CHECKED_AT = "2026-10-20";
+export const PPF_MARKET_CHECKED_AT = "2026-11-03";
 
 export type MarketRow = {
   provider: string;
