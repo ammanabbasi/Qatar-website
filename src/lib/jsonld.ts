@@ -82,6 +82,16 @@ const OPENING_HOURS = [
   ...h,
 }));
 
+function postalAddress() {
+  return {
+    "@type": "PostalAddress",
+    streetAddress: `${SITE.address.line1}, ${SITE.address.line2}`,
+    addressLocality: "Mesaimeer",
+    addressRegion: "Doha",
+    addressCountry: SITE.address.countryCode,
+  };
+}
+
 /**
  * Top-level Organization for brand identity in the Knowledge Graph.
  * Distinct from `localBusinessJsonLd` (AutoPartsStore) — they live at
@@ -95,12 +105,20 @@ export function organizationJsonLd() {
     "@type": "Organization",
     "@id": IDS.organization,
     name: SITE.name,
-    alternateName: SITE.shortName,
+    alternateName: [SITE.shortName, "ABK Trading", "ABK للتجارة والخدمات"],
     url: SITE.url,
     logo: {
       "@type": "ImageObject",
       url: `${SITE.url}/logo.webp`,
     },
+    // This node is on every page, the store node only on two: keep the identity
+    // facts here too, so a page fetched on its own still says who ABK is. "ABK"
+    // alone is ambiguous (Google's AI Mode raises a Qatari produce trader).
+    description:
+      "Car care and paint protection film supplier in Mesaimeer, Doha, Qatar: retail and wholesale, plus installed VTEK PPF at fixed prices, fitted at VTEK-authorised centres.",
+    email: SITE.email,
+    telephone: SITE.phoneE164,
+    address: postalAddress(),
     sameAs: [SITE.social.facebook, SITE.social.instagram, SITE.social.tiktok],
     contactPoint: [
       {
@@ -144,6 +162,7 @@ export function websiteJsonLd(locale: "en" | "ar" = "en") {
     "@id": IDS.website,
     url: SITE.url,
     name: SITE.name,
+    alternateName: ["ABK Trading", SITE.shortName],
     inLanguage: locale === "ar" ? "ar-QA" : "en-QA",
     publisher: { "@id": IDS.organization },
   };
@@ -188,18 +207,12 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
         : "Qatar's distributor and retailer of premium automotive care — PPF, ceramic coatings, car shampoos, detailing compounds and more — plus installed VTEK PPF packages at fixed prices, fitted at VTEK-authorised centres.",
     telephone: [SITE.phoneE164, SITE.phoneSecondaryE164, SITE.phoneLandlineE164],
     email: SITE.email,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: `${SITE.address.line1}, ${SITE.address.line2}`,
-      addressLocality: "Mesaimeer",
-      addressRegion: "Doha",
-      addressCountry: SITE.address.countryCode,
-    },
+    address: postalAddress(),
     openingHoursSpecification: OPENING_HOURS,
     areaServed: QATAR_SERVICE_AREA,
     currenciesAccepted: "QAR",
     parentOrganization: { "@id": IDS.organization },
-    sameAs: [SITE.social.facebook, SITE.social.instagram, SITE.social.tiktok],
+    sameAs: [SITE.mapsUrl, SITE.social.facebook, SITE.social.instagram, SITE.social.tiktok],
     // Offer catalogue link — tells Google & AI agents this business sells retail products,
     // installed VTEK PPF packages, and wholesale trade supplies.
     hasOfferCatalog: {

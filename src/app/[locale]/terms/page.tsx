@@ -1,7 +1,6 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import { cookies } from "next/headers";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
@@ -51,8 +50,6 @@ export default async function TermsPage({
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
   const l = locale as "en" | "ar";
-  const store = await cookies();
-  const audience = store.get("abk_audience")?.value === "b2b" ? "b2b" : "b2c";
   const t = await getTranslations({ locale, namespace: "Terms" });
   const eyebrows = await getTranslations({ locale, namespace: "Eyebrows" });
 
@@ -74,7 +71,7 @@ export default async function TermsPage({
   ]);
 
   return (
-    <Shell audience={audience} locale={l}>
+    <Shell audience="b2c" locale={l}>
       <JsonLd id="ld-terms-crumb" data={crumbLd} />
       <PageHero eyebrow={eyebrows("legal")} title={t("title")} subtitle={t("subtitle")}>
         <p className="mt-4 text-caption text-white/50">{t("lastUpdated")}</p>

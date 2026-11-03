@@ -19,6 +19,8 @@ import { PpfTrustStrip } from "@/components/ppf/PpfTrustStrip";
 import { PpfFilmChoice } from "@/components/ppf/PpfFilmChoice";
 import { PpfWarranty } from "@/components/ppf/PpfWarranty";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { RelatedGuides } from "@/components/blog/RelatedGuides";
+import { buyingGuides } from "@/data/articles";
 import { PPF_INSTALL_FAQ } from "@/data/faq";
 import {
   FILMS,
@@ -329,6 +331,21 @@ export default async function PpfInstallationPage({
       </section>
 
       <FaqSection locale={l} title={t("faqTitle")} items={PPF_INSTALL_FAQ} compact />
+
+      <section className="border-t border-(--color-border) py-10 lg:py-14">
+        <Container>
+          <RelatedGuides
+            guides={buyingGuides([
+              "ppf-cost-qatar",
+              "best-ppf-brands-qatar",
+              "ppf-vs-ceramic-coating-qatar",
+              "best-ppf-installers-doha-qatar-guide",
+              "matte-colored-ppf-qatar",
+            ])}
+            locale={l}
+          />
+        </Container>
+      </section>
 
       <FloatingWhatsApp
         audience="b2c"

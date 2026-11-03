@@ -83,6 +83,7 @@ export function HomeHero({ audience, locale }: Props) {
             </Link>
             <Link
               href="/b2c/products?pack=trade"
+              rel="nofollow"
               className="inline-flex items-center justify-center gap-2 rounded-pill whitespace-nowrap px-7 h-12 text-body font-bold uppercase tracking-wider border border-(--color-brand)/60 text-(--color-brand) hover:bg-(--color-brand)/15 transition-all duration-200 w-full sm:w-auto cursor-pointer"
             >
               <span>{ctaQuote}</span>

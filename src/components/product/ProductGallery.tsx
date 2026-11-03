@@ -46,7 +46,7 @@ export function ProductGallery({ images, alt }: Props) {
                     : "shadow-[0_0_0_1px_var(--color-border)] hover:shadow-[0_0_0_2px_var(--color-border)]"
                 }`}
               >
-                <Image src={src} alt="" fill sizes="64px" className="object-cover" />
+                <Image src={src} alt={`${alt} (${i + 1})`} fill sizes="64px" className="object-cover" />
               </button>
             );
           })}

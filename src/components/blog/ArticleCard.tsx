@@ -33,7 +33,7 @@ export function ArticleCard({ article, locale }: Props) {
         >
           {new Date(article.date).toLocaleDateString(
             locale === "ar" ? "ar-QA" : "en-QA",
-            { year: "numeric", month: "short", day: "numeric" },
+            { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" },
           )}
         </time>
         <span className="text-link text-footnote font-medium">

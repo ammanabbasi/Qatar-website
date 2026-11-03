@@ -28,6 +28,17 @@ const SHOP_CATEGORIES = [
   "fragrance",
 ] as const satisfies readonly CategoryKey[];
 
+// The guides that answer buying questions (price, comparison, tint law). They
+// rank for those queries but were linked from only 9 to 19 pages each, against
+// about 96 for a footer hub.
+const FOOTER_GUIDES = [
+  { slug: "ppf-cost-qatar", labelKey: "guidePpfCost" },
+  { slug: "ceramic-coating-cost-qatar", labelKey: "guideCeramicCost" },
+  { slug: "ppf-vs-ceramic-coating-qatar", labelKey: "guidePpfVsCeramic" },
+  { slug: "best-ppf-brands-qatar", labelKey: "guidePpfBrands" },
+  { slug: "window-tinting-rules-qatar-guide", labelKey: "guideTintRules" },
+] as const;
+
 export function Footer({ audience }: { audience: Audience }) {
   const t = useTranslations();
   const year = new Date().getFullYear();
@@ -69,6 +80,17 @@ export function Footer({ audience }: { audience: Audience }) {
                 {t(`Categories.${c}`)}
               </Link>
             ))}
+
+            <h3 className={`${headCls} mt-4`}>{t("Footer.guides")}</h3>
+            {FOOTER_GUIDES.map((g) => (
+              <Link
+                key={g.slug}
+                className={linkCls}
+                href={`/b2c/blog/${g.slug}`}
+              >
+                {t(`Footer.${g.labelKey}`)}
+              </Link>
+            ))}
           </div>
 
           {/* Company & Brands Column */}
@@ -108,6 +130,15 @@ export function Footer({ audience }: { audience: Audience }) {
             </Link>
             <Link className={linkCls} href="/b2c/brands/abk">
               ABK Rejuvenate & Scents
+            </Link>
+            <Link className={linkCls} href="/b2c/brands/instafinish">
+              Insta Finish
+            </Link>
+            <Link className={linkCls} href="/b2c/brands/getsun">
+              Getsun
+            </Link>
+            <Link className={linkCls} href="/b2c/brands/sitrett">
+              Sitrett
             </Link>
           </div>
 

@@ -1,7 +1,6 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import { cookies } from "next/headers";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
@@ -39,8 +38,6 @@ export default async function ContactPage({
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
   const l = locale as "en" | "ar";
-  const store = await cookies();
-  const audience = store.get("abk_audience")?.value === "b2b" ? "b2b" : "b2c";
   const t = await getTranslations({ locale });
 
   // LocalBusiness JSON-LD lives here (NAP-rich page) so Google has a single
@@ -54,7 +51,7 @@ export default async function ContactPage({
   const waHref = `https://wa.me/${SITE.whatsapp}`;
 
   return (
-    <Shell audience={audience} locale={l}>
+    <Shell audience="b2c" locale={l}>
       <JsonLd id="ld-localbusiness-contact" data={jsonLd} />
       <JsonLd id="ld-contact-crumb" data={bcLd} />
 

@@ -38,13 +38,29 @@ const AI_BOTS = [
   "MistralAI-User",
 ];
 
+/**
+ * URLs that waste a crawl. Search Console's crawl stats (Oct 2026) showed 71% of
+ * Googlebot's requests going to `?_rsc=` prefetch payloads and about 10% of its
+ * HTML fetches going to filter states of the catalogue, while 94 real pages sat
+ * in "Discovered, not indexed". None of them holds content that isn't on a
+ * clean URL (the category and brand hubs), and pages render fully without them.
+ *
+ * A crawler obeys only the most specific group that names it, so this list has
+ * to be repeated in every group: the `*` group alone would not reach Googlebot.
+ * AdsBot ignores `*` and isn't named here, so ad landing checks are unaffected.
+ * `?film=` on the PPF page stays crawlable on purpose: its canonical consolidates
+ * those links into the page that sells the installation.
+ */
+const NOT_WORTH_CRAWLING = ["/api/", "/*?_rsc=", "/*&_rsc=", "/*/b2c/products?"];
+
 export default function robots(): MetadataRoute.Robots {
+  const rule = (userAgent: string) => ({
+    userAgent,
+    allow: "/",
+    disallow: NOT_WORTH_CRAWLING,
+  });
   return {
-    rules: [
-      { userAgent: "*", allow: "/" },
-      ...SEARCH_BOTS.map((ua) => ({ userAgent: ua, allow: "/" })),
-      ...AI_BOTS.map((ua) => ({ userAgent: ua, allow: "/" })),
-    ],
+    rules: [rule("*"), ...SEARCH_BOTS.map(rule), ...AI_BOTS.map(rule)],
     sitemap: `${SITE.url}/sitemap.xml`,
     host: SITE.url,
   };

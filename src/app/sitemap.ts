@@ -25,10 +25,26 @@ import { routing } from "@/i18n/routing";
 //             pages, e-warranty check, Google rating); PRO PLUS term aligned to
 //             VTEK's chart (10 years). See marketing/seo/PPF-CLAIMS-EVIDENCE.md.
 const STATIC_PAGES_UPDATED_AT = "2026-10-20";
+// Pages whose own content changed after the date above; the rest keep it, since
+// lastmod is only useful while it means the page itself changed.
+// 2026-11-03: homepage stats replaced with checkable figures, guides section;
+//             dealer page copy; PPF page evidence re-read, guides section.
+const STATIC_PAGE_OVERRIDES: Record<string, string> = {
+  "": "2026-11-03",
+  "/b2c/ppf-installation": "2026-11-03",
+  "/b2b/become-a-dealer": "2026-11-03",
+};
 // Category and brand hubs change on their own schedule; keep their lastmod
 // separate so a hub edit doesn't claim the legal pages changed too.
 // 2026-10-23: every hub gained a related-guides section.
 const HUB_PAGES_UPDATED_AT = "2026-10-23";
+// 2026-11-03: tint and film-claim corrections on these hubs only.
+const HUB_PAGE_OVERRIDES: Record<string, string> = {
+  film: "2026-11-03",
+  shampoo: "2026-11-03",
+  vtek: "2026-11-03",
+  grizzly: "2026-11-03",
+};
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE.url;
@@ -66,7 +82,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const path of staticPaths) {
       entries.push({
         url: `${base}/${locale}${path}`,
-        lastModified: staticLastMod,
+        lastModified: STATIC_PAGE_OVERRIDES[path]
+          ? new Date(STATIC_PAGE_OVERRIDES[path])
+          : staticLastMod,
         changeFrequency: "weekly",
         priority:
           path === ""
@@ -84,7 +102,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const catPath = `/b2c/categories/${cat.slug}`;
       entries.push({
         url: `${base}/${locale}${catPath}`,
-        lastModified: hubLastMod,
+        lastModified: HUB_PAGE_OVERRIDES[cat.slug]
+          ? new Date(HUB_PAGE_OVERRIDES[cat.slug])
+          : hubLastMod,
         changeFrequency: "weekly",
         priority: 0.85,
         alternates: { languages: languages(catPath) },
@@ -95,7 +115,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const brandPath = `/b2c/brands/${brand.slug}`;
       entries.push({
         url: `${base}/${locale}${brandPath}`,
-        lastModified: hubLastMod,
+        lastModified: HUB_PAGE_OVERRIDES[brand.slug]
+          ? new Date(HUB_PAGE_OVERRIDES[brand.slug])
+          : hubLastMod,
         changeFrequency: "weekly",
         priority: 0.85,
         alternates: { languages: languages(brandPath) },

@@ -37,7 +37,7 @@ export function ProductTile({ product, locale, audience = "b2c", eager = false }
       <div className="tile-fade-top absolute inset-x-0 bottom-0 aspect-square overflow-hidden">
         <Image
           src={product.images[0]}
-          alt=""
+          alt={name}
           fill
           sizes="(max-width: 640px) 300px, (max-width: 1024px) 340px, 405px"
           loading={eager ? "eager" : undefined}

@@ -183,6 +183,7 @@ export default async function BrandLandingPage({
               <span>{t("Products.count", { count: products.length })}</span>
               <Link
                 href={`/b2c/products?brand=${data.brandKey}`}
+                rel="nofollow"
                 className="text-link font-medium"
               >
                 {l === "ar"

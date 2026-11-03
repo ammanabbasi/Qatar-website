@@ -94,6 +94,9 @@ export default async function ArticlePage({
       "@id": articleUrl,
     },
     inLanguage: l === "ar" ? "ar-QA" : "en-QA",
+    ...(article.sources?.length
+      ? { citation: article.sources.map((s) => s.url) }
+      : {}),
   };
 
   const crumbLd = breadcrumbJsonLd([
@@ -156,12 +159,33 @@ export default async function ArticlePage({
           <time dateTime={article.date}>
             {new Date(article.date).toLocaleDateString(
               l === "ar" ? "ar-QA" : "en-QA",
-              { year: "numeric", month: "long", day: "numeric" },
+              { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" },
             )}
           </time>
+          {article.updated && article.updated !== article.date ? (
+            <>
+              <span aria-hidden>·</span>
+              <span>
+                {l === "ar" ? "آخر تحديث: " : "Updated "}
+                <time dateTime={article.updated}>
+                  {new Date(article.updated).toLocaleDateString(
+                    l === "ar" ? "ar-QA" : "en-QA",
+                    { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" },
+                  )}
+                </time>
+              </span>
+            </>
+          ) : null}
           <span aria-hidden>·</span>
           <span>
             {article.readingTime} {l === "ar" ? "دقائق قراءة" : "min read"}
+          </span>
+          <span aria-hidden>·</span>
+          <span>
+            {l === "ar" ? "إعداد " : "By "}
+            <Link href="/about" className="underline underline-offset-2 hover:text-white">
+              {l === "ar" ? "ABK للتجارة والخدمات" : SITE.name}
+            </Link>
           </span>
         </div>
       </PageHero>
@@ -385,6 +409,27 @@ export default async function ArticlePage({
             title={l === "ar" ? "أدلة ذات صلة" : "Related guides"}
             className="mt-16 border-t border-(--color-border-soft) pt-10"
           />
+
+          {/* The links behind the guide's claims: readers and answer engines can check them. */}
+          {article.sources && article.sources.length > 0 && (
+            <section className="mt-12 max-w-3xl border-t border-(--color-border-soft) pt-8">
+              <h2 className="text-title-sm font-semibold text-(--color-text)">{t("sources")}</h2>
+              <ul className="mt-4 flex flex-col gap-2 text-footnote text-(--color-text-muted)">
+                {article.sources.map((s) => (
+                  <li key={s.url}>
+                    <a
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-link underline-offset-2 hover:underline"
+                    >
+                      {s.label[l]}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           {/* Back to blog */}
           <div className="mt-12">

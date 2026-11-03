@@ -1,7 +1,6 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import { cookies } from "next/headers";
 import Image from "next/image";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
@@ -49,8 +48,6 @@ export default async function AboutPage({
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
   const l = locale as "en" | "ar";
-  const store = await cookies();
-  const audience = store.get("abk_audience")?.value === "b2b" ? "b2b" : "b2c";
   const t = await getTranslations({ locale, namespace: "About" });
   const eyebrows = await getTranslations({ locale, namespace: "Eyebrows" });
   const tFaq = await getTranslations({ locale, namespace: "Faq" });
@@ -63,7 +60,7 @@ export default async function AboutPage({
   ]);
 
   return (
-    <Shell audience={audience} locale={l}>
+    <Shell audience="b2c" locale={l}>
       {/* FAQPage schema must sit on the same page as the rendered Q/A or
           Google treats the mismatch as cloaking - see FaqSection. */}
       <JsonLd id="ld-faq" data={faqLd} />

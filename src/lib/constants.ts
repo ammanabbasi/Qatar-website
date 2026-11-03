@@ -32,7 +32,8 @@ export const SITE = {
   mapsUrl: "https://maps.google.com/?cid=9860894303806767987",
   geo: { latitude: 25.2040478, longitude: 51.5029268 },
   social: {
-    facebook: "https://www.facebook.com/share/1L9drK6k4n/",
+    // The profile itself, not a /share/ redirect: sameAs has to name the entity.
+    facebook: "https://www.facebook.com/profile.php?id=61576517493433",
     instagram: "https://www.instagram.com/abk.trading",
     tiktok: "https://www.tiktok.com/@abk.trading",
   },

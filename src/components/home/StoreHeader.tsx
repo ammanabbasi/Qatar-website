@@ -18,7 +18,7 @@ type Props = {
 // contrast against the card color.
 const DISTRIBUTOR_BRANDS = [
   {
-    key: "Grizzly",
+    slug: "grizzly",
     name: "GRIZZLY",
     country: { en: "USA", ar: "أمريكا" },
     // -v3: circular emblem only — the stacked lockup's microtext made the
@@ -28,7 +28,7 @@ const DISTRIBUTOR_BRANDS = [
     dark: true,
   },
   {
-    key: "VTEK",
+    slug: "vtek",
     name: "VTEK",
     country: { en: "USA", ar: "أمريكا" },
     logo: "/brands/vtek-card-v2.webp",
@@ -36,7 +36,7 @@ const DISTRIBUTOR_BRANDS = [
     dark: true,
   },
   {
-    key: "Autotriz",
+    slug: "autotriz",
     name: "AUTOTRIZ",
     country: { en: "GERMANY", ar: "ألمانيا" },
     logo: "/brands/autotriz-card-v2.webp",
@@ -44,7 +44,7 @@ const DISTRIBUTOR_BRANDS = [
     dark: true,
   },
   {
-    key: "Briller",
+    slug: "briller",
     name: "BRILLER",
     country: { en: "CANADA", ar: "كندا" },
     logo: "/brands/briller-card-v2.webp",
@@ -76,8 +76,8 @@ export function StoreHeader({ audience, locale }: Props) {
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
           {DISTRIBUTOR_BRANDS.map((brand) => (
             <Link
-              key={brand.key}
-              href={`/b2c/products?brand=${brand.key}`}
+              key={brand.slug}
+              href={`/b2c/brands/${brand.slug}`}
               style={{ backgroundColor: brand.bg }}
               className="tile group flex flex-col items-center gap-2 rounded-[16px] border border-white/10 p-3 pb-2.5 transition-all duration-300 ease-soft hover:border-white/25 hover:shadow-tile-hover sm:gap-2.5 sm:p-4 sm:pb-3"
             >

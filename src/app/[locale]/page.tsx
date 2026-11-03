@@ -12,6 +12,9 @@ import { WhyQatar } from "@/components/home/WhyQatar";
 import { TrustBadges } from "@/components/home/TrustBadges";
 import { AboutSnippet } from "@/components/home/AboutSnippet";
 import { BestSellerCard } from "@/components/home/BestSellerCard";
+import { Container } from "@/components/ui/Container";
+import { RelatedGuides } from "@/components/blog/RelatedGuides";
+import { buyingGuides } from "@/data/articles";
 import { getStoreShelfProducts } from "@/data/products";
 import { localBusinessJsonLd } from "@/lib/jsonld";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -43,6 +46,10 @@ export default async function Home({
   const l = locale as "en" | "ar";
   const jsonLd = localBusinessJsonLd(l);
   const bestSellers = getStoreShelfProducts("b2c", 5);
+  const guidesTitle =
+    l === "ar"
+      ? "قبل أن تشتري: أسعار وضمانات وقوانين قطر"
+      : "Before you buy: prices, warranties and Qatar's rules";
 
   return (
     <Shell audience="b2c" locale={l}>
@@ -61,6 +68,13 @@ export default async function Home({
       <StarProducts audience="b2c" locale={l} />
       <WhyQatar />
       <BestSellerCard products={bestSellers} audience="b2c" locale={l} />
+      {/* The homepage is the site's strongest page and linked to no guide, so the
+          pages that answer "how much does PPF cost in Qatar" got nothing from it. */}
+      <section className="py-10 lg:py-14">
+        <Container>
+          <RelatedGuides guides={buyingGuides()} locale={l} title={guidesTitle} />
+        </Container>
+      </section>
       <TrustBadges />
       <AboutSnippet />
       <StoreHeader audience="b2c" locale={l} />

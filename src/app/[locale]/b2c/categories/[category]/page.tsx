@@ -178,6 +178,7 @@ export default async function CategoryLandingPage({
               <span>{t("Products.count", { count: products.length })}</span>
               <Link
                 href={`/b2c/products?category=${data.slug}`}
+                rel="nofollow"
                 className="text-link font-medium"
               >
                 {l === "ar"
