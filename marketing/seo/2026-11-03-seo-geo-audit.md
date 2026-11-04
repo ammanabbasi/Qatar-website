@@ -118,7 +118,7 @@ Live on production, 3 Nov 2026 (commit 5a19db7):
 - All tested search and AI crawlers get 200. IndexNow: all URLs with a 3 Nov lastmod submitted, HTTP 200.
 - validator.schema.org on the tint guide: 0 errors, 0 warnings.
 - Routing, production: 29 cases pass (localeless paths, Arabic negotiation, language cookie, legacy redirects, 404s, assets). The language switch still sets `NEXT_LOCALE` and `/` honours it. Page responses no longer set a cookie.
-- Search Console: indexing requested and confirmed for the tint guide (EN, AR), `/categories/ceramic`, `/categories/shampoo`, `ppf-vs-ceramic-coating-qatar`, `best-ppf-installers`, `/b2b/become-a-dealer` and `/en`. `/brands/autotriz` and `/about` were sent in a batch whose confirmation was lost, and the daily quota then ran out: repeat them. robots.txt recrawl requested.
+- Search Console: indexing requested and confirmed for the tint guide (EN, AR), `/categories/ceramic`, `/categories/shampoo`, `ppf-vs-ceramic-coating-qatar`, `best-ppf-installers`, `/b2b/become-a-dealer` and `/en`. `/brands/autotriz` and `/about` were sent in a batch whose confirmation was lost; inspected again that evening, both show a 3 Nov crawl and "Page is indexed", though they were on the 22 Oct uncrawled list. The daily quota then ran out, so the remaining pages go through a daily routine at about 10 requests a day. robots.txt recrawl requested.
 
 TTFB on `/en` (KeyCDN; no Qatar test point exists, Bangalore is the closest):
 
@@ -149,7 +149,7 @@ Smaller items left alone: unknown URLs get Next's bare default 404 rather than t
 
 ## 7. Re-check on 17 November 2026
 
-- Search Console → Settings → Crawl stats: `_rsc` share should fall sharply; HTML share should rise.
+- Search Console → Settings → Crawl stats: `_rsc` share should fall and HTML share should rise. The window still includes days before the fix, so also check that the "other file type" examples show no `_rsc` URLs after 5 Nov.
 - Search Console → Pages: indexed count (baseline 106) and *Discovered* (baseline 94).
 - Google with `gl=qa`: "ceramic coating qatar" (baseline: not in top 8), "ppf qatar" (baseline: first organic result).
 - AI Mode: the brand question should stop saying 12-year warranty and clean booths. Tint questions should reflect Art. 75.
