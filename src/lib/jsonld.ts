@@ -286,12 +286,13 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
 }
 
 /**
- * Product schema. An Offer is emitted only for products with a published
- * QAR price: Google treats an Offer WITHOUT `price` as a structured-data
- * ERROR, while a product with no offer at all is merely ineligible for the
- * product snippet. Price-on-request products therefore carry no `offers`.
- * There is no `hasMerchantReturnPolicy`: the site publishes no return policy
- * for retail goods, and inventing one would be a claim the shop must honour.
+ * Product schema for priced retail/multi-variant SKUs, and WebPage schema for
+ * quote-only trade roll pages. Google Search Console flags a `@type: "Product"`
+ * node that lacks `offers`, `review`, AND `aggregateRating` as a critical
+ * invalid Product snippet ("Either 'offers', 'review' or 'aggregateRating'
+ * should be specified"). Quote-only SKUs have no published QAR price and no
+ * per-SKU reviews, so emitting `WebPage` keeps Rich Results 100% valid while
+ * preserving full entity metadata for search and AI crawlers.
  */
 export function productJsonLd(opts: {
   name: string;
@@ -309,6 +310,25 @@ export function productJsonLd(opts: {
   const variantPrices = hasVariants
     ? opts.variants!.map((v) => v.priceQar)
     : [];
+  const hasPrice = Boolean(hasVariants || opts.priceQar);
+
+  if (!hasPrice) {
+    return {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `${opts.url}#webpage`,
+      name: opts.name,
+      description: opts.description,
+      url: opts.url,
+      image: opts.images,
+      isPartOf: { "@id": IDS.website },
+      provider: { "@id": IDS.business },
+      about: {
+        "@type": "Brand",
+        name: opts.brand,
+      },
+    };
+  }
 
   return {
     "@context": "https://schema.org",

@@ -188,6 +188,13 @@ const nextConfig: NextConfig = {
         destination: "/en/b2c/brands/autotriz",
         permanent: true,
       },
+      // July 2026 builds briefly exposed Next's file-convention opengraph-image
+      // endpoint before switching to static /og/abk-og-{en,ar}.jpg cards.
+      {
+        source: "/:locale(en|ar)/opengraph-image",
+        destination: "/og/abk-og-:locale.jpg",
+        permanent: true,
+      },
       // Localeless page URLs (/privacy, /contact, /b2c/products/…) otherwise
       // reach the next-intl middleware, which answers with a 307. Google keeps
       // the source URL of a temporary redirect, and Search Console showed

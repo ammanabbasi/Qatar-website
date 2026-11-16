@@ -208,6 +208,12 @@ for (const prodUrl of sitemapUrls) {
     if (parsed["@type"] === "CollectionPage") {
       assert(!parsed.mainEntity?.itemListElement, `Inline duplicate ItemList on ${rel}`);
     }
+    if (parsed["@type"] === "Product") {
+      assert(
+        Boolean(parsed.offers || parsed.review || parsed.aggregateRating),
+        `Invalid Product JSON-LD missing offers/review/aggregateRating on ${rel}`,
+      );
+    }
   }
   verifiedPages++;
 }
