@@ -1,10 +1,9 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Container } from "@/components/ui/Container";
-import { ButtonLink } from "@/components/ui/Button";
 import { ArrowRightIcon, SunIcon, WindIcon, ShieldCheckIcon } from "@/components/ui/Icons";
 import { Link } from "@/i18n/navigation";
-import { buildWhatsAppUrl, type Audience, type WALocale } from "@/lib/whatsapp";
+import type { Audience, WALocale } from "@/lib/whatsapp";
 
 type Props = {
   audience: Audience;
@@ -15,9 +14,8 @@ type Props = {
  * Dark showroom hero — headline, gold CTAs and the four trust points over the
  * showroom photograph. Owns the page's single <h1>.
  */
-export function HomeHero({ audience, locale }: Props) {
+export function HomeHero({ audience }: Props) {
   const t = useTranslations("Home");
-  const waHref = buildWhatsAppUrl({ audience, locale });
   const isB2c = audience === "b2c";
   const eyebrow = isB2c ? t("heroEyebrowB2c") : t("heroEyebrowB2b");
   const line1 = isB2c ? t("heroTitleLine1B2c") : t("heroTitleLine1B2b");

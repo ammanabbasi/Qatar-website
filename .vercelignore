@@ -1,0 +1,15 @@
+# Prevent local untracked downloads, archives, and internal docs from being
+# deployed to production CDN if `vercel` CLI is invoked directly.
+.git
+.github
+.claude
+node_modules
+.next
+audit-reports
+marketing
+*.exe
+*.zip
+/*.pdf
+public/products/*.txt
+public/products/*.mp4
+public/products/*.html

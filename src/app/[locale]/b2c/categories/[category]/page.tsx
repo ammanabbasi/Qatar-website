@@ -85,7 +85,7 @@ export default async function CategoryLandingPage({
     inLanguage: l === "ar" ? "ar-QA" : "en-QA",
     isPartOf: { "@id": `${SITE.url}#website` },
     about: { "@id": `${SITE.url}#business` },
-    mainEntity: itemListLd,
+    mainEntity: { "@id": `${pageUrl}#itemlist` },
   };
 
   const crumbLd = breadcrumbJsonLd([

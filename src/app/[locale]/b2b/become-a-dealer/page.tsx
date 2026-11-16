@@ -1,5 +1,5 @@
-import { setRequestLocale, getTranslations } from "next-intl/server";
-import { hasLocale } from "next-intl";
+import { setRequestLocale, getMessages, getTranslations } from "next-intl/server";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { Shell } from "@/components/layout/Shell";
@@ -39,6 +39,8 @@ export default async function BecomeDealer({
   const l = locale as "en" | "ar";
   const home = await getTranslations({ locale, namespace: "Home" });
   const eyebrows = await getTranslations({ locale, namespace: "Eyebrows" });
+  const allMessages = await getMessages();
+  const dealerClientMessages = { DealerPage: allMessages.DealerPage };
   const crumbLd = breadcrumbJsonLd([
     { name: l === "ar" ? "الرئيسية" : "Home", url: `${SITE.url}/${l}` },
     {
@@ -57,7 +59,9 @@ export default async function BecomeDealer({
       />
       <DealerPartnershipTiers />
       <DealerLogistics />
-      <DealerApplicationForm locale={l} />
+      <NextIntlClientProvider messages={dealerClientMessages}>
+        <DealerApplicationForm locale={l} />
+      </NextIntlClientProvider>
       <TrustBadges />
     </Shell>
   );

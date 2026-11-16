@@ -9,6 +9,7 @@
     "lint": "eslint",
     "og:products": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/generate-og.mjs",
     "llms:sync": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/generate-llms.mjs",
+    "seo:verify": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify-seo.mjs",
     "indexnow": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/indexnow.mjs"
   },
   "dependencies": {

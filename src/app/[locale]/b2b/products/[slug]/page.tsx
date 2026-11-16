@@ -2,9 +2,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound, redirect } from "next/navigation";
 import { routing, type Locale } from "@/i18n/routing";
-import { Shell } from "@/components/layout/Shell";
-import { ProductDetail } from "@/components/product/ProductDetail";
-import { getProductBySlug, getRelatedProducts, PRODUCTS } from "@/data/products";
+import { getProductBySlug, PRODUCTS } from "@/data/products";
 import { metaDescription, pageMeta, productMetaTitle, productSocialImage } from "@/lib/seo";
 
 // Reject any slug not produced by generateStaticParams — b2c-only products

@@ -596,18 +596,19 @@ export const PRODUCTS: Product[] = [
       ar: "Briller — ملمع الإطارات السريع",
     },
     shortDesc: {
-      en: "Aqua-based tyre shine with peak shine, inside and out.",
-      ar: "ملمع إطارات مائي لقمة اللمعان من الداخل والخارج.",
+      en: "Aqua-based 20L commercial tyre shine (SKU B503) — deep, sling-free finish inside and out. Made in Canada.",
+      ar: "ملمع إطارات مائي بعبوة ٢٠ لتر للورش والمغاسل (B503) — لمعان فائق دون تطاير. صُنع في كندا.",
     },
     longDesc: {
-      en: "Aqua-Based Blend. Peak shine — inside and out. Long-lasting protection without sling-off.",
-      ar: "تركيبة مائية. لمعان فائق داخلياً وخارجياً. حماية طويلة الأمد دون تطاير.",
+      en: "Briller Quick Tyre Shine (B503) is a Canadian-made, aqua-based tyre and rubber dressing supplied in a 20 L commercial drum for car washes, detailing studios, and fleet bays in Qatar. Formulated to bond evenly to clean, dry tyre sidewalls without greasy sling-off onto painted doors and fenders, leaving a rich, weather-resistant sheen.",
+      ar: "ملمع الإطارات السريع Briller Quick Tyre Shine (رقم المنتج B503) تركيبة مائية كندية الصنع متوفرة ببرميل تجاري سعة ٢٠ لتر لمغاسل السيارات ومراكز التلميع في قطر. يلتصق بانتظام على جدران الإطارات النظيفة والجافة ليمنح لمعاناً غنياً ومقاوماً للعوامل الجوية دون تطاير دهني على هيكل السيارة.",
     },
     images: ["/products/briller/briller-quick-tyre-shine.webp"],
     specs: [
       { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 280", ar: "٢٨٠ ر.ق" } },
       { label: { en: "SKU", ar: "رقم المنتج" }, value: { en: "B503", ar: "B503" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "20 L", ar: "٢٠ لتر" } },
+      { label: { en: "Base", ar: "الأساس" }, value: { en: "Aqua-based, sling-free blend", ar: "تركيبة مائية بدون تطاير" } },
       { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Canada", ar: "صُنع في كندا" } },
     ],
     price: { en: "QAR 280", ar: "٢٨٠ ر.ق" },
@@ -615,7 +616,7 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     highlight: "briller-color",
     volumesMl: [20000],
-    updatedAt: "2026-10-05",
+    updatedAt: "2026-11-16",
   },
   {
     slug: "briller-glass-cleaner",
@@ -627,12 +628,12 @@ export const PRODUCTS: Product[] = [
       ar: "Briller — منظف الزجاج",
     },
     shortDesc: {
-      en: "Streak-free glass cleaner that gives car windows a new look. All-in-One CA Tech™.",
-      ar: "منظف زجاج بدون أثر شطب يعيد لنوافذ السيارة مظهراً جديداً. بتقنية CA Tech™.",
+      en: "Ready-to-use 20L streak-free glass cleaner (SKU B504) with All-in-One CA Tech™. Made in Canada.",
+      ar: "منظف زجاج جاهز للاستخدام بعبوة ٢٠ لتر بدون خطوط (B504) بتقنية CA Tech™. صُنع في كندا.",
     },
     longDesc: {
-      en: "Professional streak-free glass cleaner. Lifts film, road grime and bug residue from windshields and side glass.",
-      ar: "منظف زجاج احترافي بدون شطب. يُزيل الأفلام والأوساخ من الزجاج الأمامي والجانبي.",
+      en: "Briller Glass Cleaner (B504) is a professional ready-to-use automotive glass cleaner powered by Canadian All-in-One CA Tech™ in an economical 20 L workshop drum. Spray directly onto cool interior or exterior windshields, side windows, and mirrors and wipe with a clean microfibre towel to dissolve cabin haze, fingerprints, dust film, and insect residue without streaks.",
+      ar: "منظف الزجاج الاحترافي Briller Glass Cleaner (رقم المنتج B504) تركيبة كندية بتقنية All-in-One CA Tech™ جاهزة للاستخدام المباشر بدون تخفيف في برميل اقتصادي سعة ٢٠ لتر. يزيل الضباب الدهني الداخلي وبصمات الأصابع وغبار الطرق وبقايا الحشرات عن الزجاج الأمامي والجانبي والمرايا بصفاء تام ودون ترك خطوط.",
     },
     images: ["/products/briller/briller-glass-cleaner-new.webp"],
     specs: [
@@ -647,7 +648,7 @@ export const PRODUCTS: Product[] = [
     audience: "both",
     highlight: "briller-color",
     volumesMl: [20000],
-    updatedAt: "2026-10-09",
+    updatedAt: "2026-11-16",
   },
   {
     slug: "briller-heavy-duty-degreaser",
@@ -907,12 +908,12 @@ export const PRODUCTS: Product[] = [
       ar: "Autotriz 3D Matrix Ultra — طلاء سيراميك",
     },
     shortDesc: {
-      en: "Autotriz 3D Matrix Ultra: a 50 ml professional nano-technology ceramic coating kit for enhanced gloss and long-term paint protection.",
-      ar: "Autotriz 3D Matrix Ultra: عبوة طلاء سيراميك احترافي بتقنية النانو سعة 50 مل، للمعان معزّز وحماية طويلة الأمد للطلاء.",
+      en: "Flagship 50 ml German 3D Matrix polysilazane ceramic coating — permanent molecular bond, pH 1–14 chemical resistance, and deep hydrophobic gloss.",
+      ar: "طلاء السيراميك الألماني الرائد 3D Matrix Ultra بحجم ٥٠ مل — ترابط جزيئي دائم ومقاومة كيميائية pH 1–14 ولمعان فائق طارد للماء.",
     },
     longDesc: {
-      en: "Autotriz 3D Matrix Ultra is a professional ceramic coating applied by trained detailers to protect and enhance automotive paint. Available from our Mesaimeer store. 50 ml kit. Full specifications available on request.",
-      ar: "Autotriz 3D Matrix Ultra طلاء سيراميك احترافي يُطبّق بواسطة فنيين مدربين لحماية وتعميق طلاء السيارة. متوفر في متجرنا بمسيمير. عبوة 50 مل. المواصفات الكاملة متاحة عند الطلب.",
+      en: "Autotriz 3D Matrix Ultra (50 ml / 1.7 oz) is Autotriz Germany's flagship 3D Matrix organopolysilazane ceramic coating for automotive clearcoat. Once cured on properly corrected, decontaminated paint, it forms a permanent molecular bond that resists harsh chemicals across pH 1–14, solvents, UV oxidation, and road grime. Its ultra-smooth hydrophobic surface repels water, dust, and stains to cut routine washing effort in Qatar's climate. Professional application recommended; stocked at our Mesaimeer showroom.",
+      ar: "طلاء السيراميك Autotriz 3D Matrix Ultra (عبوة ٥٠ مل) هو الفئة الرائدة بتقنية مصفوفة البوليسيلازان ثلاثية الأبعاد من Autotriz الألمانية لحماية طلاء السيارات. يكوّن بعد التصلب رابطة جزيئية دائمة تقاوم المواد الكيميائية القوية (من pH 1 إلى 14) والمذيبات والأكسدة الناتجة عن أشعة الشمس. يمنح سطحاً فائق النعومة وطارداً للماء والأتربة لتسهيل الغسيل الدوري في مناخ قطر. يُوصى بالتطبيق الاحترافي، ومتوفر في معرضنا بمسيمير.",
     },
     images: [
       "/products/autotriz/autotriz-3d-matrix-ultra.webp",
@@ -920,13 +921,15 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 280", ar: "٢٨٠ ر.ق" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "50 ml / 1.7 oz", ar: "٥٠ مل" } },
-      { label: { en: "Technology", ar: "التقنية" }, value: { en: "Nano-technology ceramic", ar: "سيراميك نانو" } },
+      { label: { en: "Chemistry", ar: "التركيبة" }, value: { en: "3D Matrix Polysilazane Ceramic", ar: "سيراميك بوليسيلازان ثلاثي الأبعاد" } },
+      { label: { en: "Chemical Resistance", ar: "المقاومة الكيميائية" }, value: { en: "pH 1–14 & solvent-resistant when cured", ar: "مقاوم لدرجات الحموضة pH 1–14 والمذيبات" } },
+      { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
     price: { en: "QAR 280", ar: "٢٨٠ ر.ق" },
     priceQar: 280,
     audience: "both",
     volumesMl: [50],
-    updatedAt: "2026-10-23",
+    updatedAt: "2026-11-16",
   },
   {
     slug: "autotriz-3d-matrix-hybrid",
@@ -934,15 +937,15 @@ export const PRODUCTS: Product[] = [
     category: "ceramic",
     name: {
       en: "Autotriz 3D Matrix Hybrid — Ceramic Coating",
-      ar: "Autotriz 3D Matrix Hybrid — طلاء سيراميك",
+      ar: "Autotriz 3D Matrix Hybrid — طلاء سيراميك بالجرافين",
     },
     shortDesc: {
-      en: "Autotriz 3D Matrix Hybrid: a 50 ml professional nano-technology ceramic coating kit for enhanced gloss and long-term paint protection.",
-      ar: "Autotriz 3D Matrix Hybrid: عبوة طلاء سيراميك احترافي بتقنية النانو سعة 50 مل، للمعان معزّز وحماية طويلة الأمد للطلاء.",
+      en: "Graphene-infused polysilazane 50 ml ceramic coating — engineered for enhanced bonding strength, durability, and reduced water-spot susceptibility.",
+      ar: "طلاء سيراميك بوليسيلازان معزّز بالجرافين (٥٠ مل) — مصمم لقوة ترابط ومتانة أعلى وتقليل قابلية تكوّن بقع الماء.",
     },
     longDesc: {
-      en: "Autotriz 3D Matrix Hybrid is a professional ceramic coating applied by trained detailers to protect and enhance automotive paint. Available from our Mesaimeer store. 50 ml kit. Full specifications available on request.",
-      ar: "Autotriz 3D Matrix Hybrid طلاء سيراميك احترافي يُطبّق بواسطة فنيين مدربين لحماية وتعميق طلاء السيارة. متوفر في متجرنا بمسيمير. عبوة 50 مل. المواصفات الكاملة متاحة عند الطلب.",
+      en: "Autotriz 3D Matrix Hybrid (50 ml / 1.7 oz) combines Graphene and Polysilazane inside a single 3D molecular matrix. Infusing graphene into the polysilazane structure strengthens surface bonding and durability while making the cured finish less susceptible to mineral water spots and thermal breakdown — a practical advantage against Doha's desalinated tap water and summer heat. Resistant to pH 1–14 chemicals once cured. Professional application recommended.",
+      ar: "يجمع طلاء Autotriz 3D Matrix Hybrid (عبوة ٥٠ مل) بين تقنيتَي الجرافين والبوليسيلازان ضمن بنية جزيئية واحدة؛ حيث يعزز دمج الجرافين في تركيبة البوليسيلازان قوة الالتصاق والمتانة ويجعل السطح أقل عرضة لتكوّن بقع الماء الكلسية والتفكك الحراري — وهي ميزة عملية في مواجهة ماء الدوحة المحلّى وحرارة الصيف، مع مقاومة كيميائية pH 1–14 بعد التصلب. يُوصى بالتطبيق الاحترافي.",
     },
     images: [
       "/products/autotriz/autotriz-3d-matrix-hybrid.webp",
@@ -951,13 +954,15 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 280", ar: "٢٨٠ ر.ق" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "50 ml / 1.7 oz", ar: "٥٠ مل" } },
-      { label: { en: "Technology", ar: "التقنية" }, value: { en: "Nano-technology ceramic", ar: "سيراميك نانو" } },
+      { label: { en: "Chemistry", ar: "التركيبة" }, value: { en: "Graphene-Infused Polysilazane", ar: "بوليسيلازان معزّز بالجرافين" } },
+      { label: { en: "Key Advantage", ar: "الميزة الأساسية" }, value: { en: "Reduced water-spot susceptibility & pH 1–14 resistance", ar: "مقاومة أعلى لبقع الماء ومقاومة كيميائية pH 1–14" } },
+      { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
     price: { en: "QAR 280", ar: "٢٨٠ ر.ق" },
     priceQar: 280,
     audience: "both",
     volumesMl: [50],
-    updatedAt: "2026-10-23",
+    updatedAt: "2026-11-16",
   },
   {
     slug: "autotriz-fabric-textile-coating",
@@ -969,12 +974,12 @@ export const PRODUCTS: Product[] = [
       ar: "Autotriz — طلاء حماية الأقمشة والمفروشات",
     },
     shortDesc: {
-      en: "Nano-technology fabric protector for upholstery, carpet and soft tops.",
-      ar: "حماية أقمشة بتقنية النانو — للمفروشات والسجاد والأسقف القماشية.",
+      en: "Eco-friendly, VOC-compliant 300 ml nano fabric protector — odourless, breathable liquid & stain barrier for seats, carpets, mats and soft tops.",
+      ar: "بخاخ حماية أقمشة صديق للبيئة بتقنية النانو (٣٠٠ مل) — عديم الرائحة ومسامي يحمي المقاعد والسجاد والأرضيات من السوائل والبقع.",
     },
     longDesc: {
-      en: "Autotriz Fabric & Textile is a nano-technology fabric protector designed to help keep interior upholstery, carpet and soft tops looking fresh. 300 ml spray. Full specifications available on request.",
-      ar: "Autotriz Fabric & Textile حماية أقمشة بتقنية النانو تساعد على الحفاظ على مظهر المفروشات الداخلية والسجاد والأسقف القماشية. بخاخ 300 مل. المواصفات الكاملة متاحة عند الطلب.",
+      en: "Autotriz Fabric & Textile (300 ml / 10.1 oz) is an eco-friendly, non-toxic, and VOC-compliant nano fabric protector that shields interior textiles against permanent stains from spilled coffee, karak, soft drinks, and food. It dries transparent, breathable, and virtually odourless with zero harsh solvent smell, preserving the natural feel and softness of cloth seats, carpets, floor mats, trunk liners, headliners, and convertible soft tops.",
+      ar: "بخاخ Autotriz Fabric & Textile (عبوة ٣٠٠ مل) واقٍ للأقمشة بتقنية النانو صديق للبيئة وغير سام ومتوافق مع معايير المركبات العضوية المتطايرة (VOC)، يحمي المفروشات من البقع الدائمة الناتجة عن انسكاب القهوة والمشروبات والطعام. يجف شفافاً ومسامياً وبدون رائحة مذيبات، مع الحفاظ التام على الملمس الطبيعي ونعومة المقاعد القماشية والسجاد والدعاسات وبطانة الصندوق والأسقف القماشية.",
     },
     images: [
       "/products/autotriz/autotriz-fabric-and-textile.webp",
@@ -982,13 +987,15 @@ export const PRODUCTS: Product[] = [
     specs: [
       { label: { en: "Price", ar: "السعر" }, value: { en: "QAR 280", ar: "٢٨٠ ر.ق" } },
       { label: { en: "Size", ar: "الحجم" }, value: { en: "300 ml / 10.1 oz", ar: "٣٠٠ مل" } },
-      { label: { en: "Technology", ar: "التقنية" }, value: { en: "Nano-technology fabric protector", ar: "حماية نانو للأقمشة" } },
+      { label: { en: "Formula", ar: "التركيبة" }, value: { en: "Eco-friendly, non-toxic, VOC-compliant, odourless", ar: "صديق للبيئة، غير سام، عديم الرائحة" } },
+      { label: { en: "Surfaces", ar: "الأسطح المناسبة" }, value: { en: "Fabric seats · Carpets · Mats · Headliners · Soft tops", ar: "المقاعد القماشية · السجاد · الدعاسات · بطانة السقف" } },
+      { label: { en: "Origin", ar: "المنشأ" }, value: { en: "Made in Germany", ar: "صُنع في ألمانيا" } },
     ],
     price: { en: "QAR 280", ar: "٢٨٠ ر.ق" },
     priceQar: 280,
     audience: "both",
     volumesMl: [300],
-    updatedAt: "2026-10-05",
+    updatedAt: "2026-11-16",
   },
   {
     slug: "autotriz-ppf-gel",
@@ -1822,12 +1829,12 @@ export const PRODUCTS: Product[] = [
       ar: "شريط لاصق — لتركيب PPF والطلاء",
     },
     shortDesc: {
-      en: "Professional-grade yellow masking tape for PPF installation, paint prep and detailing.",
-      ar: "شريط لاصق أصفر احترافي لتركيب PPF وإعداد الطلاء والتلميع.",
+      en: "Clean-release yellow automotive masking tape (1\" QAR 2.5 | 2\" QAR 3.5) for PPF prep, machine polishing and trim protection.",
+      ar: "شريط لاصق أصفر احترافي سهل الإزالة بدون بقايا (١ بوصة ٢.٥ ر.ق | ٢ بوصة ٣.٥ ر.ق) للتلميع وتركيب PPF.",
     },
     longDesc: {
-      en: "Clean-edge yellow masking tape used for PPF installation, paint prep and detailing work. Peels cleanly without residue.",
-      ar: "شريط لاصق أصفر بحواف نظيفة يُستخدم في تركيب PPF والطلاء والتلميع. يُنزع بسهولة دون أثر.",
+      en: "Clean-edge automotive yellow masking tape engineered for machine paint correction, PPF edge prep, and detailing work. Protects rubber window seals, textured black plastic trim, badges, and headlights against rotary or dual-action pad burn and compound splatter, then peels away cleanly with zero sticky adhesive residue. Available in 1-inch (24 mm, QAR 2.5) and 2-inch (48 mm, QAR 3.5) rolls.",
+      ar: "شريط حماية أصفر مخصص للسيارات بحواف دقيقة لأعمال تصحيح الطلاء بالماكينة وتجهيز تركيب أفلام الحماية PPF والتلميع التفصيلي. يحمي ربلات النوافذ والبلاستيك الأسود والشعارات والمصابيح من احتكاك وسائد التلميع وبقايا الكومباوند، ويُنزع بنظافة تامة دون ترك أي أثر لاصق. متوفر بمقاس ١ بوصة (٢٤ ملم بسعر ٢.٥ ر.ق) و٢ بوصة (٤٨ ملم بسعر ٣.٥ ر.ق).",
     },
     images: ["/products/misc/fast-masking-tape.webp"],
     specs: [
@@ -1856,7 +1863,7 @@ export const PRODUCTS: Product[] = [
       },
     ],
     audience: "both",
-    updatedAt: "2026-10-06",
+    updatedAt: "2026-11-16",
   },
   {
     slug: "edgeless-microfiber-towel",

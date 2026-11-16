@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
@@ -7,6 +8,7 @@ import { Shell } from "@/components/layout/Shell";
 import { Container } from "@/components/ui/Container";
 import { PageHero } from "@/components/ui/PageHero";
 import { ChevronIcon } from "@/components/ui/Icons";
+import { WhatsAppIcon } from "@/components/cta/WhatsAppIcon";
 import { ProductCard } from "@/components/product/ProductCard";
 import { PpfInstallStrip } from "@/components/ppf/PpfInstallStrip";
 import { RelatedGuides } from "@/components/blog/RelatedGuides";
@@ -15,6 +17,7 @@ import { Link } from "@/i18n/navigation";
 import { clampDescription, fitTitle, pageMeta } from "@/lib/seo";
 import { SITE } from "@/lib/constants";
 import { breadcrumbJsonLd, faqJsonLd, itemListJsonLd } from "@/lib/jsonld";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import {
   BRAND_LANDING_PAGES,
   CATEGORY_LANDING_PAGES,
@@ -65,15 +68,18 @@ export default async function BrandLandingPage({
   const pageUrl = `${SITE.url}/${l}/b2c/brands/${data.slug}`;
   const brandLabel = t(`Brands.${data.brandKey}`);
 
-  const itemListLd = itemListJsonLd({
-    name: data.h1[l],
-    url: pageUrl,
-    items: products.map((p) => ({
-      name: p.name[l],
-      url: `${SITE.url}/${l}/b2c/products/${p.slug}`,
-      image: p.images[0] ? `${SITE.url}${p.images[0]}` : undefined,
-    })),
-  });
+  const itemListLd =
+    products.length > 0
+      ? itemListJsonLd({
+          name: data.h1[l],
+          url: pageUrl,
+          items: products.map((p) => ({
+            name: p.name[l],
+            url: `${SITE.url}/${l}/b2c/products/${p.slug}`,
+            image: p.images[0] ? `${SITE.url}${p.images[0]}` : undefined,
+          })),
+        })
+      : null;
 
   const collectionLd = {
     "@context": "https://schema.org",
@@ -88,7 +94,7 @@ export default async function BrandLandingPage({
       "@type": "Brand",
       name: brandLabel,
     },
-    mainEntity: itemListLd,
+    ...(itemListLd ? { mainEntity: { "@id": `${pageUrl}#itemlist` } } : {}),
   };
 
   const crumbLd = breadcrumbJsonLd([
@@ -109,7 +115,7 @@ export default async function BrandLandingPage({
   return (
     <Shell audience="b2c" locale={l}>
       <JsonLd id={`ld-brand-collection-${data.slug}`} data={collectionLd} />
-      <JsonLd id={`ld-brand-itemlist-${data.slug}`} data={itemListLd} />
+      {itemListLd ? <JsonLd id={`ld-brand-itemlist-${data.slug}`} data={itemListLd} /> : null}
       <JsonLd id={`ld-brand-crumb-${data.slug}`} data={crumbLd} />
       <JsonLd id={`ld-brand-faq-${data.slug}`} data={faqLd} />
 
@@ -179,31 +185,88 @@ export default async function BrandLandingPage({
               <PpfInstallStrip locale={l} />
             ) : null}
 
-            <div className="flex items-center justify-between text-footnote text-(--color-text-muted)">
-              <span>{t("Products.count", { count: products.length })}</span>
-              <Link
-                href={`/b2c/products?brand=${data.brandKey}`}
-                rel="nofollow"
-                className="text-link font-medium"
-              >
-                {l === "ar"
-                  ? "البحث والفرز في الكتالوج الكامل ←"
-                  : "Search & sort in full catalogue →"}
-              </Link>
-            </div>
+            {products.length > 0 ? (
+              <>
+                <div className="flex items-center justify-between text-footnote text-(--color-text-muted)">
+                  <span>{t("Products.count", { count: products.length })}</span>
+                  <Link
+                    href={`/b2c/products?brand=${data.brandKey}`}
+                    rel="nofollow"
+                    className="text-link font-medium"
+                  >
+                    {l === "ar"
+                      ? "البحث والفرز في الكتالوج الكامل ←"
+                      : "Search & sort in full catalogue →"}
+                  </Link>
+                </div>
 
-            <div className="grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-3 lg:grid-cols-4">
-              {products.map((p, i) => (
-                <ProductCard
-                  key={p.slug}
-                  product={p}
-                  locale={l}
-                  audience="b2c"
-                  eager={i < 2}
-                  as="h2"
-                />
-              ))}
-            </div>
+                <div className="grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-3 lg:grid-cols-4">
+                  {products.map((p, i) => (
+                    <ProductCard
+                      key={p.slug}
+                      product={p}
+                      locale={l}
+                      audience="b2c"
+                      eager={i < 2}
+                      as="h2"
+                    />
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="tile grid items-center gap-8 overflow-hidden p-6 sm:p-8 lg:grid-cols-12">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-(--color-tile-dark) lg:col-span-5">
+                  <Image
+                    src="/brands/grizzly-group.webp"
+                    alt={`${brandLabel} automotive films and detailing range at ABK Doha`}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="flex flex-col gap-4 lg:col-span-7">
+                  <span className="inline-flex w-fit items-center rounded-pill bg-(--color-brand)/12 px-3 py-1 text-caption font-bold uppercase tracking-wider text-(--color-brand-deep)">
+                    {l === "ar" ? "الاستفسار عن التوفر وأسعار الجملة" : "Showroom & Trade Enquiry"}
+                  </span>
+                  <h2 className="text-title font-bold text-(--color-text)">
+                    {l === "ar"
+                      ? `اطلب عرض سعر ومخزون ${brandLabel} عبر واتساب`
+                      : `Request ${brandLabel} Showroom Stock & Trade Pricing`}
+                  </h2>
+                  <p className="text-body text-(--color-text-muted)">
+                    {l === "ar"
+                      ? "توفر ABK للتجارة والخدمات منتجات ورولات Grizzly للمراكز والورش والأفراد من معرضنا في مسيمير، الدوحة. راسل فريق المبيعات عبر واتساب للتحقق من الأصناف المتوفرة حالياً والحصول على عرض سعر فوري."
+                      : "ABK Trading & Service supplies Grizzly films and car care products to workshops, detailing studios, and car owners from our Mesaimeer showroom in Doha. Message our sales desk on WhatsApp to confirm current showroom availability and trade or retail pricing."}
+                  </p>
+                  <div className="mt-2 flex flex-wrap items-center gap-3">
+                    <a
+                      href={buildWhatsAppUrl({
+                        audience: "b2b",
+                        locale: l,
+                        productName: brandLabel,
+                        productUrl: pageUrl,
+                      })}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="plausible-event-name=whatsapp_click plausible-event-audience=b2b inline-flex h-11 items-center justify-center gap-2 rounded-pill bg-(--color-brand) px-6 text-footnote font-bold text-black transition-colors hover:bg-(--color-brand-hover)"
+                    >
+                      <WhatsAppIcon className="h-4 w-4 text-black" />
+                      <span>
+                        {l === "ar"
+                          ? `استفسر عن ${brandLabel} عبر واتساب`
+                          : `Enquire About ${brandLabel} on WhatsApp`}
+                      </span>
+                    </a>
+                    <Link
+                      href="/b2c/categories/film"
+                      className="inline-flex h-11 items-center justify-center rounded-pill border border-(--color-border) bg-(--color-surface) px-5 text-footnote font-semibold text-(--color-text) transition-colors hover:bg-(--color-fill)"
+                    >
+                      {l === "ar" ? "تصفح أفلام الحماية المتوفرة" : "Browse In-Stock PPF & Window Films"}
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </Container>
       </section>
@@ -276,7 +339,10 @@ export default async function BrandLandingPage({
           <RelatedGuides
             guides={relatedGuides({
               products: products.map((p) => p.slug),
-              categories: [...new Set(products.map((p) => p.category))],
+              categories:
+                products.length > 0
+                  ? [...new Set(products.map((p) => p.category))]
+                  : ["film", "polish"],
               // Hubs index their topic, so they list every matching guide (two
               // rows) — with three, VTEK's PPF guides crowded out the tint guide.
               limit: 6,

@@ -15,8 +15,9 @@ catalogue download was invisible to Google Ads.
 
 | File | Purpose |
 |---|---|
-| `src/instrumentation-client.ts` | One capture-phase click listener on `document`. Bootstraps unified Google Tag (GA4 `G-V73K5YVK5T` + Google Ads `AW-18200382552`) and instruments every CTA on the site. |
-| `src/lib/ads-conversions.ts` | GA4 measurement ID, Google Ads conversion ID, labels, event names and hostname gate. |
+| `src/instrumentation-client.ts` | One capture-phase click listener on `document`. Queues unified Google Tag `config` calls synchronously (GA4 primary `G-TYPKQ6L3SB`, GA4 legacy `G-V73K5YVK5T`, Google Ads `AW-18200382552`), defers `gtag.js` network download until after `window.load` + `requestIdleCallback` (or first user interaction / `gtm_debug` Tag Assistant session) to protect mobile LCP/TBT, emits `ai_referral_visit` once per AI-referred session, and instruments every CTA on the site. |
+| `src/lib/ads-conversions.ts` | GA4 measurement IDs, Google Ads conversion ID, labels, event names and hostname gate. |
+| `src/lib/attribution.ts` | Tab-scoped `sessionStorage` landing attribution (`abk_session_attr_v1`) classifying 12 AI platforms (`chatgpt`, `perplexity`, `gemini`, `claude`, `copilot`, `grok`, `meta_ai`, `deepseek`, `mistral`, `you`, `phind`, `kagi`), 8 organic search engines, paid click IDs (`gclid`, `gbraid`, `wbraid`, `msclkid`), social, referral, and direct traffic across SPA navigations. |
 
 **Why a delegated listener and not `onClick` handlers:** every CTA in this repo
 is a Server Component — `WhatsAppButton`, `FloatingWhatsApp`, `ButtonLink`,
@@ -69,22 +70,33 @@ To exercise tracking locally, build with `NEXT_PUBLIC_ADS_FORCE_TRACKING=1`.
 |---|---|---|---|
 | `wa.me` link click (general WhatsApp CTA) | `whatsapp_enquiry` | `whatsapp` | `fTHvCNXXr5MdENiYz-ZD` |
 | `wa.me` cart / quote-tray send (`data-placement="cart"` / `"quote-tray"`) | `cart_whatsapp_order` | `cart_order` | `K8OHCP_5-p8dENiYz-ZD` |
-| Wholesale Dealer Application submit (`/[locale]/b2b/dealer-application`) | `dealer_enquiry` | `dealer_enquiry` | `uuVJCKWd9J8dENiYz-ZD` |
+| Wholesale Dealer Application submit (`/[locale]/b2b/become-a-dealer`) | `dealer_enquiry` | `dealer_enquiry` | `uuVJCKWd9J8dENiYz-ZD` |
 | Installed-PPF booking saved / WhatsApp hand-off (`/[locale]/b2c/ppf-installation`) | `ppf_booking_request` | `ppf_booking` | `J9TLCOe7n44dENiYz-ZD` |
 | `tel:` link click | `phone_enquiry` | `phone` | `0rdHCL7KqJMdENiYz-ZD` |
 | `mailto:` link click | `email_enquiry` | `email` | *(dataLayer only)* |
 | `/catalogues/*.pdf` click | `catalogue_download` | `catalogue` | *(dormant)* |
+| Landing from ChatGPT, Perplexity, Gemini, Claude, Copilot, etc. (once/session) | `ai_referral_visit` | — | *(GA4 & Plausible)* |
 
-> **The catalogue conversion is dormant as of 2026-09-01:** commit `1599418`
-> removed the catalogue download link from product pages, and no page links the
-> PDFs any more (the files still exist under `public/catalogues/`). The listener
-> stays in place and reactivates by itself if a catalogue link ever returns.
+> **The catalogue conversion is dormant as of 2026-09-01, and legacy PDFs are redirected as of 2026-11-16:** commit `1599418`
+> removed catalogue download links from product pages, and the two unlinked legacy PDFs (`/catalogues/vertek-ppf-catalogue.pdf`
+> and `/catalogues/autotriz-catalogue.pdf`, which carried the former Ariane City address) were deleted and permanently `308`-redirected
+> to `/en/b2c/brands/vtek` and `/en/b2c/brands/autotriz`. The click listener stays in place if an updated PDF is ever published.
 
-Each event carries `page_path`, `link_url`, `locale` (`en`/`ar`), and where the
+Each conversion event carries `page_path`, `link_url`, `locale` (`en`/`ar`), `traffic_channel` (`ai_referral` / `organic_search` / `paid_search` / `social` / `referral` / `direct`), plus `ai_platform` or `search_engine` when classified, and where the
 markup provides them, `audience` (`b2c`/`b2b`), `product`, and
 `placement: "floating"` for the floating bubble. Those dimensions are read from
-the **existing Plausible class-name tags**, so both analytics tools share one
-source of truth.
+the **existing Plausible class-name tags** and `src/lib/attribution.ts`.
+
+### GA4 Custom Dimensions to Register (`Admin → Data display → Custom definitions`)
+
+Register these four event-scoped custom dimensions in GA4 property `abk (554936266)` so AI referrals and organic search conversions break down cleanly in Explorations:
+
+| Dimension name | Scope | Event parameter |
+|---|---|---|
+| Traffic Channel | Event | `traffic_channel` |
+| AI Platform | Event | `ai_platform` |
+| Search Engine | Event | `search_engine` |
+| Landing Page | Event | `landing_page` |
 
 ### Cart orders & Wholesale Dealer Applications (updated 2026-10-17)
 
@@ -102,7 +114,7 @@ order value in QAR:
 | `item_count` | units in the cart | units in the tray |
 | `order_ref` | `ABK-XXXX`, also sent as the Ads `transaction_id` so a double-tapped send counts once | — |
 
-Wholesale dealer applications submitted on `/[locale]/b2b/dealer-application`
+Wholesale dealer applications submitted on `/[locale]/b2b/become-a-dealer`
 call `trackDealerEnquiry` in `src/lib/analytics.ts`, firing `dealer_enquiry` to
 GA4, Plausible, and the dedicated primary Google Ads conversion action
 **ABK — Wholesale Dealer Application** (`AW-18200382552/uuVJCKWd9J8dENiYz-ZD`).

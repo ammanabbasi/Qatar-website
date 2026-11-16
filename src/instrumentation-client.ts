@@ -37,14 +37,32 @@ import {
   sendTo,
   type ConversionKey,
 } from "@/lib/ads-conversions";
+import {
+  attributionEventParams,
+  captureSessionAttribution,
+  markAiVisitReported,
+} from "@/lib/attribution";
 
 type GtagArgs = IArguments | unknown[];
 type WindowWithGtag = Window & {
   dataLayer?: GtagArgs[];
   gtag?: (...args: unknown[]) => void;
+  plausible?: (event: string, opts?: { props?: Record<string, string> }) => void;
 };
 
 const TAG_SCRIPT_ID = "gtag-js";
+let scriptScheduled = false;
+
+function loadGtagScript(): void {
+  if (typeof document === "undefined" || document.getElementById(TAG_SCRIPT_ID)) return;
+  const primaryId = GA_MEASUREMENT_ID || ADS_CONVERSION_ID;
+  if (!primaryId) return;
+  const el = document.createElement("script");
+  el.id = TAG_SCRIPT_ID;
+  el.async = true;
+  el.src = `https://www.googletagmanager.com/gtag/js?id=${primaryId}`;
+  document.head.appendChild(el);
+}
 
 /**
  * Google's canonical bootstrap, run synchronously before the click listener is
@@ -52,10 +70,17 @@ const TAG_SCRIPT_ID = "gtag-js";
  * guaranteed to sit behind them in `dataLayer` — and gtag.js processes that
  * queue strictly in order, dropping events that arrive before their target's
  * config. Ordering is therefore structural; no buffering is needed.
+ *
+ * Network download/execution of the ~240 KiB gtag.js container bundle is
+ * deferred until after `window.load` (plus idle or first user interaction) so
+ * initial mobile LCP and React hydration are not blocked for 1,000+ ms, while
+ * `dataLayer` captures the initial `page_view`, `gclid`/`gbraid`/`wbraid`, and
+ * any early CTA click synchronously from millisecond zero.
  */
 function bootstrapGtag(): boolean {
   const w = window as WindowWithGtag;
-  if (document.getElementById(TAG_SCRIPT_ID)) return true;
+  if (document.getElementById(TAG_SCRIPT_ID) || scriptScheduled) return true;
+  scriptScheduled = true;
 
   w.dataLayer = w.dataLayer || [];
   w.gtag = function gtag() {
@@ -85,12 +110,44 @@ function bootstrapGtag(): boolean {
     w.gtag("config", ADS_CONVERSION_ID);
   }
 
-  const el = document.createElement("script");
-  el.id = TAG_SCRIPT_ID;
-  el.async = true;
-  const primaryId = GA_MEASUREMENT_ID || ADS_CONVERSION_ID;
-  el.src = `https://www.googletagmanager.com/gtag/js?id=${primaryId}`;
-  document.head.appendChild(el);
+  // Google Tag Assistant expects immediate load when debugging.
+  if (isDebug) {
+    loadGtagScript();
+    return true;
+  }
+
+  const triggerOnce = () => {
+    window.removeEventListener("pointerdown", triggerOnce);
+    window.removeEventListener("keydown", triggerOnce);
+    window.removeEventListener("touchstart", triggerOnce);
+    window.removeEventListener("scroll", triggerOnce);
+    loadGtagScript();
+  };
+
+  window.addEventListener("pointerdown", triggerOnce, { once: true, passive: true });
+  window.addEventListener("keydown", triggerOnce, { once: true, passive: true });
+  window.addEventListener("touchstart", triggerOnce, { once: true, passive: true });
+  window.addEventListener("scroll", triggerOnce, { once: true, passive: true });
+
+  const scheduleIdle = () => {
+    const ric = (
+      window as Window & {
+        requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      }
+    ).requestIdleCallback;
+    if (typeof ric === "function") {
+      ric(triggerOnce, { timeout: 1800 });
+    } else {
+      window.setTimeout(triggerOnce, 1200);
+    }
+  };
+
+  if (document.readyState === "complete") {
+    scheduleIdle();
+  } else {
+    window.addEventListener("load", scheduleIdle, { once: true });
+  }
+
   return true;
 }
 
@@ -99,19 +156,26 @@ type TrackParams = Record<string, string | number>;
 function track(key: ConversionKey, params: TrackParams) {
   const gtag = (window as WindowWithGtag).gtag;
   if (typeof gtag !== "function") return; // tag gated off; nothing to report to
+  // Ensure gtag.js starts downloading immediately if a CTA is tapped before idle.
+  loadGtagScript();
+
+  const enriched: TrackParams = {
+    ...attributionEventParams(),
+    ...params,
+  };
 
   // Always emit the named event, so the interaction is measurable even before
   // the conversion labels have been issued in the Google Ads UI.
-  gtag("event", CONVERSION_EVENT_NAMES[key], params);
+  gtag("event", CONVERSION_EVENT_NAMES[key], enriched);
 
   const target = sendTo(key);
   if (target) {
     // A cart's order reference doubles as the Ads transaction_id, so a
     // shopper who taps "Send" twice for the same order is counted once.
-    const orderRef = params.order_ref;
+    const orderRef = enriched.order_ref;
     gtag("event", "conversion", {
       send_to: target,
-      ...params,
+      ...enriched,
       ...(typeof orderRef === "string" ? { transaction_id: orderRef } : {}),
     });
   }
@@ -208,9 +272,27 @@ function onClick(event: MouseEvent) {
   track(key, params);
 }
 
-if (typeof window !== "undefined" && isProductionHost(window.location.hostname)) {
-  bootstrapGtag();
-  // Capture phase: the event is observed even if a handler further down stops
-  // propagation. Passive: this listener never calls preventDefault.
-  document.addEventListener("click", onClick, { capture: true, passive: true });
+if (typeof window !== "undefined") {
+  // Always capture landing UTM / AI-referrer / organic-search session attribution
+  // immediately on arrival so internal Next.js navigations never lose the entry source.
+  const sessionAttr = captureSessionAttribution();
+
+  if (isProductionHost(window.location.hostname)) {
+    bootstrapGtag();
+    if (sessionAttr.trafficChannel === "ai_referral" && !sessionAttr.aiVisitReported) {
+      markAiVisitReported();
+      const locale = window.location.pathname.split("/")[1];
+      const aiProps: Record<string, string> = {
+        ai_platform: sessionAttr.aiPlatform,
+        landing_page: sessionAttr.landingPage.slice(0, 160),
+        ...(sessionAttr.referrerHost ? { referrer_host: sessionAttr.referrerHost } : {}),
+        ...(locale === "en" || locale === "ar" ? { locale } : {}),
+      };
+      (window as WindowWithGtag).gtag?.("event", "ai_referral_visit", aiProps);
+      (window as WindowWithGtag).plausible?.("ai_referral_visit", { props: aiProps });
+    }
+    // Capture phase: the event is observed even if a handler further down stops
+    // propagation. Passive: this listener never calls preventDefault.
+    document.addEventListener("click", onClick, { capture: true, passive: true });
+  }
 }

@@ -5,13 +5,16 @@ import type { Article } from "@/data/articles";
 type Props = {
   article: Article;
   locale: "en" | "ar";
+  headingLevel?: "h2" | "h3";
 };
 
 /**
  * Blog listing card — a white tile, same rhythm as the product grid.
  * Copy carries the card; there is no article photography yet.
  */
-export function ArticleCard({ article, locale }: Props) {
+export function ArticleCard({ article, locale, headingLevel = "h3" }: Props) {
+  const Heading = headingLevel;
+  const displayDate = article.updated ?? article.date;
   return (
     <Link
       href={`/b2c/blog/${article.slug}`}
@@ -20,18 +23,18 @@ export function ArticleCard({ article, locale }: Props) {
       <p className="text-caption font-semibold uppercase tracking-[0.04em] text-(--color-text-muted)">
         {article.readingTime} {locale === "ar" ? "دقائق" : "min read"}
       </p>
-      <h3 className="mt-3 line-clamp-2 text-title-sm font-semibold text-balance text-(--color-text)">
+      <Heading className="mt-3 line-clamp-2 text-title-sm font-semibold text-balance text-(--color-text)">
         {article.title[locale]}
-      </h3>
+      </Heading>
       <p className="mt-2 line-clamp-3 text-footnote text-(--color-text-muted)">
         {article.description[locale]}
       </p>
       <div className="mt-auto flex items-center justify-between gap-3 pt-4">
         <time
-          dateTime={article.date}
+          dateTime={displayDate}
           className="text-caption text-(--color-text-muted)"
         >
-          {new Date(article.date).toLocaleDateString(
+          {new Date(displayDate).toLocaleDateString(
             locale === "ar" ? "ar-QA" : "en-QA",
             { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" },
           )}

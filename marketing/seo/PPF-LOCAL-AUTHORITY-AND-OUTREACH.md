@@ -1,8 +1,6 @@
 # Local authority, business profiles and outreach — ready to paste
 
-**Last updated:** 3 November 2026. Replaces the 20 Oct version, whose drafts still carried claims the site had dropped
-(`aliphatic`, `7.5 mil`, `clean booth`, `VPC 2.0`, `official distributor`) and a phone number and email that do not
-match the website. Do not reuse text from older copies of this file.
+**Last updated:** 16 November 2026. Updates the 3 Nov version after retiring `/b2c/brands/sitrett`, removing and `308`-redirecting the two unlinked legacy PDFs (`/catalogues/vertek-ppf-catalogue.pdf` and `/catalogues/autotriz-catalogue.pdf`) that carried the former Ariane City Building 481 address and superseded film specs, and aligning top-seller products and directory copy with the 58 live online SKUs. Do not reuse text from older copies of this file.
 
 **Rule for everything below:** say only what the website says and a source can back up. AI assistants copy these listings
 and compare them, so one inflated directory entry can come back as a wrong answer about ABK. Partner centres stay unnamed.
@@ -27,7 +25,7 @@ and compare them, so one inflated directory entry can come back as a wrong answe
 |---|---|---|
 | Google Business Profile | Live: "ABK Trading and Service — Vertek & Autotriz", 4.9★ from 11 reviews, *Car accessories store*. **Not manageable from ceo.abktrading@gmail.com** (Business Profile Manager shows 0 businesses). | Find the owning account or request ownership on the Maps listing. Then see section 3. |
 | Google AI Mode ("best place to get PPF in Doha") | ABK is not mentioned. The answer lists Maps businesses by rating and review count (53 to 1,100 reviews). It quotes QAR 8,000–12,000+ for a full body. | Reviews and a complete profile are what enter this answer. |
-| Google AI Mode (brand questions) | Cites abktradingservice.com accurately on what ABK sells, but repeats old wording (12-year warranty, clean booths, "exclusive"). Older copies should refresh as Google recrawls. | Keep the listings below consistent. Re-test in a month. |
+| Google AI Mode (brand questions) | Cites abktradingservice.com accurately on what ABK sells, but previously repeated old wording (12-year warranty, aliphatic TPU, "official distributor") that remained crawlable inside unlinked `/catalogues/vertek-ppf-catalogue.pdf`. Both legacy PDFs are now deleted and `308`-redirected to `/en/b2c/brands/vtek` and `/en/b2c/brands/autotriz`. | Keep external listings below consistent; request recrawl in Search Console after deploy. |
 | ChatGPT | The only AI assistant sending visits: 93 sessions in 28 days, 8.6% key-event rate, the best of any channel. | Keep pages crawlable and factual. |
 | Bing | 170 URLs indexed, 24 AI citations in 39 days, **no backlinks known to Bing**. | Section 4. |
 | VTEK contact page | Lists ABK's address and phone in its Qatar block and links ABK's Facebook and Instagram. Does not name ABK or use "distributor". | Section 5. |
@@ -53,8 +51,7 @@ against that page before pasting):
 | Full-front VTEK PPF | From QAR 1,599 | Whole bonnet, front bumper, front fenders, mirrors and headlights. |
 | Front-end VTEK PPF kit | From QAR 899 | Front bumper, leading edge of bonnet and fenders, mirrors and headlights. |
 
-**Products:** add your top sellers with a link to each product page (Briller Wash & Wax 20L, Autotriz 3D Matrix Ultra, VTEK
-Weather Armor, Grizzly PPF roll).
+**Products:** add your top sellers with a link to each product page (`Briller Wash & Wax 20L`, `Autotriz 3D Matrix Ultra`, `VTEK Weather Armor PRO`, `ABK Rejuvenate Plastic Restorer`, `GrünesAuto 6-Inch DA Foam Pad`).
 
 **Photos:** real photos of the showroom, stock and handovers. These double as proof for the website, which has none proven real.
 
@@ -72,19 +69,19 @@ Claim these yourself: each needs an account in your name. Use section 1 for the 
 **English**
 
 > ABK Trading & Service is a car care and paint protection film supplier in Mesaimeer, Doha, selling to drivers and to
-> detailing shops. We stock VTEK Weather Armor and Solar Armor film, Grizzly PPF, Autotriz ceramic coatings and polishes,
-> Briller wash chemicals and detailing tools, with 58 products listed online. We also sell installed VTEK PPF at published
-> fixed prices, fitted at VTEK-authorised centres in Doha: front-end kits from QAR 899, full front from QAR 1,599 and full
-> body from QAR 3,999, with VTEK's e-warranty and a 12-month ABK fitting guarantee. Prices and guides:
-> https://abktradingservice.com/en
+> detailing shops. We stock VTEK Weather Armor PPF and Solar Armor window film, Autotriz German ceramic coatings and polishes,
+> Briller 20L wash chemicals, GrünesAuto polishing pads and detailing tools, with 58 products listed online (plus Grizzly
+> workshop supplies by trade enquiry). We also sell installed VTEK PPF at published fixed prices, fitted at VTEK-authorised
+> centres in Doha: front-end kits from QAR 899, full front from QAR 1,599 and full body from QAR 3,999, with VTEK's NFC
+> e-warranty and a 12-month ABK fitting guarantee. Prices and guides: https://abktradingservice.com/en
 
 **Arabic**
 
 > ABK للتجارة والخدمات مورّد لمنتجات العناية بالسيارات وأفلام حماية الطلاء في مسيمير بالدوحة، للأفراد ومراكز التلميع. نوفر أفلام VTEK
-> Weather Armor وSolar Armor وأفلام Grizzly وطلاءات وملمعات Autotriz ومنظفات Briller وأدوات التلميع، مع 58 منتجاً معروضاً على الموقع.
-> كما نبيع تركيب أفلام VTEK PPF بأسعار ثابتة ومعلنة في مراكز معتمدة من VTEK في الدوحة: الواجهة الأساسية من 899 ر.ق، والواجهة الكاملة
-> من 1,599 ر.ق، والهيكل الكامل من 3,999 ر.ق، مع ضمان VTEK الإلكتروني وضمان تركيب من ABK لمدة 12 شهراً. الأسعار والأدلة:
-> https://abktradingservice.com/ar
+> Weather Armor وSolar Armor وطلاءات وملمعات Autotriz الألمانية ومنظفات Briller وإسفنجات GrünesAuto وأدوات التلميع، مع 58 منتجاً
+> معروضاً على الموقع (إضافة إلى مستلزمات Grizzly للورش حسب الطلب). كما نبيع تركيب أفلام VTEK PPF بأسعار ثابتة ومعلنة في مراكز معتمدة من
+> VTEK في الدوحة: الواجهة الأساسية من 899 ر.ق، والواجهة الكاملة من 1,599 ر.ق، والهيكل الكامل من 3,999 ر.ق، مع ضمان VTEK الإلكتروني
+> وضمان تركيب من ABK لمدة 12 شهراً. الأسعار والأدلة: https://abktradingservice.com/ar
 
 ## 5. Ask the brands for a link
 
@@ -102,7 +99,7 @@ most credible one available. Send from the address VTEK and the other brands alr
 > Could you also confirm in writing our status in Qatar (distributor, and whether exclusive) and the warranty term for PRO PLUS?
 > Your chart shows PRO+ at 10 years while our pack artwork shows 12.
 
-**Autotriz, Briller, Grizzly, Getsun, Insta Finish:** the same request, pointing at `/en/b2c/brands/<brand>`.
+**Autotriz, Briller, GrünesAuto, Insta Finish, Getsun, Grizzly:** the same request, pointing at `/en/b2c/brands/<brand>` (`autotriz`, `briller`, `grunes-auto`, `instafinish`, `getsun`, `grizzly`).
 
 **Community:** Reddit threads (r/qatar) rank on page one for "ppf qatar" and tint rules. Answer genuinely, say you work for ABK, and
 link a guide only where it answers the question. The tint rules guide, with its legal sources, is the most useful one to share.

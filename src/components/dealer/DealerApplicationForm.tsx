@@ -20,7 +20,7 @@ const AVAILABLE_BRANDS = [
   "Briller Car Care",
   "Grizzly USA",
   "Insta Finish",
-  "Getsun & Sitrett",
+  "GrünesAuto & Getsun",
 ];
 
 export function DealerApplicationForm({ locale }: Props) {

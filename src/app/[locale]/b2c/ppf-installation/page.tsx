@@ -1,5 +1,5 @@
-import { setRequestLocale, getTranslations } from "next-intl/server";
-import { hasLocale } from "next-intl";
+import { setRequestLocale, getMessages, getTranslations } from "next-intl/server";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
@@ -76,6 +76,8 @@ export default async function PpfInstallationPage({
   const t = await getTranslations({ locale, namespace: "PpfInstall" });
   const meta = await getTranslations({ locale, namespace: "Meta" });
   const nav = await getTranslations({ locale, namespace: "Nav" });
+  const allMessages = await getMessages();
+  const ppfClientMessages = { PpfInstall: allMessages.PpfInstall };
 
   const fullBody = PRESET_PRICES_QAR["full-body"];
   const fullFront = PRESET_PRICES_QAR["full-front"];
@@ -193,7 +195,9 @@ export default async function PpfInstallationPage({
             </div>
 
             <div className="mt-5 sm:mt-6">
-              <PpfConfigurator />
+              <NextIntlClientProvider messages={ppfClientMessages}>
+                <PpfConfigurator />
+              </NextIntlClientProvider>
             </div>
             <p className="mt-4 border-t border-white/10 pt-3.5 text-caption text-white/70">
               {(["launchTrust1", "launchTrust2", "launchTrust3"] as const).map((k) => t(k)).join(" · ")}

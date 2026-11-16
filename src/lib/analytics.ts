@@ -1,5 +1,6 @@
 import type { CartProduct } from "@/data/cartCatalogue";
 import { CONVERSION_EVENT_NAMES, sendTo } from "@/lib/ads-conversions";
+import { attributionEventParams } from "@/lib/attribution";
 
 /**
  * GA4 ecommerce events for the retail cart.
@@ -48,7 +49,7 @@ export function trackCartEvent(name: CartEventName, items: GaItem[]) {
   const gtag = (window as WindowWithGtag).gtag;
   if (typeof gtag !== "function") return;
   const value = items.reduce((sum, i) => sum + (i.price ?? 0) * i.quantity, 0);
-  gtag("event", name, { currency: "QAR", value, items });
+  gtag("event", name, { ...attributionEventParams(), currency: "QAR", value, items });
 }
 
 type WindowWithPlausible = Window & {
@@ -72,7 +73,9 @@ export function trackPpfBooking(opts: {
   body: string;
 }) {
   if (typeof window === "undefined") return;
+  const attr = attributionEventParams();
   const params = {
+    ...attr,
     booking_ref: opts.ref,
     coverage: opts.coverage,
     film: opts.film,
@@ -87,7 +90,7 @@ export function trackPpfBooking(opts: {
     if (target) gtag("event", "conversion", { send_to: target, ...params, transaction_id: opts.ref });
   }
   (window as WindowWithPlausible).plausible?.("ppf_booking_request", {
-    props: { coverage: opts.coverage, film: opts.film, body_type: opts.body },
+    props: { ...attr, coverage: opts.coverage, film: opts.film, body_type: opts.body },
   });
 }
 
@@ -102,8 +105,10 @@ export function trackPpfQuoteStart(opts: {
   entryPoint?: string;
 }) {
   if (typeof window === "undefined") return;
+  const attr = attributionEventParams();
   const locale = window.location.pathname.split("/")[1] || "";
   const params = {
+    ...attr,
     body_type: opts.body,
     coverage: opts.coverage,
     film: opts.film,
@@ -116,6 +121,7 @@ export function trackPpfQuoteStart(opts: {
   }
   (window as WindowWithPlausible).plausible?.("ppf_quote_start", {
     props: {
+      ...attr,
       body_type: opts.body,
       coverage: opts.coverage,
       film: opts.film,
@@ -137,8 +143,10 @@ export function trackPpfQuoteComplete(opts: {
   isEstimate: boolean;
 }) {
   if (typeof window === "undefined") return;
+  const attr = attributionEventParams();
   const locale = window.location.pathname.split("/")[1] || "";
   const params = {
+    ...attr,
     body_type: opts.body,
     coverage: opts.coverage,
     film: opts.film,
@@ -152,6 +160,7 @@ export function trackPpfQuoteComplete(opts: {
   }
   (window as WindowWithPlausible).plausible?.("ppf_quote_complete", {
     props: {
+      ...attr,
       body_type: opts.body,
       coverage: opts.coverage,
       film: opts.film,
@@ -175,8 +184,10 @@ export function trackPpfWhatsAppHandoff(opts: {
   ref?: string;
 }) {
   if (typeof window === "undefined") return;
+  const attr = attributionEventParams();
   const locale = window.location.pathname.split("/")[1] || "";
   const params = {
+    ...attr,
     body_type: opts.body,
     coverage: opts.coverage,
     film: opts.film,
@@ -191,6 +202,7 @@ export function trackPpfWhatsAppHandoff(opts: {
   }
   (window as WindowWithPlausible).plausible?.("ppf_whatsapp_handoff", {
     props: {
+      ...attr,
       body_type: opts.body,
       coverage: opts.coverage,
       film: opts.film,
@@ -214,7 +226,9 @@ export function trackDealerEnquiry(opts: {
   locale: string;
 }) {
   if (typeof window === "undefined") return;
+  const attr = attributionEventParams();
   const params = {
+    ...attr,
     company_name: opts.companyName.slice(0, 100),
     business_type: opts.businessType,
     location: opts.location.slice(0, 80),
@@ -238,6 +252,7 @@ export function trackDealerEnquiry(opts: {
   }
   (window as WindowWithPlausible).plausible?.("dealer_enquiry", {
     props: {
+      ...attr,
       business_type: opts.businessType,
       estimated_volume: opts.estimatedVolume,
       locale: opts.locale,

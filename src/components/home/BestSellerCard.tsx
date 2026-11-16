@@ -18,7 +18,7 @@ type Props = {
   locale: WALocale;
 };
 
-export function BestSellerCard({ products, audience, locale }: Props) {
+export function BestSellerCard({ products, locale }: Props) {
   const t = useTranslations();
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -40,14 +40,6 @@ export function BestSellerCard({ products, audience, locale }: Props) {
       prevIdx === products.length - 1 ? 0 : prevIdx + 1,
     );
   };
-
-  const waHref = buildWhatsAppUrl({
-    audience,
-    locale,
-    productName: name,
-    productPrice: current.price ? current.price[l] : undefined,
-    productUrl: `${SITE.url}/${locale}/b2c/products/${current.slug}`,
-  });
 
   const wholesaleWaHref = buildWhatsAppUrl({
     audience: "b2b",
@@ -98,7 +90,7 @@ export function BestSellerCard({ products, audience, locale }: Props) {
                   href={wholesaleWaHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-pill border border-(--color-brand) bg-(--color-brand)/10 px-5 text-footnote font-bold text-(--color-text) hover:bg-(--color-brand) hover:text-black transition-colors"
+                  className={`plausible-event-name=whatsapp_wholesale_click plausible-event-audience=b2b plausible-event-product=${current.slug} inline-flex min-h-11 items-center justify-center gap-2 rounded-pill border border-(--color-brand) bg-(--color-brand)/10 px-5 text-footnote font-bold text-(--color-text) hover:bg-(--color-brand) hover:text-black transition-colors`}
                 >
                   <WhatsAppIcon className="h-4 w-4 text-emerald-600" />
                   <span>{t("Products.inquireWholesale")}</span>

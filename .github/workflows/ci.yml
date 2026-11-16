@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   verify:
-    name: typecheck · lint · build
+    name: typecheck · lint · build · seo
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -34,7 +34,7 @@ jobs:
       - name: Install
         run: npm ci
 
-      # Three independent gates — run all three even if one fails so contributors
+      # Independent gates — run all gates even if an earlier step fails so contributors
       # see every failure in a single run, not a drip of one-per-PR-push.
       - name: Typecheck
         if: always()
@@ -51,3 +51,7 @@ jobs:
           # reads NEXT_PUBLIC_SITE_URL resolves consistently in CI.
           NEXT_PUBLIC_SITE_URL: https://abktradingservice.com
         run: npx next build
+
+      - name: Verify SEO, JSON-LD & LLMs sync
+        if: always()
+        run: npm run seo:verify

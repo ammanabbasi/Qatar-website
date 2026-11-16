@@ -39,11 +39,10 @@ const FOOTER_GUIDES = [
   { slug: "window-tinting-rules-qatar-guide", labelKey: "guideTintRules" },
 ] as const;
 
-export function Footer({ audience }: { audience: Audience }) {
+export function Footer(_props: { audience: Audience }) {
+  void _props;
   const t = useTranslations();
   const year = new Date().getFullYear();
-  const audiencePrefix = `/${audience}`;
-  const homeHref = audience === "b2c" ? "/" : audiencePrefix;
 
   const linkCls =
     "text-caption text-white/70 transition-colors duration-200 ease-soft hover:text-white hover:underline underline-offset-4";
@@ -64,7 +63,7 @@ export function Footer({ audience }: { audience: Audience }) {
         <div className="mt-8 grid grid-cols-1 gap-10 md:grid-cols-12">
           {/* Shop Column */}
           <div className="flex flex-col gap-3 md:col-span-3">
-            <h3 className={headCls}>{t("Footer.shop")}</h3>
+            <h2 className={headCls}>{t("Footer.shop")}</h2>
             <Link className={linkCls} href="/b2c/products">
               {t("Nav.products")}
             </Link>
@@ -81,7 +80,7 @@ export function Footer({ audience }: { audience: Audience }) {
               </Link>
             ))}
 
-            <h3 className={`${headCls} mt-4`}>{t("Footer.guides")}</h3>
+            <h2 className={`${headCls} mt-4`}>{t("Footer.guides")}</h2>
             {FOOTER_GUIDES.map((g) => (
               <Link
                 key={g.slug}
@@ -95,7 +94,7 @@ export function Footer({ audience }: { audience: Audience }) {
 
           {/* Company & Brands Column */}
           <div className="flex flex-col gap-3 md:col-span-3">
-            <h3 className={headCls}>{t("Footer.company")}</h3>
+            <h2 className={headCls}>{t("Footer.company")}</h2>
             <Link className={linkCls} href="/">
               {t("Nav.home")}
             </Link>
@@ -112,7 +111,7 @@ export function Footer({ audience }: { audience: Audience }) {
               {t("Nav.becomeDealer")}
             </Link>
 
-            <h3 className={`${headCls} mt-4`}>{t("Products.filterBrand")}</h3>
+            <h2 className={`${headCls} mt-4`}>{t("Products.filterBrand")}</h2>
             <Link className={linkCls} href="/b2c/brands/vtek">
               VTEK PPF & Window Tint
             </Link>
@@ -123,7 +122,7 @@ export function Footer({ audience }: { audience: Audience }) {
               Briller Car Care
             </Link>
             <Link className={linkCls} href="/b2c/brands/grizzly">
-              Grizzly PPF & Polish
+              Grizzly USA
             </Link>
             <Link className={linkCls} href="/b2c/brands/grunes-auto">
               GrünesAuto Pads
@@ -137,14 +136,11 @@ export function Footer({ audience }: { audience: Audience }) {
             <Link className={linkCls} href="/b2c/brands/getsun">
               Getsun
             </Link>
-            <Link className={linkCls} href="/b2c/brands/sitrett">
-              Sitrett
-            </Link>
           </div>
 
           {/* Visit Us + Map Column */}
           <div className="flex flex-col gap-4 md:col-span-6">
-            <h3 className={headCls}>{t("Footer.visitUs")}</h3>
+            <h2 className={headCls}>{t("Footer.visitUs")}</h2>
 
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 items-start">
               {/* Address details */}

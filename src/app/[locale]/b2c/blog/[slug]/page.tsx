@@ -255,7 +255,7 @@ export default async function ArticlePage({
                     aria-label={article.inlineCta.title[l]}
                     className="tile border border-(--color-brand)/35 bg-(--color-brand)/8 p-6 sm:p-7"
                   >
-                    <span className="inline-block rounded-pill bg-(--color-brand)/20 px-3 py-1 text-caption font-bold uppercase tracking-wider text-(--color-brand-deep)">
+                    <span className="inline-block rounded-pill bg-(--color-brand)/12 px-3 py-1 text-caption font-bold uppercase tracking-wider text-(--color-brand-deep)">
                       {article.inlineCta.badge[l]}
                     </span>
                     <h3 className="mt-3 text-title-sm font-bold text-(--color-text)">

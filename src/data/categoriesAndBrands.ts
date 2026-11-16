@@ -37,8 +37,7 @@ export type BrandSlug =
   | "grunes-auto"
   | "abk"
   | "instafinish"
-  | "getsun"
-  | "sitrett";
+  | "getsun";
 
 export type BrandLandingData = {
   slug: BrandSlug;
@@ -63,11 +62,11 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
     slug: "film",
     title: {
       en: "PPF & Window Tint Films in Doha, Qatar — VTEK & Grizzly",
-      ar: "أفلام حماية الطلاء PPF وتظليل النوافذ في الدوحة، قطر — VTEK وGrizzly",
+      ar: "أفلام حماية الطلاء PPF وتظليل النوافذ في الدوحة، قطر | ABK",
     },
     description: {
-      en: "Buy genuine VTEK & Grizzly TPU Paint Protection Film (PPF), Solar Armor nano-ceramic window tint rolls, and installation gel in Doha, Qatar. Retail & wholesale.",
-      ar: "اشترِ أفلام حماية الطلاء الأصلية VTEK وGrizzly وتظليل النوافذ النانو سيراميك Solar Armor وجل التركيب في الدوحة، قطر. بيع بالتجزئة والجملة في مسيمير.",
+      en: "Buy genuine VTEK TPU Paint Protection Film (PPF), Solar Armor nano-ceramic window tint rolls, and Autotriz installation gel in Doha, Qatar. Retail & wholesale.",
+      ar: "اشترِ أفلام حماية الطلاء الأصلية VTEK وتظليل النوافذ النانو سيراميك Solar Armor وجل التركيب الألماني Autotriz في الدوحة، قطر. تجزئة وجملة في مسيمير.",
     },
     keywords: {
       en: [
@@ -96,8 +95,8 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
       ar: "أفلام حماية الطلاء (PPF) وتظليل النوافذ النانو سيراميك في قطر",
     },
     subtitle: {
-      en: "Genuine VTEK Weather Armor TPU rolls, Solar Armor heat-rejection window films, Grizzly PPF, and Autotriz installation solutions — stocked in Mesaimeer, Doha.",
-      ar: "رولات أفلام حماية الطلاء VTEK Weather Armor، وأفلام العزل الحراري Solar Armor، ورولات Grizzly ومحلول التركيب Autotriz — متوفرة في معرضنا بمسيمير، الدوحة.",
+      en: "Genuine VTEK Weather Armor TPU rolls, Solar Armor heat-rejection window films, and Autotriz installation & aftercare solutions — stocked in Mesaimeer, Doha.",
+      ar: "رولات أفلام حماية الطلاء VTEK Weather Armor، وأفلام العزل الحراري Solar Armor، ومحلول التركيب والعناية Autotriz — متوفرة في معرضنا بمسيمير، الدوحة.",
     },
     guideTitle: {
       en: "Choosing PPF & Window Tint Films for Qatar's 50°C Climate",
@@ -105,11 +104,11 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
     },
     guideParagraphs: {
       en: [
-        "In Doha's extreme summer heat (45°C–50°C+) and UV index 11+ sun, low-grade PVC or TPH films can yellow, crack and lose adhesion. ABK Trading & Service stocks Thermoplastic Polyurethane (TPU) films from VTEK (Weather Armor PRO, PRO PLUS, MATTE, PRISM and ULTIMATE) and Grizzly (self-healing TPU at QAR 1,200 per 1.52m × 15m master roll). VTEK Weather Armor films have a self-healing top layer and a written VTEK warranty of 5 to 15 years by film, registered on VTEK's NFC e-Warranty.",
+        "In Doha's extreme summer heat (45°C–50°C+) and UV index 11+ sun, low-grade PVC or TPH films can yellow, crack and lose adhesion. ABK Trading & Service stocks Thermoplastic Polyurethane (TPU) films from VTEK (Weather Armor PRO, PRO PLUS, MATTE, PRISM and ULTIMATE) and supplies Grizzly films on trade enquiry. VTEK Weather Armor films have a self-healing top layer and a written VTEK warranty of 5 to 15 years by film, registered on VTEK's NFC e-Warranty.",
         "For cabin heat rejection, VTEK Solar Armor window film rolls (VUE, APEX, and ICONIC) block over 99% of UV radiation and up to 95% of infrared solar heat without metallic signal interference. Qatar's published regulation limits tint film to the rear side doors with a Traffic Department permit, so read our window tinting rules guide before fitting. Looking for turn-key installation? Car owners can also book fixed-price VTEK PPF installation in Doha (starting from QAR 899 front-end and QAR 3,999 full body) directly through our online quote builder.",
       ],
       ar: [
-        "في ظل حرارة صيف الدوحة التي تتجاوز 45–50 درجة مئوية ومؤشر الأشعة فوق البنفسجية المرتفع، قد تتعرض الأفلام التجارية الرخيصة (PVC أو TPH) للاصفرار والتشقق وتلف اللاصق. لذلك توفر ABK للتجارة والخدمات أفلام البولي يوريثان الحراري (TPU) من علامتَي VTEK (Weather Armor PRO وPRO PLUS والمطفي MATTE والملون PRISM وULTIMATE) وGrizzly (رول 1.52م × 15م بسعر 1,200 ر.ق). وتتميز أفلام VTEK Weather Armor بطبقة علوية ذاتية الإصلاح وضمان VTEK مكتوب من 5 إلى 15 سنة حسب الفيلم، يُسجَّل في ضمان VTEK الإلكتروني NFC.",
+        "في ظل حرارة صيف الدوحة التي تتجاوز 45–50 درجة مئوية ومؤشر الأشعة فوق البنفسجية المرتفع، قد تتعرض الأفلام التجارية الرخيصة (PVC أو TPH) للاصفرار والتشقق وتلف اللاصق. لذلك توفر ABK للتجارة والخدمات أفلام البولي يوريثان الحراري (TPU) من علامة VTEK (Weather Armor PRO وPRO PLUS والمطفي MATTE والملون PRISM وULTIMATE) وتورّد أفلام Grizzly للمراكز عند الطلب. وتتميز أفلام VTEK Weather Armor بطبقة علوية ذاتية الإصلاح وضمان VTEK مكتوب من 5 إلى 15 سنة حسب الفيلم، يُسجَّل في ضمان VTEK الإلكتروني NFC.",
         "وللعزل الحراري، توفر أفلام تظليل النوافذ VTEK Solar Armor (فئات VUE وAPEX وICONIC) عزلاً للأشعة فوق البنفسجية بنسبة تتجاوز 99% وعزلاً للأشعة تحت الحمراء حتى 95% دون التأثير على إشارات الجوال أو الملاحة. وتقصر اللائحة المنشورة في قطر فيلم التظليل على الأبواب الخلفية الجانبية بتصريح من إدارة المرور، فاقرأ دليل قوانين التظليل قبل التركيب. كما يمكن لملاك السيارات في قطر حجز باقات تركيب أفلام VTEK PPF بأسعار ثابتة ومعلنة (تبدأ من 899 ر.ق للواجهة و3,999 ر.ق لكامل السيارة) عبر حاسبة الأسعار الفورية.",
       ],
     },
@@ -126,12 +125,12 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
       },
       {
         q: {
-          en: "What is the price of a full PPF roll in Qatar?",
-          ar: "كم يبلغ سعر رول حماية الطلاء PPF الكامل في قطر؟",
+          en: "How are PPF and window tint master rolls priced in Qatar?",
+          ar: "كيف تُسعَّر رولات حماية الطلاء PPF وتظليل النوافذ الكاملة في قطر؟",
         },
         a: {
-          en: "Grizzly Self-Healing TPU PPF (190 microns / 7.5 mil, 1.52m × 15m roll) is priced at QAR 1,200. VTEK Weather Armor TPU master rolls (PRO, PRO PLUS, MATTE, PRISM, ULTIMATE) and Solar Armor window tint rolls are quoted on WhatsApp (+974 3083 8355) with tiered trade discounts for studios and workshops.",
-          ar: "يتوفر رول حماية الطلاء Grizzly TPU ذاتي المعالجة (سماكة 190 ميكرون / 7.5 ميل، مقاس 1.52م × 15م) بسعر 1,200 ريال قطري. أما رولات VTEK Weather Armor وأفلام التظليل Solar Armor فتُسعّر عبر واتساب (+974 3083 8355) مع خصومات تجارية لمراكز التلميع.",
+          en: "VTEK Weather Armor TPU master rolls (PRO, PRO PLUS, MATTE, PRISM, ULTIMATE), Solar Armor window tint rolls (VUE, APEX, ICONIC), and Grizzly film rolls are quoted directly on WhatsApp (+974 3083 8355) with tiered trade pricing for detailing studios and tint shops.",
+          ar: "تُسعَّر رولات VTEK Weather Armor وأفلام التظليل Solar Armor ورولات Grizzly مباشرة عبر واتساب (+974 3083 8355) مع خصومات تجارية مخصصة لمراكز التلميع ومحلات التظليل حسب الكمية.",
         },
       },
       {
@@ -140,8 +139,8 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
           ar: "هل يتوفر لديكم جل تركيب PPF وبخاخات العناية بالأفلام في الدوحة؟",
         },
         a: {
-          en: "Yes. We stock German-engineered Autotriz PPF Gel in 4L (QAR 150) and 20L workshop drums (QAR 500) to prevent premature adhesive tacking in warm bays, plus Autotriz PPF Refresh (1L at QAR 130) to maintain hydrophobic gloss on installed films.",
-          ar: "نعم، نوفر جل تركيب الأفلام الألماني Autotriz PPF Gel بعبوة 4 لتر (150 ر.ق) وعبوة الورش 20 لتر (500 ر.ق)، بالإضافة إلى بخاخ الصيانة Autotriz PPF Refresh بحجم 1 لتر (130 ر.ق) للحفاظ على لمعان الأفلام وطرد المياه.",
+          en: "Yes. We stock German-engineered Autotriz PPF Gel in 4L (QAR 150) and 20L workshop drums (QAR 500) to prevent premature adhesive tacking in warm bays, plus Autotriz PPF Refresh (1L at QAR 130) and masking tape (from QAR 2.5).",
+          ar: "نعم، نوفر جل تركيب الأفلام الألماني Autotriz PPF Gel بعبوة 4 لتر (150 ر.ق) وعبوة الورش 20 لتر (500 ر.ق)، بالإضافة إلى ملمع الصيانة Autotriz PPF Refresh بحجم 1 لتر (130 ر.ق) وشريط الحماية (من 2.5 ر.ق).",
         },
       },
     ],
@@ -150,10 +149,10 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
     slug: "ceramic",
     title: {
       en: "Nano Ceramic Coating Products in Doha, Qatar — Autotriz 9H",
-      ar: "منتجات النانو سيراميك للسيارات في الدوحة، قطر — Autotriz الألمانية",
+      ar: "طلاءات النانو سيراميك 9H للسيارات في الدوحة، قطر | Autotriz",
     },
     description: {
-      en: "Shop professional 9H nano ceramic coatings in Doha, Qatar. German Autotriz 3D Matrix Ultra, Hybrid, REVO +15 & ION+ kits from QAR 250. Same-day Qatar delivery.",
+      en: "Shop professional 9H nano ceramic coatings in Doha, Qatar. German Autotriz 3D Matrix Ultra, Hybrid, REVO +15 & ION+ kits from QAR 250. Fast Qatar delivery.",
       ar: "تسوّق طلاءات النانو سيراميك الاحترافية 9H في الدوحة، قطر. أطقم Autotriz الألمانية 3D Matrix Ultra وHybrid وREVO +15 ابتداءً من 250 ر.ق مع توصيل سريع.",
     },
     keywords: {
@@ -212,12 +211,12 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
       },
       {
         q: {
-          en: "Can ceramic coating be applied on top of Paint Protection Film (PPF)?",
-          ar: "هل يمكن تطبيق النانو سيراميك فوق أفلام حماية الطلاء PPF؟",
+          en: "Can ceramic coating be combined with Paint Protection Film (PPF)?",
+          ar: "هل يمكن دمج النانو سيراميك مع أفلام حماية الطلاء PPF؟",
         },
         a: {
-          en: "Yes! Applying Autotriz 3D Matrix Hybrid, REVO +15, or ION+ over VTEK or Grizzly PPF boosts hydrophobic water beading, prevents desert dust from sticking to the film pores, and makes washing effortless without interfering with the film's self-healing topcoat.",
-          ar: "نعم بالتأكيد! تطبيق سيراميك Autotriz فوق أفلام الحماية VTEK أو Grizzly يعزز خاصية طرد المياه والأتربة ويحمي مسام الفيلم من التصبغات مع الحفاظ الكامل على ميزة المعالجة الذاتية للخدوش.",
+          en: "Yes, with the right product on each surface. Apply Autotriz 3D Matrix, REVO +15, or ION+ to unfilmed painted panels (never underneath PPF, as coatings reduce film adhesion). On PPF-wrapped panels, VTEK recommends PPF-specific care rather than standard silicone ceramics — we stock Autotriz PPF Refresh (1L: QAR 130) and Autotriz Nano Rich Foam Shampoo (20L: QAR 450) specifically for PPF topcoats.",
+          ar: "نعم، مع استخدام المنتج المخصص لكل سطح. يُطبَّق سيراميك Autotriz (3D Matrix أو REVO +15 أو ION+) على الألواح المطلية غير المغطاة بالفيلم (ولا يُوضع أبداً تحت الفيلم حتى لا يُضعف التصاقه). أما الأسطح المحمية بفيلم PPF فتنصح VTEK بالعناية بها بمنتجات مخصصة للأفلام مثل Autotriz PPF Refresh (1 لتر: 130 ر.ق) وشامبو Autotriz Nano Rich Foam.",
         },
       },
       {
@@ -239,8 +238,8 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
       ar: "شامبو غسيل السيارات ورغوة الثلج 20 لتر في الدوحة، قطر | ABK",
     },
     description: {
-      en: "Buy pH-neutral car wash shampoos, 20L commercial snow foam drums & 20kg touchless wash powder in Doha, Qatar. Briller, Autotriz, Grizzly & Insta Finish.",
-      ar: "اشترِ شامبو غسيل السيارات المتعادل وبراميل الرغوة الغنية 20 لتر وبودرة الغسيل اللاتلامسي 20 كجم في الدوحة، قطر من Briller وAutotriz وGrizzly.",
+      en: "Buy pH-balanced car wash shampoos & 20L commercial snow foam drums in Doha, Qatar: Briller Wash & Wax (QAR 350), Autotriz Rich Foam (QAR 450) & Insta Finish (QAR 45).",
+      ar: "اشترِ شامبو غسيل السيارات وبراميل الرغوة الغنية 20 لتر في الدوحة، قطر: Briller Wash & Wax (350 ر.ق)، Autotriz Rich Foam (450 ر.ق) وInsta Finish (45 ر.ق).",
     },
     keywords: {
       en: [
@@ -248,14 +247,14 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
         "snow foam shampoo Doha",
         "car wash chemicals supplier Qatar",
         "20L car shampoo drum Qatar",
-        "touchless car wash powder Qatar",
+        "wash and wax shampoo Qatar",
         "pH neutral car shampoo Doha",
       ],
       ar: [
         "شامبو سيارات قطر",
         "شامبو رغوة للسيارات الدوحة",
         "مواد غسيل سيارات بالجملة قطر",
-        "شامبو غسيل بدون لمس قطر",
+        "شامبو وغسيل وشمع قطر",
         "برميل شامبو سيارات 20 لتر قطر",
       ],
     },
@@ -268,8 +267,8 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
       ar: "شامبوهات غسيل السيارات، الرغوة الكثيفة وعبوات الورش 20 لتر في قطر",
     },
     subtitle: {
-      en: "High-lubricity shampoos and thick snow foams that lift abrasive desert grit safely off PPF, ceramic coatings, and clearcoat — available in retail bottles, 20L drums, and 20kg sacks.",
-      ar: "شامبوهات عالية التزليق ورغوة ثلجية كثيفة تزيل الرمال والأتربة بأمان تام عن أفلام الحماية PPF والنانو سيراميك والطلاء — متوفرة للعملاء الأفراد وبعبوات 20 لتر و20 كجم للمغاسل.",
+      en: "High-lubricity shampoos and thick snow foams that lift abrasive desert grit safely off PPF, ceramic coatings, and clearcoat — available in 473 ml retail bottles and 20L drums.",
+      ar: "شامبوهات عالية التزليق ورغوة ثلجية كثيفة تزيل الرمال والأتربة بأمان تام عن أفلام الحماية PPF والنانو سيراميك والطلاء — متوفرة بعبوات 473 مل للأفراد وبراميل 20 لتر للمغاسل.",
     },
     guideTitle: {
       en: "Safe Sand Removal: Choosing the Right Car Shampoo in Qatar",
@@ -278,11 +277,11 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
     guideParagraphs: {
       en: [
         "More swirl marks are inflicted during a 15-minute wash than in months of highway driving — especially in Qatar, where fine silica sand settles on horizontal panels every day. Using dish soap or harsh alkaline degreasers strips wax protection and dries out rubber window seals. A high-lubricity foam pre-wash encapsulates sand grains and floats them off the paint before a wash mitt ever touches the surface.",
-        "For commercial carwashes, detailing studios, and home foam-cannon enthusiasts with multiple vehicles, our 20-litre concentrate drums deliver the lowest cost-per-wash in Doha: Briller Car Shampoo Wash & Wax (20L drum on special offer at QAR 350, was QAR 400) and Autotriz Rich Foam Shampoo (20L drum on special offer at QAR 450, was QAR 500), alongside Grizzly 20kg Touchless Car Wash Powder and Insta Finish Maxi Suds Cherry Shampoo.",
+        "For commercial carwashes, detailing studios, and home foam-cannon enthusiasts with multiple vehicles, our 20-litre concentrate drums deliver low cost-per-wash in Doha: Briller Wash & Wax (20L drum on special offer at QAR 350, was QAR 400; 1:50 dilution in blue, red, or green) and Autotriz Nano Rich Foam Shampoo (20L drum on special offer at QAR 450, was QAR 500; 1:80 dilution for PPF and ceramic-coated cars). For single-car home washing, USA-made Insta Finish Wash & Wax (473 ml concentrate: QAR 45) mixes cleanly with 20 litres of bucket water.",
       ],
       ar: [
         "تحدث معظم دوائر الخدش (Swirl Marks) أثناء عملية الغسيل الخاطئة بسبب ذرات الرمل الناعمة المتراكمة يومياً على هيكل السيارة في قطر. استخدام المنظفات المنزلية القلوية يؤدي إلى بهتان الطلاء وجفاف جلد النوافذ. الحل الاحترافي يبدأ برغوة كثيفة عالية التزليق تفكك ذرات الرمل وتزيلها قبل ملامسة إسفنجة الغسيل للطلاء.",
-        "للمغاسل التجارية ومراكز التلميع وأصحاب المنازل الذين يستخدمون مدفع الرغوة (Foam Gun)، نوفر براميل مركزة سعة 20 لتر بأفضل قيمة اقتصادية في الدوحة: شامبو وغسيل بالشمع Briller الكندي (20 لتر بسعر عرض خاص 350 ر.ق بدلاً من 400 ر.ق)، وشامبو الرغوة الغنية الألماني Autotriz Rich Foam (20 لتر بسعر 450 ر.ق بدلاً من 500 ر.ق)، بالإضافة إلى بودرة الغسيل بدون لمس Grizzly بوزن 20 كجم.",
+        "للمغاسل التجارية ومراكز التلميع وأصحاب المنازل الذين يستخدمون مدفع الرغوة (Foam Gun)، نوفر براميل مركزة سعة 20 لتر بأفضل قيمة اقتصادية في الدوحة: شامبو وغسيل بالشمع Briller الكندي (20 لتر بسعر عرض 350 ر.ق بدلاً من 400 ر.ق؛ تخفيف 1:50)، وشامبو الرغوة النانو الألماني Autotriz Nano Rich Foam (20 لتر بسعر عرض 450 ر.ق بدلاً من 500 ر.ق؛ تخفيف 1:80)، إلى جانب عبوة الأفراد المركزة Insta Finish Wash & Wax الأمريكية (473 مل بسعر 45 ر.ق).",
       ],
     },
     faqs: [
@@ -292,8 +291,8 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
           ar: "هل شامبوهات السيارات لديكم آمنة على أفلام الحماية PPF والنانو سيراميك؟",
         },
         a: {
-          en: "Yes. Autotriz Rich Foam Shampoo, Briller Wash & Wax, and Insta Finish Maxi Suds are formulated to clean thoroughly without degrading PPF self-healing topcoats or stripping SiO2 ceramic coatings.",
-          ar: "نعم، تم تطوير شامبو Autotriz Rich Foam وشامبو Briller وInsta Finish Maxi Suds لتنظيف الطلاء بعمق وأمان دون التأثير على الطبقة العلوية لأفلام الحماية PPF أو إضعاف عزل النانو سيراميك.",
+          en: "Yes. Autotriz Nano Rich Foam Shampoo (1:80 concentrate) is specifically formulated to clean and revitalize PPF topcoats and ceramic coatings, while Briller Wash & Wax and Insta Finish Wash & Wax leave a slick water-beading gloss on painted bodywork.",
+          ar: "نعم، صُمم شامبو Autotriz Nano Rich Foam (تركيز 1:80) خصيصاً لتنظيف وتجديد الطبقة العلوية لأفلام الحماية PPF وطلاءات السيراميك، بينما يمنح شامبو Briller Wash & Wax وInsta Finish Wash & Wax طبقة لمعان طاردة للماء.",
         },
       },
       {
@@ -302,8 +301,8 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
           ar: "هل يمكن للأفراد شراء براميل الشامبو سعة 20 لتر في الدوحة؟",
         },
         a: {
-          en: "Absolutely! Both retail customers (such as villas washing multiple family SUVs) and commercial car washes can order 20L drums of Briller Wash & Wax (QAR 350) and Autotriz Rich Foam (QAR 450) online with same-day Doha delivery.",
-          ar: "بالتأكيد! يمكن للأفراد (أصحاب الفلل الذين يغسلون عدة سيارات في المنزل) وكذلك المغاسل التجارية شراء براميل 20 لتر مباشرة عبر الموقع أو واتساب مع توصيل سريع في الدوحة.",
+          en: "Absolutely! Both retail customers (such as villas washing multiple family SUVs) and commercial car washes can order 20L drums of Briller Wash & Wax (QAR 350) and Autotriz Nano Rich Foam (QAR 450) online with delivery across Qatar.",
+          ar: "بالتأكيد! يمكن للأفراد (أصحاب الفلل الذين يغسلون عدة سيارات في المنزل) وكذلك المغاسل التجارية شراء براميل 20 لتر مباشرة عبر الموقع أو واتساب مع التوصيل في قطر.",
         },
       },
       {
@@ -325,8 +324,8 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
       ar: "مواد تلميع السيارات ووسائد البوليش في الدوحة، قطر | ABK",
     },
     description: {
-      en: "Shop German Autotriz & Grizzly polishing compounds, 1-step polishes, wool cutting pads & GrünesAuto 6-inch DA/Rotary foam pads (from QAR 30) in Doha, Qatar.",
-      ar: "تسوّق مركبات تلميع السيارات الألمانية Autotriz وGrizzly ووسائد الصوف وإسفنجات البوليش GrünesAuto مقاس 6 إنش (من 30 ر.ق) في الدوحة، قطر.",
+      en: "Shop German Autotriz polishing compounds (from QAR 130), 4L 1-step polish, 8\" wool pad (QAR 40) & GrünesAuto 6-inch DA/Rotary foam pads (QAR 28–30) in Doha.",
+      ar: "تسوّق مركبات تلميع السيارات الألمانية Autotriz (من 130 ر.ق) ووسادة الصوف 8 إنش (40 ر.ق) وإسفنجات البوليش GrünesAuto مقاس 6 إنش (28–30 ر.ق) في الدوحة.",
     },
     keywords: {
       en: [
@@ -355,8 +354,8 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
       ar: "كومباوند تلميع السيارات، ملمعات الخطوة الواحدة ووسائد البوليش الألمانية في قطر",
     },
     subtitle: {
-      en: "Low-dust diminishing abrasive compounds from Autotriz & Grizzly paired with German-engineered GrünesAuto 6-inch DA and Rotary foam pads — built for swirl-free correction.",
-      ar: "مركبات تلميع منخفضة الغبار من Autotriz وGrizzly مع وسائد الإسفنج الألمانية GrünesAuto مقاس 6 إنش لأجهزة التلميع المدارية والدوارة — لنتائج مرآة خالية من الدوائر.",
+      en: "Low-dust diminishing abrasive compounds from Autotriz Germany paired with German-engineered GrünesAuto 6-inch DA and Rotary foam pads — built for swirl-free correction.",
+      ar: "مركبات تلميع ألمانية منخفضة الغبار من Autotriz مع وسائد الإسفنج الألمانية GrünesAuto مقاس 6 إنش لأجهزة التلميع المدارية والدوارة — لنتائج مرآة خالية من الدوائر.",
     },
     guideTitle: {
       en: "Multi-Stage Paint Correction vs. One-Step Polishing for Gulf Clearcoats",
@@ -364,12 +363,12 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
     },
     guideParagraphs: {
       en: [
-        "Sandstorms and automatic brush washes leave deep P1500–P2000 grit scratches and oxidation haze across clearcoat. To restore optical clarity before applying PPF or a 9H ceramic coating, match your abrasive cut to the defect depth: start with Autotriz Heavy Cut 901, Extreme Cut 801 (1L: QAR 160), or Power Cut 701 (4L: QAR 280) on an Autotriz 8-inch Double-Sided Wool Cutting Pad (QAR 75) or GrünesAuto Heavy Cut Step 1 Foam Pad (QAR 30), then refine to a hologram-free mirror finish with Autotriz Ultimate Polish 302 (QAR 135) on a Step 3 Finishing Pad.",
-        "When turnaround speed matters for daily drivers or pre-sale reconditioning, Grizzly One Step Polish 3-in-1 (1L: QAR 115) and Autotriz One Step Polish (4L workshop bottle: QAR 265) combine medium defect removal, high-gloss jeweling, and protective sealing in a single pass. For quick localized door-handle or bumper scuffs, Getsun Scratch Remover provides an easy hand-applied solution.",
+        "Sandstorms and automatic brush washes leave deep P1500–P2000 grit scratches and oxidation haze across clearcoat. To restore optical clarity before applying PPF or a 9H ceramic coating, match your abrasive cut to the defect depth: start with Autotriz Heavy Cut 901 (1L: QAR 130), Extreme Cut 801 (1L: QAR 130), or Power Cut 701 2-in-1 compound (4L: QAR 280) on an Autotriz 8-Inch Single-Sided Wool Pad (QAR 40) or GrünesAuto Step 1 Cutting Pad (DA: QAR 30 | Rotary: QAR 28), then refine to a hologram-free mirror finish with Autotriz Ultimate Polish 302 (1L: QAR 135) on a Step 3 Finishing Pad.",
+        "When turnaround speed matters for daily drivers or pre-sale reconditioning, Autotriz One Step Finish (4L workshop jug: QAR 265) combines moderate swirl removal and deep gloss finishing in a single pass by hand, DA, or rotary polisher.",
       ],
       ar: [
-        "تتسبب العواصف الرملية والغسيل الآلي بالفرش في خدوش عميقة وبهتان في طبقة اللكر. لاستعادة صفاء الطلاء قبل تركيب أفلام الحماية PPF أو تطبيق النانو سيراميك، اختر درجة القطع المناسبة: ابدأ بكومباوند القطع القوي Autotriz Heavy Cut 901 أو Extreme Cut 801 (حجم 1 لتر بسعر 160 ر.ق) أو Power Cut 701 (حجم 4 لتر بسعر 280 ر.ق) مع وسادة الصوف المزدوجة Autotriz مقاس 8 إنش (75 ر.ق) أو إسفنجة القطع GrünesAuto Step 1 (30 ر.ق)، ثم أنهِ العمل بلمعان المرآة باستخدام Autotriz Ultimate Polish 302 (135 ر.ق) مع إسفنجة التنعيم Step 3.",
-        "أما عند الرغبة في إنجاز سريع يجمع بين إزالة الخدوش المتوسطة واللمعان والحماية في خطوة واحدة، فإن Grizzly One Step Polish 3-in-1 (حجم 1 لتر بسعر 115 ر.ق) وAutotriz One Step Polish (عبوة ورش 4 لتر بسعر 265 ر.ق) يمنحان نتائج احترافية بتكلفة ووقت أقل.",
+        "تتسبب العواصف الرملية والغسيل الآلي بالفرش في خدوش عميقة وبهتان في طبقة اللكر. لاستعادة صفاء الطلاء قبل تركيب أفلام الحماية PPF أو تطبيق النانو سيراميك، اختر درجة القطع المناسبة: ابدأ بكومباوند القطع القوي Autotriz Heavy Cut 901 (حجم 1 لتر: 130 ر.ق) أو Extreme Cut 801 (حجم 1 لتر: 130 ر.ق) أو Power Cut 701 (حجم 4 لتر: 280 ر.ق) مع وسادة الصوف Autotriz مقاس 8 إنش (40 ر.ق) أو إسفنجة القطع GrünesAuto Step 1 (لأجهزة DA بسعر 30 ر.ق وللروتاري 28 ر.ق)، ثم أنهِ العمل بلمعان المرآة باستخدام Autotriz Ultimate Polish 302 (135 ر.ق) مع إسفنجة التنعيم Step 3.",
+        "أما عند الرغبة في إنجاز سريع يجمع بين إزالة الدوامات المتوسطة واللمعان العميق في خطوة واحدة، فإن ملمع الورش الاقتصادي Autotriz One Step Finish بحجم 4 لتر (265 ر.ق) يمنح نتائج احترافية يدوياً أو بالماكينة.",
       ],
     },
     faqs: [
@@ -379,18 +378,18 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
           ar: "أي وسادة تلميع أختار: المدارية (DA) أم الدوارة (Rotary)؟",
         },
         a: {
-          en: "We stock German-engineered GrünesAuto 6-inch foam pads for both machine types at QAR 30 per pad: Step 1 (Heavy Cut), Step 2 (Medium Polish), and Step 3 (Finishing). Use Rotary pads for fast defect removal on hard clearcoats, and DA pads for cooler running temperatures and zero-hologram finishing.",
-          ar: "نوفر وسائد الإسفنج الألمانية GrünesAuto مقاس 6 إنش لكلا الجهازين بسعر 30 ر.ق للقطعة: الخطوة 1 (قطع قوي)، الخطوة 2 (تلميع متوسط)، والخطوة 3 (تنعيم نهائي). تُستخدم وسائد Rotary للقطع السريع، بينما تضمن وسائد DA حرارة أقل وتشطيباً خالياً تماماً من الهولوجرام.",
+          en: "We stock German-engineered GrünesAuto 6-inch foam pads across Step 1 (Cutting), Step 2 (Medium Polish), and Step 3 (Finishing): Rotary pads are QAR 28 each for fast defect removal on hard clearcoats, and center-vented DA pads are QAR 30 each for cooler orbital temperatures and zero-hologram finishing.",
+          ar: "نوفر وسائد الإسفنج الألمانية GrünesAuto مقاس 6 إنش للمراحل الثلاث (الخطوة 1 قطع، الخطوة 2 متوسط، الخطوة 3 تنعيم): وسائد Rotary بسعر 28 ر.ق للقطع السريع، ووسائد DA المزودة بفتحة تبريد بسعر 30 ر.ق لتشطيب خالٍ من الهولوجرام.",
         },
       },
       {
         q: {
-          en: "What is the best one-step car polish in Qatar?",
-          ar: "ما هو أفضل ملمع سيارات بخطوة واحدة في قطر؟",
+          en: "What is the best one-step car polish in stock in Doha?",
+          ar: "ما هو أفضل ملمع سيارات بخطوة واحدة متوفر في الدوحة؟",
         },
         a: {
-          en: "Grizzly One Step Polish 3-in-1 (1L for QAR 115) is our top seller for enthusiasts and mobile detailers, while high-volume workshops prefer the 4-litre Autotriz One Step Polish (QAR 265) for its low-dust diminishing abrasives in warm Doha bays.",
-          ar: "يُعد Grizzly One Step Polish 3-in-1 (حجم 1 لتر بسعر 115 ر.ق) الخيار المفضل للأفراد، بينما تفضل مراكز التلميع عبوة الورش الاقتصادية Autotriz One Step Polish بحجم 4 لتر (265 ر.ق) بفضل تركيبته منخفضة الغبار.",
+          en: "Autotriz One Step Finish (4L jug for QAR 265) removes light-to-moderate swirls while leaving a high-gloss finish in one step, and Autotriz Power Cut 701 (4L jug for QAR 280) offers a stronger 2-in-1 cut-and-gloss pass for harder clearcoats.",
+          ar: "يزيل Autotriz One Step Finish (عبوة 4 لتر بسعر 265 ر.ق) الدوامات الخفيفة والمتوسطة مع لمعان عالٍ في خطوة واحدة، بينما يمنح Autotriz Power Cut 701 (عبوة 4 لتر بسعر 280 ر.ق) قوة قطع ولمعان 2 في 1 للطلاء القاسي.",
         },
       },
       {
@@ -399,8 +398,8 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
           ar: "هل مركبات التلميع Autotriz خالية من السيليكون وآمنة قبل النانو سيراميك؟",
         },
         a: {
-          en: "Yes. Autotriz Heavy Cut 901, Extreme Cut 801, Power Cut 701, and Ultimate Polish 302 use diminishing abrasives without cheap wax fillers, making them ideal for paint prep prior to ceramic coating or PPF installation.",
-          ar: "نعم، مركبات Autotriz (901 و801 و701 و302) تعتمد على حبيبات كاشطة متلاشية بدون مالئات شمعية تخفي الخدوش مؤقتاً، مما يجعلها مثالية لتجهيز الطلاء قبل النانو سيراميك أو تركيب PPF.",
+          en: "Yes. Autotriz Heavy Cut 901 (QAR 130), Extreme Cut 801 (QAR 130), Power Cut 701 (QAR 280), and Ultimate Polish 302 (QAR 135) are silicone-free and body-shop safe, making them ideal for paint prep prior to ceramic coating or PPF installation.",
+          ar: "نعم، مركبات Autotriz (901 و801 و701 و302) خالية من السيليكون وآمنة لورش الصبغ، مما يجعلها مثالية لتجهيز الطلاء قبل النانو سيراميك أو تركيب PPF.",
         },
       },
     ],
@@ -412,21 +411,21 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
       ar: "شمع السيارات، مجددات البلاستيك والفيبر في الدوحة، قطر | ABK",
     },
     description: {
-      en: "Shop carnauba paste wax, spray wax, 20L quick dressings & ABK Rejuvenate French plastic restorer (from QAR 40) in Doha, Qatar. Restore sun-faded SUV bumpers.",
-      ar: "تسوّق شمع الكارنوبا، الشمع البخاخ، ومجدد البلاستيك الفرنسي ABK Rejuvenate (ابتداءً من 40 ر.ق) في الدوحة، قطر لاستعادة لون الصدامات والفيبر الباهت من الشمس.",
+      en: "Shop Insta Finish spray wax & dressings (QAR 45), 20L Briller Quick Dressing (QAR 450) & French ABK Rejuvenate plastic restorer (from QAR 50) in Doha, Qatar.",
+      ar: "تسوّق شمع وملمعات Insta Finish الأمريكية (45 ر.ق) ومجدد البلاستيك الفرنسي ABK Rejuvenate (ابتداءً من 50 ر.ق) وBriller سعة 20 لتر في الدوحة، قطر.",
     },
     keywords: {
       en: [
         "plastic restorer car Qatar",
-        "car wax Doha",
-        "carnauba wax Qatar",
+        "car spray wax Doha",
         "trim dressing car Qatar",
         "ABK Rejuvenate plastic restorer",
-        "Insta Finish Butter Wet Wax Qatar",
+        "Insta Finish Spray Wax Qatar",
+        "Insta Finish Blue Guard Doha",
       ],
       ar: [
         "مجدد بلاستيك السيارات قطر",
-        "شمع سيارات الدوحة",
+        "شمع بخاخ للسيارات الدوحة",
         "تلميع فيبر السيارة قطر",
         "واكس سيارات قطر",
         "ملمع طبلون وبلاستيك قطر",
@@ -441,8 +440,8 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
       ar: "شمع السيارات، ملمعات الأسطح ومجدد البلاستيك الخارجي في قطر",
     },
     subtitle: {
-      en: "Restore sun-bleached SUV fenders and bumpers with French-made ABK Rejuvenate, or lock in deep wet-look gloss with Grizzly Carnauba and Insta Finish Butter Wet Wax.",
-      ar: "استعد اللون الأسود الأصلي للصدامات والرفارف الباهتة من الشمس مع ABK Rejuvenate الفرنسي، وامنح طلاء سيارتك لمعاناً عميقاً مع شمع الكارنوبا من Grizzly وInsta Finish.",
+      en: "Restore sun-bleached SUV fenders and bumpers with French-made ABK Rejuvenate, or finish paintwork and trim with USA-made Insta Finish Spray Wax, Blue Guard, and Dress All.",
+      ar: "استعد اللون الأصلي للصدامات والرفارف الباهتة من الشمس مع ABK Rejuvenate الفرنسي، وأنهِ طلاء سيارتك وديكوراتها بشمع وملمعات Insta Finish الأمريكية.",
     },
     guideTitle: {
       en: "Restoring Sun-Bleached Trim & Boosting Paint Gloss in Qatar",
@@ -450,12 +449,12 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
     },
     guideParagraphs: {
       en: [
-        "Unpainted black plastic bumpers, wheel-arch flares, cowl panels, and running boards on SUVs like the Land Cruiser, Patrol, Wrangler, and Prado chalk to a dull grey under Doha's intense UV exposure. French-formulated ABK Rejuvenate Plastic Restorer penetrates porous plastic and rubber to restore a deep, non-greasy OEM satin-black finish that lasts 6+ months without washing off. Available in 60 ml (on special offer at QAR 40, was QAR 50), 250 ml (QAR 180), 350 ml (QAR 220), and 500 ml workshop bottles (QAR 280).",
-        "For paintwork gloss and rapid post-wash protection, enthusiasts love Grizzly Carnauba Paste Wax, Grizzly Spray Wax, and USA-made Insta Finish Butter Wet Wax & Clean N Shine. High-volume detailing bays and carwashes also stock Briller Quick Dressing in 20L commercial drums (QAR 450) for fast, streak-free interior and exterior trim conditioning.",
+        "Unpainted black plastic bumpers, wheel-arch flares, cowl panels, and running boards on SUVs like the Land Cruiser, Patrol, Wrangler, and Prado chalk to a dull grey under Doha's intense UV exposure. French-formulated ABK Rejuvenate Plastic Restorer restores faded exterior and interior plastics and rubber with up to 6 months of durable protection (supplied with 2 sponges and 1 microfibre cloth). Available in 60 ml (QAR 50), 250 ml (QAR 180), 350 ml (QAR 220), and 500 ml workshop bottles (QAR 280).",
+        "For rapid post-wash paint gloss and trim conditioning, USA-made Insta Finish 473 ml bottles (QAR 45 each) cover every finish preference: Insta Finish Spray Wax for wet-shine paint protection, Insta Finish Premium Blue Guard for a glossy interior/exterior dressing, and Insta Finish Premium Dress All for a clean, non-greasy matte finish. High-volume detailing bays and carwashes also stock Briller Quick Dressing in 20L commercial drums (QAR 450, 1:1 dilution) for satin interior and exterior trim care.",
       ],
       ar: [
-        "تتعرض الأجزاء البلاستيكية السوداء غير المطلية (مثل الصدامات، أقواس العجلات، الدعاسات، وغطاء المحرك) في سيارات الدفع الرباعي للبهتان والتحول إلى اللون الرمادي بسبب شمس الدوحة الحارقة. يعمل مجدد البلاستيك الفرنسي الأصل ABK Rejuvenate على التغلغل داخل مسام البلاستيك والربل ليستعيد اللون الأسود الوكالي غير الدهني بثبات يتجاوز 6 أشهر. متوفر بأحجام 60 مل (بسعر عرض 40 ر.ق بدلاً من 50 ر.ق)، 250 مل (180 ر.ق)، 350 مل (220 ر.ق)، و500 مل للورش (280 ر.ق).",
-        "ولإضفاء لمعان عميق وحماية سريعة بعد الغسيل، تتوفر شموع الكارنوبا الفاخرة من Grizzly وشمع Butter Wet Wax الأمريكي من Insta Finish، إلى جانب عبوة الورش الاقتصادية Briller Quick Dressing بسعة 20 لتر (450 ر.ق) لتلميع البلاستيك والربل الداخلي والخارجي.",
+        "تتعرض الأجزاء البلاستيكية السوداء غير المطلية (مثل الصدامات، أقواس العجلات، والدعاسات) في سيارات الدفع الرباعي للبهتان والتحول إلى اللون الرمادي بسبب شمس الدوحة الحارقة. يعيد مجدد البلاستيك الفرنسي ABK Rejuvenate الأجزاء الباهتة إلى لونها الغني مع حماية تدوم حتى 6 أشهر (يأتي مع إسفنجتين وقطعة مايكروفايبر). متوفر بأحجام 60 مل (50 ر.ق)، 250 مل (180 ر.ق)، 350 مل (220 ر.ق)، و500 مل للورش (280 ر.ق).",
+        "ولإضفاء لمعان سريع بعد الغسيل والعناية بالديكورات، تتوفر منتجات Insta Finish الأمريكية بحجم 473 مل (45 ر.ق للعبوة): شمع البخاخ Spray Wax للطلاء، وملمع Blue Guard للمظهر اللامع، وملمع Dress All للمظهر المطفي غير الدهني، إلى جانب برميل الورش Briller Quick Dressing بسعة 20 لتر (450 ر.ق، تخفيف 1:1) بلمسة ساتان عطرية.",
       ],
     },
     faqs: [
@@ -465,8 +464,8 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
           ar: "كم يدوم مفعول مجدد البلاستيك ABK Rejuvenate في حرارة قطر؟",
         },
         a: {
-          en: "Unlike silicone dressings that wash off in the first rinse or attract desert dust, ABK Rejuvenate (Made in France) bonds into the plastic pores and maintains a deep satin-black finish for 6+ months when applied to clean, dry trim.",
-          ar: "على عكس الملمعات الزيتية المؤقتة التي تزول مع أول غسلة أو تجمع الغبار، يتغلغل ABK Rejuvenate (صناعة فرنسية) داخل مسام البلاستيك ويدوم لأكثر من 6 أشهر عند تطبيقه على سطح نظيف وجاف.",
+          en: "ABK Rejuvenate (Made in France) bonds to clean, dry plastic trims and delivers up to 6 months of durable gloss and UV protection when allowed its recommended 6–7 hour curing window.",
+          ar: "يرتبط ABK Rejuvenate (صناعة فرنسية) بالبلاستيك النظيف والجاف ليمنح لمعاناً وحماية تدوم حتى 6 أشهر عند منحه فترة التماسك الموصى بها (6 إلى 7 ساعات).",
         },
       },
       {
@@ -475,8 +474,8 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
           ar: "ما هي الأحجام المتوفرة من ABK Rejuvenate في الدوحة؟",
         },
         a: {
-          en: "We stock four sizes at our Mesaimeer showroom: 60 ml DIY bottle (QAR 40 promo, was QAR 50), 250 ml (QAR 180), 350 ml (QAR 220), and 500 ml professional bottle (QAR 280).",
-          ar: "يتوفر بأربعة أحجام في معرضنا بمسيمير: عبوة 60 مل للاستخدام الشخصي (40 ر.ق بدلاً من 50 ر.ق)، عبوة 250 مل (180 ر.ق)، عبوة 350 مل (220 ر.ق)، وعبوة المحترفين 500 مل (280 ر.ق).",
+          en: "We stock four sizes at our Mesaimeer showroom: 60 ml bottle (QAR 50), 250 ml (QAR 180), 350 ml (QAR 220), and 500 ml professional bottle (QAR 280), including 2 applicator sponges and 1 premium microfibre cloth.",
+          ar: "يتوفر بأربعة أحجام في معرضنا بمسيمير: عبوة 60 مل (50 ر.ق)، عبوة 250 مل (180 ر.ق)، عبوة 350 مل (220 ر.ق)، وعبوة المحترفين 500 مل (280 ر.ق)، مع إسفنجتين ومنشفة مايكروفايبر.",
         },
       },
       {
@@ -485,8 +484,8 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
           ar: "هل توفرون ملمع بلاستيك بالجملة لمغاسل السيارات في قطر؟",
         },
         a: {
-          en: "Yes. Briller Quick Dressing is stocked in 20-litre commercial drums at QAR 450, delivering a clean, non-sticky satin sheen across exterior plastics, engine bays, and interior vinyl.",
-          ar: "نعم، يتوفر Briller Quick Dressing ببرميل تجاري سعة 20 لتر بسعر 450 ر.ق، ويمنح لمعة ساتان نظيفة وغير دهنية للبلاستيك الخارجي وحجرات المحرك والديكورات الداخلية.",
+          en: "Yes. Briller Quick Dressing is stocked in 20-litre commercial drums at QAR 450 (1:1 dilution), delivering a clean, perfume-scented satin sheen across exterior plastics, leather, and interior vinyl.",
+          ar: "نعم، يتوفر Briller Quick Dressing ببرميل تجاري سعة 20 لتر بسعر 450 ر.ق (تخفيف 1:1)، ويمنح لمعة ساتان نظيفة برائحة عطرية للبلاستيك الخارجي والجلد والديكورات الداخلية.",
         },
       },
     ],
@@ -498,8 +497,8 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
       ar: "منظف الجنوط وملمع الإطارات في الدوحة، قطر — تجزئة و20 لتر",
     },
     description: {
-      en: "Shop alloy wheel cleaners, non-sling tyre shine, tyre foam & curved applicator sponges (QAR 8) in Doha, Qatar. Briller 20L drums, Autotriz, Grizzly & Smart Car.",
-      ar: "تسوّق منظفات الجنوط وملمعات ورغوة الإطارات وإسفنجات التلميع (8 ر.ق) في الدوحة، قطر. عبوات 20 لتر للمغاسل وعبوات فردية من Briller وAutotriz وGrizzly.",
+      en: "Shop alloy wheel cleaners, non-sling tyre shine, tyre foam (QAR 15) & contoured sponges (QAR 8) in Doha, Qatar. Briller 20L drums, Autotriz, Getsun & Smart Car.",
+      ar: "تسوّق منظفات الجنوط وملمعات ورغوة الإطارات (15 ر.ق) وإسفنجات التلميع (8 ر.ق) في الدوحة، قطر. براميل 20 لتر للمغاسل من Briller وAutotriz وعبوات فردية.",
     },
     keywords: {
       en: [
@@ -527,8 +526,8 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
       ar: "منظفات الجنوط، ملمعات الإطارات ورغوة الكفرات في الدوحة، قطر",
     },
     subtitle: {
-      en: "Dissolve baked-on brake dust from alloy wheels and protect tyre sidewalls against UV cracking and browning — available in spray bottles, aerosols, and 20L commercial drums.",
-      ar: "تخلص من غبار الفرامل العنيد عن الجنوط واحمِ جدران الإطارات من التشقق والبهتان الناتج عن حرارة الأسفلت — متوفرة بعبوات فردية وبراميل 20 لتر للمغاسل.",
+      en: "Dissolve baked-on brake dust from alloy wheels and protect tyre sidewalls against UV cracking and browning — available in QAR 15 aerosols and 20L commercial drums.",
+      ar: "تخلص من غبار الفرامل العنيد عن الجنوط واحمِ جدران الإطارات من التشقق والبهتان الناتج عن حرارة الأسفلت — متوفرة ببخاخات فردية (15 ر.ق) وبراميل 20 لتر للمغاسل.",
     },
     guideTitle: {
       en: "Preventing Tyre Browning & Brake Dust Pitting on Qatar Roads",
@@ -536,12 +535,12 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
     },
     guideParagraphs: {
       en: [
-        "Heavy braking in high ambient temperatures bakes metallic brake dust onto painted and diamond-cut alloy wheels, while asphalt temperatures above 65°C draw antiozonants to tyre sidewalls — turning tyres brown and dry. Dedicated wheel cleaners like Grizzly Rim Cleaner, Briller Alloy Rim Cleaner (20L drum: QAR 250), and Autotriz Hyper Wheel Cleaner (20L drum: QAR 400) break down brake dust and road grime rapidly without etching delicate caliper finishes.",
-        "After rinsing and drying the tyre sidewall, apply Briller Quick Tyre Shine (20L drum: QAR 280), Briller Tyre Foam, Smart Car Tyre Foam, or Getsun Leather & Tyre Wax using our contoured Tyre Polish Applicator Sponge (QAR 8) for an even, sling-free satin or wet-black finish that resists sand buildup.",
+        "Heavy braking in high ambient temperatures bakes metallic brake dust onto painted and chrome alloy wheels, while asphalt temperatures above 65°C dry out tyre sidewalls. Dedicated wheel cleaners like Briller Alloy Rim Cleaner (20L drum on special offer at QAR 300, was QAR 350; 1:4 dilution) and Autotriz Hyper Wheel Cleaner (20L drum: QAR 400; 1:1 dilution) lift brake dust and road grime safely from clear-coated and chrome rims.",
+        "After rinsing and drying the tyre sidewall, apply Briller Quick Tyre Shine (20L aqua-based drum: QAR 280) with our contoured Tyre Polish Applicator Sponge (QAR 8), or use convenient aerosol sprays — Getsun Tyre Shine (500 ml: QAR 15) and Smart Car Tyre Foam (500/650 ml: QAR 15) — for rapid deep-black gloss.",
       ],
       ar: [
-        "يؤدي الكبح المتكرر في درجات الحرارة المرتفعة إلى التصاق غبار الفرامل المعدني بالجنوط، بينما تتسبب حرارة الأسفلت التي تتجاوز 65 درجة مئوية في جفاف جدران الإطارات وتحول لونها إلى البني. تعمل المنظفات المتخصصة مثل Grizzly Rim Cleaner ومنظف الجنوط الكندي Briller Alloy Rim Cleaner (برميل 20 لتر: 250 ر.ق) والألماني Autotriz Hyper Wheel Cleaner (برميل 20 لتر: 400 ر.ق) على إذابة غبار الفرامل والزيوت بأمان وسرعة فائقة.",
-        "وبعد تنظيف وتجفيف الإطار، استخدم ملمع الإطارات Briller Quick Tyre Shine (برميل 20 لتر: 280 ر.ق) أو رغوة الإطارات من Briller وSmart Car مع إسفنجة تلميع الإطارات المنحنية (بسعر 8 ر.ق فقط) للحصول على لمعة سوداء متناسقة بدون تطاير على هيكل السيارة.",
+        "يؤدي الكبح المتكرر في درجات الحرارة المرتفعة إلى التصاق غبار الفرامل المعدني بالجنوط، بينما تتسبب حرارة الأسفلت العالية في جفاف جدران الإطارات. تعمل المنظفات المتخصصة مثل منظف الجنوط الكندي Briller Alloy Rim Cleaner (برميل 20 لتر بسعر عرض 300 ر.ق بدلاً من 350 ر.ق؛ تخفيف 1:4) والألماني Autotriz Hyper Wheel Cleaner (برميل 20 لتر: 400 ر.ق؛ تخفيف 1:1) على إذابة غبار الفرامل بأمان على الجنوط المطلية والكروم.",
+        "وبعد تنظيف وتجفيف الإطار، استخدم ملمع الإطارات المائي Briller Quick Tyre Shine (برميل 20 لتر: 280 ر.ق) مع إسفنجة تلميع الإطارات المنحنية (8 ر.ق)، أو البخاخات السريعة Getsun Tyre Shine (بسعر 15 ر.ق) ورغوة Smart Car Tyre Foam (بسعر 15 ر.ق) للحصول على لمعة سوداء عميقة.",
       ],
     },
     faqs: [
@@ -561,18 +560,18 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
           ar: "كم تبلغ أسعار براميل منظف الجنوط وملمع الإطارات 20 لتر في الدوحة؟",
         },
         a: {
-          en: "Briller Alloy Rim Cleaner (20L) is QAR 250, Briller Quick Tyre Shine (20L) is QAR 280, and German Autotriz Hyper Wheel Cleaner (20L) is QAR 400 — all in stock at our Mesaimeer showroom with same-day Doha delivery.",
-          ar: "يتوفر برميل منظف الجنوط Briller Alloy Rim Cleaner (20 لتر) بسعر 250 ر.ق، وبرميل ملمع الإطارات Briller Quick Tyre Shine (20 لتر) بسعر 280 ر.ق، وبرميل Autotriz Hyper Wheel Cleaner الألماني (20 لتر) بسعر 400 ر.ق.",
+          en: "Briller Quick Tyre Shine (20L) is QAR 280, Briller Alloy Rim Cleaner (20L) is QAR 300 (special offer, was QAR 350), and German Autotriz Hyper Wheel Cleaner (20L) is QAR 400 — plus Getsun Tyre Shine and Smart Car Tyre Foam aerosols at QAR 15 each.",
+          ar: "يتوفر برميل ملمع الإطارات Briller Quick Tyre Shine (20 لتر) بسعر 280 ر.ق، وبرميل منظف الجنوط Briller Alloy Rim Cleaner (20 لتر) بسعر عرض 300 ر.ق (بدلاً من 350 ر.ق)، وبرميل Autotriz Hyper Wheel Cleaner الألماني (20 لتر) بسعر 400 ر.ق، بالإضافة إلى بخاخات الإطارات الفردية بسعر 15 ر.ق.",
         },
       },
       {
         q: {
-          en: "Are your wheel cleaners safe for painted and factory alloy rims?",
-          ar: "هل منظفات الجنوط آمنة على الجنوط المطلية والوكالية؟",
+          en: "Are your wheel cleaners safe for painted and chrome alloy rims?",
+          ar: "هل منظفات الجنوط آمنة على الجنوط المطلية والكروم؟",
         },
         a: {
-          en: "Yes. Grizzly Rim Cleaner, Briller Alloy Rim Cleaner, and Autotriz Hyper Wheel Cleaner are formulated for clear-coated, powder-coated, and OEM alloy wheels when used as directed on cool surfaces.",
-          ar: "نعم، جميع منظفات الجنوط من Grizzly وBriller وAutotriz آمنة تماماً على جنوط الوكالة والجنوط المطلية عند استخدامها وفق التعليمات على سطح بارد.",
+          en: "Yes. Both Briller Alloy Rim Cleaner (1:4 dilution) and Autotriz Hyper Wheel Cleaner (1:1 non-caustic formula with rust inhibitors) are safe for clear-coated, factory-painted, and chrome alloy wheels when applied to cool surfaces.",
+          ar: "نعم، كل من Briller Alloy Rim Cleaner (تخفيف 1:4) وAutotriz Hyper Wheel Cleaner (تركيبة غير كاوية مع مانع صدأ) آمنان على جنوط الوكالة المطلية والكروم عند استخدامهما على جنوط باردة.",
         },
       },
     ],
@@ -670,15 +669,15 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
       ar: "مزيلات الشحوم، منظفات المحرك APC ومزيل الملصقات في الدوحة، قطر",
     },
     description: {
-      en: "Buy heavy-duty engine degreasers, multi-purpose cleaners (APC), Sitrett MX5 & adhesive remover in Doha, Qatar. Retail sprays & 20L Briller drums from QAR 300.",
-      ar: "اشترِ مزيلات الشحوم القوية، منظفات المحرك ومتعدد الاستخدامات APC، ومنظف Sitrett MX5 ومزيل الملصقات في الدوحة، قطر. عبوات فردية وبراميل 20 لتر من 300 ر.ق.",
+      en: "Buy heavy-duty engine degreasers, multi-purpose cleaners (APC), Getsun Engine Foam (QAR 15) & Detainer adhesive remover (QAR 15) in Doha, Qatar. Retail & 20L.",
+      ar: "اشترِ مزيلات الشحوم القوية ومنظف متعدد الأغراض APC ورغوة المحرك Getsun (15 ر.ق) ومزيل الملصقات (15 ر.ق) في الدوحة، قطر. عبوات فردية وبراميل 20 لتر.",
     },
     keywords: {
       en: [
         "engine cleaner car Qatar",
         "all purpose cleaner car Doha",
         "heavy duty degreaser Qatar",
-        "Sitrett MX5 Qatar",
+        "Getsun engine cleaner Doha",
         "sticker adhesive remover car Qatar",
         "20L APC drum Doha",
       ],
@@ -687,7 +686,7 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
         "مزيل شحوم السيارات الدوحة",
         "منظف متعدد الاستخدامات للسيارات قطر",
         "مزيل صمغ التظليل والملصقات قطر",
-        "منظف سيتريت MX5 قطر",
+        "رغوة تنظيف المحرك قطر",
       ],
     },
     eyebrow: {
@@ -699,7 +698,7 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
       ar: "منظفات المحرك، المنظفات متعددة الاستخدامات (APC) ومزيلات الشحوم في قطر",
     },
     subtitle: {
-      en: "Tackle baked-on engine oil, wheel-well grease, interior grime, and old window-tint or badge adhesive with professional degreasers and APCs in retail and 20L drums.",
+      en: "Tackle baked-on engine oil, wheel-well grease, interior grime, and old window-tint or badge adhesive with professional degreasers and APCs in retail sprays and 20L drums.",
       ar: "تخلص من زيوت المحرك المتراكمة، شحوم الشاصي، أوساخ المقصورة، وبقايا صمغ التظليل القديم مع أقوى المنظفات الاحترافية بالعبوات الفردية وبراميل 20 لتر.",
     },
     guideTitle: {
@@ -708,12 +707,12 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
     },
     guideParagraphs: {
       en: [
-        "Desert sand mixed with engine-bay oil vapour or suspension grease forms a stubborn crust that regular car shampoo cannot dissolve. For heavy mechanical degreasing, wheel arches, and chassis prep, Briller Heavy Duty Degreaser (20L commercial drum: QAR 300), Grizzly Engine Cleaner, and Sitrett MX5 Heavy-Duty Multi-Surface Degreaser emulsify grease and carbon buildup rapidly.",
-        "For versatile interior and exterior detailing across door jambs, rubber floor mats, fabric upholstery, and plastics, Briller Multi-Purpose Cleaner (20L drum on special offer at QAR 350, was QAR 400) and Insta Finish Super APC can be diluted to match any surface sensitivity. When stripping old window tint, dealership stickers, or PPF residue, Detainer Sticker & Adhesive Remover dissolves glue cleanly without scraping.",
+        "Desert sand mixed with engine-bay oil vapour or suspension grease forms a stubborn crust that regular car shampoo cannot dissolve. For exterior mechanical degreasing, wheel arches, and chassis prep, Briller Heavy Duty Degreaser (20L commercial drum: QAR 300; 1:5 dilution, exterior use only) dissolves heavy grease and rust stains rapidly, while Getsun Engine Cleaner Foam Spray (500/650 ml aerosol: QAR 15) lifts oil film and leaves engine plastics with a clean matte finish.",
+        "For interior upholstery, carpets, leather, and plastics, lemon-scented Briller Multipurpose Cleaner (20L drum on special offer at QAR 350, was QAR 400; 1:5 dilution) cleans deeply with foaming action. When stripping old window tint glue, dealership stickers, or tape residue, Detainer Sticker Remover (450/473 ml spray: QAR 15) dissolves adhesive cleanly on glass and paint.",
       ],
       ar: [
-        "يختلط الغبار الصحراوي الناعم مع أبخرة الزيوت في حجرة المحرك والشاصي ليكوّن طبقة شحمية صلبة لا يستطيع الشامبو العادي إزالتها. لتنظيف المحركات والبطانات السفلية بكفاءة عالية، يوفر برميل Briller Heavy Duty Degreaser (سعة 20 لتر بسعر 300 ر.ق) ومنظف المحركات Grizzly ومنظف Sitrett MX5 قوة تفكيك فورية للشحوم والزيوت.",
-        "وللتنظيف الشامل داخل وخارج السيارة (فواصل الأبواب، الدعاسات، المقاعد، والبلاستيك)، يتوفر منظف Briller Multi-Purpose Cleaner متعدد الاستخدامات (برميل 20 لتر بسعر عرض خاص 350 ر.ق بدلاً من 400 ر.ق) ومنظف Insta Finish Super APC القابل للتخفيف حسب نوع السطح. وعند إزالة التظليل القديم أو الملصقات، يضمن مزيل اللواصق Detainer إذابة الصمغ بأمان دون خدش الزجاج أو الطلاء.",
+        "يختلط الغبار الصحراوي الناعم مع أبخرة الزيوت في حجرة المحرك والشاصي ليكوّن طبقة شحمية صلبة لا يستطيع الشامبو العادي إزالتها. لتنظيف الأجزاء الخارجية والبطانات السفلية بكفاءة عالية، يوفر برميل Briller Heavy Duty Degreaser (سعة 20 لتر بسعر 300 ر.ق؛ تخفيف 1:5 للاستخدام الخارجي) قوة تفكيك فورية للشحوم، بينما تمنح رغوة Getsun Foam Out (بسعر 15 ر.ق) تنظيفاً سريعاً ومظهراً مطفياً لبلاستيك المحرك.",
+        "ولتنظيف المقصورة الداخلية (المقاعد القماشية، الجلد، البلاستيك، والسجاد)، يتوفر منظف Briller Multipurpose Cleaner برائحة الليمون (برميل 20 لتر بسعر عرض 350 ر.ق بدلاً من 400 ر.ق؛ تخفيف 1:5). وعند إزالة صمغ التظليل القديم أو الملصقات، يضمن بخاخ Detainer Sticker Remover (بسعر 15 ر.ق) إذابة الغراء بأمان دون خدش الزجاج أو الطلاء.",
       ],
     },
     faqs: [
@@ -723,28 +722,28 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
           ar: "كم يبلغ سعر برميل المنظف متعدد الاستخدامات ومزيل الشحوم 20 لتر في قطر؟",
         },
         a: {
-          en: "Briller Heavy Duty Degreaser (20L drum) is QAR 300, and Briller Multi-Purpose Cleaner APC (20L drum) is on special offer at QAR 350 (was QAR 400). Both are in stock at our Mesaimeer showroom.",
-          ar: "يتوفر برميل مزيل الشحوم Briller Heavy Duty Degreaser (20 لتر) بسعر 300 ر.ق، وبرميل المنظف متعدد الاستخدامات Briller Multi-Purpose Cleaner (20 لتر) بسعر عرض خاص 350 ر.ق (بدلاً من 400 ر.ق).",
+          en: "Briller Heavy Duty Degreaser (20L exterior drum, 1:5 dilution) is QAR 300, and Briller Multipurpose Cleaner (20L lemon-scented interior cleaner, 1:5 dilution) is on special offer at QAR 350 (was QAR 400). Both are in stock at our Mesaimeer showroom.",
+          ar: "يتوفر برميل مزيل الشحوم الخارجي Briller Heavy Duty Degreaser (20 لتر) بسعر 300 ر.ق، وبرميل المنظف متعدد الأغراض Briller Multipurpose Cleaner (20 لتر) بسعر عرض خاص 350 ر.ق (بدلاً من 400 ر.ق).",
         },
       },
       {
         q: {
-          en: "Can I use Detainer Adhesive Remover to remove old window tint glue?",
+          en: "Can I use Detainer Sticker Remover to remove old window tint glue?",
           ar: "هل يمكن استخدام مزيل الملصقات Detainer لإزالة صمغ التظليل القديم؟",
         },
         a: {
-          en: "Yes. Detainer Sticker & Adhesive Remover softens stubborn window-tint adhesive, tar, and badge tape so it wipes away cleanly with a microfibre towel.",
-          ar: "نعم، يعمل مزيل اللواصق Detainer على تفكيك صمغ التظليل القديم وبقع القار وأشرطة الشعارات ليتم مسحها بسهولة بمنشفة مايكروفايبر.",
+          en: "Yes. Detainer Sticker Remover (QAR 15) softens stubborn window-tint adhesive, decals, and tape glue on glass and car paint so it wipes away cleanly with a microfibre towel.",
+          ar: "نعم، يعمل بخاخ Detainer Sticker Remover (بسعر 15 ر.ق) على تفكيك صمغ التظليل القديم والملصقات وأشرطة الشعارات عن الزجاج والطلاء ليُمسح بسهولة بمنشفة مايكروفايبر.",
         },
       },
       {
         q: {
-          en: "Is Sitrett MX5 safe for multi-surface automotive and workshop cleaning?",
-          ar: "هل منظف Sitrett MX5 مناسب لتنظيف المحركات والأسطح المتعددة؟",
+          en: "Do you have a retail aerosol spray for cleaning an engine bay at home?",
+          ar: "هل يتوفر بخاخ فردي لتنظيف حجرة المحرك في المنزل؟",
         },
         a: {
-          en: "Yes. Sitrett MX5 is a high-performance multi-surface cleaner trusted across Qatar for engine bays, rims, workshop tools, and stubborn upholstery stains when diluted or sprayed as directed.",
-          ar: "نعم، يُعد Sitrett MX5 من أقوى المنظفات متعددة الأسطح في قطر لتنظيف حجرات المحرك والجنوط ومعدات الورش والبقع الصعبة.",
+          en: "Yes. Getsun Engine Cleaner Foam Spray (Foam Out, QAR 15) sprays directly onto cool engine bay surfaces to lift grease and oil, then wipes off with a clean microfibre cloth for an OEM matte look.",
+          ar: "نعم، تُرش رغوة Getsun Engine Cleaner Foam Spray (بسعر 15 ر.ق) على حجرة المحرك الباردة لتفكيك الزيوت والأوساخ، ثم تُمسح بمنشفة مايكروفايبر نظيفة لمظهر مطفي أنيق.",
         },
       },
     ],
@@ -842,8 +841,8 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
       ar: "معطرات السيارات والمجالس الفاخرة في الدوحة، قطر — ABK مشموم",
     },
     description: {
-      en: "Shop concentrated luxury car & majlis fragrances in Doha, Qatar. ABK Mashmom & ABK Secret 250ml sprays (QAR 70) crafted for Gulf interiors. Same-day delivery.",
-      ar: "تسوّق معطرات السيارات والمجالس الفاخرة المركزة في الدوحة، قطر. معطر ABK مشموم وABK سيكريت بحجم 250 مل (70 ر.ق) بثبات عالٍ وتوصيل سريع في قطر.",
+      en: "Shop Qatar-made luxury car & home fragrances in Doha: ABK Mashmom & ABK Secret 250 ml sprays (QAR 30 each). Lasts 8–9 hours, safe on seats & fabrics.",
+      ar: "تسوّق معطرات السيارات والمجالس القطرية الفاخرة في الدوحة: معطر ABK مشموم وABK سيكريت بحجم 250 مل (30 ر.ق للعبوة) بثبات 8–9 ساعات.",
     },
     keywords: {
       en: [
@@ -862,29 +861,29 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
       ],
     },
     eyebrow: {
-      en: "Signature Gulf Scents",
-      ar: "عطور ومعطرات خليجية فاخرة",
+      en: "Qatar-Crafted Cabin & Home Scents",
+      ar: "معطرات قطرية فاخرة للسيارة والمنزل",
     },
     h1: {
-      en: "Luxury Car & Majlis Fragrances in Doha, Qatar",
-      ar: "معطرات السيارات والمجالس الفاخرة في الدوحة، قطر",
+      en: "Luxury Car & Home Fragrances in Doha, Qatar",
+      ar: "معطرات السيارات والمنزل الفاخرة في الدوحة، قطر",
     },
     subtitle: {
-      en: "Fine-fragrance oil concentrations formulated for automotive cabins, carpets, and majlis spaces — long-lasting scent throw without staining fabrics.",
-      ar: "توليفات عطرية مركزة صُممت خصيصاً لمقصورات السيارات والسجاد والمجالس القطرية — ثبات طويل وفوحان راقٍ دون ترك أي أثر على الأقمشة.",
+      en: "Crafted in Qatar for automotive cabins, upholstery, and living spaces — 8 to 9 hours of scent longevity and safe for skin, clothes, and car seats at QAR 30 per 250 ml bottle.",
+      ar: "صُنعت في قطر لمقصورات السيارات والمفروشات والمنازل — ثبات يدوم من 8 إلى 9 ساعات وآمنة على البشرة والملابس ومقاعد السيارة بسعر 30 ر.ق للعبوة (250 مل).",
     },
     guideTitle: {
-      en: "Crafting Heat-Stable Cabin & Majlis Fragrances for Qatar",
-      ar: "ثبات وفوحان يدوم طويلاً في مقصورة سيارتك ومجلسك",
+      en: "Long-Lasting Qatar-Made Cabin & Home Fragrances",
+      ar: "ثبات وفوحان يدوم طويلاً في مقصورة سيارتك ومنزلك",
     },
     guideParagraphs: {
       en: [
-        "Ordinary hanging paper air fresheners evaporate completely in two days of Doha summer heat and smell synthetic. ABK's proprietary 250 ml fragrance sprays (QAR 70 each) are blended with high-grade perfumery oils designed to bond gently into automotive floor mats, headliners, and majlis upholstery for days of refined projection.",
-        "Choose between two signature Gulf profiles: ABK Mashmom (an authentic Qatari heritage bouquet of fresh basil/mashmom, white florals, and warm aromatic woods) and ABK Secret (a modern, sophisticated blend of crisp citrus, ambergris, and velvety musk that leaves every freshly detailed car smelling like a luxury showroom).",
+        "Ordinary hanging paper air fresheners fade within days in Doha's summer heat. ABK's Qatar-crafted 250 ml fragrance sprays (QAR 30 each) deliver 8 to 9 hours of clean scent projection and are tested safe for skin, clothing fabrics, and leather or cloth car seats without staining.",
+        "Choose between two signature profiles: ABK Mashmom (an uplifting, artisanal fruity aroma that neutralises cabin odours) and ABK Secret (our #1 best-selling bold, crisp fresh fragrance that gives every freshly detailed interior a showroom finish).",
       ],
       ar: [
-        "تتبخر المعطرات الورقية التقليدية خلال يومين فقط في حرارة صيف الدوحة. لذلك طورت ABK بخاخات المعطرات الفاخرة بحجم 250 مل (بسعر 70 ر.ق للعبوة) بتركيز عالٍ من الزيوت العطرية النقية التي تثبت في أرضيات السيارة والمقاعد القماشية والمفارش لأيام طويلة دون ترك بقع.",
-        "اختر بين توليفتين مميزتين: معطر ABK المشموم (عبق تراثي قطري أصيل يجمع بين الريحان والمشموم الطازج والزهور البيضاء والأخشاب الدافئة)، ومعطر ABK سيكريت (مزيج عصري فاخر من الحمضيات المنعشة والعنبر والمسك المخملي يمنح سيارتك رائحة صالات العرض الفاخرة).",
+        "تفقد المعطرات الورقية التقليدية رائحتها سريعاً في حرارة صيف الدوحة. لذلك توفر ABK بخاخات المعطرات القطرية بحجم 250 مل (بسعر 30 ر.ق للعبوة) بثبات يدوم من 8 إلى 9 ساعات، وبتركيبة آمنة على البشرة والملابس ومقاعد السيارة الجلدية والقماشية دون ترك أثر.",
+        "اختر بين توليفتين مميزتين: معطر ABK مشموم (برائحة فواكه منعشة وفواحة تزيل الروائح غير المرغوبة)، ومعطر ABK سيكريت الأكثر مبيعاً لدينا (بعطر فواح ومنعش وقوي يمنح المقصورة رائحة صالات العرض الفاخرة).",
       ],
     },
     faqs: [
@@ -894,18 +893,18 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
           ar: "كم يبلغ سعر معطر ABK مشموم وABK سيكريت في قطر؟",
         },
         a: {
-          en: "Both ABK Mashmom and ABK Secret come in generous 250 ml atomizer bottles priced at QAR 70 each, available at our Mesaimeer showroom or with same-day delivery across Doha.",
-          ar: "يتوفر كل من معطر ABK مشموم ومعطر ABK سيكريت بعبوة بخاخ كبيرة سعة 250 مل بسعر 70 ريال قطري للعبوة، في معرضنا بمسيمير أو مع توصيل سريع في الدوحة.",
+          en: "Both ABK Mashmom and ABK Secret come in 250 ml spray bottles priced at QAR 30 each (Made in Qatar), available at our Mesaimeer showroom or via online cart delivery across Qatar.",
+          ar: "يتوفر كل من معطر ABK مشموم ومعطر ABK سيكريت بعبوة بخاخ سعة 250 مل (صُنع في قطر) بسعر 30 ريال قطري للعبوة، في معرضنا بمسيمير أو عبر التوصيل في قطر.",
         },
       },
       {
         q: {
-          en: "Where should I spray car fragrance so it lasts longest in Qatar's heat?",
-          ar: "أين يُنصح برش المعطر داخل السيارة ليدوم أطول فترة ممكنة؟",
+          en: "Are ABK Mashmom and Secret safe on car seats and clothing?",
+          ar: "هل معطرات ABK مشموم وسيكريت آمنة على مقاعد السيارة والملابس؟",
         },
         a: {
-          en: "Mist 2 to 3 sprays onto clean fabric floor mats or under the front seats rather than directly onto hot leather or dashboard plastics. The carpet fibres hold the fragrance oils and release them gradually when the AC circulates.",
-          ar: "يُنصح برش 2 إلى 3 بخات على دعاسات الأرضية القماشية النظيفة أو أسفل المقاعد الأمامية بدلاً من رشها على الجلد أو الطبلون الساخن، حيث تحتفظ ألياف السجاد بالزيوت العطرية وتنشرها مع هواء المكيف.",
+          en: "Yes. Both 250 ml sprays are tested safe for contact with skin, clothing fabrics, and leather or cloth automotive seating, lasting up to 8 to 9 hours per application.",
+          ar: "نعم، كلا المعطرين آمنان على البشرة والملابس ومقاعد السيارات الجلدية والقماشية، ويدوم ثبات الرائحة من 8 إلى 9 ساعات.",
         },
       },
       {
@@ -914,8 +913,8 @@ export const CATEGORY_LANDING_PAGES: CategoryLandingData[] = [
           ar: "هل تستخدم مراكز التلميع والمغاسل معطرات ABK كخطوة نهائية؟",
         },
         a: {
-          en: "Yes! Many detailing studios and VIP car washes in Doha use a mist of ABK Secret or ABK Mashmom before customer handover, and also retail the 250 ml bottles at their reception counter.",
-          ar: "نعم! تعتمد العديد من مراكز التلميع ومغاسل VIP في الدوحة معطرات ABK المشموم وسيكريت كلمسة ختامية قبل تسليم السيارة للعميل، كما توفرها للبيع في صالات الاستقبال لديها.",
+          en: "Yes! Many detailing studios and VIP car washes in Doha mist ABK Secret or ABK Mashmom before customer handover, and also order wholesale cartons via WhatsApp (+974 3083 8355).",
+          ar: "نعم! تعتمد العديد من مراكز التلميع ومغاسل VIP في الدوحة معطرات ABK المشموم وسيكريت كلمسة ختامية قبل تسليم السيارة للعميل، كما تتوفر بكميات الجملة عبر واتساب (+974 3083 8355).",
         },
       },
     ],
@@ -934,7 +933,7 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
     },
     title: {
       en: "VTEK PPF & Window Tint in Qatar — Authorised Distributor",
-      ar: "أفلام حماية الطلاء VTEK وتظليل Solar Armor في قطر | الموزع المعتمد",
+      ar: "أفلام حماية VTEK وتظليل Solar Armor في قطر | الموزع المعتمد",
     },
     description: {
       en: "ABK Trading is the authorised Qatar distributor for VTEK (Vertek) Weather Armor TPU PPF & Solar Armor nano-ceramic window tint. Buy rolls or book Doha installation.",
@@ -1068,12 +1067,12 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
     },
     guideParagraphs: {
       en: [
-        "Engineered in Germany with TÜV-certified nano-polysilazane chemistry, Autotriz delivers a unified detailing system from wash bay to final ceramic curing. At ABK Trading in Mesaimeer, we stock every stage of the Autotriz workflow: pre-wash with Autotriz Rich Foam Shampoo (20L drum: QAR 450 promo) and Hyper Wheel Cleaner (20L drum: QAR 400); correct paint defects with Heavy Cut 901, Extreme Cut 801 (1L: QAR 160), Power Cut 701 (4L: QAR 280), One Step Polish (4L: QAR 265), and Ultimate Polish 302 (QAR 135) paired with the 8-inch Double-Sided Wool Pad (QAR 75).",
-        "For long-term surface protection, choose between Autotriz 3D Matrix Ultra (QAR 280), 3D Matrix Hybrid (QAR 280), REVO +15 (QAR 250), ION+ +15 (QAR 250), V-9 3D Matrix 9H, Leather & Vinyl Coating (QAR 280), and Fabric & Textile Guard (QAR 280). PPF installers also rely on Autotriz PPF Gel (4L: QAR 150 | 20L: QAR 500) and PPF Refresh (1L: QAR 130) for crystal-clear film fitting and maintenance.",
+        "Engineered in Germany with nano-polysilazane chemistry, Autotriz delivers a unified detailing system from wash bay to final ceramic curing. At ABK Trading in Mesaimeer, we stock every stage of the Autotriz workflow: pre-wash with Autotriz Nano Rich Foam Shampoo (20L drum: QAR 450 promo, was QAR 500) and Hyper Wheel Cleaner (20L drum: QAR 400); correct paint defects with Heavy Cut 901 (QAR 130), Extreme Cut 801 (1L: QAR 130), Power Cut 701 (4L: QAR 280), One Step Finish (4L: QAR 265), and Ultimate Polish 302 (QAR 135) paired with the Autotriz 8-inch Single-Sided Wool Pad (QAR 40).",
+        "For long-term surface protection, choose between Autotriz 3D Matrix Ultra (50ml: QAR 280), 3D Matrix Hybrid graphene-infused polysilazane (50ml: QAR 280), REVO +15 (50ml: QAR 250), ION+ +15 (50ml: QAR 250), Leather & Vinyl Coating (50ml: QAR 280), and Fabric & Textile Coating (300ml: QAR 280). PPF installers also rely on Autotriz PPF Gel (4L: QAR 150 | 20L: QAR 500) and PPF Refresh (1L: QAR 130) for clean film fitting and topcoat maintenance.",
       ],
       ar: [
-        "بفضل تقنية البوليسيلازان الألمانية المعتمدة من TÜV، تقدم علامة Autotriz منظومة متكاملة تبدأ من مرحلة الغسيل وحتى الحماية النهائية بالنانو سيراميك. توفر ABK في معرض مسيمير جميع مراحل العمل: الغسيل التحضيري بشامبو Autotriz Rich Foam (برميل 20 لتر بسعر عرض 450 ر.ق) ومنظف الجنوط Hyper Wheel Cleaner (20 لتر بسعر 400 ر.ق)؛ ثم تصحيح الطلاء بمركبات Heavy Cut 901 وExtreme Cut 801 (160 ر.ق) وPower Cut 701 (4 لتر: 280 ر.ق) وOne Step Polish (4 لتر: 265 ر.ق) وUltimate Polish 302 (135 ر.ق) مع وسادة الصوف المزدوجة مقاس 8 إنش (75 ر.ق).",
-        "وللحماية الفائقة طويلة الأمد، تتوفر أطقم النانو سيراميك 3D Matrix Ultra (280 ر.ق)، و3D Matrix Hybrid (280 ر.ق)، وREVO +15 (250 ر.ق)، وION+ +15 (250 ر.ق)، إلى جانب حماية المقصورة Leather & Vinyl (280 ر.ق) وFabric & Textile Guard (280 ر.ق). كما تعتمد مراكز تركيب الأفلام على جل التركيب Autotriz PPF Gel (4 لتر: 150 ر.ق | 20 لتر: 500 ر.ق) وبخاخ الصيانة PPF Refresh (130 ر.ق).",
+        "بفضل تقنية البوليسيلازان الألمانية المتطورة، تقدم علامة Autotriz منظومة متكاملة تبدأ من مرحلة الغسيل وحتى الحماية النهائية بالنانو سيراميك. توفر ABK في معرض مسيمير جميع مراحل العمل: الغسيل التحضيري بشامبو Autotriz Nano Rich Foam (برميل 20 لتر بسعر عرض 450 ر.ق بدلاً من 500 ر.ق) ومنظف الجنوط Hyper Wheel Cleaner (20 لتر بسعر 400 ر.ق)؛ ثم تصحيح الطلاء بمركبات Heavy Cut 901 (130 ر.ق) وExtreme Cut 801 (1 لتر: 130 ر.ق) وPower Cut 701 (4 لتر: 280 ر.ق) وOne Step Finish (4 لتر: 265 ر.ق) وUltimate Polish 302 (135 ر.ق) مع وسادة الصوف المفردة مقاس 8 إنش (40 ر.ق).",
+        "وللحماية الفائقة طويلة الأمد، تتوفر أطقم النانو سيراميك 3D Matrix Ultra (50 مل: 280 ر.ق)، و3D Matrix Hybrid المعزز بالجرافين (50 مل: 280 ر.ق)، وREVO +15 (250 ر.ق)، وION+ +15 (250 ر.ق)، إلى جانب حماية المقصورة Leather & Vinyl (50 مل: 280 ر.ق) وFabric & Textile Coating (300 مل: 280 ر.ق). كما تعتمد مراكز تركيب الأفلام على جل التركيب Autotriz PPF Gel (4 لتر: 150 ر.ق | 20 لتر: 500 ر.ق) وبخاخ الصيانة PPF Refresh (1 لتر: 130 ر.ق).",
       ],
     },
     faqs: [
@@ -1083,18 +1082,18 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
           ar: "أين يمكنني شراء منتجات Autotriz الألمانية الأصلية في الدوحة، قطر؟",
         },
         a: {
-          en: "ABK Trading & Service in Mesaimeer, Doha is the authorized Qatar distributor for Autotriz Germany. Order online for same-day delivery or visit Showroom no. 2, Building 1306, Street 70, Zone 56.",
-          ar: "شركة ABK للتجارة والخدمات في مسيمير، الدوحة هي الموزع المعتمد لعلامة Autotriz الألمانية في قطر. يمكنك الطلب عبر الموقع للتوصيل في نفس اليوم أو زيارة معرضنا في المنطقة 56، شارع 70، مبنى 1306.",
+          en: "ABK Trading & Service in Mesaimeer, Doha is the authorized Qatar distributor for Autotriz Germany. Order online for Qatar-wide delivery (confirmed on WhatsApp) or visit Showroom no. 2, Building 1306, Street 70, Zone 56.",
+          ar: "شركة ABK للتجارة والخدمات في مسيمير، الدوحة هي الموزع المعتمد لعلامة Autotriz الألمانية في قطر. يمكنك الطلب عبر الموقع للتوصيل السريع داخل قطر (يُؤكَّد عبر واتساب) أو زيارة معرضنا في المنطقة 56، شارع 70، مبنى 1306.",
         },
       },
       {
         q: {
-          en: "What is the difference between Autotriz 3D Matrix Ultra and REVO +15?",
-          ar: "ما الفرق بين سيراميك Autotriz 3D Matrix Ultra وREVO +15؟",
+          en: "What is the difference between Autotriz 3D Matrix Ultra, Hybrid, and REVO +15?",
+          ar: "ما الفرق بين سيراميك Autotriz 3D Matrix Ultra وHybrid وREVO +15؟",
         },
         a: {
-          en: "3D Matrix Ultra (QAR 280) is Autotriz's flagship high-build 9H polysilazane coating engineered for maximum multi-year abrasion and chemical resistance. REVO +15 (QAR 250) is a rapid-cure nano-ceramic formula delivering extreme water-beading and slickness with faster installation flashes.",
-          ar: "يُعد 3D Matrix Ultra (280 ر.ق) الطلاء الرائد بصلابة 9H لمقاومة الخدوش الدقيقة والكيماويات لعدة سنوات، بينما يتميز REVO +15 (250 ر.ق) بسرعة الجفاف والتطبيق مع نعومة فائقة وطرد مذهل للمياه.",
+          en: "3D Matrix Ultra (QAR 280) is Autotriz's pure polysilazane permanent coating for deep wet gloss and chemical resistance (pH 1–14). 3D Matrix Hybrid (QAR 280) infuses graphene into polysilazane to lower surface heat and reduce hard-water spotting. REVO +15 (QAR 250) is a rapid-flash nano-ceramic engineered for extreme hydrophobic beading.",
+          ar: "يُعد 3D Matrix Ultra (280 ر.ق) طلاء بوليسيلازان نقي بلمعة عميقة ومقاومة كيميائية عالية (pH 1–14)، بينما يدمج 3D Matrix Hybrid (280 ر.ق) الجرافين لتقليل حرارة السطح وبقع الماء العسر، ويتميز REVO +15 (250 ر.ق) بسرعة التطبيق وطرد مذهل للمياه.",
         },
       },
       {
@@ -1120,7 +1119,7 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
     },
     title: {
       en: "Briller Car Care 20L Wash & Detailing Drums in Qatar | ABK",
-      ar: "منتجات بريلر الكندية Briller Car Care وعبوات 20 لتر في قطر | ABK",
+      ar: "منتجات بريلر الكندية Briller سعة 20 لتر في قطر | ABK",
     },
     description: {
       en: "Buy Briller Car Care (Canada) 20L commercial drums in Doha, Qatar: Wash & Wax Shampoo (QAR 350), APC (QAR 350), Tyre Shine (QAR 280), Degreaser (QAR 300) & Glass Cleaner.",
@@ -1161,12 +1160,12 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
     },
     guideParagraphs: {
       en: [
-        "Running a profitable car wash, detailing studio, or fleet maintenance bay in Qatar requires concentrated chemicals that perform reliably in desalinated water while keeping cost-per-vehicle low. Briller Car Care (Canada) packages its entire professional line in 20-litre drums with transparent published QAR pricing at ABK Trading: Car Shampoo Wash & Wax (QAR 350 promo, was QAR 400), Multi-Purpose Cleaner APC (QAR 350 promo, was QAR 400), Heavy Duty Degreaser (QAR 300), and Alloy Rim Cleaner (QAR 250).",
-        "To finish every vehicle to showroom standard, pair your wash bay with Briller Crystal Clear Glass Cleaner (20L drum: QAR 265), Briller Quick Tyre Shine (20L drum: QAR 280), Briller Quick Dressing for plastics and engine bays (20L drum: QAR 450), and convenient Briller Tyre Foam aerosols.",
+        "Running a profitable car wash, detailing studio, or fleet maintenance bay in Qatar requires concentrated chemicals that perform reliably in desalinated water while keeping cost-per-vehicle low. Briller Car Care (Canada) packages its entire professional line in 20-litre drums with transparent published QAR pricing at ABK Trading: Briller Wash & Wax Shampoo (QAR 350 promo, was QAR 400), Briller Multipurpose Cleaner APC (QAR 350 promo, was QAR 400), Briller Heavy Duty Degreaser (QAR 300), and Briller Alloy Rim Cleaner (QAR 300 promo, was QAR 350).",
+        "To finish every vehicle to showroom standard, pair your wash bay with Briller Glass Cleaner (20L ready-to-use drum: QAR 265), Briller Quick Tyre Shine (20L aqua-based non-sling drum: QAR 280), and Briller Quick Dressing for exterior plastics, leather, and dashboards (20L 1:1 dilutable drum: QAR 450).",
       ],
       ar: [
-        "يتطلب تشغيل مغسلة سيارات أو مركز تلميع ناجح في قطر مواد كيميائية مركزة تعمل بكفاءة عالية مع المياه المحلاة وتوفر أقل تكلفة تشغيلية لكل سيارة. تقدم علامة Briller Car Care الكندية خطها الاحترافي الكامل ببراميل سعة 20 لتر بأسعار معلنة ومباشرة لدى ABK: شامبو الغسيل والشمع Wash & Wax (بسعر عرض 350 ر.ق بدلاً من 400 ر.ق)، المنظف الشامل Multi-Purpose Cleaner (بسعر عرض 350 ر.ق بدلاً من 400 ر.ق)، مزيل الشحوم القوي Heavy Duty Degreaser (300 ر.ق)، ومنظف الجنوط Alloy Rim Cleaner (250 ر.ق).",
-        "ولإنهاء كل سيارة بمظهر الوكالة، استكمل تجهيز مركزك بمنظف الزجاج Crystal Clear Glass Cleaner (20 لتر: 265 ر.ق)، وملمع الإطارات Quick Tyre Shine (20 لتر: 280 ر.ق)، وملمع البلاستيك والمحركات Quick Dressing (20 لتر: 450 ر.ق)، بالإضافة إلى عبوات رغوة الإطارات الجاهزة.",
+        "يتطلب تشغيل مغسلة سيارات أو مركز تلميع ناجح في قطر مواد كيميائية مركزة تعمل بكفاءة عالية مع المياه المحلاة وتوفر أقل تكلفة تشغيلية لكل سيارة. تقدم علامة Briller Car Care الكندية خطها الاحترافي الكامل ببراميل سعة 20 لتر بأسعار معلنة ومباشرة لدى ABK: شامبو الغسيل والشمع Wash & Wax (بسعر عرض 350 ر.ق بدلاً من 400 ر.ق)، المنظف الشامل Multipurpose Cleaner (بسعر عرض 350 ر.ق بدلاً من 400 ر.ق)، مزيل الشحوم القوي Heavy Duty Degreaser (300 ر.ق)، ومنظف الجنوط Alloy Rim Cleaner (بسعر عرض 300 ر.ق بدلاً من 350 ر.ق).",
+        "ولإنهاء كل سيارة بمظهر الوكالة، استكمل تجهيز مركزك بمنظف الزجاج الجاهز للاستخدام Briller Glass Cleaner (20 لتر: 265 ر.ق)، وملمع الإطارات المائي Quick Tyre Shine (20 لتر: 280 ر.ق)، وملمع البلاستيك والجلد والديكور Quick Dressing القابل للتخفيف 1:1 (20 لتر: 450 ر.ق).",
       ],
     },
     faqs: [
@@ -1208,88 +1207,85 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
     matchBrandKeys: ["Grizzly"],
     origin: { en: "United States", ar: "الولايات المتحدة الأمريكية" },
     roleBadge: {
-      en: "Authorized Qatar Distributor",
-      ar: "الموزع المعتمد في قطر",
+      en: "Showroom & Trade Enquiry",
+      ar: "متوفر عبر المعرض وطلبات الجملة",
     },
     title: {
-      en: "Grizzly PPF Rolls (QAR 1,200) & Car Care in Qatar | ABK",
-      ar: "أفلام Grizzly PPF (1,200 ر.ق) ومنتجات العناية بالسيارات في قطر",
+      en: "Grizzly USA PPF & Car Care Products in Doha, Qatar | ABK",
+      ar: "أفلام حماية ومنتجات Grizzly الأمريكية في الدوحة، قطر | ABK",
     },
     description: {
-      en: "Shop Grizzly Self-Healing TPU PPF rolls (QAR 1,200), One Step Polish 3-in-1 (QAR 115), Carnauba Wax, Spray Wax, Rim/Engine Cleaners & 20kg Touchless Powder in Doha.",
-      ar: "تسوّق رولات حماية الطلاء Grizzly TPU (1,200 ر.ق)، ملمع الخطوة الواحدة 3 في 1 (115 ر.ق)، شمع الكارنوبا، منظف الجنوط والمحرك وبودرة الغسيل 20 كجم في الدوحة.",
+      en: "Enquire about Grizzly USA paint protection films, window films, polishing compounds & car care supplies at ABK Trading's Mesaimeer showroom in Doha, Qatar.",
+      ar: "استفسر عن أفلام الحماية والتظليل ومواد التلميع والعناية بالسيارات من علامة Grizzly الأمريكية لدى معرض ABK للتجارة والخدمات في مسيمير، الدوحة، قطر.",
     },
     keywords: {
       en: [
         "Grizzly PPF Qatar",
-        "Grizzly One Step Polish Doha",
-        "Grizzly car care Qatar",
-        "TPU PPF roll 1200 QAR",
-        "Grizzly touchless wash powder Qatar",
+        "Grizzly car care Doha",
+        "Grizzly detailing products Qatar",
+        "Grizzly window film Doha",
       ],
       ar: [
         "أفلام حماية جريزلي قطر",
-        "بولش جريزلي 3 في 1 الدوحة",
         "منتجات جريزلي الامريكية للسيارات",
-        "رول حماية الطلاء 1200 ريال",
-        "بودرة غسيل سيارات بدون لمس جريزلي",
+        "جريزلي الدوحة",
       ],
     },
     eyebrow: {
-      en: "American PPF & Detailing Line",
+      en: "American Automotive Films & Car Care",
       ar: "أفلام الحماية ومنتجات العناية الأمريكية",
     },
     h1: {
-      en: "Grizzly — Self-Healing TPU PPF, 3-in-1 Polish & Car Care in Doha, Qatar",
-      ar: "جريزلي الأمريكية (Grizzly) — أفلام الحماية TPU ومواد التلميع والعناية في قطر",
+      en: "Grizzly (USA) — Paint Protection Films, Window Tint & Car Care in Qatar",
+      ar: "جريزلي الأمريكية (Grizzly) — أفلام الحماية والتظليل ومواد العناية في قطر",
     },
     subtitle: {
-      en: "High-value American surface protection: QAR 1,200 self-healing 7.5 mil TPU paint protection film master rolls, QAR 115 One Step 3-in-1 Polish, carnauba waxes, and heavy-duty cleaners.",
-      ar: "أداء أمريكي بقيمة استثنائية: رولات حماية الطلاء TPU ذاتية المعالجة بسماكة 7.5 ميل (1,200 ر.ق)، وملمع الخطوة الواحدة 3 في 1 (115 ر.ق)، وشموع الكارنوبا والمنظفات القوية.",
+      en: "American-formulated automotive protection films, compounds, and workshop car care supplied through ABK Trading & Service's Mesaimeer showroom and trade desk.",
+      ar: "أفلام حماية وتظليل ومركبات تلميع وعناية بالسيارات بتركيبات أمريكية متوفرة عبر معرض ABK في مسيمير وقسم مبيعات الجملة.",
     },
     guideTitle: {
-      en: "Inside the Grizzly Product Line Stocked in Doha",
-      ar: "تشكيلة منتجات Grizzly الأمريكية المتوفرة في الدوحة",
+      en: "Ordering Grizzly Products & Checking Live Showroom Batch Stock in Doha",
+      ar: "طلب منتجات Grizzly والتحقق من المخزون المباشر في معرض مسيمير",
     },
     guideParagraphs: {
       en: [
-        "Grizzly combines American performance engineering with accessible retail and workshop pricing. Its standout product in Qatar is the Grizzly Self-Healing TPU Paint Protection Film (190 microns / 7.5 mil thickness, 1.52m × 15m full master roll) at a published price of QAR 1,200 — making TPU protection accessible to independent installers, body shops, and car owners.",
-        "In the polishing and maintenance bay, Grizzly One Step Polish 3-in-1 (1L: QAR 115) cuts swirls, polishes to a mirror gloss, and leaves a protective seal in a single pass. Round out your kit with Grizzly Carnauba Paste Wax, Spray Wax, Rim Cleaner, Engine Cleaner, and 20 kg Touchless Car Wash Powder sacks for commercial tunnel and pressure-wash bays.",
+        "Grizzly's American automotive care portfolio spans paint protection films, window tint rolls, polishing compounds, waxes, and commercial cleaning formulations designed for independent workshops and car owners seeking dependable everyday performance.",
+        "Because Grizzly shipments rotate by batch at our Mesaimeer warehouse, individual Grizzly items are quoted directly by our showroom and trade desk rather than listed as fixed online-cart SKUs. Message ABK on WhatsApp (+974 3083 8355) or visit Showroom no. 2, Building 1306, Street 70, Zone 56 to confirm live shelf availability, or browse our ready-to-ship VTEK, Autotriz, Briller, and Insta Finish lines.",
       ],
       ar: [
-        "تجمع علامة Grizzly الأمريكية بين الجودة العالية والتسعير التنافسي للأفراد والمراكز. ويُعد رول حماية الطلاء Grizzly Self-Healing TPU PPF (بسماكة 190 ميكرون / 7.5 ميل، ومقاس 1.52م × 15م) بسعره المعلن 1,200 ريال قطري فقط من أكثر الرولات طلباً لدى مراكز التركيب والورش وملاك السيارات الباحثين عن حماية TPU حقيقية بسعر اقتصادي.",
-        "وفي قسم التلميع والعناية، يتألق ملمع Grizzly One Step Polish 3-in-1 (حجم 1 لتر بسعر 115 ر.ق) بقدرته على إزالة الدوائر الخفيفة والتلميع وإضافة طبقة حماية في خطوة واحدة، إلى جانب شمع الكارنوبا الصلب والبخاخ، ومنظف الجنوط، ومنظف المحرك، وأكياس بودرة الغسيل اللاتلامسي سعة 20 كجم للمغاسل.",
+        "تشمل تشكيلة علامة Grizzly الأمريكية أفلام حماية الطلاء وأفلام التظليل ومركبات التلميع والشموع ومواد التنظيف الموجهة للورش المستقلة وملاك السيارات الباحثين عن أداء عملي موثوق.",
+        "نظراً لتجدد دفعات Grizzly حسب الشحنات الواردة إلى مستودعنا في مسيمير، يتم تسعير وتأكيد توفر أصناف Grizzly مباشرة عبر المعرض وقسم الجملة بدلاً من سلة المتجر الإلكتروني. راسلنا عبر واتساب (+974 3083 8355) أو تفضل بزيارة معرضنا في المنطقة 56، شارع 70، مبنى 1306 للتحقق من الأصناف المتوفرة حالياً، أو تصفح بدائلنا المتوفرة للشحن الفوري من VTEK وAutotriz وBriller وInsta Finish.",
       ],
     },
     faqs: [
       {
         q: {
-          en: "What are the specs of the QAR 1,200 Grizzly PPF roll?",
-          ar: "ما هي مواصفات رول حماية الطلاء Grizzly بسعر 1,200 ر.ق؟",
+          en: "Why are Grizzly products not listed in the online cart right now?",
+          ar: "لماذا لا تظهر منتجات Grizzly حالياً في سلة المتجر الإلكتروني؟",
         },
         a: {
-          en: "It is a full 1.52m × 15m (5ft × 50ft) master roll of 190-micron (7.5 mil) optical TPU paint protection film with a heat-activated self-healing topcoat and hydrophobic surface.",
-          ar: "يأتي الرول الرئيسي بمقاس كامل 1.52م × 15م وسماكة 190 ميكرون (7.5 ميل) من مادة TPU الشفافة مع طبقة علوية ذاتية المعالجة للخدوش بالحرارة وطاردة للمياه.",
+          en: "Grizzly rolls and workshop chemicals rotate by shipment batch at our Mesaimeer showroom, so we confirm exact batch specs and current QAR pricing directly on WhatsApp (+974 3083 8355) before taking an order.",
+          ar: "تتوفر منتجات ورولات Grizzly وفق دفعات الشحن في معرض مسيمير، لذا نؤكد المواصفات الدقيقة والأسعار الحالية مباشرة عبر واتساب (+974 3083 8355) قبل اعتماد الطلب.",
         },
       },
       {
         q: {
-          en: "Can Grizzly One Step Polish 3-in-1 be used with both DA and Rotary polishers?",
-          ar: "هل يعمل ملمع Grizzly 3-in-1 مع أجهزة التلميع المدارية والدوارة؟",
+          en: "Which ready-to-order alternatives does ABK stock in Doha?",
+          ar: "ما البدائل الجاهزة للطلب الفوري لدى ABK في الدوحة؟",
         },
         a: {
-          en: "Yes. At QAR 115 for a 1-litre bottle, Grizzly One Step Polish works seamlessly with GrünesAuto DA or Rotary medium foam pads (QAR 30) to remove light-to-moderate swirls and leave a wax-sealed finish.",
-          ar: "نعم، يعمل ملمع Grizzly 3-in-1 (حجم 1 لتر بسعر 115 ر.ق) بكفاءة ممتازة مع وسائد الإسفنج المتوسطة GrünesAuto سواء على أجهزة DA أو Rotary.",
+          en: "For TPU paint protection and nano-ceramic window films, we stock VTEK Weather Armor and Solar Armor rolls (plus fixed-price installed VTEK PPF from QAR 899). For compounds, waxes, and 20L wash chemicals, we carry Autotriz Germany, Briller Canada, and Insta Finish USA in ready stock.",
+          ar: "لأفلام الحماية والتظليل نوفر رولات VTEK Weather Armor وSolar Armor (مع خدمة تركيب VTEK PPF بسعر ثابت يبدأ من 899 ر.ق). وللملمعات والشموع وبراميل الغسيل 20 لتر نوفر منتجات Autotriz الألمانية وBriller الكندية وInsta Finish الأمريكية بمخزون فوري.",
         },
       },
       {
         q: {
-          en: "How is Grizzly 20kg Touchless Car Wash Powder used?",
-          ar: "كيف تُستخدم بودرة الغسيل بدون لمس Grizzly بوزن 20 كجم؟",
+          en: "Can workshops enquire about wholesale Grizzly cartons or rolls?",
+          ar: "هل يمكن للورش الاستفسار عن طلبات الجملة لمنتجات Grizzly؟",
         },
         a: {
-          en: "It is an industrial active-foam powder designed for commercial car washes and fleet bays: dissolve in water per your dosing tank ratio, spray onto the vehicle to break down road film and desert dust, and pressure-rinse clean.",
-          ar: "صُممت البودرة للمغاسل التجارية وأساطيل السيارات؛ تُذاب في خزان الرغوة وفق نسبة التخفيف المعتمدة، وتُرش على السيارة لتفكيك الأتربة والأغشية الدهنية ثم تُشطف بماء الضغط العالي دون الحاجة للفرك اليدوي.",
+          en: "Yes. Detailing shops, car washes, and auto accessory retailers can message our Wholesale Trade Desk on WhatsApp (+974 3083 8355) to check incoming Grizzly stock and carton pricing.",
+          ar: "نعم، يمكن لمراكز التلميع والمغاسل ومحلات زينة السيارات التواصل مع قسم مبيعات الجملة عبر واتساب (+974 3083 8355) للاستفسار عن الشحنات المتوفرة وأسعار الكراتين.",
         },
       },
     ],
@@ -1304,12 +1300,12 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
       ar: "المورد المعتمد في قطر",
     },
     title: {
-      en: "GrünesAuto 6-Inch Foam Polishing Pads in Qatar (QAR 30)",
-      ar: "وسائد تلميع GrünesAuto الألمانية مقاس 6 إنش في قطر (30 ر.ق)",
+      en: "GrünesAuto 6-Inch Foam Pads & Towels in Qatar | ABK",
+      ar: "وسائد تلميع ومناشف GrünesAuto الألمانية في قطر | ABK",
     },
     description: {
-      en: "Buy German-engineered GrünesAuto 6-inch DA (Dual Action) & Rotary foam polishing pads in Doha, Qatar — Step 1 Heavy Cut, Step 2 Medium & Step 3 Finishing at QAR 30.",
-      ar: "اشترِ وسائد وإسفنجات التلميع الألمانية GrünesAuto مقاس 6 إنش لأجهزة DA وRotary في الدوحة، قطر — الخطوة 1 قطع، الخطوة 2 متوسط، والخطوة 3 تنعيم بسعر 30 ر.ق.",
+      en: "Buy German GrünesAuto 6-inch DA foam pads (QAR 30), Rotary buffing pads (QAR 28) — Step 1, 2 & 3 — and edgeless microfibre towels (QAR 10) in Doha, Qatar.",
+      ar: "اشترِ وسائد التلميع الألمانية GrünesAuto مقاس 6 إنش لأجهزة DA (30 ر.ق) وRotary (28 ر.ق) للمراحل 1 و2 و3 ومناشف المايكروفايبر بدون حواف (10 ر.ق) في الدوحة.",
     },
     keywords: {
       en: [
@@ -1317,26 +1313,26 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
         "foam polishing pads Doha",
         "6 inch DA polishing pad Qatar",
         "rotary buffing pads Doha",
-        "German foam pads car detailing Qatar",
+        "edgeless microfiber towel Qatar",
       ],
       ar: [
         "اسفنج تلميع السيارات قطر",
         "وسائد بوليش المانية الدوحة",
         "بف تلميع 6 انش قطر",
-        "ادوات تصحيح الطلاء قطر",
+        "منشفة مايكروفايبر بدون حواف قطر",
       ],
     },
     eyebrow: {
-      en: "German Reticulated Foam Technology",
-      ar: "تقنية الإسفنج الشبكي الألمانية",
+      en: "German Reticulated Foam & Microfibre",
+      ar: "تقنية الإسفنج الشبكي والمايكروفايبر الألمانية",
     },
     h1: {
-      en: "GrünesAuto (Germany) — 6-Inch DA & Rotary Foam Polishing Pads in Qatar",
-      ar: "جرينز أوتو الألمانية (GrünesAuto) — وسائد التلميع الإسفنجية مقاس 6 إنش في قطر",
+      en: "GrünesAuto (Germany) — 6-Inch DA & Rotary Pads and Edgeless Towels in Qatar",
+      ar: "جرينز أوتو الألمانية (GrünesAuto) — وسائد التلميع 6 إنش ومناشف المايكروفايبر في قطر",
     },
     subtitle: {
-      en: "Color-coded Step 1 Heavy Cut, Step 2 Medium Polish, and Step 3 Finishing pads engineered from open-cell German foam for Dual Action and Rotary polishers — QAR 30 per pad.",
-      ar: "وسائد تلميع مرقمة للخطوة 1 (قطع قوي) والخطوة 2 (تلميع متوسط) والخطوة 3 (تنعيم نهائي) من الإسفنج الألماني مفتوح المسام لأجهزة DA وRotary — بسعر 30 ر.ق للقطعة.",
+      en: "Color-coded Step 1 Heavy Cut, Step 2 Medium Polish, and Step 3 Finishing pads from open-cell German foam (DA: QAR 30 | Rotary: QAR 28), plus laser-cut edgeless microfibre towels (QAR 10).",
+      ar: "وسائد تلميع مرقمة للخطوة 1 و2 و3 من الإسفنج الألماني مفتوح المسام (أجهزة DA: 30 ر.ق | أجهزة Rotary: 28 ر.ق)، مع مناشف مايكروفايبر مقصوصة بالليزر بدون حواف (10 ر.ق).",
     },
     guideTitle: {
       en: "Matching GrünesAuto Step 1, Step 2 & Step 3 Pads to Your Machine",
@@ -1344,23 +1340,23 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
     },
     guideParagraphs: {
       en: [
-        "Polishing in warm Gulf workshops puts extreme thermal stress on cheap foam pads, causing Velcro backing failure and foam collapse mid-panel. GrünesAuto 6-inch pads (QAR 30 each) are manufactured from high-resilience German reticulated foam with heat-dissipating profiles and heavy-duty hook-and-loop backing.",
-        "We stock two dedicated geometries across all three correction steps: bevelled center-vented DA (Dual Action / Orbital) pads that channel heat away from the spindle on long-throw polishers, and full-contact Rotary pads engineered for smooth, chatter-free tracking on rotary buffers.",
+        "Polishing in warm Gulf workshops puts extreme thermal stress on cheap foam pads, causing Velcro backing failure and foam collapse mid-panel. GrünesAuto 6-inch (150 mm) pads are manufactured in Germany from high-resilience reticulated foam with heat-dissipating profiles and heavy-duty hook-and-loop backing.",
+        "We stock two dedicated geometries across all three correction steps: bevelled center-vented Dual Action (DA) pads at QAR 30 each that channel heat away from the spindle on orbital polishers, and full-contact Rotary pads at QAR 28 each engineered for smooth, chatter-free tracking on direct-drive rotary buffers — complemented by the laser-cut 40×40 cm GrünesAuto Edgeless Microfibre Towel (QAR 10) for scratch-free compound and ceramic wipe-down.",
       ],
       ar: [
-        "يؤدي التلميع في أجواء الخليج الحارة إلى تلف الإسفنجات التجارية الرخيصة وانفصال طبقة الفيلكرو بسرعة. صُنعت وسائد GrünesAuto مقاس 6 إنش (بسعر 30 ر.ق للقطعة) من الإسفنج الشبكي الألماني عالي التحمل مع فتحات تبريد ولاصق خلفي فائق القوة.",
-        "نوفر تصميمين مخصصين لجميع المراحل الثلاث (Step 1 للقطع، Step 2 للمتوسط، Step 3 للتنعيم): وسائد أجهزة التلميع المدارية (DA) المزودة بفتحة تهوية مركزية وحواف مشطوفة لتبديد الحرارة، ووسائد أجهزة التلميع الدوارة (Rotary) المصممة لثبات مثالي وانسيابية عالية على الأسطح.",
+        "يؤدي التلميع في أجواء الخليج الحارة إلى تلف الإسفنجات التجارية الرخيصة وانفصال طبقة الفيلكرو بسرعة. صُنعت وسائد GrünesAuto مقاس 6 إنش (150 مم) في ألمانيا من الإسفنج الشبكي عالي التحمل مع لاصق خلفي فائق القوة.",
+        "نوفر تصميمين مخصصين لجميع المراحل الثلاث (Step 1 للقطع، Step 2 للمتوسط، Step 3 للتنعيم): وسائد أجهزة التلميع المدارية (DA) المزودة بفتحة تهوية مركزية بسعر 30 ر.ق للقطعة، ووسائد أجهزة التلميع الدوارة (Rotary) بسعر 28 ر.ق للقطعة لثبات مثالي وانسيابية عالية، إلى جانب منشفة المايكروفايبر بدون حواف مقاس 40×40 سم (10 ر.ق) لمسح بقايا الكومباوند والنانو سيراميك بأمان تام.",
       ],
     },
     faqs: [
       {
         q: {
-          en: "How much are GrünesAuto 6-inch polishing pads in Qatar?",
-          ar: "كم يبلغ سعر إسفنجة التلميع GrünesAuto مقاس 6 إنش في قطر؟",
+          en: "How much are GrünesAuto 6-inch polishing pads and towels in Qatar?",
+          ar: "كم يبلغ سعر وسائد ومناشف GrünesAuto الألمانية في قطر؟",
         },
         a: {
-          en: "Every GrünesAuto 6-inch foam pad — whether DA or Rotary, Step 1 Heavy Cut, Step 2 Medium Polish, or Step 3 Finishing — is priced at QAR 30 at ABK Trading.",
-          ar: "تتوفر جميع وسائد التلميع الألمانية GrünesAuto مقاس 6 إنش (سواء لأجهزة DA أو Rotary ولجميع المراحل 1 و2 و3) بسعر موحد يبلغ 30 ريال قطري للقطعة.",
+          en: "At ABK Trading in Doha, GrünesAuto 6-inch Dual Action (DA) foam pads (Step 1, 2, and 3) are QAR 30 each, 6-inch Rotary foam pads (Step 1, 2, and 3) are QAR 28 each, and the 40×40 cm laser-cut Edgeless Microfibre Towel is QAR 10.",
+          ar: "تتوفر وسائد GrünesAuto مقاس 6 إنش لأجهزة DA (المراحل 1 و2 و3) بسعر 30 ر.ق للقطعة، ولأجهزة Rotary الدوارة (المراحل 1 و2 و3) بسعر 28 ر.ق للقطعة، كما تتوفر منشفة المايكروفايبر بدون حواف مقاس 40×40 سم بسعر 10 ر.ق.",
         },
       },
       {
@@ -1379,8 +1375,8 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
           ar: "ما هي مواد التلميع المناسبة لكل خطوة من وسائد GrünesAuto؟",
         },
         a: {
-          en: "Pair Step 1 Heavy Cut with Autotriz Heavy Cut 901 or Extreme Cut 801; pair Step 2 Medium Polish with Grizzly One Step 3-in-1 or Autotriz One Step Polish; and pair Step 3 Finishing with Autotriz Ultimate Polish 302.",
-          ar: "استخدم الخطوة 1 مع كومباوند القطع القوي Autotriz 901 أو 801؛ والخطوة 2 مع ملمع الخطوة الواحدة Grizzly 3-in-1 أو Autotriz One Step؛ والخطوة 3 مع الملمع النهائي Autotriz Ultimate Polish 302.",
+          en: "Pair Step 1 Heavy Cut with Autotriz Heavy Cut 901 (QAR 130) or Extreme Cut 801 (QAR 130); pair Step 2 Medium Polish with Autotriz Power Cut 701 (4L: QAR 280) or One Step Finish (4L: QAR 265); and pair Step 3 Finishing with Autotriz Ultimate Polish 302 (QAR 135) or Insta Finish Spray Wax (QAR 45).",
+          ar: "استخدم الخطوة 1 مع كومباوند القطع القوي Autotriz 901 أو 801 (130 ر.ق)؛ والخطوة 2 مع Autotriz Power Cut 701 (280 ر.ق) أو One Step Finish (265 ر.ق)؛ والخطوة 3 مع الملمع النهائي Autotriz Ultimate Polish 302 (135 ر.ق).",
         },
       },
     ],
@@ -1395,12 +1391,12 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
       ar: "علامة ABK الخاصة",
     },
     title: {
-      en: "ABK Rejuvenate Plastic Restorer & Car Fragrances in Qatar",
-      ar: "مجدد البلاستيك الفرنسي ABK Rejuvenate ومعطرات ABK الفاخرة في قطر",
+      en: "ABK Rejuvenate Trim Restorer & Car Fragrances in Qatar",
+      ar: "مجدد البلاستيك ABK Rejuvenate ومعطرات ABK في قطر",
     },
     description: {
-      en: "Shop ABK proprietary products in Doha, Qatar: French-made ABK Rejuvenate Plastic Restorer (60ml QAR 40 to 500ml QAR 280) & ABK Mashmom / Secret 250ml fragrances (QAR 70).",
-      ar: "تسوّق منتجات علامة ABK الحصرية في الدوحة، قطر: مجدد البلاستيك الفرنسي ABK Rejuvenate (من 40 ر.ق إلى 280 ر.ق) ومعطرات المشموم وسيكريت 250 مل (70 ر.ق).",
+      en: "Shop ABK signature products in Doha, Qatar: French-made ABK Rejuvenate Plastic Restorer (60ml QAR 50 to 500ml QAR 280) & Mashmom / Secret sprays (QAR 30).",
+      ar: "تسوّق منتجات علامة ABK الحصرية في الدوحة، قطر: مجدد البلاستيك الفرنسي ABK Rejuvenate (من 50 إلى 280 ر.ق) ومعطرات المشموم وسيكريت القطرية 250 مل (30 ر.ق).",
     },
     keywords: {
       en: [
@@ -1422,12 +1418,12 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
       ar: "إصدارات ABK الحصرية",
     },
     h1: {
-      en: "ABK Signature Range — French Plastic Restorer & Gulf Cabin Fragrances",
-      ar: "مجموعة ABK الخاصة — مجدد البلاستيك الفرنسي ومعطرات المقصورة والمجالس",
+      en: "ABK Signature Range — French Plastic Restorer & Qatari Car/Home Fragrances",
+      ar: "مجموعة ABK الخاصة — مجدد البلاستيك الفرنسي ومعطرات المقصورة والمجالس القطرية",
     },
     subtitle: {
-      en: "Developed specifically for Qatar's climate and automotive culture: French-manufactured ABK Rejuvenate trim restorer and long-lasting Mashmom & Secret 250ml sprays.",
-      ar: "طُوّرت خصيصاً لتلائم مناخ قطر وذائقة ملاك السيارات: مجدد البلاستيك الفرنسي ABK Rejuvenate، ومعطرات المشموم وسيكريت المركزة بحجم 250 مل.",
+      en: "Developed specifically for Qatar's climate and automotive culture: French-manufactured ABK Rejuvenate trim restorer (QAR 50–280) and Made-in-Qatar Mashmom & Secret 250ml sprays (QAR 30).",
+      ar: "طُوّرت خصيصاً لتلائم مناخ قطر وذائقة ملاك السيارات: مجدد البلاستيك الفرنسي ABK Rejuvenate (50–280 ر.ق)، ومعطرات المشموم وسيكريت القطرية بحجم 250 مل (30 ر.ق).",
     },
     guideTitle: {
       en: "Built by ABK for Qatar's Sun, SUVs & Majlis",
@@ -1435,23 +1431,23 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
     },
     guideParagraphs: {
       en: [
-        "When we couldn't find an off-the-shelf trim restorer that survived a full Doha summer without turning sticky or washing off, we partnered with a specialty French chemical laboratory to produce ABK Rejuvenate Plastic Restorer. Available in 60 ml (QAR 40 promo), 250 ml (QAR 180), 350 ml (QAR 220), and 500 ml (QAR 280), it restores deep OEM satin-black richness to faded SUV bumpers, fender flares, mirror housings, and engine plastics for 6+ months.",
-        "Complementing our exterior restoration formula are ABK Mashmom and ABK Secret (250 ml atomizers at QAR 70 each) — high-oil-concentration cabin and majlis sprays crafted for heat stability and refined projection.",
+        "When we couldn't find an off-the-shelf trim restorer that survived a full Doha summer without turning sticky or washing off, we partnered with a specialty French laboratory to produce ABK Rejuvenate Multi-Surface Plastic Restorer. Available in 60 ml (QAR 50), 250 ml (QAR 180), 350 ml (QAR 220), and 500 ml (QAR 280) — each bundled with 2 applicator sponges and 1 microfibre towel — it restores deep OEM satin-black richness to faded SUV bumpers, fender flares, mirror housings, and engine plastics for up to 6 months.",
+        "Complementing our exterior restoration formula are ABK Mashmom (fresh fruity profile) and best-selling ABK Secret (crisp luxury profile) — Made-in-Qatar 250 ml car and home fragrances priced at QAR 30 each, safe on car seats, fabrics, and clothes with 8 to 9 hours of scent longevity.",
       ],
       ar: [
-        "صُمم مجدد البلاستيك الفرنسي ABK Rejuvenate خصيصاً ليتحمل شمس الدوحة الحارقة دون أن يترك ملمساً دهنياً يجمع الغبار أو يزول مع الغسيل. يتوفر بأربعة أحجام (60 مل بسعر عرض 40 ر.ق، 250 مل بسعر 180 ر.ق، 350 مل بسعر 220 ر.ق، و500 مل بسعر 280 ر.ق) ليعيد اللون الأسود الوكالي للصدامات والرفارف وأغطية المحرك لأكثر من 6 أشهر.",
-        "وتكتمل المجموعة بمعطرات المقصورة والمجالس ABK المشموم وABK سيكريت (عبوة 250 مل بسعر 70 ر.ق) بتركيز زيتي عالٍ يمنح سيارتك ومجلسك فوحاناً فاخراً وثباتاً يدوم طويلاً.",
+        "صُمم مجدد البلاستيك الفرنسي ABK Rejuvenate خصيصاً ليتحمل شمس الدوحة الحارقة دون أن يترك ملمساً دهنياً يجمع الغبار أو يزول مع الغسيل. يتوفر بأربعة أحجام (60 مل بسعر 50 ر.ق، 250 مل بسعر 180 ر.ق، 350 مل بسعر 220 ر.ق، و500 مل بسعر 280 ر.ق) مع إسفنجتي تطبيق ومنشفة مايكروفايبر مجاناً، ليعيد اللون الأسود الوكالي للصدامات والرفارف وأغطية المحرك لمدة تصل إلى 6 أشهر.",
+        "وتكتمل المجموعة بمعطرات السيارة والمنزل القطرية الصنع ABK المشموم (عبير فاكهي منعش) وABK سيكريت الأكثر مبيعاً (عبير فاخر قوي) بحجم 250 مل وسعر 30 ر.ق للعبوة، بتركيبة آمنة على المقاعد والأقمشة وثبات يدوم من 8 إلى 9 ساعات.",
       ],
     },
     faqs: [
       {
         q: {
-          en: "Where is ABK Rejuvenate Plastic Restorer manufactured?",
-          ar: "أين يُصنّع مجدد البلاستيك ABK Rejuvenate؟",
+          en: "Where are ABK Rejuvenate and ABK Fragrances manufactured?",
+          ar: "أين يُصنّع مجدد البلاستيك ABK Rejuvenate ومعطرات ABK؟",
         },
         a: {
-          en: "ABK Rejuvenate is manufactured in France exclusively for ABK Trading & Service in Qatar.",
-          ar: "يُصنّع ABK Rejuvenate في فرنسا حصرياً لصالح شركة ABK للتجارة والخدمات في قطر.",
+          en: "ABK Rejuvenate Plastic Restorer is manufactured in France exclusively for ABK Trading & Service, while ABK Mashmom and ABK Secret 250 ml sprays (QAR 30 each) are proudly made in Qatar.",
+          ar: "يُصنّع مجدد البلاستيك ABK Rejuvenate في فرنسا حصرياً لصالح شركة ABK، بينما تُصنّع معطرات ABK المشموم وسيكريت (250 مل بسعر 30 ر.ق) في دولة قطر.",
         },
       },
       {
@@ -1460,8 +1456,8 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
           ar: "أي حجم من ABK Rejuvenate يكفي لسيارة دفع رباعي واحدة؟",
         },
         a: {
-          en: "The 60 ml bottle (on special offer at QAR 40, was QAR 50) easily covers all exterior plastic trim, bumpers, and fender flares on a full-size SUV with product to spare.",
-          ar: "تكفي عبوة 60 مل (بسعر عرض 40 ر.ق بدلاً من 50 ر.ق) لتجديد جميع الأجزاء البلاستيكية الخارجية والصدامات لسيارة دفع رباعي كاملة بكل سهولة.",
+          en: "The 60 ml kit (QAR 50, including 2 sponges and 1 microfibre cloth) easily covers all exterior plastic trim, bumpers, and fender flares on a full-size SUV; allow 6 to 7 hours of dry curing before driving.",
+          ar: "تكفي عبوة 60 مل (بسعر 50 ر.ق شاملة إسفنجتين ومنشفة مايكروفايبر) لتجديد جميع الأجزاء البلاستيكية الخارجية والصدامات لسيارة دفع رباعي كاملة، مع ترك السطح ليجف 6 إلى 7 ساعات قبل القيادة.",
         },
       },
       {
@@ -1470,7 +1466,7 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
           ar: "هل يمكنني تجربة معطرات ABK في معرضكم بالدوحة؟",
         },
         a: {
-          en: "Yes! Visit our Mesaimeer showroom (Showroom no. 2, Building 1306, Street 70, Zone 56) Saturday to Thursday to test both scents in person.",
+          en: "Yes! Visit our Mesaimeer showroom (Showroom no. 2, Building 1306, Street 70, Zone 56) Saturday to Thursday to test both QAR 30 scents in person.",
           ar: "نعم بالتأكيد! تفضل بزيارة معرضنا في مسيمير (معرض رقم 2، مبنى 1306، شارع 70، منطقة 56) من السبت إلى الخميس لتجربة العطور مباشرة.",
         },
       },
@@ -1486,63 +1482,73 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
       ar: "المورد المعتمد في قطر",
     },
     title: {
-      en: "Insta Finish Butter Wet Wax, Super APC & Shampoo in Qatar",
-      ar: "منتجات إنستا فينش الأمريكية Insta Finish للسيارات في الدوحة، قطر",
+      en: "Insta Finish USA Spray Wax, Wash & Dressings in Qatar | ABK",
+      ar: "منتجات Insta Finish الأمريكية للعناية بالسيارات في قطر | ABK",
     },
     description: {
-      en: "Buy genuine USA-made Insta Finish car care products in Doha, Qatar: Butter Wet Wax, Clean N Shine, Super APC & Maxi Suds Cherry Shampoo at ABK Trading.",
-      ar: "اشترِ منتجات Insta Finish الأمريكية الأصلية في الدوحة، قطر: شمع Butter Wet Wax، ملمع Clean N Shine، منظف Super APC وشامبو الكرز Maxi Suds لدى ABK.",
+      en: "Buy genuine USA-made Insta Finish 473ml car care products in Doha, Qatar: Spray Wax, Wash & Wax, Premium Blue Guard & Premium Dress All at QAR 45 each.",
+      ar: "اشترِ منتجات Insta Finish الأمريكية الأصلية (473 مل بسعر 45 ر.ق) في الدوحة، قطر: شمع البخاخ Spray Wax، شامبو Wash & Wax، وملمعات Blue Guard وDress All.",
     },
     keywords: {
       en: [
         "Insta Finish Qatar",
-        "Butter Wet Wax Doha",
-        "Insta Finish Super APC Qatar",
-        "Maxi Suds shampoo Qatar",
+        "Insta Finish Spray Wax Doha",
+        "Insta Finish Blue Guard Qatar",
+        "Insta Finish Dress All Qatar",
         "American car wax Doha",
       ],
       ar: [
         "منتجات انستا فينش قطر",
-        "شمع بتر ويت واكس الدوحة",
-        "منظف سوبر APC الامريكي",
-        "شامبو ماكسي سدز قطر",
+        "شمع بخاخ انستا فينش الدوحة",
+        "ملمع بلو جارد الامريكي",
+        "شامبو انستا فينش قطر",
       ],
     },
     eyebrow: {
-      en: "Classic American Detailing Chemistry",
-      ar: "منتجات العناية الأمريكية الأصيلة",
+      en: "American Detailing Chemistry · 473 ml Range",
+      ar: "منتجات العناية الأمريكية الأصيلة · عبوات 473 مل",
     },
     h1: {
-      en: "Insta Finish (USA) — Butter Wet Wax, Super APC & Wash Shampoos in Qatar",
-      ar: "إنستا فينش الأمريكية (Insta Finish) — شمع Butter Wet Wax والمنظفات في قطر",
+      en: "Insta Finish (USA) — Spray Wax, Wash & Wax, Blue Guard & Dress All in Qatar",
+      ar: "إنستا فينش الأمريكية (Insta Finish) — شمع البخاخ والشامبو وملمعات الديكور في قطر",
     },
     subtitle: {
-      en: "Proven California detailing formulations: pure Brazilian carnauba Butter Wet Wax, Clean N Shine quick detailer, Super APC, and Maxi Suds Cherry Shampoo.",
-      ar: "تركيبات كاليفورنيا الشهيرة للعناية بالسيارات: شمع الكارنوبا السائل Butter Wet Wax، وملمع Clean N Shine السريع، ومنظف Super APC، وشامبو Maxi Suds برائحة الكرز.",
+      en: "Genuine USA-manufactured 16 fl oz (473 ml) detailing bottles priced at QAR 45 each: Spray Wax, Wash & Wax shampoo, glossy Premium Blue Guard, and matte Premium Dress All.",
+      ar: "عبوات أمريكية أصلية بحجم 473 مل (16 أونصة) وبسعر موحد 45 ر.ق للعبوة: شمع Spray Wax، وشامبو Wash & Wax، وملمع Blue Guard اللامع، وملمع Dress All المطفي.",
     },
     guideTitle: {
-      en: "Showroom Depth & Versatile Cleaning with Insta Finish USA",
-      ar: "لمعان استثنائي وتنظيف احترافي مع Insta Finish الأمريكية",
+      en: "Four Ready-to-Use American Detailing Staples at QAR 45 Each",
+      ar: "أربعة منتجات أمريكية أساسية للعناية بالسيارة بسعر 45 ر.ق للعبوة",
     },
     guideParagraphs: {
       en: [
-        "Manufactured in California for dealership prep centers and professional detailers, Insta Finish is renowned for ease of use in warm climates. Insta Finish Butter Wet Wax blends natural carnauba with polymers that melt into paintwork for an ultra-deep wet look that wipes off effortlessly without chalky white residue.",
-        "For daily maintenance and decontamination, pair Maxi Suds Cherry Shampoo (high-sudsing, pH-balanced lubricity) with Clean N Shine spray detailer for quick fingerprint and dust removal, and Super All Purpose Cleaner (APC) for interior carpets, door panels, and exterior bug/road grime.",
+        "Manufactured in the United States for dealership prep bays and enthusiasts who want effortless results in warm weather, ABK's Insta Finish 16 fl oz (473 ml) lineup covers exterior gloss and trim conditioning at a flat QAR 45 per bottle. Start your wash with Insta Finish Wash & Wax (dilutes into 20 litres of water to clean and leave a water-beading shine), then mist Insta Finish Spray Wax onto clean panels and buff with a microfibre towel for a deep wet-look gloss.",
+        "For interior leather, dashboards, steering wheels, and exterior plastic trims, Insta Finish lets you pick your exact sheen: choose Premium Blue Guard (473 ml: QAR 45) when you want a rich glossy showroom finish, or choose Premium Dress All (473 ml: QAR 45) when you prefer a factory-fresh, non-greasy matte finish with zero windshield glare.",
       ],
       ar: [
-        "صُنعت منتجات Insta Finish في كاليفورنيا بالولايات المتحدة لتلبية متطلبات صالات عرض السيارات ومراكز التلميع، وتشتهر بسهولة استخدامها حتى في الأجواء الدافئة. يمزج شمع Butter Wet Wax بين الكارنوبا البرازيلية الطبيعية والبوليمرات ليمنح الطلاء لمعاناً عميقاً ومظهراً رطباً يُمسح بسهولة فائقة دون ترك بقايا بيضاء.",
-        "وللعناية اليومية والتنظيف الشامل، اجمع بين شامبو Maxi Suds الغني بالرغوة وبرائحة الكرز المنعشة، وبخاخ التلميع السريع Clean N Shine لإزالة البصمات والغبار الخفيف، ومنظف Super APC القوي لتنظيف السجاد والديكورات الداخلية.",
+        "صُنعت منتجات Insta Finish في الولايات المتحدة لتمنح مراكز التلميع وملاك السيارات نتائج فورية وسهلة في الأجواء الحارة، وتتوفر لدى ABK بعبوات 473 مل (16 أونصة) بسعر موحد يبلغ 45 ريالاً قطرياً للعبوة. ابدأ الغسيل بشامبو Insta Finish Wash & Wax (يُخفف في 20 لتر ماء ليمنح رغوة غنية وطبقة شمعية طاردة للماء)، ثم عزز اللمعان ببخاخ Insta Finish Spray Wax الذي يُرش ويُمسح مباشرة بمنشفة مايكروفايبر لمظهر رطب عميق.",
+        "وللعناية بالجلد والطبلون والمقود والبلاستيك الخارجي، تمنحك Insta Finish خيارين حسب المظهر المفضل لديك: اختر Premium Blue Guard (بسعر 45 ر.ق) للحصول على لمعة غنية وقوية، أو اختر Premium Dress All (بسعر 45 ر.ق) للحصول على مظهر الوكالة المطفي غير الدهني دون أي انعكاس على الزجاج الأمامي.",
       ],
     },
     faqs: [
       {
         q: {
-          en: "Can Insta Finish Butter Wet Wax be applied by hand or machine?",
-          ar: "هل يمكن تطبيق شمع Butter Wet Wax يدوياً أم بجهاز التلميع؟",
+          en: "What is the difference between Insta Finish Premium Blue Guard and Premium Dress All?",
+          ar: "ما الفرق بين Insta Finish Premium Blue Guard وPremium Dress All؟",
         },
         a: {
-          en: "Both! Apply a thin layer by hand with a foam applicator or with a GrünesAuto Step 3 Finishing Pad on a DA polisher, let it haze briefly, and buff off with an edgeless microfibre towel.",
-          ar: "كلاهما! يمكن توزيع طبقة رقيقة يدوياً بإسفنجة التطبيق أو باستخدام وسادة التنعيم GrünesAuto Step 3 على جهاز التلميع المداري، ثم مسحها بمنشفة مايكروفايبر بدون حواف.",
+          en: "Both are ready-to-use 473 ml USA dressings (QAR 45 each) safe for interior leather, dashboards, and exterior plastics: Premium Blue Guard leaves a high-gloss finish, whereas Premium Dress All leaves a non-glare, non-greasy OEM matte finish.",
+          ar: "كلاهما ملمع أمريكي جاهز للاستخدام بدون تخفيف بحجم 473 مل وسعر 45 ر.ق للجلد والطبلون والبلاستيك الخارجي؛ يمنح Premium Blue Guard لمعة قوية، بينما يمنح Premium Dress All مظهراً مطفياً طبيعياً غير دهني.",
+        },
+      },
+      {
+        q: {
+          en: "How do I use Insta Finish Wash & Wax and Spray Wax?",
+          ar: "كيف أستخدم شامبو Wash & Wax وبخاخ Spray Wax من Insta Finish؟",
+        },
+        a: {
+          en: "Mix Insta Finish Wash & Wax (473 ml, QAR 45) with 20 litres of wash water to lift dirt and leave a water-beading film. After drying, mist Insta Finish Spray Wax (473 ml, QAR 45) directly onto cool paintwork and buff clean with an edgeless microfibre towel.",
+          ar: "اخلط شامبو Insta Finish Wash & Wax (45 ر.ق) مع 20 لتر من الماء لغسل السيارة وترك طبقة طاردة للماء، وبعد التجفيف رش Insta Finish Spray Wax (45 ر.ق) مباشرة على الطلاء وامسحه بمنشفة مايكروفايبر ناعمة.",
         },
       },
       {
@@ -1551,18 +1557,8 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
           ar: "كيف يمكنني طلب منتجات Insta Finish في قطر؟",
         },
         a: {
-          en: "Add any Insta Finish product to your cart on abktradingservice.com or message our Mesaimeer showroom on WhatsApp (+974 3083 8355) for retail or trade pricing.",
-          ar: "يمكنك إضافة منتجات Insta Finish إلى سلة الطلب عبر الموقع أو التواصل مباشرة مع معرضنا في مسيمير عبر واتساب (+974 3083 8355).",
-        },
-      },
-      {
-        q: {
-          en: "Is Insta Finish Super APC dilutable?",
-          ar: "هل يمكن تخفيف منظف Insta Finish Super APC بالماء؟",
-        },
-        a: {
-          en: "Yes. Dilute around 1:10 to 1:15 for interior fabrics, vinyl, and leather prep, or 1:4 for heavier exterior wheel arches, tyres, and door jambs.",
-          ar: "نعم، يمكن تخفيفه بنسبة 1:10 إلى 1:15 للأقمشة والديكورات الداخلية، أو بنسبة 1:4 لتنظيف الإطارات وبطانات العجلات وفواصل الأبواب.",
+          en: "Add any QAR 45 Insta Finish bottle to your cart on abktradingservice.com for Doha delivery or free pickup at our Mesaimeer showroom, or message us on WhatsApp (+974 3083 8355) for carton trade pricing.",
+          ar: "أضف أي عبوة Insta Finish (45 ر.ق) إلى سلة الطلب عبر الموقع للتوصيل في الدوحة أو الاستلام المجاني من معرض مسيمير، أو تواصل معنا عبر واتساب (+974 3083 8355) لأسعار الجملة.",
         },
       },
     ],
@@ -1571,68 +1567,68 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
     slug: "getsun",
     brandKey: "Getsun",
     matchBrandKeys: ["Getsun"],
-    origin: { en: "International", ar: "عالمية" },
+    origin: { en: "China", ar: "الصين" },
     roleBadge: {
       en: "Authorized Qatar Retailer & Wholesaler",
       ar: "موزع تجزئة وجملة معتمد في قطر",
     },
     title: {
-      en: "Getsun Scratch Remover, Spray Polish & Wax in Doha, Qatar",
-      ar: "منتجات جيتسون Getsun لإزالة الخدوش وتلميع السيارات في الدوحة، قطر",
+      en: "Getsun Tyre Shine, Interior & Engine Foam in Qatar | ABK",
+      ar: "بخاخات Getsun للإطارات والمقصورة والمحرك في قطر | ABK",
     },
     description: {
-      en: "Shop Getsun Scratch Remover, Spray Polish, and Leather & Tyre Wax in Doha, Qatar. Quick DIY paint care and interior conditioning stocked at ABK Mesaimeer.",
-      ar: "تسوّق معجون إزالة الخدوش Getsun وبخاخ التلميع وشمع الجلد والإطارات في الدوحة، قطر. حلول عملية وسريعة للعناية بسيارتك متوفرة لدى ABK مسيمير.",
+      en: "Shop Getsun car care aerosols at QAR 15 in Doha, Qatar: Getsun Tyre Shine (500ml), Foam Spray Interior Cleaner & Engine Cleaner Foam Spray at ABK Mesaimeer.",
+      ar: "تسوّق بخاخات العناية السريعة Getsun بسعر 15 ر.ق في الدوحة، قطر: ملمع الإطارات الفوري، رغوة تنظيف المقصورة والمقاعد، ورغوة تنظيف المحرك لدى ABK مسيمير.",
     },
     keywords: {
       en: [
         "Getsun Qatar",
-        "Getsun scratch remover Doha",
-        "Getsun spray polish Qatar",
-        "Getsun leather and tyre wax",
+        "Getsun tyre shine Doha",
+        "Getsun foam interior cleaner Qatar",
+        "Getsun engine cleaner spray Doha",
       ],
       ar: [
         "منتجات جيتسون قطر",
-        "مزيل خدوش السيارة جيتسون",
-        "ملمع جيتسون بخاخ الدوحة",
-        "ملمع جلد واطارات جيتسون",
+        "ملمع اطارات جيتسون الدوحة",
+        "فوم تنظيف مقاعد السيارة جيتسون",
+        "بخاخ تنظيف المحرك جيتسون",
       ],
     },
     eyebrow: {
-      en: "Quick DIY Maintenance",
-      ar: "حلول العناية السريعة والعملية",
+      en: "Quick Aerosol Maintenance · QAR 15 Range",
+      ar: "حلول العناية السريعة بالرغوة · 15 ر.ق",
     },
     h1: {
-      en: "Getsun — Scratch Remover, Spray Polish & Leather/Tyre Care in Qatar",
-      ar: "جيتسون (Getsun) — معجون إزالة الخدوش وبخاخات التلميع السريع في قطر",
+      en: "Getsun — Tyre Shine, Interior Foam Cleaner & Engine Degreaser in Qatar",
+      ar: "جيتسون (Getsun) — بخاخ تلميع الإطارات ورغوة تنظيف المقصورة والمحرك في قطر",
     },
     subtitle: {
-      en: "Convenient, fast-acting maintenance essentials for car owners in Qatar: spot scratch removal compound, aerosol spray polish, and multi-surface leather & tyre wax.",
-      ar: "منتجات عملية وسريعة المفعول لملاك السيارات في قطر: معجون معالجة الخدوش السطحية، وبخاخ التلميع الفوري، وشمع العناية بالجلد والإطارات.",
+      en: "Fast-acting QAR 15 maintenance aerosols stocked in Mesaimeer, Doha: no-wipe high-gloss Tyre Shine, deep-lifting Interior Foam Cleaner, and Engine Cleaner Foam Spray.",
+      ar: "بخاخات عناية سريعة وعملية بسعر 15 ر.ق للعبوة في معرض مسيمير: ملمع الإطارات الفوري، رغوة تنظيف المقاعد والديكور، وبخاخ رغوة تنظيف المحرك.",
     },
     guideTitle: {
-      en: "Fast Touch-Up & Everyday Car Care with Getsun",
-      ar: "عناية يومية سريعة ومعالجة فورية للخدوش البسيطة",
+      en: "Everyday Aerosol Convenience for Tyres, Seats & Engine Bays at QAR 15",
+      ar: "عناية فورية بالإطارات والمقاعد وحجرة المحرك بسعر 15 ر.ق فقط",
     },
     guideParagraphs: {
       en: [
-        "Not every mark requires a full machine paint-correction session. Fingernail scratches inside door handle cups, light parking-lot paint transfer, and surface oxidation around keyholes can be buffed out by hand in minutes using Getsun Scratch Remover and a microfibre towel.",
-        "For quick weekend turnarounds before a drive or gathering, Getsun Spray Polish restores surface slickness across painted panels and chrome trim, while Getsun Leather & Tyre Wax conditions vinyl dashboards, door cards, and tyre sidewalls with a protective sheen.",
+        "Keep three QAR 15 Getsun cans in your garage or trunk for rapid touch-ups between full washes. Getsun Tyre Shine (500 ml: QAR 15) sprays directly onto clean tyre sidewalls for an instant wet-black gloss with no wiping or run-off, while Getsun Foam Spray Interior Cleaner (500/650 ml: QAR 15) lifts coffee spills, dust, and stains from fabric seats, leather upholstery, carpets, and plastic door cards.",
+        "Under the bonnet, Getsun Engine Cleaner Foam Spray (500/650 ml: QAR 15) clings to dusty shrouds, hoses, and valve covers to break down oil mist and grime — simply spray onto a cool engine bay, agitate lightly if needed, and wipe clean with a microfibre towel to leave a tidy matte finish on engine plastics.",
       ],
       ar: [
-        "لا تتطلب كل خدشة بسيطة جلسة تلميع كاملة بالماكينة؛ إذ يمكن معالجة خدوش الأظافر خلف مقابض الأبواب، وآثار الاحتكاك السطحي البسيط في المواقف يدوياً خلال دقائق معدودة باستخدام معجون Getsun Scratch Remover ومنشفة مايكروفايبر.",
-        "ولإضفاء لمعة سريعة قبل الخروج، يمنح بخاخ Getsun Spray Polish نعومة ولمعاناً فورياً للطلاء والكروم، بينما يعتني Getsun Leather & Tyre Wax بالديكورات الداخلية والإطارات في خطوة واحدة.",
+        "احتفظ ببخاخات Getsun العملية (بسعر 15 ر.ق للعبوة) في كراجك للعناية السريعة بين الغسلات. يمنحك بخاخ Getsun Tyre Shine (حجم 500 مل: 15 ر.ق) لمعة سوداء قوية وفورية للإطارات بمجرد الرش على إطار نظيف دون الحاجة للمسح، بينما تفكك رغوة Getsun Foam Spray Interior Cleaner (بسعر 15 ر.ق) البقع والأوساخ عن المقاعد القماشية والجلدية والسجاد والديكورات البلاستيكية.",
+        "وفي حجرة المحرك، تلتصق رغوة Getsun Engine Cleaner Foam Spray (بسعر 15 ر.ق) بالأغطية والخراطيم لتفكيك آثار الزيوت والغبار المتراكم — رش الرغوة على محرك بارد ثم امسحها بمنشفة مايكروفايبر نظيفة لتحصل على مظهر مطفي مرتب للبلاستيك.",
       ],
     },
     faqs: [
       {
         q: {
-          en: "Does Getsun Scratch Remover work on deep scratches that catch a fingernail?",
-          ar: "هل يزيل معجون Getsun الخدوش العميقة التي وصلت إلى الأساس؟",
+          en: "How much are Getsun sprays at ABK Trading in Qatar?",
+          ar: "كم يبلغ سعر بخاخات Getsun لدى ABK في قطر؟",
         },
         a: {
-          en: "Getsun Scratch Remover is designed for clearcoat-level scuffs, fingernail marks under door handles, and light paint transfer. If a scratch has penetrated through the clearcoat into primer or metal, it will soften the edges to make it less visible.",
-          ar: "صُمم معجون Getsun لإزالة الخدوش السطحية في طبقة اللكر وآثار الاحتكاك الخفيف وخدوش مقابض الأبواب. أما الخدوش العميقة التي اخترقت الطلاء فيقوم بتنعيم حوافها لتصبح أقل وضوحاً.",
+          en: "All three Getsun aerosols stocked at ABK — Getsun Tyre Shine, Getsun Foam Spray Interior Cleaner, and Getsun Engine Cleaner Foam Spray — are QAR 15 per can.",
+          ar: "تتوفر بخاخات Getsun الثلاثة لدى ABK — ملمع الإطارات، ورغوة تنظيف المقصورة، ورغوة تنظيف المحرك — بسعر موحد يبلغ 15 ريالاً قطرياً للعبوة.",
         },
       },
       {
@@ -1641,108 +1637,18 @@ export const BRAND_LANDING_PAGES: BrandLandingData[] = [
           ar: "هل تتوفر منتجات Getsun بالكرتون لمحلات زينة السيارات والمغاسل؟",
         },
         a: {
-          en: "Yes! ABK supplies Getsun both individually for car owners and in wholesale master cartons for auto accessory retailers and car washes across Qatar.",
-          ar: "نعم! توفر ABK منتجات Getsun بالقطعة للأفراد وبالكرتون التجاري لمحلات إكسسوارات السيارات والمغاسل في جميع أنحاء قطر.",
+          en: "Yes! ABK supplies Getsun both individually at QAR 15 for car owners and in wholesale master cartons for auto accessory retailers and car washes across Qatar via WhatsApp (+974 3083 8355).",
+          ar: "نعم! توفر ABK منتجات Getsun بالقطعة (15 ر.ق) للأفراد وبالكرتون التجاري لمحلات إكسسوارات السيارات والمغاسل في جميع أنحاء قطر عبر واتساب (+974 3083 8355).",
         },
       },
       {
         q: {
-          en: "How can I check stock and prices for Getsun in Doha?",
-          ar: "كيف يمكنني الاستفسار عن أسعار وتوفر منتجات Getsun في الدوحة؟",
+          en: "Is Getsun Foam Spray Interior Cleaner safe on both fabric and leather seats?",
+          ar: "هل رغوة التنظيف الداخلي Getsun آمنة على المقاعد القماشية والجلدية؟",
         },
         a: {
-          en: "Click any Getsun product below to add to your order cart or message us on WhatsApp (+974 3083 8355) for instant confirmation.",
-          ar: "اختر المنتج المطلوب أدناه لإضافته إلى سلة الطلب أو تواصل معنا عبر واتساب (+974 3083 8355) للرد الفوري.",
-        },
-      },
-    ],
-  },
-  {
-    slug: "sitrett",
-    brandKey: "Other",
-    matchBrandKeys: ["Other", "SmartCar"],
-    origin: { en: "Turkey / Europe", ar: "تركيا / أوروبا" },
-    roleBadge: {
-      en: "Authorized Qatar Supplier",
-      ar: "المورد المعتمد في قطر",
-    },
-    title: {
-      en: "Sitrett MX5 Heavy-Duty Degreaser in Doha, Qatar | ABK",
-      ar: "منظف ومزيل الشحوم القوي سيتريت Sitrett MX5 في الدوحة، قطر | ABK",
-    },
-    description: {
-      en: "Buy genuine Sitrett MX5 heavy-duty multi-surface degreaser & cleaner in Doha, Qatar. Dissolves engine grease, brake dust, carpet stains & workshop grime.",
-      ar: "اشترِ منظف ومزيل الشحوم الأصلي Sitrett MX5 في الدوحة، قطر. يزيل شحوم المحرك، غبار الفرامل، بقع المقاعد المستعصية والزيوت بكفاءة فائقة.",
-    },
-    keywords: {
-      en: [
-        "Sitrett MX5 Qatar",
-        "Sitrett cleaner Doha",
-        "heavy duty degreaser car Qatar",
-        "multi surface cleaner Sitrett MX5",
-      ],
-      ar: [
-        "منظف سيتريت MX5 قطر",
-        "سيتريت ام اكس 5 الدوحة",
-        "مزيل شحوم المحرك سيتريت",
-        "منظف شامل سيتريت قطر",
-      ],
-    },
-    eyebrow: {
-      en: "High-Strength Multi-Surface Cleaner",
-      ar: "مزيل الشحوم والبقع متعدد الأسطح",
-    },
-    h1: {
-      en: "Sitrett MX5 — Heavy-Duty Multi-Surface Degreaser & Cleaner in Qatar",
-      ar: "سيتريت (Sitrett MX5) — منظف ومزيل الشحوم القوي متعدد الأسطح في قطر",
-    },
-    subtitle: {
-      en: "The famous concentrated multi-surface cleaner trusted across Qatar for engine bays, alloy rims, upholstery stains, and workshop equipment.",
-      ar: "المنظف المركز الشهير والموثوق في قطر لتنظيف حجرات المحرك، الجنوط، بقع المفروشات الصعبة، ومعدات الورش.",
-    },
-    guideTitle: {
-      en: "Why Sitrett MX5 Is a Staple in Qatar Garages & Detailing Bays",
-      ar: "لماذا يُعد Sitrett MX5 خياراً أساسياً في كراجات ومراكز التلميع في قطر",
-    },
-    guideParagraphs: {
-      en: [
-        "Sitrett MX5 has earned a loyal following among Qatari car enthusiasts and workshop technicians for its ability to cut through baked-on hydrocarbon grease, diesel soot, brake dust, and stubborn fabric or carpet stains that ordinary cleaners leave behind.",
-        "Always test on an inconspicuous spot first, spray onto the contaminated surface, agitate briefly with a detailing brush or microfibre towel, and wipe or rinse thoroughly before the product dries on hot panels.",
-      ],
-      ar: [
-        "اكتسب منظف Sitrett MX5 شهرة واسعة وثقة كبيرة بين ملاك السياراتوفنيي الورش في قطر بفضل قدرته الفائقة على تفكيك الشحوم المحترقة في حجرة المحرك، وغبار الفرامل المتراكم على الجنوط، والبقع المستعصية على السجاد والمفروشات.",
-        "يُنصح دائماً بتجربته على منطقة صغيرة غير ظاهرة أولاً، ثم رشه على السطح المتسخ وتوزيعه بفرشاة تلميع ناعمة أو منشفة مايكروفايبر، وشطفه أو مسحه جيداً قبل أن يجف على الأسطح الساخنة.",
-      ],
-    },
-    faqs: [
-      {
-        q: {
-          en: "What surfaces can Sitrett MX5 clean on a car?",
-          ar: "ما هي الأسطح التي ينظفها Sitrett MX5 في السيارة؟",
-        },
-        a: {
-          en: "Sitrett MX5 is used on engine bays, alloy wheels, tyre sidewalls, door jambs, rubber floor mats, and tough upholstery or carpet stains. Avoid leaving it to dry in direct sunlight on delicate bare aluminum or unsealed plastics.",
-          ar: "يُستخدم لتنظيف حجرة المحرك، الجنوط، الإطارات، فواصل الأبواب، الدعاسات، وبقع السجاد والمقاعد القماشية الصعبة، مع تجنب تركه يجف تحت أشعة الشمس المباشرة.",
-        },
-      },
-      {
-        q: {
-          en: "Is Sitrett MX5 available for wholesale purchase in Doha?",
-          ar: "هل يتوفر Sitrett MX5 بالجملة في الدوحة؟",
-        },
-        a: {
-          en: "Yes. ABK Trading & Service stocks Sitrett MX5 in Mesaimeer for both individual buyers and wholesale carton orders via WhatsApp (+974 3083 8355).",
-          ar: "نعم، توفر شركة ABK للتجارة والخدمات منظف Sitrett MX5 في معرض مسيمير للأفراد وبالكرتون لمراكز الغسيل والتلميع عبر واتساب (+974 3083 8355).",
-        },
-      },
-      {
-        q: {
-          en: "Can I combine Sitrett MX5 with microfibre towels and brushes in one order?",
-          ar: "هل يمكنني طلب Sitrett MX5 مع مناشف المايكروفايبر في طلب واحد؟",
-        },
-        a: {
-          en: "Yes! Add Sitrett MX5 along with our QAR 8–10 microfibre towels and spray bottles to your cart and send the entire order on WhatsApp in one tap.",
-          ar: "نعم بالتأكيد! أضف Sitrett MX5 مع مناشف المايكروفايبر (8–10 ر.ق) إلى سلة التسوق وأرسل طلبك كاملاً عبر واتساب بضغطة واحدة.",
+          en: "Yes. Getsun Foam Spray Interior Cleaner is formulated for fabric upholstery, leather seats, carpets, and interior plastics; spray the foam, agitate gently with a soft brush or microfibre towel, and wipe dry.",
+          ar: "نعم، صُممت رغوة التنظيف الداخلي Getsun لتناسب المقاعد القماشية والجلدية والسجاد والبلاستيك الداخلي؛ رش الرغوة وامسحها بمنشفة مايكروفايبر ناعمة.",
         },
       },
     ],

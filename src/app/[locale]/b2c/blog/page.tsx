@@ -65,7 +65,7 @@ export default async function BlogListingPage({
         <Container>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {ARTICLES.map((article) => (
-              <ArticleCard key={article.slug} article={article} locale={l} />
+              <ArticleCard key={article.slug} article={article} locale={l} headingLevel="h2" />
             ))}
           </div>
         </Container>

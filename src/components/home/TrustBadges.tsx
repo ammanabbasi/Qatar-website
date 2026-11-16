@@ -10,7 +10,7 @@ const PARTNERS: Array<{
   { name: "VTEK PPF", slug: "vtek", relation: "relationDistributor" },
   { name: "Autotriz", slug: "autotriz", relation: "relationDistributor" },
   { name: "Briller Car Care", slug: "briller", relation: "relationDistributor" },
-  { name: "Grizzly PPF", slug: "grizzly", relation: "relationDistributor" },
+  { name: "Grizzly", slug: "grizzly", relation: "relationRetailer" },
 ];
 
 export function TrustBadges() {
@@ -20,9 +20,9 @@ export function TrustBadges() {
     <section className="bg-white pb-12 lg:pb-16 border-b border-(--color-border-soft)">
       <Container>
         <div className="overflow-hidden rounded-3xl bg-(--color-hero-dark) p-6 sm:p-8 border border-white/10 shadow-xl text-white">
-          <h3 className="text-footnote font-bold uppercase tracking-wider text-(--color-brand)">
+          <h2 className="text-footnote font-bold uppercase tracking-wider text-(--color-brand)">
             {t("trustTitle")}
-          </h3>
+          </h2>
 
           <ul className="mt-5 grid grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-4 sm:gap-4">
             {PARTNERS.map((p) => (

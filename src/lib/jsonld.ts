@@ -1,6 +1,7 @@
 import { SITE } from "./constants";
 import { defaultSocialImage } from "./seo";
 import { BODY_TYPES, COVERAGES, FILMS, type PresetPrice } from "@/data/ppfInstall";
+import { PRODUCTS } from "@/data/products";
 import { DELIVERY } from "./pricing";
 
 /**
@@ -99,7 +100,7 @@ function postalAddress() {
  * AutoPartsStore carries the storefront's NAP. Both are emitted because
  * Google Search Console treats them as complementary, not duplicate.
  */
-export function organizationJsonLd() {
+export function organizationJsonLd(locale: "en" | "ar" = "en") {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -115,11 +116,13 @@ export function organizationJsonLd() {
     // facts here too, so a page fetched on its own still says who ABK is. "ABK"
     // alone is ambiguous (Google's AI Mode raises a Qatari produce trader).
     description:
-      "Car care and paint protection film supplier in Mesaimeer, Doha, Qatar: retail and wholesale, plus installed VTEK PPF at fixed prices, fitted at VTEK-authorised centres.",
+      locale === "ar"
+        ? "مورّد وموزع منتجات العناية بالسيارات وأفلام حماية الطلاء (PPF) في مسيمير، الدوحة، قطر: بيع بالتجزئة والجملة، مع باقات تركيب VTEK PPF بأسعار ثابتة لدى مراكز معتمدة من VTEK."
+        : "Car care and paint protection film supplier in Mesaimeer, Doha, Qatar: retail and wholesale, plus installed VTEK PPF at fixed prices, fitted at VTEK-authorised centres.",
     email: SITE.email,
     telephone: SITE.phoneE164,
     address: postalAddress(),
-    sameAs: [SITE.social.facebook, SITE.social.instagram, SITE.social.tiktok],
+    sameAs: [SITE.mapsUrl, SITE.social.facebook, SITE.social.instagram, SITE.social.tiktok],
     contactPoint: [
       {
         "@type": "ContactPoint",
@@ -227,8 +230,8 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
           "@type": "OfferCatalog",
           name:
             locale === "ar"
-              ? "كتالوج منتجات العناية بالسيارات (58 منتجاً)"
-              : "Retail Car Care & Detailing Catalogue (58 SKUs)",
+              ? `كتالوج منتجات العناية بالسيارات (${PRODUCTS.length} منتجاً)`
+              : `Retail Car Care & Detailing Catalogue (${PRODUCTS.length} SKUs)`,
           url: `${SITE.url}/${locale}/b2c/products`,
         },
         {
@@ -265,13 +268,16 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
       "Car Polish",
       "VTEK PPF",
       "VTEK Weather Armor",
+      "VTEK Solar Armor",
       "Vertek PPF",
       "Autotriz",
       "Briller Car Care",
       "Grizzly",
-      "Grizzly PPF",
       "GrünesAuto",
       "GrünesAuto Detailing Pads",
+      "Insta Finish",
+      "Getsun",
+      "ABK Rejuvenate",
     ],
     paymentAccepted: ["Cash", "Credit Card", "Debit Card", "Bank Transfer"],
     // Price range indicator for Google Knowledge Panel
@@ -531,6 +537,7 @@ export function itemListJsonLd(opts: {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
+    "@id": `${opts.url}#itemlist`,
     name: opts.name,
     url: opts.url,
     numberOfItems: opts.items.length,

@@ -42,4 +42,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.vercel
+# accidental binary archives, executables & local scratch media
+*.exe
+*.zip
+/*.pdf
+public/products/*.txt
+public/products/*.mp4
+public/products/*.html

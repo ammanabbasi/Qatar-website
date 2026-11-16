@@ -193,7 +193,7 @@ export function ProductPurchasePanel({
               {currentOriginalPriceDisplay ? t("specialOfferPrice") : t("retailOfficialPrice")}
             </span>
             {currentOriginalPriceDisplay && (
-              <span className="inline-flex w-fit items-center rounded-md bg-red-500/10 px-2 py-0.5 text-[11px] font-bold text-red-600 dark:text-red-400">
+              <span className="inline-flex w-fit items-center rounded-md bg-red-500/12 px-2 py-0.5 text-[11px] font-bold text-red-700 dark:text-red-400">
                 {t("saleBadge")}
               </span>
             )}
@@ -393,11 +393,11 @@ export function ProductPurchasePanel({
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-(--color-brand) text-[11px] font-extrabold text-black">
                 %
               </span>
-              <h3 className="text-footnote sm:text-subhead font-bold uppercase tracking-wide text-amber-950 dark:text-amber-300">
+              <h2 className="text-footnote sm:text-subhead font-bold uppercase tracking-wide text-amber-950 dark:text-amber-300">
                 {t("wholesaleTradePricing")}
-              </h3>
+              </h2>
             </div>
-            <span className="rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+            <span className="rounded-full bg-emerald-500/15 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-emerald-800 dark:text-emerald-400">
               B2B / Trade
             </span>
           </div>

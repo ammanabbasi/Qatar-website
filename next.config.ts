@@ -37,9 +37,23 @@ const nextConfig: NextConfig = {
     // missing) although the source had changed. Builds take under a minute
     // cold, so correctness wins over the warm start.
     turbopackFileSystemCacheForBuild: false,
+    // Root layout lives under dynamic [locale], so unmatched URLs need
+    // app/global-not-found.tsx rather than Next's bare default 404.
+    globalNotFound: true,
   },
   async headers() {
     return [
+      {
+        source: "/:file(llms\\.txt|llms-full\\.txt)",
+        headers: [
+          ...securityHeaders,
+          { key: "Content-Type", value: "text/plain; charset=utf-8" },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+        ],
+      },
       {
         source: "/:path*",
         headers: securityHeaders,
@@ -147,6 +161,31 @@ const nextConfig: NextConfig = {
       {
         source: "/b2c/services",
         destination: "/en/b2c/products",
+        permanent: true,
+      },
+      // Sitrett MX5 was discontinued in commit dbd75b2. Redirect its former
+      // brand hub in one hop to the Cleaners & Degreasers category hub.
+      {
+        source: "/:locale(en|ar)/b2c/brands/sitrett",
+        destination: "/:locale/b2c/categories/cleaners",
+        permanent: true,
+      },
+      {
+        source: "/b2c/brands/sitrett",
+        destination: "/en/b2c/categories/cleaners",
+        permanent: true,
+      },
+      // Legacy static PDF catalogues (retired in commit 1599418) carried the
+      // former Ariane City address and superseded Vertek/VTEK film specs.
+      // Consolidate both URLs permanently onto the live brand hubs.
+      {
+        source: "/catalogues/vertek-ppf-catalogue.pdf",
+        destination: "/en/b2c/brands/vtek",
+        permanent: true,
+      },
+      {
+        source: "/catalogues/autotriz-catalogue.pdf",
+        destination: "/en/b2c/brands/autotriz",
         permanent: true,
       },
       // Localeless page URLs (/privacy, /contact, /b2c/products/…) otherwise

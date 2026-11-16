@@ -152,7 +152,7 @@ export const ARTICLES: Article[] = [
       ar: `أسعار فيلم حماية الطلاء في قطر لعام 2026: تركيب فيلم VTEK من ${q(fromPrice("front-end"), "ar")} للواجهة الأساسية و${q(fromPrice("full-front"), "ar")} للواجهة الكاملة و${q(fromPrice("full-body"), "ar")} للهيكل بالكامل — ما الذي يحدد التكلفة وكيف تقارن العروض في الدوحة.`,
     },
     date: "2026-10-02",
-    updated: "2026-10-20",
+    updated: "2026-11-16",
     readingTime: 5,
     category: "buying-guide",
     topics: ["film"],
@@ -169,6 +169,39 @@ export const ARTICLES: Article[] = [
         body: {
           en: `These are ABK's fixed installed prices for genuine VTEK Weather Armor PRO film (${pro.warrantyYears}-year warranty), as of ${pricesAsOf("en")}. Front-end kit: ${q(P["front-end"].sedan, "en")} for a sedan or coupe, ${q(P["front-end"].suv, "en")} for an SUV and ${q(P["front-end"]["large-suv"], "en")} for a large SUV or pickup. Full front: ${q(P["full-front"].sedan, "en")}, ${q(P["full-front"].suv, "en")} and ${q(P["full-front"]["large-suv"], "en")}. Full body: ${q(P["full-body"].sedan, "en")}, ${q(P["full-body"].suv, "en")} and ${q(P["full-body"]["large-suv"], "en")}. PRO PLUS film (${proPlus.warrantyYears}-year warranty) and MATTE film (5-year warranty) have fixed full-body prices of ${q(proPlusFullBodySedan, "en")} (sedan), ${q(proPlusFullBodySuv, "en")} (Mid SUV), and ${q(proPlusFullBodyLargeSuv, "en")} (Large SUV). PRISM colour film is priced per car. Every price includes the film, fitting at a VTEK-authorised centre in Doha, VTEK NFC e-Warranty registration and a 12-month ABK workmanship cover.`,
           ar: `هذه أسعار التركيب الثابتة لدى ABK لفيلم VTEK Weather Armor PRO الأصلي (ضمان ${pro.warrantyYears} سنوات)، حتى ${pricesAsOf("ar")}. الواجهة الأساسية: ${q(P["front-end"].sedan, "ar")} للسيدان أو الكوبيه، و${q(P["front-end"].suv, "ar")} لسيارات SUV، و${q(P["front-end"]["large-suv"], "ar")} لسيارات SUV الكبيرة أو البيك أب. الواجهة الكاملة: ${q(P["full-front"].sedan, "ar")} و${q(P["full-front"].suv, "ar")} و${q(P["full-front"]["large-suv"], "ar")}. الهيكل بالكامل: ${q(P["full-body"].sedan, "ar")} و${q(P["full-body"].suv, "ar")} و${q(P["full-body"]["large-suv"], "ar")}. وتبلغ أسعار الهيكل الكامل الثابتة لفيلمي PRO PLUS (ضمان ${proPlus.warrantyYears} ${proPlus.warrantyYears <= 10 ? "سنوات" : "سنة"}) وMATTE (ضمان 5 سنوات): ${q(proPlusFullBodySedan, "ar")} للسيدان، و${q(proPlusFullBodySuv, "ar")} لـ SUV المتوسطة، و${q(proPlusFullBodyLargeSuv, "ar")} لـ SUV الكبيرة. ويُسعَّر فيلم PRISM الملوّن لكل سيارة. يشمل كل سعر الفيلم والتركيب في مركز معتمد من VTEK في الدوحة وتسجيل الضمان الإلكتروني NFC وضمان تركيب من ABK لمدة 12 شهراً.`,
+        },
+        table: {
+          caption: {
+            en: "Installed VTEK Weather Armor PPF prices in Doha, Qatar (QAR).",
+            ar: "أسعار تركيب أفلام الحماية VTEK Weather Armor في الدوحة، قطر (بالريال القطري).",
+          },
+          head: [
+            { en: "Coverage", ar: "التغطية" },
+            { en: "Film & Warranty", ar: "الفيلم والضمان" },
+            ...BODY_TYPES.map((b) => b.name),
+          ],
+          rows: (["front-end", "full-front", "full-body"] as const).flatMap((cov) => {
+            const covName = COVERAGES.find((c) => c.key === cov)!.name;
+            return [
+              [
+                covName,
+                { en: `Weather Armor PRO (${pro.warrantyYears}-yr gloss)`, ar: `Weather Armor PRO (لامع · ${pro.warrantyYears} سنوات)` },
+                ...BODY_TYPES.map((b) => ({ en: q(P[cov][b.key], "en"), ar: q(P[cov][b.key], "ar") })),
+              ],
+              [
+                covName,
+                { en: `PRO PLUS (${proPlus.warrantyYears}-yr) / MATTE (${matte.warrantyYears}-yr)`, ar: `PRO PLUS (${proPlus.warrantyYears} سنوات) / MATTE (${matte.warrantyYears} سنوات)` },
+                ...BODY_TYPES.map((b) => ({
+                  en: q(FILM_PRESET_PRICES_QAR["pro-plus"][cov][b.key], "en"),
+                  ar: q(FILM_PRESET_PRICES_QAR["pro-plus"][cov][b.key], "ar"),
+                })),
+              ],
+            ];
+          }),
+          source: {
+            en: `Source: ABK fixed installed price schedule, updated ${pricesAsOf("en")}. PRISM colour-change PPF (5-yr warranty) is quoted per vehicle.`,
+            ar: `المصدر: جدول أسعار التركيب الثابتة لدى ABK، آخر تحديث ${pricesAsOf("ar")}. يُسعَّر فيلم PRISM الملوّن (ضمان 5 سنوات) حسب السيارة.`,
+          },
         },
       },
       {
@@ -267,13 +300,27 @@ export const ARTICLES: Article[] = [
       },
       {
         q: {
-          en: "Can I buy VTEK or Grizzly PPF rolls directly without installation?",
-          ar: "هل يمكنني شراء رولات PPF مباشرة بدون تركيب؟",
+          en: "Can I buy VTEK PPF master rolls directly without installation?",
+          ar: "هل يمكنني شراء رولات VTEK PPF مباشرة بدون تركيب؟",
         },
         a: {
-          en: "Yes. ABK is the authorized Qatar distributor and supplies 1.52m × 15m master rolls of VTEK Weather Armor and Grizzly TPU PPF starting from QAR 1,200 directly from our Mesaimeer showroom.",
-          ar: "نعم، ABK هي الموزع المعتمد في قطر وتوفر رولات 1.52×15 متر من أفلام VTEK Weather Armor وGrizzly TPU PPF ابتداءً من 1,200 ر.ق مباشرة من معرضنا في مسيمير.",
+          en: "Yes. ABK Trading & Service is the authorized Qatar distributor for VTEK and supplies master rolls of VTEK Weather Armor PPF (PRO, PRO PLUS, MATTE, PRISM, and special-order ULTIMATE) to detailing studios, body shops, and trade buyers from our Mesaimeer showroom via WhatsApp (+974 3083 8355).",
+          ar: "نعم، شركة ABK للتجارة والخدمات هي الموزع المعتمد لأفلام VTEK في قطر وتوفر الرولات الكاملة من أفلام VTEK Weather Armor لمراكز التلميع والورش والمشترين مباشرة من معرضنا في مسيمير عبر واتساب (+974 3083 8355).",
         },
+      },
+    ],
+    sources: [
+      {
+        label: { en: "VTEK: warranty terms by film", ar: "VTEK: شروط الضمان حسب الفيلم" },
+        url: "https://www.vtekfilms.com/warranty",
+      },
+      {
+        label: { en: "VTEK: regional contacts (lists ABK's Doha showroom)", ar: "VTEK: جهات التواصل الإقليمية (تدرج معرض ABK بالدوحة)" },
+        url: "https://www.vtekfilms.com/contact-us",
+      },
+      {
+        label: { en: "VTEK NFC e-Warranty verification portal", ar: "بوابة التحقق من الضمان الإلكتروني VTEK NFC" },
+        url: "https://nfc.vtekfilms.com/verify",
       },
     ],
   },
@@ -572,7 +619,7 @@ export const ARTICLES: Article[] = [
       ar: "أسعار الطلاء السيراميكي في قطر لعام 2026 للسيدان وسيارات SUV المتوسطة والكبيرة — نطاقات الأسعار في الدوحة وأسعار أطقم Autotriz 9H الأصلية.",
     },
     date: "2026-06-11",
-    updated: "2026-11-03",
+    updated: "2026-11-16",
     readingTime: 6,
     category: "buying-guide",
     topics: ["ceramic", "polish"],
@@ -609,8 +656,62 @@ export const ARTICLES: Article[] = [
           ar: "متوسط أسعار الطلاء السيراميكي في الدوحة حسب حجم السيارة (سيدان، SUV متوسطة، دفع رباعي كبير)",
         },
         body: {
-          en: "Few Doha studios publish ceramic prices, so these brackets are ABK's own estimate of typical quotes, not a price list. Full ceramic coating packages (including decontamination wash, machine polish, and 9H nano-ceramic application) typically fall into three vehicle-size brackets: (1) Sedans, Hatchbacks & Coupes: QAR 800 to QAR 1,800 depending on single-stage vs two-stage paint correction and 1-year vs 3–5-year coating durability; (2) Medium SUVs & Crossovers (e.g., Toyota Prado, Jetour T2, Porsche Cayenne, Nissan X-Trail, Range Rover Sport): QAR 1,200 to QAR 2,500 for a full exterior 9H multi-layer package with single- or two-stage polish; (3) Large SUVs & Pickups (e.g., Toyota Land Cruiser 300, Nissan Patrol, Lexus LX, GMC Yukon, Ford F-150): QAR 1,600 to QAR 3,200+ due to the larger surface area and roof/panel prep time. ProDip is one studio that publishes a figure: QAR 1,500 with a 5-year warranty (read 3 November 2026). If you are buying the genuine German ceramic coating kit directly to supply your detailer or apply yourself, ABK stocks Autotriz REVO +15 Ceramic Coating (50ml) at QAR 250, Autotriz ION+ +15 Ceramic Coating (50ml) at QAR 250, Autotriz 3D Matrix Hybrid (50ml kit) at QAR 280, and flagship Autotriz 3D Matrix Ultra (50ml kit) at QAR 280, plus Autotriz Leather & Vinyl Coating (50ml) at QAR 280.",
-          ar: "قليل من مراكز الدوحة ينشر أسعار السيراميك، لذا فهذه الفئات تقدير من ABK للأسعار المعتادة وليست قائمة أسعار. تنقسم أسعار باقات الطلاء السيراميكي الكاملة (شاملة الغسيل التفصيلي، والتلميع الآلي لتصحيح الطلاء، وتطبيق النانو سيراميك 9H) عادةً إلى ثلاث فئات حسب حجم المركبة: (1) سيارات السيدان والكوبيه والهاتشباك: من 800 إلى 1,800 ريال قطري بحسب مراحل تصحيح الطلاء ومدة ضمان السيراميك؛ (2) سيارات الدفع الرباعي المتوسطة والكروس أوفر (مثل تويوتا برادو، جيتور T2، بورش كايين، نيسان إكس تريل، رينج روفر سبورت): من 1,200 إلى 2,500 ريال قطري لباقة سيراميك 9H متعددة الطبقات مع تلميع؛ (3) سيارات الدفع الرباعي الكبيرة والبيك أب (مثل لاند كروزر، نيسان باترول، لكزس LX، جمسي يوكون): من 1,600 إلى 3,200+ ريال قطري نظراً لكبر المساحة السطحية. وتنشر ProDip سعراً واحداً: 1,500 ر.ق مع ضمان 5 سنوات (قُرئ في 3 نوفمبر 2026). أما إذا رغبت بشراء أطقم السيراميك الألماني الأصلي مباشرة من الموزع لتزويد مركز التلميع أو للتطبيق الشخصي، فتوفر ABK في معرض مسيمير: Autotriz REVO +15 (عبوة 50 مل) بسعر 250 ر.ق، وAutotriz ION+ +15 (عبوة 50 مل) بسعر 250 ر.ق، وAutotriz 3D Matrix Hybrid (طقم 50 مل) بسعر 280 ر.ق، والفئة الرائدة Autotriz 3D Matrix Ultra (طقم 50 مل) بسعر 280 ر.ق.",
+          en: "Few Doha studios publish ceramic prices, so these brackets are ABK's own estimate of typical quotes, not a price list. Full ceramic coating packages (including decontamination wash, machine polish, and 9H nano-ceramic application) typically fall into three vehicle-size brackets: (1) Sedans, Hatchbacks & Coupes: QAR 800 to QAR 1,800 depending on single-stage vs two-stage paint correction and 1-year vs 3–5-year coating durability; (2) Medium SUVs & Crossovers (e.g., Toyota Prado, Jetour T2, Porsche Cayenne, Nissan X-Trail, Range Rover Sport): QAR 1,200 to QAR 2,500 for a full exterior 9H multi-layer package with single- or two-stage polish; (3) Large SUVs & Pickups (e.g., Toyota Land Cruiser 300, Nissan Patrol, Lexus LX, GMC Yukon, Ford F-150): QAR 1,600 to QAR 3,200+ due to the larger surface area and roof/panel prep time. ProDip is one studio that publishes a figure: QAR 1,500 with a 5-year warranty (read 3 November 2026). If you are buying the genuine German ceramic coating kit directly to supply your detailer or apply yourself, ABK stocks the complete Autotriz Germany lineup in Mesaimeer at fixed retail QAR prices (table below).",
+          ar: "قليل من مراكز الدوحة ينشر أسعار السيراميك، لذا فهذه الفئات تقدير من ABK للأسعار المعتادة وليست قائمة أسعار. تنقسم أسعار باقات الطلاء السيراميكي الكاملة (شاملة الغسيل التفصيلي، والتلميع الآلي لتصحيح الطلاء، وتطبيق النانو سيراميك 9H) عادةً إلى ثلاث فئات حسب حجم المركبة: (1) سيارات السيدان والكوبيه والهاتشباك: من 800 إلى 1,800 ريال قطري بحسب مراحل تصحيح الطلاء ومدة ضمان السيراميك؛ (2) سيارات الدفع الرباعي المتوسطة والكروس أوفر (مثل تويوتا برادو، جيتور T2، بورش كايين، نيسان إكس تريل، رينج روفر سبورت): من 1,200 إلى 2,500 ريال قطري لباقة سيراميك 9H متعددة الطبقات مع تلميع؛ (3) سيارات الدفع الرباعي الكبيرة والبيك أب (مثل لاند كروزر، نيسان باترول، لكزس LX، جمسي يوكون): من 1,600 إلى 3,200+ ريال قطري نظراً لكبر المساحة السطحية. وتنشر ProDip سعراً واحداً: 1,500 ر.ق مع ضمان 5 سنوات (قُرئ في 3 نوفمبر 2026). أما عند شراء أطقم السيراميك الألماني الأصلي مباشرة من معرض ABK في مسيمير لتزويد مركز التلميع أو للتطبيق الشخصي، فيبين الجدول أدناه الأسعار الرسمية بالريال القطري.",
+        },
+        table: {
+          caption: {
+            en: "Autotriz Germany ceramic coating kits stocked at ABK Mesaimeer, Doha (QAR).",
+            ar: "أطقم النانو سيراميك الألمانية Autotriz المتوفرة في معرض ABK بمسيمير، الدوحة (بالريال القطري).",
+          },
+          head: [
+            { en: "Autotriz Coating", ar: "منتج Autotriz" },
+            { en: "Size", ar: "الحجم" },
+            { en: "Surface & Chemistry", ar: "السطح والتقنية" },
+            { en: "Price (QAR)", ar: "السعر" },
+          ],
+          rows: [
+            [
+              { en: "Autotriz REVO +15", ar: "Autotriz REVO +15" },
+              { en: "50 ml", ar: "50 مل" },
+              { en: "Paintwork · Rapid-flash hydrophobic nano-ceramic", ar: "الطلاء الخارجي · نانو سيراميك سريع الجفاف طارد للماء" },
+              { en: "QAR 250", ar: "250 ر.ق" },
+            ],
+            [
+              { en: "Autotriz ION+ +15", ar: "Autotriz ION+ +15" },
+              { en: "50 ml", ar: "50 مل" },
+              { en: "Paintwork · Surface-ionized nano-ceramic", ar: "الطلاء الخارجي · نانو سيراميك مؤيّن السطح" },
+              { en: "QAR 250", ar: "250 ر.ق" },
+            ],
+            [
+              { en: "Autotriz 3D Matrix Ultra", ar: "Autotriz 3D Matrix Ultra" },
+              { en: "50 ml", ar: "50 مل" },
+              { en: "Paintwork · Pure 3D polysilazane (pH 1–14 resistant)", ar: "الطلاء الخارجي · بوليسيلازان ثلاثي الأبعاد (مقاوم pH 1–14)" },
+              { en: "QAR 280", ar: "280 ر.ق" },
+            ],
+            [
+              { en: "Autotriz 3D Matrix Hybrid", ar: "Autotriz 3D Matrix Hybrid" },
+              { en: "50 ml", ar: "50 مل" },
+              { en: "Paintwork · Graphene-infused polysilazane (anti-water-spot)", ar: "الطلاء الخارجي · بوليسيلازان معزز بالجرافين لتقليل بقع الماء" },
+              { en: "QAR 280", ar: "280 ر.ق" },
+            ],
+            [
+              { en: "Autotriz Leather & Vinyl", ar: "Autotriz Leather & Vinyl" },
+              { en: "50 ml", ar: "50 مل" },
+              { en: "Interior leather, synthetic leather, vinyl & plastic", ar: "الجلد الطبيعي والصناعي والفينيل والبلاستيك الداخلي" },
+              { en: "QAR 280", ar: "280 ر.ق" },
+            ],
+            [
+              { en: "Autotriz Fabric & Textile", ar: "Autotriz Fabric & Textile" },
+              { en: "300 ml", ar: "300 مل" },
+              { en: "Fabric seats, carpets, mats & convertible soft tops", ar: "المقاعد القماشية والسجاد والدعاسات والأسقف القماشية" },
+              { en: "QAR 280", ar: "280 ر.ق" },
+            ],
+          ],
+          source: {
+            en: "Source: ABK Trading & Service retail catalogue (product only; application arranged with your detailer).",
+            ar: "المصدر: كتالوج التجزئة لدى ABK للتجارة والخدمات (سعر المنتج فقط دون أجور التطبيق).",
+          },
         },
       },
       {
@@ -699,6 +800,12 @@ export const ARTICLES: Article[] = [
         },
       },
     ],
+    sources: [
+      {
+        label: { en: "ProDip Qatar: published ceramic coating service price (read 3 Nov 2026)", ar: "ProDip قطر: السعر المنشور لخدمة الطلاء السيراميكي (قُرئ 3 نوفمبر 2026)" },
+        url: "https://prodip.qa/en/services/ceramic-coating",
+      },
+    ],
   },
   {
     slug: "remove-hard-water-spots-car-qatar",
@@ -715,7 +822,7 @@ export const ARTICLES: Article[] = [
       ar: "لماذا يترك ماء الدوحة بقعاً كلسية بيضاء على طلاء السيارة وزجاجها، وكيف تزيل البقع الجديدة والمحفورة بأمان في قطر، وكيف تمنع عودتها.",
     },
     date: "2026-06-10",
-    updated: "2026-10-17",
+    updated: "2026-11-16",
     readingTime: 5,
     category: "car-care",
     topics: ["shampoo", "polish", "ceramic", "interior"],
@@ -756,8 +863,8 @@ export const ARTICLES: Article[] = [
           ar: "إزالة البقع المحفورة: متى تحتاج إلى التلميع",
         },
         body: {
-          en: "If a spot remains after chemical cleaning, the mineral has etched a physical crater into the clear coat, and the only fix is mechanical: polishing levels the surrounding clear coat down to the depth of the etching. Light etching responds to a finishing polish like Autotriz Ultimate Polish 302 (QAR 135) on a GrünesAuto German foam pad (QAR 30). Deeper mineral craters need a cutting compound such as Autotriz Extreme Cut 801 (1L: QAR 160) or Power Cut 701 (4L: QAR 280) followed by a finishing pass. ABK's Mesaimeer showroom stocks the full range of German compounds, polishes, and pads in ready stock.",
-          ar: "إذا بقيت البقعة بعد التنظيف الكيميائي، فقد حفرت المعادن فوهة فعلية في طبقة الكلير، والحل الوحيد ميكانيكي: التلميع الذي يسوّي الكلير المحيط حتى عمق الحفر. الحفر الخفيف يستجيب لملمع تشطيب مثل Autotriz Ultimate Polish 302 (بسعر 135 ر.ق) مع إسفنجة تلميع ألمانية GrünesAuto (بسعر 30 ر.ق). أما الضرر الأعمق فيحتاج مركب قطع مثل Autotriz Extreme Cut 801 (1 لتر: 160 ر.ق) أو Power Cut 701 (4 لتر: 280 ر.ق) تتبعه مرحلة تشطيب. يوفر معرض ABK في مسيمير كافة المركبات والملمعات والإسفنجات الألمانية للتسليم الفوري.",
+          en: "If a spot remains after chemical cleaning, the mineral has etched a physical crater into the clear coat, and the only fix is mechanical: polishing levels the surrounding clear coat down to the depth of the etching. Light etching responds to a finishing polish like Autotriz Ultimate Polish 302 (QAR 135) on a GrünesAuto German foam pad (DA: QAR 30 | Rotary: QAR 28). Deeper mineral craters need a cutting compound such as Autotriz Extreme Cut 801 (1L: QAR 130) or Power Cut 701 (4L: QAR 280) followed by a finishing pass. ABK's Mesaimeer showroom stocks the full range of German compounds, polishes, and pads in ready stock.",
+          ar: "إذا بقيت البقعة بعد التنظيف الكيميائي، فقد حفرت المعادن فوهة فعلية في طبقة الكلير، والحل الوحيد ميكانيكي: التلميع الذي يسوّي الكلير المحيط حتى عمق الحفر. الحفر الخفيف يستجيب لملمع تشطيب مثل Autotriz Ultimate Polish 302 (بسعر 135 ر.ق) مع إسفنجة تلميع ألمانية GrünesAuto (أجهزة DA: 30 ر.ق | أجهزة Rotary: 28 ر.ق). أما الضرر الأعمق فيحتاج مركب قطع مثل Autotriz Extreme Cut 801 (1 لتر: 130 ر.ق) أو Power Cut 701 (4 لتر: 280 ر.ق) تتبعه مرحلة تشطيب. يوفر معرض ABK في مسيمير كافة المركبات والملمعات والإسفنجات الألمانية للتسليم الفوري.",
         },
       },
       {
@@ -811,8 +918,8 @@ export const ARTICLES: Article[] = [
           ar: "كيف أزيل بقع الماء العسر المطبوعة على طلاء السيارة في قطر؟",
         },
         a: {
-          en: "Fresh mineral rings wash off with pH-balanced shampoo (Autotriz Rich Foam) or Briller Glass Cleaner on windows. If Qatar's sun has baked the minerals into the clear coat, level the etching mechanically using Autotriz Ultimate Polish 302 (QAR 135) with a GrünesAuto foam pad (QAR 30), or Autotriz Extreme Cut 801 (QAR 160) for deeper craters.",
-          ar: "البقع الحديثة تُزال بشامبو متوازن الحموضة (Autotriz Rich Foam) أو منظف الزجاج Briller للنوافذ. أما البقع المحفورة بفعل الشمس فتُعالج بالتلميع الآلي باستخدام Autotriz Ultimate Polish 302 (بسعر 135 ر.ق) مع إسفنجة GrünesAuto (بسعر 30 ر.ق)، أو مركب القطع Extreme Cut 801 (بسعر 160 ر.ق) للبقع العميقة.",
+          en: "Fresh mineral rings wash off with pH-balanced shampoo (Autotriz Nano Rich Foam) or Briller Glass Cleaner on windows. If Qatar's sun has baked the minerals into the clear coat, level the etching mechanically using Autotriz Ultimate Polish 302 (QAR 135) with a GrünesAuto foam pad (QAR 28–30), or Autotriz Extreme Cut 801 (1L: QAR 130) for deeper craters.",
+          ar: "البقع الحديثة تُزال بشامبو متوازن الحموضة (Autotriz Nano Rich Foam) أو منظف الزجاج Briller للنوافذ. أما البقع المحفورة بفعل الشمس فتُعالج بالتلميع الآلي باستخدام Autotriz Ultimate Polish 302 (بسعر 135 ر.ق) مع إسفنجة GrünesAuto (بسعر 28–30 ر.ق)، أو مركب القطع Extreme Cut 801 (1 لتر: 130 ر.ق) للبقع العميقة.",
         },
       },
       {
@@ -882,8 +989,8 @@ export const ARTICLES: Article[] = [
           ar: "الطلاء السيراميكي: حماية طاردة للماء ضد الغبار وبقع الماء",
         },
         body: {
-          en: "Ceramic coatings create a chemical bond with your car's paint, forming a hard, hydrophobic layer rated at 9H hardness. In Qatar, the primary benefit is water-spot prevention — Doha's hard tap water leaves white mineral deposits when it evaporates on paint. A ceramic-coated car sheds water droplets before they can etch, reducing wash frequency significantly. Products like Autotriz 3D Matrix Ultra and Autotriz Ion Plus Ceramic Coating are formulated for Gulf climates and resist UV-driven yellowing that cheaper coatings suffer from. Many car owners in Qatar apply ceramic coating on top of PPF for maximum protection — the PPF handles physical damage while the ceramic adds gloss and easy cleaning.",
-          ar: "تُنشئ الطلاءات السيراميكية رابطاً كيميائياً مع طلاء سيارتك، مكوّنةً طبقة صلبة طاردة للماء بصلابة 9H. في قطر، الفائدة الأساسية هي منع بقع الماء — ماء الصنبور العسر في الدوحة يترك رواسب معدنية بيضاء عند تبخره على الطلاء. السيارة المطلية بالسيراميك تطرد قطرات الماء قبل أن تتمكن من الحفر، مما يقلل من تكرار الغسيل بشكل كبير. منتجات مثل Autotriz 3D Matrix Ultra وAutotriz Ion Plus Ceramic Coating مصممة لمناخ الخليج وتقاوم الاصفرار الناجم عن الأشعة فوق البنفسجية الذي تعاني منه الطلاءات الرخيصة. كثير من أصحاب السيارات في قطر يطبقون الطلاء السيراميكي فوق PPF للحصول على حماية قصوى — يتعامل PPF مع الأضرار الفيزيائية بينما يضيف السيراميك اللمعان وسهولة التنظيف.",
+          en: "Ceramic coatings create a chemical bond with your car's factory clearcoat, forming a hard, hydrophobic layer. In Qatar, the primary benefit is water-spot prevention — Doha's hard tap water leaves white mineral deposits when it evaporates on paint. A ceramic-coated car sheds water droplets before they can etch, reducing wash frequency significantly. Products like Autotriz 3D Matrix Ultra and Autotriz ION+ +15 Ceramic Coating are formulated for Gulf climates and resist UV-driven oxidation. Many car owners in Qatar combine front-end VTEK PPF (to block stone chips on high-impact zones) with Autotriz ceramic coating on the remaining unfilmed paintwork, while maintaining PPF panels with PPF-specific care such as Autotriz PPF Refresh.",
+          ar: "تُنشئ الطلاءات السيراميكية رابطاً كيميائياً مع طبقة الكلير الأصلية لطلاء سيارتك، مكوّنةً طبقة صلبة طاردة للماء. في قطر، الفائدة الأساسية هي منع بقع الماء — ماء الصنبور العسر في الدوحة يترك رواسب معدنية بيضاء عند تبخره على الطلاء. السيارة المطلية بالسيراميك تطرد قطرات الماء قبل أن تتمكن من الحفر، مما يقلل من تكرار الغسيل بشكل كبير. منتجات مثل Autotriz 3D Matrix Ultra وAutotriz ION+ +15 مصممة لمناخ الخليج وتقاوم الأكسدة الناتجة عن الأشعة فوق البنفسجية. كثير من ملاك السيارات في قطر يجمعون بين تركيب VTEK PPF على الواجهة الأمامية وتطبيق النانو سيراميك Autotriz على باقي الطلاء غير المغلف، مع صيانة أسطح الفيلم بمنتج مخصص مثل Autotriz PPF Refresh.",
         },
       },
       {
@@ -913,7 +1020,7 @@ export const ARTICLES: Article[] = [
       "vtek-window-tints",
       "briller-wash-and-wax",
     ],
-    updated: "2026-11-03",
+    updated: "2026-11-16",
     cta: PPF_INSTALL_CTA,
     inlineCta: {
       badge: { en: "Gulf Summer Protection Bundle", ar: "باقة الحماية الكاملة لصيف قطر" },
@@ -957,8 +1064,8 @@ export const ARTICLES: Article[] = [
           ar: "كيف أمنع تشقق الإطارات وبهتان البلاستيك الخارجي في قطر؟",
         },
         a: {
-          en: "Apply a UV-blocking dressing like Briller Quick Tyre Shine after washing to keep rubber sidewalls supple, and use ABK Rejuvenate Plastic Restorer (Made in France, from QAR 40) to restore and seal faded exterior bumpers and trims.",
-          ar: "استخدم ملمع الإطارات الواقي من الأشعة فوق البنفسجية Briller Quick Tyre Shine بعد الغسيل لحماية المطاط من التشقق، واستخدم مجدد البلاستيك الفرنسي ABK Rejuvenate (ابتداءً من 40 ر.ق) لاستعادة وحماية الصدامات والأجزاء البلاستيكية.",
+          en: "Apply a UV-blocking dressing like Briller Quick Tyre Shine after washing to keep rubber sidewalls supple, and use ABK Rejuvenate Plastic Restorer (Made in France, from QAR 50) to restore and seal faded exterior bumpers and trims.",
+          ar: "استخدم ملمع الإطارات الواقي من الأشعة فوق البنفسجية Briller Quick Tyre Shine بعد الغسيل لحماية المطاط من التشقق، واستخدم مجدد البلاستيك الفرنسي ABK Rejuvenate (ابتداءً من 50 ر.ق) لاستعادة وحماية الصدامات والأجزاء البلاستيكية.",
         },
       },
     ],
@@ -992,6 +1099,55 @@ export const ARTICLES: Article[] = [
           en: "Paint protection film (PPF) and ceramic coating are both designed to protect your car's paint, but they work in fundamentally different ways. PPF is a physical barrier — a thick, transparent urethane film that absorbs impacts, rock chips, and scratches. Ceramic coating is a chemical barrier — a thin liquid polymer that bonds to paint and creates a hard, slick, hydrophobic surface. Think of PPF as armour and ceramic as a shield. In Qatar's harsh climate, understanding these differences helps you make the right investment for your vehicle.",
           ar: "فيلم حماية الطلاء (PPF) والطلاء السيراميكي مصممان لحماية طلاء سيارتك، لكنهما يعملان بطرق مختلفة جذرياً. PPF حاجز فيزيائي — فيلم يوريثان سميك وشفاف يمتص الصدمات ورقائق الحصى والخدوش. الطلاء السيراميكي حاجز كيميائي — بوليمر سائل رقيق يرتبط بالطلاء ويُنشئ سطحاً صلباً أملساً وطارداً للماء. فكر في PPF كدرع والسيراميك كحامي. في مناخ قطر القاسي، فهم هذه الاختلافات يساعدك على اتخاذ القرار الاستثماري الصحيح لسيارتك.",
         },
+        table: {
+          caption: {
+            en: "PPF vs Ceramic Coating in Qatar — side-by-side comparison.",
+            ar: "مقارنة سريعة بين فيلم حماية الطلاء (PPF) والطلاء السيراميكي في قطر.",
+          },
+          head: [
+            { en: "Factor", ar: "المعيار" },
+            { en: "Paint Protection Film (VTEK TPU)", ar: "فيلم حماية الطلاء (VTEK TPU)" },
+            { en: "Nano-Ceramic Coating (Autotriz Germany)", ar: "النانو سيراميك (Autotriz الألماني)" },
+          ],
+          rows: [
+            [
+              { en: "Protection type", ar: "نوع الحماية" },
+              { en: "Physical thermoplastic polyurethane (TPU) film", ar: "غشاء يوريثان فيزيائي شفاف (TPU)" },
+              { en: "Liquid polysilazane / SiO2 chemical bond", ar: "طبقة بوليسيلازان كيميائية سائلة ترتبط بالكلير" },
+            ],
+            [
+              { en: "Stone chips & highway sand", ar: "ضربات الحصى وسافي الرمل" },
+              { en: "Yes — absorbs gravel impacts & sand abrasion", ar: "نعم — يمتص ضربات الحصى واحتكاك الرمل" },
+              { en: "No — does not stop physical rock chips", ar: "لا — لا يوقف ضربات الحصى الفيزيائية" },
+            ],
+            [
+              { en: "Self-healing swirl marks", ar: "معالجة الخدوش الخفيفة ذاتياً" },
+              { en: "Yes — heat-activated self-healing top layer", ar: "نعم — طبقة علوية تلتئم بالحرارة" },
+              { en: "No — resists wash marring but does not self-heal", ar: "لا — يقلل خدوش الغسيل لكنه لا يلتئم ذاتياً" },
+            ],
+            [
+              { en: "Hard-water spots & UV", ar: "بقع الماء الكلسية والأشعة فوق البنفسجية" },
+              { en: "High UV & stain barrier", ar: "عزل ممتاز للأشعة فوق البنفسجية والبقع" },
+              { en: "Extreme hydrophobic beading & pH 1–14 resistance", ar: "طرد مائي فائق ومقاومة كيميائية pH 1–14" },
+            ],
+            [
+              { en: "Warranty / typical lifespan", ar: "الضمان / العمر الافتراضي" },
+              { en: "5 to 15-year VTEK NFC e-Warranty (by film)", ar: "ضمان VTEK إلكتروني من 5 إلى 15 سنة حسب الفيلم" },
+              { en: "2 to 5 years with pH-neutral wash care", ar: "من سنتين إلى 5 سنوات مع الغسيل المتوازن" },
+            ],
+            [
+              { en: "Published Doha price at ABK", ar: "السعر المعلن لدى ABK في الدوحة" },
+              {
+                en: `Installed from ${q(fromPrice("front-end"), "en")} (front-end) / ${q(fromPrice("full-body"), "en")} (full-body sedan)`,
+                ar: `شامل التركيب من ${q(fromPrice("front-end"), "ar")} للواجهة و${q(fromPrice("full-body"), "ar")} للهيكل الكامل`,
+              },
+              {
+                en: "QAR 250–280 per 50 ml Autotriz kit (product only)",
+                ar: "250–280 ر.ق لطقم Autotriz سعة 50 مل (المنتج فقط)",
+              },
+            ],
+          ],
+        },
       },
       {
         heading: { en: "PPF: Best for Physical Protection", ar: "PPF: الأفضل للحماية الفيزيائية" },
@@ -1008,10 +1164,10 @@ export const ARTICLES: Article[] = [
         },
       },
       {
-        heading: { en: "The Best of Both Worlds: PPF + Ceramic", ar: "الأفضل من العالمين: PPF + سيراميك" },
+        heading: { en: "The Best of Both Worlds: PPF + Ceramic", ar: "الأفضل من العالمين: الجمع بين PPF والسيراميك" },
         body: {
-          en: "Many car owners in Qatar choose both — applying ceramic coating on top of PPF. This combination gives you physical impact protection from the PPF layer plus the easy-clean, hydrophobic, glossy finish from the ceramic layer. It is the gold standard of car protection in the Gulf. At ABK Trading and Service in Mesaimeer, we stock both products and can advise on the right combination for your vehicle, driving habits, and budget. Whether you choose PPF, ceramic, or both — professional installation makes the difference between protection that lasts years and protection that fails in months.",
-          ar: "يختار كثير من أصحاب السيارات في قطر كليهما — تطبيق الطلاء السيراميكي فوق PPF. هذا المزيج يمنحك حماية فيزيائية من الصدمات من طبقة PPF بالإضافة إلى لمسة نهائية لامعة طاردة للماء وسهلة التنظيف من طبقة السيراميك. هذا هو المعيار الذهبي لحماية السيارات في الخليج. في ABK للتجارة والخدمات بمسيمير، نوفر كلا المنتجين ويمكننا تقديم المشورة حول المزيج المناسب لسيارتك وعاداتك في القيادة وميزانيتك. سواء اخترت PPF أو السيراميك أو كليهما — التركيب الاحترافي هو ما يصنع الفارق بين حماية تدوم سنوات وحماية تفشل خلال أشهر.",
+          en: "Many car owners in Qatar combine both technologies strategically: installing VTEK PPF on the high-impact front end (from QAR 899) or full front (from QAR 1,599) and applying an Autotriz 9H ceramic coating (kits QAR 250–280) on the remaining unfilmed painted panels. For the filmed panels themselves, VTEK notes in its FAQ that standard silicone-based paint ceramics do not bond well to PPF; instead, maintain PPF with dedicated film-safe products such as Autotriz PPF Refresh (1L: QAR 130) and Autotriz Nano Rich Foam Shampoo (20L: QAR 450 promo). At ABK Trading & Service in Mesaimeer, we supply both installed VTEK PPF packages and genuine German Autotriz products so every panel gets the right chemistry.",
+          ar: "يجمع كثير من ملاك السيارات في قطر بين التقنيتين بذكاء: تركيب فيلم VTEK PPF على الواجهة الأمامية المعرضة للحصى (ابتداءً من 899 ر.ق للواجهة الأساسية أو 1,599 ر.ق للواجهة الكاملة) وتطبيق النانو سيراميك الألماني Autotriz (أطقم 250–280 ر.ق) على باقي ألواح الطلاء غير المغلفة. أما الأسطح المغلفة بفيلم PPF فتوضح VTEK في أسئلتها الشائعة أن طلاءات السيراميك السيليكونية العادية لا تلتصق جيداً بالفيلم، لذا يُنصح بصيانتها بمنتجات مخصصة للأفلام مثل Autotriz PPF Refresh (1 لتر: 130 ر.ق) وشامبو Autotriz Nano Rich Foam. توفر ABK في مسيمير باقات تركيب VTEK PPF وأطقم Autotriz الألمانية الأصلية معاً.",
         },
       },
     ],
@@ -1019,9 +1175,9 @@ export const ARTICLES: Article[] = [
       "vtek-ppf-weather-armor-ultimate",
       "autotriz-3d-matrix-ultra",
       "autotriz-3d-matrix-hybrid",
-      "autotriz-ion-plus-ceramic-coating",
+      "autotriz-ppf-refresh-1l",
     ],
-    updated: "2026-11-03",
+    updated: "2026-11-16",
     cta: PPF_INSTALL_CTA,
     inlineCta: {
       badge: { en: "Compare Installed PPF & German Ceramic", ar: "قارن بين تركيب PPF وأطقم السيراميك الألماني" },
@@ -1051,12 +1207,12 @@ export const ARTICLES: Article[] = [
       },
       {
         q: {
-          en: "Can you apply ceramic coating on top of PPF?",
-          ar: "هل يمكن تطبيق الطلاء السيراميكي فوق فيلم PPF؟",
+          en: "Can you combine PPF and ceramic coating on the same car?",
+          ar: "هل يمكن الجمع بين فيلم PPF والطلاء السيراميكي على نفس السيارة؟",
         },
         a: {
-          en: "Yes. Applying an Autotriz 9H ceramic coating over VTEK PPF — or installing front-end PPF (from QAR 899) and ceramic-coating the remaining panels — gives you both self-healing impact resistance and ultra-hydrophobic water-spot protection.",
-          ar: "نعم، تطبيق سيراميك Autotriz 9H فوق فيلم VTEK PPF — أو تركيب PPF على الواجهة الأمامية (من 899 ر.ق) وطلاء باقي الهيكل بالسيراميك — يمنحك مقاومة الصدمات مع سهولة التنظيف ومنع بقع الماء.",
+          en: "Yes — the most effective setup is installing VTEK PPF on high-impact front panels (from QAR 899 front-end or QAR 1,599 full front) and applying Autotriz 9H ceramic coating (QAR 250–280 kit) on the unfilmed panels. On the PPF itself, VTEK recommends PPF-specific maintenance products such as Autotriz PPF Refresh (QAR 130) rather than standard silicone paint ceramics.",
+          ar: "نعم — الحل الأمثل هو تركيب فيلم VTEK PPF على الواجهة الأمامية (من 899 ر.ق للواجهة الأساسية أو 1,599 ر.ق للواجهة الكاملة) وتطبيق سيراميك Autotriz 9H (بسعر 250–280 ر.ق للطقم) على باقي الألواح غير المغلفة. أما سطح الفيلم نفسه فتوصي VTEK بصيانته بمنتجات مخصصة للأفلام مثل Autotriz PPF Refresh (بسعر 130 ر.ق) بدلاً من السيراميك السيليكوني العادي.",
         },
       },
       {
@@ -1068,6 +1224,16 @@ export const ARTICLES: Article[] = [
           en: "Installed VTEK PPF at ABK starts at QAR 899 for a front-end kit, QAR 1,599 for full front, and QAR 3,999 for full body (10-year warranty). By ABK's estimate, studio ceramic coating in Doha costs QAR 800–2,500, while genuine Autotriz 9H ceramic kits sold directly at ABK's Mesaimeer showroom cost QAR 250–280.",
           ar: "يبدأ تركيب فيلم VTEK PPF لدى ABK من 899 ر.ق للواجهة الأساسية و1,599 ر.ق للواجهة الكاملة و3,999 ر.ق للهيكل الكامل (ضمان 10 سنوات). بينما يتراوح تطبيق السيراميك في المراكز بحسب تقدير ABK بين 800 و2,500 ر.ق، وتُباع أطقم السيراميك الألماني الأصلي Autotriz مباشرة في معرض ABK بمسيمير بسعر 250–280 ر.ق.",
         },
+      },
+    ],
+    sources: [
+      {
+        label: { en: "VTEK: warranty terms by film", ar: "VTEK: شروط الضمان حسب الفيلم" },
+        url: "https://www.vtekfilms.com/warranty",
+      },
+      {
+        label: { en: "VTEK FAQ: PPF care and ceramic coating compatibility", ar: "أسئلة VTEK الشائعة: العناية بالفيلم وتوافق الطلاء السيراميكي" },
+        url: "https://www.vtekfilms.com/faq",
       },
     ],
   },
@@ -1086,7 +1252,7 @@ export const ARTICLES: Article[] = [
       ar: "كل ما تحتاج معرفته عن منتجات ومواد العناية وتلميع السيارات في قطر — من شامبوهات الغسيل وبراميل 20 لتر للمغاسل إلى أفلام VTEK PPF وسيراميك Autotriz في الدوحة.",
     },
     date: "2026-05-05",
-    updated: "2026-11-03",
+    updated: "2026-11-16",
     readingTime: 7,
     category: "buying-guide",
     topics: ["shampoo", "polish", "tyre", "tools", "cleaners", "dressing"],
@@ -1111,22 +1277,22 @@ export const ARTICLES: Article[] = [
       {
         heading: { en: "Car Shampoos: The Foundation of Car Care", ar: "شامبوهات السيارات: أساس العناية الآمنة" },
         body: {
-          en: "A quality car shampoo is the most-used product in any detailing kit. In Qatar, you need a pH-balanced formula that cleans effectively without stripping wax, sealant, or ceramic coating protection. Autotriz Rich Foam Shampoo (20L drum: QAR 450 promo) produces thick, lubricating snow foam that lifts sand and dirt safely — critical in a country where airborne sand can scratch paint during washing. Briller Wash and Wax (20L drum: QAR 350 promo) combines cleaning and protection in one step, depositing a gloss-enhancing wax layer as you wash. For high-volume touchless car washes, Grizzly Touchless Car Wash Powder (20 kg sack) cuts desert road film rapidly. All are stocked in Mesaimeer, Doha.",
-          ar: "شامبو السيارات عالي الجودة هو المنتج الأكثر استخداماً في أي مجموعة عناية أو مغسلة سيارات. في قطر، تحتاج إلى تركيبة متوازنة الحموضة (pH-neutral) تنظف بفعالية دون إزالة الشمع أو طبقة النانو سيراميك. ينتج شامبو Autotriz Rich Foam (برميل 20 لتر بسعر ترويجي 450 ر.ق) رغوة كثيفة ترفع الرمل والأتربة بأمان تام دون خدش الطلاء. ويجمع شامبو Briller Wash and Wax (برميل 20 لتر بسعر 350 ر.ق) بين التنظيف والتشميع في خطوة واحدة، كما يتوفر مسحوق الغسيل اللاتلامسي Grizzly بعبوة 20 كجم للمغاسل التجارية في معرض ABK بمسيمير.",
+          en: "A quality car shampoo is the most-used product in any detailing kit. In Qatar, you need a pH-balanced formula that cleans effectively without stripping wax, sealant, or ceramic coating protection. Autotriz Nano Rich Foam Shampoo (20L drum: QAR 450 promo, was QAR 500; 1:80 dilution) produces thick, lubricating snow foam engineered to renew PPF and ceramic topcoats while lifting sand safely. Briller Wash & Wax (20L drum: QAR 350 promo, was QAR 400; 1:50 dilution) combines cleaning and gloss protection in one step for commercial bays, while Insta Finish Wash & Wax (473 ml: QAR 45) gives home detailers a ready-portioned USA concentrate. All three are stocked in Mesaimeer, Doha.",
+          ar: "شامبو السيارات عالي الجودة هو المنتج الأكثر استخداماً في أي مجموعة عناية أو مغسلة سيارات. في قطر، تحتاج إلى تركيبة متوازنة الحموضة تنظف بفعالية دون إزالة الشمع أو طبقة النانو سيراميك. ينتج شامبو Autotriz Nano Rich Foam (برميل 20 لتر بسعر عرض 450 ر.ق بدلاً من 500 ر.ق؛ تخفيف 1:80) رغوة كثيفة تجدد طبقة PPF والسيراميك وترفع الرمل بأمان. ويجمع شامبو Briller Wash & Wax (برميل 20 لتر بسعر عرض 350 ر.ق بدلاً من 400 ر.ق؛ تخفيف 1:50) بين التنظيف والتشميع في خطوة واحدة، كما يتوفر شامبو Insta Finish Wash & Wax الأمريكي (473 مل: 45 ر.ق) للعناية المنزلية في معرض ABK بمسيمير.",
         },
       },
       {
         heading: { en: "Polishing Compounds: Restoring Paint to Showroom Condition", ar: "مركبات التلميع وإسفنجات القص: استعادة الطلاء لحالة المعرض" },
         body: {
-          en: "Qatar's sand and dust cause micro-scratches and swirl marks that dull paint over time. Polishing compounds remove these imperfections by levelling the clear coat. Autotriz Heavy Cut 901 and Extreme Cut 801 (1L: QAR 160) are professional German cutting compounds that remove deep scratches, sanding marks, and severe oxidation. Autotriz Power Cut 701 (4L: QAR 280) and One Step Polish (4L: QAR 265) handle medium defects, while Autotriz Ultimate Polish 302 (QAR 135) restores mirror-like clarity. Pair them with GrünesAuto 6-inch German foam pads (DA or Rotary Step 1, 2, 3 at QAR 30 each) or the Autotriz 8-inch Double-Sided Wool Pad (QAR 75).",
-          ar: "يتسبب رمل وغبار قطر في خدوش دقيقة ودوائر غسيل تُبهت لمعة الطلاء بمرور الوقت، وتزيل مركبات التلميع الاحترافية هذه العيوب عبر تسوية طبقة الكلير. يُعد Autotriz Heavy Cut 901 وExtreme Cut 801 (عبوة 1 لتر: 160 ر.ق) من أقوى مركبات القطع الألمانية لإزالة الخدوش العميقة والأكسدة، بينما يعالج Power Cut 701 (عبوة 4 لتر: 280 ر.ق) وOne Step Polish (عبوة 4 لتر: 265 ر.ق) العيوب المتوسطة، ويمنح ملمع التشطيب Autotriz Ultimate Polish 302 (بسعر 135 ر.ق) لمعاناً كالمرآة عند استخدامه مع إسفنجات GrünesAuto الألمانية مقاس 6 بوصة (30 ر.ق) أو صوف التلميع المزدوج من Autotriz (75 ر.ق).",
+          en: "Qatar's sand and dust cause micro-scratches and swirl marks that dull paint over time. Polishing compounds remove these imperfections by levelling the clear coat. Autotriz Heavy Cut 901 (QAR 130) and Extreme Cut 801 (1L: QAR 130) are professional German cutting compounds that remove deep scratches, P1500 sanding marks, and severe oxidation. Autotriz Power Cut 701 (4L: QAR 280) and One Step Finish (4L: QAR 265) handle medium defects, while Autotriz Ultimate Polish 302 (QAR 135) restores hologram-free clarity. Pair them with GrünesAuto 6-inch German foam pads (DA: QAR 30 | Rotary: QAR 28 across Step 1, 2, 3) or the Autotriz 8-inch Single-Sided Wool Pad (QAR 40).",
+          ar: "يتسبب رمل وغبار قطر في خدوش دقيقة ودوائر غسيل تُبهت لمعة الطلاء بمرور الوقت، وتزيل مركبات التلميع الاحترافية هذه العيوب عبر تسوية طبقة الكلير. يُعد Autotriz Heavy Cut 901 (130 ر.ق) وExtreme Cut 801 (عبوة 1 لتر: 130 ر.ق) من أقوى مركبات القطع الألمانية لإزالة الخدوش العميقة والأكسدة، بينما يعالج Power Cut 701 (عبوة 4 لتر: 280 ر.ق) وOne Step Finish (عبوة 4 لتر: 265 ر.ق) العيوب المتوسطة، ويمنح ملمع التشطيب Autotriz Ultimate Polish 302 (بسعر 135 ر.ق) لمعاناً خالياً من الهولوجرام مع إسفنجات GrünesAuto الألمانية مقاس 6 بوصة (أجهزة DA: 30 ر.ق | أجهزة Rotary: 28 ر.ق) أو وسادة الصوف المفردة من Autotriz مقاس 8 إنش (40 ر.ق).",
         },
       },
       {
         heading: { en: "Tyre, Wheel, Trim and Interior Care", ar: "العناية بالإطارات والجنوط والبلاستيك والمقصورة" },
         body: {
-          en: "Qatar's intense UV radiation degrades tyre rubber and exterior plastic trim, causing grey fading and sidewall cracking. Regular application of Briller Quick Tyre Shine (20L: QAR 280) or Smart Car Tyre Foam protects rubber against UV damage, while ABK Rejuvenate Plastic Restorer (Made in France, from QAR 40 for 60ml up to QAR 280 for 500ml) permanently revives sun-bleached bumpers and trims. For wheels and engine bays, Briller Alloy Rim Cleaner (20L: QAR 250), Briller Heavy Duty Degreaser (20L: QAR 300), and Sitrett MX5 Heavy-Duty Degreaser dissolve baked-on brake dust and grease.",
-          ar: "تُتلف الأشعة فوق البنفسجية الشديدة في قطر مطاط الإطارات والأجزاء البلاستيكية الخارجية. يحمي ملمع الإطارات Briller Quick Tyre Shine (برميل 20 لتر: 280 ر.ق) الجوانب المطاطية من التشقق ويعيد اللون الأسود العميق، بينما يعيد مجدد البلاستيك الفرنسي ABK Rejuvenate (من 40 ر.ق لعبوة 60 مل حتى 280 ر.ق لعبوة 500 مل) اللون الأصلي للصدامات الباهتة. ولتنظيف الجنوط والمحركات، يزيل منظف الجنوط Briller Alloy Rim Cleaner (برميل 20 لتر: 250 ر.ق) ومزيل الشحوم Sitrett MX5 أصعب تراكمات غبار الفرامل والزيوت.",
+          en: "Qatar's intense UV radiation degrades tyre rubber and exterior plastic trim, causing grey fading and sidewall cracking. Regular application of Briller Quick Tyre Shine (20L aqua-based drum: QAR 280) or Getsun / Smart Car Tyre Shine aerosols (QAR 15) protects rubber against UV damage, while ABK Rejuvenate Plastic Restorer (Made in France, from QAR 50 for 60ml up to QAR 280 for 500ml) revives sun-bleached bumpers and trims for up to 6 months. For wheels and engine bays, Briller Alloy Rim Cleaner (20L: QAR 300 promo, was QAR 350), Autotriz Hyper Wheel Cleaner (20L: QAR 400), Briller Heavy Duty Degreaser (20L: QAR 300), and Getsun Engine Cleaner Foam Spray (QAR 15) dissolve baked-on brake dust and grease.",
+          ar: "تُتلف الأشعة فوق البنفسجية الشديدة في قطر مطاط الإطارات والأجزاء البلاستيكية الخارجية. يحمي ملمع الإطارات المائي Briller Quick Tyre Shine (برميل 20 لتر: 280 ر.ق) وبخاخات Getsun وSmart Car (بسعر 15 ر.ق) الجوانب المطاطية من التشقق، بينما يعيد مجدد البلاستيك الفرنسي ABK Rejuvenate (من 50 ر.ق لعبوة 60 مل حتى 280 ر.ق لعبوة 500 مل) اللون الأصلي للصدامات الباهتة لمدة تصل إلى 6 أشهر. ولتنظيف الجنوط والمحركات، يزيل منظف الجنوط Briller Alloy Rim Cleaner (برميل 20 لتر بسعر عرض 300 ر.ق بدلاً من 350 ر.ق) وAutotriz Hyper Wheel Cleaner (400 ر.ق) ومزيل الشحوم Briller Heavy Duty Degreaser (300 ر.ق) وبخاخ المحرك Getsun (15 ر.ق) أصعب تراكمات غبار الفرامل والزيوت.",
         },
       },
       {
@@ -1135,8 +1301,8 @@ export const ARTICLES: Article[] = [
           ar: "موردو مواد ومستلزمات تلميع وغسيل السيارات في قطر (تجزئة وجملة)",
         },
         body: {
-          en: "Whether you are searching for car detailing material suppliers in Qatar to equip a commercial car wash, a detailing studio, or your own garage, ABK Trading & Service in Mesaimeer, Doha supplies 58 active SKUs directly from authorized brand supply chains. Commercial workshops can order 20L chemical drums (Briller and Autotriz shampoos, APCs, degreasers, glass cleaners, and dressings from QAR 250–450), 1.52m × 15m PPF master rolls (VTEK Weather Armor and Grizzly TPU PPF from QAR 1,200), high-pressure foam guns (QAR 180), microfibre towels (QAR 8–10), and masking tapes (QAR 2.5–3.5) with same-day dispatch across Doha, Al Rayyan, Lusail, Al Wakrah, and Al Khor. Visit our Mesaimeer showroom Saturday to Thursday (10:00–13:00 and 16:00–22:00) or message +974 3083 8355 on WhatsApp.",
-          ar: "سواء كنت تبحث عن موردي مواد تلميع وغسيل السيارات في قطر لتجهيز مغسلة سيارات تجارية أو مركز عناية وتلميع أو كراجك الخاص، توفر شركة ABK للتجارة والخدمات في مسيمير، الدوحة 58 صنفاً أصلياً مباشرة من المصانع العالمية. يمكن للمراكز والمغاسل طلب براميل 20 لتر الاقتصادية (شامبوهات ومنظفات ومزيلات شحوم وملمعات Briller وAutotriz من 250 إلى 450 ر.ق)، ورولات أفلام الحماية الكاملة 1.52×15 متر (VTEK وGrizzly TPU PPF ابتداءً من 1,200 ر.ق)، ومسدسات الرغوة (180 ر.ق)، ومناشف المايكروفايبر (8–10 ر.ق) مع توصيل في نفس اليوم لجميع مناطق الدوحة والريان ولوسيل والوكرة والخور. تفضل بزيارة معرضنا في مسيمير أو تواصل عبر واتساب 30838355 974+.",
+          en: "Whether you are searching for car detailing material suppliers in Qatar to equip a commercial car wash, a detailing studio, or your own garage, ABK Trading & Service in Mesaimeer, Doha supplies 58 active SKUs directly from authorized brand supply chains. Commercial workshops can order 20L chemical drums (Briller and Autotriz shampoos, APCs, degreasers, glass cleaners, wheel cleaners, and dressings from QAR 265–500), VTEK Weather Armor PPF and Solar Armor window film master rolls, high-pressure stainless-steel foam guns (QAR 180), microfibre towels (QAR 8–10), and masking tapes (QAR 2.5–3.5) with fast delivery across Doha, Al Rayyan, Lusail, Al Wakrah, and Al Khor (confirmed per order on WhatsApp) or free Mesaimeer showroom pickup. Visit our Mesaimeer showroom Saturday to Thursday (10:00–13:00 and 16:00–22:00) or message +974 3083 8355 on WhatsApp.",
+          ar: "سواء كنت تبحث عن موردي مواد تلميع وغسيل السيارات في قطر لتجهيز مغسلة سيارات تجارية أو مركز عناية وتلميع أو كراجك الخاص، توفر شركة ABK للتجارة والخدمات في مسيمير، الدوحة 58 صنفاً أصلياً مباشرة من المصانع العالمية. يمكن للمراكز والمغاسل طلب براميل 20 لتر الاقتصادية (شامبوهات ومنظفات ومزيلات شحوم وملمعات Briller وAutotriz من 265 إلى 500 ر.ق)، ورولات أفلام الحماية والتظليل VTEK، ومسدسات الرغوة (180 ر.ق)، ومناشف المايكروفايبر (8–10 ر.ق) مع توصيل سريع لجميع مناطق الدوحة والريان ولوسيل والوكرة والخور (يُؤكَّد عبر واتساب) أو استلام مجاني من المعرض. تفضل بزيارة معرضنا في مسيمير أو تواصل عبر واتساب 30838355 974+.",
         },
       },
     ],
@@ -1154,8 +1320,8 @@ export const ARTICLES: Article[] = [
         ar: "اطلب براميل غسيل 20 لتر ومركبات التلميع الألمانية مباشرة من الموزع",
       },
       body: {
-        en: "Visit ABK's Mesaimeer showroom or order online with same-day dispatch across Doha — 58 active SKUs from VTEK, Autotriz, Briller, Grizzly, GrünesAuto, and Sitrett.",
-        ar: "تفضل بزيارة معرض ABK في مسيمير أو اطلب عبر الموقع مع توصيل في نفس اليوم بالدوحة — 58 منتجاً أصلياً من VTEK وAutotriz وBriller وGrizzly وGrünesAuto وSitrett.",
+        en: "Visit ABK's Mesaimeer showroom for free pickup or order online for fast Qatar delivery — 58 active SKUs from VTEK, Autotriz, Briller, GrünesAuto, Insta Finish, Getsun, and ABK.",
+        ar: "تفضل بزيارة معرض ABK في مسيمير للاستلام المجاني أو اطلب عبر الموقع للتوصيل السريع داخل قطر — 58 منتجاً أصلياً من VTEK وAutotriz وBriller وGrünesAuto وInsta Finish وGetsun وABK.",
       },
       primaryHref: "/b2c/products",
       primaryLabel: { en: "Browse 58 Detailing Products", ar: "تصفح 58 منتج عناية وتلميع" },
@@ -1169,8 +1335,8 @@ export const ARTICLES: Article[] = [
           ar: "أين يمكنني شراء مواد تلميع وغسيل السيارات بالجملة في قطر؟",
         },
         a: {
-          en: "ABK Trading & Service in Mesaimeer, Doha (Building 1306, Street 70, Zone 56, +974 3083 8355) is a distributor supplying 58 retail and wholesale car care SKUs — including 20L Briller and Autotriz chemical drums (QAR 250–450), German polishing compounds, GrünesAuto foam pads, and VTEK/Grizzly PPF rolls.",
-          ar: "تُعد شركة ABK للتجارة والخدمات في مسيمير، الدوحة (مبنى 1306، شارع 70، منطقة 56، +974 3083 8355) موزعاً يوفر 58 منتجاً للتجزئة والجملة — تشمل براميل 20 لتر من Briller وAutotriz (بسعر 250–450 ر.ق)، ومركبات التلميع الألمانية، وإسفنجات GrünesAuto، ورولات أفلام الحماية VTEK وGrizzly.",
+          en: "ABK Trading & Service in Mesaimeer, Doha (Showroom no. 2, Building 1306, Street 70, Zone 56, +974 3083 8355) supplies 58 retail and wholesale car care SKUs — including 20L Briller and Autotriz chemical drums (QAR 265–500), German polishing compounds, GrünesAuto foam pads, and VTEK PPF and window film rolls.",
+          ar: "تُعد شركة ABK للتجارة والخدمات في مسيمير، الدوحة (معرض رقم 2، مبنى 1306، شارع 70، منطقة 56، +974 3083 8355) موزعاً يوفر 58 منتجاً للتجزئة والجملة — تشمل براميل 20 لتر من Briller وAutotriz (بسعر 265–500 ر.ق)، ومركبات التلميع الألمانية، وإسفنجات GrünesAuto، ورولات أفلام الحماية والتظليل VTEK.",
         },
       },
       {
@@ -1189,8 +1355,8 @@ export const ARTICLES: Article[] = [
           ar: "ما هي براميل 20 لتر المتوفرة للمغاسل ومراكز التلميع في قطر؟",
         },
         a: {
-          en: "ABK stocks 20L drums of Autotriz Rich Foam Shampoo (QAR 450 promo), Briller Wash & Wax (QAR 350 promo), Briller Multi Purpose Cleaner APC (QAR 250), Briller Heavy Duty Degreaser (QAR 300), Briller Alloy Rim Cleaner (QAR 250), Briller Glass Cleaner (QAR 250), Briller Quick Tyre Shine (QAR 280), and Briller All-In-One Interior Dressing (QAR 350).",
-          ar: "توفر ABK براميل 20 لتر من شامبو الرغوة Autotriz Rich Foam (بسعر 450 ر.ق)، وشامبو Briller Wash & Wax (بسعر 350 ر.ق)، ومنظف متعدد الاستخدامات APC (بسعر 250 ر.ق)، ومزيل الشحوم القوي (300 ر.ق)، ومنظف الجنوط (250 ر.ق)، ومنظف الزجاج (250 ر.ق)، وملمع الإطارات (280 ر.ق)، وملمع المقصورة الداخلية (350 ر.ق).",
+          en: "ABK stocks ten 20L workshop drums in Doha: Autotriz Nano Rich Foam Shampoo (QAR 450 promo), Autotriz Hyper Wheel Cleaner (QAR 400), Autotriz PPF Gel (QAR 500), Briller Wash & Wax (QAR 350 promo), Briller Multipurpose Cleaner APC (QAR 350 promo), Briller Heavy Duty Degreaser (QAR 300), Briller Alloy Rim Cleaner (QAR 300 promo), Briller Glass Cleaner (QAR 265), Briller Quick Tyre Shine (QAR 280), and Briller Quick Dressing (QAR 450).",
+          ar: "توفر ABK عشرة براميل سعة 20 لتر في الدوحة: شامبو Autotriz Nano Rich Foam (عرض 450 ر.ق)، ومنظف الجنوط Autotriz Hyper Wheel Cleaner (400 ر.ق)، وجل الأفلام Autotriz PPF Gel (500 ر.ق)، وشامبو Briller Wash & Wax (عرض 350 ر.ق)، والمنظف الشامل Briller APC (عرض 350 ر.ق)، ومزيل الشحوم القوي (300 ر.ق)، ومنظف الجنوط Briller Alloy Rim Cleaner (عرض 300 ر.ق)، ومنظف الزجاج (265 ر.ق)، وملمع الإطارات Quick Tyre Shine (280 ر.ق)، وملمع البلاستيك والمقصورة Quick Dressing (450 ر.ق).",
         },
       },
     ],
@@ -1354,6 +1520,7 @@ export const ARTICLES: Article[] = [
       ar: `فيلم حماية الطلاء المطفي والملوّن في قطر: تركيب VTEK MATTE من ${q(M["front-end"].sedan, "ar")} للواجهة الأساسية إلى ${q(M["full-body"].sedan, "ar")} للهيكل بالكامل (سيدان)، وفيلم PRISM الملوّن بسعر لكل سيارة، مع العناية والضمان.`,
     },
     date: "2026-10-20",
+    updated: "2026-11-16",
     readingTime: 5,
     category: "buying-guide",
     topics: ["film"],
@@ -1529,6 +1696,20 @@ export const ARTICLES: Article[] = [
         },
       },
     ],
+    sources: [
+      {
+        label: { en: "VTEK: Weather Armor MATTE & PRISM film specifications", ar: "VTEK: مواصفات أفلام Weather Armor MATTE وPRISM" },
+        url: "https://www.vtekfilms.com/weather-armor",
+      },
+      {
+        label: { en: "VTEK: warranty terms by film", ar: "VTEK: شروط الضمان حسب الفيلم" },
+        url: "https://www.vtekfilms.com/warranty",
+      },
+      {
+        label: { en: "VTEK NFC e-Warranty verification portal", ar: "بوابة التحقق من الضمان الإلكتروني VTEK NFC" },
+        url: "https://nfc.vtekfilms.com/verify",
+      },
+    ],
   },
   {
     slug: "best-ppf-brands-qatar",
@@ -1545,6 +1726,7 @@ export const ARTICLES: Article[] = [
       ar: "كيف تقارن أبرز علامات فيلم حماية الطلاء لمشتري قطر: شروط الضمان واشتراطات المُركّب وما تسأل عنه — XPEL و3M وSTEK وSunTek وLLumar وVTEK، بالاستناد إلى كل شركة مصنِّعة.",
     },
     date: "2026-10-20",
+    updated: "2026-11-16",
     readingTime: 6,
     category: "buying-guide",
     topics: ["film"],
@@ -1737,6 +1919,36 @@ export const ARTICLES: Article[] = [
           en: "XPEL's installer locator lists nine Doha shops at xpel.com/installers/Qatar/All/All (read 20 October 2026). ABK does not sell XPEL; ABK distributes VTEK and arranges VTEK installation at an authorised centre in Doha.",
           ar: "يضم دليل مُركّبي XPEL تسعة مراكز في الدوحة على xpel.com/installers/Qatar/All/All (قُرئ بتاريخ 20 أكتوبر 2026). ولا تبيع ABK علامة XPEL؛ فهي توزّع VTEK وترتّب تركيبها لدى مركز معتمد في الدوحة.",
         },
+      },
+    ],
+    sources: [
+      {
+        label: { en: "XPEL: published film warranty terms", ar: "XPEL: شروط ضمان الفيلم المنشورة" },
+        url: "https://www.xpel.com/warranty-information",
+      },
+      {
+        label: { en: "XPEL: Qatar authorised installer locator (read 20 Oct 2026)", ar: "XPEL: دليل المُركّبين المعتمدين في قطر (قُرئ 20 أكتوبر 2026)" },
+        url: "https://www.xpel.com/installers/Qatar/All/All",
+      },
+      {
+        label: { en: "3M Qatar: Scotchgard Paint Protection Film Pro Series 200", ar: "3M قطر: فيلم حماية الطلاء Scotchgard Pro Series 200" },
+        url: "https://www.3m.com.qa/3M/en_QA/p/d/b5005524006/",
+      },
+      {
+        label: { en: "STEK Automotive: DYNOshield & DYNOmatte product pages", ar: "STEK Automotive: صفحات أفلام DYNOshield وDYNOmatte" },
+        url: "https://www.stekautomotive.com/ppf/clear/",
+      },
+      {
+        label: { en: "SunTek Films: paint protection film lines & warranties", ar: "SunTek Films: خطوط أفلام الحماية والضمانات" },
+        url: "https://suntekfilms.com/na/en/paint-protection-film/",
+      },
+      {
+        label: { en: "LLumar: Platinum & Valor paint protection film", ar: "LLumar: أفلام الحماية Platinum وValor" },
+        url: "https://llumar.com/na/en/automotive/paint-protection-film/",
+      },
+      {
+        label: { en: "VTEK: warranty terms & regional Qatar contact", ar: "VTEK: شروط الضمان وجهة التواصل المعتمدة في قطر" },
+        url: "https://www.vtekfilms.com/warranty",
       },
     ],
   },

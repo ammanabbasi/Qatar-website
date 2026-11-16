@@ -13,6 +13,10 @@
  * The key file lives at public/<KEY>.txt and must stay deployed.
  */
 
+import fs from "fs";
+import path from "path";
+
+const repoRoot = path.resolve(import.meta.dirname, "..");
 const HOST = "abktradingservice.com";
 const ORIGIN = `https://${HOST}`;
 const KEY = "abktrading8f255517ef109a16b63bca";
@@ -31,6 +35,7 @@ const STATUS = {
 
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
+const local = args.includes("--local");
 const all = args.includes("--all");
 const sinceIdx = args.indexOf("--since");
 const since = sinceIdx >= 0 ? args[sinceIdx + 1] : null;
@@ -39,7 +44,9 @@ const explicit = args.filter(
 );
 
 async function sitemapEntries() {
-  const xml = await (await fetch(`${ORIGIN}/sitemap.xml`)).text();
+  const xml = local
+    ? fs.readFileSync(path.join(repoRoot, ".next/server/app/sitemap.xml.body"), "utf8")
+    : await (await fetch(`${ORIGIN}/sitemap.xml`)).text();
   return [...xml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(([, block]) => ({
     loc: block.match(/<loc>(.*?)<\/loc>/)?.[1].trim(),
     lastmod: block.match(/<lastmod>(.*?)<\/lastmod>/)?.[1].trim() ?? "",
@@ -52,7 +59,9 @@ async function main() {
     process.exit(1);
   }
 
-  const key = (await (await fetch(KEY_LOCATION)).text()).trim();
+  const key = local
+    ? fs.readFileSync(path.join(repoRoot, `public/${KEY}.txt`), "utf8").trim()
+    : (await (await fetch(KEY_LOCATION)).text()).trim();
   if (key !== KEY) {
     console.error(`Key file at ${KEY_LOCATION} doesn't contain the key — deploy it first.`);
     process.exit(1);

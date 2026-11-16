@@ -57,6 +57,7 @@ import {
   trackPpfQuoteStart,
   trackPpfWhatsAppHandoff,
 } from "@/lib/analytics";
+import { readBookingAttribution } from "@/lib/attribution";
 
 type L = "en" | "ar";
 type Step = 0 | 1 | 2 | 3;
@@ -131,24 +132,6 @@ function todayPlus(days: number) {
   const d = new Date();
   d.setDate(d.getDate() + days);
   return d.toISOString().slice(0, 10);
-}
-
-/** Ad click IDs from the landing URL, falling back to the Google tag's own cookie. */
-function readClickIds() {
-  const q = new URLSearchParams(window.location.search);
-  let gclid = q.get("gclid") ?? "";
-  if (!gclid) {
-    const m = document.cookie.match(/(?:^|;\s*)_gcl_aw=([^;]+)/);
-    if (m) gclid = decodeURIComponent(m[1]).split(".").slice(2).join(".");
-  }
-  return {
-    gclid,
-    gbraid: q.get("gbraid") ?? "",
-    wbraid: q.get("wbraid") ?? "",
-    utmSource: q.get("utm_source") ?? "",
-    utmMedium: q.get("utm_medium") ?? "",
-    utmCampaign: q.get("utm_campaign") ?? "",
-  };
 }
 
 function BodyIcon({ body, className = "h-10 w-auto" }: { body: BodyType; className?: string }) {
@@ -713,7 +696,7 @@ export function PpfConfigurator() {
       existingFilm: t(form.existingFilm as (typeof EXISTING)[number]),
       year: form.year.trim() ? Number(form.year) : "",
       startedAt: startedAt.current,
-      ...readClickIds(),
+      ...readBookingAttribution(),
     };
     let next: Result;
     try {

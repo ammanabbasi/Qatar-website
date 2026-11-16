@@ -83,8 +83,8 @@ export const FAQ: FaqEntry[] = [
       ar: "ما الفرق بين PPF والطلاء السيراميكي؟",
     },
     a: {
-      en: "PPF is a thick urethane film that physically blocks rock chips, scratches and impacts. Ceramic coating is a thin chemical layer that adds gloss and water-repellency but does not stop physical damage. Many customers apply ceramic coating on top of PPF for both benefits.",
-      ar: "PPF فيلم يوريثاني سميك يحجب الحصى والخدوش والصدمات. أما الطلاء السيراميكي فهو طبقة كيميائية رقيقة تُضيف اللمعان وتطرد الماء لكنها لا تمنع الضرر الميكانيكي. كثير من العملاء يطبّقون السيراميك فوق PPF للحصول على الفائدتين.",
+      en: "PPF is a thick urethane film that physically blocks rock chips, scratches and impacts. Ceramic coating is a thin chemical layer that bonds to factory paint for gloss and water-repellency, but it does not stop stone chips. Many drivers in Qatar fit PPF on high-impact front panels and ceramic-coat the remaining unfilmed paint, while maintaining PPF with a film-specific product such as Autotriz PPF Refresh.",
+      ar: "PPF فيلم يوريثاني سميك يحجب الحصى والخدوش والصدمات الفيزيائية، أما الطلاء السيراميكي فهو طبقة كيميائية رقيقة ترتبط بطلاء المصنع لإضافة اللمعان وطرد الماء دون منع ضربات الحصى. يجمع كثير من السائقين في قطر بين تركيب PPF على الواجهة الأمامية وتطبيق السيراميك على باقي الطلاء غير المغلف، مع صيانة الفيلم بمنتج مخصص مثل Autotriz PPF Refresh.",
     },
   },
   {
@@ -113,8 +113,8 @@ export const FAQ: FaqEntry[] = [
       ar: "ما أفضل طلاء سيراميكي يصلح لحرارة قطر؟",
     },
     a: {
-      en: "Ceramic coatings rated for high-UV exposure (9H hardness, hydrophobic top-coat) perform best in Qatar's climate. Autotriz and Briller systems we carry are formulated for Gulf summers and resist water-spotting from hard tap water common in Doha.",
-      ar: "تُؤدي الطلاءات السيراميكية المصممة للتعرض الشديد للأشعة فوق البنفسجية (صلابة 9H وطبقة طاردة للماء) أفضل أداء في مناخ قطر. أنظمة Autotriz وBriller التي نوفرها مصممة لصيف الخليج وتقاوم بقع الماء الناتجة عن الماء العسر الشائع في الدوحة.",
+      en: "Polysilazane and graphene-hybrid ceramic coatings rated for high-UV exposure perform best in Qatar's climate. German Autotriz systems stocked at ABK — including 3D Matrix Ultra, 3D Matrix Hybrid, REVO +15 and ION+ +15 — are formulated for Gulf summers and resist hard-water spotting common in Doha.",
+      ar: "تُؤدي طلاءات البوليسيلازان والنانو سيراميك المعزز بالجرافين المصممة لمقاومة الأشعة فوق البنفسجية أفضل أداء في مناخ قطر. أنظمة Autotriz الألمانية المتوفرة لدى ABK — مثل 3D Matrix Ultra و3D Matrix Hybrid وREVO +15 وION+ +15 — مصممة لصيف الخليج وتقاوم بقع الماء العسر الشائعة في الدوحة.",
     },
   },
   {
@@ -198,8 +198,8 @@ export const FAQ: FaqEntry[] = [
       ar: "ما منتجات تلميع السيارات التي يستخدمها المحترفون في الدوحة؟",
     },
     a: {
-      en: "Professional detailers in Doha typically use Autotriz cutting compounds and polishes for paint correction, Briller car shampoos for pre-wash, and Autotriz or Briller ceramic coatings for long-term protection. ABK Trading supplies these brands to workshops and individual detailers across Qatar.",
-      ar: "يستخدم محترفو التلميع في الدوحة عادةً مركبات Autotriz للقطع والتلميع لتصحيح الطلاء، وشامبوهات Briller للغسيل الأولي، وطلاءات Autotriz أو Briller السيراميكية للحماية طويلة الأمد. توفر ABK هذه العلامات التجارية لورش التلميع والأفراد في جميع أنحاء قطر.",
+      en: "Professional detailers in Doha typically use German Autotriz cutting compounds and GrünesAuto foam pads for paint correction, Briller 20L car shampoos and APCs for wash bays, and Autotriz nano-ceramic coatings or VTEK PPF for long-term protection. ABK Trading supplies all of these brands across Qatar.",
+      ar: "يستخدم محترفو التلميع في الدوحة عادةً مركبات Autotriz الألمانية ووسائد GrünesAuto لتصحيح الطلاء، وبراميل Briller سعة 20 لتر للشامبو والمنظفات في المغاسل، وطلاءات Autotriz السيراميكية وأفلام VTEK PPF للحماية طويلة الأمد. توفر ABK جميع هذه العلامات لورش التلميع والأفراد في قطر.",
     },
   },
   {

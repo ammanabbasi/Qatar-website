@@ -30,21 +30,17 @@ const STATIC_PAGES_UPDATED_AT = "2026-10-20";
 // 2026-11-03: homepage stats replaced with checkable figures, guides section;
 //             dealer page copy; PPF page evidence re-read, guides section.
 const STATIC_PAGE_OVERRIDES: Record<string, string> = {
-  "": "2026-11-03",
+  "": "2026-11-16",
+  "/about": "2026-11-16",
   "/b2c/ppf-installation": "2026-11-03",
-  "/b2b/become-a-dealer": "2026-11-03",
+  "/b2b/become-a-dealer": "2026-11-16",
 };
 // Category and brand hubs change on their own schedule; keep their lastmod
 // separate so a hub edit doesn't claim the legal pages changed too.
 // 2026-10-23: every hub gained a related-guides section.
-const HUB_PAGES_UPDATED_AT = "2026-10-23";
-// 2026-11-03: tint and film-claim corrections on these hubs only.
-const HUB_PAGE_OVERRIDES: Record<string, string> = {
-  film: "2026-11-03",
-  shampoo: "2026-11-03",
-  vtek: "2026-11-03",
-  grizzly: "2026-11-03",
-};
+// 2026-11-16: all active category and brand hubs audited and aligned with live SKU/price data; discontinued Sitrett hub removed (308-redirected).
+const HUB_PAGES_UPDATED_AT = "2026-11-16";
+const HUB_PAGE_OVERRIDES: Record<string, string> = {};
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = SITE.url;

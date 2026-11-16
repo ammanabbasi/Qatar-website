@@ -96,6 +96,7 @@ function Paddle({
       type="button"
       aria-label={label}
       aria-hidden={!visible}
+      disabled={!visible}
       tabIndex={visible ? 0 : -1}
       onClick={onClick}
       className={`absolute top-1/2 hidden h-14 w-14 -translate-y-[calc(50%+0.6rem)] items-center justify-center rounded-full bg-white/95 text-(--color-text) shadow-paddle backdrop-blur transition-opacity duration-200 ease-soft hover:bg-white lg:flex ${

@@ -20,7 +20,7 @@ type Props = {
  * the lower area. "Add to cart" and "Inquire for Wholesale" buttons sit in the
  * bottom action area above the link overlay.
  */
-export function ProductTile({ product, locale, audience = "b2c", eager = false }: Props) {
+export function ProductTile({ product, locale, eager = false }: Props) {
   const t = useTranslations();
   const name = product.name[locale];
 
@@ -67,7 +67,7 @@ export function ProductTile({ product, locale, audience = "b2c", eager = false }
               </span>
             ) : null}
             {product.originalPrice ? (
-              <span className="rounded bg-red-500/10 px-1.5 py-0.5 text-[10px] font-bold text-red-600 dark:text-red-400">
+              <span className="rounded bg-red-500/12 px-1.5 py-0.5 text-[10px] font-bold text-red-700 dark:text-red-400">
                 {t("Products.saleBadge")}
               </span>
             ) : null}

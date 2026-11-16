@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import Script from "next/script";
 import { routing, type Locale } from "@/i18n/routing";
 import { fontSans, fontArabic } from "@/lib/fonts";
@@ -152,8 +152,33 @@ export default async function LocaleLayout({
   // because the Organization + WebSite entities are global. Google merges
   // multiple JSON-LD blocks across pages by @id, so duplicating these on
   // every page would not strengthen them — only bloat the HTML.
-  const orgLd = organizationJsonLd();
+  const orgLd = organizationJsonLd(locale as "en" | "ar");
   const siteLd = websiteJsonLd(locale as "en" | "ar");
+
+  // Only pass namespaces actually read by shared/catalogue Client Components.
+  // Server-only copy (Privacy, Terms, Meta, About, WhyQatar, Blog, Faq, etc.)
+  // and single-page form namespaces (PpfInstall, DealerPage) stay off the
+  // global RSC hydration payload (~34 KB EN / ~50 KB AR saved on every page).
+  const allMessages = await getMessages();
+  const CLIENT_NAMESPACES = [
+    "Nav",
+    "Cta",
+    "Promo",
+    "PpfPromo",
+    "Shelf",
+    "Tray",
+    "Cart",
+    "Products",
+    "Categories",
+    "Uses",
+    "Packs",
+    "Brands",
+    "Contact",
+    "Home",
+  ] as const;
+  const clientMessages = Object.fromEntries(
+    CLIENT_NAMESPACES.filter((k) => k in allMessages).map((k) => [k, allMessages[k]]),
+  );
 
   return (
     <html
@@ -184,7 +209,9 @@ export default async function LocaleLayout({
             src="https://plausible.io/js/script.tagged-events.js"
           />
         )}
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider messages={clientMessages}>
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );
