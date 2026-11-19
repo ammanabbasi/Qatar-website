@@ -66,6 +66,23 @@ const nextConfig: NextConfig = {
     // the old rules produced two-hop chains (b2b → b2c/ with a trailing slash →
     // b2c, and localeless → locale redirect by the next-intl middleware).
     return [
+      // SADAD sends a customer who cancels on its payment page to the site root
+      // with ?order_id=<ORDER_ID> instead of the callback URL. Hand those to the
+      // route that returns them to the cart / PPF page with a notice. Listed
+      // first so the bare-domain rule below can't take them; the query string
+      // is passed through to the destination.
+      {
+        source: "/",
+        has: [{ type: "query", key: "order_id" }],
+        destination: "/api/payments/sadad/cancelled",
+        permanent: false,
+      },
+      {
+        source: "/:locale(en|ar)",
+        has: [{ type: "query", key: "order_id" }],
+        destination: "/api/payments/sadad/cancelled",
+        permanent: false,
+      },
       // The bare domain is the URL everyone links to (Google Business Profile,
       // ads, cards, citations). next-intl answers it with a 307, which Google
       // treats as temporary, so the canonical signal never settles on /en. Send

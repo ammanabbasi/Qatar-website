@@ -6,6 +6,7 @@ import {
   useMemo,
   useRef,
   useState,
+  useSyncExternalStore,
   type FormEvent,
   type PointerEvent as ReactPointerEvent,
   type ReactNode,
@@ -64,6 +65,8 @@ import { isEmail } from "@/lib/payments/validate";
 
 type L = "en" | "ar";
 type PayChoice = "online" | "handover";
+
+const noopSubscribe = () => () => {};
 type Step = 0 | 1 | 2 | 3;
 const STEP_KEYS = ["stepVehicle", "stepCoverage", "stepFilm", "stepDetails"] as const;
 const QUICK_YEARS = ["2026", "2025", "2024", "2023"] as const;
@@ -243,6 +246,12 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
   const qar = (n: number) => formatQar(n, locale);
   const onlineOffered = useOnlinePayments(payments);
   const [payment, setPayment] = useState<PayChoice>("online");
+  // SADAD sends a customer who cancels on its page back here with ?payment=cancelled.
+  const paymentCancelled = useSyncExternalStore(
+    noopSubscribe,
+    () => new URLSearchParams(window.location.search).get("payment") === "cancelled",
+    () => false,
+  );
   /** A reply the customer can fix on this form (changed price, rejected field). */
   const [submitError, setSubmitError] = useState<string | null>(null);
   const submitErrorRef = useRef<HTMLParagraphElement>(null);
@@ -1058,6 +1067,12 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
 
   const launcher = (
     <div ref={launcherRef} className="rounded-hero bg-(--color-surface) p-4 text-(--color-text) sm:p-5">
+      {paymentCancelled ? (
+        <p role="status" className="mb-3 flex items-start gap-2 rounded-xl bg-(--color-brand)/15 px-3.5 py-2.5 text-caption text-(--color-text)">
+          <AlertIcon className="mt-px h-4 w-4 shrink-0 text-(--color-brand-deep)" />
+          <span>{t("paymentCancelled")}</span>
+        </p>
+      ) : null}
       {/* Compact Package Comparison & 1-Tap Preselector */}
       <div className="mb-3 rounded-xl border border-(--color-border-soft) bg-(--color-bg) p-2">
         <div className="flex items-center justify-between gap-2 px-1.5 pb-1.5">

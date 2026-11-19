@@ -46,13 +46,14 @@ export function CartPageView({
   const cart = useCart("b2c");
   const details = useCheckoutDetails();
   const { removed, remove, undo, setPaused } = useRemoveWithUndo("b2c");
-  // Set by the SADAD callback: "unknown" when it can't find the order it was
-  // paying for, "checking" when the result couldn't be verified (yet).
+  // Set on the way back from SADAD: "unknown" when the callback can't find the
+  // order it was paying for, "checking" when the result couldn't be verified
+  // (yet), "cancelled" when the customer cancelled on SADAD's page.
   const paymentNotice = useSyncExternalStore(
     noopSubscribe,
     () => {
       const value = new URLSearchParams(window.location.search).get("payment");
-      return value === "unknown" || value === "checking" ? value : null;
+      return value === "unknown" || value === "checking" || value === "cancelled" ? value : null;
     },
     () => null,
   );
@@ -200,7 +201,15 @@ export function CartPageView({
           ) : null}
         </div>
 
-        {paymentNotice ? (
+        {paymentNotice === "cancelled" ? (
+          <p
+            role="status"
+            className="mt-4 flex items-start gap-2 rounded-xl bg-(--color-brand)/15 px-4 py-3 text-footnote text-(--color-text)"
+          >
+            <AlertIcon className="mt-0.5 h-4 w-4 shrink-0 text-(--color-brand-deep)" />
+            <span className="min-w-0 flex-1">{t("paymentCancelled")}</span>
+          </p>
+        ) : paymentNotice ? (
           <p
             role="alert"
             className="mt-4 flex flex-wrap items-start gap-2 rounded-xl bg-(--color-danger)/10 px-4 py-3 text-footnote text-(--color-text)"

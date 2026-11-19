@@ -587,7 +587,8 @@
     "payFailedToStart": "We couldn't open the payment page. Try again, or send your order on WhatsApp.",
     "payNeedsPricesError": "Some items in your cart are priced on WhatsApp, so this order can't be paid online.",
     "paymentUnknown": "We couldn't match that payment to an order. If you were charged, message us on WhatsApp and we'll sort it out straight away.",
-    "paymentChecking": "We're confirming your payment with SADAD. A confirmation follows by email and WhatsApp shortly, so please don't pay again. If you were charged and hear nothing within the hour, message us on WhatsApp."
+    "paymentChecking": "We're confirming your payment with SADAD. A confirmation follows by email and WhatsApp shortly, so please don't pay again. If you were charged and hear nothing within the hour, message us on WhatsApp.",
+    "paymentCancelled": "Payment cancelled, and nothing was charged. Your cart is still here: try again, or order on WhatsApp and pay later."
   },
   "PpfInstall": {
     "eyebrow": "Instant quote",
@@ -806,7 +807,8 @@
     "submitPay": "Book and pay {price}",
     "payOpening": "Opening secure payment…",
     "payUnavailable": "Online payment wasn't available, so we saved your booking as pay at handover.",
-    "priceChanged": "Our prices were just updated. Please reload the page to see the current price before paying."
+    "priceChanged": "Our prices were just updated. Please reload the page to see the current price before paying.",
+    "paymentCancelled": "Online payment was cancelled and nothing was charged. Your booking request is saved: we'll confirm your slot on WhatsApp and you can pay at handover, or book again to pay online."
   },
   "DealerPage": {
     "tiersEyebrow": "PARTNERSHIP OPPORTUNITIES",
