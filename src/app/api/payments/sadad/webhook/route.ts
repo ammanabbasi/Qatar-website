@@ -11,12 +11,13 @@
  * already recorded and paid is final.
  */
 
-import { alertUnrecordedPayment, notifyPaymentUpdate } from "@/lib/payments/notify";
+import { alertUnrecordedPayment, alertUnverifiedPaid, notifyPaymentUpdate } from "@/lib/payments/notify";
 import { sadadConfig } from "@/lib/payments/config";
-import { applyPaymentResult, isOrderId } from "@/lib/payments/orders";
+import { applyPaymentResult, hasPaymentEvent, isOrderId, readOrder } from "@/lib/payments/orders";
 import { parseSadadWebhook, verifySadadChecksum } from "@/lib/payments/sadad";
 
-export const maxDuration = 30;
+// Room for the emails sent after the response (SMTP retries, the unverified-result grace period).
+export const maxDuration = 60;
 
 function ack() {
   return Response.json({ status: "success" }, { status: 200, headers: { "Cache-Control": "no-store" } });
@@ -52,6 +53,7 @@ export async function POST(request: Request) {
   );
   if (!verified) {
     console.warn(`[sadad] webhook NOT verified; fields: ${Object.keys(body).sort().join(",")}`);
+    if (isOrderId(result.orderId)) alertUnverifiedPaid(result, "webhook");
     return ack();
   }
   if (!isOrderId(result.orderId)) return ack(); // e.g. a SADAD invoice, not a website order
@@ -66,8 +68,13 @@ export async function POST(request: Request) {
   } catch (err) {
     const reason = err instanceof Error ? err.message : String(err);
     console.error(`[sadad] webhook ${result.orderId}: ${reason}`);
-    // SADAD won't retry (it must always get 200), so staff are told instead.
-    alertUnrecordedPayment(result, "webhook", `order store error: ${reason}`);
+    // SADAD won't retry (it must always get 200), so staff are told instead —
+    // unless the callback recorded this very payment meanwhile (its caller
+    // holds the email claim; a landed write of our own sent no emails).
+    const current = await readOrder(result.orderId).catch(() => null);
+    if (!current || !hasPaymentEvent(current.order, result, "callback")) {
+      alertUnrecordedPayment(result, "webhook", `order store error: ${reason}`);
+    }
   }
   return ack();
 }

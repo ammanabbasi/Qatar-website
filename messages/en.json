@@ -582,13 +582,14 @@
     "payButton": "Pay {total} securely",
     "payOpening": "Opening secure payment…",
     "payHint": "You'll pay on SADAD's secure page and come straight back here.",
-    "payTotalChanged": "A price changed since this page loaded. The new total is {total}. Check it, then pay.",
+    "payTotalChanged": "A price changed since this page loaded. The new total is {total}. Refresh the page to see the new prices, then pay.",
     "payUnavailable": "Online payment isn't available right now. You can still send your order on WhatsApp.",
     "payFailedToStart": "We couldn't open the payment page. Try again, or send your order on WhatsApp.",
     "payNeedsPricesError": "Some items in your cart are priced on WhatsApp, so this order can't be paid online.",
     "paymentUnknown": "We couldn't match that payment to an order. If you were charged, message us on WhatsApp and we'll sort it out straight away.",
     "paymentChecking": "We're confirming your payment with SADAD. A confirmation follows by email and WhatsApp shortly, so please don't pay again. If you were charged and hear nothing within the hour, message us on WhatsApp.",
-    "paymentCancelled": "Payment cancelled, and nothing was charged. Your cart is still here: try again, or order on WhatsApp and pay later."
+    "paymentCancelled": "Payment cancelled, and nothing was charged. Your cart is still here: try again, or order on WhatsApp and pay later.",
+    "paymentAlreadyPaid": "That order was already paid, so nothing was charged again and your cart has been cleared. The confirmation went to your email; for anything else, message us on WhatsApp."
   },
   "PpfInstall": {
     "eyebrow": "Instant quote",
@@ -909,6 +910,10 @@
   },
   "Order": {
     "metaTitle": "Your order",
+    "notFoundTitle": "We couldn't open this order page",
+    "notFoundMessage": "This link may be incomplete or out of date. If your payment went through, the confirmation email we sent you has a link to your order. Any questions, message us on WhatsApp and we'll help straight away.",
+    "notFoundWhatsApp": "Message us on WhatsApp",
+    "notFoundShop": "Back to the shop",
     "paidTitle": "Payment received. Thank you!",
     "paidDelivery": "Order {ref} is confirmed. We'll message you on WhatsApp to arrange the delivery time.",
     "paidPickup": "Order {ref} is confirmed. We'll message you on WhatsApp when it's ready to collect from our Mesaimeer showroom.",

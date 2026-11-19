@@ -17,7 +17,7 @@
  * memory; on a Vercel deployment a missing token is an error instead.
  */
 
-import { BlobPreconditionFailedError, get, put } from "@vercel/blob";
+import { BlobError, BlobPreconditionFailedError, get, list, put } from "@vercel/blob";
 import type { SadadResult } from "./sadad";
 
 export type Text = { en: string; ar: string };
@@ -122,13 +122,19 @@ export type Order = {
     error?: string;
     claimedAt?: string;
   };
+  /**
+   * Ids of the latest writes (newest last): an update whose write landed but
+   * whose reply was lost finds its own id here and keeps its answer, rather
+   * than mistaking the stored change for someone else's.
+   */
+  writes?: string[];
 };
 
 /** How long a claim to send the paid emails stands before another event may retry. */
 const EMAIL_CLAIM_MS = 10 * 60 * 1000;
 
 /** Why a payment needs a person to look at it. */
-export type ReviewReason = "amount_mismatch" | "paid_twice" | "test_payment";
+export type ReviewReason = "amount_mismatch" | "paid_twice" | "test_payment" | "paid_other_attempt";
 
 /** A paid order still owes the staff alert, or the receipt when the customer gave an email. */
 export function paidEmailsMissing(o: Order): boolean {
@@ -176,6 +182,9 @@ function pathFor(id: string): string {
 const memory = new Map<string, { body: string; etag: string }>();
 let memoryEtag = 0;
 
+/** Unit tests only (in-memory store): the next write is stored but reports a lost race, as when its reply is lost. */
+export const testHooks = { loseNextWriteReply: false };
+
 function inMemoryMode(): boolean {
   if (process.env.BLOB_READ_WRITE_TOKEN) return false;
   if (process.env.VERCEL) {
@@ -185,6 +194,19 @@ function inMemoryMode(): boolean {
 }
 
 class EtagMismatch extends Error {}
+
+/**
+ * Two conditional writes reaching one blob at the same instant: the store
+ * answers "The conditional request cannot succeed due to a conflicting
+ * operation against this resource" (S3's ConditionalRequestConflict) instead
+ * of an ETag mismatch, and @vercel/blob does not retry it. It is the same lost
+ * race, so it is retried the same way. Seen 2026-11-19 with a callback and a
+ * webhook for one payment written together: without this the customer was
+ * sent to "checking your payment" and staff got a false "not recorded" alert.
+ */
+export function isWriteConflict(err: unknown): boolean {
+  return err instanceof BlobError && /conflicting operation|conditional request cannot succeed/i.test(err.message);
+}
 
 async function readRaw(path: string): Promise<{ body: string; etag: string } | null> {
   if (inMemoryMode()) return memory.get(path) ?? null;
@@ -198,11 +220,18 @@ async function readRaw(path: string): Promise<{ body: string; etag: string } | n
 }
 
 async function writeRaw(path: string, body: string, ifMatch: string | null): Promise<void> {
+  // An empty ETag would be dropped by the SDK, turning the conditional write
+  // into a blind overwrite (last writer wins, a paid status could be lost).
+  if (ifMatch !== null && !ifMatch) throw new Error(`order store returned no ETag for ${path}`);
   if (inMemoryMode()) {
     const current = memory.get(path);
     if (ifMatch === null ? current : current?.etag !== ifMatch) throw new EtagMismatch();
     memoryEtag += 1;
     memory.set(path, { body, etag: `m${memoryEtag}` });
+    if (testHooks.loseNextWriteReply) {
+      testHooks.loseNextWriteReply = false;
+      throw new EtagMismatch();
+    }
     return;
   }
   try {
@@ -214,7 +243,7 @@ async function writeRaw(path: string, body: string, ifMatch: string | null): Pro
       ...(ifMatch === null ? { allowOverwrite: false } : { allowOverwrite: true, ifMatch }),
     });
   } catch (err) {
-    if (err instanceof BlobPreconditionFailedError) throw new EtagMismatch();
+    if (err instanceof BlobPreconditionFailedError || isWriteConflict(err)) throw new EtagMismatch();
     throw err;
   }
 }
@@ -233,28 +262,144 @@ export async function readOrder(id: string): Promise<{ order: Order; etag: strin
   return { order: JSON.parse(raw.body) as Order, etag: raw.etag };
 }
 
+const UPDATE_ATTEMPTS = 8;
+
 /**
  * Read-modify-write with retries. `change` returns the next order (or null
  * for "no change") plus whatever the caller needs to know; only the attempt
- * that actually wrote decides that answer.
+ * that actually wrote decides that answer. After a lost race the next attempt
+ * waits a random, growing moment, so writers that collided don't collide again.
  */
 async function updateOrder<T>(
   id: string,
   change: (order: Order) => { next: Order | null; info: T },
 ): Promise<{ order: Order; changed: boolean; info: T } | null> {
-  for (let attempt = 0; attempt < 5; attempt++) {
+  // Writes this call attempted that answered "ETag mismatch". One of them may
+  // still have landed: the SDK retries a PUT whose reply was lost, and the
+  // retry then meets the ETag its own first try created.
+  const tried: { write: string; info: T }[] = [];
+  for (let attempt = 0; attempt < UPDATE_ATTEMPTS; attempt++) {
+    if (attempt > 0) await new Promise((r) => setTimeout(r, 25 + Math.random() * 100 * attempt));
     const current = await readOrder(id);
     if (!current) return null;
+    const landed = tried.find((t) => current.order.writes?.includes(t.write));
+    if (landed) return { order: current.order, changed: true, info: landed.info };
     const { next, info } = change(structuredClone(current.order));
     if (!next) return { order: current.order, changed: false, info };
+    const write = newWriteId();
+    next.writes = [...(current.order.writes ?? []), write].slice(-10);
     try {
       await writeRaw(pathFor(id), JSON.stringify(next), current.etag);
       return { order: next, changed: true, info };
     } catch (err) {
       if (!(err instanceof EtagMismatch)) throw err;
+      tried.push({ write, info });
     }
   }
   throw new Error(`order ${id}: too many concurrent updates`);
+}
+
+function newWriteId(): string {
+  const bytes = new Uint8Array(6);
+  crypto.getRandomValues(bytes);
+  return Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+/** Every stored attempt (order id) of one cart or booking reference. */
+async function attemptIds(ref: string): Promise<string[]> {
+  const base = prefix();
+  const start = `${base}${ref}-`;
+  const toId = (path: string) => path.slice(base.length).replace(/\.json$/, "");
+  if (inMemoryMode()) return [...memory.keys()].filter((k) => k.startsWith(start)).map(toId);
+  const ids: string[] = [];
+  let cursor: string | undefined;
+  do {
+    const page = await list({ prefix: start, cursor, limit: 100 });
+    ids.push(...page.blobs.map((b) => toId(b.pathname)));
+    cursor = page.hasMore ? page.cursor : undefined;
+  } while (cursor);
+  return ids.filter(isOrderId);
+}
+
+/** Paid, or parked for a payment check (money may have moved). */
+const paidOrChecked = (o: Order) => o.status === "paid" || o.status === "review";
+
+/**
+ * Another attempt of the same cart, by the same customer mobile (a 4-character
+ * reference alone can belong to two customers), that is paid or under a
+ * payment check. Each retry of a payment gets its own order id, so a second
+ * charge across attempts is only visible here.
+ */
+export async function findOtherPaidAttempt(ref: string, mobile: string, exceptId?: string): Promise<Order | null> {
+  for (const id of await attemptIds(ref)) {
+    if (id === exceptId) continue;
+    const found = (await readOrder(id))?.order;
+    if (found && found.customer.mobile === mobile && paidOrChecked(found)) return found;
+  }
+  return null;
+}
+
+const PPF_TWIN_WINDOW_MS = 7 * 24 * 60 * 60 * 1000;
+
+/**
+ * PPF bookings get a new reference on every submission, so a retried booking
+ * is found by what it books instead: the same package (body, coverage, film)
+ * for the same mobile, written in the last 7 days, paid or under a check.
+ */
+export async function findOtherPaidPpfBooking(order: Order): Promise<Order | null> {
+  if (order.kind !== "ppf" || !order.ppf) return null;
+  const { body, coverage, film } = order.ppf;
+  for (const id of await recentIds("PPF-", Date.now() - PPF_TWIN_WINDOW_MS)) {
+    if (id === order.id) continue;
+    const o = (await readOrder(id))?.order;
+    if (
+      o?.kind === "ppf" &&
+      o.customer.mobile === order.customer.mobile &&
+      o.ppf?.body === body &&
+      o.ppf.coverage === coverage &&
+      o.ppf.film === film &&
+      paidOrChecked(o)
+    ) {
+      return o;
+    }
+  }
+  return null;
+}
+
+/** Ids of orders under a path start, last written at or after `sinceMs` (all of them in memory mode). */
+async function recentIds(start: string, sinceMs: number): Promise<string[]> {
+  const base = prefix();
+  const from = `${base}${start}`;
+  const toId = (path: string) => path.slice(base.length).replace(/\.json$/, "");
+  if (inMemoryMode()) return [...memory.keys()].filter((k) => k.startsWith(from)).map(toId);
+  const ids: string[] = [];
+  let cursor: string | undefined;
+  do {
+    const page = await list({ prefix: from, cursor, limit: 1000 });
+    for (const b of page.blobs) if (b.uploadedAt.getTime() >= sinceMs) ids.push(toId(b.pathname));
+    cursor = page.hasMore ? page.cursor : undefined;
+  } while (cursor);
+  return ids.filter(isOrderId);
+}
+
+/** Adds a flag once; true only for the caller that added it. */
+export async function flagOrder(id: string, flag: string): Promise<boolean> {
+  const out = await updateOrder(id, (order) =>
+    order.flags.includes(flag)
+      ? { next: null, info: false }
+      : { next: { ...order, flags: [...order.flags, flag] }, info: true },
+  );
+  return Boolean(out?.changed && out.info);
+}
+
+/** The order already holds this SADAD result: reported by either channel, or only by `from`. */
+export function hasPaymentEvent(order: Order, result: SadadResult, from?: PaymentEvent["source"]): boolean {
+  return order.events.some(
+    (e) =>
+      e.outcome === result.outcome &&
+      e.transactionNumber === result.transactionNumber &&
+      (!from || e.source === from),
+  );
 }
 
 export type PaymentUpdate = {
@@ -311,9 +456,7 @@ export async function applyPaymentResult(
     }
 
     // The same transaction, already reported by the other channel.
-    const seenBefore = order.events.some(
-      (e) => e.outcome === result.outcome && e.transactionNumber === result.transactionNumber,
-    );
+    const seenBefore = hasPaymentEvent(order, result);
     order.events = [
       ...order.events,
       {

@@ -9,7 +9,7 @@ import { Button, ButtonLink, buttonClasses } from "@/components/ui/Button";
 import { AlertIcon, CheckIcon, ClockIcon } from "@/components/ui/Icons";
 import { WhatsAppIcon } from "@/components/cta/WhatsAppIcon";
 import { completePaidOrder } from "@/lib/cart";
-import { formatPercent, formatQar } from "@/lib/pricing";
+import { formatNumber, formatPercent, formatQar } from "@/lib/pricing";
 import { trackPurchase, type GaItem } from "@/lib/analytics";
 
 /** What the order page shows — built on the server from the stored order. */
@@ -153,7 +153,7 @@ export function OrderResult({ order }: { order: OrderView }) {
                     <li key={l.key} className="flex items-baseline justify-between gap-3">
                       <span className="text-(--color-text)">
                         {l.name}
-                        <span className="text-(--color-text-muted)"> × {l.qty}</span>
+                        <span className="text-(--color-text-muted)"> × {formatNumber(l.qty, locale)}</span>
                       </span>
                       <span className="shrink-0 tabular-nums text-(--color-text)">{qar(l.lineQar)}</span>
                     </li>

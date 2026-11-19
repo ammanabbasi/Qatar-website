@@ -61,7 +61,7 @@ import {
 import { readBookingAttribution } from "@/lib/attribution";
 import type { PaymentsVisibility } from "@/lib/payments/config";
 import { submitToSadad, useOnlinePayments, type SadadFormPayload } from "@/lib/payments/client";
-import { isEmail } from "@/lib/payments/validate";
+import { isEmail, normaliseQatarMobile, toLatinDigits } from "@/lib/payments/validate";
 
 type L = "en" | "ar";
 type PayChoice = "online" | "handover";
@@ -289,6 +289,9 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
   const [touched, setTouched] = useState<Partial<Record<FieldKey, boolean>>>({});
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
+  // The state above drives the spinner; this ref stops a second submit (Enter
+  // in a field) in the moment before React re-renders with it.
+  const sendingRef = useRef(false);
   const [result, setResult] = useState<Result | null>(null);
   const startedAt = useRef(0);
   const quoteStartTracked = useRef(false);
@@ -604,7 +607,10 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
   // from the back/forward cache with the submit button still spinning.
   useEffect(() => {
     const onShow = (e: PageTransitionEvent) => {
-      if (e.persisted) setSending(false);
+      if (e.persisted) {
+        sendingRef.current = false;
+        setSending(false);
+      }
     };
     window.addEventListener("pageshow", onShow);
     return () => window.removeEventListener("pageshow", onShow);
@@ -650,10 +656,9 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
         const y = Number(v.year);
         return !Number.isInteger(y) || y < 1990 || y > maxYear ? t("errYear", { max: maxYear }) : undefined;
       }
-      case "mobile": {
-        const digits = v.mobile.replace(/[\s()-]/g, "").replace(/^(\+|00)?974/, "");
-        return /^[3567]\d{7}$/.test(digits) ? undefined : t("errMobile");
-      }
+      case "mobile":
+        // Same rule as the booking route, Arabic-keyboard digits included.
+        return normaliseQatarMobile(v.mobile) ? undefined : t("errMobile");
       case "email":
         // SADAD emails the payment receipt, so paying now needs an address.
         if (payNow && !v.email.trim()) return t("emailRequiredForPay");
@@ -670,7 +675,10 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
   const blur = (k: FieldKey) => () => setTouched((s) => ({ ...s, [k]: true }));
   const aria = (k: FieldKey, hasHint = false) => {
     const err = shownError(k);
+    // The visual asterisk is aria-hidden and the form is noValidate, so say it here.
+    const required = (["make", "model", "name", "mobile", "consent"] as FieldKey[]).includes(k) || (k === "email" && payNow);
     return {
+      "aria-required": required ? true : undefined,
       "aria-invalid": err ? true : undefined,
       "aria-describedby": err ? `ppf-${k}-error` : hasHint ? `ppf-${k}-hint` : undefined,
     };
@@ -711,6 +719,8 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
+    // A booking already on its way (or leaving for SADAD) must not go twice.
+    if (sendingRef.current) return;
     setSubmitted(true);
     const firstBad = FORM_FIELDS.find((k) => errorFor(k));
     if (firstBad) {
@@ -725,6 +735,7 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
       return;
     }
     if (!body) return;
+    sendingRef.current = true;
     setSending(true);
     setSubmitError(null);
     const payload = {
@@ -762,6 +773,7 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
       };
       // Fixable on this form: keep the customer's answers instead of failing the booking.
       if (out.error === "price_changed" || out.error === "invalid_fields") {
+        sendingRef.current = false;
         setSending(false);
         setSubmitError(out.error === "price_changed" ? t("priceChanged") : t("errForm"));
         window.setTimeout(() => submitErrorRef.current?.scrollIntoView({ block: "center" }), 40);
@@ -790,6 +802,7 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
         next = { ...next, paymentUnavailable: true };
       }
     }
+    sendingRef.current = false;
     setSending(false);
     setResult(next);
   }
@@ -1401,7 +1414,7 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
                           inputMode="numeric"
                           placeholder={t("yearPlaceholder")}
                           value={form.year}
-                          onChange={(e) => set("year", e.target.value.replace(/\D/g, "").slice(0, 4))}
+                          onChange={(e) => set("year", toLatinDigits(e.target.value).replace(/\D/g, "").slice(0, 4))}
                           className={`${inputCls} ltr-nums w-24 shrink-0 sm:w-full ${plainBorder}`}
                         />
                         <div className="hide-scrollbar flex items-center gap-1 overflow-x-auto sm:hidden">
@@ -1903,7 +1916,7 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
             <div className="col-span-2">
               <Field id="ppf-year" label={t("year")} optionalLabel={t("optional")} error={shownError("year")}>
                 <div className="flex items-center gap-2">
-                  <input id="ppf-year" inputMode="numeric" placeholder={t("yearPlaceholder")} value={form.year} onChange={(e) => set("year", e.target.value.replace(/\D/g, "").slice(0, 4))} onBlur={blur("year")} className={`${inputCls} ltr-nums w-28 shrink-0 sm:w-40 ${borderFor("year")}`} {...aria("year")} />
+                  <input id="ppf-year" inputMode="numeric" placeholder={t("yearPlaceholder")} value={form.year} onChange={(e) => set("year", toLatinDigits(e.target.value).replace(/\D/g, "").slice(0, 4))} onBlur={blur("year")} className={`${inputCls} ltr-nums w-28 shrink-0 sm:w-40 ${borderFor("year")}`} {...aria("year")} />
                   <div className="hide-scrollbar flex items-center gap-1.5 overflow-x-auto">
                     {QUICK_YEARS.map((yr) => (
                       <button

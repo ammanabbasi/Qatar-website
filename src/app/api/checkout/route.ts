@@ -10,7 +10,7 @@
 
 import { AREA_OTHER, findArea } from "@/data/qatarAreas";
 import { callbackOrigin, sadadConfig } from "@/lib/payments/config";
-import { createOrder, newOrderId, type Order } from "@/lib/payments/orders";
+import { createOrder, findOtherPaidAttempt, newOrderId, type Order } from "@/lib/payments/orders";
 import { buildSadadCheckoutForm, sadadTxnDate } from "@/lib/payments/sadad";
 import { priceShopCart } from "@/lib/payments/shop";
 import { isEmail, normaliseQatarMobile, sadadMobile, str } from "@/lib/payments/validate";
@@ -75,6 +75,12 @@ export async function POST(request: Request) {
   }
 
   const ref = typeof f.ref === "string" && CART_REF.test(f.ref) ? f.ref : newCartRef();
+  // A customer who paid but never reached the order page (tab closed, signal
+  // lost) still has the full cart: an earlier attempt of it, by the same
+  // mobile, that SADAD paid means this one must not be charged again.
+  if (ref === f.ref && (await findOtherPaidAttempt(ref, mobile!).catch(() => null))) {
+    return json(409, { ok: false, error: "already_paid" });
+  }
   const id = newOrderId(ref);
   const area =
     fulfilment === "pickup"

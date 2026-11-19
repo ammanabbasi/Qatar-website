@@ -78,6 +78,44 @@ export function isValidOrderToken(orderId: string, token: unknown): boolean {
   return a.length === b.length && timingSafeEqual(a, b);
 }
 
+/** The order page's plain address (no key in it). */
 export function orderPagePath(locale: "en" | "ar", orderId: string): string {
-  return `/${locale}/b2c/order/${encodeURIComponent(orderId)}?t=${orderToken(orderId)}`;
+  return `/${locale}/b2c/order/${encodeURIComponent(orderId)}`;
+}
+
+/** The signed link for emails: /api/orders/open hands the key over as the cookie (see redirectToOrderPage). */
+export function orderLinkPath(locale: "en" | "ar", orderId: string): string {
+  return `/api/orders/open?l=${locale}&id=${encodeURIComponent(orderId)}&t=${orderToken(orderId)}`;
+}
+
+/** Holds one order page's key in the customer's browser (HttpOnly, never seen by scripts). */
+export function orderCookieName(orderId: string): string {
+  return `abk_order_${orderId}`;
+}
+
+const ORDER_COOKIE_MAX_AGE_S = 90 * 24 * 60 * 60;
+
+/**
+ * Hands the order page's key over as a private cookie, then sends the browser
+ * to the order page with the key in the address plus `c=1` ("the cookie was
+ * offered"). A browser that kept the cookie is redirected at once to the
+ * page's plain address, so the key leaves the address bar: not in analytics
+ * page or referrer URLs (Google tracks the previous address itself), the
+ * browser history, a screenshot or a shared link. A browser that blocks
+ * cookies still gets its order page, with the key left in the address.
+ */
+export function redirectToOrderPage(origin: string, locale: "en" | "ar", orderId: string): Response {
+  const location = new URL(`${orderPagePath(locale, orderId)}?t=${orderToken(orderId)}&c=1`, origin);
+  const cookie = [
+    `${orderCookieName(orderId)}=${orderToken(orderId)}`,
+    "Path=/",
+    `Max-Age=${ORDER_COOKIE_MAX_AGE_S}`,
+    "HttpOnly",
+    "SameSite=Lax",
+    ...(location.protocol === "https:" ? ["Secure"] : []),
+  ].join("; ");
+  return new Response(null, {
+    status: 303,
+    headers: { Location: location.toString(), "Set-Cookie": cookie, "Cache-Control": "no-store" },
+  });
 }

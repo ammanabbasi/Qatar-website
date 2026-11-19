@@ -20,7 +20,7 @@
 import nodemailer from "nodemailer";
 import { SITE } from "@/lib/constants";
 import { formatPercent, formatQar } from "@/lib/pricing";
-import { orderPagePath } from "./config";
+import { orderLinkPath } from "./config";
 import { recordEmails, type Order, type ReviewReason } from "./orders";
 import { sadadTxnDate } from "./sadad";
 
@@ -64,22 +64,41 @@ function mailer() {
   return {
     from: `"ABK Trading & Service" <${user}>`,
     to: process.env.ORDER_EMAIL_TO?.trim() || SITE.email,
-    /** Sends on the first port that connects; an SMTP-level rejection is not retried. */
+    /**
+     * Sends on the first port that connects. A temporary failure (no
+     * connection, or a 4xx "try again later" reply) is tried again after 2 s
+     * and 5 s while that fits in about 15 s; a permanent rejection (wrong
+     * password, unknown address) is not.
+     */
     async send(message: MailMessage): Promise<void> {
-      let lastError: unknown;
-      for (const { port, transport } of transports) {
-        try {
-          await transport.sendMail(message);
-          return;
-        } catch (err) {
-          lastError = err;
-          if (!isConnectionError(err)) break;
-          console.warn(`[orders] SMTP port ${port} failed (${errorText(err)}); trying the next port`);
+      const deadline = Date.now() + 15_000;
+      for (let round = 0; ; round++) {
+        let lastError: unknown;
+        for (const { port, transport } of transports) {
+          try {
+            await transport.sendMail(message);
+            return;
+          } catch (err) {
+            lastError = err;
+            if (!isConnectionError(err)) break;
+            console.warn(`[orders] SMTP port ${port} failed (${errorText(err)}); trying the next port`);
+          }
         }
+        const wait = SMTP_RETRY_WAITS_MS[round];
+        if (wait === undefined || !isTemporaryFailure(lastError) || Date.now() + wait > deadline) throw lastError;
+        console.warn(`[orders] SMTP temporary failure (${errorText(lastError)}); retrying in ${wait / 1000} s`);
+        await new Promise((r) => setTimeout(r, wait));
       }
-      throw lastError;
     },
   };
+}
+
+const SMTP_RETRY_WAITS_MS = [2_000, 5_000];
+
+/** Worth another try shortly: the server was unreachable, or answered 4xx (busy, rate limit). */
+function isTemporaryFailure(err: unknown): boolean {
+  const code = (err as { responseCode?: number })?.responseCode;
+  return isConnectionError(err) || (typeof code === "number" && code >= 400 && code < 500);
 }
 
 function isConnectionError(err: unknown): boolean {
@@ -182,8 +201,15 @@ export async function sendOrderEmails(
   }
 
   // Record a failure; a clean run clears an error an earlier attempt left.
-  if (errors.length > 0) await markEmails(order.id, { error: errors.join("; ").slice(0, 300) });
-  else if (order.emails.error) await markEmails(order.id, { error: undefined });
+  // A failed paid email also gives up its claim, so SADAD's other notification
+  // for this payment (usually seconds later) retries it straight away instead
+  // of waiting out the 10-minute claim.
+  if (errors.length > 0) {
+    await markEmails(order.id, {
+      error: errors.join("; ").slice(0, 300),
+      ...(event === "paid" ? { claimedAt: undefined } : {}),
+    });
+  } else if (order.emails.error) await markEmails(order.id, { error: undefined });
 }
 
 /** Records email outcomes; one retry, because a lost record could repeat an email later. */
@@ -237,6 +263,43 @@ export async function sendUnmatchedPaymentAlert(
     });
   } catch (err) {
     console.error(`[orders] EMAIL FAILED (unrecorded payment ${result.orderId}): ${errorText(err)}`);
+  }
+}
+
+/**
+ * A "paid" result for one of our orders whose signature did not verify, and
+ * no verified copy followed. Either someone forged it, or SADAD changed how
+ * it signs results — then real payments stop being recorded. The order was
+ * not changed; the SADAD panel decides which it is.
+ */
+export async function sendUnverifiedResultAlert(
+  result: { orderId: string; transactionNumber: string; amountQar: number | null; sandbox: boolean },
+  source: "callback" | "webhook",
+): Promise<void> {
+  const m = mailer();
+  if (!m) {
+    console.error(`[orders] EMAIL NOT SENT (SMTP_PASS is not set): unverified result ${result.orderId}`);
+    return;
+  }
+  const rows: Row[] = [
+    ["Order ID (SADAD)", result.orderId],
+    ["Transaction (as claimed)", result.transactionNumber || "missing"],
+    ["Amount (as claimed)", result.amountQar === null ? "missing" : qar2(result.amountQar)],
+    ["Reported by", source],
+  ];
+  const subject = `CHECK PAYMENT ${result.orderId}: a payment result the website could not verify`;
+  const headline =
+    "A message claiming this order was paid arrived, but its SADAD signature did not check out, so the website did NOT mark the order paid. Look for the transaction in the SADAD panel. If it is there, the payment is real: fulfil the order from the SADAD panel details and tell the website developer, because SADAD may have changed how it signs payments. If it is not there, ignore this email.";
+  try {
+    await m.send({
+      from: m.from,
+      to: m.to,
+      subject,
+      text: `${headline}\n\n${textBlock(rows)}`,
+      html: htmlShell(subject, `<p style="margin:0 0 16px">${esc(headline)}</p>${htmlTable(rows)}`),
+    });
+  } catch (err) {
+    console.error(`[orders] EMAIL FAILED (unverified result ${result.orderId}): ${errorText(err)}`);
   }
 }
 
@@ -308,6 +371,13 @@ const REVIEW_COPY: Record<ReviewReason, { subject: string; headline: string; amo
       "SADAD confirmed another successful payment for this order, which was already paid. The customer may have been charged twice: check both transactions in the SADAD panel and refund the extra one.",
     amountLabel: "Second payment amount",
     txnLabel: "Second payment transaction",
+  },
+  paid_other_attempt: {
+    subject: "paid in two attempts (possible double charge)",
+    headline:
+      "SADAD confirmed this payment, and another attempt by the same customer is also paid or under a payment check (for a cart: the same order reference; for a PPF booking: the same package and mobile within the last 7 days, under a different reference). The customer may have been charged twice: find both transactions in the SADAD panel (search by this mobile number or reference) and refund the extra one. Two separate bookings, such as two different cars, need no refund.",
+    amountLabel: "This payment amount",
+    txnLabel: "This payment transaction",
   },
   test_payment: {
     subject: "a TEST payment on the live site (no money moved)",
@@ -512,7 +582,7 @@ function customerEmail(order: Order): Mail {
   const contact = ar
     ? `أسئلة؟ راسلنا على واتساب ${SITE.phone} أو ردّ على هذا البريد.`
     : `Questions? WhatsApp us on ${SITE.phone} or reply to this email.`;
-  const link = `${SITE.url}${orderPagePath(l, order.id)}`;
+  const link = `${SITE.url}${orderLinkPath(l, order.id)}`;
   const linkLabel = ar ? "عرض طلبك" : "View your order";
 
   const text = [greeting, "", intro, "", textBlock(rows), "", policy, "", `${linkLabel}: ${link}`, "", contact].join("\n");

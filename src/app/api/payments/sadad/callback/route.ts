@@ -3,18 +3,20 @@
  * browser after the hosted payment page (a form POST, not JSON).
  *
  * A verified result updates the order and the browser is redirected (303,
- * so a refresh never re-posts) to the order page, whose link is signed so
- * only this customer can open it. An unverified result changes nothing and
- * gets a neutral "we're confirming your payment" notice instead: handing out
- * the signed link for any posted ORDERID would open any customer's order page.
+ * so a refresh never re-posts) to the order page, with that page's key as a
+ * private cookie so only this customer can open it. An unverified result
+ * changes nothing and gets a neutral "we're confirming your payment" notice
+ * instead: handing out the key for any posted ORDERID would open any
+ * customer's order page.
  */
 
-import { alertUnrecordedPayment, notifyPaymentUpdate } from "@/lib/payments/notify";
-import { callbackOrigin, orderPagePath, sadadConfig } from "@/lib/payments/config";
-import { applyPaymentResult, isOrderId, readOrder, type Order } from "@/lib/payments/orders";
+import { alertUnrecordedPayment, alertUnverifiedPaid, notifyPaymentUpdate } from "@/lib/payments/notify";
+import { callbackOrigin, redirectToOrderPage, sadadConfig } from "@/lib/payments/config";
+import { applyPaymentResult, hasPaymentEvent, isOrderId, readOrder, type Order } from "@/lib/payments/orders";
 import { parseSadadCallback, verifySadadChecksum } from "@/lib/payments/sadad";
 
-export const maxDuration = 30;
+// Room for the emails sent after the response (SMTP retries, the unverified-result grace period).
+export const maxDuration = 60;
 
 async function readFields(request: Request): Promise<Record<string, string>> {
   const fields: Record<string, string> = {};
@@ -54,6 +56,7 @@ export async function POST(request: Request) {
 
   let order: Order | null = null;
   let storeFailed = false;
+  let locale: Order["locale"] = "en";
   if (isOrderId(result.orderId)) {
     try {
       if (verified) {
@@ -63,27 +66,38 @@ export async function POST(request: Request) {
         if (!update) alertUnrecordedPayment(result, "callback", "order not found");
       } else {
         order = (await readOrder(result.orderId))?.order ?? null;
+        if (order) alertUnverifiedPaid(result, "callback");
       }
     } catch (err) {
       storeFailed = true;
       const reason = err instanceof Error ? err.message : String(err);
       console.error(`[sadad] callback ${result.orderId}: ${reason}`);
-      if (verified) alertUnrecordedPayment(result, "callback", `order store error: ${reason}`);
+      if (verified) {
+        const current = (await readOrder(result.orderId).catch(() => null))?.order ?? null;
+        if (current) locale = current.locale;
+        // Recorded meanwhile (by the webhook, or by this call's own write whose
+        // reply was lost): the order page shows the payment. Not recorded: no
+        // order page — it could offer "Try again" to someone just charged — but
+        // the "confirming your payment, don't pay again" notice.
+        if (current && hasPaymentEvent(current, result)) order = current;
+        // Staff stand down only when the webhook recorded it: its caller holds
+        // the email claim. A landed write of our own sent no emails.
+        if (!current || !hasPaymentEvent(current, result, "webhook")) {
+          alertUnrecordedPayment(result, "callback", `order store error: ${reason}`);
+        }
+      }
     }
   } else if (verified) {
     alertUnrecordedPayment(result, "callback", "not a website order id");
   }
 
-  const locale = order?.locale ?? "en";
-  const target =
-    order && verified
-      ? orderPagePath(order.locale, order.id)
-      : order || storeFailed
-        ? `/${locale}/b2c/cart?payment=checking`
-        : "/en/b2c/cart?payment=unknown";
   // Back onto the canonical site (the domain registered with SADAD), whatever
   // host or proxy the POST came in through.
-  return Response.redirect(new URL(target, callbackOrigin(request)), 303);
+  const origin = callbackOrigin(request);
+  if (order && verified) return redirectToOrderPage(origin, order.locale, order.id);
+  const target =
+    order || storeFailed ? `/${order?.locale ?? locale}/b2c/cart?payment=checking` : "/en/b2c/cart?payment=unknown";
+  return Response.redirect(new URL(target, origin), 303);
 }
 
 /** Someone opening the URL directly: nothing to show here. */

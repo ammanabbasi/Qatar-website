@@ -234,3 +234,123 @@ test("paid emails: no customer email means the staff alert alone settles them", 
   const later = await applyPaymentResult(result(id, "pending", 25, "SD3"), "webhook");
   assert.equal(later?.sendPaidEmails, false);
 });
+
+test("paid emails: a released claim (failed send) lets the other channel retry at once", async () => {
+  const { recordEmails } = await import("../src/lib/payments/orders.ts");
+  const id = newOrderId("ABK-RRRR");
+  await createOrder(order(id, 40));
+  const first = await applyPaymentResult(result(id, "paid", 40, "SD9"), "callback");
+  assert.equal(first?.sendPaidEmails, true);
+  // The send failed: sendOrderEmails records the error and gives the claim back.
+  await recordEmails(id, { error: "shop: connection refused", claimedAt: undefined });
+  const stored = await readOrder(id);
+  assert.equal(stored?.order.emails.claimedAt, undefined);
+  // The webhook for the same payment, seconds later, takes the retry.
+  const webhook = await applyPaymentResult(result(id, "paid", 40, "SD9"), "webhook");
+  assert.equal(webhook?.sendPaidEmails, true);
+  assert.equal(webhook?.newlyPaid, false);
+  assert.equal(webhook?.review, null);
+});
+
+test("hasPaymentEvent: the same outcome and transaction from either channel", async () => {
+  const { hasPaymentEvent } = await import("../src/lib/payments/orders.ts");
+  const id = newOrderId("ABK-HHHH");
+  await createOrder(order(id, 15));
+  await applyPaymentResult(result(id, "paid", 15, "SD10"), "webhook");
+  const stored = (await readOrder(id))!.order;
+  assert.equal(hasPaymentEvent(stored, result(id, "paid", 15, "SD10")), true);
+  assert.equal(hasPaymentEvent(stored, result(id, "paid", 15, "SD11")), false);
+  assert.equal(hasPaymentEvent(stored, result(id, "failed", 15, "SD10")), false);
+});
+
+test("store write conflicts are recognised as a lost race, other errors are not", async () => {
+  const { isWriteConflict } = await import("../src/lib/payments/orders.ts");
+  const { BlobError, BlobAccessError } = await import("@vercel/blob");
+  // The exact message the store returned on 2026-11-19 for two simultaneous writes.
+  const conflict = new BlobError("The conditional request cannot succeed due to a conflicting operation against this resource.");
+  assert.equal(isWriteConflict(conflict), true);
+  assert.equal(isWriteConflict(new BlobAccessError()), false);
+  assert.equal(isWriteConflict(new Error("conflicting operation")), false); // not from the store
+  assert.equal(isWriteConflict(null), false);
+});
+
+test("a write that landed but lost its reply keeps its answer (paid emails still go out)", async () => {
+  const { testHooks } = await import("../src/lib/payments/orders.ts");
+  const id = newOrderId("ABK-WWWW");
+  await createOrder(order(id, 60));
+  testHooks.loseNextWriteReply = true;
+  const out = await applyPaymentResult(result(id, "paid", 60, "SD20"), "callback");
+  assert.equal(testHooks.loseNextWriteReply, false); // the fault was injected
+  assert.equal(out?.newlyPaid, true);
+  assert.equal(out?.sendPaidEmails, true);
+  const stored = (await readOrder(id))!.order;
+  assert.equal(stored.status, "paid");
+  assert.equal(stored.events.length, 1); // recorded once, not twice
+});
+
+test("other attempts of a cart: a paid one by the same mobile is found, never itself or another customer's", async () => {
+  const { findOtherPaidAttempt } = await import("../src/lib/payments/orders.ts");
+  const mobile = "+97430838355"; // order() uses this mobile
+  const a = newOrderId("ABK-QQQQ");
+  let b = newOrderId("ABK-QQQQ");
+  while (b === a) b = newOrderId("ABK-QQQQ");
+  await createOrder(order(a, 30));
+  await createOrder(order(b, 30));
+  assert.equal(await findOtherPaidAttempt("ABK-QQQQ", mobile), null);
+  await applyPaymentResult(result(a, "paid", 30, "SD30"), "webhook");
+  assert.equal((await findOtherPaidAttempt("ABK-QQQQ", mobile, b))?.id, a);
+  assert.equal(await findOtherPaidAttempt("ABK-QQQQ", mobile, a), null); // b is unpaid
+  // The same 4-character reference from another customer is not this cart.
+  assert.equal(await findOtherPaidAttempt("ABK-QQQQ", "+97455551234", b), null);
+  assert.equal(await findOtherPaidAttempt("ABK-ZZZZ", mobile), null);
+});
+
+test("PPF: a paid booking of the same package by the same mobile is found; another package or mobile is not", async () => {
+  const { findOtherPaidPpfBooking } = await import("../src/lib/payments/orders.ts");
+  const label = { en: "", ar: "" };
+  const ppfOrder = (id: string, mobile: string, coverage = "front-end") =>
+    ({
+      ...order(id, 899),
+      kind: "ppf",
+      customer: { name: "Test", mobile, email: "" },
+      ppf: {
+        body: "sedan", bodyLabel: label, coverage, coverageLabel: label, film: "pro", filmLabel: label,
+        parts: [], car: "", existingFilm: "", preferredDate: "", priceQar: 899, isEstimate: false,
+      },
+    }) as Order;
+  const first = newOrderId("PPF-AAAA2");
+  const retry = newOrderId("PPF-BBBB3"); // a resubmitted booking gets a new reference
+  const stranger = newOrderId("PPF-CCCC4");
+  const otherPackage = newOrderId("PPF-DDDD5");
+  await createOrder(ppfOrder(first, "+97433334444"));
+  await createOrder(ppfOrder(retry, "+97433334444"));
+  await createOrder(ppfOrder(stranger, "+97455556666"));
+  await createOrder(ppfOrder(otherPackage, "+97433334444", "full-front"));
+  const read = async (id: string) => (await readOrder(id))!.order;
+  assert.equal(await findOtherPaidPpfBooking(await read(retry)), null);
+  await applyPaymentResult(result(first, "paid", 899, "SD40"), "webhook");
+  assert.equal((await findOtherPaidPpfBooking(await read(retry)))?.id, first);
+  assert.equal(await findOtherPaidPpfBooking(await read(stranger)), null);
+  assert.equal(await findOtherPaidPpfBooking(await read(otherPackage)), null);
+  assert.equal(await findOtherPaidPpfBooking(await read(first)), null); // never itself
+});
+
+test("hasPaymentEvent can ask which channel reported it", async () => {
+  const { hasPaymentEvent } = await import("../src/lib/payments/orders.ts");
+  const id = newOrderId("ABK-SSSS");
+  await createOrder(order(id, 20));
+  await applyPaymentResult(result(id, "paid", 20, "SD50"), "callback");
+  const stored = (await readOrder(id))!.order;
+  assert.equal(hasPaymentEvent(stored, result(id, "paid", 20, "SD50"), "callback"), true);
+  assert.equal(hasPaymentEvent(stored, result(id, "paid", 20, "SD50"), "webhook"), false);
+});
+
+test("flagOrder adds a flag once and reports only the first time", async () => {
+  const { flagOrder } = await import("../src/lib/payments/orders.ts");
+  const id = newOrderId("ABK-FFFF");
+  await createOrder(order(id, 5));
+  assert.equal(await flagOrder(id, "unverified_result"), true);
+  assert.equal(await flagOrder(id, "unverified_result"), false);
+  assert.deepEqual((await readOrder(id))!.order.flags, ["unverified_result"]);
+  assert.equal(await flagOrder("ABK-FFFF-2222", "x"), false); // unknown order
+});

@@ -13,6 +13,7 @@ import {
   MOBILE_MAX,
   NAME_MAX,
   NOTES_MAX,
+  completePaidOrder,
   markCartSent,
   switchLineVariant,
   updateCheckoutDetails,
@@ -240,6 +241,13 @@ export function CheckoutPanel({
     } catch {
       out = null;
     }
+    if (out?.error === "already_paid") {
+      // An earlier attempt of this cart was paid: start a fresh cart and say so
+      // (the reload shows the notice on the now-empty cart page).
+      completePaidOrder(orderRef);
+      window.location.replace(`/${locale}/b2c/cart?payment=paid`);
+      return;
+    }
     setPaying(false);
     switch (out?.error) {
       case "total_changed":
@@ -366,7 +374,7 @@ export function CheckoutPanel({
                   <div className="flex items-start justify-between gap-2">
                     <span className="font-semibold text-(--color-text) line-clamp-1">
                       {l.product.name[locale]}
-                      <span className="font-normal text-(--color-text-muted)"> × {l.qty}</span>
+                      <span className="font-normal text-(--color-text-muted)"> × {formatNumber(l.qty, locale)}</span>
                     </span>
                     <span className="shrink-0 font-bold tabular-nums text-(--color-text)">
                       {l.product.priceQar !== undefined

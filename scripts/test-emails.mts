@@ -65,7 +65,7 @@ test("paid shop order: staff alert with every fulfilment detail, plus the custom
   }
   assert.ok(customer, "customer gets a receipt");
   assert.equal(customer.subject, "Your ABK order ABK-7K3M is confirmed");
-  assert.ok(customer.html.includes("/en/b2c/order/ABK-7K3M-Q2ZD?t="), "receipt links to the order page");
+  assert.ok(customer.html.includes("/api/orders/open?l=en&amp;id=ABK-7K3M-Q2ZD&amp;t=") || customer.html.includes("/api/orders/open?l=en&id=ABK-7K3M-Q2ZD&t="), "receipt links to the order page through the key handoff");
   assert.ok(customer.html.includes("within 7 days"), "receipt states the returns policy");
   assert.ok(!customer.html.includes("gclid"), "receipt carries no tracking data");
   save("shop-paid-staff", shop.html);
@@ -173,4 +173,17 @@ test("payment checks say what to check, and a filled anti-bot field marks the bo
     "booked",
   );
   assert.match(flagged.shop.subject, /^\[Check: possible spam\] PPF booking PPF-AB2CD/);
+});
+
+test("a payment while another attempt of the order is paid asks staff to refund one", () => {
+  const other = renderOrderEmails(
+    shopOrder({
+      payment: { transactionNumber: "SD2", sandbox: false, paidAt: "2026-11-19T10:00:00.000Z", source: "webhook" },
+    }),
+    "review",
+    "paid_other_attempt",
+  );
+  assert.equal(other.customer, null);
+  assert.match(other.shop.subject, /^CHECK PAYMENT ABK-7K3M: paid in two attempts \(possible double charge\)/);
+  assert.ok(other.shop.text.includes("refund the extra one"));
 });

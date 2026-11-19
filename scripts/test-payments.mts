@@ -250,3 +250,25 @@ test("SADAD fields: every test-mode spelling counts as sandbox; control characte
   assert.equal(/[\r\n]/.test(forged.message), false);
   assert.equal(parseSadadCallback({ ...CALLBACK, RESPMSG: "a\nb" }).message, "a b");
 });
+
+test("Arabic-keyboard digits count as digits in a Qatar mobile", async () => {
+  const { normaliseQatarMobile, toLatinDigits } = await import("../src/lib/payments/validate.ts");
+  assert.equal(toLatinDigits("٠١٢٣٤٥٦٧٨٩"), "0123456789");
+  assert.equal(toLatinDigits("۰۱۲۳۴۵۶۷۸۹"), "0123456789");
+  assert.equal(normaliseQatarMobile("٣٠٨٣ ٨٣٥٥"), "+97430838355");
+  assert.equal(normaliseQatarMobile("+٩٧٤ ٥٥٥٥ ١٢٣٤"), "+97455551234");
+  assert.equal(normaliseQatarMobile("3083 8355"), "+97430838355");
+  assert.equal(normaliseQatarMobile("٢٠٨٣ ٨٣٥٥"), null); // must start 3, 5, 6 or 7
+  assert.equal(normaliseQatarMobile("٣٠٨٣"), null);
+});
+
+test("amounts with a thousands separator are read, odd formats are not guessed", () => {
+  const cb = (TXNAMOUNT: string) => parseSadadCallback({ ORDERID: "PPF-AB2CD-2345", transaction_status: "3", TXNAMOUNT }).amountQar;
+  assert.equal(cb("1,599.00"), 1599);
+  assert.equal(cb("1599.00"), 1599);
+  assert.equal(cb("12,345"), 12345);
+  assert.equal(cb("30,5"), null); // a decimal comma is not a thousands separator
+  assert.equal(cb("abc"), null);
+  assert.equal(cb(" "), null);
+  assert.equal(parseSadadWebhook({ websiteRefNo: "PPF-AB2CD-2345", transactionStatus: 3, txnAmount: 1599 }).amountQar, 1599);
+});

@@ -39,7 +39,8 @@ import { isEmail, normaliseQatarMobile, sadadMobile, str } from "@/lib/payments/
 const MAX = { short: 60, name: 80, notes: 500, clickId: 200 } as const;
 
 // Two webhook attempts of up to 12 s each, plus the pause between them.
-export const maxDuration = 30;
+// Room for the staff booking email sent after the response, alongside a slow Sheet save.
+export const maxDuration = 60;
 const ATTEMPT_TIMEOUT_MS = 12000;
 const RETRY_PAUSE_MS = 1500;
 
@@ -196,8 +197,14 @@ export async function POST(request: Request) {
   try {
     await createOrder(order);
     stored = true;
+    // Started now, alongside the Sheet save below (up to ~25 s when the Sheet
+    // is down), so the staff email keeps its time; after() waits for it.
+    after(sendOrderEmails(order, "booked"));
   } catch (err) {
     console.error(`[ppf-booking] could not store ${order.id}: ${err instanceof Error ? err.message : err}`);
+    // No stored order, nothing for SADAD to pay against: the customer is told
+    // to pay at handover, and the Sheet must say the same.
+    booking.payment = "handover";
   }
 
   const sheet = await saveToSheet(booking);
@@ -210,8 +217,6 @@ export async function POST(request: Request) {
       priceQar: quote.priceQar,
     });
   }
-
-  if (stored) after(() => sendOrderEmails(order, "booked"));
 
   if (payOnline && stored && config) {
     const sadad = buildSadadCheckoutForm({

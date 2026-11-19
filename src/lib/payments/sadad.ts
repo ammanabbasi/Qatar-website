@@ -280,8 +280,11 @@ function outcomeFromCode(code: unknown, fallbackStatus?: unknown): SadadOutcome 
 
 function amountOrNull(value: unknown): number | null {
   if (value === null || value === undefined || value === "") return null;
-  const n = Number(value);
-  return Number.isFinite(n) ? n : null;
+  // "1,599.00": a thousands separator would otherwise read as no amount and
+  // park every payment of QAR 1,000+ (most PPF packages) for a manual check.
+  const s = String(value).trim();
+  const n = Number(/^\d{1,3}(,\d{3})+(\.\d+)?$/.test(s) ? s.replace(/,/g, "") : s);
+  return s !== "" && Number.isFinite(n) ? n : null;
 }
 
 /** A short single-line string: control characters (a forged newline in a log line) become spaces. */
