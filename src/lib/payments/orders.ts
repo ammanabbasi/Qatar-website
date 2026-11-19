@@ -106,15 +106,42 @@ export type Order = {
   events: PaymentEvent[];
   flags: string[];
   /**
-   * shop/customer: when each email went out. claimedAt: when a caller took on
-   * sending the paid emails — a later SADAD event re-sends if they still
-   * haven't gone out 10 minutes after the claim (SMTP down, instance died).
+   * When each email went out. shop/customer: the PAID staff alert and the
+   * customer's receipt — each retried on its own until it has gone out.
+   * booked/review: the staff alerts for a new booking and for a payment to
+   * check, kept apart so they never count as the paid emails. claimedAt: when
+   * a caller took on sending the paid emails; a later SADAD event retries
+   * whatever is still missing 10 minutes after the claim (SMTP down, instance
+   * died).
    */
-  emails: { shop?: string; customer?: string; error?: string; claimedAt?: string };
+  emails: {
+    shop?: string;
+    customer?: string;
+    booked?: string;
+    review?: string;
+    error?: string;
+    claimedAt?: string;
+  };
 };
 
 /** How long a claim to send the paid emails stands before another event may retry. */
 const EMAIL_CLAIM_MS = 10 * 60 * 1000;
+
+/** Why a payment needs a person to look at it. */
+export type ReviewReason = "amount_mismatch" | "paid_twice" | "test_payment";
+
+/** A paid order still owes the staff alert, or the receipt when the customer gave an email. */
+export function paidEmailsMissing(o: Order): boolean {
+  return o.status === "paid" && (!o.emails.shop || (Boolean(o.customer.email) && !o.emails.customer));
+}
+
+/**
+ * The live site only takes live payments: a sandbox result there means a
+ * test key reached production, and must never release goods.
+ */
+function isLiveSite(): boolean {
+  return process.env.VERCEL_ENV === "production";
+}
 
 const ID_PATTERN = /^(ABK-[2-9A-HJKMNP-Z]{4}|PPF-[2-9A-HJKMNP-Z]{5})-[2-9A-HJKMNP-Z]{4}$/;
 
@@ -234,11 +261,16 @@ export type PaymentUpdate = {
   order: Order;
   /** True for exactly one caller: the one whose write turned the order paid. */
   newlyPaid: boolean;
-  /** True when this result put the order into "review". */
-  newlyFlagged: boolean;
   /**
-   * This caller holds the claim to send the paid emails: the first time, or
-   * a retry because a claim older than 10 minutes never produced them.
+   * Set when this result needs a person to look: the first report of a
+   * transaction that parked the order in review or paid it a second time.
+   * The same transaction arriving again by the other channel stays quiet.
+   */
+  review: ReviewReason | null;
+  /**
+   * This caller holds the claim to send the paid emails still missing: the
+   * first time, or a retry because a claim older than 10 minutes never
+   * produced them.
    */
   sendPaidEmails: boolean;
 };
@@ -247,7 +279,9 @@ export type PaymentUpdate = {
  * Applies a verified SADAD result. Paid is final (a late "failed" can't undo
  * it); failed can still become paid, because SADAD settles in-progress
  * payments after midnight. A success whose amount differs from the order
- * total is parked in "review" instead of being treated as paid.
+ * total, or a sandbox success on the live site, is parked in "review"
+ * instead of being treated as paid; a second successful transaction on a
+ * paid order is reported so staff can refund it.
  */
 export async function applyPaymentResult(
   result: SadadResult,
@@ -255,11 +289,11 @@ export async function applyPaymentResult(
 ): Promise<PaymentUpdate | null> {
   const now = new Date().toISOString();
   const nowMs = Date.parse(now);
-  /** Paid, staff email not out yet, and nobody holds a fresh claim to send it. */
+  /** Paid emails still missing, and nobody holds a fresh claim to send them. */
   const emailsOwed = (o: Order) =>
-    o.status === "paid" &&
-    !o.emails.shop &&
+    paidEmailsMissing(o) &&
     (!o.emails.claimedAt || nowMs - Date.parse(o.emails.claimedAt) > EMAIL_CLAIM_MS);
+  const quiet: Omit<PaymentUpdate, "order"> = { newlyPaid: false, review: null, sendPaidEmails: false };
 
   const out = await updateOrder(result.orderId, (order) => {
     const duplicate = order.events.some(
@@ -271,13 +305,15 @@ export async function applyPaymentResult(
     );
     if (duplicate) {
       // A repeated event changes nothing, but may still collect owed emails.
-      if (!emailsOwed(order)) {
-        return { next: null, info: { newlyPaid: false, newlyFlagged: false, sendPaidEmails: false } };
-      }
+      if (!emailsOwed(order)) return { next: null, info: quiet };
       order.emails = { ...order.emails, claimedAt: now };
-      return { next: order, info: { newlyPaid: false, newlyFlagged: false, sendPaidEmails: true } };
+      return { next: order, info: { ...quiet, sendPaidEmails: true } };
     }
 
+    // The same transaction, already reported by the other channel.
+    const seenBefore = order.events.some(
+      (e) => e.outcome === result.outcome && e.transactionNumber === result.transactionNumber,
+    );
     order.events = [
       ...order.events,
       {
@@ -291,12 +327,22 @@ export async function applyPaymentResult(
       },
     ].slice(-20);
 
+    const raise = (reason: ReviewReason): ReviewReason | null => {
+      if (!order.flags.includes(reason)) order.flags.push(reason);
+      return seenBefore ? null : reason;
+    };
     let newlyPaid = false;
-    let newlyFlagged = false;
-    if (order.status !== "paid" && result.outcome === "paid") {
+    let review: ReviewReason | null = null;
+    if (result.outcome === "paid" && order.status === "paid") {
+      const first = order.payment?.transactionNumber;
+      if (first && result.transactionNumber && result.transactionNumber !== first) review = raise("paid_twice");
+    } else if (result.outcome === "paid") {
       const amountMatches =
         result.amountQar !== null && Math.abs(result.amountQar - order.totalQar) < 0.01;
-      if (amountMatches) {
+      if (result.sandbox && isLiveSite()) {
+        order.status = "review";
+        review = raise("test_payment");
+      } else if (amountMatches) {
         order.status = "paid";
         order.payment = {
           transactionNumber: result.transactionNumber,
@@ -305,10 +351,9 @@ export async function applyPaymentResult(
           source,
         };
         newlyPaid = true;
-      } else if (order.status !== "review") {
+      } else {
         order.status = "review";
-        if (!order.flags.includes("amount_mismatch")) order.flags.push("amount_mismatch");
-        newlyFlagged = true;
+        review = raise("amount_mismatch");
       }
     } else if (result.outcome === "failed" && order.status === "awaiting_payment") {
       order.status = "failed";
@@ -318,7 +363,7 @@ export async function applyPaymentResult(
       order.emails = { ...order.emails, claimedAt: now };
       sendPaidEmails = true;
     }
-    return { next: order, info: { newlyPaid, newlyFlagged, sendPaidEmails } };
+    return { next: order, info: { newlyPaid, review, sendPaidEmails } };
   });
   return out ? { order: out.order, ...out.info } : null;
 }

@@ -65,6 +65,10 @@ type WindowWithPlausible = Window & {
  *
  * Same production-host gate as everything else here: `gtag` only exists on
  * the real domain.
+ *
+ * Resolves once gtag reports the Ads conversion handed off, or after 1.2 s
+ * (tag blocked, not loaded yet) — so a caller about to leave the site, for
+ * SADAD's payment page, can wait instead of cancelling the ping.
  */
 export function trackPpfBooking(opts: {
   ref: string;
@@ -72,8 +76,8 @@ export function trackPpfBooking(opts: {
   coverage: string;
   film: string;
   body: string;
-}) {
-  if (typeof window === "undefined") return;
+}): Promise<void> {
+  if (typeof window === "undefined") return Promise.resolve();
   const attr = attributionEventParams();
   const params = {
     ...attr,
@@ -84,14 +88,26 @@ export function trackPpfBooking(opts: {
     locale: window.location.pathname.split("/")[1] || "",
     ...(opts.priceQar !== null ? { value: opts.priceQar, currency: "QAR" } : {}),
   };
-  const gtag = (window as WindowWithGtag).gtag;
-  if (typeof gtag === "function") {
-    gtag("event", CONVERSION_EVENT_NAMES.ppf_booking, params);
-    const target = sendTo("ppf_booking");
-    if (target) gtag("event", "conversion", { send_to: target, ...params, transaction_id: opts.ref });
-  }
   (window as WindowWithPlausible).plausible?.("ppf_booking_request", {
     props: { ...attr, coverage: opts.coverage, film: opts.film, body_type: opts.body },
+  });
+  return new Promise<void>((resolve) => {
+    const gtag = (window as WindowWithGtag).gtag;
+    const target = sendTo("ppf_booking");
+    if (typeof gtag !== "function") return resolve();
+    gtag("event", CONVERSION_EVENT_NAMES.ppf_booking, params);
+    if (!target) return resolve();
+    const timer = window.setTimeout(resolve, 1200);
+    gtag("event", "conversion", {
+      send_to: target,
+      ...params,
+      transaction_id: opts.ref,
+      event_timeout: 1000,
+      event_callback: () => {
+        window.clearTimeout(timer);
+        resolve();
+      },
+    });
   });
 }
 
@@ -218,9 +234,17 @@ export function trackPpfWhatsAppHandoff(opts: {
  * the order page once per order (the order id is the transaction_id, so a
  * reload never counts twice). Same production-host gate as everything else
  * here, so sandbox tests on localhost report nothing.
+ *
+ * A paid SHOP order also reports the Ads cart-order conversion that a
+ * WhatsApp cart order reports, with the same value basis (items, without
+ * delivery) and the cart reference as transaction_id — so Smart Bidding keeps
+ * seeing cart orders now that most are paid online, and a cart both paid and
+ * sent on WhatsApp counts once. A PPF booking was already counted when it was
+ * booked, so its payment adds no second conversion.
  */
 export function trackPurchase(opts: {
   orderId: string;
+  ref: string;
   kind: "shop" | "ppf";
   valueQar: number;
   shippingQar: number;
@@ -246,6 +270,17 @@ export function trackPurchase(opts: {
       order_kind: opts.kind,
       items: opts.items,
     });
+    const target = opts.kind === "shop" ? sendTo("cart_order") : null;
+    if (target) {
+      gtag("event", "conversion", {
+        send_to: target,
+        ...attr,
+        value: Math.round((opts.valueQar - opts.shippingQar) * 100) / 100,
+        currency: "QAR",
+        transaction_id: opts.ref,
+        placement: "online_payment",
+      });
+    }
   }
   (window as WindowWithPlausible).plausible?.("purchase", {
     props: { ...attr, order_kind: opts.kind },

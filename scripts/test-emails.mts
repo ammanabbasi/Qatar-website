@@ -149,3 +149,28 @@ test("bookings and reviews never email the customer (no mail to arbitrary addres
   assert.equal(review.customer, null);
   assert.match(review.shop.subject, /^CHECK PAYMENT ABK-7K3M/);
 });
+
+test("payment checks say what to check, and a filled anti-bot field marks the booking", () => {
+  const twice = renderOrderEmails(
+    shopOrder({
+      flags: ["paid_twice"],
+      payment: { transactionNumber: "SD1", sandbox: false, paidAt: "2026-11-19T10:00:00.000Z", source: "callback" },
+    }),
+    "review",
+    "paid_twice",
+  );
+  assert.equal(twice.customer, null);
+  assert.match(twice.shop.subject, /^CHECK PAYMENT ABK-7K3M: a second payment/);
+  assert.ok(twice.shop.text.includes("refund the extra one"));
+  assert.ok(twice.shop.text.includes("Second payment transaction"));
+
+  const test = renderOrderEmails(shopOrder({ status: "review", flags: ["test_payment"] }), "review", "test_payment");
+  assert.match(test.shop.subject, /TEST payment on the live site/);
+  assert.ok(test.shop.text.includes("Do not fulfil it"));
+
+  const flagged = renderOrderEmails(
+    shopOrder({ kind: "ppf", ref: "PPF-AB2CD", pay: "handover", status: "booked", flags: ["honeypot"], shop: undefined }),
+    "booked",
+  );
+  assert.match(flagged.shop.subject, /^\[Check: possible spam\] PPF booking PPF-AB2CD/);
+});

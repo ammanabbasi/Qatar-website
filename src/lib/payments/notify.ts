@@ -6,13 +6,15 @@ import type { SadadResult } from "./sadad";
 /**
  * Emails go out after the response, so neither the customer's redirect nor
  * SADAD's webhook waits on SMTP. Only the caller holding the email claim
- * (see applyPaymentResult) sends, so each email goes out once — and a later
- * SADAD event retries if a claim never produced them.
+ * (see applyPaymentResult) sends the paid emails, so each goes out once — and
+ * a later SADAD event retries whichever never went out. A payment to check
+ * alerts staff on its own, even when the paid emails are also due.
  */
 export function notifyPaymentUpdate(update: PaymentUpdate | null): void {
   if (!update) return;
-  if (update.sendPaidEmails) after(() => sendOrderEmails(update.order, "paid"));
-  else if (update.newlyFlagged) after(() => sendOrderEmails(update.order, "review"));
+  const { order, review } = update;
+  if (update.sendPaidEmails) after(() => sendOrderEmails(order, "paid"));
+  if (review) after(() => sendOrderEmails(order, "review", review));
 }
 
 /**

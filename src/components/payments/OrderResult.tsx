@@ -56,6 +56,7 @@ export function OrderResult({ order }: { order: OrderView }) {
     if (!order.sandbox) {
       trackPurchase({
         orderId: order.id,
+        ref: order.ref,
         kind: order.kind,
         valueQar: order.totalQar,
         shippingQar: order.deliveryFeeQar ?? 0,

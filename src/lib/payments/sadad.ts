@@ -284,8 +284,15 @@ function amountOrNull(value: unknown): number | null {
   return Number.isFinite(n) ? n : null;
 }
 
+/** A short single-line string: control characters (a forged newline in a log line) become spaces. */
 function text(value: unknown, max = 120): string {
-  return typeof value === "string" || typeof value === "number" ? String(value).slice(0, max) : "";
+  if (typeof value !== "string" && typeof value !== "number") return "";
+  return String(value).replace(/[\u0000-\u001f\u007f]/g, " ").slice(0, max);
+}
+
+/** SADAD marks sandbox results with 1; accept the other spellings a JSON body might use. */
+function isTestFlag(value: unknown): boolean {
+  return value === true || value === 1 || value === "1" || value === "true";
 }
 
 /** Fields of the browser callback (application/x-www-form-urlencoded). */
@@ -295,7 +302,7 @@ export function parseSadadCallback(p: Record<string, string>): SadadResult {
     outcome: outcomeFromCode(p.transaction_status, p.STATUS),
     transactionNumber: text(p.transaction_number || p.TXNID, 60),
     amountQar: amountOrNull(p.TXNAMOUNT),
-    sandbox: p.issandboxmode === "1",
+    sandbox: isTestFlag(p.issandboxmode),
     merchantId: text(p.MID, 30),
     message: text(p.RESPMSG),
   };
@@ -308,7 +315,7 @@ export function parseSadadWebhook(p: Record<string, unknown>): SadadResult {
     outcome: outcomeFromCode(p.transactionStatus),
     transactionNumber: text(p.transactionNumber, 60),
     amountQar: amountOrNull(p.txnAmount),
-    sandbox: String(p.isTestMode) === "1",
+    sandbox: isTestFlag(p.isTestMode),
     merchantId: text(p.merchantId, 30),
     message: text(p.message),
   };

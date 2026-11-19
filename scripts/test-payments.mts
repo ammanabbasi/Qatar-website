@@ -237,3 +237,16 @@ test("webhook fields map to an outcome", () => {
   assert.equal(parseSadadWebhook({ transactionStatus: 2 }).outcome, "failed");
   assert.equal(parseSadadWebhook({}).outcome, "pending");
 });
+
+test("SADAD fields: every test-mode spelling counts as sandbox; control characters never reach a log line", () => {
+  const base = { websiteRefNo: "ABK-7K3M-2CNG", transactionStatus: 3, transactionNumber: "SD1", txnAmount: 30, merchantId: "7326278" };
+  for (const flag of [1, "1", true, "true"]) {
+    assert.equal(parseSadadWebhook({ ...base, isTestMode: flag }).sandbox, true, `isTestMode ${JSON.stringify(flag)}`);
+  }
+  for (const flag of [0, "0", false, "false", undefined]) {
+    assert.equal(parseSadadWebhook({ ...base, isTestMode: flag }).sandbox, false, `isTestMode ${JSON.stringify(flag)}`);
+  }
+  const forged = parseSadadWebhook({ ...base, message: "ok\n[sadad] PAID BUT NOT RECORDED fake\r" });
+  assert.equal(/[\r\n]/.test(forged.message), false);
+  assert.equal(parseSadadCallback({ ...CALLBACK, RESPMSG: "a\nb" }).message, "a b");
+});

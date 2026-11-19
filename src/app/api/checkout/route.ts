@@ -34,7 +34,9 @@ export async function POST(request: Request) {
 
   let f: Record<string, unknown>;
   try {
-    f = (await request.json()) as Record<string, unknown>;
+    const parsed: unknown = await request.json();
+    if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) throw new Error("not an object");
+    f = parsed as Record<string, unknown>;
   } catch {
     return json(400, { ok: false, error: "bad_request" });
   }

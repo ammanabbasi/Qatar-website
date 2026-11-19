@@ -36,12 +36,18 @@ function order(id: string, totalQar: number): Order {
   } as Order;
 }
 
-const result = (orderId: string, outcome: "paid" | "failed" | "pending", amountQar: number | null, txn = "SD1") => ({
+const result = (
+  orderId: string,
+  outcome: "paid" | "failed" | "pending",
+  amountQar: number | null,
+  txn = "SD1",
+  sandbox = true,
+) => ({
   orderId,
   outcome,
   transactionNumber: txn,
   amountQar,
-  sandbox: true,
+  sandbox,
   merchantId: "7326278",
   message: "",
 });
@@ -111,11 +117,74 @@ test("a success for a different amount goes to review, not paid", async () => {
   await createOrder(order(id, 75));
   const odd = await applyPaymentResult(result(id, "paid", 1), "callback");
   assert.equal(odd?.order.status, "review");
-  assert.equal(odd?.newlyFlagged, true);
+  assert.equal(odd?.review, "amount_mismatch");
+  assert.equal(odd?.sendPaidEmails, false);
   assert.deepEqual(odd?.order.flags, ["amount_mismatch"]);
-  const missing = await applyPaymentResult(result(id, "paid", null, "SD9"), "webhook");
-  assert.equal(missing?.order.status, "review");
-  assert.equal(missing?.newlyFlagged, false); // already flagged: no second alert
+  // The same transaction by the other channel: staff were already told.
+  const echo = await applyPaymentResult(result(id, "paid", 1), "webhook");
+  assert.equal(echo?.order.status, "review");
+  assert.equal(echo?.review, null);
+  // A different transaction is a different payment: tell staff again.
+  const other = await applyPaymentResult(result(id, "paid", null, "SD9"), "webhook");
+  assert.equal(other?.order.status, "review");
+  assert.equal(other?.review, "amount_mismatch");
+  assert.deepEqual(other?.order.flags, ["amount_mismatch"]);
+});
+
+test("review, then the right amount: paid, and the paid emails are owed despite the review alert", async () => {
+  const { recordEmails } = await import("../src/lib/payments/orders.ts");
+  const id = newOrderId("ABK-KKKK");
+  await createOrder(order(id, 80));
+  await applyPaymentResult(result(id, "paid", 8), "callback");
+  await recordEmails(id, { review: new Date().toISOString() });
+  const fixed = await applyPaymentResult(result(id, "paid", 80), "webhook");
+  assert.equal(fixed?.order.status, "paid");
+  assert.equal(fixed?.newlyPaid, true);
+  assert.equal(fixed?.sendPaidEmails, true);
+});
+
+test("an online PPF booking: its 'booked' alert never stands in for the paid emails", async () => {
+  const { recordEmails } = await import("../src/lib/payments/orders.ts");
+  const id = newOrderId("PPF-AB2CD");
+  await createOrder({ ...order(id, 899), kind: "ppf" } as Order);
+  await recordEmails(id, { booked: new Date().toISOString() });
+  const paid = await applyPaymentResult(result(id, "paid", 899), "webhook");
+  assert.equal(paid?.newlyPaid, true);
+  assert.equal(paid?.sendPaidEmails, true);
+});
+
+test("a second successful payment on a paid order alerts staff once, and the order stays paid", async () => {
+  const id = newOrderId("ABK-MMMM");
+  await createOrder(order(id, 60));
+  await applyPaymentResult(result(id, "paid", 60, "SD1"), "callback");
+  const echo = await applyPaymentResult(result(id, "paid", 60, "SD1"), "webhook");
+  assert.equal(echo?.review, null);
+  const twice = await applyPaymentResult(result(id, "paid", 60, "SD2"), "callback");
+  assert.equal(twice?.order.status, "paid");
+  assert.equal(twice?.order.payment?.transactionNumber, "SD1");
+  assert.equal(twice?.review, "paid_twice");
+  assert.equal(twice?.newlyPaid, false);
+  const twiceEcho = await applyPaymentResult(result(id, "paid", 60, "SD2"), "webhook");
+  assert.equal(twiceEcho?.review, null);
+  assert.deepEqual(twiceEcho?.order.flags, ["paid_twice"]);
+});
+
+test("a sandbox payment on the live site is never treated as paid", async () => {
+  process.env.VERCEL_ENV = "production";
+  try {
+    const id = newOrderId("ABK-NNNN");
+    await createOrder(order(id, 45));
+    const sandbox = await applyPaymentResult(result(id, "paid", 45, "SD1", true), "callback");
+    assert.equal(sandbox?.order.status, "review");
+    assert.equal(sandbox?.newlyPaid, false);
+    assert.equal(sandbox?.sendPaidEmails, false);
+    assert.equal(sandbox?.review, "test_payment");
+    const live = await applyPaymentResult(result(id, "paid", 45, "SD5", false), "webhook");
+    assert.equal(live?.order.status, "paid");
+    assert.equal(live?.newlyPaid, true);
+  } finally {
+    delete process.env.VERCEL_ENV;
+  }
 });
 
 test("callback and webhook racing: exactly one sees newlyPaid", async () => {
@@ -146,8 +215,22 @@ test("paid emails: one claim at a time, retried by a later event if they never w
   await recordEmails(id, { claimedAt: new Date(Date.now() - 11 * 60 * 1000).toISOString() });
   const retry = await applyPaymentResult(result(id, "paid", 50), "webhook");
   assert.equal(retry?.sendPaidEmails, true);
-  // Once the staff email is recorded as sent, nothing is owed any more.
+  // The staff alert went out but the receipt failed: a later event retries the receipt.
   await recordEmails(id, { shop: new Date().toISOString(), claimedAt: new Date(0).toISOString() });
-  const after = await applyPaymentResult(result(id, "paid", 50, "SD7"), "webhook");
-  assert.equal(after?.sendPaidEmails, false);
+  const receipt = await applyPaymentResult(result(id, "paid", 50), "callback");
+  assert.equal(receipt?.sendPaidEmails, true);
+  // Both recorded as sent: nothing is owed any more, whatever arrives.
+  await recordEmails(id, { customer: new Date().toISOString(), claimedAt: new Date(0).toISOString() });
+  const done = await applyPaymentResult(result(id, "pending", 50, "SD7"), "webhook");
+  assert.equal(done?.sendPaidEmails, false);
+});
+
+test("paid emails: no customer email means the staff alert alone settles them", async () => {
+  const { recordEmails } = await import("../src/lib/payments/orders.ts");
+  const id = newOrderId("ABK-PPPP");
+  await createOrder({ ...order(id, 25), customer: { name: "Test", mobile: "+97430838355", email: "" } } as Order);
+  await applyPaymentResult(result(id, "paid", 25), "callback");
+  await recordEmails(id, { shop: new Date().toISOString(), claimedAt: new Date(0).toISOString() });
+  const later = await applyPaymentResult(result(id, "pending", 25, "SD3"), "webhook");
+  assert.equal(later?.sendPaidEmails, false);
 });

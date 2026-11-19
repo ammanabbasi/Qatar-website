@@ -11,15 +11,17 @@
  * PAID orders only — so no request to this site can make the shop's mailbox
  * write to an arbitrary address without a real SADAD payment behind it. A
  * failed or unconfigured send never loses the order: it is in the Blob
- * store, logs carry only its id (no personal data), and the next SADAD event
- * for a paid order retries (see applyPaymentResult).
+ * store, logs carry only its id (no personal data; addresses in server
+ * replies are masked), and the next SADAD event for a paid order retries
+ * whichever paid email has not gone out (see applyPaymentResult). Each email
+ * is recorded the moment it is accepted, so a retry never repeats one.
  */
 
 import nodemailer from "nodemailer";
 import { SITE } from "@/lib/constants";
 import { formatPercent, formatQar } from "@/lib/pricing";
 import { orderPagePath } from "./config";
-import { recordEmails, type Order } from "./orders";
+import { recordEmails, type Order, type ReviewReason } from "./orders";
 import { sadadTxnDate } from "./sadad";
 
 export type OrderEmailEvent = "paid" | "booked" | "review";
@@ -100,13 +102,18 @@ function errorText(err: unknown): string {
     e.response && e.response !== e.message ? `response=${String(e.response).slice(0, 160)}` : "",
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(" ")
+    .replace(/[^\s<>"'@]+@[^\s<>"'@]+/g, "<address>");
 }
 
 /** The emails an event produces: always the staff alert; the customer receipt only once paid. */
-export function renderOrderEmails(order: Order, event: OrderEmailEvent): { shop: Mail; customer: Mail | null } {
+export function renderOrderEmails(
+  order: Order,
+  event: OrderEmailEvent,
+  reason: ReviewReason = "amount_mismatch",
+): { shop: Mail; customer: Mail | null } {
   return {
-    shop: shopEmail(order, event),
+    shop: shopEmail(order, event, reason),
     customer: event === "paid" && order.customer.email ? customerEmail(order) : null,
   };
 }
@@ -116,37 +123,49 @@ function logRef(order: Order): string {
   return `${order.id} (${order.kind}, ${order.status}, QAR ${order.totalQar.toFixed(2)})`;
 }
 
-/** Sends the staff alert and, for a paid order, the customer receipt. Never throws. */
-export async function sendOrderEmails(order: Order, event: OrderEmailEvent): Promise<void> {
+/**
+ * Sends the staff alert and, for a paid order, the customer receipt —
+ * skipping either one an earlier attempt already delivered. Never throws.
+ */
+export async function sendOrderEmails(
+  order: Order,
+  event: OrderEmailEvent,
+  reason: ReviewReason = "amount_mismatch",
+): Promise<void> {
   const m = mailer();
   if (!m) {
     console.error(`[orders] EMAIL NOT SENT (SMTP_PASS is not set): ${event} ${logRef(order)}`);
-    await recordEmails(order.id, { error: "smtp_not_configured" }).catch(() => {});
+    await markEmails(order.id, { error: "smtp_not_configured" });
     return;
   }
-  const sent: Order["emails"] = {};
   const errors: string[] = [];
-  const mails = renderOrderEmails(order, event);
+  const mails = renderOrderEmails(order, event, reason);
+  // Which record says the staff alert for this event went out.
+  const staffKey = event === "paid" ? "shop" : event;
+  const staffDone = event === "paid" && Boolean(order.emails.shop);
+  const customerDone = Boolean(order.emails.customer);
 
-  try {
+  if (!staffDone) {
     const mail = mails.shop;
-    await m.send({
-      from: m.from,
-      to: m.to,
-      replyTo: order.customer.email || undefined,
-      subject: mail.subject,
-      text: mail.text,
-      html: mail.html,
-    });
-    sent.shop = new Date().toISOString();
-  } catch (err) {
-    errors.push(`shop: ${errorText(err)}`);
-    console.error(`[orders] EMAIL FAILED (staff) ${logRef(order)}: ${errorText(err)}`);
+    try {
+      await m.send({
+        from: m.from,
+        to: m.to,
+        replyTo: order.customer.email || undefined,
+        subject: mail.subject,
+        text: mail.text,
+        html: mail.html,
+      });
+      await markEmails(order.id, { [staffKey]: new Date().toISOString() });
+    } catch (err) {
+      errors.push(`shop: ${errorText(err)}`);
+      console.error(`[orders] EMAIL FAILED (staff) ${logRef(order)}: ${errorText(err)}`);
+    }
   }
 
-  if (mails.customer) {
+  if (mails.customer && !customerDone) {
+    const mail = mails.customer;
     try {
-      const mail = mails.customer;
       await m.send({
         from: m.from,
         to: order.customer.email,
@@ -155,18 +174,31 @@ export async function sendOrderEmails(order: Order, event: OrderEmailEvent): Pro
         text: mail.text,
         html: mail.html,
       });
-      sent.customer = new Date().toISOString();
+      await markEmails(order.id, { customer: new Date().toISOString() });
     } catch (err) {
       errors.push(`customer: ${errorText(err)}`);
       console.error(`[orders] EMAIL FAILED (customer) ${logRef(order)}: ${errorText(err)}`);
     }
   }
 
-  // A clean run clears an error left by an earlier attempt.
-  sent.error = errors.length > 0 ? errors.join("; ").slice(0, 300) : undefined;
-  await recordEmails(order.id, sent).catch((err) =>
-    console.error(`[orders] could not record emails for ${order.id}: ${errorText(err)}`),
-  );
+  // Record a failure; a clean run clears an error an earlier attempt left.
+  if (errors.length > 0) await markEmails(order.id, { error: errors.join("; ").slice(0, 300) });
+  else if (order.emails.error) await markEmails(order.id, { error: undefined });
+}
+
+/** Records email outcomes; one retry, because a lost record could repeat an email later. */
+async function markEmails(id: string, emails: Order["emails"]): Promise<void> {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      await recordEmails(id, emails);
+      return;
+    } catch (err) {
+      if (attempt >= 2) {
+        console.error(`[orders] could not record emails for ${id}: ${errorText(err)}`);
+        return;
+      }
+    }
+  }
 }
 
 /**
@@ -218,7 +250,9 @@ function esc(s: string): string {
     .replace(/"/g, "&quot;");
 }
 
-const qar2 = (n: number) => `QAR ${n.toFixed(2)}`;
+/** "QAR 1,599.00": fils always shown, thousands grouped like the rest of the site. */
+const qar2 = (n: number) =>
+  `QAR ${n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
 /** "2026-11-19 17:01 (Doha)" — staff read times in Qatar time, not UTC. */
 function dohaTime(iso: string): string {
@@ -260,22 +294,49 @@ function sectionTitle(text: string): string {
 
 // ── staff email (English) ────────────────────────────────────────────────
 
-function shopEmail(order: Order, event: OrderEmailEvent): Mail {
+const REVIEW_COPY: Record<ReviewReason, { subject: string; headline: string; amountLabel: string; txnLabel: string }> = {
+  amount_mismatch: {
+    subject: "SADAD amount differs from the order total",
+    headline:
+      "SADAD reported a successful payment whose amount does not match this order. Check the transaction in the SADAD panel before fulfilling.",
+    amountLabel: "SADAD amount",
+    txnLabel: "SADAD transaction",
+  },
+  paid_twice: {
+    subject: "a second payment for an order that was already paid",
+    headline:
+      "SADAD confirmed another successful payment for this order, which was already paid. The customer may have been charged twice: check both transactions in the SADAD panel and refund the extra one.",
+    amountLabel: "Second payment amount",
+    txnLabel: "Second payment transaction",
+  },
+  test_payment: {
+    subject: "a TEST payment on the live site (no money moved)",
+    headline:
+      "SADAD reported a sandbox (test) payment for this order on the live website, so no money was received. Do not fulfil it. The website's SADAD key may be a test key: check SADAD_SECRET_KEY in Vercel.",
+    amountLabel: "Test payment amount",
+    txnLabel: "Test transaction",
+  },
+};
+
+function shopEmail(order: Order, event: OrderEmailEvent, reason: ReviewReason): Mail {
   const test = order.payment?.sandbox ? "[TEST] " : "";
+  // The hidden anti-bot field was filled, but slowly, like a person: autofill can do that.
+  const suspect = order.flags.includes("honeypot") ? "[Check: possible spam] " : "";
   const shop = order.shop;
   const ppf = order.ppf;
+  const review = REVIEW_COPY[reason];
 
   let subject: string;
   let headline: string;
   if (event === "review") {
-    subject = `CHECK PAYMENT ${order.ref}: SADAD amount differs from the order total`;
-    headline = "SADAD reported a successful payment whose amount does not match this order. Check the transaction in the SADAD panel before fulfilling.";
+    subject = `CHECK PAYMENT ${order.ref}: ${review.subject}`;
+    headline = review.headline;
   } else if (event === "booked" && order.pay === "online") {
-    subject = `PPF booking ${order.ref}: paying online (not paid yet), ${qar2(order.totalQar)}`;
+    subject = `${suspect}PPF booking ${order.ref}: paying online (not paid yet), ${qar2(order.totalQar)}`;
     headline =
       "New installation booking. The customer chose to pay online now and was sent to SADAD. A second email follows when SADAD confirms the payment; if none arrives, follow up on WhatsApp.";
   } else if (event === "booked") {
-    subject = `PPF booking ${order.ref}: pay at handover${ppf?.priceQar ? `, ${qar2(ppf.priceQar)}` : ""}`;
+    subject = `${suspect}PPF booking ${order.ref}: pay at handover${ppf?.priceQar ? `, ${qar2(ppf.priceQar)}` : ""}`;
     headline = "New installation booking. The customer chose to pay at handover. Confirm the slot on WhatsApp.";
   } else if (order.kind === "ppf") {
     subject = `${test}Paid PPF booking ${order.ref}: ${qar2(order.totalQar)}`;
@@ -336,8 +397,8 @@ function shopEmail(order: Order, event: OrderEmailEvent): Mail {
   }
   if (event === "review") {
     const last = order.events[order.events.length - 1];
-    payment.push(["SADAD amount", last?.amountQar === null || !last ? "missing" : qar2(last.amountQar)]);
-    payment.push(["SADAD transaction", last?.transactionNumber || "not given"]);
+    payment.push([review.amountLabel, last?.amountQar === null || !last ? "missing" : qar2(last.amountQar)]);
+    payment.push([review.txnLabel, last?.transactionNumber || "not given"]);
   }
   payment.push(["Order ID (SADAD)", order.id], ["Created", dohaTime(order.createdAt)], ["Language", order.locale.toUpperCase()]);
   const source = Object.entries(order.attribution)

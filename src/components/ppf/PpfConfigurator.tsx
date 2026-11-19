@@ -737,6 +737,8 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
       existingFilm: t(form.existingFilm as (typeof EXISTING)[number]),
       year: form.year.trim() ? Number(form.year) : "",
       startedAt: startedAt.current,
+      // Measured on this device's clock alone, so a phone set fast or slow still counts as a person.
+      elapsedMs: Date.now() - startedAt.current,
       payment: payNow ? "online" : "handover",
       // The price this page shows; a deploy that changed it in between is caught server-side.
       ...(payNow ? { expectedPriceQar: quote.priceQar } : {}),
@@ -775,7 +777,9 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
       next = { saved: false, ref: makeBookingRef() };
     }
     if (next.saved) {
-      trackPpfBooking({ ref: next.ref, priceQar: quote.priceQar, coverage, film, body });
+      const reported = trackPpfBooking({ ref: next.ref, priceQar: quote.priceQar, coverage, film, body });
+      // Leaving for SADAD at once can cancel the Ads conversion ping: let it go out first (1.2 s at most).
+      if (sadad) await reported;
     }
     if (sadad) {
       try {
@@ -2010,8 +2014,9 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
 
             {/* Honeypot — hidden from people and assistive tech, irresistible to bots. */}
             <div aria-hidden className="absolute -start-[9999px] h-px w-px overflow-hidden">
-              <label htmlFor="ppf-website">Website</label>
-              <input id="ppf-website" tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => set("website", e.target.value)} />
+              {/* No URL-like name or label: browsers and password managers autofill those (it cost a real lead on another site). */}
+              <label htmlFor="ppf-hp-leave-empty">Leave this field empty</label>
+              <input id="ppf-hp-leave-empty" tabIndex={-1} autoComplete="off" value={form.website} onChange={(e) => set("website", e.target.value)} />
             </div>
             <div className="sm:col-span-2">
               <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-(--color-border-soft) bg-(--color-surface) p-3.5 text-footnote text-(--color-text) sm:p-4">

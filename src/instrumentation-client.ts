@@ -232,6 +232,17 @@ function onClick(event: MouseEvent) {
   let key = classify(href);
   if (!key) return;
 
+  // A paid order's "send on WhatsApp" follows a purchase that trackPurchase
+  // already reported: a GA4 event, never a second Ads conversion.
+  if (anchor.dataset.placement === "order_paid") {
+    (window as WindowWithGtag).gtag?.("event", "paid_order_whatsapp", {
+      ...attributionEventParams(),
+      page_path: window.location.pathname,
+      ...orderParams(anchor),
+    });
+    return;
+  }
+
   // The PPF booking hand-off IS the booking whenever the Sheet save failed, so
   // it reports as ppf_booking, not a generic WhatsApp click. Its order_ref is
   // the same booking ref trackPpfBooking sends as transaction_id, so a booking

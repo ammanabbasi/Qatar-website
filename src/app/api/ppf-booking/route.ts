@@ -54,16 +54,26 @@ const CUSTOM_BODY_LABEL = { en: "Custom offer by make & model", ar: "عرض خا
 export async function POST(request: Request) {
   let f: Fields;
   try {
-    f = (await request.json()) as Fields;
+    const parsed: unknown = await request.json();
+    if (typeof parsed !== "object" || parsed === null || Array.isArray(parsed)) throw new Error("not an object");
+    f = parsed as Fields;
   } catch {
     return json(400, { ok: false, error: "bad_request" });
   }
 
-  // Honeypot + a minimum fill time: bots get a convincing reply and nothing saved.
-  const startedAt = Number(f.startedAt);
-  if (str(f.website, 200) || !Number.isFinite(startedAt) || Date.now() - startedAt < 3000) {
+  // Anti-bot timing: how long the form was open, measured on the customer's
+  // own clock (elapsedMs), so a phone whose clock runs fast or slow is never
+  // taken for a bot. A page built before elapsedMs existed sends only
+  // startedAt; a phone clock ahead of the server's then gives a negative gap,
+  // which counts as a person. Submitted within 3 s (or no timing at all): a
+  // bot, which gets a convincing reply and nothing saved.
+  const elapsedMs = typeof f.elapsedMs === "number" ? f.elapsedMs : Date.now() - Number(f.startedAt);
+  if (!Number.isFinite(elapsedMs) || (elapsedMs >= 0 && elapsedMs < 3000)) {
     return json(200, { ok: true, ref: makeBookingRef(), payment: "handover" });
   }
+  // The hidden field filled by someone who took their time is more likely
+  // autofill than a bot: keep the booking, and tell staff to check it.
+  const trapFilled = Boolean(str(f.website, 200));
 
   const { body, coverage, film } = f;
   const parts = Array.isArray(f.parts) ? (f.parts.filter(isPart) as PartKey[]) : [];
@@ -178,7 +188,7 @@ export async function POST(request: Request) {
       utmCampaign: booking.utmCampaign,
     },
     events: [],
-    flags: [],
+    flags: trapFilled ? ["honeypot"] : [],
     emails: {},
   };
 
