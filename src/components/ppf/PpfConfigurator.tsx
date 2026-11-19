@@ -58,8 +58,12 @@ import {
   trackPpfWhatsAppHandoff,
 } from "@/lib/analytics";
 import { readBookingAttribution } from "@/lib/attribution";
+import type { PaymentsVisibility } from "@/lib/payments/config";
+import { submitToSadad, useOnlinePayments, type SadadFormPayload } from "@/lib/payments/client";
+import { isEmail } from "@/lib/payments/validate";
 
 type L = "en" | "ar";
+type PayChoice = "online" | "handover";
 type Step = 0 | 1 | 2 | 3;
 const STEP_KEYS = ["stepVehicle", "stepCoverage", "stepFilm", "stepDetails"] as const;
 const QUICK_YEARS = ["2026", "2025", "2024", "2023"] as const;
@@ -79,7 +83,12 @@ type Form = {
   website: string; // honeypot
 };
 
-type Result = { saved: boolean; ref: string };
+type Result = {
+  saved: boolean;
+  ref: string;
+  /** The customer chose to pay now, but online payment couldn't start: saved as pay at handover. */
+  paymentUnavailable?: boolean;
+};
 
 const EXISTING = ["existingNone", "existingPpf", "existingWrap", "existingRepaint", "existingUnsure"] as const;
 const DURATION: Record<CoverageKey, string> = {
@@ -228,10 +237,15 @@ const optionCls = (active: boolean) =>
  * larger screens. Quote state lives here, outside the dialog, so closing and
  * reopening picks up exactly where the customer left off.
  */
-export function PpfConfigurator() {
+export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisibility }) {
   const t = useTranslations("PpfInstall");
   const locale = useLocale() as L;
   const qar = (n: number) => formatQar(n, locale);
+  const onlineOffered = useOnlinePayments(payments);
+  const [payment, setPayment] = useState<PayChoice>("online");
+  /** A reply the customer can fix on this form (changed price, rejected field). */
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const submitErrorRef = useRef<HTMLParagraphElement>(null);
 
   const [open, setOpen] = useState(false);
   const [closing, setClosing] = useState(false);
@@ -573,6 +587,20 @@ export function PpfConfigurator() {
 
   const animatedPrice = useAnimatedNumber(quote.priceQar);
 
+  // Paying online needs a firm price: fixed packages only, never estimates.
+  const fixedPrice = body !== null && body !== "custom" && quote.priceQar !== null && !quote.isEstimate;
+  const payNow = onlineOffered && fixedPrice && payment === "online";
+
+  // Back from SADAD's page via the browser's back button restores the sheet
+  // from the back/forward cache with the submit button still spinning.
+  useEffect(() => {
+    const onShow = (e: PageTransitionEvent) => {
+      if (e.persisted) setSending(false);
+    };
+    window.addEventListener("pageshow", onShow);
+    return () => window.removeEventListener("pageshow", onShow);
+  }, []);
+
   const bodyInfo = BODY_TYPES.find((b) => b.key === body);
   const coverageInfo = COVERAGES.find((c) => c.key === coverage)!;
   const filmInfo = FILMS.find((f) => f.key === film)!;
@@ -618,7 +646,10 @@ export function PpfConfigurator() {
         return /^[3567]\d{7}$/.test(digits) ? undefined : t("errMobile");
       }
       case "email":
-        return v.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.email.trim()) ? t("errEmail") : undefined;
+        // SADAD emails the payment receipt, so paying now needs an address.
+        if (payNow && !v.email.trim()) return t("emailRequiredForPay");
+        // Same rule as the booking route (src/lib/payments/validate.ts).
+        return v.email.trim() && !isEmail(v.email.trim()) ? t("errEmail") : undefined;
       case "preferredDate":
         return undefined;
       case "consent":
@@ -686,6 +717,7 @@ export function PpfConfigurator() {
     }
     if (!body) return;
     setSending(true);
+    setSubmitError(null);
     const payload = {
       body,
       coverage,
@@ -696,22 +728,54 @@ export function PpfConfigurator() {
       existingFilm: t(form.existingFilm as (typeof EXISTING)[number]),
       year: form.year.trim() ? Number(form.year) : "",
       startedAt: startedAt.current,
+      payment: payNow ? "online" : "handover",
+      // The price this page shows; a deploy that changed it in between is caught server-side.
+      ...(payNow ? { expectedPriceQar: quote.priceQar } : {}),
       ...readBookingAttribution(),
     };
     let next: Result;
+    let sadad: SadadFormPayload | null = null;
     try {
       const res = await fetch("/api/ppf-booking", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const out = (await res.json().catch(() => ({}))) as { ok?: boolean; ref?: string };
-      next = { saved: Boolean(out.ok), ref: out.ref ?? makeBookingRef() };
+      const out = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        ref?: string;
+        error?: string;
+        payment?: PayChoice;
+        sadad?: SadadFormPayload;
+        paymentUnavailable?: boolean;
+      };
+      // Fixable on this form: keep the customer's answers instead of failing the booking.
+      if (out.error === "price_changed" || out.error === "invalid_fields") {
+        setSending(false);
+        setSubmitError(out.error === "price_changed" ? t("priceChanged") : t("errForm"));
+        window.setTimeout(() => submitErrorRef.current?.scrollIntoView({ block: "center" }), 40);
+        return;
+      }
+      next = {
+        saved: Boolean(out.ok),
+        ref: out.ref ?? makeBookingRef(),
+        paymentUnavailable: Boolean(out.paymentUnavailable),
+      };
+      if (out.ok && out.payment === "online" && out.sadad) sadad = out.sadad;
     } catch {
       next = { saved: false, ref: makeBookingRef() };
     }
     if (next.saved) {
       trackPpfBooking({ ref: next.ref, priceQar: quote.priceQar, coverage, film, body });
+    }
+    if (sadad) {
+      try {
+        // The browser leaves for SADAD's payment page; the spinner stays until it does.
+        submitToSadad(sadad);
+        return;
+      } catch {
+        next = { ...next, paymentUnavailable: true };
+      }
     }
     setSending(false);
     setResult(next);
@@ -1703,13 +1767,26 @@ export function PpfConfigurator() {
       );
 
     if (step === 3) {
+      // Paying now moves email out of "optional details" into the main fields.
       const hasOptionalValues = Boolean(
         form.preferredDate ||
-          form.email.trim() ||
+          (!payNow && form.email.trim()) ||
           form.notes.trim() ||
           form.existingFilm !== "existingNone" ||
-          shownError("email") ||
+          (!payNow && shownError("email")) ||
           shownError("preferredDate"),
+      );
+      const emailField = (
+        <Field
+          id="ppf-email"
+          label={t("email")}
+          required={payNow}
+          optionalLabel={payNow ? undefined : t("optional")}
+          hint={payNow ? t("emailRequiredForPay") : undefined}
+          error={shownError("email")}
+        >
+          <input id="ppf-email" type="email" autoComplete="email" value={form.email} onChange={(e) => set("email", e.target.value)} onBlur={blur("email")} maxLength={120} className={`${inputCls} ltr-nums ${borderFor("email")}`} {...aria("email", payNow)} />
+        </Field>
       );
       const optionalOpen = showOptionalDetails || hasOptionalValues;
 
@@ -1774,8 +1851,8 @@ export function PpfConfigurator() {
                     {locale === "ar" ? "شروط الحجز والدفع: " : "Booking & cancellation: "}
                   </strong>
                   {locale === "ar"
-                    ? "تأكيد الموعد عبر واتساب خلال ساعات العمل · الدفع بعد تأكيد الموعد · إلغاء مجاني حتى ٤٨ ساعة قبل الموعد."
-                    : "Slot confirmed on WhatsApp during business hours · Pay after slot confirmation · Free cancellation up to 48h prior."}
+                    ? `تأكيد الموعد عبر واتساب خلال ساعات العمل · ${onlineOffered ? "ادفع الآن إلكترونياً أو عند التسليم" : "الدفع عند التسليم"} · إلغاء مجاني حتى ٤٨ ساعة قبل الموعد.`
+                    : `Slot confirmed on WhatsApp during business hours · ${onlineOffered ? "Pay now online or at handover" : "Pay at handover"} · Free cancellation up to 48h prior.`}
                 </span>
               </div>
             </div>
@@ -1785,6 +1862,12 @@ export function PpfConfigurator() {
             <p role="alert" className="mt-4 flex items-center gap-2 rounded-xl bg-(--color-danger)/8 px-4 py-3 text-footnote font-medium text-(--color-danger)">
               <AlertIcon className="h-4 w-4 shrink-0" />
               {t("errForm")}
+            </p>
+          ) : null}
+          {submitError ? (
+            <p ref={submitErrorRef} role="alert" className="mt-4 flex items-start gap-2 rounded-xl bg-(--color-danger)/8 px-4 py-3 text-footnote font-medium text-(--color-danger)">
+              <AlertIcon className="mt-px h-4 w-4 shrink-0" />
+              {submitError}
             </p>
           ) : null}
 
@@ -1833,6 +1916,7 @@ export function PpfConfigurator() {
             <Field id="ppf-mobile" label={t("mobile")} required hint={t("mobileHint")} error={shownError("mobile")}>
               <input id="ppf-mobile" type="tel" autoComplete="tel" inputMode="tel" placeholder="5555 1234" value={form.mobile} onChange={(e) => set("mobile", e.target.value)} onBlur={blur("mobile")} maxLength={20} className={`${inputCls} ltr-nums ${borderFor("mobile")}`} {...aria("mobile", true)} />
             </Field>
+            {payNow ? <div className="sm:col-span-2">{emailField}</div> : null}
 
             {/* Progressive disclosure for optional details so mobile users see a clean 1-screen form */}
             <div className="sm:col-span-2">
@@ -1859,11 +1943,7 @@ export function PpfConfigurator() {
                       ))}
                     </select>
                   </Field>
-                  <div className="sm:col-span-2">
-                    <Field id="ppf-email" label={t("email")} optionalLabel={t("optional")} error={shownError("email")}>
-                      <input id="ppf-email" type="email" autoComplete="email" value={form.email} onChange={(e) => set("email", e.target.value)} onBlur={blur("email")} maxLength={120} className={`${inputCls} ltr-nums ${borderFor("email")}`} {...aria("email")} />
-                    </Field>
-                  </div>
+                  {!payNow ? <div className="sm:col-span-2">{emailField}</div> : null}
                   <div className="sm:col-span-2">
                     <Field id="ppf-notes" label={t("notes")} optionalLabel={t("optional")}>
                       <textarea id="ppf-notes" rows={2} maxLength={500} value={form.notes} onChange={(e) => set("notes", e.target.value)} placeholder={t("notesPlaceholder")} className={`${inputCls} h-auto py-2.5 ${plainBorder}`} />
@@ -1872,6 +1952,46 @@ export function PpfConfigurator() {
                 </div>
               ) : null}
             </div>
+
+            {onlineOffered ? (
+              <fieldset className="sm:col-span-2">
+                <legend className="mb-2 text-footnote font-semibold">{t("payChoiceTitle")}</legend>
+                {fixedPrice ? (
+                  <div className="grid gap-2.5 sm:grid-cols-2">
+                    {(
+                      [
+                        {
+                          value: "online",
+                          label: t("payNow"),
+                          hint: t("payNowHint", { price: qar(quote.priceQar ?? 0) }),
+                        },
+                        { value: "handover", label: t("payLater"), hint: t("payLaterHint") },
+                      ] as const
+                    ).map((option) => (
+                      <label
+                        key={option.value}
+                        className="relative flex cursor-pointer flex-col gap-0.5 rounded-xl border border-(--color-border-soft) bg-(--color-surface) p-3.5 transition-colors hover:border-(--color-text-subtle) has-[:checked]:border-(--color-brand-deep) has-[:checked]:bg-(--color-brand)/8 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-(--color-brand-deep)"
+                      >
+                        <input
+                          type="radio"
+                          name="ppf-payment"
+                          value={option.value}
+                          checked={payment === option.value}
+                          onChange={() => setPayment(option.value)}
+                          className="sr-only"
+                        />
+                        <span className="text-footnote font-semibold text-(--color-text)">{option.label}</span>
+                        <span className="text-caption text-(--color-text-muted)">{option.hint}</span>
+                      </label>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="rounded-xl border border-(--color-border-soft) bg-(--color-surface) p-3.5 text-caption text-(--color-text-muted)">
+                    {t("payOnlyFixed")}
+                  </p>
+                )}
+              </fieldset>
+            ) : null}
 
             {/* Honeypot — hidden from people and assistive tech, irresistible to bots. */}
             <div aria-hidden className="absolute -start-[9999px] h-px w-px overflow-hidden">
@@ -1926,6 +2046,11 @@ export function PpfConfigurator() {
       <p className="ppf-step-in mt-2 text-body text-(--color-text-muted)" role="status">
         {result.saved ? t("successBody") : t("failBody")}
       </p>
+      {result.saved && result.paymentUnavailable ? (
+        <p className="ppf-step-in mt-3 rounded-xl bg-(--color-fill) px-4 py-3 text-footnote text-(--color-text)">
+          {t("payUnavailable")}
+        </p>
+      ) : null}
       <div className="ppf-step-in mt-6 rounded-tile border border-(--color-border-soft) bg-(--color-surface) p-5 shadow-tile">
         <p className="text-footnote text-(--color-text-muted)">{t("refLabel")}</p>
         <p className="ltr-nums mt-1 font-mono text-title font-semibold tracking-wider text-(--color-text)">{result.ref}</p>
@@ -2105,7 +2230,13 @@ export function PpfConfigurator() {
                 </Button>
               ) : (
                 <Button key="submit" type="submit" form="ppf-form" size="lg" loading={sending}>
-                  {sending ? t("submitting") : t("submit")}
+                  {sending
+                    ? payNow
+                      ? t("payOpening")
+                      : t("submitting")
+                    : payNow
+                      ? t("submitPay", { price: qar(quote.priceQar ?? 0) })
+                      : t("submit")}
                 </Button>
               )}
             </div>

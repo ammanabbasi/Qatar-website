@@ -501,3 +501,82 @@ export function buildPpfEnquiryWhatsAppUrl(locale: WALocale): string {
   return `https://wa.me/${WHATSAPP_PHONE}?text=${encode(text)}`;
 }
 
+
+/** After an online payment: the customer's own copy of the order, sent to ABK on WhatsApp. */
+export type PaidOrderMessageContext = {
+  locale: WALocale;
+  kind: "shop" | "ppf";
+  ref: string;
+  totalQar: number;
+  transactionNumber?: string;
+  name: string;
+  lines?: { name: string; qty: number }[];
+  fulfilment?: Fulfilment;
+  areaLabel?: string;
+  address?: string;
+  /** "2024 Toyota Camry · Full Front · Weather Armor PRO" */
+  ppfSummary?: string;
+};
+
+export function buildPaidOrderWhatsAppMessage(c: PaidOrderMessageContext): string {
+  const ar = c.locale === "ar";
+  const rlm = ar ? "‏" : "";
+  const qar = (n: number) => formatQar(n, c.locale);
+  const num = (n: number) => formatNumber(n, c.locale);
+  const paid = `${qar(c.totalQar)}${c.transactionNumber ? `, SADAD ${c.transactionNumber}` : ""}`;
+  const header =
+    c.kind === "ppf"
+      ? ar
+        ? `السلام عليكم ABK، دفعت للتو حجز التركيب ${c.ref} عبر الإنترنت (${paid}).`
+        : `Hi ABK, I've just paid online for PPF booking ${c.ref} (${paid}).`
+      : ar
+        ? `السلام عليكم ABK، دفعت للتو طلبي ${c.ref} عبر الإنترنت (${paid}).`
+        : `Hi ABK, I've just paid online for order ${c.ref} (${paid}).`;
+
+  const body: string[] = [];
+  for (const l of c.lines ?? []) body.push(`${rlm}• ${l.name} × ${num(l.qty)}`);
+  if (c.ppfSummary) body.push(ar ? `العمل: ${c.ppfSummary}` : `Job: ${c.ppfSummary}`);
+  if (c.kind === "shop") {
+    if (c.fulfilment === "pickup") {
+      body.push(ar ? "الاستلام: من معرض مسيمير" : "Pickup: Mesaimeer showroom");
+    } else {
+      const where = [c.areaLabel, c.address].filter(Boolean).join(" — ");
+      body.push(ar ? `التوصيل إلى: ${where}` : `Delivery to: ${where}`);
+    }
+  }
+  body.push(ar ? `الاسم: ${c.name}` : `Name: ${c.name}`);
+
+  const closing =
+    c.kind === "ppf"
+      ? ar
+        ? "يرجى تأكيد موعد التركيب. شكراً لكم!"
+        : "Please confirm my installation slot. Thank you!"
+      : c.fulfilment === "pickup"
+        ? ar
+          ? "يرجى إبلاغي عندما يصبح الطلب جاهزاً للاستلام. شكراً لكم!"
+          : "Please let me know when it's ready to collect. Thank you!"
+        : ar
+          ? "يرجى تأكيد موعد التوصيل. شكراً لكم!"
+          : "Please confirm the delivery time. Thank you!";
+
+  return [header, body.join("\n"), closing].join("\n\n");
+}
+
+export function buildPaidOrderWhatsAppUrl(ctx: PaidOrderMessageContext): string {
+  return `https://wa.me/${WHATSAPP_PHONE}?text=${encode(buildPaidOrderWhatsAppMessage(ctx))}`;
+}
+
+/** A question about an online payment: still pending, failed, or one we couldn't match. */
+export function buildPaymentHelpWhatsAppUrl(c: {
+  locale: WALocale;
+  ref?: string;
+  transactionNumber?: string;
+}): string {
+  const ar = c.locale === "ar";
+  const lines = [
+    ar ? "السلام عليكم ABK، لدي استفسار بخصوص الدفع الإلكتروني." : "Hi ABK, I have a question about my online payment.",
+  ];
+  if (c.ref) lines.push(ar ? `رقم الطلب: ${c.ref}` : `Order ref: ${c.ref}`);
+  if (c.transactionNumber) lines.push(ar ? `مرجع SADAD: ${c.transactionNumber}` : `SADAD reference: ${c.transactionNumber}`);
+  return `https://wa.me/${WHATSAPP_PHONE}?text=${encode(lines.join("\n"))}`;
+}

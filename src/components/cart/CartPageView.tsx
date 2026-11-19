@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, useSyncExternalStore, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/Container";
@@ -18,6 +18,10 @@ import {
 import { cartTotals, findProduct, resolveCartLines } from "@/lib/pricing";
 import { suggestAddOns } from "@/lib/suggestions";
 import { gaItem, trackCartEvent } from "@/lib/analytics";
+import type { PaymentsVisibility } from "@/lib/payments/config";
+import { buildPaymentHelpWhatsAppUrl } from "@/lib/whatsapp";
+
+const noopSubscribe = () => () => {};
 import { useCartUi } from "./CartProvider";
 import { CartLineItem } from "./CartLineItem";
 import { CartSuggestionCard } from "./CartSuggestionCard";
@@ -30,12 +34,28 @@ import { RemovedNotice, useRemoveWithUndo } from "./useRemoveWithUndo";
  * shows a skeleton until the stored cart has loaded rather than flashing
  * "Your cart is empty" at someone who has a full cart.
  */
-export function CartPageView({ popularSlugs }: { popularSlugs: string[] }) {
+export function CartPageView({
+  popularSlugs,
+  payments,
+}: {
+  popularSlugs: string[];
+  payments: PaymentsVisibility;
+}) {
   const t = useTranslations("Cart");
   const { catalogue, locale } = useCartUi();
   const cart = useCart("b2c");
   const details = useCheckoutDetails();
   const { removed, remove, undo, setPaused } = useRemoveWithUndo("b2c");
+  // Set by the SADAD callback: "unknown" when it can't find the order it was
+  // paying for, "checking" when the result couldn't be verified (yet).
+  const paymentNotice = useSyncExternalStore(
+    noopSubscribe,
+    () => {
+      const value = new URLSearchParams(window.location.search).get("payment");
+      return value === "unknown" || value === "checking" ? value : null;
+    },
+    () => null,
+  );
 
   const lines = resolveCartLines(cart.lines, catalogue);
   const totals = cartTotals(lines);
@@ -148,6 +168,8 @@ export function CartPageView({ popularSlugs }: { popularSlugs: string[] }) {
           totals={totals}
           details={details}
           orderRef={cart.ref ?? ""}
+          payments={payments}
+          holdOnlinePayment={paymentNotice === "checking"}
         />
       </div>
     );
@@ -177,6 +199,26 @@ export function CartPageView({ popularSlugs }: { popularSlugs: string[] }) {
             </p>
           ) : null}
         </div>
+
+        {paymentNotice ? (
+          <p
+            role="alert"
+            className="mt-4 flex flex-wrap items-start gap-2 rounded-xl bg-(--color-danger)/10 px-4 py-3 text-footnote text-(--color-text)"
+          >
+            <AlertIcon className="mt-0.5 h-4 w-4 shrink-0 text-(--color-danger)" />
+            <span className="min-w-0 flex-1">
+              {paymentNotice === "checking" ? t("paymentChecking") : t("paymentUnknown")}{" "}
+              <a
+                href={buildPaymentHelpWhatsAppUrl({ locale })}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-(--color-link) hover:underline"
+              >
+                WhatsApp
+              </a>
+            </span>
+          </p>
+        ) : null}
 
         {cart.hydrated && !cart.storageAvailable ? (
           <p className="mt-4 flex items-start gap-2 rounded-xl bg-(--color-brand)/15 px-4 py-3 text-footnote text-(--color-text)">

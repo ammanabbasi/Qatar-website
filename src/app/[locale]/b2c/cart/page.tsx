@@ -7,6 +7,7 @@ import { Shell } from "@/components/layout/Shell";
 import { CartPageView } from "@/components/cart/CartPageView";
 import { PRODUCTS, getStoreShelfProducts } from "@/data/products";
 import { allAddOnSlugs } from "@/data/addOns";
+import { paymentsVisibility } from "@/lib/payments/config";
 
 // Build-time guard: a typo in the owner-editable add-on map fails the build
 // instead of silently dropping a suggestion from every cart.
@@ -56,7 +57,7 @@ export default async function CartPage({
     // No floating WhatsApp bubble — it would send a generic message instead
     // of the order being built here.
     <Shell audience="b2c" locale={l} headerTone="light" floatingWhatsApp={false}>
-      <CartPageView popularSlugs={popularSlugs} />
+      <CartPageView popularSlugs={popularSlugs} payments={paymentsVisibility()} />
     </Shell>
   );
 }

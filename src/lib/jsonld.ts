@@ -149,6 +149,14 @@ export function organizationJsonLd(locale: "en" | "ar" = "en") {
       },
     ],
     hasShippingService: shippingServiceJsonLd(),
+    hasMerchantReturnPolicy: {
+      "@type": "MerchantReturnPolicy",
+      applicableCountry: "QA",
+      returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+      merchantReturnDays: 7,
+      itemCondition: "https://schema.org/NewCondition",
+      merchantReturnLink: `${SITE.url}/${locale}/terms#returns`,
+    },
   };
 }
 
@@ -279,7 +287,7 @@ export function localBusinessJsonLd(locale: "en" | "ar" = "en") {
       "Getsun",
       "ABK Rejuvenate",
     ],
-    paymentAccepted: ["Cash", "Credit Card", "Debit Card", "Bank Transfer"],
+    paymentAccepted: ["Cash", "Credit Card", "Debit Card", "Bank Transfer", "Apple Pay", "Google Pay"],
     // Price range indicator for Google Knowledge Panel
     priceRange: "$$",
   };

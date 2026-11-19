@@ -896,6 +896,8 @@ Every chemical and film distributed by ABK is selected to withstand the extreme 
 
 - **Retail Online Cart & Walk-In Showroom:**
   - Free local delivery across Doha, Lusail, Al Rayyan, Al Wakrah, and Al Khor on orders of QAR 200+ (flat QAR 25 below; showroom pickup free).
+  - Payment: pay online now on SADAD's secure hosted page (credit/debit card, Apple Pay, Google Pay or NAPS debit card) when every cart item has a price, or order on WhatsApp and pay on delivery or pickup (cash, card, or bank transfer / Fawran). Card details are entered on SADAD's page and never reach ABK.
+  - Returns: unopened, unused items in original packaging can be returned within 7 days of delivery or pickup (message ABK on WhatsApp); online payments are refunded to the card used. Faulty or wrong items are always replaced or refunded.
   - Automatic cart discounts: 10% off orders from QAR 500 and 15% off orders from QAR 700.
 - **Wholesale Trade Accounts:**
   - Target accounts: Detailing studios, tint shops, commercial car washes, dealerships, and fleet operators across Qatar and the GCC.
@@ -971,8 +973,8 @@ If something goes wrong:
 
 ### Booking terms
 - Typical fitting time: front-end same day (5–7 hrs); full front 1 day; full body 2–3 days.
-- Payment: 100% by bank transfer or cash after ABK confirms the slot.
-- Cancellation: full refund up to 48 hours before the slot; one free reschedule.
+- Payment: for fixed-price packages, the full package price can be paid online when booking (SADAD) or at handover by bank transfer, Fawran or cash. Custom-panel jobs and custom-vehicle offers are estimates and are always paid at handover once the price is confirmed. ABK confirms the slot on WhatsApp.
+- Cancellation: full refund up to 48 hours before the confirmed slot (online payments go back to the card used); one free reschedule with 48 hours' notice.
 - Quote builder and booking: https://abktradingservice.com/en/b2c/ppf-installation (Arabic: https://abktradingservice.com/ar/b2c/ppf-installation). WhatsApp: +974 3083 8355.
 
 ---
@@ -1120,7 +1122,10 @@ ABK serves both individual car owners and commercial businesses. You can purchas
 ### Q18: How does the WhatsApp Order Tray work?
 The WhatsApp Order Tray lets you browse products, set quantities, and compile a single multi-item order or commercial quote request. When ready, tap 'Send Order via WhatsApp' to launch a pre-formatted message with item details, quantities, and direct links.
 
-### Q19: Do you offer discounts or free delivery on retail orders?
+### Q19: Can I pay online?
+Yes. At checkout you can pay online on SADAD's secure page by credit or debit card, Apple Pay, Google Pay or NAPS debit card, as long as every item in your cart has a price. Or send your order on WhatsApp and pay on delivery or pickup by cash, card or bank transfer / Fawran. Card details are entered on SADAD's page and never reach ABK.
+
+### Q20: Do you offer discounts or free delivery on retail orders?
 Yes. Orders placed through the website cart get 10% off from QAR 500 and 15% off from QAR 700, applied automatically to the products. Delivery is free from QAR 200 (otherwise QAR 25), and pickup from our Mesaimeer showroom is always free.
 
 ---
@@ -1149,10 +1154,10 @@ Yes. Pick "Choose parts" in the quote builder and tap the panels you want. The e
 Typically the same day for a front-end kit, one day for a full front and two to three days for a full body, including curing time. We confirm the exact time with your slot.
 
 ### PPF Q8: How do I book PPF installation in Doha?
-Tap "Get my instant quote" on this page, choose your car, coverage and film, and send the quote on WhatsApp. We confirm film stock, your slot and the final price during opening hours (Saturday to Thursday, 10:00 – 13:00 and 16:00 – 22:00). You pay in full by bank transfer or cash once the slot is confirmed, drop the car at the confirmed Doha location, and collect it after our handover inspection.
+Tap "Get my instant quote" on this page, choose your car, coverage and film, and send the quote on WhatsApp. We confirm film stock, your slot and the final price during opening hours (Saturday to Thursday, 10:00 – 13:00 and 16:00 – 22:00). For fixed-price packages you can pay online when you book, or at handover by bank transfer, Fawran or cash; custom jobs are paid at handover. You drop the car at the confirmed Doha location, and collect it after our handover inspection.
 
 ### PPF Q9: How do I pay, and can I cancel?
-Once we confirm your slot you pay in full by bank transfer or cash. Cancel up to 48 hours before for a full refund; one reschedule is free.
+For fixed-price packages you can pay the full price online when you book (through SADAD), or at handover by bank transfer, Fawran or cash. Custom-panel jobs and custom-vehicle offers are estimates, so they are paid at handover once the price is confirmed. We confirm your slot on WhatsApp. Cancel up to 48 hours before the confirmed slot for a full refund (online payments go back to the card used); one reschedule is free with 48 hours' notice.
 
 ### PPF Q10: What is the difference between the film warranty and the workmanship cover?
 VTEK's film warranty covers the film itself against manufacturing defects such as bubbling, cracking, peeling and fading when an authorised installer fits it: PRO 10 years, PRO PLUS 10 years, MATTE and PRISM 5 years, and ULTIMATE 15 years (special roll order), as listed on vtekfilms.com/warranty. ABK's separate 12-month fitting guarantee covers the installation itself: edge lifting, bubbles or misalignment. It does not cover accidents, stone impacts, improper washing or pressure-washing the film edges, repairs done elsewhere or paint defects recorded at drop-off.

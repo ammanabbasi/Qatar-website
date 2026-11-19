@@ -13,6 +13,7 @@ import { buttonClasses } from "@/components/ui/Button";
 import { FaqSection } from "@/components/home/FaqSection";
 import { FloatingWhatsApp } from "@/components/cta/FloatingWhatsApp";
 import { PpfConfigurator } from "@/components/ppf/PpfConfigurator";
+import { paymentsVisibility } from "@/lib/payments/config";
 import { CarBlueprint } from "@/components/ppf/CarDiagram";
 import { PpfPriceList } from "@/components/ppf/PpfPriceList";
 import { PpfTrustStrip } from "@/components/ppf/PpfTrustStrip";
@@ -196,7 +197,7 @@ export default async function PpfInstallationPage({
 
             <div className="mt-5 sm:mt-6">
               <NextIntlClientProvider messages={ppfClientMessages}>
-                <PpfConfigurator />
+                <PpfConfigurator payments={paymentsVisibility()} />
               </NextIntlClientProvider>
             </div>
             <p className="mt-4 border-t border-white/10 pt-3.5 text-caption text-white/70">

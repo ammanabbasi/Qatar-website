@@ -247,8 +247,8 @@ ${ARTICLES.map((a) => `- [${a.title.en}](${SITE.url}/en/b2c/blog/${a.slug}): ${a
 - [Complete Product & Technical Manifest (llms-full.txt)](${SITE.url}/llms-full.txt): Exhaustive SKU-by-SKU specifications, QAR prices, PPF price tables, and FAQs.
 - [About ABK Trading & Service](${SITE.url}/en/about): Company profile, authorized brand distributorships, and store FAQs.
 - [Mesaimeer Showroom Location & Contact](${SITE.url}/en/contact): Map coordinates, opening hours, phone numbers, and enquiry form.
-- [Terms of Use & PPF Booking Terms](${SITE.url}/en/terms): Retail, wholesale, cancellation, and 12-month PPF fitting guarantee terms.
-- [Privacy Policy](${SITE.url}/en/privacy): Customer data handling for orders, PPF bookings, and dealer applications.
+- [Terms of Use & PPF Booking Terms](${SITE.url}/en/terms): Retail ordering and payment, returns and refunds, wholesale, PPF cancellation, and 12-month PPF fitting guarantee terms.
+- [Privacy Policy](${SITE.url}/en/privacy): Customer data handling for orders, online payments (SADAD), PPF bookings, and dealer applications.
 - [XML Sitemap](${SITE.url}/sitemap.xml): Canonical bilingual EN/AR URL index with hreflang alternates.
 `;
 
@@ -354,6 +354,8 @@ Every chemical and film distributed by ABK is selected to withstand the extreme 
 
 - **Retail Online Cart & Walk-In Showroom:**
   - Free local delivery across Doha, Lusail, Al Rayyan, Al Wakrah, and Al Khor on orders of QAR ${DELIVERY.freeThresholdQar}+ (flat QAR ${DELIVERY.feeQar} below; showroom pickup free).
+  - Payment: pay online now on SADAD's secure hosted page (credit/debit card, Apple Pay, Google Pay or NAPS debit card) when every cart item has a price, or order on WhatsApp and pay on delivery or pickup (cash, card, or bank transfer / Fawran). Card details are entered on SADAD's page and never reach ABK.
+  - Returns: unopened, unused items in original packaging can be returned within 7 days of delivery or pickup (message ABK on WhatsApp); online payments are refunded to the card used. Faulty or wrong items are always replaced or refunded.
   - Automatic cart discounts: ${DISCOUNT_ENTRY.percent}% off orders from QAR ${DISCOUNT_ENTRY.minSubtotalQar} and ${DISCOUNT_TOP.percent}% off orders from QAR ${DISCOUNT_TOP.minSubtotalQar}.
 - **Wholesale Trade Accounts:**
   - Target accounts: Detailing studios, tint shops, commercial car washes, dealerships, and fleet operators across Qatar and the GCC.
@@ -387,8 +389,8 @@ ${ppfEvidence}
 
 ### Booking terms
 - Typical fitting time: front-end same day (5–7 hrs); full front 1 day; full body 2–3 days.
-- Payment: 100% by bank transfer or cash after ABK confirms the slot.
-- Cancellation: full refund up to 48 hours before the slot; one free reschedule.
+- Payment: for fixed-price packages, the full package price can be paid online when booking (SADAD) or at handover by bank transfer, Fawran or cash. Custom-panel jobs and custom-vehicle offers are estimates and are always paid at handover once the price is confirmed. ABK confirms the slot on WhatsApp.
+- Cancellation: full refund up to 48 hours before the confirmed slot (online payments go back to the card used); one free reschedule with 48 hours' notice.
 - Quote builder and booking: ${SITE.url}/en/b2c/ppf-installation (Arabic: ${SITE.url}/ar/b2c/ppf-installation). WhatsApp: ${SITE.phone}.
 
 ---

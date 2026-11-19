@@ -53,9 +53,9 @@ export default async function TermsPage({
   const t = await getTranslations({ locale, namespace: "Terms" });
   const eyebrows = await getTranslations({ locale, namespace: "Eyebrows" });
 
-  // Section 9 (retail orders) came later; it reads best after product
-  // information, and renumbering would move the PPF terms' anchor.
-  const sections = [1, 2, 9, 3, 4, 5, 6, 7, 8] as const;
+  // Sections 9 (retail orders) and 10 (returns) came later; they read best
+  // after product information, and renumbering would move the PPF terms' anchor.
+  const sections = [1, 2, 9, 10, 3, 4, 5, 6, 7, 8] as const;
   const offer = {
     freeAmount: formatQar(DELIVERY.freeThresholdQar, l),
     fee: formatQar(DELIVERY.feeQar, l),
@@ -84,7 +84,15 @@ export default async function TermsPage({
               <LegalSection
                 key={i}
                 // Section 4 is the PPF installation terms; the PPF page links here.
-                id={i === 4 ? "ppf-bookings" : i === 9 ? "retail-orders" : undefined}
+                id={
+                  i === 4
+                    ? "ppf-bookings"
+                    : i === 9
+                      ? "retail-orders"
+                      : i === 10
+                        ? "returns"
+                        : undefined
+                }
                 title={t(`section${i}Title`)}
                 body={t(`section${i}Body`, offer)}
               />

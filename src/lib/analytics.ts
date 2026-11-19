@@ -19,7 +19,8 @@ export type CartEventName =
   | "add_to_cart"
   | "remove_from_cart"
   | "view_cart"
-  | "begin_checkout";
+  | "begin_checkout"
+  | "add_payment_info";
 
 export type GaItem = {
   item_id: string;
@@ -211,6 +212,45 @@ export function trackPpfWhatsAppHandoff(opts: {
   });
 }
 
+
+/**
+ * Online payment confirmed by SADAD — GA4's standard `purchase`, sent from
+ * the order page once per order (the order id is the transaction_id, so a
+ * reload never counts twice). Same production-host gate as everything else
+ * here, so sandbox tests on localhost report nothing.
+ */
+export function trackPurchase(opts: {
+  orderId: string;
+  kind: "shop" | "ppf";
+  valueQar: number;
+  shippingQar: number;
+  items: GaItem[];
+}) {
+  if (typeof window === "undefined") return;
+  const key = `abk_purchase_${opts.orderId}`;
+  try {
+    if (window.localStorage.getItem(key)) return;
+    window.localStorage.setItem(key, "1");
+  } catch {
+    // Storage blocked: GA4 still dedupes on transaction_id.
+  }
+  const attr = attributionEventParams();
+  const gtag = (window as WindowWithGtag).gtag;
+  if (typeof gtag === "function") {
+    gtag("event", "purchase", {
+      ...attr,
+      transaction_id: opts.orderId,
+      value: opts.valueQar,
+      shipping: opts.shippingQar,
+      currency: "QAR",
+      order_kind: opts.kind,
+      items: opts.items,
+    });
+  }
+  (window as WindowWithPlausible).plausible?.("purchase", {
+    props: { ...attr, order_kind: opts.kind },
+  });
+}
 
 /**
  * Wholesale dealer application submitted on /[locale]/b2b/dealer-application.

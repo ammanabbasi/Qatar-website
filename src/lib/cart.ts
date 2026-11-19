@@ -32,12 +32,21 @@ export type CartState = {
   sentAt: number | null;
 };
 
+export type PaymentMethod = "online" | "whatsapp";
+
 export type CheckoutDetails = {
   fulfilment: Fulfilment;
   /** Key from `QATAR_AREAS`, `"other"`, or "" when not chosen yet. */
   area: string;
   areaOther: string;
   notes: string;
+  /** Pay now through SADAD, or send the order on WhatsApp and pay later. */
+  payment: PaymentMethod;
+  /** Contact + address, only asked for when paying online. Kept on this device. */
+  name: string;
+  mobile: string;
+  email: string;
+  address: string;
 };
 
 /** Wholesale quote tray fields — kept across closing the tray and page loads. */
@@ -50,6 +59,10 @@ export type QuoteDetails = {
 export const MAX_QTY: Record<Audience, number> = { b2c: 99, b2b: 999 };
 export const NOTES_MAX = 300;
 export const AREA_OTHER_MAX = 80;
+export const NAME_MAX = 80;
+export const MOBILE_MAX = 20;
+export const EMAIL_MAX = 120;
+export const ADDRESS_MAX = 200;
 const COMPANY_MAX = 120;
 
 /**
@@ -74,6 +87,11 @@ const DEFAULT_DETAILS: CheckoutDetails = {
   area: "",
   areaOther: "",
   notes: "",
+  payment: "online",
+  name: "",
+  mobile: "",
+  email: "",
+  address: "",
 };
 const DEFAULT_QUOTE: QuoteDetails = { companyName: "", notes: "" };
 
@@ -154,12 +172,17 @@ function parseDetails(raw: string | null): CheckoutDetails {
   if (!raw) return DEFAULT_DETAILS;
   try {
     const d = JSON.parse(raw) as Partial<CheckoutDetails> | null;
+    const text = (v: unknown, max: number) => (typeof v === "string" ? v.slice(0, max) : "");
     return {
       fulfilment: d?.fulfilment === "pickup" ? "pickup" : "delivery",
       area: typeof d?.area === "string" ? d.area : "",
-      areaOther:
-        typeof d?.areaOther === "string" ? d.areaOther.slice(0, AREA_OTHER_MAX) : "",
-      notes: typeof d?.notes === "string" ? d.notes.slice(0, NOTES_MAX) : "",
+      areaOther: text(d?.areaOther, AREA_OTHER_MAX),
+      notes: text(d?.notes, NOTES_MAX),
+      payment: d?.payment === "whatsapp" ? "whatsapp" : "online",
+      name: text(d?.name, NAME_MAX),
+      mobile: text(d?.mobile, MOBILE_MAX),
+      email: text(d?.email, EMAIL_MAX),
+      address: text(d?.address, ADDRESS_MAX),
     };
   } catch {
     return DEFAULT_DETAILS;
@@ -350,6 +373,15 @@ function startFresh(audience: Audience) {
 /** Retail "Start a new order". */
 export function startNewOrder() {
   startFresh("b2c");
+}
+
+/**
+ * SADAD confirmed payment for the order `ref`: if this device's cart is still
+ * that order, empty it so the next add starts a new order. A cart that has
+ * already moved on (another tab, a newer order) is left alone.
+ */
+export function completePaidOrder(ref: string) {
+  if (getCart("b2c").ref === ref) startFresh("b2c");
 }
 
 /** Wholesale "Clear Tray": lines and notes go, the company name stays. */

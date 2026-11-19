@@ -10,11 +10,14 @@
     "og:products": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/generate-og.mjs",
     "llms:sync": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/generate-llms.mjs",
     "seo:verify": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify-seo.mjs",
-    "indexnow": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/indexnow.mjs"
+    "indexnow": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/indexnow.mjs",
+    "test:payments": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/test-alias-hooks.mjs --test scripts/test-payments.mts scripts/test-orders.mts scripts/test-emails.mts"
   },
   "dependencies": {
+    "@vercel/blob": "^2.9.0",
     "next": "16.3.6",
     "next-intl": "^4.9.2",
+    "nodemailer": "^10.6.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "sharp": "^0.35.4"

@@ -1,23 +1,27 @@
 /**
- * POST /api/ppf-booking — saves an installed-PPF booking request.
+ * POST /api/ppf-booking — saves an installed-PPF booking and, when the
+ * customer chose to pay now, starts the SADAD payment for it.
  *
- * The site's only server-side write. The record goes to the owner's Google
- * Sheet through an Apps Script web app (PPF_BOOKING_WEBHOOK_URL), called from
- * here so the endpoint never reaches the browser — the unguessable deployment
- * URL is the capability. PPF_BOOKING_WEBHOOK_SECRET is optional hardening:
- * when set (and set as SHARED_SECRET in the script), it is sent and checked.
- * The proxy matcher in src/proxy.ts already excludes /api, so next-intl never
- * touches this route.
+ * Every booking is stored in the abk-orders Blob store and emailed to staff
+ * (src/lib/payments/email.ts). Paying online is offered for fixed-price
+ * packages only — custom-panel jobs and custom-vehicle offers are estimates,
+ * so those are always paid at handover. If online payment can't start (not
+ * configured, store down) the booking is still saved as pay-at-handover and
+ * the reply says so, so a booking is never lost to a payment problem.
  *
- * Failure is never fatal for the customer: on any error the client still
- * offers the WhatsApp hand-off with a reference. A failed save is retried
- * once (the script ignores a ref it already has, so a retry never writes a
- * second row); if it still fails, the full booking is logged on one
- * "UNSAVED PPF BOOKING" line so the owner can recover it from Vercel →
- * Logs even if the customer never sends the WhatsApp message.
+ * The owner's Google Sheet (PPF_BOOKING_WEBHOOK_URL, Apps Script web app) is
+ * still written when configured; PPF_BOOKING_WEBHOOK_SECRET is optional
+ * hardening. If neither the store nor the Sheet takes the booking, the full
+ * booking is logged on one "UNSAVED PPF BOOKING" line and the customer is
+ * offered the WhatsApp hand-off with a reference.
  */
 
+import { after } from "next/server";
 import {
+  BODY_TYPES,
+  COVERAGES,
+  FILMS,
+  PARTS,
   isCoverage,
   isFilm,
   isPart,
@@ -26,6 +30,11 @@ import {
   quotePpf,
   type PartKey,
 } from "@/data/ppfInstall";
+import { callbackOrigin, sadadConfig } from "@/lib/payments/config";
+import { sendOrderEmails } from "@/lib/payments/email";
+import { createOrder, newOrderId, type Order } from "@/lib/payments/orders";
+import { buildSadadCheckoutForm, sadadTxnDate } from "@/lib/payments/sadad";
+import { isEmail, normaliseQatarMobile, sadadMobile, str } from "@/lib/payments/validate";
 
 const MAX = { short: 60, name: 80, notes: 500, clickId: 200 } as const;
 
@@ -36,19 +45,11 @@ const RETRY_PAUSE_MS = 1500;
 
 type Fields = Record<string, unknown>;
 
-function str(v: unknown, max: number): string {
-  return typeof v === "string" ? v.trim().slice(0, max) : "";
-}
-
-/** Qatar mobile: optional +974/00974, then 8 digits starting 3, 5, 6 or 7. */
-function normaliseQatarMobile(v: string): string | null {
-  const digits = v.replace(/[\s()-]/g, "").replace(/^(\+|00)?974/, "");
-  return /^[3567]\d{7}$/.test(digits) ? `+974${digits}` : null;
-}
-
 function json(status: number, body: Record<string, unknown>) {
   return Response.json(body, { status, headers: { "Cache-Control": "no-store" } });
 }
+
+const CUSTOM_BODY_LABEL = { en: "Custom offer by make & model", ar: "عرض خاص حسب الطراز" };
 
 export async function POST(request: Request) {
   let f: Fields;
@@ -61,7 +62,7 @@ export async function POST(request: Request) {
   // Honeypot + a minimum fill time: bots get a convincing reply and nothing saved.
   const startedAt = Number(f.startedAt);
   if (str(f.website, 200) || !Number.isFinite(startedAt) || Date.now() - startedAt < 3000) {
-    return json(200, { ok: true, ref: makeBookingRef() });
+    return json(200, { ok: true, ref: makeBookingRef(), payment: "handover" });
   }
 
   const { body, coverage, film } = f;
@@ -73,6 +74,7 @@ export async function POST(request: Request) {
     return json(422, { ok: false, error: "invalid_selection" });
   }
 
+  const wantsOnline = f.payment === "online";
   const name = str(f.name, MAX.name);
   const mobile = normaliseQatarMobile(str(f.mobile, 30));
   const email = str(f.email, 120);
@@ -84,7 +86,8 @@ export async function POST(request: Request) {
   const errors: string[] = [];
   if (name.length < 2) errors.push("name");
   if (!mobile) errors.push("mobile");
-  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.push("email");
+  // SADAD sends its receipt by email, so paying now needs one.
+  if (email ? !isEmail(email) : wantsOnline) errors.push("email");
   if (!make && !model) errors.push("make");
   if (rawYear !== 0 && (!Number.isInteger(rawYear) || rawYear < 1990 || rawYear > thisYear + 1)) {
     errors.push("year");
@@ -96,18 +99,27 @@ export async function POST(request: Request) {
   // Price comes from the shared table, never from the request.
   const quote = quotePpf({ body, coverage, parts, film });
   const ref = makeBookingRef();
+  const locale = f.locale === "ar" ? "ar" : "en";
+  const config = sadadConfig();
+  const fixedPrice = body !== "custom" && quote.priceQar !== null && !quote.isEstimate;
+  const payOnline = wantsOnline && fixedPrice && config !== null;
 
-  const url = process.env.PPF_BOOKING_WEBHOOK_URL;
-  const secret = process.env.PPF_BOOKING_WEBHOOK_SECRET;
+  // The page priced the job from the table it was built with; if a deploy
+  // changed the price since, say so instead of charging a surprise amount.
+  const expected = Number(f.expectedPriceQar);
+  if (payOnline && f.expectedPriceQar !== undefined && (!Number.isFinite(expected) || expected !== quote.priceQar)) {
+    return json(409, { ok: false, error: "price_changed", priceQar: quote.priceQar });
+  }
 
   const booking = {
     ref,
-    locale: f.locale === "ar" ? "ar" : "en",
+    locale,
     bodyType: body,
     coverage,
     parts: coverage === "custom" ? parts : [],
     film,
     priceQar: quote.priceQar ?? "quote",
+    payment: payOnline ? "online" : "handover",
     make: make || model,
     model: make ? model : "",
     year: rawYear || "",
@@ -125,10 +137,105 @@ export async function POST(request: Request) {
     utmCampaign: str(f.utmCampaign, MAX.short),
   };
 
-  if (!url) {
-    logUnsaved("webhook not configured", booking);
-    return json(503, { ok: false, error: "not_configured", ref, priceQar: quote.priceQar });
+  // isFilm() still accepts the retired "ultimate" key, which quotePpf prices as PRO PLUS.
+  const filmKey = (film as string) === "ultimate" ? "pro-plus" : film;
+  const filmInfo = FILMS.find((x) => x.key === filmKey);
+  const order: Order = {
+    v: 1,
+    id: newOrderId(ref),
+    ref,
+    kind: "ppf",
+    createdAt: new Date().toISOString(),
+    locale,
+    pay: payOnline ? "online" : "handover",
+    status: payOnline ? "awaiting_payment" : "booked",
+    totalQar: quote.priceQar ?? 0,
+    customer: { name, mobile: mobile!, email },
+    notes: booking.notes,
+    ppf: {
+      body,
+      bodyLabel: BODY_TYPES.find((b) => b.key === body)?.name ?? CUSTOM_BODY_LABEL,
+      coverage,
+      coverageLabel: COVERAGES.find((c) => c.key === coverage)?.name ?? { en: coverage, ar: coverage },
+      film,
+      filmLabel: filmInfo?.name ?? { en: String(film), ar: String(film) },
+      parts:
+        coverage === "custom"
+          ? PARTS.filter((p) => parts.includes(p.key)).map((p) => p.name)
+          : [],
+      car: [rawYear || "", make, model].filter(Boolean).join(" "),
+      existingFilm: booking.existingFilm,
+      preferredDate,
+      priceQar: quote.priceQar,
+      isEstimate: quote.isEstimate,
+    },
+    attribution: {
+      gclid: booking.gclid,
+      gbraid: booking.gbraid,
+      wbraid: booking.wbraid,
+      utmSource: booking.utmSource,
+      utmMedium: booking.utmMedium,
+      utmCampaign: booking.utmCampaign,
+    },
+    events: [],
+    flags: [],
+    emails: {},
+  };
+
+  let stored = false;
+  try {
+    await createOrder(order);
+    stored = true;
+  } catch (err) {
+    console.error(`[ppf-booking] could not store ${order.id}: ${err instanceof Error ? err.message : err}`);
   }
+
+  const sheet = await saveToSheet(booking);
+  if (!stored && sheet.result !== "saved") {
+    logUnsaved(sheet.failure, booking);
+    return json(sheet.result === "not_configured" ? 503 : 502, {
+      ok: false,
+      error: sheet.result === "not_configured" ? "not_configured" : "save_failed",
+      ref,
+      priceQar: quote.priceQar,
+    });
+  }
+
+  if (stored) after(() => sendOrderEmails(order, "booked"));
+
+  if (payOnline && stored && config) {
+    const sadad = buildSadadCheckoutForm({
+      merchantId: config.merchantId,
+      secretKey: config.secretKey,
+      website: config.website,
+      orderId: order.id,
+      amountQar: order.totalQar,
+      callbackUrl: `${callbackOrigin(request)}/api/payments/sadad/callback`,
+      email,
+      mobile: sadadMobile(mobile!),
+      txnDate: sadadTxnDate(),
+      language: locale === "ar" ? "ARB" : "ENG",
+      itemName: `ABK PPF installation ${ref}`,
+    });
+    return json(200, { ok: true, ref, priceQar: quote.priceQar, payment: "online", sadad });
+  }
+
+  return json(200, {
+    ok: true,
+    ref,
+    priceQar: quote.priceQar,
+    payment: "handover",
+    ...(wantsOnline ? { paymentUnavailable: true } : {}),
+  });
+}
+
+/** The owner's Google Sheet, when its Apps Script web app is configured. */
+async function saveToSheet(
+  booking: Record<string, unknown>,
+): Promise<{ result: "saved" | "not_configured" | "failed"; failure: string }> {
+  const url = process.env.PPF_BOOKING_WEBHOOK_URL;
+  const secret = process.env.PPF_BOOKING_WEBHOOK_SECRET;
+  if (!url) return { result: "not_configured", failure: "webhook not configured" };
 
   let failure = "";
   for (let attempt = 1; attempt <= 2; attempt++) {
@@ -143,8 +250,10 @@ export async function POST(request: Request) {
       });
       const out = (await res.json().catch(() => null)) as { ok?: boolean; error?: string; stored?: string } | null;
       if (res.ok && out?.ok) {
-        if (out.stored === "email") console.warn("[ppf-booking] Sheet unavailable; booking", ref, "was emailed to staff instead");
-        return json(200, { ok: true, ref, priceQar: quote.priceQar });
+        if (out.stored === "email") {
+          console.warn("[ppf-booking] Sheet unavailable; booking", booking.ref, "was emailed to staff instead");
+        }
+        return { result: "saved", failure: "" };
       }
       failure = `attempt ${attempt}: HTTP ${res.status} ${out?.error ?? "no JSON reply"}`;
       // A wrong secret will not fix itself; retrying only delays the customer.
@@ -154,9 +263,7 @@ export async function POST(request: Request) {
     }
     if (attempt === 1) await new Promise((r) => setTimeout(r, RETRY_PAUSE_MS));
   }
-
-  logUnsaved(failure, booking);
-  return json(502, { ok: false, error: "save_failed", ref, priceQar: quote.priceQar });
+  return { result: "failed", failure };
 }
 
 /**

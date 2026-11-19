@@ -59,6 +59,6 @@ ABK is a product distributor and store, not a detailing workshop. The one instal
 - [Complete Product & Technical Manifest (llms-full.txt)](https://abktradingservice.com/llms-full.txt): Exhaustive SKU-by-SKU specifications, QAR prices, PPF price tables, and FAQs.
 - [About ABK Trading & Service](https://abktradingservice.com/en/about): Company profile, authorized brand distributorships, and store FAQs.
 - [Mesaimeer Showroom Location & Contact](https://abktradingservice.com/en/contact): Map coordinates, opening hours, phone numbers, and enquiry form.
-- [Terms of Use & PPF Booking Terms](https://abktradingservice.com/en/terms): Retail, wholesale, cancellation, and 12-month PPF fitting guarantee terms.
-- [Privacy Policy](https://abktradingservice.com/en/privacy): Customer data handling for orders, PPF bookings, and dealer applications.
+- [Terms of Use & PPF Booking Terms](https://abktradingservice.com/en/terms): Retail ordering and payment, returns and refunds, wholesale, PPF cancellation, and 12-month PPF fitting guarantee terms.
+- [Privacy Policy](https://abktradingservice.com/en/privacy): Customer data handling for orders, online payments (SADAD), PPF bookings, and dealer applications.
 - [XML Sitemap](https://abktradingservice.com/sitemap.xml): Canonical bilingual EN/AR URL index with hreflang alternates.

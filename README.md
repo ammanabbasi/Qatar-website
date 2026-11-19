@@ -43,7 +43,39 @@ See `.env.example` for the full set. Two variables matter at build time:
 - `NEXT_PUBLIC_SITE_URL` — canonical site URL used for SEO (canonical, hreflang, sitemap, JSON-LD). Falls back to the production URL if unset.
 - `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` — Plausible tracking domain. **Leave unset on dev/preview** so localhost traffic doesn't pollute production stats. Set only on Vercel production.
 
-For owner-action launch steps, read `PREFLIGHT.md`.
+For owner-action launch steps, read `PREFLIGHT.md`. Online payments add their own variables — see the next section.
+
+## Online payments (SADAD)
+
+Customers can pay online through **SADAD Web Checkout** (Qatar; card, Apple Pay, Google Pay, NAPS debit) in two places:
+
+- **Retail cart** (`/b2c/cart`): "Pay online now" or the existing "Order on WhatsApp, pay later". Online payment is offered only when every item in the cart has a price — a price-on-request film keeps the WhatsApp route.
+- **PPF installation booking** (`/b2c/ppf-installation`): "Pay now online" (full package price, fixed-price packages only) or "Pay at handover". Custom-panel jobs and custom-vehicle offers are estimates, so they are always paid at handover.
+
+How it works:
+
+1. The browser posts the cart (`slug` + `qty` only) or the booking to `/api/checkout` / `/api/ppf-booking`. The server re-prices everything from `src/data/*` + `src/lib/pricing.ts`, stores the order in the private Vercel Blob store **abk-orders** (status `awaiting_payment`) and returns a signed SADAD form; the browser posts it to SADAD's hosted page. Card details never touch our servers.
+2. SADAD sends the customer back to `/api/payments/sadad/callback` (form POST) and notifies `/api/payments/sadad/webhook` (JSON, server-to-server). Both are checksum-verified; the order turns `paid` once — the update is compare-and-swap on the blob's ETag — and that single transition sends the emails (staff alert to `ORDER_EMAIL_TO`, receipt to the customer in EN/AR). A success whose amount differs from the order total is parked as `review` and staff are alerted instead.
+3. The customer lands on `/[locale]/b2c/order/<id>?t=<token>` (token = HMAC of the order id, so order ids alone can't open order pages): paid / pending (auto-refreshes) / failed (try again) / review, plus a WhatsApp button with the paid order prefilled. A paid cart is emptied there and GA4 `purchase` is sent once.
+
+**Signing scheme — read before touching `src/lib/payments/sadad.ts`.** SADAD's 2.1 docs describe a plain SHA-256 `signature`; their live endpoint rejects it ("Checksumhash did not match"). It accepts the encrypted `checksumhash` scheme their plugins use (details in the file header), the form must be posted in exactly the order it was signed, `productdetail` lines are required, and `CALLBACK_URL` must be on a domain registered in the SADAD panel ("ERR-03 … not registered against this merchant's sandbox (test) domains" otherwise). `npm run test:payments` pins all of this (23 tests: signing, verification, order state machine).
+
+| Variable | Where | Notes |
+| --- | --- | --- |
+| `SADAD_MERCHANT_ID` | Vercel (Production) | `7326278` — shown at the top of the SADAD panel. Not secret. |
+| `SADAD_SECRET_KEY` | Vercel (Production) | SADAD panel → Online Payment → Payment Gateway → Configure API → **Live** key (Test key = sandbox). Secret; never commit it. |
+| `SMTP_PASS` | Vercel (Production) | Password of the sending mailbox (`sales@abktradingservice.com`, Hostinger). Without it orders are still stored, but no emails go out (logged as `[orders] EMAIL NOT SENT`). |
+| `PAYMENTS_PUBLIC` | Vercel (Production) | `1` shows online payment to everyone. Unset = only on a device that opened any page with `?pay=preview` (go-live check; `?pay=off` clears it). |
+| `BLOB_READ_WRITE_TOKEN` | Vercel (all envs) | Set automatically by the connected **abk-orders** Blob store. |
+| `SMTP_USER`, `SMTP_HOST`, `SMTP_PORT`, `ORDER_EMAIL_TO`, `SADAD_WEBSITE`, `PAYMENTS_CALLBACK_ORIGIN` | optional | Defaults: `sales@abktradingservice.com`, `smtp.hostinger.com`, `465`, `sales@abktradingservice.com`, `abktradingservice.com`, canonical site URL. |
+
+Pages are static, so env changes reach them on the next deployment (Vercel redeploys on env edits anyway). With no SADAD key set, the site behaves exactly as before (WhatsApp only).
+
+SADAD panel settings (Online Payment → Payment Gateway): website domain `abktradingservice.com` registered under both Test and Live keys; **Webhook** → `https://abktradingservice.com/api/payments/sadad/webhook`; **Notifications** → transaction/refund/dispute/downtime alerts to `sales@abktradingservice.com`.
+
+Orders live in Vercel → Storage → **abk-orders** (`orders/<id>.json` in production, `preview/orders/…` and `dev/orders/…` for test traffic). Refunds are issued from the SADAD panel.
+
+Testing: sandbox payments use the Test key and SADAD's test cards (developer.sadad.qa → Test Pay; e.g. Mastercard 5123 4500 0000 0008, any name/CVC/future expiry). Locally, the return URL must be a registered HTTPS domain — tunnel the server and add the tunnel's domain to the Test key's domains (`PAYMENTS_CALLBACK_ORIGIN=https://<tunnel>` in `.env.local`).
 
 ## Project structure
 
