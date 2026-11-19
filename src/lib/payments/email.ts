@@ -26,28 +26,81 @@ export type OrderEmailEvent = "paid" | "booked" | "review";
 
 export type Mail = { subject: string; text: string; html: string };
 
+type MailMessage = { from: string; to: string; replyTo?: string; subject: string; text: string; html: string };
+
+/**
+ * SMTP_DEBUG=1 writes the SMTP conversation to the function log (nodemailer
+ * masks credentials as "secret"). Port 465 (implicit TLS) is tried first; if
+ * the connection itself fails, 587 with STARTTLS — some networks drop one but
+ * not the other.
+ */
 function mailer() {
   const pass = process.env.SMTP_PASS?.trim();
   if (!pass) return null;
   const user = process.env.SMTP_USER?.trim() || SITE.email;
-  const port = Number(process.env.SMTP_PORT?.trim() || 465);
-  return {
-    from: `"ABK Trading & Service" <${user}>`,
-    to: process.env.ORDER_EMAIL_TO?.trim() || SITE.email,
+  const host = process.env.SMTP_HOST?.trim() || "smtp.hostinger.com";
+  const configured = Number(process.env.SMTP_PORT?.trim() || 465);
+  const ports = configured === 465 ? [465, 587] : [configured];
+  const debug = process.env.SMTP_DEBUG?.trim() === "1";
+  const transports = ports.map((port) => ({
+    port,
     transport: nodemailer.createTransport({
-      host: process.env.SMTP_HOST?.trim() || "smtp.hostinger.com",
+      host,
       port,
       secure: port === 465,
+      requireTLS: port !== 465,
       auth: { user, pass },
+      // EHLO as the shop's own domain, not the serverless host's name.
+      name: SITE.domain,
       connectionTimeout: 10_000,
       greetingTimeout: 10_000,
       socketTimeout: 20_000,
+      logger: debug,
+      debug,
     }),
+  }));
+  return {
+    from: `"ABK Trading & Service" <${user}>`,
+    to: process.env.ORDER_EMAIL_TO?.trim() || SITE.email,
+    /** Sends on the first port that connects; an SMTP-level rejection is not retried. */
+    async send(message: MailMessage): Promise<void> {
+      let lastError: unknown;
+      for (const { port, transport } of transports) {
+        try {
+          await transport.sendMail(message);
+          return;
+        } catch (err) {
+          lastError = err;
+          if (!isConnectionError(err)) break;
+          console.warn(`[orders] SMTP port ${port} failed (${errorText(err)}); trying the next port`);
+        }
+      }
+      throw lastError;
+    },
   };
 }
 
+function isConnectionError(err: unknown): boolean {
+  const e = err as { code?: string; message?: string };
+  return (
+    ["ECONNECTION", "ETIMEDOUT", "ESOCKET", "ECONNRESET", "ECONNREFUSED", "EDNS"].includes(e?.code ?? "") ||
+    /closed unexpectedly|timed? ?out|ECONNRESET|ECONNREFUSED/i.test(e?.message ?? "")
+  );
+}
+
+/** Message plus nodemailer's code / command / server reply — never the credentials. */
 function errorText(err: unknown): string {
-  return err instanceof Error ? err.message : String(err);
+  const e = err as { message?: string; code?: string; command?: string; responseCode?: number; response?: string };
+  if (!(err instanceof Error)) return String(err);
+  return [
+    e.message,
+    e.code ? `code=${e.code}` : "",
+    e.command ? `command=${e.command}` : "",
+    e.responseCode ? `reply=${e.responseCode}` : "",
+    e.response && e.response !== e.message ? `response=${String(e.response).slice(0, 160)}` : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 }
 
 /** The emails an event produces: always the staff alert; the customer receipt only once paid. */
@@ -77,7 +130,7 @@ export async function sendOrderEmails(order: Order, event: OrderEmailEvent): Pro
 
   try {
     const mail = mails.shop;
-    await m.transport.sendMail({
+    await m.send({
       from: m.from,
       to: m.to,
       replyTo: order.customer.email || undefined,
@@ -94,7 +147,7 @@ export async function sendOrderEmails(order: Order, event: OrderEmailEvent): Pro
   if (mails.customer) {
     try {
       const mail = mails.customer;
-      await m.transport.sendMail({
+      await m.send({
         from: m.from,
         to: order.customer.email,
         replyTo: SITE.email,
@@ -143,7 +196,7 @@ export async function sendUnmatchedPaymentAlert(
   const headline =
     "SADAD confirmed this payment, but the website could not record it. Find the transaction in the SADAD panel, then contact the customer (their mobile and email are on the transaction) to arrange the order.";
   try {
-    await m.transport.sendMail({
+    await m.send({
       from: m.from,
       to: m.to,
       subject,
