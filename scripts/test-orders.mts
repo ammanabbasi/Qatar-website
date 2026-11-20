@@ -397,9 +397,14 @@ test("rate limit: counts per key inside the window, and reads the edge's address
   assert.equal(overLimit("test:b", 3, 60_000, t0 + 10), false); // another visitor
   assert.equal(overLimit("test:a", 3, 60_000, t0 + 60_005), false); // the window moved on
   const req = (h: Record<string, string>) => new Request("https://example.com/", { headers: h });
-  assert.equal(clientAddress(req({ "x-forwarded-for": "1.2.3.4, 203.0.113.9" })), "203.0.113.9");
-  assert.equal(clientAddress(req({ "x-real-ip": "198.51.100.7" })), "198.51.100.7");
-  assert.equal(clientAddress(req({})), null); // unknown: never limited
+  // Off Railway (local next start, tests): the last X-Forwarded-For hop, then X-Real-IP.
+  assert.equal(clientAddress(req({ "x-forwarded-for": "1.2.3.4, 203.0.113.9" }), false), "203.0.113.9");
+  assert.equal(clientAddress(req({ "x-real-ip": "198.51.100.7" }), false), "198.51.100.7");
+  assert.equal(clientAddress(req({}), false), null); // unknown: never limited
+  // On Railway: only X-Real-IP (set by the edge); a client-sent X-Forwarded-For is ignored.
+  assert.equal(clientAddress(req({ "x-forwarded-for": "1.2.3.4, 203.0.113.9", "x-real-ip": "198.51.100.7" }), true), "198.51.100.7");
+  assert.equal(clientAddress(req({ "x-forwarded-for": "203.0.113.9" }), true), null);
+  assert.equal(clientAddress(req({ "x-real-ip": " " }), true), null);
 });
 
 test("PPF online price: 5% off, rounded down to whole riyals", async () => {

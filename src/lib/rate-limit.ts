@@ -9,16 +9,25 @@
 const hits = new Map<string, number[]>();
 let lastPrune = 0;
 
+const ON_RAILWAY = Boolean(process.env.RAILWAY_ENVIRONMENT_NAME || process.env.RAILWAY_PROJECT_ID);
+
 /**
- * The visitor's address as Railway's edge saw it: the last X-Forwarded-For
- * hop (the one the edge added; earlier hops are whatever the client sent).
+ * The visitor's address. On Railway: X-Real-IP, the header Railway's edge
+ * documents for the client's address. Not X-Forwarded-For there: measured live
+ * on 2026-11-20, the edge passes a client-sent X-Forwarded-For through, so
+ * every hop in it can be made up and 12 requests with invented addresses all
+ * got past the limit. Elsewhere (local `next start`, which fills
+ * X-Forwarded-For from the socket when it is missing, and the tests that send
+ * their own): the last X-Forwarded-For hop, then X-Real-IP.
  * Null when unknown — then nothing is limited, rather than everyone sharing
  * one bucket.
  */
-export function clientAddress(request: Request): string | null {
+export function clientAddress(request: Request, onRailway = ON_RAILWAY): string | null {
+  const realIp = request.headers.get("x-real-ip")?.trim() || null;
+  if (onRailway) return realIp;
   const forwarded = request.headers.get("x-forwarded-for");
   const hops = forwarded?.split(",").map((s) => s.trim()).filter(Boolean) ?? [];
-  return hops.at(-1) ?? request.headers.get("x-real-ip")?.trim() ?? null;
+  return hops.at(-1) ?? realIp;
 }
 
 /**
