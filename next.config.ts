@@ -68,6 +68,14 @@ const nextConfig: NextConfig = {
     // the old rules produced two-hop chains (b2b → b2c/ with a trailing slash →
     // b2c, and localeless → locale redirect by the next-intl middleware).
     return [
+      // www → the canonical bare domain, path and query kept (Vercel did this
+      // at its edge until the move to Railway on 2026-11-20).
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.abktradingservice.com" }],
+        destination: "https://abktradingservice.com/:path*",
+        permanent: true,
+      },
       // SADAD sends a customer who cancels on its payment page to the site root
       // with ?order_id=<ORDER_ID> instead of the callback URL. Hand those to the
       // route that returns them to the cart / PPF page with a notice. Listed
