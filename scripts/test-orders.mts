@@ -413,3 +413,39 @@ test("PPF online price: 5% off, rounded down to whole riyals", async () => {
   const cases: [number, number][] = [[899, 854], [1599, 1519], [1899, 1804], [3999, 3799], [4799, 4559], [5499, 5224], [1000, 950]];
   for (const [full, online] of cases) assert.equal(ppfOnlinePriceQar(full), online, `${full}`);
 });
+
+const ppfBooking = (id: string, extra: Partial<Order> = {}) =>
+  ({ ...order(id, 899), ref: id.slice(0, id.lastIndexOf("-")), kind: "ppf", pay: "handover", status: "booked", ...extra }) as Order;
+
+test("sweep: a PPF booking staff never heard about is claimed for its alert, capped at six", async () => {
+  const { bookedAlertMissing, claimBookedAlert, recordEmails } = await import("../src/lib/payments/orders.ts");
+  const id = newOrderId("PPF-SWPB2");
+  await createOrder(ppfBooking(id));
+  const stored = (await readOrder(id))!.order;
+  assert.equal(bookedAlertMissing(stored), true);
+  assert.equal(bookedAlertMissing({ ...stored, emails: { booked: "2026-11-20T10:00:00.000Z" } }), false); // it went out
+  assert.equal(bookedAlertMissing({ ...stored, status: "paid" }), false); // the paid emails cover it
+  assert.equal(bookedAlertMissing({ ...stored, status: "awaiting_payment", pay: "online" }), true); // pay-now booking
+  assert.equal(bookedAlertMissing({ ...stored, kind: "shop" }), false);
+  assert.equal((await claimBookedAlert(id))?.emails.bookedAttempts, 1);
+  assert.equal(await claimBookedAlert(id), null); // a fresh claim stands
+  for (let n = 2; n <= 6; n++) {
+    await recordEmails(id, { bookedClaimedAt: new Date(0).toISOString() });
+    assert.equal((await claimBookedAlert(id))?.emails.bookedAttempts, n);
+  }
+  await recordEmails(id, { bookedClaimedAt: new Date(0).toISOString() });
+  assert.equal(await claimBookedAlert(id), null); // capped
+});
+
+test("sweep run: a missing booking alert is sent after the grace period, not before", async () => {
+  const { runOrderSweep } = await import("../src/lib/payments/sweep.ts");
+  const now = Date.now();
+  const due = newOrderId("PPF-SWPC3");
+  const fresh = newOrderId("PPF-SWPD4");
+  await createOrder(ppfBooking(due, { createdAt: new Date(now - 10 * 60_000).toISOString() }));
+  await createOrder(ppfBooking(fresh, { createdAt: new Date(now - 60_000).toISOString() }));
+  await runOrderSweep({ now, bookedGraceMs: 5 * 60_000 });
+  // Claimed and tried (no SMTP in tests, so the send itself fails and is retried by a later sweep).
+  assert.equal((await readOrder(due))!.order.emails.bookedAttempts, 1);
+  assert.equal((await readOrder(fresh))!.order.emails.bookedAttempts, undefined); // its own alert may still be on the way
+});

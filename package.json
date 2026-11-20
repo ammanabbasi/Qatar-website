@@ -11,7 +11,7 @@
     "llms:sync": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/generate-llms.mjs",
     "seo:verify": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/verify-seo.mjs",
     "indexnow": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/indexnow.mjs",
-    "test:payments": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/test-alias-hooks.mjs --test scripts/test-payments.mts scripts/test-orders.mts scripts/test-emails.mts"
+    "test:payments": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/test-alias-hooks.mjs --test scripts/test-payments.mts scripts/test-orders.mts scripts/test-emails.mts scripts/test-whatsapp.mts"
   },
   "dependencies": {
     "next": "16.3.6",

@@ -1,8 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { useParams } from "next/navigation";
 import { SITE } from "@/lib/constants";
+import { rescueWhatsAppUrl } from "@/lib/whatsapp-rescue";
+
+const noopSubscribe = () => () => {};
 
 // `error.tsx` MUST be a Client Component. useTranslations from next-intl is
 // available here via NextIntlClientProvider in the [locale]/layout, but we
@@ -38,6 +41,12 @@ export default function LocaleError({
   const params = useParams<{ locale?: string }>();
   const locale = params?.locale === "ar" ? "ar" : "en";
   const t = COPY[locale];
+  // In the browser the link carries the page and the shopper's cart, so a crash never costs an order.
+  const whatsappHref = useSyncExternalStore(
+    noopSubscribe,
+    () => rescueWhatsAppUrl(locale),
+    () => `https://wa.me/${SITE.whatsapp}`,
+  );
 
   useEffect(() => {
     console.error("[ABK] Route error:", error);
@@ -57,7 +66,7 @@ export default function LocaleError({
             {t.retry}
           </button>
           <a
-            href={`https://wa.me/${SITE.whatsapp}`}
+            href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex h-11 items-center justify-center gap-2 rounded-pill bg-(--color-fill) px-[22px] text-body text-(--color-text) transition-colors hover:bg-(--color-fill-hover)"

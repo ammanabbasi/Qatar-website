@@ -60,6 +60,15 @@ export type CartMessageContext = {
   /** Localized area name (or the shopper's own text for "Other"). Delivery only. */
   areaLabel?: string;
   notes?: string;
+  /**
+   * Why the order comes by WhatsApp: the shopper chose it ("order", the
+   * default); paying online could not start ("payFailed"), so the order comes
+   * here instead; or an online payment's result is unknown ("payCheck"), so
+   * staff check SADAD before taking it.
+   */
+  purpose?: "order" | "payFailed" | "payCheck";
+  /** Details the shopper typed for paying online: the message carries them, so nothing is asked twice. */
+  contact?: { name?: string; mobile?: string; address?: string };
 };
 
 export type DealerApplicationContext = {
@@ -146,6 +155,8 @@ export function buildCartWhatsAppMessage({
   fulfilment,
   areaLabel,
   notes,
+  purpose = "order",
+  contact,
 }: CartMessageContext): string {
   const ar = locale === "ar";
   let pricedSubtotal = 0;
@@ -250,18 +261,40 @@ export function buildCartWhatsAppMessage({
   const trimmedNotes = notes?.trim();
   if (trimmedNotes) summary.push(ar ? `ملاحظات: ${trimmedNotes}` : `Notes: ${trimmedNotes}`);
 
-  const closing =
-    fulfilment === "pickup"
-      ? ar
-        ? "يرجى تأكيد التوفر والمجموع وموعد الاستلام. شكراً لكم!"
-        : "Please confirm availability, the total and when I can collect. Thank you!"
-      : ar
-        ? "يرجى تأكيد التوفر والمجموع وموعد التوصيل. شكراً لكم!"
-        : "Please confirm availability, the total and the delivery time. Thank you!";
+  // What the shopper typed for paying online, so staff needn't ask again.
+  const name = contact?.name?.trim();
+  const mobile = contact?.mobile?.trim();
+  const address = fulfilment === "delivery" ? contact?.address?.trim() : undefined;
+  if (name) summary.push(ar ? `الاسم: ${name}` : `Name: ${name}`);
+  if (mobile) summary.push(ar ? `${rlm}الجوال: ${mobile}` : `Mobile: ${mobile}`);
+  if (address) summary.push(ar ? `العنوان: ${address}` : `Address: ${address}`);
 
-  const header = ar
-    ? `السلام عليكم ABK، أود تقديم طلب.\nرقم الطلب: ${orderRef}`
-    : `Hi ABK, I'd like to place an order.\nOrder ref: ${orderRef}`;
+  const closing =
+    purpose === "payCheck"
+      ? ar
+        ? "يرجى التحقق مما إذا كان الدفع قد وصل قبل أن أدفع مرة أخرى. شكراً لكم!"
+        : "Please check whether my payment came through before I pay again. Thank you!"
+      : fulfilment === "pickup"
+        ? ar
+          ? "يرجى تأكيد التوفر والمجموع وموعد الاستلام. شكراً لكم!"
+          : "Please confirm availability, the total and when I can collect. Thank you!"
+        : ar
+          ? "يرجى تأكيد التوفر والمجموع وموعد التوصيل. شكراً لكم!"
+          : "Please confirm availability, the total and the delivery time. Thank you!";
+
+  const opening =
+    purpose === "payFailed"
+      ? ar
+        ? "السلام عليكم ABK، حاولت الدفع عبر الإنترنت لكنه لم يتم، لذا أرسل طلبي هنا."
+        : "Hi ABK, I tried to pay online but it didn't go through, so I'm sending my order here."
+      : purpose === "payCheck"
+        ? ar
+          ? "السلام عليكم ABK، دفعت أو حاولت الدفع عبر الإنترنت لهذا الطلب ولست متأكداً من نجاح الدفع."
+          : "Hi ABK, I paid or tried to pay online for this order and I'm not sure the payment went through."
+        : ar
+          ? "السلام عليكم ABK، أود تقديم طلب."
+          : "Hi ABK, I'd like to place an order.";
+  const header = ar ? `${opening}\nرقم الطلب: ${orderRef}` : `${opening}\nOrder ref: ${orderRef}`;
 
   return [header, items.join("\n"), summary.join("\n"), closing].join("\n\n");
 }
@@ -518,20 +551,37 @@ export type PaidOrderMessageContext = {
   ppfSummary?: string;
 };
 
-export function buildPaidOrderWhatsAppMessage(c: PaidOrderMessageContext): string {
+/**
+ * Where an online order stands when the customer writes: paid (their copy of
+ * the order), or a payment that failed, is still pending or is being checked.
+ * Every one carries the whole order, so staff can take it on WhatsApp even if
+ * our own records or emails failed.
+ */
+export type OrderMessageStatus = "paid" | "failed" | "pending" | "review";
+
+export type OrderMessageContext = PaidOrderMessageContext & { status: OrderMessageStatus; mobile?: string };
+
+export function buildOrderWhatsAppMessage(c: OrderMessageContext): string {
   const ar = c.locale === "ar";
   const rlm = ar ? "‏" : "";
   const qar = (n: number) => formatQar(n, c.locale);
   const num = (n: number) => formatNumber(n, c.locale);
-  const paid = `${qar(c.totalQar)}${c.transactionNumber ? `, SADAD ${c.transactionNumber}` : ""}`;
-  const header =
-    c.kind === "ppf"
-      ? ar
-        ? `السلام عليكم ABK، دفعت للتو حجز التركيب ${c.ref} عبر الإنترنت (${paid}).`
-        : `Hi ABK, I've just paid online for PPF booking ${c.ref} (${paid}).`
-      : ar
-        ? `السلام عليكم ABK، دفعت للتو طلبي ${c.ref} عبر الإنترنت (${paid}).`
-        : `Hi ABK, I've just paid online for order ${c.ref} (${paid}).`;
+  const amount = `${qar(c.totalQar)}${c.transactionNumber ? `, SADAD ${c.transactionNumber}` : ""}`;
+  const what = c.kind === "ppf" ? (ar ? `حجز التركيب ${c.ref}` : `PPF booking ${c.ref}`) : ar ? `طلبي ${c.ref}` : `order ${c.ref}`;
+  const header = {
+    paid: ar
+      ? `السلام عليكم ABK، دفعت للتو ${what} عبر الإنترنت (${amount}).`
+      : `Hi ABK, I've just paid online for ${what} (${amount}).`,
+    failed: ar
+      ? `السلام عليكم ABK، لم يتم الدفع الإلكتروني ل${what}، وما زلت أرغب فيه:`
+      : `Hi ABK, my online payment for ${what} didn't go through. I'd still like ${c.kind === "ppf" ? "the booking" : "the order"}:`,
+    pending: ar
+      ? `السلام عليكم ABK، الدفع الإلكتروني ل${what} (${amount}) ما زال قيد المعالجة.`
+      : `Hi ABK, my online payment for ${what} (${amount}) still shows as pending.`,
+    review: ar
+      ? `السلام عليكم ABK، يرجى التحقق من الدفع الإلكتروني ل${what} (${amount}).`
+      : `Hi ABK, please check my online payment for ${what} (${amount}).`,
+  }[c.status];
 
   const body: string[] = [];
   for (const l of c.lines ?? []) body.push(`${rlm}• ${l.name} × ${num(l.qty)}`);
@@ -544,26 +594,49 @@ export function buildPaidOrderWhatsAppMessage(c: PaidOrderMessageContext): strin
       body.push(ar ? `التوصيل إلى: ${where}` : `Delivery to: ${where}`);
     }
   }
+  // Not paid: the amount to settle (for a PPF job paid at handover, the full price).
+  if (c.status === "failed") body.push(ar ? `الإجمالي: ${qar(c.totalQar)}` : `Total: ${qar(c.totalQar)}`);
   body.push(ar ? `الاسم: ${c.name}` : `Name: ${c.name}`);
+  if (c.mobile && c.status !== "paid") body.push(ar ? `${rlm}الجوال: ${c.mobile}` : `Mobile: ${c.mobile}`);
 
   const closing =
-    c.kind === "ppf"
-      ? ar
-        ? "يرجى تأكيد موعد التركيب. شكراً لكم!"
-        : "Please confirm my installation slot. Thank you!"
-      : c.fulfilment === "pickup"
+    c.status === "failed"
+      ? c.kind === "ppf"
         ? ar
-          ? "يرجى إبلاغي عندما يصبح الطلب جاهزاً للاستلام. شكراً لكم!"
-          : "Please let me know when it's ready to collect. Thank you!"
+          ? "يرجى تأكيد موعدي، وسأدفع عند التسليم. شكراً لكم!"
+          : "Please confirm my slot; I'll pay at handover. Thank you!"
         : ar
-          ? "يرجى تأكيد موعد التوصيل. شكراً لكم!"
-          : "Please confirm the delivery time. Thank you!";
+          ? "يرجى تأكيد الطلب وطريقة الدفع. شكراً لكم!"
+          : "Please confirm the order and how I can pay. Thank you!"
+      : c.status !== "paid"
+        ? ar
+          ? "يرجى إبلاغي قبل أن أدفع مرة أخرى. شكراً لكم!"
+          : "Please let me know before I pay again. Thank you!"
+        : c.kind === "ppf"
+          ? ar
+            ? "يرجى تأكيد موعد التركيب. شكراً لكم!"
+            : "Please confirm my installation slot. Thank you!"
+          : c.fulfilment === "pickup"
+            ? ar
+              ? "يرجى إبلاغي عندما يصبح الطلب جاهزاً للاستلام. شكراً لكم!"
+              : "Please let me know when it's ready to collect. Thank you!"
+            : ar
+              ? "يرجى تأكيد موعد التوصيل. شكراً لكم!"
+              : "Please confirm the delivery time. Thank you!";
 
   return [header, body.join("\n"), closing].join("\n\n");
 }
 
+export function buildOrderWhatsAppUrl(ctx: OrderMessageContext): string {
+  return `https://wa.me/${WHATSAPP_PHONE}?text=${encode(buildOrderWhatsAppMessage(ctx))}`;
+}
+
+export function buildPaidOrderWhatsAppMessage(c: PaidOrderMessageContext): string {
+  return buildOrderWhatsAppMessage({ ...c, status: "paid" });
+}
+
 export function buildPaidOrderWhatsAppUrl(ctx: PaidOrderMessageContext): string {
-  return `https://wa.me/${WHATSAPP_PHONE}?text=${encode(buildPaidOrderWhatsAppMessage(ctx))}`;
+  return buildOrderWhatsAppUrl({ ...ctx, status: "paid" });
 }
 
 /** A question about an online payment: still pending, failed, or one we couldn't match. */

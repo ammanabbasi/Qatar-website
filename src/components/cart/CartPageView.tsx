@@ -19,13 +19,14 @@ import { cartTotals, findProduct, resolveCartLines } from "@/lib/pricing";
 import { suggestAddOns } from "@/lib/suggestions";
 import { gaItem, trackCartEvent } from "@/lib/analytics";
 import type { PaymentsVisibility } from "@/lib/payments/config";
-import { buildPaymentHelpWhatsAppUrl } from "@/lib/whatsapp";
+import { buildCartWhatsAppUrl, buildPaymentHelpWhatsAppUrl } from "@/lib/whatsapp";
+import { AREA_OTHER, findArea } from "@/data/qatarAreas";
 
 const noopSubscribe = () => () => {};
 import { useCartUi } from "./CartProvider";
 import { CartLineItem } from "./CartLineItem";
 import { CartSuggestionCard } from "./CartSuggestionCard";
-import { CheckoutPanel } from "./CheckoutPanel";
+import { CheckoutPanel, toCartMessageLines } from "./CheckoutPanel";
 import { RemovedNotice, useRemoveWithUndo } from "./useRemoveWithUndo";
 
 /**
@@ -220,8 +221,23 @@ export function CartPageView({
             <AlertIcon className="mt-0.5 h-4 w-4 shrink-0 text-(--color-danger)" />
             <span className="min-w-0 flex-1">
               {paymentNotice === "checking" ? t("paymentChecking") : t("paymentUnknown")}{" "}
+              {/* The cart is still here: the message carries it, so staff can check SADAD and take the order. */}
               <a
-                href={buildPaymentHelpWhatsAppUrl({ locale })}
+                href={
+                  lines.length > 0 && cart.ref
+                    ? buildCartWhatsAppUrl({
+                        locale,
+                        orderRef: cart.ref,
+                        lines: toCartMessageLines(lines, locale),
+                        fulfilment: details.fulfilment,
+                        areaLabel:
+                          details.area === AREA_OTHER ? details.areaOther.trim() : findArea(details.area)?.name[locale],
+                        notes: details.notes,
+                        purpose: "payCheck",
+                        contact: { name: details.name, mobile: details.mobile, address: details.address },
+                      })
+                    : buildPaymentHelpWhatsAppUrl({ locale, ref: cart.ref ?? undefined })
+                }
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-semibold text-(--color-link) hover:underline"

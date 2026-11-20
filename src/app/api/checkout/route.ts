@@ -5,11 +5,15 @@
  * "awaiting_payment") and answers with the signed SADAD form the browser
  * then posts to SADAD's hosted payment page. The secret key never leaves the
  * server. Nothing is emailed yet: staff hear about an order once SADAD
- * confirms the payment (callback/webhook routes under /api/payments/sadad).
+ * confirms the payment (callback/webhook routes under /api/payments/sadad),
+ * or from the order sweep if it is left unpaid — except when the order can't
+ * be stored, when staff are emailed the order at once ("unsaved").
  */
 
+import { after } from "next/server";
 import { AREA_OTHER, findArea } from "@/data/qatarAreas";
 import { callbackOrigin, sadadConfig } from "@/lib/payments/config";
+import { sendOrderEmails } from "@/lib/payments/email";
 import { createOrder, findOtherPaidAttempt, newOrderId, type Order } from "@/lib/payments/orders";
 import { buildSadadCheckoutForm, sadadTxnDate } from "@/lib/payments/sadad";
 import { priceShopCart } from "@/lib/payments/shop";
@@ -132,6 +136,9 @@ export async function POST(request: Request) {
     await createOrder(order);
   } catch (err) {
     console.error(`[checkout] could not store order ${id}: ${err instanceof Error ? err.message : err}`);
+    // The page offers WhatsApp with the whole order; staff also get it by
+    // email, its only record, in case the customer doesn't send it.
+    after(sendOrderEmails(order, "unsaved").then(() => undefined));
     return json(503, { ok: false, error: "store_unavailable" });
   }
 

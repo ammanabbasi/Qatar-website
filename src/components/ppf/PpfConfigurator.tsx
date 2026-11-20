@@ -62,7 +62,7 @@ import {
 } from "@/lib/analytics";
 import { readBookingAttribution } from "@/lib/attribution";
 import type { PaymentsVisibility } from "@/lib/payments/config";
-import { submitToSadad, useOnlinePayments, type SadadFormPayload } from "@/lib/payments/client";
+import { orderRequestSignal, submitToSadad, useOnlinePayments, type SadadFormPayload } from "@/lib/payments/client";
 import { isEmail, normaliseQatarMobile, toLatinDigits } from "@/lib/payments/validate";
 
 type L = "en" | "ar";
@@ -259,9 +259,12 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
     () => new URLSearchParams(window.location.search).get("payment") === "cancelled",
     () => false,
   );
-  /** A reply the customer can fix on this form (changed price, rejected field). */
-  const [submitError, setSubmitError] = useState<string | null>(null);
-  const submitErrorRef = useRef<HTMLParagraphElement>(null);
+  /**
+   * A reply the customer can usually fix on this form (changed price, rejected
+   * field), with a booking reference for the WhatsApp way out when they can't.
+   */
+  const [submitError, setSubmitError] = useState<{ message: string; ref: string } | null>(null);
+  const submitErrorRef = useRef<HTMLDivElement>(null);
 
   const [open, setOpen] = useState(false);
   const [closing, setClosing] = useState(false);
@@ -770,6 +773,8 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
     try {
       const res = await fetch("/api/ppf-booking", {
         method: "POST",
+        // Past the limit the booking screen falls back to WhatsApp (catch below).
+        signal: orderRequestSignal(),
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
@@ -785,7 +790,7 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
       if (out.error === "price_changed" || out.error === "invalid_fields") {
         sendingRef.current = false;
         setSending(false);
-        setSubmitError(out.error === "price_changed" ? t("priceChanged") : t("errForm"));
+        setSubmitError({ message: out.error === "price_changed" ? t("priceChanged") : t("errForm"), ref: makeBookingRef() });
         window.setTimeout(() => submitErrorRef.current?.scrollIntoView({ block: "center" }), 40);
         return;
       }
@@ -893,25 +898,27 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
 
   const recap = `${vehicleDisplay} · ${coverageInfo.name[locale]} · ${filmInfo.name[locale]}`;
 
-  const whatsappHref = result
-    ? buildPpfBookingWhatsAppUrl({
-        locale,
-        ref: result.ref,
-        vehicle: `${form.year} ${form.make} ${form.model}`.trim(),
-        bodyType: bodyLabel,
-        coverage: coverageInfo.name[locale],
-        parts: partNames,
-        film: filmInfo.name[locale],
-        price:
-          quote.priceQar !== null
-            ? `${quote.isEstimate ? (locale === "ar" ? "تقديري " : "estimate ") : ""}${qar(quote.priceQar)}`
-            : rangeText
-              ? `${t("customCarBadge")} (${rangeText})`
-              : undefined,
-        preferredDate: form.preferredDate || undefined,
-        name: form.name.trim(),
-      })
-    : "";
+  // The whole booking as a WhatsApp message: after a booking (saved or not), and
+  // as the way out when this form can't take it.
+  const bookingWhatsAppHref = (ref: string) =>
+    buildPpfBookingWhatsAppUrl({
+      locale,
+      ref,
+      vehicle: `${form.year} ${form.make} ${form.model}`.trim(),
+      bodyType: bodyLabel,
+      coverage: coverageInfo.name[locale],
+      parts: partNames,
+      film: filmInfo.name[locale],
+      price:
+        quote.priceQar !== null
+          ? `${quote.isEstimate ? (locale === "ar" ? "تقديري " : "estimate ") : ""}${qar(quote.priceQar)}`
+          : rangeText
+            ? `${t("customCarBadge")} (${rangeText})`
+            : undefined,
+      preferredDate: form.preferredDate || undefined,
+      name: form.name.trim(),
+    });
+  const whatsappHref = result ? bookingWhatsAppHref(result.ref) : "";
 
   const fastOfferWhatsAppHref = buildPpfCustomOfferWhatsAppUrl({
     locale,
@@ -1907,10 +1914,36 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
             </p>
           ) : null}
           {submitError ? (
-            <p ref={submitErrorRef} role="alert" className="mt-4 flex items-start gap-2 rounded-xl bg-(--color-danger)/8 px-4 py-3 text-footnote font-medium text-(--color-danger)">
-              <AlertIcon className="mt-px h-4 w-4 shrink-0" />
-              {submitError}
-            </p>
+            <div ref={submitErrorRef} role="alert" className="mt-4 flex flex-col gap-2 rounded-xl bg-(--color-danger)/8 px-4 py-3">
+              <p className="flex items-start gap-2 text-footnote font-medium text-(--color-danger)">
+                <AlertIcon className="mt-px h-4 w-4 shrink-0" />
+                {submitError.message}
+              </p>
+              {/* If the form can't take the booking (e.g. a stale page keeps hitting a price change), WhatsApp can. */}
+              <a
+                href={bookingWhatsAppHref(submitError.ref)}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-order-ref={submitError.ref}
+                data-placement="ppf_booking"
+                data-conversion-value={quote.priceQar ?? undefined}
+                data-conversion-currency="QAR"
+                onClick={() =>
+                  trackPpfWhatsAppHandoff({
+                    body: body ?? "unselected",
+                    coverage,
+                    film,
+                    priceQar: quote.priceQar,
+                    placement: "ppf_booking_form_error",
+                    ref: submitError.ref,
+                  })
+                }
+                className="plausible-event-name=whatsapp_click plausible-event-audience=b2c inline-flex items-center gap-1.5 self-start text-footnote font-semibold text-(--color-link) hover:underline"
+              >
+                <WhatsAppIcon className="h-4 w-4" />
+                {t("bookOnWhatsAppInstead")}
+              </a>
+            </div>
           ) : null}
 
           <div role="group" aria-labelledby="ppf-group-car" className="mt-5 grid grid-cols-2 gap-x-3 gap-y-3.5 sm:gap-x-4">

@@ -34,7 +34,28 @@ async function readFields(request: Request): Promise<Record<string, string>> {
   return fields;
 }
 
+/**
+ * Whatever goes wrong in here, the customer must not land on a bare error
+ * page with no way forward (they may just have paid): the cart's "confirming
+ * your payment" notice, with its WhatsApp link carrying the cart, instead.
+ * The webhook records the payment on its own.
+ */
 export async function POST(request: Request) {
+  try {
+    return await handleCallback(request);
+  } catch (err) {
+    console.error(`[sadad] callback crashed: ${err instanceof Error ? (err.stack ?? err.message) : err}`);
+    let origin = "";
+    try {
+      origin = callbackOrigin(request);
+    } catch {
+      origin = new URL(request.url).origin;
+    }
+    return Response.redirect(new URL("/en/b2c/cart?payment=checking", origin), 303);
+  }
+}
+
+async function handleCallback(request: Request): Promise<Response> {
   const config = sadadConfig();
   const fields = await readFields(request);
   const result = parseSadadCallback(fields);

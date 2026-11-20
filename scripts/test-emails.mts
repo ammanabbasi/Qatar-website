@@ -258,3 +258,14 @@ test("PPF booked to pay online: staff told the handover price is the full one", 
   assert.ok(shop.text.includes("If they pay at handover instead, the price is the full QAR 899.00"), shop.text.slice(0, 400));
   assert.equal(customer, null, "a booking never emails the customer");
 });
+
+test("checkout the store refused: staff get the whole order, marked as its only record", () => {
+  const o = shopOrder({ status: "awaiting_payment", payment: undefined });
+  const { shop, customer } = renderOrderEmails(o, "unsaved");
+  assert.equal(shop.subject, "Online order NOT SAVED ABK-7K3M: QAR 345.00, delivery to Al Wakrah: contact the customer");
+  for (const s of ["could not save the order", "Fatima Al-Kuwari", "+97433334444", "Briller Wash & Wax", "Building 12, Street 340, Zone 90", "this email is the only record of order ABK-7K3M-Q2ZD"]) {
+    assert.ok(shop.text.includes(s), `staff email shows "${s}"`);
+  }
+  assert.ok(!shop.text.includes("table abk_orders"), "no pointer to a database record that doesn't exist");
+  assert.equal(customer, null, "the customer gets nothing: the page told them");
+});

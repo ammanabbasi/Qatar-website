@@ -56,6 +56,18 @@ export function useOnlinePayments(visibility: PaymentsVisibility): boolean {
   return visibility === "public" || (visibility === "preview" && preview);
 }
 
+/**
+ * Time limit for an order request (checkout, PPF booking): past it the page
+ * gives up and offers WhatsApp instead of spinning forever. Undefined where
+ * AbortSignal.timeout is missing (older Safari): the request then simply runs
+ * without a limit rather than failing.
+ */
+export function orderRequestSignal(ms = 30_000): AbortSignal | undefined {
+  return typeof AbortSignal !== "undefined" && typeof AbortSignal.timeout === "function"
+    ? AbortSignal.timeout(ms)
+    : undefined;
+}
+
 /** Posts the signed form to SADAD; the browser leaves the site from here. */
 export function submitToSadad({ action, fields }: SadadFormPayload): void {
   // The action comes from our own API; refuse anything that isn't SADAD.

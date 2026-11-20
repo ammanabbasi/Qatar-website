@@ -585,6 +585,8 @@
     "payTotalChanged": "A price changed since this page loaded. The new total is {total}. Refresh the page to see the new prices, then pay.",
     "payUnavailable": "Online payment isn't available right now. You can still send your order on WhatsApp.",
     "payFailedToStart": "We couldn't open the payment page. Try again, or send your order on WhatsApp.",
+    "payFallbackWhatsApp": "Send this order on WhatsApp instead",
+    "payFallbackHint": "Your cart and details go in the message, so nothing is lost. Pay on delivery or at pickup.",
     "payNeedsPricesError": "Some items in your cart are priced on WhatsApp, so this order can't be paid online.",
     "paymentUnknown": "We couldn't match that payment to an order. If you were charged, message us on WhatsApp and we'll sort it out straight away.",
     "paymentChecking": "We're confirming your payment with SADAD. A confirmation follows by email and WhatsApp shortly, so please don't pay again. If you were charged and hear nothing within the hour, message us on WhatsApp.",
@@ -809,6 +811,7 @@
     "payOpening": "Opening secure payment…",
     "payUnavailable": "Online payment wasn't available, so we saved your booking as pay at handover.",
     "priceChanged": "Our prices were just updated. Please reload the page to see the current price before paying.",
+    "bookOnWhatsAppInstead": "Or send this booking on WhatsApp",
     "paymentCancelled": "Online payment was cancelled and nothing was charged. Your booking request is saved: we'll confirm your slot on WhatsApp and you can pay at handover, or book again to pay online."
   },
   "DealerPage": {
@@ -948,6 +951,8 @@
     "returnsLink": "Returns policy",
     "cancelNote": "Free cancellation up to 48 hours before your confirmed slot.",
     "whatsApp": "Message us on WhatsApp",
+    "whatsAppOrder": "Order on WhatsApp instead",
+    "whatsAppBook": "Book on WhatsApp instead",
     "tryAgain": "Try again",
     "continueShopping": "Continue shopping",
     "refresh": "Check again",

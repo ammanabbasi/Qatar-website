@@ -11,13 +11,25 @@
  *     minutes gets ONE staff email so someone can follow up on WhatsApp.
  *     (2026-11-19: a QAR 624.75 checkout was abandoned and nobody knew.)
  *     PPF pay-now bookings already alert staff when booked, so they're skipped.
+ *  3. A PPF booking whose staff alert never went out (SMTP down when it was
+ *     booked) is alerted now, so no saved booking goes unseen. Five minutes'
+ *     grace first: the booking request sends its own alert just after replying.
  *
- * Both steps are idempotent (email claims, the "unpaid_alerted" flag), so an
+ * All steps are idempotent (email claims, the "unpaid_alerted" flag), so an
  * overlapping run or a restart never sends an email twice.
  */
 
 import { sendOrderEmails } from "./email";
-import { claimPaidEmails, flagOrder, listRecentOrders, paidEmailsMissing, unflagOrder, type Order } from "./orders";
+import {
+  bookedAlertMissing,
+  claimBookedAlert,
+  claimPaidEmails,
+  flagOrder,
+  listRecentOrders,
+  paidEmailsMissing,
+  unflagOrder,
+  type Order,
+} from "./orders";
 
 const MINUTE_MS = 60 * 1000;
 const DAY_MS = 24 * 60 * MINUTE_MS;
@@ -29,13 +41,16 @@ function envMs(name: string, fallback: number): number {
   return Number.isFinite(v) && v > 0 ? v : fallback;
 }
 
-export type SweepResult = { emailRetries: number; unpaidAlerts: number };
+export type SweepResult = { emailRetries: number; unpaidAlerts: number; bookingAlerts: number };
 
-export async function runOrderSweep(options: { now?: number; unpaidAfterMs?: number } = {}): Promise<SweepResult> {
+export async function runOrderSweep(
+  options: { now?: number; unpaidAfterMs?: number; bookedGraceMs?: number } = {},
+): Promise<SweepResult> {
   const now = options.now ?? Date.now();
   const unpaidAfterMs = options.unpaidAfterMs ?? envMs("ORDER_SWEEP_UNPAID_AFTER_MS", 45 * MINUTE_MS);
+  const bookedGraceMs = options.bookedGraceMs ?? envMs("ORDER_SWEEP_BOOKED_GRACE_MS", 5 * MINUTE_MS);
   const orders = await listRecentOrders(now - 7 * DAY_MS);
-  const result: SweepResult = { emailRetries: 0, unpaidAlerts: 0 };
+  const result: SweepResult = { emailRetries: 0, unpaidAlerts: 0, bookingAlerts: 0 };
 
   // 1. Paid emails still owed.
   for (const o of orders) {
@@ -51,6 +66,14 @@ export async function runOrderSweep(options: { now?: number; unpaidAfterMs?: num
     if (!(await flagOrder(latest.id, UNPAID_FLAG))) continue;
     if (await sendOrderEmails(latest, "unpaid")) result.unpaidAlerts++;
     else await unflagOrder(latest.id, UNPAID_FLAG); // not sent: the next sweep tries again
+  }
+
+  // 3. PPF bookings staff never heard about.
+  for (const o of orders) {
+    if (!bookedAlertMissing(o) || now - Date.parse(o.createdAt) < bookedGraceMs) continue;
+    const claimed = await claimBookedAlert(o.id); // null: a fresh claim stands, or the tries are used up
+    if (!claimed) continue;
+    if (await sendOrderEmails(claimed, "booked")) result.bookingAlerts++;
   }
   return result;
 }
@@ -89,8 +112,10 @@ export function startOrderSweep(): void {
     running = true;
     runOrderSweep()
       .then((r) => {
-        if (r.emailRetries || r.unpaidAlerts) {
-          console.info(`[sweep] paid-email retries: ${r.emailRetries}, unpaid-order alerts: ${r.unpaidAlerts}`);
+        if (r.emailRetries || r.unpaidAlerts || r.bookingAlerts) {
+          console.info(
+            `[sweep] paid-email retries: ${r.emailRetries}, unpaid-order alerts: ${r.unpaidAlerts}, booking alerts: ${r.bookingAlerts}`,
+          );
         }
       })
       .catch((err: unknown) => console.error(`[sweep] failed: ${err instanceof Error ? err.message : err}`))

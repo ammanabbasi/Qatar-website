@@ -130,6 +130,9 @@ export type Order = {
     error?: string;
     claimedAt?: string;
     attempts?: number;
+    /** The order sweep's claim and tries for a PPF booking alert that never went out. */
+    bookedClaimedAt?: string;
+    bookedAttempts?: number;
   };
   /**
    * Ids of the latest writes (newest last): an update whose write landed but
@@ -164,6 +167,39 @@ export type ReviewReason = "amount_mismatch" | "paid_twice" | "test_payment" | "
 /** A paid order still owes the staff alert, or the receipt when the customer gave an email. */
 export function paidEmailsMissing(o: Order): boolean {
   return o.status === "paid" && (!o.emails.shop || (Boolean(o.customer.email) && !o.emails.customer));
+}
+
+/**
+ * A PPF booking whose staff alert never went out (the send failed, or the
+ * server stopped mid-send), so nobody knows about it. Paid and under-review
+ * bookings are covered by their own emails.
+ */
+export function bookedAlertMissing(o: Order): boolean {
+  return (
+    o.kind === "ppf" &&
+    !o.emails.booked &&
+    (o.status === "booked" || o.status === "awaiting_payment" || o.status === "failed")
+  );
+}
+
+/** Claims a missing booking alert for the sweep (one claim at a time, MAX_EMAIL_ATTEMPTS in all). */
+export async function claimBookedAlert(id: string): Promise<Order | null> {
+  const now = new Date().toISOString();
+  const nowMs = Date.parse(now);
+  const out = await updateOrder(id, (order) =>
+    bookedAlertMissing(order) &&
+    (order.emails.bookedAttempts ?? 0) < MAX_EMAIL_ATTEMPTS &&
+    (!order.emails.bookedClaimedAt || nowMs - Date.parse(order.emails.bookedClaimedAt) > EMAIL_CLAIM_MS)
+      ? {
+          next: {
+            ...order,
+            emails: { ...order.emails, bookedClaimedAt: now, bookedAttempts: (order.emails.bookedAttempts ?? 0) + 1 },
+          },
+          info: true,
+        }
+      : { next: null, info: false },
+  );
+  return out?.changed && out.info ? out.order : null;
 }
 
 /**
@@ -227,6 +263,10 @@ async function db(): Promise<Pool> {
       max: 5,
       idleTimeoutMillis: 30_000,
       connectionTimeoutMillis: 10_000,
+      // A stuck database must fail the request, not hold it: the customer's
+      // page then offers WhatsApp instead of spinning forever.
+      query_timeout: 15_000,
+      statement_timeout: 15_000,
       ssl: plain ? false : { rejectUnauthorized: false },
     });
     pool.on("error", (err) => console.error(`[orders] database pool error: ${err.message}`));

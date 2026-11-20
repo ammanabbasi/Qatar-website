@@ -1,12 +1,19 @@
 "use client";
 
+import { useSyncExternalStore } from "react";
+import { rescueWhatsAppUrl } from "@/lib/whatsapp-rescue";
+
 // global-error.tsx is the LAST-RESORT error boundary — it replaces the root
 // html/body when the root layout itself throws. It cannot depend on i18n,
 // fonts, message loading, or the stylesheet (any of those may be the source
 // of the error), so the design system is reproduced here with inline styles.
 // Copy is intentionally inlined EN only; RTL would require inspecting the URL.
+// The WhatsApp link comes from a dependency-free helper: in the browser it
+// carries the page and the shopper's cart (in the page's language).
 const FONT_STACK =
   '-apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, "Helvetica Neue", Arial, sans-serif';
+
+const noopSubscribe = () => () => {};
 
 export default function GlobalError({
   unstable_retry,
@@ -14,6 +21,7 @@ export default function GlobalError({
   error: Error & { digest?: string };
   unstable_retry: () => void;
 }) {
+  const whatsappHref = useSyncExternalStore(noopSubscribe, () => rescueWhatsAppUrl(), () => "https://wa.me/97430838355");
   return (
     <html lang="en">
       <body
@@ -92,7 +100,7 @@ export default function GlobalError({
               Try again
             </button>
             <a
-              href="https://wa.me/97430838355"
+              href={whatsappHref}
               style={{
                 display: "inline-flex",
                 alignItems: "center",

@@ -32,12 +32,12 @@ import {
   type Fulfilment,
   type ResolvedLine,
 } from "@/lib/pricing";
-import { buildCartWhatsAppUrl } from "@/lib/whatsapp";
+import { buildCartWhatsAppUrl, type CartMessageLine } from "@/lib/whatsapp";
 import { gaItem, trackCartEvent } from "@/lib/analytics";
 import { readBookingAttribution } from "@/lib/attribution";
 import { SITE } from "@/lib/constants";
 import type { PaymentsVisibility } from "@/lib/payments/config";
-import { submitToSadad, useOnlinePayments, type SadadFormPayload } from "@/lib/payments/client";
+import { orderRequestSignal, submitToSadad, useOnlinePayments, type SadadFormPayload } from "@/lib/payments/client";
 import { isEmail, normaliseQatarMobile } from "@/lib/payments/validate";
 import { useCartUi } from "./CartProvider";
 import { CartProgress } from "./DiscountProgress";
@@ -77,6 +77,16 @@ const OPTION_CARD =
 
 /** Card brands SADAD's hosted page accepts for this merchant. */
 const PAYMENT_MARKS = ["Visa", "Mastercard", "Apple Pay", "Google Pay", "NAPS"];
+
+/** Cart lines as the WhatsApp order message lists them. */
+export function toCartMessageLines(lines: ResolvedLine[], locale: "en" | "ar"): CartMessageLine[] {
+  return lines.map((l) => ({
+    name: l.product.variantSize ? `${l.product.name[locale]} (${l.product.variantSize[locale]})` : l.product.name[locale],
+    qty: l.qty,
+    unitPriceQar: l.product.priceQar,
+    priceIsFrom: isFromPrice(l.product),
+  }));
+}
 
 /**
  * Order summary + the checkout step (pickup or delivery area, how to pay) +
@@ -163,20 +173,21 @@ export function CheckoutPanel({
   const areaLabel =
     details.area === AREA_OTHER ? details.areaOther.trim() : findArea(details.area)?.name[locale];
 
-  const whatsappUrl = buildCartWhatsAppUrl({
+  const cartMessage = {
     locale,
     orderRef,
-    lines: lines.map((l) => ({
-      name: l.product.variantSize
-        ? `${l.product.name[locale]} (${l.product.variantSize[locale]})`
-        : l.product.name[locale],
-      qty: l.qty,
-      unitPriceQar: l.product.priceQar,
-      priceIsFrom: isFromPrice(l.product),
-    })),
+    lines: toCartMessageLines(lines, locale),
     fulfilment: details.fulfilment,
     areaLabel,
     notes: details.notes,
+  };
+  const whatsappUrl = buildCartWhatsAppUrl(cartMessage);
+  // When paying online fails for any reason (our server, the network, SADAD),
+  // the same order goes on WhatsApp with the details already typed: no order is lost.
+  const fallbackUrl = buildCartWhatsAppUrl({
+    ...cartMessage,
+    purpose: "payFailed",
+    contact: { name: details.name, mobile: details.mobile, address: details.address },
   });
 
   const gaItems = () => lines.map((l) => gaItem(l.product, l.qty));
@@ -215,6 +226,7 @@ export function CheckoutPanel({
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
+        signal: orderRequestSignal(),
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           locale,
@@ -711,13 +723,29 @@ export function CheckoutPanel({
             </p>
           ) : null}
           {payError && method === "online" ? (
-            <p
-              role="alert"
-              className="flex items-start gap-2 rounded-xl bg-(--color-danger)/10 px-3.5 py-2.5 text-caption font-medium text-(--color-danger)"
-            >
-              <AlertIcon className="mt-px h-4 w-4 shrink-0" />
-              {payError}
-            </p>
+            <div role="alert" className="flex flex-col gap-2.5 rounded-xl bg-(--color-danger)/10 px-3.5 py-3">
+              <p className="flex items-start gap-2 text-caption font-medium text-(--color-danger)">
+                <AlertIcon className="mt-px h-4 w-4 shrink-0" />
+                {payError}
+              </p>
+              {/* Whatever went wrong, the order can still reach us: it IS the WhatsApp order. */}
+              <a
+                href={fallbackUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={onSend}
+                data-conversion-value={orderValue > 0 ? orderValue : undefined}
+                data-conversion-currency={totals.pricedSubtotal > 0 ? "QAR" : undefined}
+                data-item-count={totals.units}
+                data-order-ref={orderRef}
+                data-placement="cart"
+                className={`plausible-event-name=cart_whatsapp_send plausible-event-audience=b2c ${buttonClasses("secondary", "lg")} w-full font-semibold`}
+              >
+                <WhatsAppIcon className="h-5 w-5" />
+                {t("payFallbackWhatsApp")}
+              </a>
+              <p className="text-caption text-(--color-text-muted)">{t("payFallbackHint")}</p>
+            </div>
           ) : null}
           {method === "online" ? (
             <>

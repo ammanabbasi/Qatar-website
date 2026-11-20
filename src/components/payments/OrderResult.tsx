@@ -290,9 +290,21 @@ export function OrderResult({ order }: { order: OrderView }) {
                 <Link href={retryHref} className={`${buttonClasses("primary", "lg")} font-semibold`}>
                   {t("tryAgain")}
                 </Link>
-                <ButtonLink href={order.helpUrl} target="_blank" rel="noopener noreferrer" size="lg" variant="secondary">
+                {/* The whole order goes in the message: sending it IS the order (or booking) on WhatsApp. */}
+                <ButtonLink
+                  href={order.helpUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  size="lg"
+                  variant="secondary"
+                  data-placement={order.kind === "ppf" ? "ppf_booking" : "cart"}
+                  data-order-ref={order.ref}
+                  data-conversion-value={order.kind === "ppf" ? order.totalQar : order.totalQar - (order.deliveryFeeQar ?? 0)}
+                  data-conversion-currency="QAR"
+                  className={`plausible-event-name=${order.kind === "ppf" ? "whatsapp_click" : "cart_whatsapp_send"} plausible-event-audience=b2c font-semibold`}
+                >
                   <WhatsAppIcon className="h-5 w-5" />
-                  {t("whatsApp")}
+                  {order.kind === "ppf" ? t("whatsAppBook") : t("whatsAppOrder")}
                 </ButtonLink>
               </>
             ) : (

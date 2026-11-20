@@ -24,7 +24,8 @@ import { orderLinkPath } from "./config";
 import { recordEmails, type Order, type ReviewReason } from "./orders";
 import { sadadTxnDate } from "./sadad";
 
-export type OrderEmailEvent = "paid" | "booked" | "review" | "unpaid";
+/** unsaved: an online checkout the order store refused — the email is its only record. */
+export type OrderEmailEvent = "paid" | "booked" | "review" | "unpaid" | "unsaved";
 
 export type Mail = { subject: string; text: string; html: string };
 
@@ -152,6 +153,8 @@ export async function sendOrderEmails(
   event: OrderEmailEvent,
   reason: ReviewReason = "amount_mismatch",
 ): Promise<boolean> {
+  // An unsaved order has no record to note anything on.
+  const markEmails = event === "unsaved" ? async () => {} : markOrderEmails;
   const m = mailer();
   if (!m) {
     console.error(`[orders] EMAIL NOT SENT (SMTP_PASS is not set): ${event} ${logRef(order)}`);
@@ -215,7 +218,7 @@ export async function sendOrderEmails(
 }
 
 /** Records email outcomes; one retry, because a lost record could repeat an email later. */
-async function markEmails(id: string, emails: Order["emails"]): Promise<void> {
+async function markOrderEmails(id: string, emails: Order["emails"]): Promise<void> {
   for (let attempt = 1; ; attempt++) {
     try {
       await recordEmails(id, emails);
@@ -403,6 +406,11 @@ function shopEmail(order: Order, event: OrderEmailEvent, reason: ReviewReason): 
   if (event === "review") {
     subject = `CHECK PAYMENT ${order.ref}: ${review.subject}`;
     headline = review.headline;
+  } else if (event === "unsaved") {
+    const where = shop?.fulfilment === "pickup" ? "pickup" : `delivery to ${shop?.area.en ?? ""}`;
+    subject = `${suspect}Online order NOT SAVED ${order.ref}: ${qar2(order.totalQar)}, ${where}: contact the customer`;
+    headline =
+      "The customer tried to pay online, but the website could not save the order (order database error), so the payment page never opened and nothing was charged. The page offered them to send the order on WhatsApp instead. If they haven't messaged you, contact them: everything is below. This email is the only record of this order.";
   } else if (event === "unpaid") {
     const where = shop?.fulfilment === "pickup" ? "pickup" : `delivery to ${shop?.area.en ?? ""}`;
     subject = `${suspect}Unpaid online order ${order.ref}: ${qar2(order.totalQar)}, ${where}: follow up`;
@@ -492,6 +500,10 @@ function shopEmail(order: Order, event: OrderEmailEvent, reason: ReviewReason): 
     .map(([k, v]) => `${k}=${v}`)
     .join(", ");
   if (source) payment.push(["Source", source]);
+  const record =
+    event === "unsaved"
+      ? `Not saved: this email is the only record of order ${order.id}.`
+      : `Record: Railway → abk-website → Postgres → table abk_orders, id ${order.id}`;
 
   const text = [
     headline,
@@ -504,7 +516,7 @@ function shopEmail(order: Order, event: OrderEmailEvent, reason: ReviewReason): 
     "",
     textBlock(payment),
     "",
-    `Record: Railway → abk-website → Postgres → table abk_orders, id ${order.id}`,
+    record,
   ].join("\n");
 
   const html = htmlShell(
@@ -517,7 +529,7 @@ function shopEmail(order: Order, event: OrderEmailEvent, reason: ReviewReason): 
       htmlTable(money) +
       sectionTitle("Payment") +
       htmlTable(payment) +
-      `<p style="margin:16px 0 0;color:#86868b;font-size:12px">Record: Railway → abk-website → Postgres → table abk_orders, id ${esc(order.id)}</p>`,
+      `<p style="margin:16px 0 0;color:#86868b;font-size:12px">${esc(record)}</p>`,
   );
   return { subject, text, html };
 }

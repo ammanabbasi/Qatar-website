@@ -13,7 +13,7 @@ import { getCartCatalogue } from "@/data/cartCatalogue";
 import { findProduct } from "@/lib/pricing";
 import { isValidOrderToken, orderCookieName, orderLinkPath, orderPagePath } from "@/lib/payments/config";
 import { isOrderId, readOrder, type Order } from "@/lib/payments/orders";
-import { buildPaidOrderWhatsAppUrl, buildPaymentHelpWhatsAppUrl } from "@/lib/whatsapp";
+import { buildOrderWhatsAppUrl, buildPaidOrderWhatsAppUrl, buildPaymentHelpWhatsAppUrl } from "@/lib/whatsapp";
 
 /**
  * /[locale]/b2c/order/[id] — where SADAD's callback lands the customer.
@@ -82,12 +82,28 @@ function toView(order: Order, locale: "en" | "ar"): OrderView {
         },
       ];
 
+  const status = statusFor(order);
+  // The whole order, for every WhatsApp message this page offers: if anything
+  // on our side failed, staff can still take the order from the chat alone.
+  const orderMessage = {
+    locale,
+    kind: order.kind,
+    ref: order.ref,
+    totalQar: order.totalQar,
+    name: order.customer.name,
+    lines: lines.map((l) => ({ name: l.name, qty: l.qty })),
+    fulfilment: shop?.fulfilment,
+    areaLabel,
+    address: shop?.address,
+    ppfSummary,
+  };
+
   return {
     id: order.id,
     ref: order.ref,
     kind: order.kind,
     locale,
-    status: statusFor(order),
+    status,
     sandbox: order.payment?.sandbox ?? order.events.some((e) => e.sandbox),
     transactionNumber: order.payment?.transactionNumber ?? order.events.at(-1)?.transactionNumber ?? "",
     totalQar: order.totalQar,
@@ -113,24 +129,18 @@ function toView(order: Order, locale: "en" | "ar"): OrderView {
       : null,
     email: order.customer.email,
     emailConfigured: Boolean(process.env.SMTP_PASS?.trim()),
-    whatsappUrl: buildPaidOrderWhatsAppUrl({
-      locale,
-      kind: order.kind,
-      ref: order.ref,
-      totalQar: order.totalQar,
-      transactionNumber: order.payment?.transactionNumber,
-      name: order.customer.name,
-      lines: lines.map((l) => ({ name: l.name, qty: l.qty })),
-      fulfilment: shop?.fulfilment,
-      areaLabel,
-      address: shop?.address,
-      ppfSummary,
-    }),
-    helpUrl: buildPaymentHelpWhatsAppUrl({
-      locale,
-      ref: order.ref,
-      transactionNumber: order.payment?.transactionNumber ?? order.events.at(-1)?.transactionNumber,
-    }),
+    whatsappUrl: buildPaidOrderWhatsAppUrl({ ...orderMessage, transactionNumber: order.payment?.transactionNumber }),
+    helpUrl:
+      status === "paid"
+        ? buildPaymentHelpWhatsAppUrl({ locale, ref: order.ref, transactionNumber: order.payment?.transactionNumber })
+        : buildOrderWhatsAppUrl({
+            ...orderMessage,
+            status,
+            mobile: order.customer.mobile,
+            transactionNumber: order.payment?.transactionNumber ?? order.events.at(-1)?.transactionNumber,
+            // Not paid online after all: a PPF job is then paid at handover, at the full package price.
+            totalQar: status === "failed" && ppf?.onlineDiscountQar && ppf.priceQar ? ppf.priceQar : order.totalQar,
+          }),
     gaItems,
   };
 }
@@ -142,7 +152,7 @@ function toView(order: Order, locale: "en" | "ar"): OrderView {
  * confirmation is, and shows nothing about any order. Rendered by the page
  * itself (not notFound()) so it is in the customer's language.
  */
-async function OrderUnavailable({ locale }: { locale: "en" | "ar" }) {
+async function OrderUnavailable({ locale, orderRef }: { locale: "en" | "ar"; orderRef?: string }) {
   const t = await getTranslations({ locale, namespace: "Order" });
   return (
     <Shell audience="b2c" locale={locale} headerTone="light" floatingWhatsApp={false}>
@@ -151,7 +161,7 @@ async function OrderUnavailable({ locale }: { locale: "en" | "ar" }) {
         <p className="mx-auto mt-3 max-w-md text-body text-(--color-text-muted)">{t("notFoundMessage")}</p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
           <a
-            href={buildPaymentHelpWhatsAppUrl({ locale })}
+            href={buildPaymentHelpWhatsAppUrl({ locale, ref: orderRef })}
             target="_blank"
             rel="noopener noreferrer"
             className={`${buttonClasses("primary", "lg")} font-semibold`}
@@ -187,15 +197,17 @@ export default async function OrderPage({
     // Not offered yet (an old-style link): /api/orders/open sets it and comes back with c=1.
     if (cookieOffered === undefined) redirect(orderLinkPath(l, id));
     // Offered and not kept: this browser blocks cookies, so the key stays in the address.
-  } else if (!cookieOk) {
-    return <OrderUnavailable locale={l} />;
   }
+  // The order reference is the id less its attempt suffix (ABK-7K2M-QX4P → ABK-7K2M):
+  // it goes in the WhatsApp message, so staff can find the order themselves.
+  const orderRef = id.slice(0, id.lastIndexOf("-"));
+  if (!isValidOrderToken(id, token) && !cookieOk) return <OrderUnavailable locale={l} orderRef={orderRef} />;
 
   const found = await readOrder(id).catch((err: unknown) => {
     console.error(`[order-page] ${id}: ${err instanceof Error ? err.message : err}`);
     return null;
   });
-  if (!found) return <OrderUnavailable locale={l} />;
+  if (!found) return <OrderUnavailable locale={l} orderRef={orderRef} />;
 
   // The layout only ships shared namespaces to the browser; this page's own
   // strings travel with it, as PpfInstall does on the installation page.
