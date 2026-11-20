@@ -24,7 +24,7 @@ import { orderLinkPath } from "./config";
 import { recordEmails, type Order, type ReviewReason } from "./orders";
 import { sadadTxnDate } from "./sadad";
 
-export type OrderEmailEvent = "paid" | "booked" | "review";
+export type OrderEmailEvent = "paid" | "booked" | "review" | "unpaid";
 
 export type Mail = { subject: string; text: string; html: string };
 
@@ -403,10 +403,20 @@ function shopEmail(order: Order, event: OrderEmailEvent, reason: ReviewReason): 
   if (event === "review") {
     subject = `CHECK PAYMENT ${order.ref}: ${review.subject}`;
     headline = review.headline;
+  } else if (event === "unpaid") {
+    const where = shop?.fulfilment === "pickup" ? "pickup" : `delivery to ${shop?.area.en ?? ""}`;
+    subject = `${suspect}Unpaid online order ${order.ref}: ${qar2(order.totalQar)}, ${where}: follow up`;
+    headline =
+      order.status === "failed"
+        ? "The customer tried to pay online but SADAD reported the payment as failed, and no other attempt went through. Message them on WhatsApp to help them pay again or take the order another way. Nothing has been charged; do not ship until it is paid."
+        : "The customer started paying online but never finished (SADAD has reported no payment). Message them on WhatsApp to help them pay or take the order another way. Nothing has been charged; do not ship until it is paid.";
   } else if (event === "booked" && order.pay === "online") {
     subject = `${suspect}PPF booking ${order.ref}: paying online (not paid yet), ${qar2(order.totalQar)}`;
     headline =
-      "New installation booking. The customer chose to pay online now and was sent to SADAD. A second email follows when SADAD confirms the payment; if none arrives, follow up on WhatsApp.";
+      "New installation booking. The customer chose to pay online now and was sent to SADAD. A second email follows when SADAD confirms the payment; if none arrives, follow up on WhatsApp." +
+      (ppf?.onlineDiscountQar && ppf.priceQar
+        ? ` If they pay at handover instead, the price is the full ${qar2(ppf.priceQar)}: the ${ppf.onlineDiscountPercent ?? 5}% discount is for paying online.`
+        : "");
   } else if (event === "booked") {
     subject = `${suspect}PPF booking ${order.ref}: pay at handover${ppf?.priceQar ? `, ${qar2(ppf.priceQar)}` : ""}`;
     headline = "New installation booking. The customer chose to pay at handover. Confirm the slot on WhatsApp.";
@@ -455,6 +465,10 @@ function shopEmail(order: Order, event: OrderEmailEvent, reason: ReviewReason): 
     if (shop.discount) money.push([`Discount ${shop.discount.percent}%`, `−${qar2(shop.discount.amountQar)}`]);
     money.push(["Delivery", shop.deliveryFeeQar > 0 ? qar2(shop.deliveryFeeQar) : "free"]);
   }
+  if (ppf?.onlineDiscountQar && ppf.priceQar !== null) {
+    money.push(["Package price", qar2(ppf.priceQar)]);
+    money.push([`Online payment discount ${ppf.onlineDiscountPercent ?? 5}%`, `−${qar2(ppf.onlineDiscountQar)}`]);
+  }
   const totalLabel =
     order.pay === "handover" ? "Total due at handover" : order.status === "paid" ? "Total charged" : "Order total";
   money.push([totalLabel, ppf && ppf.priceQar === null ? "to quote" : qar2(order.totalQar)]);
@@ -490,7 +504,7 @@ function shopEmail(order: Order, event: OrderEmailEvent, reason: ReviewReason): 
     "",
     textBlock(payment),
     "",
-    `Record: Vercel → Storage → abk-orders → orders/${order.id}.json`,
+    `Record: Railway → abk-website → Postgres → table abk_orders, id ${order.id}`,
   ].join("\n");
 
   const html = htmlShell(
@@ -503,7 +517,7 @@ function shopEmail(order: Order, event: OrderEmailEvent, reason: ReviewReason): 
       htmlTable(money) +
       sectionTitle("Payment") +
       htmlTable(payment) +
-      `<p style="margin:16px 0 0;color:#86868b;font-size:12px">Record: Vercel → Storage → abk-orders → orders/${esc(order.id)}.json</p>`,
+      `<p style="margin:16px 0 0;color:#86868b;font-size:12px">Record: Railway → abk-website → Postgres → table abk_orders, id ${esc(order.id)}</p>`,
   );
   return { subject, text, html };
 }
@@ -567,6 +581,13 @@ function customerEmail(order: Order): Mail {
       [ar ? "الفيلم" : "Film", ppf.filmLabel[l]],
     );
     if (ppf.preferredDate) rows.push([ar ? "التاريخ المفضل" : "Preferred date", ppf.preferredDate]);
+    if (ppf.onlineDiscountQar && ppf.priceQar !== null) {
+      const pct = formatPercent(ppf.onlineDiscountPercent ?? 5, l);
+      rows.push(
+        [ar ? "سعر الباقة" : "Package price", qar(ppf.priceQar)],
+        [ar ? `خصم الدفع الإلكتروني ${pct}` : `Online payment discount ${pct}`, `−${qar(ppf.onlineDiscountQar)}`],
+      );
+    }
   }
   rows.push([ar ? "المبلغ المدفوع" : "Paid", qar(order.totalQar)]);
   if (order.payment?.transactionNumber) {

@@ -60,6 +60,9 @@ export type PpfDetails = {
   preferredDate: string;
   priceQar: number | null;
   isEstimate: boolean;
+  /** Paid online at booking: the package price less this (totalQar is the charge). */
+  onlineDiscountPercent?: number;
+  onlineDiscountQar?: number;
 };
 
 export type OrderStatus =
@@ -111,18 +114,22 @@ export type Order = {
    * When each email went out. shop/customer: the PAID staff alert and the
    * customer's receipt — each retried on its own until it has gone out.
    * booked/review: the staff alerts for a new booking and for a payment to
-   * check, kept apart so they never count as the paid emails. claimedAt: when
-   * a caller took on sending the paid emails; a later SADAD event retries
-   * whatever is still missing 10 minutes after the claim (SMTP down, instance
-   * died).
+   * check, kept apart so they never count as the paid emails; unpaid: the
+   * staff follow-up for an online checkout left unpaid. claimedAt: when a
+   * caller took on sending the paid emails; a later SADAD event or the
+   * background sweep (sweep.ts) retries whatever is still missing 10 minutes
+   * after the claim (SMTP down, instance died). attempts: claims so far,
+   * capped so a bounced address isn't mailed forever.
    */
   emails: {
     shop?: string;
     customer?: string;
     booked?: string;
     review?: string;
+    unpaid?: string;
     error?: string;
     claimedAt?: string;
+    attempts?: number;
   };
   /**
    * Ids of the latest writes (newest last): an update whose write landed but
@@ -134,6 +141,22 @@ export type Order = {
 
 /** How long a claim to send the paid emails stands before another event may retry. */
 const EMAIL_CLAIM_MS = 10 * 60 * 1000;
+
+/** After this many claims the paid emails are left to staff: a bounced address must not be mailed every sweep. */
+const MAX_EMAIL_ATTEMPTS = 6;
+
+/** Paid emails still missing, nobody holds a fresh claim to send them, and the tries aren't used up. */
+function paidEmailsOwed(o: Order, nowMs: number): boolean {
+  return (
+    paidEmailsMissing(o) &&
+    (o.emails.attempts ?? 0) < MAX_EMAIL_ATTEMPTS &&
+    (!o.emails.claimedAt || nowMs - Date.parse(o.emails.claimedAt) > EMAIL_CLAIM_MS)
+  );
+}
+
+function claimEmails(o: Order, now: string): Order["emails"] {
+  return { ...o.emails, claimedAt: now, attempts: (o.emails.attempts ?? 0) + 1 };
+}
 
 /** Why a payment needs a person to look at it. */
 export type ReviewReason = "amount_mismatch" | "paid_twice" | "test_payment" | "paid_other_attempt";
@@ -208,8 +231,15 @@ async function db(): Promise<Pool> {
     });
     pool.on("error", (err) => console.error(`[orders] database pool error: ${err.message}`));
   }
-  schema ??= pool
-    .query(
+  const pg = pool;
+  schema ??= (async () => {
+    // Orders carry Arabic (names, labels, addresses): a database in a legacy
+    // encoding would refuse them one by one, so refuse it plainly up front.
+    const { rows } = await pg.query<{ server_encoding: string }>("SHOW server_encoding");
+    if (rows[0]?.server_encoding !== "UTF8") {
+      throw new Error(`order database encoding is ${rows[0]?.server_encoding}, not UTF8`);
+    }
+    await pg.query(
       `CREATE TABLE IF NOT EXISTS ${table()} (
          id text PRIMARY KEY,
          data jsonb NOT NULL,
@@ -217,7 +247,8 @@ async function db(): Promise<Pool> {
          created_at timestamptz NOT NULL DEFAULT now(),
          updated_at timestamptz NOT NULL DEFAULT now()
        )`,
-    )
+    );
+  })()
     .then(
       () => undefined,
       (err: unknown) => {
@@ -387,6 +418,37 @@ function recentIds(start: string, sinceMs: number): Promise<string[]> {
   return idsStartingWith(start, sinceMs);
 }
 
+/** Every order written since `sinceMs`, newest first (all of them in memory mode). */
+export async function listRecentOrders(sinceMs: number): Promise<Order[]> {
+  if (inMemoryMode()) return [...memory.values()].map((r) => JSON.parse(r.body) as Order);
+  const { rows } = await (await db()).query<{ body: string }>(
+    `SELECT data::text AS body FROM ${table()} WHERE updated_at >= $1 ORDER BY created_at DESC LIMIT 2000`,
+    [new Date(sinceMs)],
+  );
+  return rows.map((r) => JSON.parse(r.body) as Order);
+}
+
+/** For the background sweep: claims the paid emails still owed; the order to send them for, or null. */
+export async function claimPaidEmails(id: string): Promise<Order | null> {
+  const now = new Date().toISOString();
+  const nowMs = Date.parse(now);
+  const out = await updateOrder(id, (order) =>
+    paidEmailsOwed(order, nowMs)
+      ? { next: { ...order, emails: claimEmails(order, now) }, info: true }
+      : { next: null, info: false },
+  );
+  return out?.changed && out.info ? out.order : null;
+}
+
+/** Removes a flag, if present. */
+export async function unflagOrder(id: string, flag: string): Promise<void> {
+  await updateOrder(id, (order) =>
+    order.flags.includes(flag)
+      ? { next: { ...order, flags: order.flags.filter((f) => f !== flag) }, info: null }
+      : { next: null, info: null },
+  );
+}
+
 /** Adds a flag once; true only for the caller that added it. */
 export async function flagOrder(id: string, flag: string): Promise<boolean> {
   const out = await updateOrder(id, (order) =>
@@ -439,10 +501,7 @@ export async function applyPaymentResult(
 ): Promise<PaymentUpdate | null> {
   const now = new Date().toISOString();
   const nowMs = Date.parse(now);
-  /** Paid emails still missing, and nobody holds a fresh claim to send them. */
-  const emailsOwed = (o: Order) =>
-    paidEmailsMissing(o) &&
-    (!o.emails.claimedAt || nowMs - Date.parse(o.emails.claimedAt) > EMAIL_CLAIM_MS);
+  const emailsOwed = (o: Order) => paidEmailsOwed(o, nowMs);
   const quiet: Omit<PaymentUpdate, "order"> = { newlyPaid: false, review: null, sendPaidEmails: false };
 
   const out = await updateOrder(result.orderId, (order) => {
@@ -456,7 +515,7 @@ export async function applyPaymentResult(
     if (duplicate) {
       // A repeated event changes nothing, but may still collect owed emails.
       if (!emailsOwed(order)) return { next: null, info: quiet };
-      order.emails = { ...order.emails, claimedAt: now };
+      order.emails = claimEmails(order, now);
       return { next: order, info: { ...quiet, sendPaidEmails: true } };
     }
 
@@ -508,7 +567,7 @@ export async function applyPaymentResult(
     }
     let sendPaidEmails = false;
     if (emailsOwed(order)) {
-      order.emails = { ...order.emails, claimedAt: now };
+      order.emails = claimEmails(order, now);
       sendPaidEmails = true;
     }
     return { next: order, info: { newlyPaid, review, sendPaidEmails } };

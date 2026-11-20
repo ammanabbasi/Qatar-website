@@ -345,3 +345,66 @@ test("flagOrder adds a flag once and reports only the first time", async () => {
   assert.deepEqual((await readOrder(id))!.order.flags, ["unverified_result"]);
   assert.equal(await flagOrder("ABK-FFFF-2222", "x"), false); // unknown order
 });
+
+test("sweep: owed paid emails are claimed again, counted, and capped", async () => {
+  const { claimPaidEmails, recordEmails } = await import("../src/lib/payments/orders.ts");
+  const id = newOrderId("ABK-SWPA");
+  await createOrder(order(id, 70));
+  const paid = await applyPaymentResult(result(id, "paid", 70, "SD60"), "callback");
+  assert.equal(paid?.order.emails.attempts, 1);
+  // The send failed and gave its claim back: the sweep may claim it now.
+  await recordEmails(id, { error: "shop: timeout", claimedAt: undefined });
+  const again = await claimPaidEmails(id);
+  assert.equal(again?.emails.attempts, 2);
+  assert.equal(await claimPaidEmails(id), null); // a fresh claim stands
+  // Stale claims are retried until six tries are used up.
+  for (let n = 3; n <= 6; n++) {
+    await recordEmails(id, { claimedAt: new Date(0).toISOString() });
+    assert.equal((await claimPaidEmails(id))?.emails.attempts, n);
+  }
+  await recordEmails(id, { claimedAt: new Date(0).toISOString() });
+  assert.equal(await claimPaidEmails(id), null); // capped: a bounced address isn't mailed forever
+});
+
+test("sweep: unpaid online cart checkouts are picked once per cart, only when due", async () => {
+  const { unpaidCheckoutsToAlert } = await import("../src/lib/payments/sweep.ts");
+  const now = Date.parse("2026-11-20T12:00:00.000Z");
+  const at = (minutesAgo: number) => new Date(now - minutesAgo * 60_000).toISOString();
+  const mk = (ref: string, minutesAgo: number, extra: Partial<Order> = {}) =>
+    ({ ...order(`${ref}-${"2345"}`, 30), ref, createdAt: at(minutesAgo), ...extra }) as Order;
+  const orders: Order[] = [
+    mk("ABK-AAA2", 60), // due
+    mk("ABK-BBB3", 10), // the customer may still be paying
+    mk("ABK-CCC4", 60 * 24 * 4), // older than 3 days
+    mk("ABK-DDD5", 60, { status: "failed" }), // failed and not retried: due
+    mk("ABK-EEE6", 90), // an older attempt of a cart that was then paid
+    { ...mk("ABK-EEE6", 30), id: "ABK-EEE6-3456", status: "paid" } as Order,
+    mk("ABK-FFF7", 60, { flags: ["unpaid_alerted"] }), // already alerted
+    mk("ABK-GGG8", 120), // two unpaid attempts of one cart: one alert, for the newer
+    { ...mk("ABK-GGG8", 70), id: "ABK-GGG8-3456" } as Order,
+    mk("ABK-HHH9", 60, { pay: "handover", status: "booked" }), // not an online payment
+    { ...mk("PPF-JJJJ2", 60), kind: "ppf" } as Order, // PPF bookings alert staff when booked
+  ];
+  const due = unpaidCheckoutsToAlert(orders, now, 45 * 60_000).map((o) => o.id).sort();
+  assert.deepEqual(due, ["ABK-AAA2-2345", "ABK-DDD5-2345", "ABK-GGG8-3456"]);
+});
+
+test("rate limit: counts per key inside the window, and reads the edge's address", async () => {
+  const { clientAddress, overLimit } = await import("../src/lib/rate-limit.ts");
+  const t0 = 1_000_000;
+  for (let i = 0; i < 3; i++) assert.equal(overLimit("test:a", 3, 60_000, t0 + i), false);
+  assert.equal(overLimit("test:a", 3, 60_000, t0 + 10), true);
+  assert.equal(overLimit("test:b", 3, 60_000, t0 + 10), false); // another visitor
+  assert.equal(overLimit("test:a", 3, 60_000, t0 + 60_005), false); // the window moved on
+  const req = (h: Record<string, string>) => new Request("https://example.com/", { headers: h });
+  assert.equal(clientAddress(req({ "x-forwarded-for": "1.2.3.4, 203.0.113.9" })), "203.0.113.9");
+  assert.equal(clientAddress(req({ "x-real-ip": "198.51.100.7" })), "198.51.100.7");
+  assert.equal(clientAddress(req({})), null); // unknown: never limited
+});
+
+test("PPF online price: 5% off, rounded down to whole riyals", async () => {
+  const { ppfOnlinePriceQar, PPF_ONLINE_DISCOUNT_PERCENT } = await import("../src/data/ppfInstall.ts");
+  assert.equal(PPF_ONLINE_DISCOUNT_PERCENT, 5, "the page copy says 5% (messages/*.json summaryPayment, how3Body, payBody; src/data/faq.ts): change it with the constant");
+  const cases: [number, number][] = [[899, 854], [1599, 1519], [1899, 1804], [3999, 3799], [4799, 4559], [5499, 5224], [1000, 950]];
+  for (const [full, online] of cases) assert.equal(ppfOnlinePriceQar(full), online, `${full}`);
+});

@@ -342,8 +342,8 @@ export const PPF_INSTALL_FAQ: FaqEntry[] = [
       ar: "كيف أحجز تركيب PPF في الدوحة؟",
     },
     a: {
-      en: `Tap "Get my instant quote" on this page, choose your car, coverage and film, and send the quote on WhatsApp. We confirm film stock, your slot and the final price during opening hours (Saturday to Thursday, ${SITE.hours.weekdaysMorning} and ${SITE.hours.weekdaysEvening}). For fixed-price packages you can pay online when you book, or at handover by bank transfer, Fawran or cash; custom jobs are paid at handover. You drop the car at the confirmed Doha location, and collect it after our handover inspection.`,
-      ar: `اضغط «احسب سعري الآن» في هذه الصفحة، واختر سيارتك والتغطية والفيلم، ثم أرسل عرض السعر عبر واتساب. نؤكد توفر الفيلم وموعدك والسعر النهائي خلال ساعات العمل (من السبت إلى الخميس، ${SITE.hours.weekdaysMorning} و${SITE.hours.weekdaysEvening}). في الباقات ذات السعر الثابت يمكنك الدفع عبر الإنترنت عند الحجز، أو عند التسليم بتحويل بنكي أو فوران أو نقداً؛ أما الأعمال المخصصة فتُدفع عند التسليم. وتسلّم السيارة في موقع الدوحة المؤكد، وتستلمها بعد فحص التسليم لدينا.`,
+      en: `Tap "Get my instant quote" on this page, choose your car, coverage and film, and send the quote on WhatsApp. We confirm film stock, your slot and the final price during opening hours (Saturday to Thursday, ${SITE.hours.weekdaysMorning} and ${SITE.hours.weekdaysEvening}). For fixed-price packages you can pay online when you book and get 5% off, or at handover by bank transfer, Fawran or cash; custom jobs are paid at handover. You drop the car at the confirmed Doha location, and collect it after our handover inspection.`,
+      ar: `اضغط «احسب سعري الآن» في هذه الصفحة، واختر سيارتك والتغطية والفيلم، ثم أرسل عرض السعر عبر واتساب. نؤكد توفر الفيلم وموعدك والسعر النهائي خلال ساعات العمل (من السبت إلى الخميس، ${SITE.hours.weekdaysMorning} و${SITE.hours.weekdaysEvening}). في الباقات ذات السعر الثابت يمكنك الدفع عبر الإنترنت عند الحجز مع خصم ٥٪، أو عند التسليم بتحويل بنكي أو فوران أو نقداً؛ أما الأعمال المخصصة فتُدفع عند التسليم. وتسلّم السيارة في موقع الدوحة المؤكد، وتستلمها بعد فحص التسليم لدينا.`,
     },
   },
   {
@@ -352,8 +352,8 @@ export const PPF_INSTALL_FAQ: FaqEntry[] = [
       ar: "كيف أدفع، وهل يمكنني الإلغاء؟",
     },
     a: {
-      en: "For fixed-price packages you can pay the full price online when you book (through SADAD), or at handover by bank transfer, Fawran or cash. Custom-panel jobs and custom-vehicle offers are estimates, so they are paid at handover once the price is confirmed. We confirm your slot on WhatsApp. Cancel up to 48 hours before the confirmed slot for a full refund (online payments go back to the card used); one reschedule is free with 48 hours' notice.",
-      ar: "في الباقات ذات السعر الثابت يمكنك دفع السعر كاملاً عبر الإنترنت عند الحجز (عبر SADAD)، أو عند التسليم بتحويل بنكي أو فوران أو نقداً. أما أعمال القطع المخصصة وعروض السيارات المخصصة فهي تقديرية، لذا تُدفع عند التسليم بعد تأكيد السعر. نؤكد موعدك عبر واتساب. يمكنك الإلغاء مع استرداد كامل حتى 48 ساعة قبل الموعد المؤكد (وتعود المبالغ المدفوعة عبر الإنترنت إلى البطاقة المستخدمة)، وتغيير الموعد مرة واحدة مجاناً بإشعار قبل 48 ساعة.",
+      en: "For fixed-price packages you can pay online when you book (through SADAD) and get 5% off, or pay the full price at handover by bank transfer, Fawran or cash. Custom-panel jobs and custom-vehicle offers are estimates, so they are paid at handover once the price is confirmed. We confirm your slot on WhatsApp. Cancel up to 48 hours before the confirmed slot for a full refund (online payments go back to the card used); one reschedule is free with 48 hours' notice.",
+      ar: "في الباقات ذات السعر الثابت يمكنك الدفع عبر الإنترنت عند الحجز (عبر SADAD) مع خصم ٥٪، أو دفع السعر كاملاً عند التسليم بتحويل بنكي أو فوران أو نقداً. أما أعمال القطع المخصصة وعروض السيارات المخصصة فهي تقديرية، لذا تُدفع عند التسليم بعد تأكيد السعر. نؤكد موعدك عبر واتساب. يمكنك الإلغاء مع استرداد كامل حتى 48 ساعة قبل الموعد المؤكد (وتعود المبالغ المدفوعة عبر الإنترنت إلى البطاقة المستخدمة)، وتغيير الموعد مرة واحدة مجاناً بإشعار قبل 48 ساعة.",
     },
   },
   {

@@ -14,6 +14,7 @@ import { createOrder, findOtherPaidAttempt, newOrderId, type Order } from "@/lib
 import { buildSadadCheckoutForm, sadadTxnDate } from "@/lib/payments/sadad";
 import { priceShopCart } from "@/lib/payments/shop";
 import { isEmail, normaliseQatarMobile, sadadMobile, str } from "@/lib/payments/validate";
+import { rateLimit } from "@/lib/rate-limit";
 
 export const maxDuration = 20;
 
@@ -29,6 +30,9 @@ function newCartRef(): string {
 }
 
 export async function POST(request: Request) {
+  // Each checkout stores an order: 30 per 10 minutes per visitor is far above any shopper.
+  const limited = rateLimit(request, "checkout", 30, 10 * 60_000);
+  if (limited) return limited;
   const config = sadadConfig();
   if (!config) return json(503, { ok: false, error: "payments_unavailable" });
 

@@ -37,6 +37,8 @@ import {
   type FilmKey,
   type PartKey,
   type VehicleBodySelection,
+  PPF_ONLINE_DISCOUNT_PERCENT,
+  ppfOnlinePriceQar,
 } from "@/data/ppfInstall";
 import {
   POPULAR_QATAR_CARS,
@@ -46,7 +48,7 @@ import {
   splitCarQuery,
   type QatarCarEntry,
 } from "@/data/qatarCars";
-import { formatNumber, formatQar } from "@/lib/pricing";
+import { formatNumber, formatPercent, formatQar } from "@/lib/pricing";
 import {
   buildPpfBookingWhatsAppUrl,
   buildPpfCustomOfferWhatsAppUrl,
@@ -232,6 +234,11 @@ const optionCls = (active: boolean) =>
       ? "border-(--color-brand) bg-(--color-brand)/[0.07] shadow-[inset_0_0_0_1px_var(--color-brand)]"
       : "border-(--color-border) hover:border-(--color-text-subtle)"
   }`;
+
+/** Milliseconds since `start` on this device's own clock (called from the submit handler only). */
+function msSince(start: number): number {
+  return Date.now() - start;
+}
 
 /**
  * The installed-PPF quote builder. On the page it is a launcher card; the
@@ -602,6 +609,9 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
   // Paying online needs a firm price: fixed packages only, never estimates.
   const fixedPrice = body !== null && body !== "custom" && quote.priceQar !== null && !quote.isEstimate;
   const payNow = onlineOffered && fixedPrice && payment === "online";
+  // Paying online now takes 5% off (PPF_ONLINE_DISCOUNT_PERCENT); the server charges the same.
+  const onlinePriceQar = quote.priceQar !== null ? ppfOnlinePriceQar(quote.priceQar) : null;
+  const onlinePercent = formatPercent(PPF_ONLINE_DISCOUNT_PERCENT, locale);
 
   // Back from SADAD's page via the browser's back button restores the sheet
   // from the back/forward cache with the submit button still spinning.
@@ -749,10 +759,10 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
       year: form.year.trim() ? Number(form.year) : "",
       startedAt: startedAt.current,
       // Measured on this device's clock alone, so a phone set fast or slow still counts as a person.
-      elapsedMs: Date.now() - startedAt.current,
+      elapsedMs: msSince(startedAt.current),
       payment: payNow ? "online" : "handover",
       // The price this page shows; a deploy that changed it in between is caught server-side.
-      ...(payNow ? { expectedPriceQar: quote.priceQar } : {}),
+      ...(payNow ? { expectedPriceQar: onlinePriceQar } : {}),
       ...readBookingAttribution(),
     };
     let next: Result;
@@ -789,7 +799,7 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
       next = { saved: false, ref: makeBookingRef() };
     }
     if (next.saved) {
-      const reported = trackPpfBooking({ ref: next.ref, priceQar: quote.priceQar, coverage, film, body });
+      const reported = trackPpfBooking({ ref: next.ref, priceQar: payNow ? onlinePriceQar : quote.priceQar, coverage, film, body });
       // Leaving for SADAD at once can cancel the Ads conversion ping: let it go out first (1.2 s at most).
       if (sadad) await reported;
     }
@@ -1883,8 +1893,8 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
                     {locale === "ar" ? "شروط الحجز والدفع: " : "Booking & cancellation: "}
                   </strong>
                   {locale === "ar"
-                    ? `تأكيد الموعد عبر واتساب خلال ساعات العمل · ${onlineOffered ? "ادفع الآن إلكترونياً أو عند التسليم" : "الدفع عند التسليم"} · إلغاء مجاني حتى ٤٨ ساعة قبل الموعد.`
-                    : `Slot confirmed on WhatsApp during business hours · ${onlineOffered ? "Pay now online or at handover" : "Pay at handover"} · Free cancellation up to 48h prior.`}
+                    ? `تأكيد الموعد عبر واتساب خلال ساعات العمل · ${onlineOffered ? `ادفع الآن إلكترونياً (خصم ${onlinePercent}) أو عند التسليم` : "الدفع عند التسليم"} · إلغاء مجاني حتى ٤٨ ساعة قبل الموعد.`
+                    : `Slot confirmed on WhatsApp during business hours · ${onlineOffered ? `Pay now online (${onlinePercent} off) or at handover` : "Pay at handover"} · Free cancellation up to 48h prior.`}
                 </span>
               </div>
             </div>
@@ -1994,10 +2004,10 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
                       [
                         {
                           value: "online",
-                          label: t("payNow"),
-                          hint: t("payNowHint", { price: qar(quote.priceQar ?? 0) }),
+                          label: t("payNow", { percent: onlinePercent }),
+                          hint: t("payNowHint", { price: qar(onlinePriceQar ?? 0), full: qar(quote.priceQar ?? 0) }),
                         },
-                        { value: "handover", label: t("payLater"), hint: t("payLaterHint") },
+                        { value: "handover", label: t("payLater"), hint: t("payLaterHint", { full: qar(quote.priceQar ?? 0) }) },
                       ] as const
                     ).map((option) => (
                       <label
@@ -2268,7 +2278,7 @@ export function PpfConfigurator({ payments = "off" }: { payments?: PaymentsVisib
                       ? t("payOpening")
                       : t("submitting")
                     : payNow
-                      ? t("submitPay", { price: qar(quote.priceQar ?? 0) })
+                      ? t("submitPay", { price: qar(onlinePriceQar ?? 0) })
                       : t("submit")}
                 </Button>
               )}

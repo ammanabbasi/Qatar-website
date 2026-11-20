@@ -24,7 +24,8 @@ export type OrderView = {
   totalQar: number;
   lines: { key: string; name: string; qty: number; lineQar: number }[];
   subtotalQar: number | null;
-  discount: { percent: number; amountQar: number } | null;
+  /** online: the PPF pay-online discount rather than the cart's quantity discount. */
+  discount: { percent: number; amountQar: number; online?: boolean } | null;
   deliveryFeeQar: number | null;
   fulfilment: "delivery" | "pickup" | null;
   areaLabel: string;
@@ -193,7 +194,9 @@ export function OrderResult({ order }: { order: OrderView }) {
               {order.discount ? (
                 <>
                   <dt className="text-(--color-text-muted)">
-                    {t("discount", { percent: formatPercent(order.discount.percent, locale) })}
+                    {t(order.discount.online ? "onlineDiscount" : "discount", {
+                      percent: formatPercent(order.discount.percent, locale),
+                    })}
                   </dt>
                   <dd className="text-end tabular-nums text-(--color-brand-deep)">
                     −{qar(order.discount.amountQar)}

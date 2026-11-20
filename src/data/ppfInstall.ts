@@ -262,6 +262,16 @@ function proPrice(sel: { body: BodyType; coverage: CoverageKey; parts: PartKey[]
   return Math.min(fullBody, Math.max(CUSTOM_MINIMUM_QAR, roundUp50(fullBody * share)));
 }
 
+/**
+ * Owner, 2026-11-20: a fixed-price package paid online when booking gets 5%
+ * off. Rounded down to whole riyals, in the customer's favour (899 → 854).
+ */
+export const PPF_ONLINE_DISCOUNT_PERCENT = 5;
+
+export function ppfOnlinePriceQar(priceQar: number): number {
+  return Math.floor((priceQar * (100 - PPF_ONLINE_DISCOUNT_PERCENT)) / 100);
+}
+
 export function quotePpf(sel: PpfSelection): PpfQuote {
   if (sel.body === "custom") {
     return { priceQar: null, isEstimate: true };

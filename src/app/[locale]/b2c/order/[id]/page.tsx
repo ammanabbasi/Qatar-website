@@ -92,8 +92,13 @@ function toView(order: Order, locale: "en" | "ar"): OrderView {
     transactionNumber: order.payment?.transactionNumber ?? order.events.at(-1)?.transactionNumber ?? "",
     totalQar: order.totalQar,
     lines,
-    subtotalQar: shop?.subtotalQar ?? null,
-    discount: shop?.discount ?? null,
+    // A PPF package paid online at booking: package price, then the online discount.
+    subtotalQar: shop?.subtotalQar ?? (ppf?.onlineDiscountQar ? ppf.priceQar : null),
+    discount:
+      shop?.discount ??
+      (ppf?.onlineDiscountQar
+        ? { percent: ppf.onlineDiscountPercent ?? 5, amountQar: ppf.onlineDiscountQar, online: true }
+        : null),
     deliveryFeeQar: shop ? shop.deliveryFeeQar : null,
     fulfilment: shop?.fulfilment ?? null,
     areaLabel,

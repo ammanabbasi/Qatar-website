@@ -189,3 +189,72 @@ test("a payment while another attempt of the order is paid asks staff to refund 
   assert.match(other.shop.subject, /^CHECK PAYMENT ABK-7K3M: paid in two attempts \(possible double charge\)/);
   assert.ok(other.shop.text.includes("refund the extra one"));
 });
+
+test("PPF paid online: 5% off shown to staff and on the receipt (EN and AR)", () => {
+  const ppf = shopOrder({
+    kind: "ppf",
+    ref: "PPF-AB2CD",
+    id: "PPF-AB2CD-3EFG",
+    pay: "online",
+    status: "paid",
+    totalQar: 854,
+    shop: undefined,
+    payment: { transactionNumber: "SD9", sandbox: false, paidAt: "2026-11-20T10:00:00.000Z", source: "webhook" },
+    ppf: {
+      body: "sedan",
+      bodyLabel: { en: "Sedan / Coupe", ar: "سيدان / كوبيه" },
+      coverage: "front-end",
+      coverageLabel: { en: "Front-end Essential", ar: "الواجهة الأساسية" },
+      film: "pro",
+      filmLabel: { en: "Weather Armor PRO", ar: "Weather Armor PRO" },
+      parts: [],
+      car: "2024 Toyota Camry",
+      existingFilm: "",
+      preferredDate: "",
+      priceQar: 899,
+      isEstimate: false,
+      onlineDiscountPercent: 5,
+      onlineDiscountQar: 45,
+    },
+  });
+  const { shop, customer } = renderOrderEmails(ppf, "paid");
+  assert.equal(shop.subject, "Paid PPF booking PPF-AB2CD: QAR 854.00");
+  for (const s of ["Package price", "QAR 899.00", "Online payment discount 5%", "−QAR 45.00", "Total charged", "QAR 854.00"]) {
+    assert.ok(shop.text.includes(s), `staff email shows "${s}"`);
+  }
+  assert.ok(customer?.text.includes("Online payment discount 5%") && customer.text.includes("QAR 854"), "receipt shows the discount and the amount paid");
+  const ar = renderOrderEmails({ ...ppf, locale: "ar" }, "paid").customer!;
+  assert.ok(ar.text.includes("خصم الدفع الإلكتروني"), "Arabic receipt names the online discount");
+});
+
+test("PPF booked to pay online: staff told the handover price is the full one", () => {
+  const ppf = shopOrder({
+    kind: "ppf",
+    ref: "PPF-AB2CE",
+    id: "PPF-AB2CE-3EFG",
+    pay: "online",
+    status: "awaiting_payment",
+    totalQar: 854,
+    shop: undefined,
+    ppf: {
+      body: "sedan",
+      bodyLabel: { en: "Sedan / Coupe", ar: "سيدان / كوبيه" },
+      coverage: "front-end",
+      coverageLabel: { en: "Front-end Essential", ar: "الواجهة الأساسية" },
+      film: "pro",
+      filmLabel: { en: "Weather Armor PRO", ar: "Weather Armor PRO" },
+      parts: [],
+      car: "2024 Toyota Camry",
+      existingFilm: "",
+      preferredDate: "",
+      priceQar: 899,
+      isEstimate: false,
+      onlineDiscountPercent: 5,
+      onlineDiscountQar: 45,
+    },
+  });
+  const { shop, customer } = renderOrderEmails(ppf, "booked");
+  assert.equal(shop.subject, "PPF booking PPF-AB2CE: paying online (not paid yet), QAR 854.00");
+  assert.ok(shop.text.includes("If they pay at handover instead, the price is the full QAR 899.00"), shop.text.slice(0, 400));
+  assert.equal(customer, null, "a booking never emails the customer");
+});

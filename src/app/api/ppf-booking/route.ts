@@ -27,6 +27,8 @@ import {
   isPart,
   isVehicleBodySelection,
   makeBookingRef,
+  PPF_ONLINE_DISCOUNT_PERCENT,
+  ppfOnlinePriceQar,
   quotePpf,
   type PartKey,
 } from "@/data/ppfInstall";
@@ -35,6 +37,7 @@ import { sendOrderEmails } from "@/lib/payments/email";
 import { createOrder, newOrderId, type Order } from "@/lib/payments/orders";
 import { buildSadadCheckoutForm, sadadTxnDate } from "@/lib/payments/sadad";
 import { isEmail, normaliseQatarMobile, sadadMobile, str } from "@/lib/payments/validate";
+import { rateLimit } from "@/lib/rate-limit";
 
 const MAX = { short: 60, name: 80, notes: 500, clickId: 200 } as const;
 
@@ -53,6 +56,9 @@ function json(status: number, body: Record<string, unknown>) {
 const CUSTOM_BODY_LABEL = { en: "Custom offer by make & model", ar: "عرض خاص حسب الطراز" };
 
 export async function POST(request: Request) {
+  // Each booking emails staff: 10 per 10 minutes per visitor caps a flood, not a customer.
+  const limited = rateLimit(request, "ppf-booking", 10, 10 * 60_000);
+  if (limited) return limited;
   let f: Fields;
   try {
     const parsed: unknown = await request.json();
@@ -115,11 +121,20 @@ export async function POST(request: Request) {
   const fixedPrice = body !== "custom" && quote.priceQar !== null && !quote.isEstimate;
   const payOnline = wantsOnline && fixedPrice && config !== null;
 
+  // Paying online now: 5% off the package price (PPF_ONLINE_DISCOUNT_PERCENT).
+  const onlineChargeQar = payOnline ? ppfOnlinePriceQar(quote.priceQar!) : null;
+
   // The page priced the job from the table it was built with; if a deploy
   // changed the price since, say so instead of charging a surprise amount.
+  // (A page from before the online discount sends the full price: never more
+  // than the charge, so it is accepted.)
   const expected = Number(f.expectedPriceQar);
-  if (payOnline && f.expectedPriceQar !== undefined && (!Number.isFinite(expected) || expected !== quote.priceQar)) {
-    return json(409, { ok: false, error: "price_changed", priceQar: quote.priceQar });
+  if (
+    payOnline &&
+    f.expectedPriceQar !== undefined &&
+    (!Number.isFinite(expected) || (expected !== onlineChargeQar && expected !== quote.priceQar))
+  ) {
+    return json(409, { ok: false, error: "price_changed", priceQar: onlineChargeQar });
   }
 
   const booking = {
@@ -160,7 +175,7 @@ export async function POST(request: Request) {
     locale,
     pay: payOnline ? "online" : "handover",
     status: payOnline ? "awaiting_payment" : "booked",
-    totalQar: quote.priceQar ?? 0,
+    totalQar: onlineChargeQar ?? quote.priceQar ?? 0,
     customer: { name, mobile: mobile!, email },
     notes: booking.notes,
     ppf: {
@@ -179,6 +194,9 @@ export async function POST(request: Request) {
       preferredDate,
       priceQar: quote.priceQar,
       isEstimate: quote.isEstimate,
+      ...(onlineChargeQar !== null
+        ? { onlineDiscountPercent: PPF_ONLINE_DISCOUNT_PERCENT, onlineDiscountQar: quote.priceQar! - onlineChargeQar }
+        : {}),
     },
     attribution: {
       gclid: booking.gclid,
@@ -208,6 +226,10 @@ export async function POST(request: Request) {
     booking.payment = "handover";
     order.pay = "handover";
     order.status = "booked";
+    // Paid at handover after all: the full price, no online discount.
+    order.totalQar = quote.priceQar ?? 0;
+    delete order.ppf!.onlineDiscountPercent;
+    delete order.ppf!.onlineDiscountQar;
     // The booking still reaches staff by email (awaited below, alongside the
     // Sheet), so a store outage never loses it.
     emailedWithoutStore = sendOrderEmails(order, "booked");
