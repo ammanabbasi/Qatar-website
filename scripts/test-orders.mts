@@ -1,6 +1,6 @@
 /**
  * Unit tests for the order state machine in src/lib/payments/orders.ts, run
- * against its in-memory store (no BLOB_READ_WRITE_TOKEN in the environment).
+ * against its in-memory store (no DATABASE_URL in the environment).
  *
  *   npm run test:payments
  */
@@ -8,8 +8,10 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-delete process.env.BLOB_READ_WRITE_TOKEN;
+delete process.env.DATABASE_URL;
 delete process.env.VERCEL;
+delete process.env.RAILWAY_ENVIRONMENT_NAME;
+delete process.env.RAILWAY_PROJECT_ID;
 
 const { applyPaymentResult, createOrder, isOrderId, newOrderId, readOrder } = await import(
   "../src/lib/payments/orders.ts"
@@ -261,17 +263,6 @@ test("hasPaymentEvent: the same outcome and transaction from either channel", as
   assert.equal(hasPaymentEvent(stored, result(id, "paid", 15, "SD10")), true);
   assert.equal(hasPaymentEvent(stored, result(id, "paid", 15, "SD11")), false);
   assert.equal(hasPaymentEvent(stored, result(id, "failed", 15, "SD10")), false);
-});
-
-test("store write conflicts are recognised as a lost race, other errors are not", async () => {
-  const { isWriteConflict } = await import("../src/lib/payments/orders.ts");
-  const { BlobError, BlobAccessError } = await import("@vercel/blob");
-  // The exact message the store returned on 2026-11-19 for two simultaneous writes.
-  const conflict = new BlobError("The conditional request cannot succeed due to a conflicting operation against this resource.");
-  assert.equal(isWriteConflict(conflict), true);
-  assert.equal(isWriteConflict(new BlobAccessError()), false);
-  assert.equal(isWriteConflict(new Error("conflicting operation")), false); // not from the store
-  assert.equal(isWriteConflict(null), false);
 });
 
 test("a write that landed but lost its reply keeps its answer (paid emails still go out)", async () => {

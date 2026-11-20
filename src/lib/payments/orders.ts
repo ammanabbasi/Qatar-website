@@ -1,23 +1,25 @@
 /**
- * Order records — one private JSON blob per payment attempt in the Vercel
- * Blob store "abk-orders" (created 2026-11-19, region bom1, private access).
+ * Order records — one row per payment attempt in the Railway Postgres
+ * database (DATABASE_URL), the JSON order in `data`. Moved from Vercel Blob on
+ * 2026-11-19 after Vercel's Hobby plan suspended the Blob store for the month.
  *
- * The store is the site's only order database. Staff work from the emails
- * (src/lib/payments/email.ts) and SADAD's own transaction list; the blobs are
- * the durable record behind both and can be browsed in Vercel → Storage →
- * abk-orders. Production writes under `orders/`, preview deployments under
- * `preview/orders/` and local development under `dev/orders/`, so test
- * traffic never mixes with real orders.
+ * The table is the site's only order database. Staff work from the emails
+ * (src/lib/payments/email.ts) and SADAD's own transaction list; the rows are
+ * the durable record behind both (Railway → abk-website → Postgres → Data).
+ * Production uses table `abk_orders`, other Railway/Vercel environments
+ * `abk_orders_preview` and local development `abk_orders_dev`, so test traffic
+ * never mixes with real orders even against the same database.
  *
- * Updates are compare-and-swap on the blob's ETag: the callback (customer's
- * browser) and the webhook (SADAD's server) can arrive together, and exactly
- * one of them sees an order turn paid — that one sends the emails.
+ * Updates are compare-and-swap on the row's `version`: the callback
+ * (customer's browser) and the webhook (SADAD's server) can arrive together,
+ * and exactly one of them sees an order turn paid — that one sends the emails.
  *
- * Without BLOB_READ_WRITE_TOKEN (unit tests, a fresh clone) records live in
- * memory; on a Vercel deployment a missing token is an error instead.
+ * Without DATABASE_URL (unit tests, a fresh clone) records live in memory; on
+ * a deployment a missing DATABASE_URL is an error instead.
  */
 
-import { BlobError, BlobPreconditionFailedError, get, list, put } from "@vercel/blob";
+import { Pool } from "pg";
+import { deployEnv, isDeployed } from "./config";
 import type { SadadResult } from "./sadad";
 
 export type Text = { en: string; ar: string };
@@ -146,7 +148,7 @@ export function paidEmailsMissing(o: Order): boolean {
  * test key reached production, and must never release goods.
  */
 function isLiveSite(): boolean {
-  return process.env.VERCEL_ENV === "production";
+  return deployEnv() === "production";
 }
 
 const ID_PATTERN = /^(ABK-[2-9A-HJKMNP-Z]{4}|PPF-[2-9A-HJKMNP-Z]{5})-[2-9A-HJKMNP-Z]{4}$/;
@@ -167,17 +169,13 @@ export function newOrderId(ref: string): string {
   return `${ref}-${suffix}`;
 }
 
-function prefix(): string {
-  if (process.env.VERCEL_ENV === "production") return "orders/";
-  if (process.env.VERCEL_ENV === "preview") return "preview/orders/";
-  return "dev/orders/";
-}
-
-function pathFor(id: string): string {
-  return `${prefix()}${id}.json`;
-}
-
 // ── storage backend ──────────────────────────────────────────────────────
+
+/** Production, every other deployment and local development each get their own table. */
+function table(): string {
+  const env = deployEnv();
+  return env === "production" ? "abk_orders" : env === "preview" ? "abk_orders_preview" : "abk_orders_dev";
+}
 
 const memory = new Map<string, { body: string; etag: string }>();
 let memoryEtag = 0;
@@ -186,78 +184,97 @@ let memoryEtag = 0;
 export const testHooks = { loseNextWriteReply: false };
 
 function inMemoryMode(): boolean {
-  if (process.env.BLOB_READ_WRITE_TOKEN) return false;
-  if (process.env.VERCEL) {
-    throw new Error("BLOB_READ_WRITE_TOKEN is not set — connect the abk-orders Blob store to this project");
-  }
+  if (process.env.DATABASE_URL?.trim()) return false;
+  if (isDeployed()) throw new Error("DATABASE_URL is not set: connect the Postgres database to this service");
   return true;
+}
+
+let pool: Pool | null = null;
+let schema: Promise<void> | null = null;
+
+/** The connection pool, with the table created on first use (idempotent). */
+async function db(): Promise<Pool> {
+  if (!pool) {
+    const connectionString = process.env.DATABASE_URL!.trim();
+    // Railway's private network and a local database speak plain TCP; its
+    // public proxy wants TLS with Railway's own certificate.
+    const plain = /@[^/]*(\.railway\.internal|localhost|127\.0\.0\.1)(:\d+)?\//.test(connectionString);
+    pool = new Pool({
+      connectionString,
+      max: 5,
+      idleTimeoutMillis: 30_000,
+      connectionTimeoutMillis: 10_000,
+      ssl: plain ? false : { rejectUnauthorized: false },
+    });
+    pool.on("error", (err) => console.error(`[orders] database pool error: ${err.message}`));
+  }
+  schema ??= pool
+    .query(
+      `CREATE TABLE IF NOT EXISTS ${table()} (
+         id text PRIMARY KEY,
+         data jsonb NOT NULL,
+         version integer NOT NULL DEFAULT 1,
+         created_at timestamptz NOT NULL DEFAULT now(),
+         updated_at timestamptz NOT NULL DEFAULT now()
+       )`,
+    )
+    .then(
+      () => undefined,
+      (err: unknown) => {
+        schema = null; // try again on the next call
+        throw err;
+      },
+    );
+  await schema;
+  return pool;
 }
 
 class EtagMismatch extends Error {}
 
-/**
- * Two conditional writes reaching one blob at the same instant: the store
- * answers "The conditional request cannot succeed due to a conflicting
- * operation against this resource" (S3's ConditionalRequestConflict) instead
- * of an ETag mismatch, and @vercel/blob does not retry it. It is the same lost
- * race, so it is retried the same way. Seen 2026-11-19 with a callback and a
- * webhook for one payment written together: without this the customer was
- * sent to "checking your payment" and staff got a false "not recorded" alert.
- */
-export function isWriteConflict(err: unknown): boolean {
-  return err instanceof BlobError && /conflicting operation|conditional request cannot succeed/i.test(err.message);
+async function readRaw(id: string): Promise<{ body: string; etag: string } | null> {
+  if (inMemoryMode()) return memory.get(id) ?? null;
+  const { rows } = await (await db()).query<{ body: string; version: number }>(
+    `SELECT data::text AS body, version FROM ${table()} WHERE id = $1`,
+    [id],
+  );
+  return rows[0] ? { body: rows[0].body, etag: String(rows[0].version) } : null;
 }
 
-async function readRaw(path: string): Promise<{ body: string; etag: string } | null> {
-  if (inMemoryMode()) return memory.get(path) ?? null;
-  const res = await get(path, { access: "private", useCache: false });
-  if (!res || res.statusCode !== 200) return null;
-  // A compressed response carries a weak ETag (W/"…"), which a conditional
-  // write never matches; the quoted value is the blob's own (strong) ETag.
-  // Seen 2026-11-19: every update of a ~1 KB order failed without this.
-  const etag = res.blob.etag.startsWith("W/") ? res.blob.etag.slice(2) : res.blob.etag;
-  return { body: await new Response(res.stream).text(), etag };
-}
-
-async function writeRaw(path: string, body: string, ifMatch: string | null): Promise<void> {
-  // An empty ETag would be dropped by the SDK, turning the conditional write
-  // into a blind overwrite (last writer wins, a paid status could be lost).
-  if (ifMatch !== null && !ifMatch) throw new Error(`order store returned no ETag for ${path}`);
+/** ifMatch null: create (refused if the id exists); otherwise update only that version. */
+async function writeRaw(id: string, body: string, ifMatch: string | null): Promise<void> {
+  if (ifMatch !== null && !ifMatch) throw new Error(`order store returned no version for ${id}`);
   if (inMemoryMode()) {
-    const current = memory.get(path);
+    const current = memory.get(id);
     if (ifMatch === null ? current : current?.etag !== ifMatch) throw new EtagMismatch();
     memoryEtag += 1;
-    memory.set(path, { body, etag: `m${memoryEtag}` });
+    memory.set(id, { body, etag: `m${memoryEtag}` });
     if (testHooks.loseNextWriteReply) {
       testHooks.loseNextWriteReply = false;
       throw new EtagMismatch();
     }
     return;
   }
-  try {
-    await put(path, body, {
-      access: "private",
-      contentType: "application/json; charset=utf-8",
-      addRandomSuffix: false,
-      cacheControlMaxAge: 60,
-      ...(ifMatch === null ? { allowOverwrite: false } : { allowOverwrite: true, ifMatch }),
-    });
-  } catch (err) {
-    if (err instanceof BlobPreconditionFailedError || isWriteConflict(err)) throw new EtagMismatch();
-    throw err;
-  }
+  const pg = await db();
+  const res =
+    ifMatch === null
+      ? await pg.query(`INSERT INTO ${table()} (id, data) VALUES ($1, $2::jsonb) ON CONFLICT (id) DO NOTHING`, [id, body])
+      : await pg.query(
+          `UPDATE ${table()} SET data = $2::jsonb, version = version + 1, updated_at = now() WHERE id = $1 AND version = $3`,
+          [id, body, Number(ifMatch)],
+        );
+  if (res.rowCount !== 1) throw new EtagMismatch();
 }
 
 // ── public API ───────────────────────────────────────────────────────────
 
 /** Stores a new order; throws if the store is unavailable or the id is taken. */
 export async function createOrder(order: Order): Promise<void> {
-  await writeRaw(pathFor(order.id), JSON.stringify(order), null);
+  await writeRaw(order.id, JSON.stringify(order), null);
 }
 
 export async function readOrder(id: string): Promise<{ order: Order; etag: string } | null> {
   if (!isOrderId(id)) return null;
-  const raw = await readRaw(pathFor(id));
+  const raw = await readRaw(id);
   if (!raw) return null;
   return { order: JSON.parse(raw.body) as Order, etag: raw.etag };
 }
@@ -289,7 +306,7 @@ async function updateOrder<T>(
     const write = newWriteId();
     next.writes = [...(current.order.writes ?? []), write].slice(-10);
     try {
-      await writeRaw(pathFor(id), JSON.stringify(next), current.etag);
+      await writeRaw(id, JSON.stringify(next), current.etag);
       return { order: next, changed: true, info };
     } catch (err) {
       if (!(err instanceof EtagMismatch)) throw err;
@@ -305,20 +322,19 @@ function newWriteId(): string {
   return Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
 }
 
+/** Ids starting with `start` (references use only A-Z, 2-9 and "-", so no LIKE wildcards). */
+async function idsStartingWith(start: string, sinceMs = 0): Promise<string[]> {
+  if (inMemoryMode()) return [...memory.keys()].filter((k) => k.startsWith(start));
+  const { rows } = await (await db()).query<{ id: string }>(
+    `SELECT id FROM ${table()} WHERE id LIKE $1 AND updated_at >= $2 ORDER BY created_at`,
+    [`${start}%`, new Date(sinceMs)],
+  );
+  return rows.map((r) => r.id).filter(isOrderId);
+}
+
 /** Every stored attempt (order id) of one cart or booking reference. */
-async function attemptIds(ref: string): Promise<string[]> {
-  const base = prefix();
-  const start = `${base}${ref}-`;
-  const toId = (path: string) => path.slice(base.length).replace(/\.json$/, "");
-  if (inMemoryMode()) return [...memory.keys()].filter((k) => k.startsWith(start)).map(toId);
-  const ids: string[] = [];
-  let cursor: string | undefined;
-  do {
-    const page = await list({ prefix: start, cursor, limit: 100 });
-    ids.push(...page.blobs.map((b) => toId(b.pathname)));
-    cursor = page.hasMore ? page.cursor : undefined;
-  } while (cursor);
-  return ids.filter(isOrderId);
+function attemptIds(ref: string): Promise<string[]> {
+  return idsStartingWith(`${ref}-`);
 }
 
 /** Paid, or parked for a payment check (money may have moved). */
@@ -366,20 +382,9 @@ export async function findOtherPaidPpfBooking(order: Order): Promise<Order | nul
   return null;
 }
 
-/** Ids of orders under a path start, last written at or after `sinceMs` (all of them in memory mode). */
-async function recentIds(start: string, sinceMs: number): Promise<string[]> {
-  const base = prefix();
-  const from = `${base}${start}`;
-  const toId = (path: string) => path.slice(base.length).replace(/\.json$/, "");
-  if (inMemoryMode()) return [...memory.keys()].filter((k) => k.startsWith(from)).map(toId);
-  const ids: string[] = [];
-  let cursor: string | undefined;
-  do {
-    const page = await list({ prefix: from, cursor, limit: 1000 });
-    for (const b of page.blobs) if (b.uploadedAt.getTime() >= sinceMs) ids.push(toId(b.pathname));
-    cursor = page.hasMore ? page.cursor : undefined;
-  } while (cursor);
-  return ids.filter(isOrderId);
+/** Ids of orders starting with `start`, last written at or after `sinceMs` (all of them in memory mode). */
+function recentIds(start: string, sinceMs: number): Promise<string[]> {
+  return idsStartingWith(start, sinceMs);
 }
 
 /** Adds a flag once; true only for the caller that added it. */

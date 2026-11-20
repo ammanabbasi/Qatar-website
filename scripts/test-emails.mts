@@ -10,8 +10,10 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 
-delete process.env.BLOB_READ_WRITE_TOKEN;
+delete process.env.DATABASE_URL;
 delete process.env.VERCEL;
+delete process.env.RAILWAY_ENVIRONMENT_NAME;
+delete process.env.RAILWAY_PROJECT_ID;
 process.env.ORDER_LINK_SECRET = "test-link-secret";
 
 const { renderOrderEmails } = await import("../src/lib/payments/email.ts");

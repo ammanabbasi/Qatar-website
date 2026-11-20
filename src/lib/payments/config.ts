@@ -30,9 +30,28 @@ export function sadadConfig(): SadadConfig | null {
   return { merchantId, secretKey, website };
 }
 
+/**
+ * Read while the static cart and PPF pages are built, so only public settings
+ * count here (the secret key never has to reach the build); the payment
+ * routes check the secret key at request time and refuse without it.
+ */
 export function paymentsVisibility(): PaymentsVisibility {
-  if (!sadadConfig()) return "off";
+  if (!/^\d{4,12}$/.test(process.env.SADAD_MERCHANT_ID?.trim() ?? "")) return "off";
   return process.env.PAYMENTS_PUBLIC?.trim() === "1" ? "public" : "preview";
+}
+
+/** Which deployment this is, on Railway (since 2026-11-19) or Vercel. */
+export function deployEnv(): "production" | "preview" | "development" {
+  const vercel = process.env.VERCEL_ENV?.trim();
+  const railway = process.env.RAILWAY_ENVIRONMENT_NAME?.trim();
+  if (vercel === "production" || railway === "production") return "production";
+  if (vercel || railway || process.env.VERCEL) return "preview";
+  return "development";
+}
+
+/** Running on a host (not a local machine or a unit test). */
+export function isDeployed(): boolean {
+  return Boolean(process.env.VERCEL || process.env.RAILWAY_ENVIRONMENT_NAME || process.env.RAILWAY_PROJECT_ID);
 }
 
 /**
@@ -42,7 +61,7 @@ export function paymentsVisibility(): PaymentsVisibility {
 export function callbackOrigin(request: Request): string {
   const override = process.env.PAYMENTS_CALLBACK_ORIGIN?.trim();
   if (override) return override.replace(/\/$/, "");
-  if (process.env.VERCEL_ENV === "production") return SITE.url;
+  if (deployEnv() === "production") return SITE.url;
   return new URL(request.url).origin;
 }
 
@@ -51,15 +70,12 @@ export function callbackOrigin(request: Request): string {
  * appear in WhatsApp messages and emails) can't be used to open someone
  * else's order page. Without a secret there is no valid token at all.
  *
- * Keyed on a value that outlives SADAD key changes (moving from the test key
- * to the live key must not break links already emailed): ORDER_LINK_SECRET if
- * set, else the order store's own token, else the SADAD key.
+ * Keyed on ORDER_LINK_SECRET if set (a key change then never breaks links
+ * already emailed), else the SADAD key. (Until 2026-11-19 the Vercel Blob
+ * token came second; links keyed on it stopped working with the move.)
  */
 function linkKey(): string | null {
-  const secret =
-    process.env.ORDER_LINK_SECRET?.trim() ||
-    process.env.BLOB_READ_WRITE_TOKEN?.trim() ||
-    process.env.SADAD_SECRET_KEY?.trim();
+  const secret = process.env.ORDER_LINK_SECRET?.trim() || process.env.SADAD_SECRET_KEY?.trim();
   return secret ? `abk-order-link:v1:${secret}` : null;
 }
 

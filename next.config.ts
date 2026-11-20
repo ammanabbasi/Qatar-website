@@ -28,6 +28,8 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // The Railway Docker build sets NEXT_STANDALONE=1 to ship only the traced server.
+  output: process.env.NEXT_STANDALONE === "1" ? "standalone" : undefined,
   images: {
     formats: ["image/avif", "image/webp"],
   },
