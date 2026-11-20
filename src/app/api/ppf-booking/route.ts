@@ -194,6 +194,7 @@ export async function POST(request: Request) {
   };
 
   let stored = false;
+  let emailedWithoutStore: Promise<boolean> | null = null;
   try {
     await createOrder(order);
     stored = true;
@@ -203,12 +204,21 @@ export async function POST(request: Request) {
   } catch (err) {
     console.error(`[ppf-booking] could not store ${order.id}: ${err instanceof Error ? err.message : err}`);
     // No stored order, nothing for SADAD to pay against: the customer is told
-    // to pay at handover, and the Sheet must say the same.
+    // to pay at handover, and the Sheet and the staff email must say the same.
     booking.payment = "handover";
+    order.pay = "handover";
+    order.status = "booked";
+    // The booking still reaches staff by email (awaited below, alongside the
+    // Sheet), so a store outage never loses it.
+    emailedWithoutStore = sendOrderEmails(order, "booked");
   }
 
   const sheet = await saveToSheet(booking);
-  if (!stored && sheet.result !== "saved") {
+  const emailed = emailedWithoutStore ? await emailedWithoutStore : false;
+  if (!stored && emailed) {
+    console.warn(`[ppf-booking] ${order.id} reached staff by email only (order store unavailable)`);
+  }
+  if (!stored && sheet.result !== "saved" && !emailed) {
     logUnsaved(sheet.failure, booking);
     return json(sheet.result === "not_configured" ? 503 : 502, {
       ok: false,

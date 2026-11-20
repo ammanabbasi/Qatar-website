@@ -145,17 +145,18 @@ function logRef(order: Order): string {
 /**
  * Sends the staff alert and, for a paid order, the customer receipt —
  * skipping either one an earlier attempt already delivered. Never throws.
+ * Resolves true when every email it tried was accepted by the mail server.
  */
 export async function sendOrderEmails(
   order: Order,
   event: OrderEmailEvent,
   reason: ReviewReason = "amount_mismatch",
-): Promise<void> {
+): Promise<boolean> {
   const m = mailer();
   if (!m) {
     console.error(`[orders] EMAIL NOT SENT (SMTP_PASS is not set): ${event} ${logRef(order)}`);
     await markEmails(order.id, { error: "smtp_not_configured" });
-    return;
+    return false;
   }
   const errors: string[] = [];
   const mails = renderOrderEmails(order, event, reason);
@@ -210,6 +211,7 @@ export async function sendOrderEmails(
       ...(event === "paid" ? { claimedAt: undefined } : {}),
     });
   } else if (order.emails.error) await markEmails(order.id, { error: undefined });
+  return errors.length === 0;
 }
 
 /** Records email outcomes; one retry, because a lost record could repeat an email later. */
